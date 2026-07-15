@@ -1,8 +1,9 @@
 # Bootstrap — Content Framework Extraction
 
-**Status:** Phase 0 (scaffold) done, 2026-07-15. **Phases 1+ blocked on owner review of this
-doc** — do not start Phase 1 until Emmanuel has approved the plan and the Open Decisions
-below are resolved.
+**Status:** Phase 0 (scaffold) done, 2026-07-15. Owner reviewed same day — all four Open
+Decisions resolved (see bottom). Sibling-repo workflow docs created (see Cross-Repo Workflow
+Map below); **each is triggered by the owner from its own repo** when this doc reaches the
+matching phase. Phase 1 is unblocked.
 
 **Goal:** consolidate AMPM's content-authoring knowledge — currently spread across
 `AMPM/ampm-ai-framework/content/` (4 framework docs), `AMPM/workflows/generate/` (4 workflow
@@ -72,7 +73,16 @@ resolution in the extracted doc with a one-line "resolved against X" note.
 6. **Real-data lint (dev Firestore, audited 2026-07-15, 906 question docs):** clean except 2
    `math_questions` fraction docs with non-empty metadata (`FEfVGwyPuQTbRLUMdjTZ`,
    `l8BmWHcdQ9Y71Vn794Cb`) — harmless at render (FRACTION ignores metadata), but validator
-   violations. Fix the 2 docs (dev, and prod equivalents if present) or record as accepted.
+   violations. **Owner decision: fix the data** — set `metadata: []` on both dev docs during
+   Phase 2 (the fixed values' current contents should be eyeballed first in case the options
+   were meant for a different presentation type); check prod for equivalents at the same time
+   (needs owner approval per-run — prod reads/writes are gated).
+7. **`ampm-firestore-migration/src/transform/questions.ts:152`** (found 2026-07-15 while
+   drafting the handoff workflows): `metadata: doc.metadata && doc.metadata.length > 0 ?
+   doc.metadata : null` — collapses the legitimate `[]` state (fraction/equation) to SQL
+   NULL. Every imported fraction row in dev Postgres currently has NULL metadata; this is
+   why the migration-repo workflow must run before the backend's NOT NULL constraint.
+   Owned by `ampm-firestore-migration/workflows/active/questions-metadata-empty-array.md`.
 
 ---
 
@@ -161,22 +171,21 @@ nothing needed got lost from the thin docs.
   publish-flag semantics, **nullability rules per field with the enforcement location for
   each**. Key rule: `metadata` is non-null always (empty array is the legitimate "none"
   state — fraction/equation), so blank-driven types can never silently lose their contract.
-- Handoff workflows (thin docs in each repo):
-  - **ampm-backend:** delete the dev seed `questions` row with `metadata: null` (the only
-    known violating row — Track A's import upserts by Firestore doc ID and never overwrites
-    it); migration `ALTER TABLE questions ALTER COLUMN metadata SET NOT NULL` (+ entity
-    change). Fits the owner's pre-prod "more changes before Phase 8" window.
-  - **ampm-contracts:** `QuestionResponse.metadata` → non-nullable `List<String>` (breaking,
-    next version bump).
-  - **AMPM:** after the contracts bump, `SpringQuestionMapper`'s `metadata ?: emptyList()`
-    is dead code — remove it; the silent-masking bug class dies at the schema layer with zero
-    app-side guard logic. (The separate Institutions Empty-state bug stays an ordinary small
-    AMPM fix, unrelated to this repo.)
-  - **ampm-firestore-migration:** confirm `src/import/questions.ts` writes `[]` (not null)
-    for empty metadata, so re-runs stay compatible with the NOT NULL column.
+- Handoff workflows — **created 2026-07-15, owner-triggered from each repo, in this order:**
+
+  | # | Repo | Workflow | Depends on |
+  |---|---|---|---|
+  | 1 | `ampm-firestore-migration` | `workflows/active/questions-metadata-empty-array.md` — fix the `[]`→NULL transform collapse (Inventory #7), re-run dev questions import to heal existing NULL rows | nothing |
+  | 2 | `ampm-backend` | `workflows/active/questions-metadata-not-null.md` — seed-row cleanup, backfill + `SET NOT NULL`, entity non-null | #1 |
+  | 3 | `ampm-contracts` | `workflows/active/contracts-wave-9-question-metadata-non-null.md` — `QuestionResponse.metadata` non-nullable, 0.11.0 | #2 |
+  | 4 | `AMPM` | `workflows/active/content-framework-support.md` Phase D — bump to 0.11.0, delete the now-dead `?: emptyList()` masking | #3 |
+
+  (AMPM's stubs/bugs-tracking/generation-move phases A–C in that same doc align with this
+  doc's Phases 1–3, not with the enforcement chain. The unrelated Institutions Empty-state
+  bug has its own doc: `AMPM/workflows/active/fix-institutions-entry-empty-state.md`.)
 
 **Validation:** backend build green with NOT NULL; a Track A re-run against dev succeeds
-post-constraint.
+post-constraint; dev API returns `"metadata": []` (never null) for a fraction question.
 
 ---
 
@@ -209,13 +218,13 @@ and its role.
 
 ---
 
-## Open Decisions (owner) — resolve before Phase 1
+## Open Decisions — RESOLVED by owner, 2026-07-15
 
-1. **Do the generate workflows move fully here, or stay in AMPM as stubs?** Recommendation:
-   move fully (they don't touch app code; AMPM keeps stubs). Affects Phase 3.
-2. **Do AMPM's historical `add-*.js` upload scripts move?** Recommendation: no — they're a
-   record of already-uploaded content, not reusable tooling. Affects Phase 3.
-3. **App-side mapper guard:** after Phase 4's NOT NULL + contracts bump, is any app-side
-   null-metadata guard still wanted? Recommendation: no — the schema layer owns it.
-4. **The 2 fraction docs with non-empty metadata (Inventory #6):** fix the data or accept
-   with a note?
+1. **Generate workflows move fully here** — AMPM keeps pointer stubs (Phase 3).
+2. **Historical `add-*.js` scripts stay in AMPM** — they're the provenance record of
+   already-uploaded content, not reusable tooling. Retirement note (recorded in AMPM's
+   `content-framework-support.md`): safe to delete once Track A's prod run is complete and
+   Postgres is the authoritative, backed-up content store — git history retains them either way.
+3. **No app-side null-metadata guard** — the schema layer owns it (Phase 4 chain).
+4. **Fix the 2 fraction docs' data** (Inventory #6) — during Phase 2, dev first, prod
+   equivalents checked with owner approval.
