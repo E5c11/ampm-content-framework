@@ -1,9 +1,21 @@
 # Bootstrap — Content Framework Extraction
 
-**Status:** Phase 0 (scaffold) done, 2026-07-15. Owner reviewed same day — all four Open
-Decisions resolved (see bottom). Sibling-repo workflow docs created (see Cross-Repo Workflow
-Map below); **each is triggered by the owner from its own repo** when this doc reaches the
-matching phase. Phase 1 is unblocked.
+**Status:** Phases 0–6 executed 2026-07-15 (owner-directed orchestration session; per-phase
+records inline below). **Four owner-gated residuals remain before this doc can archive:**
+
+1. **Inventory #6 dev data fix** — 4 dev Firestore fraction docs need `metadata: []`
+   (contents eyeballed, safe; Claude's session was permission-gated from Firestore writes).
+   From AMPM repo root: `node scripts/patch-question.js --collection <coll> --id <id>
+   --field metadata --value '[]' --confirm` for `math_questions/FEfVGwyPuQTbRLUMdjTZ`,
+   `math_questions/l8BmWHcdQ9Y71Vn794Cb`, `maths_questions/7mX3RShWs8lUZBa8XsET`,
+   `maths_questions/E1SrsPLQLgmW34y0B0um` — then re-run the dev questions import in
+   `ampm-firestore-migration` to heal the 2 matching Postgres rows.
+2. **Prod check for #6 equivalents** — gated on owner approval per-run.
+3. **`ampm-contracts` 0.11.0 publish** — code complete (`ed78f63` there), publish to
+   GitHub Packages requires owner confirmation per that repo's publishing rule.
+4. **After #3 publishes:** AMPM `content-framework-support.md` Phase D (bump + delete the
+   `?: emptyList()` masking) and ampm-backend's trailing 0.11.0 bump (recorded pending in
+   its archived workflow doc).
 
 **Goal:** consolidate AMPM's content-authoring knowledge — currently spread across
 `AMPM/ampm-ai-framework/content/` (4 framework docs), `AMPM/workflows/generate/` (4 workflow
@@ -247,15 +259,23 @@ and its role.
 
 ---
 
-## Phase 6 — Verification gate (completion gate for this workflow)
+## Phase 6 — Verification gate ✅ (2026-07-15, with residuals 1–4 in the Status header)
 
-- Validator clean against dev Firestore from this repo.
-- Contradiction Inventory: all 6 items resolved-and-recorded (or explicitly accepted).
-- Grep AMPM for references to moved docs/scripts — all resolve to stubs or new paths.
-- One end-to-end dry run: author (don't upload) one question per presentation type for one
-  subject following only this repo's docs — confirms the thin-workflow + profile + package
-  chain is actually sufficient without the old monolith docs.
-- Doc-graph index generated (`index.md`, Python tool or by hand at this scale).
+- ✅ Validator clean against dev Firestore from this repo: `tools/dump-curriculum-vocabulary.js`
+  (dev; 5 units / 25 topics / 123 subtopics / 13 skills) + `tools/validate-questions.js
+  --curriculum` clean on AMPM's historical `add-2020-nov-p1-q1-1.js`.
+- ✅/⏳ Contradiction Inventory: #1 (Phase 1, schema doc), #2 (fitb.md), #3 (died with the
+  old checklists — `PIPE-12` states per-type contracts correctly), #4 (fraction.md + AMPM
+  bugs-tracking `9606d970`), #5 (contract `"[ ]"` only; validator rule live in tools/,
+  verified vs synthetic violations), #7 (migration `9a04c5a`). #6: recorded + fix script
+  ready — data write is owner-gated (residual 1).
+- ✅ Grep AMPM for moved docs/scripts: every hit is a stub, the frozen script copies +
+  README/gitignore allowlist, or historical/descriptive prose. Nothing dangles.
+- ✅ End-to-end dry run: 8 questions (one per presentation type, dbe/math_lit) authored
+  following only this repo's docs; validator + curriculum check clean. One authoring error
+  self-caught by the docs (`DESIGN-MATH-01` space thousand-separator) — the chain works
+  without the monolith docs.
+- ✅ Doc-graph index: `index.md` (by hand at this scale).
 
 ---
 

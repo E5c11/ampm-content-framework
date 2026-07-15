@@ -48,7 +48,7 @@ content-data side.
 
 | Workflow | What | Status |
 |---|---|---|
-| `active/bootstrap-content-framework.md` | Stand up this repo: extract core docs, presentation package, subject profiles, move pipeline tooling, persistence enforcement handoffs, ecosystem registration | Phases 0–1 done (scaffold; core extraction); Phase 2 in progress |
+| `active/bootstrap-content-framework.md` | Stand up this repo: extract core docs, presentation package, subject profiles, move pipeline tooling, persistence enforcement handoffs, ecosystem registration | Phases 0–6 done 2026-07-15; 4 owner-gated residuals block archival (see doc's Status header: #6 data fix, prod check, contracts 0.11.0 publish, AMPM Phase D + backend bump) |
 
 ## Archive
 
