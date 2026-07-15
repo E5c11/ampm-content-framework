@@ -120,7 +120,21 @@ reference in AMPM resolves to deleted content (grep).
 
 ---
 
-## Phase 2 — Presentation package
+## Phase 2 — Presentation package ✅ (2026-07-15)
+
+**Resolution record:** #1 in `core/question-schema.md` (Phase 1); #2 in
+`presentations/fitb.md`; #4 in `presentations/fraction.md` + AMPM `bugs-tracking.md`
+corrected (commit `9606d970` there); #5 decided — contract is `"[ ]"` only, renderer
+untouched (dev scan of 1006 docs: zero `"[]"` tokens in real data), validator rule lands
+with the Phase 3 tools move; #6 — dev scan found the 2 known `math_questions` docs
+**plus 2 more** in `maths_questions` (`7mX3RShWs8lUZBa8XsET`, `E1SrsPLQLgmW34y0B0um`,
+metadata `["P = [ ]/[ ]"]`), all legacy input scaffolding — contents eyeballed, safe to
+clear. **Dev fix pending owner run** (Claude's session was permission-gated from writing
+Firestore): from AMPM repo root, run `scripts/patch-question.js --collection <coll> --id
+<id> --field metadata --value '[]' --confirm` for the 4 docs; prod equivalents still to
+be checked (owner-gated). New
+finding recorded in `presentations/ordering.md`: the app does NOT shuffle ordering
+items — old schema doc claim resolved against `Ordering.kt`.
 
 One doc per type under `presentations/`: `fitb.md`, `fraction.md`, `multiple-choice.md`,
 `multi-select.md`, `ordering.md`, `match.md`, `equation.md`, `steps.md`.

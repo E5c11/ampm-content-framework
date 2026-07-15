@@ -96,59 +96,37 @@ Field value constraints:
 - **`SCHEMA-ARR-06`** — `ordering`: `metadata` and `answer` have the same length.
   `enforced_by: validator`
 
-### Type contracts
+### Type contracts — moved to `presentations/` (bootstrap Phase 2, 2026-07-15)
 
-*(Moves to `presentations/{type}.md` in bootstrap Phase 2, where each row gains its
-renderer contract and validator-coverage section.)*
+The full per-type contract (metadata shape, answer shape, renderer contract citing app
+code, validator coverage, worked examples) lives in one doc per type:
 
-| `presentation` | `metadata` | `answer` |
-|---|---|---|
-| `fitb` | Flat array of label strings and `"[ ]"` blank markers. Each `"[ ]"` must be its own array element — never embedded in a label string. E.g. `["x = ", "[ ]"]` ✓ not `["x = [ ]"]` ✗ | 5 elements: one correct value per blank (index 0, 1, …), padded with `""` |
-| `fraction` | `[]` (empty array) | 5 elements: `["numerator", "denominator", "", "", ""]` |
-| `multiple_choice` | 5 elements: 4 option strings + `""`. Correct option **never at index 0** — index 0 is always a distractor. | 5 elements: `["correct option text", "", "", "", ""]` — must match a `metadata` value exactly |
-| `multi_select` | 5 elements: option strings | 5 elements: all correct options, padded with `""` |
-| `ordering` | N items (will be shuffled by the app) | N items in correct order |
-| `match` | 2N elements: first N = left column, last N = right column. Format: `"X - label"` | N elements: correct pairings `"left-right"` e.g. `"A-1"` |
-| `equation` | `[]` (empty array) | 5 elements: `["canonical expression", "", "", "", ""]` |
-| `steps` | N elements: step text or `"[ ]"` as its own element for each blank | N elements: one correct value per blank, in metadata order |
+| `presentation` | Contract doc |
+|---|---|
+| `fitb` | `presentations/fitb.md` |
+| `fraction` | `presentations/fraction.md` |
+| `multiple_choice` | `presentations/multiple-choice.md` |
+| `multi_select` | `presentations/multi-select.md` |
+| `ordering` | `presentations/ordering.md` |
+| `match` | `presentations/match.md` |
+| `equation` | `presentations/equation.md` |
+| `steps` | `presentations/steps.md` |
 
-- **`SCHEMA-TYPE-01`** — `fraction`: `answer[0]` (numerator) and `answer[1]`
-  (denominator) are both non-empty. `enforced_by: validator`
-- **`SCHEMA-TYPE-02`** — `multiple_choice` / `multi_select`: every non-empty `answer`
-  value exists **verbatim** in `metadata`. `enforced_by: human-review` (the app matches
-  by exact string; a mismatch makes the question unanswerable)
+The `SCHEMA-TYPE-*` rule IDs remain owned here (one-line form); the presentation docs
+carry the detail:
 
-### `equation` canonical format
-
-**`SCHEMA-TYPE-03`** — `enforced_by: human-review`
-
-- Fractions: `"3/4"` or `"(sin θ)/2"` for multi-char numerator/denominator
-- Exponents: `"sin²θ"` or `"x^2"` — decide per question, be consistent
-- Spaces around operators: `"2x + 3"` not `"2x+3"`
-
-### `fitb` metadata — time values
-
-**`SCHEMA-TYPE-04`** — never expect a single `HH:MM` input (users cannot type `":"`).
-Split into two blanks. `enforced_by: human-review`
-
-```js
-metadata: ["HH", "[ ]", ":", "MM", "[ ]"]
-answer:   ["23", "55", "", "", ""]
-```
-
-### `fitb` metadata — fractions
-
-**`SCHEMA-TYPE-05`** — never use `"/"` as a separator in `fitb` metadata to simulate a
-fraction. Use `fraction` presentation instead. `enforced_by: human-review`
-
----
-
-## `multiple_choice` — correct answer placement
-
-**`SCHEMA-TYPE-06`** — the correct option must **never** be at `metadata` index 0.
-Index 0 is always a distractor. Place the correct answer randomly at index 1, 2, or 3.
-`enforced_by: human-review` (the validator does not check this; paper-level index-0
-distribution is checked by the audit script, per-question placement is on the author)
+- **`SCHEMA-TYPE-01`** — `fraction`: `answer[0]`/`answer[1]` (numerator/denominator)
+  both non-empty. `enforced_by: validator`
+- **`SCHEMA-TYPE-02`** — `multiple_choice`/`multi_select`: every non-empty `answer`
+  value exists **verbatim** in `metadata`. `enforced_by: human-review`
+- **`SCHEMA-TYPE-03`** — `equation`/`steps` answers use the canonical serialization
+  format (see `presentations/equation.md`). `enforced_by: human-review`
+- **`SCHEMA-TYPE-04`** — `fitb`: never a single `HH:MM` blank — split time values
+  (see `presentations/fitb.md`). `enforced_by: human-review`
+- **`SCHEMA-TYPE-05`** — `fitb`: never simulate fractions with `"/"` — use `fraction`.
+  `enforced_by: human-review`
+- **`SCHEMA-TYPE-06`** — `multiple_choice`: correct option never at `metadata` index 0.
+  `enforced_by: human-review`
 
 ---
 
