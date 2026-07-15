@@ -10,12 +10,24 @@ before this doc can archive:**
    `["P = [ ]/[ ]"]`×2). Dev re-audit clean: 1,006 docs across all three question
    collections, zero findings. Dev questions import re-run (owner-authorized, 906 docs
    upserted); Postgres verified: 0 NULL-metadata rows, all 24 fraction rows = `{}`.
-2. **Prod check for #6 equivalents** — gated on owner approval per-run.
-3. **`ampm-contracts` 0.11.0 publish** — code complete (`ed78f63` there), publish to
-   GitHub Packages requires owner confirmation per that repo's publishing rule.
-4. **After #3 publishes:** AMPM `content-framework-support.md` Phase D (bump + delete the
-   `?: emptyList()` masking) and ampm-backend's trailing 0.11.0 bump (recorded pending in
-   its archived workflow doc).
+2. **Prod check for #6 equivalents — CHECKED 2026-07-15** (owner-authorized read-only
+   audit): prod has the **same 2 `math_questions` docs** (`FEfVGwyPuQTbRLUMdjTZ`,
+   `l8BmWHcdQ9Y71Vn794Cb`, same IDs as dev — content was copied dev→prod);
+   `english_questions` clean; `maths_questions` empty in prod. **Prod WRITE still pending
+   owner go-ahead** — note `AMPM/scripts/patch-question.js` refuses the prod service account
+   by design, so the fix needs a prod-capable variant run with the same
+   dry-run-then-confirm discipline.
+3. ~~**`ampm-contracts` 0.11.0 publish**~~ — **DONE 2026-07-15** (owner-authorized, PAT from
+   `local.properties`): Maven all publications + npm `@e5c11/ampm-contracts@0.11.0`, both
+   verified via the GitHub Packages API. Wave doc renumbered 9→10 (archive already held a
+   wave 9) and archived; `ContractsVersion.VALUE` drift fixed (`0.5.0`→`0.11.0`; deletion
+   recommended next breaking wave — zero consumers); Task Order row 12 added plus an
+   acknowledged-gap row for the never-added 0.6.0–0.10.0 entries.
+4. ~~**After #3 publishes**~~ — **DONE 2026-07-15**: AMPM Phase D (`f15156f7` — bump +
+   `?: emptyList()` masking deleted, test replaced, mapper suite green, touched files
+   detekt-clean) and ampm-backend's trailing bump (`7347ec5` — zero compile fallout, full
+   build green). **One sliver open:** AMPM's on-device fraction/fitb spot-check — no
+   emulator was attached; recorded pending in `content-framework-support.md`.
 
 **Goal:** consolidate AMPM's content-authoring knowledge — currently spread across
 `AMPM/ampm-ai-framework/content/` (4 framework docs), `AMPM/workflows/generate/` (4 workflow
@@ -222,7 +234,7 @@ recorded pending in its archived workflow doc.
   |---|---|---|---|
   | 1 | `ampm-firestore-migration` | `workflows/active/questions-metadata-empty-array.md` — fix the `[]`→NULL transform collapse (Inventory #7), re-run dev questions import to heal existing NULL rows | nothing |
   | 2 | `ampm-backend` | `workflows/active/questions-metadata-not-null.md` — seed-row cleanup, backfill + `SET NOT NULL`, entity non-null | #1 |
-  | 3 | `ampm-contracts` | `workflows/active/contracts-wave-9-question-metadata-non-null.md` — `QuestionResponse.metadata` non-nullable, 0.11.0 | #2 |
+  | 3 | `ampm-contracts` | `workflows/active/contracts-wave-10-question-metadata-non-null.md` — `QuestionResponse.metadata` non-nullable, 0.11.0 | #2 |
   | 4 | `AMPM` | `workflows/active/content-framework-support.md` Phase D — bump to 0.11.0, delete the now-dead `?: emptyList()` masking | #3 |
 
   (AMPM's stubs/bugs-tracking/generation-move phases A–C in that same doc align with this
