@@ -188,7 +188,16 @@ nothing needed got lost from the thin docs.
 
 ---
 
-## Phase 4 — Persistence contract + enforcement handoffs
+## Phase 4 — Persistence contract + enforcement handoffs ✅ (2026-07-15)
+
+**Record:** `core/persistence.md` landed (chain status table inside it). Handoffs #1/#2
+done (`9a04c5a` migration, `6a37056`+V64 backend — seed row soft-deleted+unpublished per
+`AMPM-BE-ENT-SOFTDELETE-01`, not hard-deleted as this doc's sketch assumed). Validation:
+backend build+tests green with NOT NULL; Track A re-run against dev succeeded
+post-constraint (906 rows, 0 NULL metadata, seed row not resurrected); dev API sweep of
+all 906 items returned `"metadata": []`, never null/absent, for fraction questions.
+#3 (contracts 0.11.0) and #4 (AMPM Phase D) in flight; backend's trailing 0.11.0 bump
+recorded pending in its archived workflow doc.
 
 - `core/persistence.md`: collection↔table mapping (defer detail to
   `ampm-backend/wiki/database/migration-map.md`, don't duplicate), junction-table shapes,

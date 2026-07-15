@@ -75,12 +75,13 @@ Record each resolution inline in the winning doc with a one-line
 
 | Path | What | Status |
 |------|------|--------|
-| `core/` | Always-loaded rules: question schema, authoring principles, MathText markup, AI explanations, upload pipeline skeleton, persistence contract | schema/principles/mathtext/ai-explanation/upload-pipeline live (Phase 1); `persistence.md` lands Phase 4 |
-| `presentations/` | One doc per presentation type: metadata/answer contracts, renderer contract (cites app code), validator coverage, worked examples | Phase 2 |
-| `subjects/` | Subject×syllabus profiles — the subject-specific residue only | Phase 3 |
-| `workflows/generate/` | Thin upload/review orchestrators | Phase 3 |
-| `tools/` | `validate-questions.js`, vocabulary dumpers, upload-script template, image-extraction helpers | Phase 3 |
+| `core/` | Always-loaded rules: question schema, authoring principles, MathText markup, AI explanations, upload pipeline skeleton, persistence contract | live |
+| `presentations/` | One doc per presentation type: metadata/answer contracts, renderer contract (cites app code), validator coverage, worked examples | live |
+| `subjects/` | Subject×syllabus profiles — the subject-specific residue only | live |
+| `workflows/generate/` | Thin upload/review orchestrators (`review-paper.md` runs from the AMPM repo root) | live |
+| `tools/` | `validate-questions.js`, vocabulary dumper, image uploader/extractor, upload-script template — see `tools/README.md` for setup (`.env`) | live |
 | `context/project-profile.yaml` | esc-ai-framework consumption profile — governs engineering work *on* this repo, not content authoring | live |
+| `index.md` | Doc-graph index (IDs, relations, rule-ID prefixes) | live |
 
 ---
 
