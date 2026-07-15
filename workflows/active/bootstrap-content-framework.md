@@ -3,13 +3,15 @@
 **Status:** Phases 0–6 executed 2026-07-15 (owner-directed orchestration session; per-phase
 records inline below). **Four owner-gated residuals remain before this doc can archive:**
 
-1. **Inventory #6 dev data fix** — 4 dev Firestore fraction docs need `metadata: []`
-   (contents eyeballed, safe; Claude's session was permission-gated from Firestore writes).
-   From AMPM repo root: `node scripts/patch-question.js --collection <coll> --id <id>
-   --field metadata --value '[]' --confirm` for `math_questions/FEfVGwyPuQTbRLUMdjTZ`,
-   `math_questions/l8BmWHcdQ9Y71Vn794Cb`, `maths_questions/7mX3RShWs8lUZBa8XsET`,
-   `maths_questions/E1SrsPLQLgmW34y0B0um` — then re-run the dev questions import in
-   `ampm-firestore-migration` to heal the 2 matching Postgres rows.
+1. **Inventory #6 dev data fix — Firestore DONE 2026-07-15** (owner authorized the dev
+   service account; all 4 docs patched to `metadata: []` via `AMPM/scripts/patch-question.js`,
+   old values were legacy fraction-input scaffolding as eyeballed: `["[ ]","/","[ ]"]`,
+   `["","/","","",""]`, `["P = [ ]/[ ]"]`×2). Full dev re-audit clean: 1,006 docs across
+   `math_questions`/`english_questions`/`maths_questions`, zero metadata-shape findings.
+   **Remaining sliver:** one dev questions-import re-run in `ampm-firestore-migration`
+   (`npx tsx src/main.ts questions --env dev`, proxy on :15433) to heal the 2 matching
+   `math_questions` Postgres rows — write to shared dev DB, owner-triggered
+   (`maths_questions` isn't imported; Pure Maths is out of Track A scope).
 2. **Prod check for #6 equivalents** — gated on owner approval per-run.
 3. **`ampm-contracts` 0.11.0 publish** — code complete (`ed78f63` there), publish to
    GitHub Packages requires owner confirmation per that repo's publishing rule.
