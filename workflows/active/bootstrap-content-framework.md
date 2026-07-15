@@ -1,8 +1,11 @@
 # Bootstrap — Content Framework Extraction
 
 **Status:** Phases 0–6 executed 2026-07-15 (owner-directed orchestration session; per-phase
-records inline below). **Residual 1 closed 2026-07-15; three owner-gated residuals remain
-before this doc can archive:**
+records inline below). **Residuals 1–4 all closed 2026-07-15. The single item left before
+this doc can archive:** AMPM's on-device fraction/fitb spot-check (residual 4's sliver —
+pending an attached emulator; tracked in `AMPM/workflows/active/content-framework-support.md`).
+Related decision recorded same day in `ampm-contracts` (Task Order row 13): delete
+`ContractsVersion`/`ContractsVersionJs` in the next breaking wave.
 
 1. ~~**Inventory #6 dev data fix**~~ — **DONE 2026-07-15.** All 4 dev Firestore docs patched
    to `metadata: []` via `AMPM/scripts/patch-question.js` (owner-authorized; old values were
@@ -10,13 +13,15 @@ before this doc can archive:**
    `["P = [ ]/[ ]"]`×2). Dev re-audit clean: 1,006 docs across all three question
    collections, zero findings. Dev questions import re-run (owner-authorized, 906 docs
    upserted); Postgres verified: 0 NULL-metadata rows, all 24 fraction rows = `{}`.
-2. **Prod check for #6 equivalents — CHECKED 2026-07-15** (owner-authorized read-only
-   audit): prod has the **same 2 `math_questions` docs** (`FEfVGwyPuQTbRLUMdjTZ`,
-   `l8BmWHcdQ9Y71Vn794Cb`, same IDs as dev — content was copied dev→prod);
-   `english_questions` clean; `maths_questions` empty in prod. **Prod WRITE still pending
-   owner go-ahead** — note `AMPM/scripts/patch-question.js` refuses the prod service account
-   by design, so the fix needs a prod-capable variant run with the same
-   dry-run-then-confirm discipline.
+2. ~~**Prod check for #6 equivalents**~~ — **DONE 2026-07-15.** Owner-authorized read-only
+   audit found the same 2 `math_questions` docs as dev (same IDs, same legacy scaffolding
+   values — content was copied dev→prod); `english_questions` clean; `maths_questions`
+   empty in prod. Owner then authorized the write: both docs patched to `metadata: []` via
+   a one-purpose prod script (dry-run-then-confirm, hardcoded to exactly these 2 docs +
+   this field, refuses non-fraction presentations; `AMPM/scripts/patch-question.js` itself
+   refuses prod by design). Post-write prod re-audit: **fully clean, 871 docs, zero
+   findings across all three question collections.** No prod Postgres to heal — Track A
+   Phase 8 remains deferred; when it runs, it imports the already-clean values.
 3. ~~**`ampm-contracts` 0.11.0 publish**~~ — **DONE 2026-07-15** (owner-authorized, PAT from
    `local.properties`): Maven all publications + npm `@e5c11/ampm-contracts@0.11.0`, both
    verified via the GitHub Packages API. Wave doc renumbered 9→10 (archive already held a
