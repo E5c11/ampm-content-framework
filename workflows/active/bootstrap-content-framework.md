@@ -1,17 +1,15 @@
 # Bootstrap — Content Framework Extraction
 
 **Status:** Phases 0–6 executed 2026-07-15 (owner-directed orchestration session; per-phase
-records inline below). **Four owner-gated residuals remain before this doc can archive:**
+records inline below). **Residual 1 closed 2026-07-15; three owner-gated residuals remain
+before this doc can archive:**
 
-1. **Inventory #6 dev data fix — Firestore DONE 2026-07-15** (owner authorized the dev
-   service account; all 4 docs patched to `metadata: []` via `AMPM/scripts/patch-question.js`,
-   old values were legacy fraction-input scaffolding as eyeballed: `["[ ]","/","[ ]"]`,
-   `["","/","","",""]`, `["P = [ ]/[ ]"]`×2). Full dev re-audit clean: 1,006 docs across
-   `math_questions`/`english_questions`/`maths_questions`, zero metadata-shape findings.
-   **Remaining sliver:** one dev questions-import re-run in `ampm-firestore-migration`
-   (`npx tsx src/main.ts questions --env dev`, proxy on :15433) to heal the 2 matching
-   `math_questions` Postgres rows — write to shared dev DB, owner-triggered
-   (`maths_questions` isn't imported; Pure Maths is out of Track A scope).
+1. ~~**Inventory #6 dev data fix**~~ — **DONE 2026-07-15.** All 4 dev Firestore docs patched
+   to `metadata: []` via `AMPM/scripts/patch-question.js` (owner-authorized; old values were
+   legacy fraction-input scaffolding as eyeballed: `["[ ]","/","[ ]"]`, `["","/","","",""]`,
+   `["P = [ ]/[ ]"]`×2). Dev re-audit clean: 1,006 docs across all three question
+   collections, zero findings. Dev questions import re-run (owner-authorized, 906 docs
+   upserted); Postgres verified: 0 NULL-metadata rows, all 24 fraction rows = `{}`.
 2. **Prod check for #6 equivalents** — gated on owner approval per-run.
 3. **`ampm-contracts` 0.11.0 publish** — code complete (`ed78f63` there), publish to
    GitHub Packages requires owner confirmation per that repo's publishing rule.
