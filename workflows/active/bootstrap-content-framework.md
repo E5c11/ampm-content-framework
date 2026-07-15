@@ -1,11 +1,25 @@
 # Bootstrap — Content Framework Extraction
 
 **Status:** Phases 0–6 executed 2026-07-15 (owner-directed orchestration session; per-phase
-records inline below). **Residuals 1–4 all closed 2026-07-15. The single item left before
-this doc can archive:** AMPM's on-device fraction/fitb spot-check (residual 4's sliver —
-pending an attached emulator; tracked in `AMPM/workflows/active/content-framework-support.md`).
-Related decision recorded same day in `ampm-contracts` (Task Order row 13): delete
-`ContractsVersion`/`ContractsVersionJs` in the next breaking wave.
+records inline below). **Residuals 1–4 all closed 2026-07-15**; related decision recorded
+same day in `ampm-contracts` (Task Order row 13): delete `ContractsVersion`/
+`ContractsVersionJs` in the next breaking wave.
+
+> **BLOCKING DISCOVERY (2026-07-15, evening) — the on-device spot-check caught an
+> environment split, not a rendering bug.** Every "dev Postgres" reference in this doc's
+> records means the **local Docker container** `ampm-backend-postgres-1` (host port 15433 →
+> container 5432 — it is NOT a Cloud SQL Auth Proxy, though it was believed to be one). The
+> **deployed dev Cloud Run backend serves the separate Cloud SQL dev instance, which never
+> received the Track A import, the V61–V64 migrations, or any of today's fixes** — it still
+> serves V31 seed data only (1 lesson, 1 fitb question with `metadata: null`). Evidence: the
+> spot-check app hung 25+ min on the launcher; its Room cache pulled exactly the seed
+> lesson/question; port 15433 resolved to docker-proxy for the local container. Strongly
+> suspected hang mechanism: the 0.11.0 app now **fails loud** (as designed) on the seed
+> row's null metadata that Cloud SQL dev still serves, and the launcher gate retries.
+> Everything schema/data-side is done and verified — but against local Docker "dev," not
+> the environment the app actually talks to. Remaining work: redeploy dev Cloud Run
+> (Flyway applies V61–V64 to Cloud SQL dev) + run the Track A import against the real
+> Cloud SQL dev instance + re-run the spot-check. Owner-gated (needs gcloud auth / proxy).
 
 1. ~~**Inventory #6 dev data fix**~~ — **DONE 2026-07-15.** All 4 dev Firestore docs patched
    to `metadata: []` via `AMPM/scripts/patch-question.js` (owner-authorized; old values were
