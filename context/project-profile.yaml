@@ -1,0 +1,22 @@
+# Project profile for ampm-content-framework — fed to esc-ai-framework.
+# See /home/emmanuel/StudioProjects/esc-ai-framework/INSTRUCTIONS.md (Steps 1-2) for how
+# this determines which framework layers/docs apply to a given task.
+#
+# Deliberate non-matches, not gaps (same reasoning as ampm-firestore-migration's profile):
+# - This is a documentation-first repo with standalone scripts, not an application. No
+#   `platforms/{name}/` or `architectures/{name}/` layer applies. `CORE-*` docs (naming,
+#   SSOT, testing philosophy) still apply — they are language/platform-agnostic.
+# - `build/` (BUILD-*) is Gradle-specific — inapplicable, no `build:` section below.
+#
+# This repo is itself a framework (for content authoring, not engineering) — it mirrors
+# esc-ai-framework's consumption pattern (profile → layers, rules by ID) rather than
+# consuming a deep slice of it.
+
+project: ampm-content-framework
+platform: none
+language: markdown
+architecture: none
+frameworks:
+  tooling-content: node        # anything touching Firestore/Postgres/content data (see workflows/README.md)
+  tooling-docgraph: python     # doc-index/lookup upkeep, mirrors esc-ai-framework/tools
+  database: firestore+postgres # dual-store transition window; see core/persistence contract

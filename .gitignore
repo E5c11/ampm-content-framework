@@ -1,0 +1,17 @@
+# Node (content-pipeline tooling)
+node_modules/
+dist/
+*.log
+
+# Python (doc-graph/framework upkeep tooling)
+__pycache__/
+*.pyc
+.venv/
+
+# Environment / credentials — never committed; service-account files stay in
+# AMPM/.firebase/ and are referenced by absolute path from a local .env
+.env
+
+# IDE / OS
+.idea/
+.DS_Store
