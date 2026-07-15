@@ -222,7 +222,15 @@ post-constraint; dev API returns `"metadata": []` (never null) for a fraction qu
 
 ---
 
-## Phase 5 — Ecosystem registration
+## Phase 5 — Ecosystem registration ✅ (2026-07-15)
+
+**Record:** `ampm-knowledge-base` commit `2c8ec2e` — system-map registry row +
+README ownership table row (content-authoring rules → this repo); thin workflow doc
+executed and archived there. AMPM `workflows/README.md` pointer landed with Phase C
+(`9919d5bc`). `esc-ai-framework`: nothing moved and no `tools/profiles/` entry —
+Phase 3 reused no esc Python tooling (doc-graph index was hand-written), so the
+optional registration doesn't apply. Discovery validated: README ownership table →
+system-map registry row, one hop either way.
 
 - `ampm-knowledge-base` (thin workflow there): add this repo to
   `ecosystem/system-map.md`'s registry; update the README ownership table — content-authoring
