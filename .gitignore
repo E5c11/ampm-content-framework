@@ -12,6 +12,9 @@ __pycache__/
 # AMPM/.firebase/ and are referenced by absolute path from a local .env
 .env
 
+# Session working files (vocab snapshots, extracted images, review output)
+temp/
+
 # IDE / OS
 .idea/
 .DS_Store

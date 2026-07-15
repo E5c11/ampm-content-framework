@@ -156,7 +156,17 @@ Each carries, in this order:
 
 ---
 
-## Phase 3 — Subject profiles + thin generation workflows
+## Phase 3 — Subject profiles + thin generation workflows ✅ (2026-07-15)
+
+**Record:** profiles + thin workflows + tools landed as specced. Tools moved:
+`validate-questions.js` (as-is plus the Inventory #5 `"[]"` rejection + steps
+exact-token rule), `dump-curriculum-vocabulary.js` and `upload-exam-images.js`
+(credentials now via `tools/lib/credentials.js` + untracked `.env`, per the
+scaffold's decided pattern), `extract-exam-pages.py`, new
+`tools/upload-script-template.js`. Validated: dev vocab dump + validator clean run
+against AMPM's historical `add-2020-nov-p1-q1-1.js` from this repo; new rules verified
+against synthetic violations. Review harness + `english_texts` maintenance scripts stay
+in AMPM (app-coupled); `review-paper.md` here runs from the AMPM repo root.
 
 - `subjects/dbe-math-lit.md`, `subjects/dbe-maths.md`, `subjects/dbe-english-hl.md` — only
   the genuinely subject-specific residue: allowed presentation types, question types,

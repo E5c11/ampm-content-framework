@@ -1,0 +1,13 @@
+{
+  "name": "ampm-content-framework",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AMPM content-authoring framework — docs plus content-pipeline tooling",
+  "scripts": {
+    "validate": "node tools/validate-questions.js",
+    "dump-vocab": "node tools/dump-curriculum-vocabulary.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  }
+}
