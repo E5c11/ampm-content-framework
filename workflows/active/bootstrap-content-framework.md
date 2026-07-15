@@ -93,7 +93,7 @@ cross-repo orchestration + tool-language decisions), this doc.
 
 ---
 
-## Phase 1 — Core extraction
+## Phase 1 — Core extraction ✅ (2026-07-15)
 
 Create `INSTRUCTIONS.md` (consumption model: read profile → load `core/` + the presentation
 docs the profile allows + the subject doc; rules carry IDs and an `enforced_by:` line —
