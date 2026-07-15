@@ -14,7 +14,7 @@ tags: [presentation, fitb, blanks, metadata]
 strings and `"[ ]"` blank markers. Each `"[ ]"` must be its own array element — never
 embedded in a label string (`["x = ", "[ ]"]` ✓, `["x = [ ]"]` ✗). Blank marker is
 `"[ ]"` **with the space** — `"[]"` is banned. `enforced_by: validator` (non-empty +
-split-token; `"[]"` rejection lands with the Phase 3 tools move), `renderer`.
+split-token + `"[]"` rejection), `renderer`.
 
 *Inventory #2 resolved against validator+renderer, 2026-07-15: an AMPM upload-doc
 template comment claimed `metadata: []` for fitb — wrong; empty metadata renders zero
@@ -62,9 +62,9 @@ Verified against app code 2026-07-15:
 ## Validator coverage
 
 `tools/validate-questions.js` enforces: non-empty metadata (variable-length set),
-5-element answer, split-token rule (embedded `"[ ]"` rejected), no `\n` in question.
-Human-review only: blank-count ↔ answer-count match, `|` alternatives coverage,
-answer correctness, `"[ ]"`-only token form (until the Phase 3 validator rule lands).
+5-element answer, split-token rule (embedded `"[ ]"` rejected), `"[ ]"`-only token form
+(`"[]"` rejected), no `\n` in question. Human-review only: blank-count ↔ answer-count
+match, `|` alternatives coverage, answer correctness.
 
 ## Worked example + pitfalls
 
