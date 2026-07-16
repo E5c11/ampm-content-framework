@@ -46,11 +46,10 @@ content-data side.
 
 ## Active
 
-| Workflow | What | Status |
-|---|---|---|
-| `active/bootstrap-content-framework.md` | Stand up this repo: extract core docs, presentation package, subject profiles, move pipeline tooling, persistence enforcement handoffs, ecosystem registration | Phases 0–6 done 2026-07-15; 4 owner-gated residuals block archival (see doc's Status header: #6 data fix, prod check, contracts 0.11.0 publish, AMPM Phase D + backend bump) |
+_Empty — the bootstrap is complete; new work gets its own workflow doc._
 
 ## Archive
 
-_Empty — completed workflows move to `archive/` with a status header, same convention as
-sibling repos._
+| Workflow | What | Status |
+|---|---|---|
+| `archive/bootstrap-content-framework.md` | Stood up this repo: core docs, presentation package (with renderer contracts), subject profiles, pipeline tooling, persistence enforcement chain (migration transform → Postgres NOT NULL → contracts 0.11.0 → AMPM), ecosystem registration | **Complete, 2026-07-15.** Along the way caught and fixed a real environment split (the deployed dev backend had never received any of the day's work — see doc's Status header) and closed the loop with a direct on-device confirmation of the fix. |

@@ -1,25 +1,31 @@
 # Bootstrap — Content Framework Extraction
 
-**Status:** Phases 0–6 executed 2026-07-15 (owner-directed orchestration session; per-phase
-records inline below). **Residuals 1–4 all closed 2026-07-15**; related decision recorded
-same day in `ampm-contracts` (Task Order row 13): delete `ContractsVersion`/
-`ContractsVersionJs` in the next breaking wave.
+**Status: COMPLETE, 2026-07-15.** All phases (0–6), all four residuals, and the blocking
+environment-split discovery below are fully resolved and verified on-device. Archiving this
+doc — see `archive/` (or its final location) after this update.
 
-> **BLOCKING DISCOVERY (2026-07-15, evening) — the on-device spot-check caught an
-> environment split, not a rendering bug.** Every "dev Postgres" reference in this doc's
-> records means the **local Docker container** `ampm-backend-postgres-1` (host port 15433 →
-> container 5432 — it is NOT a Cloud SQL Auth Proxy, though it was believed to be one). The
-> **deployed dev Cloud Run backend serves the separate Cloud SQL dev instance, which never
-> received the Track A import, the V61–V64 migrations, or any of today's fixes** — it still
-> serves V31 seed data only (1 lesson, 1 fitb question with `metadata: null`). Evidence: the
-> spot-check app hung 25+ min on the launcher; its Room cache pulled exactly the seed
-> lesson/question; port 15433 resolved to docker-proxy for the local container. Strongly
-> suspected hang mechanism: the 0.11.0 app now **fails loud** (as designed) on the seed
-> row's null metadata that Cloud SQL dev still serves, and the launcher gate retries.
-> Everything schema/data-side is done and verified — but against local Docker "dev," not
-> the environment the app actually talks to. Remaining work: redeploy dev Cloud Run
-> (Flyway applies V61–V64 to Cloud SQL dev) + run the Track A import against the real
-> Cloud SQL dev instance + re-run the spot-check. Owner-gated (needs gcloud auth / proxy).
+> **RESOLVED (2026-07-15) — environment-split discovery.** The on-device spot-check first
+> caught a real environment split, not a rendering bug: every "dev Postgres" reference
+> earlier in this doc's records meant the **local Docker container**
+> `ampm-backend-postgres-1` (host port 15433 → container 5432 — never a Cloud SQL Auth
+> Proxy, though believed to be one at the time). The deployed dev Cloud Run backend served
+> the separate Cloud SQL dev instance, which had never received the Track A import or
+> migrations V61–V64 — still V31 seed data only, including a seed fitb question with
+> `metadata: null`. That null is what the app's new fail-loud behavior (0.11.0) choked on,
+> surfacing as a 25+ minute launcher hang.
+>
+> **Fix, executed 2026-07-15:** rebuilt + pushed the backend image (`gcr.io/ampm-b9661/
+> ampm-backend@sha256:d2d93080…`); `gcloud run deploy` reported success but Cloud Run had
+> resolved the mutable `:latest` tag to a stale digest (`6d12f245…`) — caught by re-checking
+> the actual revision image, fixed by deploying pinned to the verified digest and then
+> `gcloud run services update-traffic --to-latest` (the deploy command's own "100% traffic"
+> claim was stale/wrong and had to be independently verified). Confirmed via Flyway log:
+> schema now at V64, seed row soft-deleted+unpublished, `metadata` backfilled to `{}`.
+> Started a real Cloud SQL Auth Proxy (port 15440, detached from the tool's process
+> lifecycle after two background-task timeouts killed it mid-import) and re-ran the full
+> Track A import against the actual Cloud SQL dev instance — all 23 tables, 907 questions
+> (0 NULL metadata), idempotency re-confirmed. Full details and exact commands are in this
+> session's transcript, not duplicated here.
 
 1. ~~**Inventory #6 dev data fix**~~ — **DONE 2026-07-15.** All 4 dev Firestore docs patched
    to `metadata: []` via `AMPM/scripts/patch-question.js` (owner-authorized; old values were
@@ -307,6 +313,27 @@ and its role.
   self-caught by the docs (`DESIGN-MATH-01` space thousand-separator) — the chain works
   without the monolith docs.
 - ✅ Doc-graph index: `index.md` (by hand at this scale).
+- ✅ **On-device confirmation, 2026-07-15 (after the environment-split fix above):**
+  redeployed dev backend, real Cloud SQL dev import, fresh anonymous session on emulator,
+  `devGoogle` debug build. "Question 1.1 & 1.2" (`june_p2` 2025, Math Literacy) practice
+  question 3 rendered as **fitb** with exactly one input box + `%` suffix label — matched
+  directly against the DB row's `metadata: ["[ ]", "%"]`, not assumed from the screenshot.
+  Custom numeric keyboard mounted on focus. Two multiple-choice questions in the same set
+  answered correctly end-to-end with real validator feedback ("Correct! +4 XP"), confirming
+  the full read+validate pipeline against real Spring/Postgres data. This is the direct
+  visual proof that the null-metadata dead-end (the bug this whole chain exists to fix) is
+  closed: the same seed row that hung the launcher pre-fix now serves a real, fully-formed
+  fitb question. Fraction's 2-fixed-input behavior wasn't re-confirmed on-device this pass
+  (unchanged renderer code, already verified by reading `SubjectKeyboardType.kt` during the
+  original investigation).
+- **New finding, out of scope, logged for follow-up:** anonymous sessions' subject
+  selection (`SubjectPickerDialog` on Home) doesn't persist into whatever state
+  `SubjectsScreen` reads — reproducible dead end ("Please select a subject first", inert
+  Confirm button) even right after successfully using subject-scoped content from Home.
+  `workflows/test/core-release-flow.md` confirms Subjects works for fully onboarded
+  sessions, so this looks like the same subject-state-fragmentation class already in
+  AMPM's `bugs-tracking.md`, just a previously-undocumented anonymous-path instance. Not
+  fixed here.
 
 ---
 
