@@ -11,7 +11,11 @@ Firestore/Postgres/content data; Python for doc-graph upkeep only.
 | `upload-exam-images.js` | Uploads extracted exam-page PNGs to Firebase Storage; prints ready-to-paste URL arrays (`PIPE-02`). | Node |
 | `extract-exam-pages.py` | Extracts question/annexure/memo page images from exam PDFs; `--inspect` finds crop points. | Python |
 | `upload-script-template.js` | Template for per-question-group upload scripts (pipeline Phase 4). Copy, fill, validate, run against dev. | Node |
-| `lib/credentials.js` | Resolves service-account paths from `.env` / env vars. | Node |
+| `pg-smoke.js` | Read-only check that the Postgres write layer reaches Cloud SQL through the Auth Proxy; prints the Flyway head. | Node |
+| `lib/credentials.js` | Resolves Firebase service-account paths and the Cloud SQL `pgConfig(env)` from `.env` / env vars. | Node |
+| `lib/postgres.js` | Lazy shared `pg.Pool` for the content-write tooling. | Node |
+| `lib/upsert.js` | `upsertRow()` — re-runnable `INSERT … ON CONFLICT DO UPDATE`. | Node |
+| `lib/uuid.js` | Deterministic authored-content UUIDs (namespace pinned; disjoint from Track A's). | Node |
 
 Changes from the AMPM originals (validator otherwise as-is — never port it, see
 `workflows/README.md`):
@@ -23,17 +27,26 @@ Changes from the AMPM originals (validator otherwise as-is — never port it, se
 ## Setup
 
 ```bash
-npm install                     # firebase-admin for the two Firestore/Storage tools
-cp .env.example .env            # then point the two vars at AMPM/.firebase/*.json
+npm install                     # pg + uuid (Postgres writes) + firebase-admin (Firestore reads)
+cp .env.example .env            # fill the Firebase SA paths and the PG_PASSWORD_DEV value
 ```
 
-`.env` (untracked) holds absolute paths to the service-account files, which stay in
-`AMPM/.firebase/`:
+`.env` (untracked) holds:
+- absolute paths to the Firebase service-account files (stay in `AMPM/.firebase/`) — still
+  used by `dump-curriculum-vocabulary.js` until Phase 4 of
+  `workflows/active/repoint-authoring-to-postgres.md`;
+- the Cloud SQL connection (`PG_*_DEV`). Password:
+  `gcloud secrets versions access latest --secret=AMPM_DB_PASSWORD --project=ampm-b9661`.
 
+**Any tool that writes Postgres needs the Cloud SQL Auth Proxy running first:**
+
+```bash
+cloud-sql-proxy ampm-b9661:us-central1:ampm-backend --port 15432
+node tools/pg-smoke.js          # confirms it's reachable
 ```
-AMPM_FIREBASE_SA_DEV=/home/<user>/StudioProjects/AMPM/.firebase/<dev-sa>.json
-AMPM_FIREBASE_SA_PROD=/home/<user>/StudioProjects/AMPM/.firebase/<prod-sa>.json
-```
+
+Never connect to Cloud SQL directly — always through the proxy (`PG_HOST_DEV=127.0.0.1`,
+`PG_PORT_DEV` = the proxy's `--port`).
 
 Python: `extract-exam-pages.py` needs `PyMuPDF` (`pip install pymupdf`), same as when it
 lived in AMPM.

@@ -8,6 +8,8 @@
     "dump-vocab": "node tools/dump-curriculum-vocabulary.js"
   },
   "dependencies": {
-    "firebase-admin": "^12.0.0"
+    "firebase-admin": "^12.0.0",
+    "pg": "^8.23.0",
+    "uuid": "^9.0.1"
   }
 }
