@@ -1,14 +1,17 @@
 # Repoint Authoring — Firestore → Postgres (Cloud SQL)
 
 **Status:** Phase 0 **DONE** (2026-09-01) — verdict **GO**, full report in
-`temp/schema-diff-report.md`. Phases 1–8 not started. **Two Phase-0 findings gate Phase 1**
-(see "Open decisions" — the sub-question importer provenance, and O1's idempotency key).
+`temp/schema-diff-report.md`. All Phase-0 decisions resolved (see "Decisions locked"):
+the authoring-to-Postgres tooling is **built fresh in this repo** (owner call, 2026-09-01 —
+the tool that last touched dev on 2026-08-22 may live on another machine but is presumed
+stale; not worth chasing). `ampm-firestore-migration`'s transforms are **schema-verified
+reference only**, not a dependency. **Phase 1 is unblocked.**
 
 **Goal:** Make this repo's content-authoring pipeline write **directly into the Spring
 backend's Cloud SQL Postgres**, replacing the current two-hop path (author → dev Firestore,
-then `ampm-firestore-migration` upsert → Postgres). After this, Firestore is a frozen
-historical store (read-only, pending only the still-deferred Track A prod reconciliation);
-this repo's pipeline is the sole content write path.
+then a separate Firestore→Postgres importer). After this, Firestore is a frozen historical
+store (read-only, pending only the still-deferred Track A prod reconciliation — see
+"Out of scope"); this repo's pipeline is the sole path for **new** content.
 
 **Why now:** The app has been onboarded onto Cloud SQL and is dual-reading (Firestore +
 Postgres) with **nothing new being written to Firestore**. New content authored to Firestore
@@ -31,33 +34,24 @@ this one — never a direct edit from here.
 |---|---|---|
 | D1 | Write **directly to Cloud SQL Postgres**, not via an API | Backend content API is read-only by design; a bulk-write endpoint is explicitly rejected (`ampm-backend/plan/track-a-content-import.md` §7) |
 | D2 | Connect via **Cloud SQL Auth Proxy** → `127.0.0.1:5432` | Matches `ampm-firestore-migration`'s `PG_*` config shape; IAM-auth, no public IP, connection name is explicit (avoids the bootstrap's "dev was local Docker on 15433" split) |
-| D3 | **Reuse `ampm-firestore-migration`'s transforms** as the row-shape source of truth | Battle-tested against 900+ real rows; column lists + `*Row` interfaces in `src/transform/*.ts` |
+| D3 | **Build the row-builders fresh in this repo.** `ampm-firestore-migration`'s `src/transform/*.ts` are **reference** — Phase 0 verified their column lists still match the live schema exactly, so they're a correct spec to cross-check against, but not imported/depended on | The checkout is stale (no sub-question support anywhere in its history; maths support uncommitted-only) and the tool that actually produced the 2026-08-22 dev state is on another machine and presumed staler still. Owner call 2026-09-01: rebuild, don't chase |
 | D4 | Dev Postgres writes from this tooling are **fine**; prod writes are **owner-gated** | Mirrors [[firestore-writes-permission-gated]] and Track A's dev/prod split |
 | D5 | The validator keeps checking the **authored/logical shape** (rules unchanged); the Postgres mapping happens after validation | Don't re-verify the schema layer twice; keeps `presentations/`/`core/` rules stable |
+| D6 | **O1 — idempotency: deterministic UUIDv5 from a natural key**, namespace `84ee2362-8773-41f9-9d93-22a735709e72` (fresh, pinned, authored-content-only — never Track A's `b7e13cf0-…`) | `lessons`/`questions` have only a UUID PK, no `firestore_id`, no natural unique constraint. Deterministic IDs make re-running an upload script an upsert, and keep authored vs. migrated UUID spaces disjoint (O3) |
+| D7 | **O2 — write published**: `is_published = true`, `published_at = now()` | Phase 0: 100% of live content rows are published; no staging mechanism exists (`wiki/content/publishing.md` defers the write side). Consistency beats an unusable draft state. A review gate, if ever wanted, is a later `tools/publish-lesson.js` |
 
-**Open decisions — Phase 1 is blocked on the first two:**
+**Natural keys for D6** (`paper_path` = `{syllabus}/{subject}/{year}/{paper}`):
 
-- **BLOCKER — Where is the real importer?** (Phase 0 §4b.) The live dev DB was fully
-  (re)populated **2026-08-22** — 283 lessons incl. 30 maths, 1006 questions, **1219
-  `lesson_ai_explanation_sub_questions` rows**. The `ampm-firestore-migration` checkout at
-  `~/WebstormProjects/` (last commit 2026-07-16) **cannot have produced this**: sub-question
-  population exists nowhere in its history (`git log -S sub_questions --all` → nothing), and
-  its maths support is uncommitted-only. A newer/other version of the importer exists.
-  **Owner: point us at where the 2026-08-22 import was run from** (other machine, other
-  checkout, `.esc-ai/worktrees/*`). If unrecoverable, the sub-question transform is written
-  fresh against V53 + `SubQuestionExplanationResponse` (shape in report §5).
-- **O1 — Idempotency key for authored rows.** Confirmed in Phase 0: `lessons`/`questions`
-  have only a UUID PK, no `firestore_id`, no natural unique constraint. Options: (a) derive
-  the lesson UUID deterministically from a natural key (`paper_path` + lesson `name`, or
-  `paper_path` + `sort_order`) so re-running an upload script upserts; (b) random UUID once,
-  committed into the script, edits by-id. **Leaning (a).**
-- **O2 — Publish state. RESOLVED (pending owner nod): write published.** Phase 0 found
-  **100% of live content rows are `is_published = true`** with no staging mechanism in use
-  anywhere. Pipeline writes `is_published = true`, `published_at = now()` to stay
-  consistent. (If a review gate is later wanted: write unpublished + `tools/publish-lesson.js`.)
-- **O3 — Track A collision.** The deferred Track A prod reconciliation must never clobber
-  authored rows. If O1 picks (a), authored and migrated UUID spaces are disjoint by
-  construction (different derivation inputs). Document the rule in Track A's archived doc.
+| Row | UUIDv5 name |
+|---|---|
+| lesson | `lesson:{paper_path}#{order}` |
+| question | `question:{lessonUuid}#{question order}` |
+| sub-question | `subq:{lessonUuid}#{number}` (e.g. `1.1.1` — unique per lesson) |
+| supplementary material | `supp:{lessonUuid}#{index}` |
+
+`order` is unique within a paper (`PIPE-05`/`PIPE-12`); question `order` is unique within a
+lesson (`PIPE-07`) — so each name is stable and collision-free. Junction rows
+(`question_skills`, `lesson_tags`) are pure-key, no UUID.
 
 ---
 
@@ -65,8 +59,9 @@ this one — never a direct edit from here.
 
 | What | Where |
 |---|---|
-| Existing transforms + column lists | `ampm-firestore-migration/src/transform/*.ts`, `src/import/*.ts`, `src/upsert.ts`, `src/config.ts`, `src/postgres.ts` |
-| Deterministic UUID namespace | `ampm-firestore-migration/src/transform/firestoreId.ts` (`NAMESPACE = b7e13cf0-6f2e-4c7a-9f2b-2a6b6a9f7e3d`) |
+| Reference transforms + column lists (schema-verified, not a dependency — D3) | `ampm-firestore-migration/src/transform/*.ts`, `src/upsert.ts`, `src/config.ts`, `src/postgres.ts` |
+| Authored-content UUID namespace (D6, this repo owns it) | `84ee2362-8773-41f9-9d93-22a735709e72` — distinct from Track A's `b7e13cf0-…` (`firestoreId.ts`) |
+| Live schema dumps from Phase 0 | `temp/schema/*.txt`, `temp/schema-diff-report.md` |
 | Backend content schema (authoritative) | `ampm-backend/**/src/main/resources/db/migration/V*.sql` — content-relevant: V16, V17, V23, V26, V27, V28, V29, V31, V41, V49–V53, V60, V64 |
 | Backend entities (cross-check nullability) | `ampm-backend/content/src/main/kotlin/com/esma/ampm/backend/content/{question,lesson,reference}/*Entity.kt` |
 | Deployment facts (Cloud SQL) | `ampm-backend/wiki/architecture/deployment.md` |
@@ -193,39 +188,41 @@ only; no other files touched.
 
 ## Phase 1 — Postgres write layer + config
 
-*(Refined after Phase 0.)*
-
 - Add `pg` to `package.json` (keep `firebase-admin` for now — removed in Phase 6).
-- Port into `tools/lib/` (Node `.js`, matching existing tooling — the `tools/` language
-  boundary in `workflows/README.md` is Node/TS for anything touching data):
-  - `postgres.js` ← `ampm-firestore-migration/src/postgres.ts` (pool lifecycle)
-  - `upsert.js` ← `src/upsert.ts` (`INSERT … ON CONFLICT DO UPDATE`)
-  - extend `tools/lib/credentials.js` with `pgConfig(env)` ← `src/config.ts` shape
+- New files in `tools/lib/` (Node `.js`, matching existing tooling — the `tools/` language
+  boundary in `workflows/README.md` is Node/TS for anything touching data). Written fresh;
+  `ampm-firestore-migration/src/{postgres,upsert,config}.ts` are a reference for the shape:
+  - `postgres.js` — single lazy `pg.Pool`, `getPool()` / `closePool()`.
+  - `upsert.js` — `upsertRow({table, columns, conflictColumns}, row, {dryRun})` doing
+    `INSERT … ON CONFLICT (<keys>) DO UPDATE SET …` (or `DO NOTHING` for pure-key junctions).
+  - `uuid.js` — `authoredUuid(name)` = `uuidv5(name, '84ee2362-8773-41f9-9d93-22a735709e72')`
+    (D6). Add `uuid` to `package.json`.
+  - extend `tools/lib/credentials.js` with `pgConfig(env)` reading `PG_*_{DEV,PROD}`.
 - `.env` (untracked) gains:
   ```
   PG_HOST_DEV=127.0.0.1
-  PG_PORT_DEV=5432
+  PG_PORT_DEV=15432
   PG_DATABASE_DEV=ampm
   PG_USER_DEV=ampm
   PG_PASSWORD_DEV=<from Secret Manager AMPM_DB_PASSWORD>
   CLOUD_SQL_CONNECTION_NAME_DEV=ampm-b9661:us-central1:ampm-backend
   # PG_*_PROD — left blank, owner-gated (D4)
   ```
-- Update `.env.example` and `tools/README.md` (proxy-first instructions).
-- **Verification:** `tools/pg-smoke.js` connects via the proxy and prints the flyway head.
+- Update `.env.example` and `tools/README.md` — proxy-first:
+  `cloud-sql-proxy ampm-b9661:us-central1:ampm-backend --port 15432` before any tool run.
+- **Verification:** `tools/pg-smoke.js` connects and prints the flyway head (expect ≥ V73).
 - **Commit** (`feat(tools): Phase 1 — Cloud SQL Postgres write layer + config`).
 
 ---
 
 ## Phase 2 — Upload-script template writes Postgres rows
 
-*(Refined after Phase 0; carries O1 + O2 resolutions.)*
-
-- New `tools/lib/content-rows.js` — the `lessons` / `questions` / `question_skills` /
-  `lesson_tags` / `lesson_supplementary_materials` column lists + row builders, mirrored
-  from `ampm-firestore-migration/src/transform/{lessons,questions,questionSkills,lessonTags,
-  lessonSupplementaryMaterials}.ts`. Cite the migration repo commit the arrays were copied
-  from, so drift is auditable.
+- New `tools/lib/content-rows.js` — column lists + row builders for `lessons`, `questions`,
+  `question_skills`, `lesson_tags`, `lesson_supplementary_materials`. Written from the live
+  schema (`temp/schema/*.txt`) and the backend entities; cross-checked against
+  `ampm-firestore-migration/src/transform/*.ts` (Phase 0 confirmed those column lists still
+  match). Audit columns: `created_at`/`updated_at` = now, `is_deleted` = false, `is_published`
+  = true, `published_at` = now (D7). Never write `deleted_at`.
 - Rewrite `tools/upload-script-template.js`:
   - build `lessonRow` + `questionRows[]` + junction rows, `upsertRow` each (parent before
     children; `question.lesson_id` = the lesson's UUID).
@@ -233,9 +230,10 @@ only; no other files touched.
     `question_type_id`, `video` → `lesson_id`; split `supplementary_material` → 3 columns;
     **drop** denormalized display-name fields (`syllabus_name`, `subject_color`, …) — Postgres
     resolves those by JOIN.
-  - lesson UUID per O1.
-  - audit columns via `auditColumns(now)`; `is_published` per O2.
+  - UUIDs per D6 (`authoredUuid(...)` with the natural-key names in the table above).
   - `question.metadata`: `[]` stays `[]`, never `NULL` (V64 + `PERSIST-01`).
+  - `content_tier` ∈ `{free, plus, pro}`; `english_text_id` only for English P2; `series_id`
+    nullable (dev has 3 series rows, authored lessons may leave it null).
 - Update per-subject scripts' template references in `workflows/generate/` (full doc rewrite
   is Phase 7; here just the mechanics they call).
 - **Verification:** dry-run prints rows; one real unit upserted to dev; `SELECT` back and
@@ -246,12 +244,23 @@ only; no other files touched.
 
 ## Phase 3 — AI-explanation sub-questions writer
 
+Net-new — nothing in the reference repo covers this; the backend created V53 expecting an
+importer that never shipped it. The app **does** read it (`LessonContentService` →
+`lessonAiExplanationSubQuestionRepository.findByLessonIdOrderBySortOrderAsc` →
+`AiExplanationResponse.subQuestions`), so a lesson with no rows serves `sub_questions: []`.
+
 - New builder in `tools/lib/content-rows.js` for `lesson_ai_explanation_sub_questions` from
-  the authored `aiExplanation.sub_questions` array: `id` (per O1 or fresh uuid), `lesson_id`,
-  `number`, `marks` (nullable), `clues`, `approach`, `solution`, `sort_order`, child audit.
-- Wire into the upload template (Phase 2), written after the lesson row.
+  the authored `aiExplanation.sub_questions[]`: `id` = `authoredUuid('subq:{lessonUuid}#{number}')`,
+  `lesson_id`, `number`, `marks` (nullable), `clues`, `approach`, `solution`,
+  `sort_order` = array index, child audit (`created_at`/`updated_at` = now, `is_deleted` =
+  false, `deleted_at` = null). Shape matches `SubQuestionExplanationResponse` in
+  `ampm-contracts`.
+- The `aiExplanation` **summary** fields (`model`, `generated_at`, `version`, `reviewed`,
+  `input_tokens`, `output_tokens`, `avg_rating`, `rating_count`) map onto `lessons.ai_*`
+  columns (V52) — handled in the Phase 2 lesson builder.
+- Wire into the upload template, written after the lesson row.
 - **Verification:** `SELECT` sub-questions for the test lesson; count == one per exam
-  sub-question (`AMPM-CONTENT-AI-EXP`); order preserved.
+  sub-question (`AMPM-CONTENT-AI-EXP`); `sort_order` preserved; re-run → no duplicates.
 - **Commit** (`feat(tools): Phase 3 — write lesson_ai_explanation_sub_questions`).
 
 ---
@@ -337,12 +346,21 @@ The framework's whole purpose is docs-match-reality — this is real work, not a
 
 ---
 
+## Out of scope
+
+- **Track A prod reconciliation** (bulk import of the *existing historical* Firestore corpus
+  into prod Postgres) — still owner-deferred. Phase 0 found its dev tooling has drifted from
+  what actually ran on 2026-08-22; when prod is triggered it needs its own rebuild/verify
+  pass. Not this workflow. This workflow only handles **new** authored content going forward.
+- **A content dashboard / review UI** — separate future project.
+
 ## Owner-gated / cross-repo items
 
 - **Prod**: Cloud SQL prod connection, media prod bucket, `PG_*_PROD` in `.env` — all
   owner-triggered (D4, mirrors [[firestore-writes-permission-gated]]).
-- **O2 publish mechanism**: if a staging/review gate is wanted instead of write-published,
-  that may need an `ampm-backend` decision (its `wiki/content/publishing.md` currently
-  defers the write side entirely). Thin doc in `ampm-backend` if so.
-- **Track A archived doc**: add the authored-vs-migrated UUID-space rule (O3) to
-  `ampm-firestore-migration/workflows/archive/track-a-content-import.md` when O1 is decided.
+- **Review gate**: if a staging state is ever wanted instead of write-published (D7), it
+  needs an `ampm-backend` decision (`wiki/content/publishing.md` defers the write side
+  entirely). Thin doc in `ampm-backend` if so.
+- **Track A archived doc**: note the authored-vs-migrated UUID-space split (D6/O3) in
+  `ampm-firestore-migration/workflows/archive/track-a-content-import.md` — done as a
+  one-line cross-reference during Phase 7.

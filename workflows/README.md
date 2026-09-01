@@ -48,7 +48,7 @@ content-data side.
 
 | Workflow | What | Status |
 |---|---|---|
-| `active/repoint-authoring-to-postgres.md` | Move the authoring pipeline off Firestore to write directly into `ampm-backend`'s Cloud SQL Postgres (app now dual-reads, nothing new goes to Firestore). | **Phase 0 done** (schema verified GO, `temp/schema-diff-report.md`). Phase 1 blocked on locating the real 2026-08-22 importer + the O1 idempotency-key decision. |
+| `active/repoint-authoring-to-postgres.md` | Move the authoring pipeline off Firestore to write directly into `ampm-backend`'s Cloud SQL Postgres (app now dual-reads, nothing new goes to Firestore). | **Phase 0 done, GO** (`temp/schema-diff-report.md`). All decisions locked — tooling built fresh in this repo. Phase 1 next. |
 
 ## Archive
 
