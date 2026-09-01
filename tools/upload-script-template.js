@@ -1,52 +1,56 @@
 #!/usr/bin/env node
 /**
- * Upload-script template — pipeline Phase 4 (AMPM-CONTENT-PIPELINE).
+ * Upload-script template — pipeline Phase 4 (AMPM-CONTENT-PIPELINE), Postgres edition.
  *
  * Copy to add-<subject>-<year>-<paper>-q<N>.js, fill the three data blocks, then:
  *   1. node tools/validate-questions.js --script <this file> [--curriculum temp/curriculum-vocab.json]
  *      — HARD STOP: do not upload until it exits 0 (PIPE-10).
- *   2. node <this file>          — runs against DEV only (PIPE-11).
+ *   2. cloud-sql-proxy ampm-b9661:us-central1:ampm-backend --port 15432   (in another shell)
+ *   3. node <this file> [--dry-run]      — upserts into DEV Cloud SQL only (PIPE-11).
  *
- * Collection names come from the subject profile (subjects/{profile}.md):
- *   math_lit:   math_videos    / math_questions
- *   maths:      maths_videos   / maths_questions
- *   english_hl: english_videos / english_questions
+ * Writes: lessons (+ lesson_tags, lesson_supplementary_materials,
+ * lesson_ai_explanation_sub_questions), questions (+ question_skills). Rows carry
+ * deterministic UUIDs (tools/lib/uuid.js) so re-running this script upserts, never
+ * duplicates. Content is written published (is_published = true).
+ *
+ * Reference rows (curriculum_nodes, skills, tags, …) must already exist — the preflight
+ * check below fails loudly listing any that don't. Create them first:
+ *   node tools/create-curriculum-node.js …   node tools/create-skill.js …   (Phase 4)
  */
 
 'use strict';
 
-const admin = require('firebase-admin');
-const { serviceAccountPath } = require('./lib/credentials');
+const { getPool, closePool } = require('./lib/postgres');
+const { upsertRow } = require('./lib/upsert');
+const { buildContentRows, referenceIdsUsed } = require('./lib/content-rows');
 
-const VIDEOS_COLLECTION = 'CHANGE_ME_videos';
-const QUESTIONS_COLLECTION = 'CHANGE_ME_questions';
+const DRY_RUN = process.argv.includes('--dry-run');
+const ENV = process.argv.includes('--env')
+  ? process.argv[process.argv.indexOf('--env') + 1]
+  : 'dev';
 
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(require(serviceAccountPath('dev'))),
-  });
-}
-
-const db = admin.firestore();
-
-// ─── Phase 2 data ────────────────────────────────────────────────────────────
+// ─── Phase 2 data — the lesson/video document ────────────────────────────────
+// Full field template: subject profile + core/upload-pipeline.md reference tables.
 
 const video = {
-  // Full field template: subject profile + AMPM-CONTENT-PIPELINE reference tables.
+  // name, syllabus, subject, year, paper, order, xp, tags, content_tier, …
 };
 
-// ─── Phase 3 data ────────────────────────────────────────────────────────────
+// ─── Phase 3 data — the practice questions ───────────────────────────────────
+// Per core/question-schema.md + presentations/{type}.md. Logical/authored shape
+// (presentation, type, order, unit/topic/subtopic, skills, …) — the mapping to
+// Postgres columns is tools/lib/content-rows.js's job.
 
 const questions = [
-  // Per AMPM-CONTENT-SCHEMA + presentations/{type}.md. video: "PLACEHOLDER" here;
-  // replaced with the real doc ID below.
+  // { name, question, metadata, answer, presentation, type, unit, topic, subtopic,
+  //   skills, difficulty, exam_weight, xp, order, syllabus, subject, year, paper }
 ];
 
-// ─── AI explanation (generated in the Claude Code session, AMPM-CONTENT-AI-EXP) ──
+// ─── AI explanation (generated in the session, AMPM-CONTENT-AI-EXP) ──────────
 
 const aiExplanation = {
   sub_questions: [
-    // { number, marks, clues, approach, solution } — formats per AIEXP-02..05.
+    // { number, marks, clues, approach, solution }  — one per exam sub-question / EN question
   ],
   model: 'CHANGE_ME',
   generated_at: Date.now(),
@@ -60,27 +64,45 @@ const aiExplanation = {
 
 // ─── Upload ──────────────────────────────────────────────────────────────────
 
-async function upload() {
-  console.log('🎬 Uploading video...');
-  const videoRef = await db.collection(VIDEOS_COLLECTION).add({ ...video, ai_explanation: aiExplanation });
-  console.log('  ✓ Created video:', videoRef.id);
-
-  await videoRef.update({ questions_count: questions.length });
-
-  console.log('❓ Uploading questions...');
-  const batch = db.batch();
-  questions.forEach(q => {
-    const ref = db.collection(QUESTIONS_COLLECTION).doc();
-    batch.set(ref, { ...q, video: videoRef.id });
-  });
-  await batch.commit();
-  console.log('  ✓ Created', questions.length, 'question(s)');
-
-  console.log('\n✅ Done. Video ID:', videoRef.id);
-  process.exit(0);
+async function preflightReferenceIds(pool) {
+  const used = referenceIdsUsed(video, questions);
+  const missing = [];
+  for (const [table, ids] of Object.entries(used)) {
+    if (ids.length === 0) continue;
+    const { rows } = await pool.query(`SELECT id FROM ${table} WHERE id = ANY($1)`, [ids]);
+    const present = new Set(rows.map((r) => r.id));
+    for (const id of ids) if (!present.has(id)) missing.push({ table, id });
+  }
+  if (missing.length > 0) {
+    console.error('\n❌ Missing reference rows (create them before uploading — PIPE-08):');
+    for (const m of missing) console.error(`   ${m.table}: ${m.id}`);
+    console.error(
+      '\n   curriculum_nodes / skills → node tools/create-curriculum-node.js | create-skill.js' +
+      '\n   tags → node tools/create-tag.js',
+    );
+    process.exit(1);
+  }
 }
 
-upload().catch(err => {
-  console.error('\n❌ Upload failed:', err.message);
-  process.exit(1);
-});
+async function upload() {
+  const { lessonId, rows } = buildContentRows(video, questions, aiExplanation);
+  const pool = getPool(ENV);
+
+  if (!DRY_RUN) await preflightReferenceIds(pool);
+
+  const byTable = {};
+  for (const spec of rows) {
+    await upsertRow(spec, spec.row, { dryRun: DRY_RUN, env: ENV });
+    byTable[spec.table] = (byTable[spec.table] ?? 0) + 1;
+  }
+
+  console.log(`\n${DRY_RUN ? '[dry-run] ' : ''}✅ lesson ${lessonId} (${ENV})`);
+  for (const [t, n] of Object.entries(byTable)) console.log(`   ${t}: ${n}`);
+}
+
+upload()
+  .catch((err) => {
+    console.error('\n❌ Upload failed:', err.message);
+    process.exitCode = 1;
+  })
+  .finally(closePool);

@@ -48,7 +48,7 @@ content-data side.
 
 | Workflow | What | Status |
 |---|---|---|
-| `active/repoint-authoring-to-postgres.md` | Move the authoring pipeline off Firestore to write directly into `ampm-backend`'s Cloud SQL Postgres (app now dual-reads, nothing new goes to Firestore). | **Phase 0 done, GO** (`temp/schema-diff-report.md`). All decisions locked — tooling built fresh in this repo. Phase 1 next. |
+| `active/repoint-authoring-to-postgres.md` | Move the authoring pipeline off Firestore to write directly into `ampm-backend`'s Cloud SQL Postgres (app now dual-reads, nothing new goes to Firestore). | **Phases 0–3 done** (schema verified; `pg` write layer; content-row builders + rewritten upload template, verified end-to-end on dev). Next: Phase 4 (curriculum/skills repoint). |
 
 ## Archive
 

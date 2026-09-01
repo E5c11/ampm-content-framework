@@ -215,7 +215,15 @@ only; no other files touched.
 
 ---
 
-## Phase 2 — Upload-script template writes Postgres rows
+## Phase 2 — Upload-script template writes Postgres rows  ✅ **DONE 2026-09-01**
+
+`tools/lib/content-rows.js` + rewritten `tools/upload-script-template.js`. **Phase 3 folded
+in** — `buildContentRows` emits `lesson_ai_explanation_sub_questions` rows too. Verified
+end-to-end against dev Cloud SQL with a throwaway lesson (`sort_order 999`, since deleted):
+dry-run → real run → re-run all clean; row counts `1 lesson · 2 questions · 2 sub-questions ·
+1 tag · 1 supplementary · 2 skill-links`, unchanged on re-run (deterministic UUIDs work);
+`SELECT` back matched the authored data; namespacing, `metadata` `[]`-safety, `is_published
+= true` all correct; test rows removed, dev back to 283/1006/1219.
 
 - New `tools/lib/content-rows.js` — column lists + row builders for `lessons`, `questions`,
   `question_skills`, `lesson_tags`, `lesson_supplementary_materials`. Written from the live
@@ -242,7 +250,12 @@ only; no other files touched.
 
 ---
 
-## Phase 3 — AI-explanation sub-questions writer
+## Phase 3 — AI-explanation sub-questions writer  ✅ **DONE 2026-09-01 (folded into Phase 2)**
+
+`buildContentRows` in `tools/lib/content-rows.js` emits `lesson_ai_explanation_sub_questions`
+rows (`id` = `authoredUuid('subq:{lessonUuid}#{number}')`, `sort_order` = array index, child
+audit). Verified in the Phase 2 end-to-end run: 2 sub-question rows written, order preserved,
+idempotent on re-run. Summary fields map onto `lessons.ai_*` in the same builder.
 
 Net-new — nothing in the reference repo covers this; the backend created V53 expecting an
 importer that never shipped it. The app **does** read it (`LessonContentService` →
