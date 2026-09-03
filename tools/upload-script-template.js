@@ -100,9 +100,13 @@ async function upload() {
   for (const [t, n] of Object.entries(byTable)) console.log(`   ${t}: ${n}`);
 }
 
-upload()
-  .catch((err) => {
-    console.error('\n❌ Upload failed:', err.message);
-    process.exitCode = 1;
-  })
-  .finally(closePool);
+// Only run when invoked directly — so validate-questions.js (and anything else) can load
+// this file for its data blocks without opening a DB connection or writing anything.
+if (require.main === module) {
+  upload()
+    .catch((err) => {
+      console.error('\n❌ Upload failed:', err.message);
+      process.exitCode = 1;
+    })
+    .finally(closePool);
+}

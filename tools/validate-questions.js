@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Validates question sets before uploading to Firestore.
+ * Validates question sets before upserting to the backend's Postgres (`questions` table).
  *
  * Usage:
  *   # Validate questions array from an upload script:
@@ -47,44 +47,9 @@ if (!scriptPath && !aiExpPath) {
 // Loaders
 // ---------------------------------------------------------------------------
 
-function loadQuestions(filePath) {
-  const abs = path.resolve(filePath);
-  if (!fs.existsSync(abs)) {
-    console.error(`File not found: ${abs}`);
-    process.exit(1);
-  }
-  // Intercept require so firebase-admin and firestore calls don't execute.
-  const Module = require('module');
-  const orig = Module._resolveFilename;
-  Module._resolveFilename = (request, ...rest) => {
-    if (request === 'firebase-admin') return request;
-    return orig(request, ...rest);
-  };
-  const origLoad = Module._load;
-  Module._load = (request, ...rest) => {
-    if (request === 'firebase-admin') return { apps: [], initializeApp: () => {}, firestore: () => ({}) };
-    return origLoad(request, ...rest);
-  };
-
-  let mod;
-  try {
-    mod = require(abs);
-  } catch (e) {
-    console.error(`Failed to load ${filePath}: ${e.message}`);
-    process.exit(1);
-  } finally {
-    Module._resolveFilename = orig;
-    Module._load = origLoad;
-  }
-
-  // Upload scripts export nothing but define `questions` as a local variable.
-  // We extract it by reading the source and eval-ing just the questions array.
-  if (mod && typeof mod === 'object' && !Array.isArray(mod)) {
-    // Could be an ai-exp module (keyed by order) — handled separately.
-    return { type: 'module', data: mod };
-  }
-  return { type: 'questions', data: mod };
-}
+// The upload script is never executed here — its `questions` array is extracted from source
+// (Date.now() stubbed, eval'd in isolation), so validation can't open a DB connection or
+// write anything. The upload script itself also guards its run behind `require.main`.
 
 function extractQuestionsFromSource(filePath) {
   const src = fs.readFileSync(path.resolve(filePath), 'utf8');
@@ -433,6 +398,13 @@ if (scriptPath) {
   if (!questions) {
     console.error('Could not extract "questions" array from script. Ensure it is declared as `const questions = [...]`.');
     process.exit(1);
+  }
+
+  // The pipeline writes Postgres now — an upload script still on firebase-admin is stale.
+  const scriptSrc = fs.readFileSync(path.resolve(scriptPath), 'utf8');
+  if (/firebase-admin|admin\.firestore\(/.test(scriptSrc)) {
+    console.error('  ✗  Script still uses firebase-admin — copy the current tools/upload-script-template.js (writes Postgres via tools/lib).');
+    totalErrors++;
   }
 
   const { results, setErrors } = validateSet(questions);

@@ -329,16 +329,23 @@ Bucket facts (found 2026-09-03 via `gcloud storage buckets list --project=ampm-b
 
 ---
 
-## Phase 6 — Validator + dependency cleanup
+## Phase 6 — Validator + dependency cleanup  ✅ **DONE 2026-09-03**
 
-- `tools/validate-questions.js`: rules unchanged (D5 — it validates the authored/logical
-  shape). Add a guard that the upload script imports the Postgres writer, not
-  `firebase-admin`. Adjust `--curriculum` snapshot parsing only if Phase 4 changed the JSON
-  shape (it shouldn't).
-- Remove `firebase-admin` from `package.json` once no tool references it. `pg` and
-  `@google-cloud/storage` are the runtime deps.
-- **Verification:** validator exits 0 on the Phase 2 test script; non-zero on a deliberately
-  broken one (array-length, split-token).
+- `tools/validate-questions.js`: rules unchanged (D5). Deleted the dead `loadQuestions`
+  require-interceptor (the `--script` path only ever used `extractQuestionsFromSource`, which
+  never executes the script). Added a set-level check that fails a script still using
+  `firebase-admin` / `admin.firestore(`. Header updated (Firestore → Postgres). `--curriculum`
+  JSON shape unchanged, so no parsing change needed.
+- `tools/upload-script-template.js`: `upload()` now guarded behind `require.main === module`
+  — validating or otherwise requiring the file opens no connection and writes nothing.
+- `tools/lib/credentials.js`: dropped the now-unused `serviceAccountPath` (kept `pgConfig`
+  + `loadDotEnv`).
+- `firebase-admin` **removed** from `package.json`. Runtime deps: `pg`, `uuid`,
+  `@google-cloud/storage`. `.env.example` no longer mentions Firebase service accounts
+  (the `AMPM_FIREBASE_SA_*` lines in a local `.env` are now dead — safe to delete).
+- **Verified:** validator exits 0 on the empty template; flags a real old `add-*.js`
+  (`✗ Script still uses firebase-admin`); `require('./tools/upload-script-template.js')`
+  runs nothing.
 - **Commit** (`refactor(tools): Phase 6 — validator repoint + drop firebase-admin`).
 
 ---
