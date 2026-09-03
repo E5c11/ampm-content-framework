@@ -71,7 +71,9 @@ to a pointer.)
 |---|---|---|---|
 | DBE 2019 Nov P1 | 15 | 51 | 2026-04-23 (re-uploaded with clues, variety, markup) |
 | DBE 2019 Nov P2 | 15 | 49 | 2026-04-24 (re-uploaded with clues, variety, markup) |
+| DBE 2025 Nov P1 | 11 (paper-only, no video) | 44 | 2026-09-03 — one lesson per exam question Q1–Q11, 4 practice questions each, dev only |
 
 Formula sheet URLs (reuse per paper):
 - 2019 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/maths/2019/nov_p1/q0/question_1.png`
 - 2019 Nov P2: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/maths/2019/nov_p2/q0/question_1.png`
+- 2025 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/maths/2025/nov_p1/q0/question_1.png`
