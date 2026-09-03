@@ -230,15 +230,30 @@ async function main() {
   console.log(`${DRY_RUN ? '[dry-run] ' : ''}curriculum_nodes upserted: ${nodeCount} (${nodes.filter((n) => n.type === 'unit').length} units, ${nodes.filter((n) => n.type === 'topic').length} topics, ${nodes.filter((n) => n.type === 'subtopic').length} subtopics)`);
 
   // 2. backfill questions.unit_id/topic_id/subtopic_id
+  //
+  // Env-tolerant: this environment may hold only a subset of the 30 authored lessons (prod
+  // has the 15 nov_p1 lessons but not nov_p2). A lesson that isn't present here is *skipped*,
+  // not an error. A lesson that IS present but whose question row doesn't line up is a real
+  // UNMATCHED and fails the run.
+  const { rows: presentLessons } = await pool.query(
+    `SELECT DISTINCT paper_id, name FROM lessons l
+      WHERE EXISTS (SELECT 1 FROM questions q WHERE q.lesson_id = l.id AND q.subject_id = 'maths')`,
+  );
+  const lessonKey = (p, n) => `${p}|${n}`;
+  const present = new Set(presentLessons.map((r) => lessonKey(r.paper_id, r.name)));
+
   let updated = 0;
+  let skipped = 0;
   const unmatched = [];
   for (const [key, [u, t, s]] of Object.entries(AUTHORED)) {
     const [paper, lessonName, qOrder] = key.split('|');
     const unitId = nodeId(SUBJECT, { unit: u });
     const topicId = nodeId(SUBJECT, { unit: u, topic: t });
     const subId = nodeId(SUBJECT, { unit: u, topic: t, subtopic: s });
+    if (!present.has(lessonKey(paper, lessonName))) { skipped++; continue; }
     if (DRY_RUN) {
       console.log(`[dry-run] ${paper} / ${lessonName} / q${qOrder}  ->  ${unitId} | ${topicId} | ${subId}`);
+      updated++;
       continue;
     }
     const { rowCount } = await pool.query(
@@ -253,11 +268,14 @@ async function main() {
       [unitId, topicId, subId, paper, lessonName, Number(qOrder)],
     );
     if (rowCount === 1) updated++;
-    else unmatched.push(`${key} (matched ${rowCount})`);
+    else unmatched.push(`${key} (lesson present, matched ${rowCount})`);
   }
-  console.log(`${DRY_RUN ? '[dry-run] ' : ''}questions backfilled: ${updated}/${Object.keys(AUTHORED).length}`);
+  console.log(
+    `${DRY_RUN ? '[dry-run] ' : ''}questions backfilled: ${updated}` +
+    (skipped ? `, skipped ${skipped} (lesson not in ${ENV})` : ''),
+  );
   if (unmatched.length) {
-    console.error('UNMATCHED:');
+    console.error('UNMATCHED (lesson present but question row did not line up):');
     unmatched.forEach((m) => console.error('  ' + m));
     process.exitCode = 1;
   }

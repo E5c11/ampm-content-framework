@@ -410,11 +410,14 @@ call the bootstrap made); do it next time an emulator is up, authoring a real un
 
 ### Residuals (follow-ups, not blockers — tracked in "Out of scope")
 
-- ~~**Maths curriculum**~~ — **DONE 2026-09-03** (`tools/backfill-maths-curriculum.js`):
-  127 `maths` `curriculum_nodes` built + reconciled from the 2019 P1/P2 back-catalogue, all
-  100 Maths questions backfilled, and a latent bug fixed (7 questions pointed at Math Lit's
-  `probability` node). Maths node IDs are `maths_`-prefixed (`tools/lib/curriculum.js`) to
-  avoid PK collisions with Math Lit's flat scheme. **Dev only — prod pending owner go.**
+- ~~**Maths curriculum**~~ — **DONE 2026-09-03**, dev **and** prod
+  (`tools/backfill-maths-curriculum.js`): 127 `maths` `curriculum_nodes` built + reconciled
+  from the 2019 P1/P2 back-catalogue; Maths questions backfilled (dev 100/100 both papers;
+  **prod 51/51 — nov_p1 only, since prod's Maths content is nov_p1 only**; nov_p2's 49
+  questions land when Track A's prod content run happens). Latent bug fixed on dev: 7
+  questions pointed at Math Lit's `probability` node. Maths node IDs are `maths_`-prefixed
+  (`tools/lib/curriculum.js`) to avoid PK collisions with Math Lit's flat scheme. The
+  full 127-node tree is on prod as published reference data, ahead of the nov_p2 content.
 - **`english_texts` maintenance** — `check-p2-videos.js` / `update-english-texts.js` still
   target Firestore in the AMPM repo; a new prescribed text needs a Postgres `english_texts`
   row added by hand until they're ported.
