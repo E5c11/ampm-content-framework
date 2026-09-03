@@ -13,9 +13,9 @@ tags: [subject, maths, dbe, profile]
 | Field | Value |
 |---|---|
 | `syllabus` / `subject` | `"dbe"` / `"maths"` |
-| Collections | videos: `maths_videos`, questions: `maths_questions` |
-| Curriculum sources | none live yet — no curriculum collection to check; validator runs **without** `--curriculum` until one exists |
-| Denormalized values | `subject_name: "Mathematics"`, `subject_full_name: "Pure Mathematics"`, `subject_color: "#6561A4"`, `subject_category: "maths_videos"` |
+| Postgres tables | `lessons`, `questions` — `subject_id = "maths"` |
+| Curriculum sources | **no `curriculum_nodes` rows for `maths` yet** — validator runs **without** `--curriculum`, but the upload script's FK preflight still rejects any `unit`/`topic`/`subtopic` slug (see the Known limitation in `workflows/generate/upload-maths.md`). `skills` rows for `maths` exist |
+| Not authored | display names/colours — resolved from the reference tables by JOIN |
 | Papers | `nov_p1`, `nov_p2`, `june_p1`, `june_p2` |
 
 ## Allowed presentation types
@@ -72,5 +72,5 @@ to a pointer.)
 | DBE 2019 Nov P2 | 15 | 49 | 2026-04-24 (re-uploaded with clues, variety, markup) |
 
 Formula sheet URLs (reuse per paper):
-- 2019 Nov P1: `https://storage.googleapis.com/ampm-b9661.firebasestorage.app/exam_papers/dbe/maths/2019/nov_p1/q0/question_1.png`
-- 2019 Nov P2: `https://storage.googleapis.com/ampm-b9661.firebasestorage.app/exam_papers/dbe/maths/2019/nov_p2/q0/question_1.png`
+- 2019 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/maths/2019/nov_p1/q0/question_1.png`
+- 2019 Nov P2: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/maths/2019/nov_p2/q0/question_1.png`

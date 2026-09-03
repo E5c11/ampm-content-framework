@@ -3,10 +3,11 @@
 Content authoring framework for AMPM — question/lesson schema contracts, presentation-type
 specs, subject–syllabus profiles, generation workflows, and validation tooling.
 
-**Rules and pipeline, not the data.** The content itself lives in Firestore (live authoring
-store during the transition) and Postgres (`ampm-backend`, the target store). This repo owns
-*how* content is authored, validated, and persisted — the single source of truth that the
-AMPM app, `ampm-backend`, `ampm-firestore-migration`, the future content dashboard, and every
+**Rules and pipeline, not the data.** The content itself lives in the `ampm-backend` Cloud
+SQL Postgres — the authoring pipeline here writes it there directly (Firestore is a frozen
+historical store the app still dual-reads during the transition; nothing new is written to
+it). This repo owns *how* content is authored, validated, and persisted — the single source
+of truth that the AMPM app, `ampm-backend`, the future content dashboard, and every
 generation session all consume.
 
 ## Why this repo exists
@@ -21,12 +22,12 @@ what the renderer actually does. Every new subject×syllabus combination multipl
 This repo consolidates all of it behind one structure, modeled on `esc-ai-framework`'s
 profile-and-layers consumption pattern.
 
-## Structure (target — built by `workflows/active/bootstrap-content-framework.md`)
+## Structure
 
 ```
 INSTRUCTIONS.md    — how to consume this framework (profile → layers), mirrors esc-ai-framework
 core/              — subject-agnostic invariants: question schema, authoring principles,
-                     persistence contract (Firestore + Postgres), shared pipeline phases
+                     persistence contract (Cloud SQL Postgres), shared pipeline phases
 presentations/     — one doc per presentation type (fitb, fraction, multiple_choice,
                      multi_select, ordering, match, equation, steps), each carrying its
                      renderer contract verified against the app code that consumes it
@@ -49,5 +50,7 @@ temp/              — session working files, reports
 
 ## Status
 
-Bootstrap in progress — see `workflows/active/bootstrap-content-framework.md` for the
-extraction plan and current phase.
+Bootstrap complete (`workflows/archive/bootstrap-content-framework.md`). Authoring writes
+directly to the `ampm-backend` Cloud SQL Postgres — see
+`workflows/active/repoint-authoring-to-postgres.md` for that cutover and
+`tools/README.md` for the Auth Proxy prerequisite.

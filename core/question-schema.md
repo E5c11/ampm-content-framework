@@ -3,7 +3,7 @@ id: AMPM-CONTENT-SCHEMA
 type: reference
 layer: core
 related: [AMPM-CONTENT-DESIGN, AMPM-CONTENT-MATHTEXT, AMPM-CONTENT-AI-EXP, AMPM-CONTENT-PIPELINE]
-tags: [content, questions, schema, firestore, presentation-types]
+tags: [content, questions, schema, postgres, presentation-types]
 provenance: moved from AMPM/ampm-ai-framework/content/schema.md, 2026-07-15
 ---
 
@@ -21,49 +21,52 @@ here until Phase 2 of the bootstrap workflow moves it out.
 
 ## Scope
 
-All question documents in `maths_questions`, `math_questions`, and `english_questions`
-collections (and their Postgres `questions` rows post-migration).
+Every row in the backend's `questions` table, all subjects (`subject_id` distinguishes).
 
 ---
 
 ## Question Document — Required Fields
 
+This is the **authored/logical shape** — the `questions[]` block in an upload script.
+`tools/lib/content-rows.js` maps it to `questions` columns (field renames, curriculum-node
+namespacing for english_hl, audit + publish columns). You never author row IDs, timestamps,
+`is_published`, `lesson_id` — the tooling derives them.
+
 **`SCHEMA-DOC-01`** — every field below is present with the stated type and constraint.
 `enforced_by: validator` for `name`, `question`, `metadata`, `answer`, `presentation`,
 `type`, `unit`, `topic`, `difficulty`, `xp`, `order` (the validator's `REQUIRED_FIELDS`
 presence check); `human-review` for the remainder (`subtopic`, `skills`, `exam_weight`,
-`video`, `syllabus`, `subject`, `year`, `paper`, `deleted`, timestamps).
+`syllabus`, `subject`, `year`, `paper`).
 
 | Field | Type | Constraint |
 |-------|------|------------|
-| `name` | string | `"Question N"` — sequential per video, starting at 1 |
+| `name` | string | `"Question N"` — sequential per lesson, starting at 1 |
 | `question` | string | Single flat string — no `\n` (see `AMPM-CONTENT-DESIGN`) |
-| `metadata` | array | See Presentation Types table — always an array, `[]` is the legitimate "none" state (never null; see `core/persistence.md` once Phase 4 lands) |
+| `metadata` | array | See Presentation Types table — always an array, `[]` is the legitimate "none" state (never null; `PERSIST-01`) |
 | `answer` | array | See Presentation Types table |
-| `presentation` | string | One of the valid presentation types below |
-| `type` | string | See Question Types by subject |
-| `unit` | string | Curriculum domain |
-| `topic` | string | Topic within unit |
-| `subtopic` | string | Granular concept |
-| `skills` | string[] | 1–3 conceptual skills |
+| `presentation` | string | One of the valid presentation types below → `presentation_id` FK |
+| `type` | string | See Question Types by subject → `question_type_id` FK |
+| `unit` | string | Curriculum domain — bare slug |
+| `topic` | string | Topic within unit — bare slug |
+| `subtopic` | string | Granular concept — bare slug |
+| `skills` | string[] | 1–3 skill IDs |
 | `difficulty` | integer | 1–5 |
 | `exam_weight` | integer | 1–3 |
 | `xp` | integer | `10` |
-| `order` | integer | 1-based, sequential per video |
-| `video` | string | Firestore document ID — `"PLACEHOLDER"` at authoring time |
+| `order` | integer | 1-based, sequential per lesson → `sort_order`, and part of the row's UUID key |
 | `syllabus` | string | `"dbe"` or `"ieb"` |
 | `subject` | string | `"maths"`, `"math_lit"`, `"english_hl"` |
 | `year` | string | Four-digit string e.g. `"2021"` |
 | `paper` | string | e.g. `"nov_p1"` |
-| `deleted` | boolean | `false` |
-| `date_created` | number | `Date.now()` |
-| `date_modified` | number | `Date.now()` |
 
-**`SCHEMA-DOC-02`** — `unit`, `topic`, `subtopic`, and every `skills` entry must exist in
-the subject's curriculum source collection(s) *before* being written into a question
-document (reuse-before-creating; see `AMPM-CONTENT-PIPELINE` Phase 3).
-`enforced_by: validator` (only when run with `--curriculum` and a fresh vocabulary
-snapshot — see pipeline Phase 3.5), else `human-review`.
+Optional: `clues`, `context_text` (English inline stimulus), `text_key` (English P2 — a real
+`english_texts` id), `supplementary_material` (`{type, label, image_urls}`).
+
+**`SCHEMA-DOC-02`** — `unit`, `topic`, `subtopic`, and every `skills` entry must exist as a
+`curriculum_nodes` / `skills` row *before* being written into a question (reuse-before-creating;
+`AMPM-CONTENT-PIPELINE` Phase 3 + `PIPE-08`). `enforced_by: validator` (with `--curriculum`
+and a fresh snapshot), then the upload script's **FK preflight** (hard fail), else
+`human-review`.
 
 Field value constraints:
 

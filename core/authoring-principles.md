@@ -17,9 +17,8 @@ any question set.
 
 ## Scope
 
-All question authoring sessions for `maths_questions`, `math_questions`, and
-`english_questions`. Subject-specific sections below apply per the subject profile
-(`subjects/{profile}.md` once bootstrap Phase 3 lands).
+All question authoring sessions, every subject. Subject-specific sections below apply per
+the subject profile (`subjects/{profile}.md`).
 
 ---
 

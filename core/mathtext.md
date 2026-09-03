@@ -17,8 +17,8 @@ question content.
 
 ## Scope
 
-`question` strings and `metadata` option strings in `maths_questions` and
-`math_questions` documents. Not used in `english_questions`.
+`question` strings and `metadata` option strings for `maths` and `math_lit` questions.
+Not used for `english_hl`.
 
 ---
 

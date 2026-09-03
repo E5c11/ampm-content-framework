@@ -350,7 +350,17 @@ Bucket facts (found 2026-09-03 via `gcloud storage buckets list --project=ampm-b
 
 ---
 
-## Phase 7 — Docs rewrite
+## Phase 7 — Docs rewrite  ✅ **DONE 2026-09-03**
+
+Rewrote `core/persistence.md` (store = Cloud SQL; new `PERSIST-05` write-published),
+`core/upload-pipeline.md` (Phases 2/3.5/4/5 for Postgres, `PIPE-04..12`, image domain),
+`core/question-schema.md` (authored logical shape → columns; dropped `video`/`deleted`/
+timestamps), `core/ai-explanation.md`, `core/authoring-principles.md`, `core/mathtext.md`,
+`presentations/fraction.md`, the three `workflows/generate/upload-*.md`, all three
+`subjects/*.md` (Postgres tables, curriculum sources, vocab-dump command, poetry/`text_key`),
+`README.md`, `tools/README.md`, `workflows/README.md`. Known limitations flagged in place:
+Maths curriculum nodes don't exist yet; `english_texts` maintenance scripts not yet
+repointed. Tool smoke (validator / dump / dry-run) green after the pass.
 
 The framework's whole purpose is docs-match-reality — this is real work, not a footnote.
 

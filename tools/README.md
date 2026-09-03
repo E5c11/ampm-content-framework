@@ -1,8 +1,7 @@
 # tools/
 
-Content-pipeline tooling, moved from `AMPM/scripts/` (bootstrap Phase 3, 2026-07-15).
-Language boundary per `workflows/README.md`: Node for anything touching
-Firestore/Postgres/content data; Python for doc-graph upkeep only.
+Content-pipeline tooling. Language boundary per `workflows/README.md`: Node for anything
+touching Postgres / GCS / content data; Python for doc-graph upkeep only.
 
 | Tool | What | Language |
 |---|---|---|
@@ -15,33 +14,27 @@ Firestore/Postgres/content data; Python for doc-graph upkeep only.
 | `extract-exam-pages.py` | Extracts question/annexure/memo page images from exam PDFs; `--inspect` finds crop points. | Python |
 | `upload-script-template.js` | Template for per-question-group upload scripts (pipeline Phase 4). Copy, fill, validate, run against dev. | Node |
 | `pg-smoke.js` | Read-only check that the Postgres write layer reaches Cloud SQL through the Auth Proxy; prints the Flyway head. | Node |
-| `lib/credentials.js` | Resolves Firebase service-account paths and the Cloud SQL `pgConfig(env)` from `.env` / env vars. | Node |
+| `lib/credentials.js` | Resolves the Cloud SQL `pgConfig(env)` from `.env` / env vars. | Node |
 | `lib/postgres.js` | Lazy shared `pg.Pool` for the content-write tooling. | Node |
 | `lib/upsert.js` | `upsertRow()` — re-runnable `INSERT … ON CONFLICT DO UPDATE`. | Node |
 | `lib/uuid.js` | Deterministic authored-content UUIDs (namespace pinned; disjoint from Track A's). | Node |
 | `lib/content-rows.js` | Maps the authored logical shape → Postgres rows (`lessons`/`questions`/…). | Node |
 | `lib/curriculum.js` | `curriculum_nodes` ID conventions (flat for math_lit, namespaced for english_hl). | Node |
 
-Changes from the AMPM originals (validator otherwise as-is — never port it, see
-`workflows/README.md`):
-- `validate-questions.js`: added `"[]"` no-space blank-token rejection and the steps
-  exact-`"[ ]"` check (Inventory #5 resolution, 2026-07-15).
-- `dump-curriculum-vocabulary.js` / `upload-exam-images.js`: service-account paths now
-  resolve via `lib/credentials.js` instead of a hardcoded `../.firebase/` relative path.
+The validator's own rules are never ported/reworded (see `workflows/README.md`) — it added
+`"[]"` no-space blank-token rejection + the `steps` exact-`"[ ]"` check (Inventory #5,
+2026-07-15) and a "still on firebase-admin" guard (repoint Phase 6, 2026-09-03).
 
 ## Setup
 
 ```bash
-npm install                     # pg + uuid (Postgres writes) + firebase-admin (Firestore reads)
-cp .env.example .env            # fill the Firebase SA paths and the PG_PASSWORD_DEV value
+npm install                     # pg, uuid, @google-cloud/storage
+cp .env.example .env            # fill PG_PASSWORD_DEV
 ```
 
-`.env` (untracked) holds:
-- absolute paths to the Firebase service-account files (stay in `AMPM/.firebase/`) — still
-  used by `dump-curriculum-vocabulary.js` until Phase 4 of
-  `workflows/active/repoint-authoring-to-postgres.md`;
-- the Cloud SQL connection (`PG_*_DEV`). Password:
-  `gcloud secrets versions access latest --secret=AMPM_DB_PASSWORD --project=ampm-b9661`.
+`.env` (untracked) holds the Cloud SQL connection (`PG_*_DEV`). Password:
+`gcloud secrets versions access latest --secret=AMPM_DB_PASSWORD --project=ampm-b9661`.
+Image upload authenticates with ADC (`gcloud auth application-default login`).
 
 **Any tool that writes Postgres needs the Cloud SQL Auth Proxy running first:**
 

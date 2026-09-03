@@ -14,11 +14,10 @@ tags: [presentation, fraction, metadata]
 never null, never scaffolding like `["[ ]", "/", "[ ]"]`). `enforced_by: validator`
 (`EMPTY_METADATA_TYPES`), `db-constraint` (non-null, Phase 4 chain).
 
-*Inventory #6 resolved 2026-07-15: dev scan found 4 fraction docs carrying legacy
-input-scaffolding metadata (2 in `math_questions`, 2 in `maths_questions` with
-`["P = [ ]/[ ]"]`). Harmless at render (FRACTION ignores metadata) but validator
-violations — to be cleared to `[]` in dev per owner decision (fix run pending, tracked
-in the bootstrap workflow doc); prod check pending owner approval.*
+*Inventory #6 (2026-07-15): a dev scan found 4 fraction docs carrying legacy
+input-scaffolding metadata (`["P = [ ]/[ ]"]` etc.). Harmless at render (FRACTION ignores
+metadata) but validator violations — cleared to `[]` in the Firestore source before the
+final import; the `questions` table carries `{}` for every fraction row.*
 
 ## Answer contract
 

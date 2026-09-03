@@ -7,7 +7,8 @@ scripts that define and enforce how AMPM content is authored, validated, and per
 already-locked reasoning as `ampm-firestore-migration` (a docs-and-tooling repo doesn't need
 production-service compliance gates). What replaces it: every workflow carries its own
 Verification phase, and the standing correctness gates are (a) `tools/`' validator runs clean
-against real dev Firestore data, and (b) every rule in `presentations/`/`core/` cites what
+and the schema-diff report stays GO against the live dev Cloud SQL, and (b) every rule in
+`presentations/`/`core/` cites what
 enforces it (validator / DB constraint / renderer / human review) so unenforced rules are
 visible rather than assumed.
 
@@ -31,11 +32,10 @@ fixes rather than reaching into those repos itself.
 
 Two tool families, two languages, **no tool ever spans both**:
 
-- **Node/TypeScript** — anything touching Firestore, Postgres, or content data (validator,
-  upload scripts, vocabulary dumpers). These arrive from `AMPM/scripts/` with proven
-  `firebase-admin` patterns; new tools match `ampm-firestore-migration`'s TypeScript-strict
-  precedent. Never port the validator to another language — a "faithful rewrite" is exactly
-  the drift mechanism this repo exists to kill.
+- **Node** — anything touching Postgres, GCS, or content data (validator, upload scripts,
+  vocabulary dump, `create-*` tools, image upload). The shared helpers live in `tools/lib/`.
+  Never port the validator to another language — a "faithful rewrite" is exactly the drift
+  mechanism this repo exists to kill.
 - **Python** — doc-graph upkeep only (index generation, rule-graph validation, profile
   lookup), mirroring `esc-ai-framework/tools/` so those utilities stay adaptable/reusable.
 
@@ -48,7 +48,7 @@ content-data side.
 
 | Workflow | What | Status |
 |---|---|---|
-| `active/repoint-authoring-to-postgres.md` | Move the authoring pipeline off Firestore to write directly into `ampm-backend`'s Cloud SQL Postgres (app now dual-reads, nothing new goes to Firestore). | **Phases 0–3 done** (schema verified; `pg` write layer; content-row builders + rewritten upload template, verified end-to-end on dev). Next: Phase 4 (curriculum/skills repoint). |
+| `active/repoint-authoring-to-postgres.md` | Move the authoring pipeline off Firestore to write directly into `ampm-backend`'s Cloud SQL Postgres (app now dual-reads, nothing new goes to Firestore). | **Phases 0–7 done** (schema verified; `pg` write layer; content-row + sub-question builders; curriculum/skills on Postgres; images to the media bucket; validator repoint + `firebase-admin` dropped; docs rewritten). Next: Phase 8 (end-to-end + archive). |
 
 ## Archive
 

@@ -13,10 +13,10 @@ tags: [subject, english-hl, dbe, profile]
 | Field | Value |
 |---|---|
 | `syllabus` / `subject` | `"dbe"` / `"english_hl"` |
-| Collections | lessons: `english_videos`, questions: `english_questions`, texts: `english_texts` |
-| Curriculum sources | `english_lit_curriculum` (unit/topic/subtopic; created 2026-07-14). **No skills collection** — `skills` is a free-form verb-phrase vocabulary governed by reuse against existing `english_questions` `skills[]` usage |
-| Vocabulary dump | `node tools/dump-curriculum-vocabulary.js --project dev --subject english_hl --out temp/curriculum-vocab.json` |
-| Denormalized values | `subject_name: "English HL"`, `subject_full_name: "English Home Language"`, `subject_color: "#1565C0"`, `subject_category: "english_videos"`, paper color `"#1976D2"` |
+| Postgres tables | `lessons`, `questions`, `english_texts` — `subject_id = "english_hl"` |
+| Curriculum sources | `curriculum_nodes` where `subject_id = 'english_hl'` — IDs namespaced `unit__topic__subtopic`; author bare slugs, `content-rows.js` namespaces. `skills` rows where `subject_id = 'english_hl'` (real rows now, a free-form verb-phrase vocabulary — reuse before `tools/create-skill.js`) |
+| Vocabulary dump | `node tools/dump-curriculum-vocabulary.js --subject english_hl --out temp/curriculum-vocab.json` (Auth Proxy running) |
+| Not authored | display names/colours — resolved from the `subjects`/`papers` reference tables by JOIN |
 | Papers | `nov_p1` (Language in Context), `nov_p2` (Literature), `nov_p3` (Writing) |
 
 ## Allowed presentation types
@@ -29,10 +29,11 @@ tags: [subject, english-hl, dbe, profile]
 
 - `context_text` on questions — short inline stimulus (1–3 fresh sentences) or null
   (`DESIGN-ENG-03`). Rendered in a card above the question text.
-- `text_key` on Paper 2 lessons **and** their questions (e.g. `"hamlet"`, `"poetry"`);
-  null for Papers 1/3. Per-text, not per-year (`"hamlet"`, never `"hamlet_2024"`).
+- `text_key` on Paper 2 lessons **and** their questions — a real `english_texts` id
+  (`"hamlet"`, `"felix_randal"`, …); null for Papers 1/3. Per-text, not per-year. The old
+  `"poetry"` marker is not a row — name the actual poem. FK-preflighted.
 - Lessons usually have no video: `has_video: false`, `freemium_*: null`,
-  `duration_seconds: null`, `marks: null` in `ai_explanation` entries.
+  `duration_seconds: null`, `marks: null` in `aiExplanation` entries.
 
 ## Curriculum hierarchy quirks
 
@@ -50,10 +51,11 @@ the bare name a question needs is the last `__` segment.
   sub-questions skipped) live in `workflows/generate/upload-english.md`.
 - **Paper 2** — 20 lessons/year for a 5-poetry + 5-prescribed-pair paper; contextual
   questions split into Part 1/Part 2 lessons (one extract tab each). Prescribed-text
-  sets are authored **once per text** — check Firestore for the `text_key` first.
-  Paper 2 uploads require the `english_texts` maintenance pass (Phase 0 of the upload
-  workflow: `check-p2-videos.js` → `update-english-texts.js`; `poetry` is special-cased,
-  never added; retired texts get `active: false`, never deleted).
+  sets are authored **once per text** — check the `english_texts` table for the id first
+  (`psql -c "SELECT id FROM english_texts ORDER BY id"`). A genuinely new prescribed text
+  needs an `english_texts` row (Phase 0 of the upload workflow — not yet repointed off
+  Firestore; see that doc). Poetry lessons use the actual poem's id, not a `poetry` marker;
+  retired texts get `is_active = false`, never deleted.
 - **Paper 3** — 7 lessons/year: Q1 Essay + one lesson per transactional text type
   (2.1–2.6, named exactly as that year's paper names them).
 

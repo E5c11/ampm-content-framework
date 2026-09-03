@@ -3,7 +3,7 @@ id: AMPM-CONTENT-AI-EXP
 type: reference
 layer: core
 related: [AMPM-CONTENT-SCHEMA, AMPM-CONTENT-DESIGN, AMPM-CONTENT-PIPELINE]
-tags: [content, ai-explanation, clues, approach, solution, firestore]
+tags: [content, ai-explanation, clues, approach, solution, postgres]
 provenance: moved from AMPM/ampm-ai-framework/content/ai-exp.md, 2026-07-15
 ---
 
@@ -16,10 +16,12 @@ and `solution`, and the process for generating explanations during upload sessio
 
 ## Scope
 
-All upload sessions for `maths_questions`, `math_questions`, and `english_questions`.
-The `ai_explanation` is authored on the **video document**, not on individual question
-documents. (Per-question `clues` on maths questions follow the same `clues` format
-rules below.)
+All upload sessions, every subject. The `aiExplanation` block is authored **once per
+lesson** (alongside `video` and `questions` in the upload script), not per question. Its
+`sub_questions[]` become `lesson_ai_explanation_sub_questions` rows; the summary fields
+(`model`, `generated_at`, …) become `lessons.ai_*` columns —
+`tools/lib/content-rows.js` does the mapping. (Per-question `clues` on maths questions
+follow the same `clues` format rules below.)
 
 ---
 
@@ -35,7 +37,7 @@ const aiExplanation = {
     // one entry per exam sub-question (maths/math_lit)
     // or one entry per practice question (english)
   ],
-  model: 'claude-sonnet-4-6',
+  model: 'claude-sonnet-5',   // the model actually used this session
   generated_at: Date.now(),
   version: 2,              // always an integer
   reviewed: false,

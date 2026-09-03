@@ -14,13 +14,19 @@ profile).
 
 Required when uploading nov_p2 lessons for a new year; skip for P1/P3.
 
-1. `node scripts/check-p2-videos.js` (AMPM repo) — read OK / STALE / MISSING lines.
-2. MISSING text_keys: add metadata to `KNOWN_META` in `scripts/update-english-texts.js`
-   first. Then `node scripts/update-english-texts.js` (merges `prescribed_years`
-   non-destructively).
+> **Not yet repointed.** `check-p2-videos.js` / `update-english-texts.js` still live in the
+> AMPM repo and target Firestore `english_texts`. `english_texts` now lives in Postgres
+> too, and the app reads it from there. Until these are ported: a `text_key` a question
+> references must already be a row in the Postgres `english_texts` table, or the upload
+> script's FK preflight rejects it. Check with
+> `psql -c "SELECT id FROM english_texts ORDER BY id"`; a genuinely new prescribed text
+> needs an `english_texts` row added (owner-gated, like other reference data). Tracked in
+> `workflows/active/repoint-authoring-to-postgres.md` (Out of scope).
 
-Rules: `text_key` is per-text, never per-year; `poetry` is never added (special-cased);
-retired texts get `active: false`, never deleted.
+Rules: `text_key` is per-text, never per-year; **for poetry lessons set `text_key` to the
+actual poem's `english_texts` id** (e.g. `felix_randal`) — the old `"poetry"` marker is not
+a real row and the FK preflight rejects it; retired texts get `is_active = false`, never
+deleted.
 
 ## Required inputs
 
@@ -45,12 +51,13 @@ page(s), memo page(s), YouTube ID (usually null).
    self-contained with own `context_text` where the section requires; `type` is
    `definition`/`application`; presentation subset per profile; questions must not
    reference "the passage" or line numbers.
-5. **Vocab dump** (pipeline Phase 3.5): `--subject english_hl`. Skills are governed by
-   reuse against existing `english_questions` usage (profile), not a skills collection.
-6. **Upload script** (pipeline Phase 4): `add-<year>-<paper>-q<N>.js`; collections
-   `english_videos`/`english_questions`; ai_explanation one entry **per practice
-   question**, `marks: null`, solutions explain why distractors are wrong. Validate with
-   `--curriculum` (HARD STOP) → dev only → **commit**
+5. **Vocab dump** (pipeline Phase 3.5): `--subject english_hl`. English HL skills are real
+   `skills` rows now (reuse against those; create with `tools/create-skill.js --subject
+   english_hl` when nothing fits).
+6. **Upload script** (pipeline Phase 4): copy `tools/upload-script-template.js` to
+   `add-<year>-<paper>-q<N>.js`; `subject: "english_hl"`; `aiExplanation` one entry **per
+   practice question**, `marks: null`, solutions explain why distractors are wrong.
+   Validate with `--curriculum` (HARD STOP) → `--dry-run` → upsert to dev → **commit**
    (`[Data] Add english_hl <year> <paper> Q<N> lesson and questions`).
 7. **Verify** (pipeline Phase 5): plus the English items — name format, question images
    contain no TEXT body/`AND`/extract headings, correct `supplementary_materials` shape

@@ -16,10 +16,10 @@ from `core/` and `presentations/` per `INSTRUCTIONS.md`.
 | Field | Value |
 |---|---|
 | `syllabus` / `subject` | `"dbe"` / `"math_lit"` |
-| Collections | videos: `math_videos`, questions: `math_questions` |
-| Curriculum sources | `math_lit_curriculum` (unit/topic/subtopic), `math_lit_skills` (skills) |
-| Vocabulary dump | `node tools/dump-curriculum-vocabulary.js --project dev --out temp/curriculum-vocab.json` |
-| Denormalized values | `subject_name: "Math Literacy"`, `subject_full_name: "Mathematical Literacy"`, `subject_color: "#795F96"`, `subject_category: "maths_videos"` (see `AMPM-CONTENT-PIPELINE`) |
+| Postgres tables | `lessons`, `questions` — `subject_id = "math_lit"` |
+| Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'math_lit'` — flat slug IDs. Reuse before `tools/create-curriculum-node.js` / `create-skill.js` |
+| Vocabulary dump | `node tools/dump-curriculum-vocabulary.js --subject math_lit --out temp/curriculum-vocab.json` (Auth Proxy running) |
+| Not authored | display names/colours — resolved from the reference tables by JOIN |
 | Papers | `nov_p1`, `nov_p2`, `june_p1`, `june_p2` |
 
 ## Allowed presentation types
@@ -41,11 +41,12 @@ All eight: `fitb`, `fraction`, `multiple_choice`, `multi_select`, `ordering`, `m
 
 ## Curriculum hierarchy
 
-`unit` → `topic` → `subtopic` in `math_lit_curriculum` (query `type == 'unit'|'topic'|'subtopic'`),
-plus 1–3 `skills` from `math_lit_skills`. The real, current set lives in Firestore —
-never in a doc (`PIPE-08`; a hardcoded 5-unit list once went silently stale while real
-content used a 6th unit, `maps_and_scale`). Units include financial mathematics, data
-handling, measurement, maps/plans, probability — illustrative only, query per session.
+`unit` → `topic` → `subtopic` in `curriculum_nodes` (`type in ('unit','topic','subtopic')`,
+`subject_id = 'math_lit'`), plus 1–3 `skills`. The real, current set comes from the Phase 3.5
+vocabulary dump — never a list in a doc (`PIPE-08`; a hardcoded 5-unit list once went
+silently stale while real content used a 6th unit, `maps_and_scale`). Units include
+financial mathematics, data handling, measurement, maps/plans, probability — illustrative
+only, dump per session.
 
 ## Paper structure / video mapping
 
@@ -61,6 +62,6 @@ the group's sequential position across the whole paper. YouTube ID + duration fr
 
 ## Completed papers ledger
 
-Maintained in the AMPM repo history (historical `add-*.js` scripts remain there as the
-provenance record — owner decision 2, 2026-07-15). Check dev Firestore for what's
-already uploaded before starting a paper.
+The `scripts/add-*.js` files committed here are the provenance record. Check dev Postgres
+for what's already uploaded before starting a paper:
+`psql -c "SELECT name, sort_order FROM lessons WHERE subject_id='math_lit' AND paper_id='<paper>' AND year_id='<year>' ORDER BY sort_order"`.
