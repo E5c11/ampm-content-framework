@@ -428,15 +428,18 @@ call the bootstrap made); do it next time an emulator is up, authoring a real un
   doc archived to `AMPM/plan/archive/english-text-picker-per-paper.md`. One deliberately
   deferred gap remains there: `GetPaperCompletionStatsUseCase` has the same poetry bug but in
   a spot that needs new plumbing through ~5 platform data sources — documented, not fixed.
-- ~~**`review-paper.md` navigation**~~ — **DONE 2026-09-03.** This repo's doc rewritten for
-  Cloud SQL + corrected script names. Every element the review needs to reach/interact with
-  now carries a `testTag` (AMPM `06685d9b7`) — documented in
+- ~~**`review-paper.md` navigation + data**~~ — **DONE 2026-09-03.** This repo's doc rewritten
+  for Cloud SQL + corrected script names. Every element the review needs to reach/interact
+  with carries a `testTag` (AMPM `06685d9b7`) — documented in
   `AMPM/wiki/lesson/questions-pane.md` § Automation selectors +
   `AMPM/wiki/lesson/presentation/{type}.md`, audit archived to
-  `AMPM/plan/archive/content-review-testtag-audit.md`. **Still open:**
-  `scripts/review-build-manifest.js` / `patch-question.js` still hit Firestore (Cloud SQL
-  repoint pending), and `scripts/review-capture.js` hasn't been rewritten to use the new tags
-  yet — both AMPM-side.
+  `AMPM/plan/archive/content-review-testtag-audit.md`. `scripts/review-build-manifest.js` /
+  `patch-question.js` repointed to Cloud SQL (`scripts/lib/postgres.js`, dev-only by
+  construction) and verified end-to-end against dev — manifest build (15 lessons / 51
+  questions, curriculum names resolved), a `clues` round-trip, a `skills` junction
+  replace-and-restore, and clean rejection of a bad skill id (FK, transaction rolled back)
+  and a not-found question id. **Still open:** `scripts/review-capture.js` itself hasn't
+  been rewritten to use the new tags — AMPM-side.
 - **Track A prod reconciliation** — owner confirmed 2026-09-03: prod is up to date for what's
   needed right now: no further run required. Revisit if/when more historical content needs
   to land on prod.

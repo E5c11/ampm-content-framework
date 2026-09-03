@@ -5,27 +5,24 @@
 > `scripts/patch-question.js`) live in `AMPM/scripts/` and drive the emulator / the app.
 > Presentation contracts for the review criteria: this repo's `presentations/{type}.md`.
 
-## Status — one AMPM prerequisite left
+## Status — one AMPM piece left
 
-**Navigation is no longer the blocker.** Every element Phase 2 needs to reach/interact with
-now carries a `testTag` (`AMPM` commit `06685d9b7`, render **and** answer-feedback review are
-both fully coverable) — see `AMPM/wiki/lesson/questions-pane.md` § Automation selectors
-(shared/structural tags: nav chain, pager anchor, submit, feedback, clues, maths-tools FAB)
-and `AMPM/wiki/lesson/presentation/{type}.md` (per-type input tags + indexing quirks, e.g.
-`ordering`'s pool-index shift, `match`'s independently-shuffled columns).
+**Data (Phases 1 & 4) and navigation selectors are both done.** `scripts/review-build-manifest.js`
+and `scripts/patch-question.js` are repointed to Cloud SQL and verified end-to-end against dev
+(2026-09-03) — see their headers in `AMPM/scripts/`. Every element Phase 2 needs to
+reach/interact with carries a `testTag` (`AMPM` commit `06685d9b7`, render **and**
+answer-feedback review are both fully coverable) — see `AMPM/wiki/lesson/questions-pane.md`
+§ Automation selectors (shared/structural tags: nav chain, pager anchor, submit, feedback,
+clues, maths-tools FAB) and `AMPM/wiki/lesson/presentation/{type}.md` (per-type input tags +
+indexing quirks, e.g. `ordering`'s pool-index shift, `match`'s independently-shuffled columns).
 
-**What's still pending** — the harness scripts predate the Firestore→Postgres cutover, so
-Phases 1 and 4's commands stay **provisional** until repointed:
+**What's still pending:** `scripts/review-capture.js` itself still drives via coordinate
+swipes + `content-desc` string matching (`"Next question"`, the supplementary label) —
+rewrite it to `uiautomator dump` + `resource-id` lookup using the tags above.
 
-1. `scripts/review-build-manifest.js` — currently reads Firestore (`<subject>_videos` /
-   `<subject>_questions`); repoint to Cloud SQL `lessons` / `questions`.
-2. `scripts/patch-question.js` — currently writes Firestore; repoint to `UPDATE questions …`
-   on Cloud SQL (keep the field whitelist + prod refusal).
-3. `scripts/review-capture.js` itself still drives via coordinate swipes + `content-desc`
-   string matching (`"Next question"`, the supplementary label) — rewrite it to
-   `uiautomator dump` + `resource-id` lookup using the tags above, ideally in the same pass
-   as the data-source repoint rather than testing half-migrated navigation against a
-   half-migrated data source.
+**Setup for Phases 1 & 4:** `AMPM/.env` needs a `PG_*_DEV` block (`AMPM/.env.example`) — same
+Auth Proxy convention as this repo's tooling. Password:
+`gcloud secrets versions access latest --secret=AMPM_DB_PASSWORD --project=ampm-b9661`.
 
 ---
 
@@ -66,17 +63,18 @@ The run, end to end:
 ## Phase 1 — Fetch Paper Data
 
 ```bash
-# provisional — pending the review-build-manifest.js repoint
 node scripts/review-build-manifest.js <subject> <syllabus> <year> <paper>
 # → temp/review/<paper>_<year>/manifest.json
 ```
 
-Manifest shape (per lesson): `{ order, name, videoId (lesson UUID), subject, syllabus,
-questions: [{ id (UUID), order, name, question, context_text, presentation, type, metadata,
-answer, unit_id/topic_id/subtopic_id, supplementaryLabel }] }`.
+Manifest shape: `{ subject, syllabus, year, paper, paperId, lessons: [{ videoId (lesson
+UUID), order, name, questions: [{ id (UUID), order, name, question, textSnippet, contextText,
+presentation, type, metadata, answer, clues, difficulty, examWeight, unit, topic, subtopic
+(resolved curriculum **names**, not ids), supplementaryLabel, supplementaryType,
+supplementaryImageUrls }] }] }`. Carries everything Phase 3 needs — no second query.
 
 > Verify the lesson count and per-lesson question counts look plausible before proceeding.
-> (`metadata` comes back as a Postgres `text[]` — `{}` for `fraction`/`equation`, never NULL.)
+> `metadata` comes back as a Postgres array — `[]` for `fraction`/`equation`, never null.
 
 ---
 
@@ -121,9 +119,9 @@ Read each question's data alongside its screenshot; classify PASS / AUTO_FIX / F
       answerable from the prescribed-text context; Paper 3 about text-type conventions.
 - [ ] **DBE Grade 12 level:** cognitive demand matches `difficulty` (`SCHEMA-CAL-03`).
 - [ ] **`fitb` answer coverage:** `|`-separated alternatives where multiple phrasings valid.
-- [ ] **Curriculum resolves:** `unit_id`/`topic_id`/`subtopic_id` are real `curriculum_nodes`
-      (the upload FK preflight guarantees this — flag any NULL where the subject has a
-      curriculum).
+- [ ] **Curriculum resolves:** manifest `unit`/`topic`/`subtopic` are real names, not null,
+      for any subject that has a curriculum (the upload FK preflight guarantees the FK is
+      valid — a null here means the question genuinely has no unit/topic/subtopic set).
 
 ### Render checks (screenshot + data)
 
@@ -159,9 +157,11 @@ missing `|` alternative, obvious `context_text` typo.
 alignment, crop uncertain without the source PDF, equation itself possibly wrong.
 
 ```bash
-# provisional — pending the patch-question.js repoint. Targets dev Cloud SQL `questions`;
-# refuses prod. Whitelisted fields: answer, metadata, context_text, question, clues,
-# difficulty, exam_weight, unit_id, topic_id, subtopic_id, skills.
+# Targets dev Cloud SQL `questions`; dev-only by construction (no --env flag, no prod path).
+# Whitelisted fields: answer, metadata, context_text, question, clues, difficulty,
+# exam_weight, unit, topic, subtopic (patch the *_id FK columns — Postgres rejects an id
+# that isn't a real curriculum_nodes row), skills (replaces the question_skills junction,
+# not a column — pass the full new skill-id list, not a diff).
 node scripts/patch-question.js \
   --id <question_uuid> \
   --field answer \
