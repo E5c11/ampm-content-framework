@@ -14,7 +14,8 @@ tags: [subject, maths, dbe, profile]
 |---|---|
 | `syllabus` / `subject` | `"dbe"` / `"maths"` |
 | Postgres tables | `lessons`, `questions` — `subject_id = "maths"` |
-| Curriculum sources | **no `curriculum_nodes` rows for `maths` yet** — validator runs **without** `--curriculum`, but the upload script's FK preflight still rejects any `unit`/`topic`/`subtopic` slug (see the Known limitation in `workflows/generate/upload-maths.md`). `skills` rows for `maths` exist |
+| Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'maths'` (built 2026-09-03 from the 2019 P1/P2 back-catalogue — `tools/backfill-maths-curriculum.js`). Author **bare** slugs; node IDs are `maths_<unit>` / `maths_<unit>__<topic>__<subtopic>` (`tools/lib/curriculum.js` — the `maths_` prefix avoids colliding with Math Lit's flat scheme). Run the vocab dump with `--curriculum` like the other subjects |
+| Vocabulary dump | `node tools/dump-curriculum-vocabulary.js --subject maths --out temp/curriculum-vocab.json` (Auth Proxy running) |
 | Not authored | display names/colours — resolved from the reference tables by JOIN |
 | Papers | `nov_p1`, `nov_p2`, `june_p1`, `june_p2` |
 

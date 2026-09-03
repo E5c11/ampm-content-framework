@@ -27,6 +27,7 @@
 const fs = require('fs');
 const path = require('path');
 const { getPool, closePool } = require('./lib/postgres');
+const { bareUnitSlug } = require('./lib/curriculum');
 
 const args = process.argv.slice(2).reduce((acc, a, i, arr) => {
   if (a.startsWith('--')) acc[a.slice(2)] = arr[i + 1] && !arr[i + 1].startsWith('--') ? arr[i + 1] : true;
@@ -37,12 +38,14 @@ const env = args.env || args.project || 'dev'; // --project kept as an alias for
 const subject = args.subject || 'math_lit';
 const outPath = args.out || 'temp/curriculum-vocab.json';
 
-if (subject !== 'math_lit' && subject !== 'english_hl') {
-  console.error('Usage: node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl [--out path]');
+if (!['math_lit', 'english_hl', 'maths'].includes(subject)) {
+  console.error('Usage: node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl|maths [--out path]');
   process.exit(1);
 }
 
-const bareSlug = (id) => id.split('__').pop();
+// topic/subtopic bare name = last `__` segment; unit bare name also strips any subject prefix
+const bareTopicSlug = (id) => id.split('__').pop();
+const bareUnit = (id) => bareUnitSlug(subject, id);
 
 async function main() {
   const pool = getPool(env);
@@ -56,16 +59,16 @@ async function main() {
     [subject],
   );
 
-  const pick = (t) =>
-    [...new Set(nodes.filter((n) => n.type === t).map((n) => bareSlug(n.id)))].sort();
+  const pick = (t, bare) =>
+    [...new Set(nodes.filter((n) => n.type === t).map((n) => bare(n.id)))].sort();
 
   const vocab = {
     dumpedAt: new Date().toISOString(),
     project: env,
     subject,
-    units: pick('unit'),
-    topics: pick('topic'),
-    subtopics: pick('subtopic'),
+    units: pick('unit', bareUnit),
+    topics: pick('topic', bareTopicSlug),
+    subtopics: pick('subtopic', bareTopicSlug),
     skills: [...new Set(skillRows.map((r) => r.id))].sort(),
   };
 

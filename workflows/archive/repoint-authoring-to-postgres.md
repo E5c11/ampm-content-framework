@@ -410,8 +410,11 @@ call the bootstrap made); do it next time an emulator is up, authoring a real un
 
 ### Residuals (follow-ups, not blockers — tracked in "Out of scope")
 
-- **Maths curriculum** — no `curriculum_nodes` rows for `maths`; authoring Maths needs them
-  created first (`tools/create-curriculum-node.js --subject maths`) or held.
+- ~~**Maths curriculum**~~ — **DONE 2026-09-03** (`tools/backfill-maths-curriculum.js`):
+  127 `maths` `curriculum_nodes` built + reconciled from the 2019 P1/P2 back-catalogue, all
+  100 Maths questions backfilled, and a latent bug fixed (7 questions pointed at Math Lit's
+  `probability` node). Maths node IDs are `maths_`-prefixed (`tools/lib/curriculum.js`) to
+  avoid PK collisions with Math Lit's flat scheme. **Dev only — prod pending owner go.**
 - **`english_texts` maintenance** — `check-p2-videos.js` / `update-english-texts.js` still
   target Firestore in the AMPM repo; a new prescribed text needs a Postgres `english_texts`
   row added by hand until they're ported.

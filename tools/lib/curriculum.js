@@ -3,21 +3,42 @@
  * Curriculum-node ID conventions, shared by content-rows.js (question unit/topic/subtopic
  * FKs) and create-curriculum-node.js.
  *
- * math_lit: `curriculum_nodes.id` is the flat slug (`percentages`).
- * english_hl: topic/subtopic IDs are namespaced under their parent
- *   (`comprehension__evaluative_reading`, `comprehension__evaluative_reading__conclusion_evaluation`)
- *   because names legitimately recur across units. Unit IDs are always the flat slug.
- * Verified against live dev curriculum_nodes (Phase 0 / Phase 4).
+ * `curriculum_nodes.id` is a global primary key, so IDs must be unique across every subject.
+ *
+ * - math_lit: flat slug — `percentages`, `probability`. (Its unit/topic/subtopic slugs
+ *   happened to be globally unique; kept as-is.)
+ * - english_hl: `unit__topic`, `unit__topic__subtopic`; unit is the bare slug
+ *   (`comprehension`). Namespaced because topic/subtopic names recur across units.
+ * - maths: same `__` namespacing AND a `maths_` prefix on the unit, because a bare Maths
+ *   unit slug (`probability`, `statistics`, …) collides with Math Lit's flat scheme —
+ *   `maths_probability`, `maths_probability__basic_probability__independent_events`.
+ *
+ * Verified against live dev curriculum_nodes (english_hl: Phase 4; maths:
+ * tools/backfill-maths-curriculum.js, 2026-09-03).
  */
 
-const NAMESPACED_SUBJECTS = new Set(['english_hl']);
+const NAMESPACED_SUBJECTS = new Set(['english_hl', 'maths']);
+// Subjects whose bare unit slug isn't globally unique and needs a prefix.
+const UNIT_PREFIX = { maths: 'maths_' };
+
+/** The `curriculum_nodes.id` of the unit node for `subject` / bare `unit` slug. */
+function unitId(subject, unit) {
+  return (UNIT_PREFIX[subject] || '') + unit;
+}
+
+/** The bare unit slug from a unit-node id (inverse of unitId). */
+function bareUnitSlug(subject, unitNodeId) {
+  const p = UNIT_PREFIX[subject];
+  return p && unitNodeId.startsWith(p) ? unitNodeId.slice(p.length) : unitNodeId;
+}
 
 /** The `curriculum_nodes.id` for a node, given its subject and the bare slug path to it. */
 function nodeId(subject, { unit, topic, subtopic }) {
   const flat = !NAMESPACED_SUBJECTS.has(subject);
-  if (subtopic != null) return flat ? subtopic : `${unit}__${topic}__${subtopic}`;
-  if (topic != null) return flat ? topic : `${unit}__${topic}`;
-  return unit; // unit IDs are flat for every subject
+  const u = unitId(subject, unit);
+  if (subtopic != null) return flat ? subtopic : `${u}__${topic}__${subtopic}`;
+  if (topic != null) return flat ? topic : `${u}__${topic}`;
+  return u;
 }
 
 /** `{ unit_id, topic_id }` self-FK values for a node of the given `type`. */
@@ -39,4 +60,4 @@ function questionCurriculumIds(subject, { unit, topic, subtopic }) {
   };
 }
 
-module.exports = { NAMESPACED_SUBJECTS, nodeId, parentIds, questionCurriculumIds };
+module.exports = { NAMESPACED_SUBJECTS, UNIT_PREFIX, unitId, bareUnitSlug, nodeId, parentIds, questionCurriculumIds };
