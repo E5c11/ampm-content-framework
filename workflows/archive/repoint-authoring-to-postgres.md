@@ -418,9 +418,13 @@ call the bootstrap made); do it next time an emulator is up, authoring a real un
   questions pointed at Math Lit's `probability` node. Maths node IDs are `maths_`-prefixed
   (`tools/lib/curriculum.js`) to avoid PK collisions with Math Lit's flat scheme. The
   full 127-node tree is on prod as published reference data, ahead of the nov_p2 content.
-- **`english_texts` maintenance** — `check-p2-videos.js` / `update-english-texts.js` still
-  target Firestore in the AMPM repo; a new prescribed text needs a Postgres `english_texts`
-  row added by hand until they're ported.
+- ~~**`english_texts` maintenance**~~ — **DONE 2026-09-03** (this-repo side):
+  `tools/create-english-text.js` (create / `--retire` / `--reinstate`) replaces the Firestore
+  `check-p2-videos.js` / `update-english-texts.js`. The `prescribed_years` sync those scripts
+  did is obsolete — the app stopped filtering the Paper 2 picker by year. Current
+  `english_texts` data verified clean (17 rows, no orphans). **App-side change** (make the
+  picker scope by *what lessons a paper has* + smart-default) is scoped in
+  `AMPM/plan/active/english-text-picker-per-paper.md`, owner to execute from that repo.
 - **`review-paper.md`** (paper-QA harness, AMPM repo) still reads Firestore — its own repoint.
 - **Track A prod reconciliation** — still owner-deferred; needs its own rebuild/verify pass.
 

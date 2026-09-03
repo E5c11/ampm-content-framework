@@ -10,23 +10,28 @@ profile).
 > A lesson maps to one exam question; exam images are shown to the student, practice
 > questions are fresh but exam-mirrored (`DESIGN-ENG-01`/`02`, `DESIGN-UNI-01`).
 
-## Phase 0 (Paper 2 only) — `english_texts` maintenance
+## Phase 0 (Paper 2 only) — `english_texts` check
 
-Required when uploading nov_p2 lessons for a new year; skip for P1/P3.
+Required when uploading nov_p2 lessons; skip for P1/P3.
 
-> **Not yet repointed.** `check-p2-videos.js` / `update-english-texts.js` still live in the
-> AMPM repo and target Firestore `english_texts`. `english_texts` now lives in Postgres
-> too, and the app reads it from there. Until these are ported: a `text_key` a question
-> references must already be a row in the Postgres `english_texts` table, or the upload
-> script's FK preflight rejects it. Check with
-> `psql -c "SELECT id FROM english_texts ORDER BY id"`; a genuinely new prescribed text
-> needs an `english_texts` row added (owner-gated, like other reference data). Tracked in
-> `workflows/archive/repoint-authoring-to-postgres.md` (Out of scope).
+Every `text_key` a lesson/question references must already be a row in the Postgres
+`english_texts` table (the upload script's FK preflight rejects unknown ones):
 
-Rules: `text_key` is per-text, never per-year; **for poetry lessons set `text_key` to the
-actual poem's `english_texts` id** (e.g. `felix_randal`) — the old `"poetry"` marker is not
-a real row and the FK preflight rejects it; retired texts get `is_active = false`, never
-deleted.
+```bash
+psql -c "SELECT id, name, section, is_active FROM english_texts ORDER BY section, id"
+```
+
+- **New prescribed text** → add it first: `node tools/create-english-text.js --id <text_key>
+  --name "<title>" --author "<author>" --section novel|play|poetry` (owner-gated, like other
+  reference data).
+- **Retired from the syllabus** → `node tools/create-english-text.js --retire <text_key>`
+  (`is_active = false`; its old lessons stay in the DB, never deleted).
+- **Poetry** → `text_key` is the actual poem's id (e.g. `felix_randal`); the old `"poetry"`
+  marker is not a row.
+
+`text_key` is per-text, never per-year. `prescribed_years` on the row is a record only —
+the app's picker is scoped by *what lessons a paper actually has*, not by year (see
+`AMPM/plan/active/english-text-picker-per-paper.md`), so there's no per-year sync to run.
 
 ## Required inputs
 

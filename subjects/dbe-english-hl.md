@@ -51,11 +51,11 @@ the bare name a question needs is the last `__` segment.
   sub-questions skipped) live in `workflows/generate/upload-english.md`.
 - **Paper 2** — 20 lessons/year for a 5-poetry + 5-prescribed-pair paper; contextual
   questions split into Part 1/Part 2 lessons (one extract tab each). Prescribed-text
-  sets are authored **once per text** — check the `english_texts` table for the id first
-  (`psql -c "SELECT id FROM english_texts ORDER BY id"`). A genuinely new prescribed text
-  needs an `english_texts` row (Phase 0 of the upload workflow — not yet repointed off
-  Firestore; see that doc). Poetry lessons use the actual poem's id, not a `poetry` marker;
-  retired texts get `is_active = false`, never deleted.
+  sets are authored **once per text** — check `english_texts` for the id first
+  (`psql -c "SELECT id, section, is_active FROM english_texts ORDER BY section, id"`). A new
+  prescribed text needs a row (`tools/create-english-text.js`); a retired one gets
+  `--retire` (`is_active = false`, never deleted). Phase 0 of `workflows/generate/upload-english.md`.
+  Poetry lessons use the actual poem's id, not a `poetry` marker.
 - **Paper 3** — 7 lessons/year: Q1 Essay + one lesson per transactional text type
   (2.1–2.6, named exactly as that year's paper names them).
 

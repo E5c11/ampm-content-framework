@@ -10,6 +10,7 @@ touching Postgres / GCS / content data; Python for doc-graph upkeep only.
 | `create-curriculum-node.js` | Creates one `curriculum_nodes` row (unit/topic/subtopic) — the "create it first" step of `PIPE-08`. | Node |
 | `create-skill.js` | Creates one `skills` row — `PIPE-08`. | Node |
 | `create-tag.js` | Creates one `tags` row (lesson `tags` FK to it — `PIPE-06`). | Node |
+| `create-english-text.js` | Creates / `--retire` / `--reinstate` an `english_texts` row (Paper 2 prescribed text). | Node |
 | `upload-exam-images.js` | Uploads extracted exam-page PNGs to the media bucket (`media-dev.askmoreprepmore.app`, ADC auth); prints ready-to-paste URL arrays (`PIPE-02`). | Node |
 | `extract-exam-pages.py` | Extracts question/annexure/memo page images from exam PDFs; `--inspect` finds crop points. | Python |
 | `upload-script-template.js` | Template for per-question-group upload scripts (pipeline Phase 4). Copy, fill, validate, run against dev. | Node |
