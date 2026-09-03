@@ -46,14 +46,14 @@ mapping and row-identity rules: `core/persistence.md` + `tools/lib/content-rows.
 **`PIPE-01`** — every extracted image is visually inspected before upload.
 `enforced_by: human-review`
 
-`--pdf`/`--memo-pdf` point at wherever the source PDFs actually are (given in chat per
-`INSTRUCTIONS.md` Step 0) — they don't need to be copied into this repo first.
-`--out`/`temp/images/` is this framework's own working directory, always.
+`--pdf`/`--memo-pdf` point at `files/` — the source PDFs dropped in per `INSTRUCTIONS.md`
+Step 0 (gitignored, never committed). `--out`/`temp/images/` is this framework's own working
+directory, always.
 
 1. **Inspect shared pages (if needed):** when two question groups (or a TEXT and its
    questions) share a page, find the exact cut points first:
    ```bash
-   python3 tools/extract-exam-pages.py --pdf <path-to-paper.pdf> --inspect <page> --out temp/images/
+   python3 tools/extract-exam-pages.py --pdf files/<paper>.pdf --inspect <page> --out temp/images/
    ```
    Read the band scan output — find the pt value just above the next heading (`y_end`)
    and just below the last mark allocation (`y_start`).
@@ -61,8 +61,8 @@ mapping and row-identity rules: `core/persistence.md` + `tools/lib/content-rows.
 2. **Extract images:**
    ```bash
    python3 tools/extract-exam-pages.py \
-     --pdf <path-to-paper.pdf> \
-     --memo-pdf <path-to-memo.pdf> \
+     --pdf files/<paper>.pdf \
+     --memo-pdf files/<paper>_memo.pdf \
      --order N \
      --question-pages "P"          \  # e.g. "3-4" or "7:end=480"
      --annexure-pages "P"          \  # omit if none; one run per labeled TEXT/extract

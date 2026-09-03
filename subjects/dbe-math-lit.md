@@ -52,7 +52,7 @@ only, dump per session.
 
 One video (with YouTube lesson) per exam **question group** (Q1.1, Q1.2, …); `order` is
 the group's sequential position across the whole paper. YouTube ID + duration from
-`temp/youtube_video_data.csv` (match Video title on paper year/paper/question number).
+`files/youtube_video_data.csv` (match Video title on paper year/paper/question number).
 
 ## Image extraction quirks
 

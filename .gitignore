@@ -15,6 +15,10 @@ __pycache__/
 # Session working files (vocab snapshots, extracted images, review output)
 temp/
 
+# Source material dropped in for a session — exam paper/memo/addendum PDFs, lookup CSVs.
+# Not code, not this framework's output; never committed (bulky, often copyrighted DBE papers).
+files/
+
 # IDE / OS
 .idea/
 .DS_Store

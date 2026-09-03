@@ -36,7 +36,10 @@ subjects/          — one profile per subject–syllabus combination (dbe-math-
 workflows/         — how work happens in this repo, incl. the generation workflows
 tools/             — executable tooling; see the language boundary in workflows/README.md
 context/           — project profile fed to esc-ai-framework
-temp/              — session working files, reports
+files/             — source material dropped in for a session (exam paper/memo/addendum
+                     PDFs, lookup CSVs) — gitignored, never committed
+temp/              — this framework's own generated working files (extracted images,
+                     vocabulary dumps, upload scripts, reports) — gitignored
 ```
 
 ## Boundaries

@@ -9,7 +9,7 @@
 
 ## Required inputs
 
-YouTube Video ID + duration (`temp/youtube_video_data.csv`, match title on
+YouTube Video ID + duration (`files/youtube_video_data.csv`, match title on
 year/paper/question), paper question number, `order` (sequential across the full paper),
 year, paper key, paper + memo PDFs. Collections and denormalized values: profile.
 
