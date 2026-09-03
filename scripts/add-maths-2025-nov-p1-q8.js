@@ -93,7 +93,7 @@ const questions = [
   {
     name: 'Question 3',
     question: 'Given y = \\frac{x³ + 4x}{x}, determine the value of \\frac{dy}{dx} at x = 3.',
-    metadata: ['\\frac{dy}{dx} at x = 3 is ', '[ ]'],
+    metadata: ['The value of dy/dx at x = 3 is ', '[ ]'],
     answer: ['6', '', '', '', ''],
     presentation: 'fitb',
     type: 'calc',
@@ -114,8 +114,8 @@ const questions = [
   {
     name: 'Question 4',
     question: 'Rewrite \\frac{1}{\\sqrt{x}} in the form x^n so that the power rule can be applied.',
-    metadata: ['x^{\\frac{1}{2}}', 'x^{−\\frac{1}{2}}', 'x^{−2}', 'x^{2}', ''],
-    answer: ['x^{−\\frac{1}{2}}', '', '', '', ''],
+    metadata: ['x^(1/2)', 'x^(-1/2)', 'x^(-2)', 'x^2', ''],
+    answer: ['x^(-1/2)', '', '', '', ''],
     presentation: 'multiple_choice',
     type: 'conversion',
     unit: 'calculus',
@@ -130,7 +130,7 @@ const questions = [
     subject: 'maths',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- A root becomes a fractional exponent; \\sqrt{x} = x^{\\frac{1}{2}}.\n- Dividing by a power negates its exponent.',
+    clues: '- A root becomes a fractional exponent; \\sqrt{x} = x^(1/2).\n- Dividing by a power negates its exponent.',
   },
 ];
 
@@ -146,7 +146,7 @@ const aiExplanation = {
     {
       number: '8.2.1',
       marks: 2,
-      clues: '- Apply the power rule to each term.\n- The derivative of a term ax^n is nax^{n−1}.',
+      clues: '- Apply the power rule to each term.\n- The derivative of a term axⁿ is naxⁿ⁻¹.',
       approach: '- Differentiate −3x⁴ to get −12x³.\n- Differentiate 2x to get 2.\n- Add the results.',
       solution: '1. g(x) = −3x⁴ + 2x\n2. g\u2032(x) = −12x³ + 2',
     },
@@ -154,8 +154,8 @@ const aiExplanation = {
       number: '8.2.2',
       marks: 4,
       clues: '- Split the fraction into separate terms and write each as a power of x.\n- Then differentiate term by term.',
-      approach: '- Write y = \\frac{2x⁴}{x²} + \\frac{1}{x²} = 2x² + x^{−2}.\n- Differentiate 2x² to get 4x.\n- Differentiate x^{−2} to get −2x^{−3}.',
-      solution: '1. y = \\frac{2x⁴ + 1}{x²} = 2x² + x^{−2}\n2. \\frac{dy}{dx} = 4x + (−2)x^{−3}\n3. ∴ \\frac{dy}{dx} = 4x − 2x^{−3}',
+      approach: '- Write y = \\frac{2x⁴}{x²} + \\frac{1}{x²} = 2x² + x⁻².\n- Differentiate 2x² to get 4x.\n- Differentiate x⁻² to get −2x⁻³.',
+      solution: '1. y = \\frac{2x⁴ + 1}{x²} = 2x² + x⁻²\n2. \\frac{dy}{dx} = 4x + (−2)x⁻³\n3. ∴ \\frac{dy}{dx} = 4x − 2x⁻³',
     },
   ],
   model: 'claude-sonnet-5',

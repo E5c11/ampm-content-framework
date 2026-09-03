@@ -180,7 +180,7 @@ const aiExplanation = {
       marks: 4,
       clues: '- The equation is a quadratic in 2^x — a substitution makes this clear.\n- After solving for the substituted variable, rewrite each result with equal bases.',
       approach: '- Let k = 2^x, giving 2k² − 9k + 4 = 0.\n- Factorise: (2k − 1)(k − 4) = 0.\n- Solve for k, then replace k with 2^x.\n- Use equal bases to solve for x.',
-      solution: '1. Let k = 2^x: 2k² − 9k + 4 = 0\n2. (2k − 1)(k − 4) = 0\n3. k = \\frac{1}{2}  or  k = 4\n4. 2^x = \\frac{1}{2} = 2^{−1}  or  2^x = 4 = 2²\n5. x = −1  or  x = 2',
+      solution: '1. Let k = 2^x: 2k² − 9k + 4 = 0\n2. (2k − 1)(k − 4) = 0\n3. k = \\frac{1}{2}  or  k = 4\n4. 2^x = \\frac{1}{2} = 2⁻¹  or  2^x = 4 = 2²\n5. x = −1  or  x = 2',
     },
     {
       number: '1.1.5',
