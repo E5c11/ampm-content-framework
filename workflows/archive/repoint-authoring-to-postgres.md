@@ -438,8 +438,13 @@ call the bootstrap made); do it next time an emulator is up, authoring a real un
   construction) and verified end-to-end against dev — manifest build (15 lessons / 51
   questions, curriculum names resolved), a `clues` round-trip, a `skills` junction
   replace-and-restore, and clean rejection of a bad skill id (FK, transaction rolled back)
-  and a not-found question id. **Still open:** `scripts/review-capture.js` itself hasn't
-  been rewritten to use the new tags — AMPM-side.
+  and a not-found question id. `scripts/review-capture.js` rewired to navigate by
+  `testTag`/`resource-id` instead of coordinate swipes + `content-desc` string matching, and
+  **verified live** against a real emulator running dev content — `lesson_questions_pane` /
+  `question_next_button` correctly gate readiness and advance, confirmed by the captured
+  screenshots showing genuinely different questions per step. Render-only (no answer
+  submission); the per-type input tags are available for that later if wanted. **The whole
+  review-paper follow-up is now closed** — all three harness scripts repointed and verified.
 - **Track A prod reconciliation** — owner confirmed 2026-09-03: prod is up to date for what's
   needed right now: no further run required. Revisit if/when more historical content needs
   to land on prod.

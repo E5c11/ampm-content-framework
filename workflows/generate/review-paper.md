@@ -5,22 +5,25 @@
 > `scripts/patch-question.js`) live in `AMPM/scripts/` and drive the emulator / the app.
 > Presentation contracts for the review criteria: this repo's `presentations/{type}.md`.
 
-## Status — one AMPM piece left
+## Status — harness fully repointed
 
-**Data (Phases 1 & 4) and navigation selectors are both done.** `scripts/review-build-manifest.js`
-and `scripts/patch-question.js` are repointed to Cloud SQL and verified end-to-end against dev
-(2026-09-03) — see their headers in `AMPM/scripts/`. Every element Phase 2 needs to
-reach/interact with carries a `testTag` (`AMPM` commit `06685d9b7`, render **and**
-answer-feedback review are both fully coverable) — see `AMPM/wiki/lesson/questions-pane.md`
-§ Automation selectors (shared/structural tags: nav chain, pager anchor, submit, feedback,
-clues, maths-tools FAB) and `AMPM/wiki/lesson/presentation/{type}.md` (per-type input tags +
-indexing quirks, e.g. `ordering`'s pool-index shift, `match`'s independently-shuffled columns).
+All three scripts are done, dev-verified, and (render-only) run clean end-to-end.
 
-**What's still pending:** `scripts/review-capture.js` itself still drives via coordinate
-swipes + `content-desc` string matching (`"Next question"`, the supplementary label) —
-rewrite it to `uiautomator dump` + `resource-id` lookup using the tags above.
+- `scripts/review-build-manifest.js` / `scripts/patch-question.js` — repointed to Cloud SQL
+  (2026-09-03). See their headers in `AMPM/scripts/`.
+- `scripts/review-capture.js` — rewired 2026-09-03 to navigate by `testTag`/`resource-id`
+  (`AMPM` commit `06685d9b7` shipped the tags — `AMPM/wiki/lesson/questions-pane.md` §
+  Automation selectors, `AMPM/wiki/lesson/presentation/{type}.md`) instead of coordinate
+  swipes + `content-desc` string matching. **Verified live** against a real emulator with real
+  dev content (maths 2019 nov_p1): `lesson_questions_pane` correctly gates readiness,
+  `question_next_button` correctly advances — confirmed by the captured screenshots showing
+  genuinely different questions per step, matching the manifest.
 
-**Setup for Phases 1 & 4:** `AMPM/.env` needs a `PG_*_DEV` block (`AMPM/.env.example`) — same
+This capture is **render-only** (screenshots + the supplementary sheet) — it doesn't submit
+answers. The per-presentation-type input tags exist for a future render+answer-feedback pass
+if you want it; not wired in here.
+
+**Setup:** `AMPM/.env` needs a `PG_*_DEV` block (`AMPM/.env.example`) for Phases 1 & 4 — same
 Auth Proxy convention as this repo's tooling. Password:
 `gcloud secrets versions access latest --secret=AMPM_DB_PASSWORD --project=ampm-b9661`.
 
