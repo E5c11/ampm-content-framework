@@ -1,91 +1,83 @@
 #!/usr/bin/env node
 /**
- * Upload exam paper images to Firebase Storage and print the resulting download URLs.
+ * Upload extracted exam-page PNGs to the AMPM media bucket and print the resulting URLs
+ * (pipeline Phase 1.5, PIPE-02).
+ *
+ * Auth: Application Default Credentials (`gcloud auth application-default login`). No
+ * service-account JSON, no Auth Proxy — this talks to GCS directly.
  *
  * Usage:
  *   node tools/upload-exam-images.js \
- *     --syllabus dbe \
- *     --subject math_lit \
- *     --year 2016 \
- *     --paper nov_p1 \
- *     --order 1 \
- *     --dir temp/images/q1/ \
- *     [--project dev|prod]          # defaults to dev
+ *     --syllabus dbe --subject math_lit --year 2016 --paper nov_p1 \
+ *     --order 1 --dir temp/images/q1/ \
+ *     [--project dev]                 # only 'dev' supported until prod is provisioned
+ *     [--supplementary-type annexure --supplementary-label "Annexure"]
+ *     [--shared-annexure]
  *
- * Storage paths:
+ * Object keys (unchanged from the Firebase-Storage era, so migrated + newly-authored
+ * content share one layout):
  *   exam_papers/{syllabus}/{subject}/{year}/{paper}/q{order}/question_{n}.png
  *   exam_papers/{syllabus}/{subject}/{year}/{paper}/q{order}/annexure_{n}.png
  *   exam_papers/{syllabus}/{subject}/{year}/{paper}/q{order}/memo_{n}.png
+ *   exam_papers/{syllabus}/{subject}/{year}/{paper}/annexures/{filename}   (--shared-annexure)
  *
- * Shared annexures (uploaded once, referenced in multiple documents):
- *   exam_papers/{syllabus}/{subject}/{year}/{paper}/annexures/{filename}
- *   Pass --shared-annexure to use this path instead.
- *
- * Supplementary material type/label (defaults to annexure for backwards compat):
- *   --supplementary-type  annexure|formula_sheet|data_sheet|reading_passage  (default: annexure)
- *   --supplementary-label "Annexure"|"Formula Sheet"|...                      (default: Annexure)
- *
- * Output:
- *   Prints a ready-to-paste JS snippet with the URLs for the Firestore document.
+ * The bucket is uniform-bucket-level-access + already world-readable, so there is no
+ * per-object "make public" step. Files are served at
+ *   https://media-dev.askmoreprepmore.app/<objectKey>
  */
 
-const admin = require('firebase-admin');
-const fs    = require('fs');
-const path  = require('path');
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const { Storage } = require('@google-cloud/storage');
 
 // ── Args ─────────────────────────────────────────────────────────────────────
 
 const args = process.argv.slice(2);
-
-function getArg(name) {
+const getArg = (name) => {
   const i = args.indexOf(`--${name}`);
   return i !== -1 ? args[i + 1] : null;
-}
+};
+const hasFlag = (name) => args.includes(`--${name}`);
 
-function hasFlag(name) {
-  return args.includes(`--${name}`);
-}
-
-const syllabus             = getArg('syllabus');
-const subject              = getArg('subject');
-const year                 = getArg('year');
-const paper                = getArg('paper');
-const order                = getArg('order');
-const dir                  = getArg('dir');
-const sharedAnnexure       = hasFlag('shared-annexure');
-const supplementaryType    = getArg('supplementary-type') || 'annexure';
-const supplementaryLabel   = getArg('supplementary-label') || 'Annexure';
-const project              = getArg('project') || 'dev';
+const syllabus = getArg('syllabus');
+const subject = getArg('subject');
+const year = getArg('year');
+const paper = getArg('paper');
+const order = getArg('order');
+const dir = getArg('dir');
+const sharedAnnexure = hasFlag('shared-annexure');
+const supplementaryType = getArg('supplementary-type') || 'annexure';
+const supplementaryLabel = getArg('supplementary-label') || 'Annexure';
+const project = getArg('project') || 'dev';
 
 if (!syllabus || !subject || !year || !paper || !order || !dir) {
-  console.error('Usage: node upload-exam-images.js --syllabus <s> --subject <s> --year <y> --paper <p> --order <n> --dir <path> [--project dev|prod] [--supplementary-type <type>] [--supplementary-label <label>]');
+  console.error(
+    'Usage: node upload-exam-images.js --syllabus <s> --subject <s> --year <y> --paper <p> ' +
+    '--order <n> --dir <path> [--project dev] [--supplementary-type <t>] [--supplementary-label <l>]',
+  );
   process.exit(1);
 }
 
-// ── Firebase init ────────────────────────────────────────────────────────────
+// ── Bucket ───────────────────────────────────────────────────────────────────
 
-const { serviceAccountPath } = require('./lib/credentials');
-
-const PROJECTS = {
-  dev:  { bucket: 'ampm-b9661.firebasestorage.app' },
-  prod: { bucket: 'ampm-prod-3c0f6.firebasestorage.app' },
+const BUCKETS = {
+  dev: 'media-dev.askmoreprepmore.app',
+  // prod: 'media.askmoreprepmore.app'  — owner-gated, not provisioned yet
+};
+const DOMAINS = {
+  dev: 'https://media-dev.askmoreprepmore.app',
 };
 
-if (!PROJECTS[project]) {
-  console.error(`Unknown project "${project}". Use dev or prod.`);
+if (!BUCKETS[project]) {
+  console.error(`Unknown/unsupported --project "${project}". Only 'dev' is available.`);
   process.exit(1);
 }
 
-if (!admin.apps.length) {
-  const { bucket: bucketName } = PROJECTS[project];
-  admin.initializeApp({
-    credential:    admin.credential.cert(require(serviceAccountPath(project))),
-    storageBucket: bucketName,
-  });
-}
-
-const bucket = admin.storage().bucket();
-console.log(`Project: ${project} (${PROJECTS[project].bucket})`);
+const storage = new Storage();
+const bucket = storage.bucket(BUCKETS[project]);
+console.log(`Project: ${project} (gs://${BUCKETS[project]})`);
 
 // ── Upload ───────────────────────────────────────────────────────────────────
 
@@ -96,25 +88,21 @@ async function uploadFile(localPath, storagePath) {
     destination: storagePath,
     metadata: { cacheControl: 'public, max-age=31536000' },
   });
-  const file = bucket.file(storagePath);
-  await file.makePublic();
-  const url = `https://storage.googleapis.com/${bucket.name}/${storagePath}`;
-  return url;
+  return `${DOMAINS[project]}/${storagePath}`;
 }
 
 async function uploadImageGroup(prefix, storageDirPath) {
-  const files = fs.readdirSync(dir)
-    .filter(f => f.startsWith(prefix) && f.endsWith('.png'))
+  const files = fs
+    .readdirSync(dir)
+    .filter((f) => f.startsWith(prefix) && f.endsWith('.png'))
     .sort();
-
   if (files.length === 0) return null;
 
   const urls = [];
   for (const filename of files) {
-    const localPath   = path.join(dir, filename);
     const storagePath = `${storageDirPath}/${filename}`;
     console.log(`  uploading ${filename} → ${storagePath}`);
-    const url = await uploadFile(localPath, storagePath);
+    const url = await uploadFile(path.join(dir, filename), storagePath);
     urls.push(url);
     console.log(`  ✓ ${url}`);
   }
@@ -122,10 +110,8 @@ async function uploadImageGroup(prefix, storageDirPath) {
 }
 
 async function main() {
-  const questionDir  = `${baseStoragePath}/q${order}`;
-  const annexureDir  = sharedAnnexure
-    ? `${baseStoragePath}/annexures`
-    : `${baseStoragePath}/q${order}`;
+  const questionDir = `${baseStoragePath}/q${order}`;
+  const annexureDir = sharedAnnexure ? `${baseStoragePath}/annexures` : `${baseStoragePath}/q${order}`;
 
   const results = {};
 
@@ -137,7 +123,7 @@ async function main() {
   const annexureUrls = await uploadImageGroup('annexure_', annexureDir);
   if (annexureUrls) {
     results.supplementary_materials = [
-      { type: supplementaryType, label: supplementaryLabel, image_urls: annexureUrls }
+      { type: supplementaryType, label: supplementaryLabel, image_urls: annexureUrls },
     ];
   }
 
@@ -145,17 +131,16 @@ async function main() {
   const memoUrls = await uploadImageGroup('memo_', questionDir);
   if (memoUrls) results.memo_image_urls = memoUrls;
 
-  // ── Print ready-to-paste snippet ──────────────────────────────────────────
   console.log('\n─────────────────────────────────────────────');
-  console.log('Paste into your Firestore upload script:');
+  console.log('Paste into your upload script (Phase 2 data):');
   console.log('─────────────────────────────────────────────');
-  for (const [key, urls] of Object.entries(results)) {
-    console.log(`  ${key}: ${JSON.stringify(urls)},`);
+  for (const [key, val] of Object.entries(results)) {
+    console.log(`  ${key}: ${JSON.stringify(val)},`);
   }
   console.log('─────────────────────────────────────────────\n');
 }
 
-main().catch(err => {
-  console.error('Upload failed:', err);
+main().catch((err) => {
+  console.error('Upload failed:', err.message);
   process.exit(1);
 });

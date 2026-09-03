@@ -301,7 +301,12 @@ source of truth, one less network dependency).
 
 ---
 
-## Phase 5 — Exam images → media bucket
+## Phase 5 — Exam images → media bucket  ✅ **DONE 2026-09-03**
+
+`tools/upload-exam-images.js` rewritten: `@google-cloud/storage` + ADC (no service-account
+JSON, no `makePublic()`), targets `media-dev.askmoreprepmore.app`, same object-key layout,
+emits `https://media-dev.askmoreprepmore.app/<key>` directly. **Verified on dev:** uploaded a
+test PNG → served at the CDN domain (`200`, `image/png`) → test objects removed.
 
 Bucket facts (found 2026-09-03 via `gcloud storage buckets list --project=ampm-b9661`):
 
