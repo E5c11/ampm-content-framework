@@ -20,7 +20,7 @@ rather than assumed by app code.
 - Publish-flag read-filtering semantics: `ampm-backend/wiki/content/publishing.md`
 - The write tooling: `tools/lib/content-rows.js`, `tools/upload-script-template.js`
 - The Firestore→Postgres transition history:
-  `workflows/active/repoint-authoring-to-postgres.md`
+  `workflows/archive/repoint-authoring-to-postgres.md`
 
 ## Store — Cloud SQL Postgres (`ampm-backend`)
 

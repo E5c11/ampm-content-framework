@@ -46,12 +46,11 @@ content-data side.
 
 ## Active
 
-| Workflow | What | Status |
-|---|---|---|
-| `active/repoint-authoring-to-postgres.md` | Move the authoring pipeline off Firestore to write directly into `ampm-backend`'s Cloud SQL Postgres (app now dual-reads, nothing new goes to Firestore). | **Phases 0–7 done** (schema verified; `pg` write layer; content-row + sub-question builders; curriculum/skills on Postgres; images to the media bucket; validator repoint + `firebase-admin` dropped; docs rewritten). Next: Phase 8 (end-to-end + archive). |
+_Empty — new work gets its own workflow doc._
 
 ## Archive
 
 | Workflow | What | Status |
 |---|---|---|
-| `archive/bootstrap-content-framework.md` | Stood up this repo: core docs, presentation package (with renderer contracts), subject profiles, pipeline tooling, persistence enforcement chain (migration transform → Postgres NOT NULL → contracts 0.11.0 → AMPM), ecosystem registration | **Complete, 2026-07-15.** Along the way caught and fixed a real environment split (the deployed dev backend had never received any of the day's work — see doc's Status header) and closed the loop with a direct on-device confirmation of the fix. |
+| `archive/repoint-authoring-to-postgres.md` | Moved the authoring pipeline off Firestore to write directly into `ampm-backend`'s Cloud SQL Postgres: `pg` write layer + deterministic UUIDs, content-row / sub-question builders, curriculum/skills tooling on Postgres, images to `media-dev.askmoreprepmore.app`, validator repoint, `firebase-admin` dropped, all `core/`/`subjects/`/`workflows/generate/` docs rewritten. | **Complete, 2026-09-03.** All 8 phases verified against live dev Cloud SQL (incl. a full e2e unit). Residuals in the doc's Phase 8 (Maths curriculum, `english_texts` scripts, `review-paper.md`, Track A prod) — follow-ups, not blockers. On-device spot-check pending an emulator. |
+| `archive/bootstrap-content-framework.md` | Stood up this repo: core docs, presentation package (with renderer contracts), subject profiles, pipeline tooling, persistence enforcement chain, ecosystem registration | **Complete, 2026-07-15.** Along the way caught and fixed a real environment split (the deployed dev backend had never received any of the day's work — see doc's Status header) and closed the loop with a direct on-device confirmation of the fix. |

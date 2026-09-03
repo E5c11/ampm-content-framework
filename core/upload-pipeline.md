@@ -4,7 +4,7 @@ type: guide
 layer: core
 related: [AMPM-CONTENT-SCHEMA, AMPM-CONTENT-DESIGN, AMPM-CONTENT-MATHTEXT, AMPM-CONTENT-AI-EXP]
 tags: [content, upload, pipeline, postgres, cloud-sql, images, validation]
-provenance: new 2026-07-15 — shared skeleton extracted from AMPM/workflows/generate/upload-{math-lit,maths,english}.md (their Phases 1.5 / 3.5 / 4 / 5 were 90%+ identical). Repointed Firestore→Postgres 2026-09-03 (workflows/active/repoint-authoring-to-postgres.md).
+provenance: new 2026-07-15 — shared skeleton extracted from AMPM/workflows/generate/upload-{math-lit,maths,english}.md (their Phases 1.5 / 3.5 / 4 / 5 were 90%+ identical). Repointed Firestore→Postgres 2026-09-03 (workflows/archive/repoint-authoring-to-postgres.md).
 ---
 
 # Upload Pipeline

@@ -21,7 +21,7 @@ Required when uploading nov_p2 lessons for a new year; skip for P1/P3.
 > script's FK preflight rejects it. Check with
 > `psql -c "SELECT id FROM english_texts ORDER BY id"`; a genuinely new prescribed text
 > needs an `english_texts` row added (owner-gated, like other reference data). Tracked in
-> `workflows/active/repoint-authoring-to-postgres.md` (Out of scope).
+> `workflows/archive/repoint-authoring-to-postgres.md` (Out of scope).
 
 Rules: `text_key` is per-text, never per-year; **for poetry lessons set `text_key` to the
 actual poem's `english_texts` id** (e.g. `felix_randal`) — the old `"poetry"` marker is not

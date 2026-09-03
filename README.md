@@ -52,5 +52,5 @@ temp/              — session working files, reports
 
 Bootstrap complete (`workflows/archive/bootstrap-content-framework.md`). Authoring writes
 directly to the `ampm-backend` Cloud SQL Postgres — see
-`workflows/active/repoint-authoring-to-postgres.md` for that cutover and
+`workflows/archive/repoint-authoring-to-postgres.md` for that cutover and
 `tools/README.md` for the Auth Proxy prerequisite.

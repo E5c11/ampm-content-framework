@@ -1,11 +1,15 @@
 # Repoint Authoring — Firestore → Postgres (Cloud SQL)
 
-**Status:** Phase 0 **DONE** (2026-09-01) — verdict **GO**, full report in
-`temp/schema-diff-report.md`. All Phase-0 decisions resolved (see "Decisions locked"):
-the authoring-to-Postgres tooling is **built fresh in this repo** (owner call, 2026-09-01 —
-the tool that last touched dev on 2026-08-22 may live on another machine but is presumed
-stale; not worth chasing). `ampm-firestore-migration`'s transforms are **schema-verified
-reference only**, not a dependency. **Phase 1 is unblocked.**
+**Status: COMPLETE, 2026-09-03.** All 8 phases done and verified against the live dev Cloud
+SQL. The authoring pipeline writes `lessons` / `questions` / `lesson_ai_explanation_sub_questions`
+/ junction rows directly to Postgres via the Auth Proxy; images go to
+`media-dev.askmoreprepmore.app`; `firebase-admin` is gone. Residuals (Maths curriculum,
+`english_texts` scripts, `review-paper.md`, Track A prod) are follow-ups listed in Phase 8,
+none blocking. On-device spot-check pending an emulator. Archiving.
+
+Tooling was **built fresh in this repo** (owner call, 2026-09-01 — the tool that last
+touched dev on 2026-08-22 was presumed stale, not worth chasing).
+`ampm-firestore-migration`'s transforms were **schema-verified reference only**.
 
 **Goal:** Make this repo's content-authoring pipeline write **directly into the Spring
 backend's Cloud SQL Postgres**, replacing the current two-hop path (author → dev Firestore,
@@ -381,17 +385,40 @@ The framework's whole purpose is docs-match-reality — this is real work, not a
 
 ---
 
-## Phase 8 — End-to-end verification + archive
+## Phase 8 — End-to-end verification + archive  ✅ **DONE 2026-09-03**
 
-- Author one **real** unit through the whole new pipeline (pick a math_lit question group):
-  images → lesson → questions → sub-questions → validate (hard stop) → upsert dev.
-- Confirm via the backend read API: `GET /v1/content/lessons/{id}`,
-  `GET /v1/content/questions?lessonId={id}` return the unit (once published per O2).
-- Idempotency: re-run the upload script → row counts unchanged.
-- On-device spot-check if an emulator is attachable (same gate the bootstrap used) — else
-  record pending in a support doc, don't block the archive on it.
-- Move this doc to `workflows/archive/`, update `workflows/README.md`'s Archive table.
-- **Commit** (`docs(workflow): Phase 8 — end-to-end verified, archive repoint-to-postgres`).
+Ran a full unit (`dbe/math_lit/2018/nov_p1` order 998, MC + fitb, 2 sub-questions) through
+the real tooling:
+
+1. `tools/upload-exam-images.js` → 3 objects in `media-dev.askmoreprepmore.app`, served
+   `200`.
+2. `tools/validate-questions.js --curriculum` → **caught a bad subtopic slug**
+   (`box_whisker_interpretation` vs the real `box_and_whisker_interpretation`), passed after
+   the fix — the hard stop works.
+3. `--dry-run` → upsert → re-run: row counts stable (`1 lesson · 2 tags · 1 supp · 2
+   sub-q · 2 questions · 2 skill-links`), deterministic UUID → upsert not duplicate.
+4. **Publish-filtered SQL read** (mimics `LessonContentService` / `QuestionContentService`
+   — `WHERE is_published AND NOT is_deleted`): returned the lesson + questions +
+   sub-questions + tags + skills, curriculum FKs resolved, `metadata` intact.
+5. Test rows + GCS objects removed; dev back to 283 / 1006 / 1219.
+
+The backend read **API** (`api-dev.askmoreprepmore.app`) isn't reachable from this
+environment — the equivalent publish-filtered query was run directly instead.
+
+**On-device spot-check: pending** — no emulator attached this session. Not a blocker (same
+call the bootstrap made); do it next time an emulator is up, authoring a real unit.
+
+### Residuals (follow-ups, not blockers — tracked in "Out of scope")
+
+- **Maths curriculum** — no `curriculum_nodes` rows for `maths`; authoring Maths needs them
+  created first (`tools/create-curriculum-node.js --subject maths`) or held.
+- **`english_texts` maintenance** — `check-p2-videos.js` / `update-english-texts.js` still
+  target Firestore in the AMPM repo; a new prescribed text needs a Postgres `english_texts`
+  row added by hand until they're ported.
+- **`review-paper.md`** (paper-QA harness, AMPM repo) still reads Firestore — its own repoint.
+- **Track A prod reconciliation** — still owner-deferred; needs its own rebuild/verify pass.
+
+**Commit + archive.**
 
 ---
 

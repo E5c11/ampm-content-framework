@@ -37,7 +37,7 @@ PDFs). Collections and denormalized values: profile.
    > exist — and there are no Maths curriculum rows yet. Until the Maths curriculum lands,
    > either create the needed nodes first (`tools/create-curriculum-node.js --subject
    > maths …`) or hold Maths authoring. Tracked in
-   > `workflows/active/repoint-authoring-to-postgres.md` (Out of scope).
+   > `workflows/archive/repoint-authoring-to-postgres.md` (Out of scope).
 7. **Verify**: pipeline checklist plus the Maths items — clues format on every question,
    formula sheet on every video, MathText markup (no plain `/` or bare `√`), `equation`
    canonical answers, `steps` contracts, trig intervals, decomposed graphs. Update the
