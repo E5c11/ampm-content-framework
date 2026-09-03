@@ -5,19 +5,27 @@
 > `scripts/patch-question.js`) live in `AMPM/scripts/` and drive the emulator / the app.
 > Presentation contracts for the review criteria: this repo's `presentations/{type}.md`.
 
-## Status — two AMPM prerequisites
+## Status — one AMPM prerequisite left
 
-The harness predates the Firestore→Postgres cutover. Until these land, Phases 1 and 4's
-commands are **provisional** (shapes will follow the repointed scripts):
+**Navigation is no longer the blocker.** Every element Phase 2 needs to reach/interact with
+now carries a `testTag` (`AMPM` commit `06685d9b7`, render **and** answer-feedback review are
+both fully coverable) — see `AMPM/wiki/lesson/questions-pane.md` § Automation selectors
+(shared/structural tags: nav chain, pager anchor, submit, feedback, clues, maths-tools FAB)
+and `AMPM/wiki/lesson/presentation/{type}.md` (per-type input tags + indexing quirks, e.g.
+`ordering`'s pool-index shift, `match`'s independently-shuffled columns).
+
+**What's still pending** — the harness scripts predate the Firestore→Postgres cutover, so
+Phases 1 and 4's commands stay **provisional** until repointed:
 
 1. `scripts/review-build-manifest.js` — currently reads Firestore (`<subject>_videos` /
    `<subject>_questions`); repoint to Cloud SQL `lessons` / `questions`.
 2. `scripts/patch-question.js` — currently writes Firestore; repoint to `UPDATE questions …`
    on Cloud SQL (keep the field whitelist + prod refusal).
-
-Test-tag coverage for the Phase 2 navigation is audited in
-`AMPM/plan/active/content-review-testtag-audit.md` — decide **render-only** vs
-**render + answer-feedback** review there; it sizes the harness work.
+3. `scripts/review-capture.js` itself still drives via coordinate swipes + `content-desc`
+   string matching (`"Next question"`, the supplementary label) — rewrite it to
+   `uiautomator dump` + `resource-id` lookup using the tags above, ideally in the same pass
+   as the data-source repoint rather than testing half-migrated navigation against a
+   half-migrated data source.
 
 ---
 
@@ -87,8 +95,9 @@ question saves under `temp/review/<paper>_<year>/screenshots/lesson_<order>/`:
 
 > If a screenshot is black or shows the wrong screen, re-run the capture for that lesson
 > (`--lessons <order>`). The emulator must be unlocked and the app not in a broken state.
-> Navigation reliability depends on the test tags in
-> `AMPM/plan/active/content-review-testtag-audit.md`.
+> Navigation selectors: `AMPM/wiki/lesson/questions-pane.md` § Automation selectors +
+> `AMPM/wiki/lesson/presentation/{type}.md` — not yet wired into `review-capture.js` (see
+> Status above).
 
 ---
 
