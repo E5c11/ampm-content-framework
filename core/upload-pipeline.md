@@ -47,8 +47,8 @@ mapping and row-identity rules: `core/persistence.md` + `tools/lib/content-rows.
 `enforced_by: human-review`
 
 `--pdf`/`--memo-pdf` point at `files/` — the source PDFs dropped in per `INSTRUCTIONS.md`
-Step 0 (gitignored, never committed). `--out`/`temp/images/` is this framework's own working
-directory, always.
+Step 0 (tracked — commit them). `--out`/`temp/images/` is this framework's own working
+directory, always (gitignored).
 
 1. **Inspect shared pages (if needed):** when two question groups (or a TEXT and its
    questions) share a page, find the exact cut points first:
