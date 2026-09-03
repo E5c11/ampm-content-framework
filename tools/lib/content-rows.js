@@ -20,6 +20,7 @@ const {
   subQuestionUuid,
   supplementaryMaterialUuid,
 } = require('./uuid');
+const { questionCurriculumIds } = require('./curriculum');
 
 const CONTENT_TIERS = ['free', 'plus', 'pro'];
 
@@ -63,18 +64,10 @@ function paperPath(x) {
   return `${x.syllabus}/${x.subject}/${x.year}/${x.paper}`;
 }
 
-/** english_lit_curriculum node IDs are namespaced under their parent (`unit__topic`,
- *  `unit__topic__subtopic`); math_lit's are flat. A question stores the bare names. */
+/** A question's unit/topic/subtopic FK values — flat slugs for math_lit, namespaced for
+ *  english_hl. See tools/lib/curriculum.js. */
 function curriculumIds(q) {
-  const namespaced = q.subject === 'english_hl';
-  const unit = q.unit || null;
-  const topic = q.topic ? (namespaced ? `${q.unit}__${q.topic}` : q.topic) : null;
-  const subtopic = q.subtopic
-    ? namespaced
-      ? `${q.unit}__${q.topic}__${q.subtopic}`
-      : q.subtopic
-    : null;
-  return { unit_id: unit, topic_id: topic, subtopic_id: subtopic };
+  return questionCurriculumIds(q.subject, { unit: q.unit, topic: q.topic, subtopic: q.subtopic });
 }
 
 function audit(now) {

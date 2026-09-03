@@ -278,33 +278,47 @@ importer that never shipped it. The app **does** read it (`LessonContentService`
 
 ---
 
-## Phase 4 — Curriculum / skills "reuse before creating" repoint
+## Phase 4 — Curriculum / skills "reuse before creating" repoint  ✅ **DONE 2026-09-03**
 
-- `tools/dump-curriculum-vocabulary.js`: replace the Firestore reads with the backend's
-  **read API** — `GET /v1/content/curriculum-nodes?subjectId=<s>` and
-  `GET /v1/content/skills?subjectId=<s>` (public, read-only; no DB creds needed). Emit the
-  same JSON shape the validator's `--curriculum` flag expects. English namespacing: the API
-  returns real node IDs; strip `${unit}__${topic}__` prefixes to the bare segment as today.
-- New `tools/create-curriculum-node.js` + `tools/create-skill.js` — upsert into
-  `curriculum_nodes` / `skills` (Postgres, via Phase 1 layer), respecting the self-FK insert
-  order (unit → topic → subtopic) and English ID namespacing. This replaces the "create the
-  Firestore doc first" step in `core/upload-pipeline.md` `PIPE-08`.
-- **Verification:** dump vocab; create a throwaway node; re-dump; it appears. Delete it.
+Read **directly from Postgres**, not the read API — `api-dev.askmoreprepmore.app` isn't
+reachable from the dev environment, and the Phase 1 connection layer already exists (same
+source of truth, one less network dependency).
+
+- `tools/dump-curriculum-vocabulary.js`: rewritten — reads `curriculum_nodes` + `skills`
+  from Cloud SQL. `--env` (`--project` kept as an alias), `--subject`, `--out`; same JSON
+  shape the validator expects (bare-slug arrays). English HL: bare slug = last `__` segment;
+  English skills are real `skills` rows now, not distinct-usage-derived.
+- New `tools/lib/curriculum.js` — the `curriculum_nodes` ID conventions (flat math_lit /
+  namespaced english_hl), now the single source for both `content-rows.js` and the creator.
+- New `tools/create-curriculum-node.js`, `create-skill.js`, `create-tag.js` — upsert one row
+  each, FK-preflighted (parent nodes / subject must exist), written published. Replaces the
+  "add the Firestore doc first" step of `PIPE-08` / `PIPE-06`.
+- **Verified on dev:** dumped both subjects (5/25/123/64 math_lit, 8/46/266/250 english_hl);
+  created throwaway unit+topic+skill+tag, re-dump showed them, idempotent re-create updated
+  the name, english subtopic correctly rejected for a missing parent topic; all test rows
+  deleted, counts back to baseline.
 - **Commit** (`feat(tools): Phase 4 — curriculum/skills vocab + creation on Postgres`).
 
 ---
 
 ## Phase 5 — Exam images → media bucket
 
-- The media bucket behind `https://media-dev.askmoreprepmore.app/` is **ready** (owner
-  confirmed). Get the GCS bucket name + confirm the object-path convention — the migration
-  repo rewrites `exam_papers/{syllabus}/{subject}/{year}/{paper}/qN/…` paths **unchanged**
-  onto the new domain, so keep those exact object keys.
+Bucket facts (found 2026-09-03 via `gcloud storage buckets list --project=ampm-b9661`):
+
+| | |
+|---|---|
+| Bucket | `media-dev.askmoreprepmore.app` (name = the serving domain) · location `AFRICA-SOUTH1` |
+| Serving | `https://media-dev.askmoreprepmore.app/<objectPath>` — verified `200`, `image/png`, real bytes |
+| Access | **Uniform bucket-level access ON** — no per-object ACLs. Whole bucket is `allUsers` → `roles/storage.objectViewer`, so **no `makePublic()` step** (the current `upload-exam-images.js` calls it — must be removed, it errors under UBLA) |
+| Upload creds | ADC works for a project editor; there's also a dedicated `ampm-media-signer@ampm-b9661.iam.gserviceaccount.com` (`objectAdmin`) |
+| Object keys | `exam_papers/{syllabus}/{subject}/{year}/{paper}/q{N}/{question|annexure|memo}_{n}.png` — already what the tool produces; supplementary labels use `annexure_{label}_{n}.png` |
+
 - `tools/upload-exam-images.js`: swap `firebase-admin` Storage for `@google-cloud/storage`
-  (ADC or a service account), upload to the media bucket, emit
-  `https://media-dev.askmoreprepmore.app/<objectPath>` directly (no post-hoc rewrite).
+  (ADC), target `media-dev.askmoreprepmore.app`, drop the `makePublic()` call, emit
+  `https://media-dev.askmoreprepmore.app/<objectPath>` directly. Keep the same object-key
+  layout. `--project dev` is the only supported value until prod is provisioned.
 - Prod bucket + creds: owner-gated (D4).
-- **Verification:** upload one image; `curl -I` the printed CDN URL → `200` + real
+- **Verification:** upload one image; `curl -I` the printed URL → `200` + real
   `content-length`.
 - **Commit** (`feat(tools): Phase 5 — exam images to media bucket`).
 

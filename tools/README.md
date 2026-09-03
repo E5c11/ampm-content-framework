@@ -7,7 +7,10 @@ Firestore/Postgres/content data; Python for doc-graph upkeep only.
 | Tool | What | Language |
 |---|---|---|
 | `validate-questions.js` | Validates a `questions` array in an upload script (`--script`), optionally against a curriculum snapshot (`--curriculum`), and ai_explanation data (`--ai-exp`). Exit 0 = pass. The pipeline's HARD STOP (`PIPE-10`). | Node |
-| `dump-curriculum-vocabulary.js` | Dumps unit/topic/subtopic/skills vocabulary from dev/prod Firestore for the validator's `--curriculum` check (`PIPE-09`). | Node |
+| `dump-curriculum-vocabulary.js` | Dumps unit/topic/subtopic/skills vocabulary from Cloud SQL (`curriculum_nodes`, `skills`) for the validator's `--curriculum` check (`PIPE-09`). Needs the Auth Proxy. | Node |
+| `create-curriculum-node.js` | Creates one `curriculum_nodes` row (unit/topic/subtopic) — the "create it first" step of `PIPE-08`. | Node |
+| `create-skill.js` | Creates one `skills` row — `PIPE-08`. | Node |
+| `create-tag.js` | Creates one `tags` row (lesson `tags` FK to it — `PIPE-06`). | Node |
 | `upload-exam-images.js` | Uploads extracted exam-page PNGs to Firebase Storage; prints ready-to-paste URL arrays (`PIPE-02`). | Node |
 | `extract-exam-pages.py` | Extracts question/annexure/memo page images from exam PDFs; `--inspect` finds crop points. | Python |
 | `upload-script-template.js` | Template for per-question-group upload scripts (pipeline Phase 4). Copy, fill, validate, run against dev. | Node |
@@ -16,6 +19,8 @@ Firestore/Postgres/content data; Python for doc-graph upkeep only.
 | `lib/postgres.js` | Lazy shared `pg.Pool` for the content-write tooling. | Node |
 | `lib/upsert.js` | `upsertRow()` — re-runnable `INSERT … ON CONFLICT DO UPDATE`. | Node |
 | `lib/uuid.js` | Deterministic authored-content UUIDs (namespace pinned; disjoint from Track A's). | Node |
+| `lib/content-rows.js` | Maps the authored logical shape → Postgres rows (`lessons`/`questions`/…). | Node |
+| `lib/curriculum.js` | `curriculum_nodes` ID conventions (flat for math_lit, namespaced for english_hl). | Node |
 
 Changes from the AMPM originals (validator otherwise as-is — never port it, see
 `workflows/README.md`):
