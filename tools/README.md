@@ -52,10 +52,13 @@ lived in AMPM.
 
 ## Not moved (stays in AMPM)
 
-- Historical `add-*.js` upload scripts — provenance record of uploaded content (owner
-  decision 2; retirement note in AMPM's `content-framework-support.md`).
-- Paper-review harness (`fetch-paper-data.js`, `review-capture.sh`,
+- Historical `add-*.js` upload scripts — provenance record of uploaded content.
+- Paper-review harness (`review-build-manifest.js`, `review-capture.js`,
   `patch-question.js`, `check-video.js`) — drives the app/emulator;
-  `workflows/generate/review-paper.md` runs from the AMPM repo root.
-- `check-p2-videos.js` / `update-english-texts.js` — app-collection maintenance
-  (`english_texts`), invoked from the English upload workflow's Phase 0.
+  `workflows/generate/review-paper.md` runs from the AMPM repo root. `review-build-manifest.js`
+  and `patch-question.js` still read/write Firestore — repoint pending (AMPM side).
+
+## Dead — replaced by this repo's tooling
+
+- `check-p2-videos.js` / `update-english-texts.js` (Firestore `english_texts`) →
+  `tools/create-english-text.js`. Delete from AMPM when convenient.

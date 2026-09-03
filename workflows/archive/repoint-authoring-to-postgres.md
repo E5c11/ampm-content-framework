@@ -425,7 +425,10 @@ call the bootstrap made); do it next time an emulator is up, authoring a real un
   `english_texts` data verified clean (17 rows, no orphans). **App-side change** (make the
   picker scope by *what lessons a paper has* + smart-default) is scoped in
   `AMPM/plan/active/english-text-picker-per-paper.md`, owner to execute from that repo.
-- **`review-paper.md`** (paper-QA harness, AMPM repo) still reads Firestore — its own repoint.
+- **`review-paper.md`** — this repo's doc rewritten for Cloud SQL + corrected script names
+  (2026-09-03). The harness itself (AMPM `scripts/review-build-manifest.js`,
+  `patch-question.js`) still hits Firestore; repoint + the test-tag work is scoped in
+  `AMPM/plan/active/content-review-testtag-audit.md` (owner, from that repo).
 - **Track A prod reconciliation** — still owner-deferred; needs its own rebuild/verify pass.
 
 **Commit + archive.**
