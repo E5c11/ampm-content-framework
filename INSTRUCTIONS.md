@@ -20,6 +20,20 @@ this repo; if you arrived via one of them, you are in the right place.
 
 ## How to Use This Framework
 
+### Step 0 — Tell Claude what you're authoring
+
+At the start of a session, say:
+
+1. **Which subject and syllabus** — e.g. "DBE Math Lit", "DBE English HL Paper 2". This
+   picks the profile in Step 1.
+2. **Where the source files are** — the exam paper PDF, the memo PDF, and any
+   addendum/annexure/information-sheet PDFs. Give the actual path on your machine (e.g.
+   `~/Downloads/nov_p1_2019.pdf`) — they don't need to be copied into this repo. Only the
+   working files this framework generates itself (extracted images, vocabulary dumps,
+   upload scripts) live under `temp/`.
+3. **Which question(s)** — the paper question number(s) you're authoring this session
+   (one video/lesson group at a time; see the subject's generate workflow).
+
 ### Step 1 — Read the subject profile
 
 Every authoring session targets one subject×syllabus combination. Read its profile:
