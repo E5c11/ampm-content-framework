@@ -37,7 +37,7 @@ workflows/         — how work happens in this repo, incl. the generation workf
 tools/             — executable tooling; see the language boundary in workflows/README.md
 context/           — project profile fed to esc-ai-framework
 files/             — source material dropped in for a session (exam paper/memo/addendum
-                     PDFs, lookup CSVs) — gitignored, never committed
+                     PDFs, lookup CSVs) — tracked, commit it
 temp/              — this framework's own generated working files (extracted images,
                      vocabulary dumps, upload scripts, reports) — gitignored
 ```
