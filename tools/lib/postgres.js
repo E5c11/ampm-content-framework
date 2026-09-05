@@ -12,22 +12,22 @@
 const { Pool } = require('pg');
 const { pgConfig } = require('./credentials');
 
-let pool;
+const pools = new Map();
 
 /** Lazily opens the shared pool for `env` ('dev' | 'prod'). Idempotent within a run. */
 function getPool(env = 'dev') {
-  if (!pool) {
-    pool = new Pool({ ...pgConfig(env), max: 4 });
+  if (!pools.has(env)) {
+    pools.set(env, new Pool({ ...pgConfig(env), max: 4 }));
   }
-  return pool;
+  return pools.get(env);
 }
 
-/** Closes the pool if one was opened, so a CLI process exits promptly. */
+/** Closes every pool that was opened, so a CLI process exits promptly. */
 async function closePool() {
-  if (pool) {
+  for (const pool of pools.values()) {
     await pool.end();
-    pool = undefined;
   }
+  pools.clear();
 }
 
 module.exports = { getPool, closePool };

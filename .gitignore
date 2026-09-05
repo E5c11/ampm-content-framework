@@ -18,3 +18,4 @@ temp/
 # IDE / OS
 .idea/
 .DS_Store
+/local.properties
