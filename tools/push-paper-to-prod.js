@@ -152,6 +152,13 @@ async function main() {
 
   console.log(`${DRY_RUN ? '[dry-run] ' : ''}Pushing ${subject}/${year}/${paper} dev -> prod\n`);
 
+  // Every row below is genuinely new to prod, even though its content was authored in dev
+  // days/weeks ago — stamp created_at/updated_at as of THIS push, not copied from dev.
+  // The app's incremental sync (LessonRepository/QuestionRepository.findPublished) is keyed
+  // on updated_at: a copied-verbatim old timestamp makes a brand-new prod row invisible to
+  // any client whose last sync checkpoint is more recent than that timestamp.
+  const NOW = new Date();
+
   const lessonsRes = await dev.query(
     `SELECT * FROM lessons WHERE subject_id = $1 AND year_id = $2 AND paper_id = $3 AND is_deleted = false ORDER BY sort_order`,
     [subject, year, paper],
@@ -200,7 +207,9 @@ async function main() {
     const devRows = await dev.query(`SELECT * FROM ${table} WHERE id = ANY($1)`, [ids]);
     const prodExisting = await prod.query(`SELECT id FROM ${table} WHERE id = ANY($1)`, [ids]);
     const prodIds = new Set(prodExisting.rows.map((r) => r.id));
-    const missing = devRows.rows.filter((r) => !prodIds.has(r.id));
+    const missing = devRows.rows
+      .filter((r) => !prodIds.has(r.id))
+      .map((r) => ({ ...r, created_at: NOW, updated_at: NOW }));
     await upsert(prod, table, lookupCols, ['id'], missing);
     console.log(`${table}: ${missing.length} created (${prodIds.size} already present)`);
   }
@@ -211,7 +220,8 @@ async function main() {
   const curProdIds = new Set(curProdExisting.rows.map((r) => r.id));
   const curMissing = curDev.rows
     .filter((r) => !curProdIds.has(r.id))
-    .sort((a, b) => (a.unit_id ? 1 : 0) + (a.topic_id ? 1 : 0) - ((b.unit_id ? 1 : 0) + (b.topic_id ? 1 : 0)));
+    .sort((a, b) => (a.unit_id ? 1 : 0) + (a.topic_id ? 1 : 0) - ((b.unit_id ? 1 : 0) + (b.topic_id ? 1 : 0)))
+    .map((r) => ({ ...r, created_at: NOW, updated_at: NOW }));
   const curCols = ['id', 'type', 'name', 'subject_id', 'description', 'unit_id', 'topic_id',
     'created_at', 'updated_at', 'is_deleted', 'deleted_at', 'is_published', 'published_at'];
   await upsert(prod, 'curriculum_nodes', curCols, ['id'], curMissing);
@@ -221,7 +231,9 @@ async function main() {
   const skillsDev = await dev.query(`SELECT * FROM skills WHERE id = ANY($1)`, [skillIds]);
   const skillsProdExisting = await prod.query(`SELECT id FROM skills WHERE id = ANY($1)`, [skillIds]);
   const skillsProdIds = new Set(skillsProdExisting.rows.map((r) => r.id));
-  const skillsMissing = skillsDev.rows.filter((r) => !skillsProdIds.has(r.id));
+  const skillsMissing = skillsDev.rows
+    .filter((r) => !skillsProdIds.has(r.id))
+    .map((r) => ({ ...r, created_at: NOW, updated_at: NOW }));
   const skillCols = ['id', 'name', 'description', 'subject_id', 'created_at', 'updated_at',
     'is_deleted', 'deleted_at', 'is_published', 'published_at'];
   await upsert(prod, 'skills', skillCols, ['id'], skillsMissing);
@@ -230,7 +242,9 @@ async function main() {
   const tagsDev = await dev.query(`SELECT * FROM tags WHERE id = ANY($1)`, [tagIds]);
   const tagsProdExisting = await prod.query(`SELECT id FROM tags WHERE id = ANY($1)`, [tagIds]);
   const tagsProdIds = new Set(tagsProdExisting.rows.map((r) => r.id));
-  const tagsMissing = tagsDev.rows.filter((r) => !tagsProdIds.has(r.id));
+  const tagsMissing = tagsDev.rows
+    .filter((r) => !tagsProdIds.has(r.id))
+    .map((r) => ({ ...r, created_at: NOW, updated_at: NOW }));
   const tagCols = ['id', 'name', 'subject_id', 'created_at', 'updated_at',
     'is_deleted', 'deleted_at', 'is_published', 'published_at'];
   await upsert(prod, 'tags', tagCols, ['id'], tagsMissing);
@@ -262,6 +276,8 @@ async function main() {
     memo_image_urls: (l.memo_image_urls || []).map(toProdUrl),
     is_published: false,
     published_at: null,
+    created_at: NOW,
+    updated_at: NOW,
   }));
   await upsert(prod, 'lessons', lessonCols, ['id'], lessonRows);
   console.log(`\nlessons: ${lessonRows.length} upserted (unpublished)`);
@@ -280,6 +296,8 @@ async function main() {
       : q.supplementary_material_image_urls,
     is_published: false,
     published_at: null,
+    created_at: NOW,
+    updated_at: NOW,
   }));
   await upsert(prod, 'questions', questionCols, ['id'], questionRows);
   console.log(`questions: ${questionRows.length} upserted (unpublished)`);
@@ -287,15 +305,18 @@ async function main() {
   // ── 6. lesson_supplementary_materials ──
   const suppCols = ['id', 'lesson_id', 'type', 'label', 'image_urls', 'sort_order',
     'created_at', 'updated_at', 'is_deleted', 'deleted_at'];
-  const suppRows = suppRes.rows.map((s) => ({ ...s, image_urls: (s.image_urls || []).map(toProdUrl) }));
+  const suppRows = suppRes.rows.map((s) => ({
+    ...s, image_urls: (s.image_urls || []).map(toProdUrl), created_at: NOW, updated_at: NOW,
+  }));
   await upsert(prod, 'lesson_supplementary_materials', suppCols, ['id'], suppRows);
   console.log(`lesson_supplementary_materials: ${suppRows.length} upserted`);
 
   // ── 7. lesson_ai_explanation_sub_questions ──
   const subQCols = ['id', 'lesson_id', 'number', 'marks', 'clues', 'approach', 'solution',
     'sort_order', 'created_at', 'updated_at', 'is_deleted', 'deleted_at'];
-  await upsert(prod, 'lesson_ai_explanation_sub_questions', subQCols, ['id'], subQRes.rows);
-  console.log(`lesson_ai_explanation_sub_questions: ${subQRes.rows.length} upserted`);
+  const subQRows = subQRes.rows.map((r) => ({ ...r, created_at: NOW, updated_at: NOW }));
+  await upsert(prod, 'lesson_ai_explanation_sub_questions', subQCols, ['id'], subQRows);
+  console.log(`lesson_ai_explanation_sub_questions: ${subQRows.length} upserted`);
 
   // ── 8. junction rows ──
   const qsRes = await dev.query(`SELECT question_id, skill_id FROM question_skills WHERE question_id = ANY($1)`, [questionIds]);
