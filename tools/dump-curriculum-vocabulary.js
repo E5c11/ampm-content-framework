@@ -38,8 +38,8 @@ const env = args.env || args.project || 'dev'; // --project kept as an alias for
 const subject = args.subject || 'math_lit';
 const outPath = args.out || 'temp/curriculum-vocab.json';
 
-if (!['math_lit', 'english_hl', 'maths'].includes(subject)) {
-  console.error('Usage: node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl|maths [--out path]');
+if (!['math_lit', 'english_hl', 'maths', 'geography'].includes(subject)) {
+  console.error('Usage: node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl|maths|geography [--out path]');
   process.exit(1);
 }
 
