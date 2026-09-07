@@ -34,6 +34,7 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `AMPM-CONTENT-SUBJ-DBE-MATH-LIT` | `subjects/dbe-math-lit.md` | all 8 |
 | `AMPM-CONTENT-SUBJ-DBE-MATHS` | `subjects/dbe-maths.md` | all 8 |
 | `AMPM-CONTENT-SUBJ-DBE-ENGLISH-HL` | `subjects/dbe-english-hl.md` | mc, multi-select, fitb, ordering, match |
+| `AMPM-CONTENT-SUBJ-DBE-GEOGRAPHY` | `subjects/dbe-geography.md` | mc, multi-select, fitb, match, steps |
 
 ## workflows/generate/ (thin orchestrators)
 
@@ -42,6 +43,7 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `workflows/generate/upload-math-lit.md` | this repo |
 | `workflows/generate/upload-maths.md` | this repo |
 | `workflows/generate/upload-english.md` | this repo |
+| `workflows/generate/upload-geography.md` | this repo |
 | `workflows/generate/review-paper.md` | **AMPM repo root** (capture harness lives there) |
 
 ## tools/

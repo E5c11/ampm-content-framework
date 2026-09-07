@@ -159,6 +159,7 @@ name/colour columns below are kept only so you can sanity-check you picked the r
 | `math_lit` | Mathematical Literacy |
 | `maths` | Pure Mathematics |
 | `english_hl` | English Home Language |
+| `geography` | Geography |
 
 **Papers**
 

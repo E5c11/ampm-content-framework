@@ -55,7 +55,7 @@ presence check); `human-review` for the remainder (`subtopic`, `skills`, `exam_w
 | `xp` | integer | `10` |
 | `order` | integer | 1-based, sequential per lesson → `sort_order`, and part of the row's UUID key |
 | `syllabus` | string | `"dbe"` or `"ieb"` |
-| `subject` | string | `"maths"`, `"math_lit"`, `"english_hl"` |
+| `subject` | string | `"maths"`, `"math_lit"`, `"english_hl"`, `"geography"` |
 | `year` | string | Four-digit string e.g. `"2021"` |
 | `paper` | string | e.g. `"nov_p1"` |
 
