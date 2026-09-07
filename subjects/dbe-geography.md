@@ -56,16 +56,26 @@ cause/effect, evaluate impact).
   metadata: ["[ ]", " : ", "[ ]"],
   answer: ["1", "50000", "", "", ""],
   ```
-- **Section A vs Section B follow the same `DESIGN-UNI-01` freshness rule, applied to
-  different stimuli.** Section A (Q1 Rural/Urban Settlements, Q2 Economic Geography):
-  fresh extracts/graphs/tables/infographics on the same theme, standard practice —
-  numbers, names, and datasets from the real paper never reappear. Section B (Q3
-  Geographical Skills — map calculations, map interpretation, GIS): the real
-  topographical + orthophoto map pair is itself the worked example (`DESIGN-UNI-01`
-  already covers this: "the exam image is the worked example; the practice questions
-  are the independent exercise") — same map shown, but different grid blocks, features,
-  and measured values than the real exam questions used. Resolved against
-  `DESIGN-UNI-01`, 2026-09-07.
+- **Section A vs Section B need different treatment — corrected 2026-09-07, superseding
+  the original plan below.** Section A (Q1 Rural/Urban Settlements, Q2 Economic
+  Geography): fresh extracts/graphs/tables/infographics on the same theme, standard
+  `DESIGN-UNI-01` practice — numbers, names, and datasets from the real paper never
+  reappear. Section B (Q3 Geographical Skills — map calculations, map interpretation,
+  GIS) was originally planned to show the real topo/orthophoto map pair as the worked
+  example, same map with fresh grid blocks per question. **That assumed the physical map
+  sheets would be available as source material — they aren't.** DBE hands the 1:50 000
+  topo map and 1:10 000 orthophoto map out as separate physical sheets in the real exam;
+  they were never part of the question booklet PDF, and no other source for them exists
+  this session. Resolution (matching English HL Paper 3's existing pattern — essay
+  *theory* taught objectively, without asking students to write an actual essay): Q3's
+  practice questions teach the underlying map-skill **technique** generically (scale
+  conversion, area-from-measurement calculation, magnetic declination arithmetic,
+  topographic feature recognition, GIS data layering/vector-raster/buffering) with fresh
+  invented values, not tied to any specific real map. The real exam page (formulas,
+  instructions, GIS sketch) is still shown as the worked example per `DESIGN-UNI-01`
+  where it doesn't depend on seeing the map itself. `map_key` is still set at the
+  **lesson** level (provenance — which real map the worked example refers to) even
+  though no individual practice question needs one anymore.
 - **Simple schematic figures** (the exam's own "Examiner's own sketch" diagrams —
   settlement pattern shapes, urban land-use zone profiles, GIS data-layering sketches)
   may be recreated as new diagrams with different specific values, the way Maths
@@ -136,10 +146,12 @@ whether Geography ships `has_video: false` initially like English HL often does.
 - Section A: standard per-lesson extraction — photos, graphs, tables, infographics,
   extracts. Multiple visual elements can share one lesson's subsection (e.g. 1.4 has both
   a sketch profile and two photographs) — extract and label each distinctly.
-- Section B: all three subsections crop from the **same shared map sheet** rather than
-  each getting an independent source image. Extract the relevant grid-block region per
-  lesson, distinct filenames per lesson (same collision-avoidance principle as `PIPE-03`),
-  even though the source map is shared.
+- Section B: **no map sheet available** (see Subject rules above) — question images come
+  from the question booklet's own pages (instructions, formulas, the GIS sketch), same
+  extraction mechanics as Section A. Pages 17-20 pack tightly (3.1/3.2 share page 18,
+  3.2 spans into page 19) — used `--inspect` to find exact pt cut points rather than
+  guess; guessing would have been wrong (3.1 and 3.2 do not split cleanly at a page
+  boundary).
 - Recreated schematic diagrams (per Subject rules above) are new assets, not extracted
   from the PDF — produced separately, then uploaded the same way as any other image.
 

@@ -33,6 +33,7 @@ const LESSONS_COLUMNS = [
   'questions_count', 'question_image_urls', 'memo_image_urls', 'exam_question_marks',
   'ai_model', 'ai_generated_at', 'ai_version', 'ai_reviewed', 'ai_input_tokens',
   'ai_output_tokens', 'ai_avg_rating', 'ai_rating_count', 'english_text_id',
+  'geography_map_id',
   'created_at', 'updated_at', 'is_deleted', 'is_published', 'published_at',
 ];
 
@@ -40,7 +41,7 @@ const QUESTIONS_COLUMNS = [
   'id', 'lesson_id', 'name', 'question', 'answer', 'presentation_id', 'question_type_id',
   'metadata', 'syllabus_id', 'subject_id', 'year_id', 'paper_id', 'sort_order', 'xp',
   'unit_id', 'topic_id', 'subtopic_id', 'difficulty', 'exam_weight', 'clues',
-  'english_text_id', 'supplementary_material_type', 'supplementary_material_label',
+  'english_text_id', 'geography_map_id', 'supplementary_material_type', 'supplementary_material_label',
   'supplementary_material_image_urls', 'context_text',
   'created_at', 'updated_at', 'is_deleted', 'is_published', 'published_at',
 ];
@@ -144,6 +145,7 @@ function buildContentRows(video, questions, aiExplanation, now = new Date()) {
       ai_avg_rating: aiExplanation.avg_rating ?? null,
       ai_rating_count: aiExplanation.rating_count ?? 0,
       english_text_id: video.text_key ?? null,
+      geography_map_id: video.map_key ?? null,
       ...audit(now),
     },
   });
@@ -224,6 +226,7 @@ function buildContentRows(video, questions, aiExplanation, now = new Date()) {
         exam_weight: q.exam_weight,
         clues: q.clues ?? null,
         english_text_id: q.text_key ?? null,
+        geography_map_id: q.map_key ?? null,
         supplementary_material_type: supp?.type ?? null,
         supplementary_material_label: supp?.label ?? null,
         supplementary_material_image_urls: supp?.image_urls ?? null,
@@ -253,7 +256,7 @@ function referenceIdsUsed(video, questions) {
     subjects: new Set(), syllabuses: new Set(), years: new Set(), papers: new Set(),
     series: new Set(), tags: new Set(), question_presentations: new Set(),
     question_types: new Set(), curriculum_nodes: new Set(), skills: new Set(),
-    english_texts: new Set(),
+    english_texts: new Set(), geography_maps: new Set(),
   };
   ids.subjects.add(video.subject);
   ids.syllabuses.add(video.syllabus);
@@ -261,11 +264,13 @@ function referenceIdsUsed(video, questions) {
   ids.papers.add(video.paper);
   if (video.series) ids.series.add(video.series);
   if (video.text_key) ids.english_texts.add(video.text_key);
+  if (video.map_key) ids.geography_maps.add(video.map_key);
   for (const t of video.tags ?? []) ids.tags.add(t);
   for (const q of questions) {
     ids.question_presentations.add(q.presentation);
     ids.question_types.add(q.type);
     if (q.text_key) ids.english_texts.add(q.text_key);
+    if (q.map_key) ids.geography_maps.add(q.map_key);
     const c = curriculumIds(q);
     for (const v of [c.unit_id, c.topic_id, c.subtopic_id]) if (v) ids.curriculum_nodes.add(v);
     for (const s of q.skills ?? []) ids.skills.add(s);
