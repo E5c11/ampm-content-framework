@@ -22,6 +22,7 @@ anything paper-structure-specific as illustrative until a second paper confirms 
 | Vocabulary dump | `node tools/dump-curriculum-vocabulary.js --subject geography --out temp/curriculum-vocab.json` (Auth Proxy running) |
 | Not authored | display names/colours — resolved from the reference tables by JOIN |
 | Papers | `nov_p2` confirmed (Rural/Urban Settlements + Economic Geography + Geographical Skills). `nov_p1` presumed to exist (DBE Geography's other paper is Climate/Weather + Geomorphology) but not yet authored against this profile — don't assume its structure matches P2 |
+| **Curriculum document (`DESIGN-UNI-09`)** | `files/CAPS FET _ GEOGRAPHY _ GR 10-12 _ WEB_C9A9.pdf` — required in-session before authoring, not optional. Geography is a content-based subject (`DESIGN-UNI-08`): a fresh scenario alone doesn't satisfy `DESIGN-UNI-01` for classificatory content, and the curriculum document is what supplies the relational/hierarchical structure to frame around, and the scope boundary against drifting into content the exam would never touch |
 | **New `subjects` reference row needed** | `id: "geography"`, `name: "Geography"` (no P1/P2 variation to distinguish, unlike English HL's paper-named split), proposed `color: "#82B420"` (GreenLime — unused by any current subject), `icon: "map"` (free-form string, no fixed icon enum found in app code). Owner-gated insert, same as `english_texts` rows — not something this framework authors itself |
 
 ## Allowed presentation types
@@ -39,6 +40,15 @@ cause/effect, evaluate impact).
 
 ## Subject rules (beyond core)
 
+- **Relational framing over isolated recall (`DESIGN-UNI-08`), grounded in the curriculum
+  document (`DESIGN-UNI-09`).** Geography's classificatory content (settlement hierarchy,
+  siting, pattern, land-use zones, …) has a small fixed answer space — rewording a
+  "define/classify X" question doesn't create new work, so a student who memorizes our
+  version trivially answers the exam's differently-worded version too. Prefer testing the
+  *relationship* between related classifications (progression/hierarchy, cause/consequence)
+  over isolated definition matching. Worked example already in `DESIGN-UNI-08`'s doc —
+  the CAPS-grounded settlement-hierarchy progression (isolated dwelling → hamlet → village
+  → town) used to rework `nov_p2` Q1.1's practice questions, 2026-09-07.
 - **Scale/ratio answers split into two `fitb` blanks around a literal `":"` token** —
   never `fraction` (a stacked fraction bar misrepresents a ratio's real notation).
   Same pattern as `SCHEMA-TYPE-04`'s `HH:MM` split:

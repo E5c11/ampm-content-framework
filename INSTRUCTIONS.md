@@ -28,10 +28,14 @@ At the start of a session, say:
    picks the profile in Step 1.
 2. **Where the source files are** — drop the exam paper PDF, the memo PDF, any
    addendum/annexure/information-sheet PDFs, and (Math Lit) `youtube_video_data.csv` into
-   `files/` at the repo root, then tell Claude their filenames. `files/` is tracked —
-   commit source material there like anything else in the repo. (`temp/` is different:
-   this framework's own generated working files — extracted images, vocabulary dumps,
-   upload scripts — live there, gitignored, not source material.)
+   `files/` at the repo root, then tell Claude their filenames. **For a content-based
+   subject** (Geography and any subject of the same shape — see `DESIGN-UNI-08`/`09` in
+   `core/authoring-principles.md`), also drop the official curriculum/syllabus document
+   (e.g. CAPS) — required before authoring, not optional; the subject profile's Identity
+   table records its path once sourced. `files/` is tracked — commit source material there
+   like anything else in the repo. (`temp/` is different: this framework's own generated
+   working files — extracted images, vocabulary dumps, upload scripts — live there,
+   gitignored, not source material.)
 3. **Which question(s)** — the paper question number(s) you're authoring this session
    (one video/lesson group at a time; see the subject's generate workflow).
 

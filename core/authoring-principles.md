@@ -84,6 +84,50 @@ Never make every question in a set `fitb`. *(Historically listed under "Maths an
 Lit" only, but the validator enforces it on every set regardless of subject — resolved
 against validator, 2026-07-15.)*
 
+### `DESIGN-UNI-08` — Relational framing for classificatory/definitional content
+
+`enforced_by: human-review`
+
+For content whose underlying unit is a fixed fact, definition, or classification — not a
+procedure with variable inputs — `DESIGN-UNI-01`'s freshness rule is not satisfied by
+rewording alone. A procedural subject (Maths, Math Lit) gets genuine freshness from
+varying the numbers: the student must redo the work. A **content-based subject**
+(Geography, and any future subject of the same shape — Life Sciences, Chemistry,
+History, …) doesn't: a differently-worded question that still tests one isolated fact
+lets a student who memorized our version trivially answer the exam's version too, since
+no new work was required to get there.
+
+Prefer testing the *relationship* between two or more such facts instead: progression or
+hierarchy ("what does A need to gain to become B"), cause/consequence, or application
+requiring synthesis of ≥2 facts. This is genuine additional cognitive work, and — done
+right — stays within the same curriculum scope as the exam rather than reaching into
+peripheral content to manufacture novelty (see `DESIGN-UNI-09`: the curriculum document
+is what tells you where that scope boundary actually is).
+
+Worked example (`dbe-geography`, settlement classification): not "match each term to its
+definition" (site, situation, hamlet, village as four isolated pairs — restates the
+exam's own fact selection); instead "match each settlement type to what it must gain to
+reach the next stage of the hierarchy" (isolated dwelling → hamlet → village → town) —
+grounded in CAPS's own framing of settlement classification as a hierarchy driven by
+gaining higher-order functions/services, not a set of static labels.
+
+### `DESIGN-UNI-09` — Curriculum document required for content-based subjects
+
+`enforced_by: human-review`
+
+For content-based subjects (`DESIGN-UNI-08`), the official curriculum/syllabus document
+(e.g. CAPS) must be available and actually consulted in the authoring session before
+questions are written — not optional supporting material, a session blocker. `DESIGN-
+UNI-08`'s relational framing depends on knowing the curriculum's own structure
+(hierarchy, cause/consequence, what's in vs out of scope) well enough to avoid both
+restating the exam and drifting into peripheral content the exam would never touch.
+Procedural subjects (Maths, Math Lit) benefit from the same document but don't strictly
+require it each session — `DESIGN-UNI-01` is satisfiable there through numeric variation
+alone. English HL sits similarly — fresh extracts on the exam's own theme satisfy
+freshness without needing the syllabus document consulted every session. Add the
+curriculum document's path to the subject profile's Identity table once sourced (see
+`dbe-geography.md`).
+
 ---
 
 ## Maths and Math Lit — Additional Rules
