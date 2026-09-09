@@ -188,4 +188,17 @@ once a first session populates it, `PIPE-08`.)
 
 ## Completed papers ledger
 
-None yet — first paper to author: DBE 2025 Nov P1.
+| Paper | Videos | Questions | Date |
+|---|---|---|---|
+| DBE 2025 Nov P1 | 1 (Q1, paper-only, no video) | 4 | 2026-09-09 — pilot for this profile |
+
+Formula sheet URLs (reuse per paper):
+- 2025 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/physics/2025/nov_p1/q0/question_1.png` (+ `question_2.png`, `question_3.png`)
+
+**Evidenced from Q1** (updates the "Allowed presentation types" section above once a
+second question confirms the pattern holds): `multiple_choice`, `fitb`, `multi_select`
+all used successfully; `steps`, `match`, `ordering`, `fraction`, `equation` not yet
+exercised. Q1's MCQ block needed no diagram recreation for its own fresh practice
+questions (concepts were expressible in text/fitb) — the diagram-heavy work
+`DESIGN-PHYS-04` anticipates will land on the long-form questions (free-body diagrams,
+circuit diagrams), not this MCQ block.
