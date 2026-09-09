@@ -15,6 +15,10 @@
  *   node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl \
  *     --out temp/curriculum-vocab.json
  *
+ * Subject allowlist below is deliberately explicit (not "any string") so a typo'd subject
+ * fails loudly instead of silently dumping an empty vocabulary — add new subjects here as
+ * their curriculum_nodes tables get populated.
+ *
  * math_lit: curriculum_nodes IDs are flat slugs already. english_hl: topic/subtopic IDs are
  * namespaced under their parent (`unit__topic`, `unit__topic__subtopic`) because names
  * legitimately recur across units — the bare slug is the last `__`-separated segment.
@@ -38,8 +42,8 @@ const env = args.env || args.project || 'dev'; // --project kept as an alias for
 const subject = args.subject || 'math_lit';
 const outPath = args.out || 'temp/curriculum-vocab.json';
 
-if (!['math_lit', 'english_hl', 'maths', 'geography'].includes(subject)) {
-  console.error('Usage: node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl|maths|geography [--out path]');
+if (!['math_lit', 'english_hl', 'maths', 'geography', 'physics'].includes(subject)) {
+  console.error('Usage: node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl|maths|geography|physics [--out path]');
   process.exit(1);
 }
 
