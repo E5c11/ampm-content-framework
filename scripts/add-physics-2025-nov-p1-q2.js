@@ -75,7 +75,7 @@ const questions = [
     year: 2025,
     paper: 'nov_p1',
     clues:
-      '- First find the net force from the original object using F_net = ma.\n- The net force is the same for the second object — use it with the new mass to find the new acceleration.',
+      '- First find the net force from the original object using Fₙₑₜ = ma.\n- The net force is the same for the second object — use it with the new mass to find the new acceleration.',
   },
   {
     name: 'Question 2',

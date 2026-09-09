@@ -84,7 +84,7 @@ const questions = [
     skills: ['work_function'],
     difficulty: 4, exam_weight: 2, xp: 10, order: 3,
     syllabus: 'dbe', subject: 'physics', year: 2025, paper: 'nov_p1',
-    clues: '- Use E_k(max) = hf − W₀. Since the frequency (and so hf) is the same for both metals, a bigger E_k(max) means a smaller W₀.\n- P has the smaller maximum kinetic energy of the two.',
+    clues: '- Use Eₖ(max) = hf − W₀. Since the frequency (and so hf) is the same for both metals, a bigger Eₖ(max) means a smaller W₀.\n- P has the smaller maximum kinetic energy of the two.',
   },
   {
     name: 'Question 4',
@@ -109,9 +109,9 @@ const questions = [
   {
     name: 'Question 5',
     question:
-      'Complete the working to find the frequency of the emitted photon. An atom has electron energy levels at E_a = 8.0 × 10⁻¹⁹ J and E_b = 3.0 × 10⁻¹⁹ J. An electron moves from E_a to E_b, emitting a photon.',
+      'Complete the working to find the frequency of the emitted photon. An atom has electron energy levels at Eₐ = 8.0 × 10⁻¹⁹ J and E(b) = 3.0 × 10⁻¹⁹ J. An electron moves from Eₐ to E(b), emitting a photon.',
     metadata: [
-      'ΔE = E_a − E_b',
+      'ΔE = Eₐ − E(b)',
       'ΔE = 8.0 × 10⁻¹⁹ − 3.0 × 10⁻¹⁹ = 5.0 × 10⁻¹⁹ J',
       'E = hf ⇒ 5.0 × 10⁻¹⁹ = (6.63 × 10⁻³⁴)f, so f (in ×10¹⁴ Hz) =',
       '[ ]',
@@ -163,9 +163,9 @@ const aiExplanation = {
     },
     {
       number: '10.1.3', marks: 3,
-      clues: '- All metals were tested with the same frequency of light, so hf is the same for each.\n- Use E_k(max) = hf − W₀ to relate the two.',
+      clues: '- All metals were tested with the same frequency of light, so hf is the same for each.\n- Use Eₖ(max) = hf − W₀ to relate the two.',
       approach: '- Compare the maximum kinetic energies of sodium and caesium.\n- Since hf is the same for both, work out which metal has the smaller work function.\n- State the comparison for sodium relative to caesium.',
-      solution: '1. Greater than.\n2. The maximum kinetic energy of electrons from sodium is smaller than from caesium.\n3. Since E is constant (same frequency/light used), a smaller E_k(max) means a larger W₀ — so sodium’s work function is greater than caesium’s.',
+      solution: '1. Greater than.\n2. The maximum kinetic energy of electrons from sodium is smaller than from caesium.\n3. Since E is constant (same frequency/light used), a smaller Eₖ(max) means a larger W₀ — so sodium’s work function is greater than caesium’s.',
     },
     {
       number: '10.1.4', marks: 2,

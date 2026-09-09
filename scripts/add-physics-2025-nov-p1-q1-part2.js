@@ -81,7 +81,7 @@ const questions = [
     name: 'Question 2',
     question:
       'An ambulance siren emits sound at a frequency of 600 Hz. The ambulance moves towards a stationary listener at 20 m·s⁻¹. The speed of sound in air is 340 m·s⁻¹. Calculate the frequency heard by the listener.',
-    metadata: ['f_L = ', '[ ]', ' Hz'],
+    metadata: ['fₗ = ', '[ ]', ' Hz'],
     answer: ['637.5', '', '', '', ''],
     presentation: 'fitb',
     type: 'calc',
@@ -97,7 +97,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- Use f_L = [v / (v − v_s)] × f_s for a source moving toward a stationary listener.\n- Substitute the speed of sound, the source’s speed, and the emitted frequency.',
+    clues: '- Use fₗ = [v / (v − vₛ)] × fₛ for a source moving toward a stationary listener.\n- Substitute the speed of sound, the source’s speed, and the emitted frequency.',
   },
 ];
 

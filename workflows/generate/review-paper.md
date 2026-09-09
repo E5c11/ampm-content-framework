@@ -137,7 +137,15 @@ Read each question's data alongside its screenshot; classify PASS / AUTO_FIX / F
 
 ### Render checks (screenshot + data)
 
-- [ ] **Math renders:** no raw `\frac`/`\sqrt` visible as text (`AMPM-CONTENT-MATHTEXT`).
+- [ ] **Math renders — reads like a textbook/exam, not raw markup:** no `\frac`/`\sqrt`
+      visible as literal text, AND no `Variable_subscript` underscore notation visible as
+      literal text (`F_net`, `p_i` — `MATHTEXT-06`). The bar is "would a matric student
+      reading this recognize normal textbook notation," not "did the validator pass."
+      Missed entirely in the 2026-09-10 physics review (all instances marked PASS,
+      rationalized as "expected/current behavior" since `core/mathtext.md`'s scope hadn't
+      been extended to physics yet at review time) — caught only by the user reading a
+      live screenshot. An underscore rendering literally is always a defect, never
+      "expected," regardless of what any doc's scope currently says.
 - [ ] **Text readable:** no overflow or clipping.
 - [ ] **Presentation matches UI:** per `presentations/{type}.md` renderer contract — chips
       for `multiple_choice`, input for `fitb`, num/denom for `fraction`, draggable items for

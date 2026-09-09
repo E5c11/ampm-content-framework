@@ -89,7 +89,7 @@ const questions = [
   {
     name: 'Question 2',
     question: 'Light of frequency 7 × 10¹⁴ Hz is incident on a metal with a work function of 3.0 × 10⁻¹⁹ J. Calculate the maximum kinetic energy of the emitted photoelectrons.',
-    metadata: ['E_k(max) = ', '[ ]', ' × 10⁻¹⁹ J'],
+    metadata: ['Eₖ(max) = ', '[ ]', ' × 10⁻¹⁹ J'],
     answer: ['1.64', '', '', '', ''],
     presentation: 'fitb',
     type: 'calc',
@@ -105,7 +105,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- Use E_k(max) = hf − W₀.\n- Calculate hf first (h = 6.63 × 10⁻³⁴ J·s), then subtract the work function — keep the powers of ten consistent.',
+    clues: '- Use Eₖ(max) = hf − W₀.\n- Calculate hf first (h = 6.63 × 10⁻³⁴ J·s), then subtract the work function — keep the powers of ten consistent.',
   },
 ];
 
@@ -114,9 +114,9 @@ const aiExplanation = {
     {
       number: '1.10',
       marks: 2,
-      clues: '- Start from E_k(max) = hf − W₀ and substitute f = c/λ to get E_k(max) in terms of 1/λ.\n- Identify the gradient and the intercepts of this straight-line equation, then match them to the graph shapes.',
-      approach: '- Combine E_k(max) = hf − W₀ with c = fλ to express E_k(max) as a function of 1/λ.\n- Recognise this as a straight-line equation y = mx + c, and identify the gradient and y-intercept.\n- Note that the graph must have a positive x-intercept (below the threshold frequency, no electrons are emitted).',
-      solution: '1. E_k(max) = hf − W₀\n2. f = c/λ, so E_k(max) = hc(1/λ) − W₀\n3. This is a straight line with a positive gradient (hc) and a negative y-intercept (−W₀).\n4. It therefore has a positive x-intercept (where E_k(max) = 0, corresponding to the threshold frequency).\n5. Graph C shows a straight line with positive gradient crossing the x-axis at a positive value of 1/λ, not passing through the origin.\n6. The correct answer is C.',
+      clues: '- Start from Eₖ(max) = hf − W₀ and substitute f = c/λ to get Eₖ(max) in terms of 1/λ.\n- Identify the gradient and the intercepts of this straight-line equation, then match them to the graph shapes.',
+      approach: '- Combine Eₖ(max) = hf − W₀ with c = fλ to express Eₖ(max) as a function of 1/λ.\n- Recognise this as a straight-line equation y = mx + c, and identify the gradient and y-intercept.\n- Note that the graph must have a positive x-intercept (below the threshold frequency, no electrons are emitted).',
+      solution: '1. Eₖ(max) = hf − W₀\n2. f = c/λ, so Eₖ(max) = hc(1/λ) − W₀\n3. This is a straight line with a positive gradient (hc) and a negative y-intercept (−W₀).\n4. It therefore has a positive x-intercept (where Eₖ(max) = 0, corresponding to the threshold frequency).\n5. Graph C shows a straight line with positive gradient crossing the x-axis at a positive value of 1/λ, not passing through the origin.\n6. The correct answer is C.',
     },
   ],
   model: 'claude-sonnet-5',

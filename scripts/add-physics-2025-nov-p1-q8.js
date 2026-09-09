@@ -144,7 +144,7 @@ const aiExplanation = {
       number: '8.4', marks: 6,
       clues: '- Use ε = I(R + r) for both switch configurations (8.2 and 8.3.2), since the EMF is the same battery in both cases.\n- Two equations, two unknowns (ε and r) — solve them simultaneously.',
       approach: '- Write ε = I(R + r) for the S₁-closed/S₂-open case, using the total external resistance and A₁’s reading.\n- Write ε = I(R + r) for the S₁-open/S₂-closed case, using the motor’s resistance and A₂’s reading.\n- Set the two expressions for ε equal and solve for r, then substitute back for ε.',
-      solution: '1. Case 1 (S₁ closed, S₂ open): R_p (L₁ ‖ L₂) = 6 Ω, so ε = 2.24(6 + r)\n2. Case 2 (S₁ open, S₂ closed): ε = 120(0.1 + r)\n3. Equating: 2.24(6 + r) = 120(0.1 + r)\n4. Solving: r = 0.012 Ω\n5. ε = 2.24(6 + 0.012) = 13.46 V (accept 13.42–13.47 V)',
+      solution: '1. Case 1 (S₁ closed, S₂ open): Rₚ (L₁ ‖ L₂) = 6 Ω, so ε = 2.24(6 + r)\n2. Case 2 (S₁ open, S₂ closed): ε = 120(0.1 + r)\n3. Equating: 2.24(6 + r) = 120(0.1 + r)\n4. Solving: r = 0.012 Ω\n5. ε = 2.24(6 + 0.012) = 13.46 V (accept 13.42–13.47 V)',
     },
     {
       number: '8.5', marks: 5,

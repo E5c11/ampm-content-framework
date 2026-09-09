@@ -98,7 +98,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- Use Newton’s second law, F_net = ma.\n- Rearrange to make mass the subject before substituting.',
+    clues: '- Use Newton’s second law, Fₙₑₜ = ma.\n- Rearrange to make mass the subject before substituting.',
   },
   {
     name: 'Question 3',
@@ -147,7 +147,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- The stone starts from rest, so vᵢ = 0.\n- Use v_f = vᵢ + aΔt with a = g = 9.8 m·s⁻².',
+    clues: '- The stone starts from rest, so vᵢ = 0.\n- Use v(f) = vᵢ + aΔt with a = g = 9.8 m·s⁻².',
   },
   {
     name: 'Question 5',
@@ -302,9 +302,9 @@ const aiExplanation = {
     {
       number: '1.1',
       marks: 2,
-      clues: '- Recall Newton’s second law: F_net = ma.\n- Think about what direction acceleration must point in relative to the net force.',
+      clues: '- Recall Newton’s second law: Fₙₑₜ = ma.\n- Think about what direction acceleration must point in relative to the net force.',
       approach: '- Consider each option against Newton’s second law.\n- Eliminate options that describe motion rather than the force-acceleration relationship.\n- Confirm that net force and acceleration are always in the same direction, whatever the object’s state of motion.',
-      solution: '1. Newton’s second law states F_net = ma.\n2. Mass m is always positive, so acceleration a must point in the same direction as F_net.\n3. This holds regardless of the object’s direction of motion — eliminates A.\n4. The correct answer is B.',
+      solution: '1. Newton’s second law states Fₙₑₜ = ma.\n2. Mass m is always positive, so acceleration a must point in the same direction as Fₙₑₜ.\n3. This holds regardless of the object’s direction of motion — eliminates A.\n4. The correct answer is B.',
     },
     {
       number: '1.2',
@@ -331,8 +331,8 @@ const aiExplanation = {
       number: '1.5',
       marks: 2,
       clues: '- Both F and the kinetic friction force are constant in magnitude — consider what that means for the net force and hence the acceleration.\n- Net work done is force × distance moved — think about how the distance travelled changes as the block keeps moving.',
-      approach: '- Calculate the net force: F_net = F − f_k = 18 − 6 = 12 N (constant).\n- Since F_net is constant and mass is constant, acceleration is constant (Newton’s second law).\n- Net work done = F_net × distance moved; as the block keeps moving, the distance increases, so the net work done increases over time.',
-      solution: '1. F_net = F − f_k = 18 − 6 = 12 N (constant, since F and f_k are both constant)\n2. a = F_net / m — constant, since F_net and m are constant\n3. W_net = F_net·Δx — as the block continues moving, Δx increases, so W_net increases\n4. Acceleration: constant. Net work: increases.\n5. The correct answer is A.',
+      approach: '- Calculate the net force: Fₙₑₜ = F − f_k = 18 − 6 = 12 N (constant).\n- Since Fₙₑₜ is constant and mass is constant, acceleration is constant (Newton’s second law).\n- Net work done = Fₙₑₜ × distance moved; as the block keeps moving, the distance increases, so the net work done increases over time.',
+      solution: '1. Fₙₑₜ = F − f_k = 18 − 6 = 12 N (constant, since F and f_k are both constant)\n2. a = Fₙₑₜ / m — constant, since Fₙₑₜ and m are constant\n3. Wₙₑₜ = Fₙₑₜ·Δx — as the block continues moving, Δx increases, so Wₙₑₜ increases\n4. Acceleration: constant. Net work: increases.\n5. The correct answer is A.',
     },
   ],
   model: 'claude-sonnet-5',

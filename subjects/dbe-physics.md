@@ -13,8 +13,9 @@ Drafted 2026-09-09 from a paper review (before any content existed), then eviden
 Eng.pdf`, DBE 2025 Nov P1 — all 10 questions, 13 lessons, 64 practice questions, dev
 Postgres) — see the Completed papers ledger for what that session actually confirmed vs.
 what's still only illustrative. Sections below are marked per-claim where something
-remains unconfirmed (e.g. "MathText scope — still open"); treat anything without such a
-marker as evidenced, not aspirational.
+remains unconfirmed; treat anything without such a marker as evidenced, not aspirational.
+An "open item" flagged here is not self-enforcing, though — see the MathText scope
+section below for what happened when one wasn't acted on before content shipped.
 
 ## Identity
 
@@ -233,15 +234,32 @@ physics content existed to expose the bug in production:
   passes. Committed in `AMPM` as `d0dd7adfa` ("Route physics through the maths
   keyboard/calculator resolvers") — not pushed (no AMPM push without explicit request).
 
-## MathText scope — still open
+## MathText scope — resolved 2026-09-10 (the hard way)
 
-`core/mathtext.md` currently scopes itself to `maths` and `math_lit` only. Physics needs
-subscripted variable names (v_i, v_f, E_k(max), F_net) and the data sheet's own notation
-conventions (`·` as the SI unit separator, `×`/`x` for scientific notation) at minimum —
-extend `MATHTEXT` scope to include `physics` before the first authoring session. The
-keyboard-routing fix above means physics now gets the same *input* keyboard as Maths;
-whether `\frac`/`\sqrt` *display* correctly and whether subscripts need new markup is a
-separate, still-open rendering question — confirm against the actual renderer.
+This section originally warned "extend `MATHTEXT` scope to include `physics` before the
+first authoring session" — that warning was correct and was **not acted on**: the whole
+paper was authored and shipped with `core/mathtext.md` still scoped to `maths`/`math_lit`
+only, using ASCII underscore notation (`v_i`, `v_f`, `E_k(max)`, `F_net`, and 14 more
+identifiers across 17 questions) as a stand-in for subscripts. The renderer has no
+structural subscript markup and never converted these — they rendered as literal
+underscores, reading as broken/unrendered LaTeX rather than textbook notation. Caught by
+the user reading a live screenshot, not by the earlier review agent (which rationalized
+it as "expected/current behavior" precisely because the scope gap made it look
+sanctioned) and not by `review-paper.md`'s own render checklist (which only checked for
+raw `\frac`/`\sqrt`, not underscore notation — now fixed there too).
+
+Fixed properly this time: `core/mathtext.md` scope extended to `physics`, `MATHTEXT-06`
+added (real Unicode subscript character where every letter in the subscript has one —
+`aehijklmnoprstuvx` plus digits; `Variable(subscript)` parenthetical otherwise, since
+`bcdfgqwyz` have no Unicode subscript form), and all 17 affected questions fixed in dev
+Postgres + their upload scripts. Verified live on the emulator.
+
+**Lesson for the next new subject**: an "open item" flagged in a subject profile is not
+self-enforcing — it must actually block authoring, or be checked immediately before the
+first content ships, not discovered after. The data-sheet notation conventions (`·` as
+the SI unit separator, `×`/`x` for scientific notation) mentioned in the original version
+of this section turned out fine as plain Unicode pass-through — no markup issue there,
+only the subscript one.
 
 ## Formula sheet (every paper)
 

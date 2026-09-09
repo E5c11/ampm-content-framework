@@ -69,7 +69,7 @@ const questions = [
     skills: ['work_energy_theorem', 'kinetic_energy_calculation'],
     difficulty: 2, exam_weight: 3, xp: 10, order: 2,
     syllabus: 'dbe', subject: 'physics', year: 2025, paper: 'nov_p1',
-    clues: '- The net work done equals the change in kinetic energy: W_net = ΔEₖ.\n- Since the crate starts from rest, ΔEₖ is simply the final kinetic energy.',
+    clues: '- The net work done equals the change in kinetic energy: Wₙₑₜ = ΔEₖ.\n- Since the crate starts from rest, ΔEₖ is simply the final kinetic energy.',
   },
   {
     name: 'Question 3',
@@ -107,7 +107,7 @@ const questions = [
     difficulty: 5, exam_weight: 3, xp: 10, order: 4,
     syllabus: 'dbe', subject: 'physics', year: 2025, paper: 'nov_p1',
     clues:
-      '- W_nc = ΔEₖ + ΔE_p, where W_nc is the work done by friction (negative) and ΔE_p is the change in gravitational PE (negative, since the block descends).\n- Calculate the height dropped using the incline’s length and angle, then substitute everything with consistent signs.',
+      '- W(nc) = ΔEₖ + ΔEₚ, where W(nc) is the work done by friction (negative) and ΔEₚ is the change in gravitational PE (negative, since the block descends).\n- Calculate the height dropped using the incline’s length and angle, then substitute everything with consistent signs.',
   },
 ];
 
@@ -117,13 +117,13 @@ const aiExplanation = {
       number: '5.1', marks: 2,
       clues: '- The theorem connects net work to a change in one specific type of energy.\n- State it as an equality, not just naming the two quantities.',
       approach: '- Recall what net work done on an object causes.\n- Identify that it equals a *change* in kinetic energy, not kinetic energy itself.\n- State the full theorem as a sentence.',
-      solution: '1. The net/total work done (on an object) is equal to the change in the object’s kinetic energy.\n2. W_net = ΔEₖ.',
+      solution: '1. The net/total work done (on an object) is equal to the change in the object’s kinetic energy.\n2. Wₙₑₜ = ΔEₖ.',
     },
     {
       number: '5.2', marks: 3,
-      clues: '- From A to B the surface is frictionless, so only F does work on the crate.\n- Use W_net = ΔEₖ, with the crate starting from rest.',
-      approach: '- Calculate the work done by F over the distance A to B: W = FΔxcosθ (θ = 0°, force and motion in the same direction).\n- Apply the work-energy theorem: W_net = ΔEₖ = Eₖf − Eₖi.\n- Since the crate starts from rest, Eₖi = 0.',
-      solution: '1. W_FA = FΔxcosθ = (12)(7)cos0° = 84 J\n2. W_net = ΔEₖ\n3. 84 = Eₖf − 0\n4. Eₖf = 84 J',
+      clues: '- From A to B the surface is frictionless, so only F does work on the crate.\n- Use Wₙₑₜ = ΔEₖ, with the crate starting from rest.',
+      approach: '- Calculate the work done by F over the distance A to B: W = FΔxcosθ (θ = 0°, force and motion in the same direction).\n- Apply the work-energy theorem: Wₙₑₜ = ΔEₖ = Eₖf − Eₖi.\n- Since the crate starts from rest, Eₖi = 0.',
+      solution: '1. W_FA = FΔxcosθ = (12)(7)cos0° = 84 J\n2. Wₙₑₜ = ΔEₖ\n3. 84 = Eₖf − 0\n4. Eₖf = 84 J',
     },
     {
       number: '5.3', marks: 3,
@@ -134,9 +134,9 @@ const aiExplanation = {
     {
       number: '5.4', marks: 5,
       clues: '- Use the work-energy theorem from B to C, accounting for both the work done by friction and the change in gravitational PE as the crate descends the incline.\n- Compare the distance BC required to stop (or the resulting velocity/energy) with the actual distance to C (6.8 m) to decide whether the crate passes C.',
-      approach: '- Resolve the crate’s weight along the incline: the component pulling it down the slope is mgsinθ.\n- Apply W_net = ΔEₖ (or equivalently W_nc = ΔEₖ + ΔE_p) from B to C, using the friction force and the incline geometry.\n- Compare the resulting distance (or final kinetic energy) to the actual BC distance of 6.8 m to conclude whether the crate passes point C.',
+      approach: '- Resolve the crate’s weight along the incline: the component pulling it down the slope is mgsinθ.\n- Apply Wₙₑₜ = ΔEₖ (or equivalently W(nc) = ΔEₖ + ΔEₚ) from B to C, using the friction force and the incline geometry.\n- Compare the resulting distance (or final kinetic energy) to the actual BC distance of 6.8 m to conclude whether the crate passes point C.',
       solution:
-        '1. W_net = ΔEₖ: the component of weight down the incline does positive work, friction does negative work.\n2. mgsinθ·Δxcos0° + f_k·Δxcos180° = Eₖf − Eₖi, with Eₖi = 84 J (from 5.2) and f_k = 21 N.\n3. Δx[(3)(9.8)sin20° − 21] = 0 − 84 (solving for the distance at which the crate would stop, Eₖf = 0)\n4. Δx[10.06 − 21] = −84 ⇒ Δx = −84 / −10.94 = 7.68 m\n5. Since 7.68 m > 6.8 m (the actual distance from B to C), the crate is still moving when it reaches C.\n6. The crate will pass point C.',
+        '1. Wₙₑₜ = ΔEₖ: the component of weight down the incline does positive work, friction does negative work.\n2. mgsinθ·Δxcos0° + f_k·Δxcos180° = Eₖf − Eₖi, with Eₖi = 84 J (from 5.2) and f_k = 21 N.\n3. Δx[(3)(9.8)sin20° − 21] = 0 − 84 (solving for the distance at which the crate would stop, Eₖf = 0)\n4. Δx[10.06 − 21] = −84 ⇒ Δx = −84 / −10.94 = 7.68 m\n5. Since 7.68 m > 6.8 m (the actual distance from B to C), the crate is still moving when it reaches C.\n6. The crate will pass point C.',
     },
   ],
   model: 'claude-sonnet-5', generated_at: Date.now(), version: 2, reviewed: false,

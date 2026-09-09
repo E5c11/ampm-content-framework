@@ -117,7 +117,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- Redraw the circuit for S open and S closed, and work out the total resistance in each case.\n- Brightness depends on the current through each bulb — use I = V/R_total, then consider how current splits at the parallel junction once Q starts conducting.',
+    clues: '- Redraw the circuit for S open and S closed, and work out the total resistance in each case.\n- Brightness depends on the current through each bulb — use I = V/Rₜₒₜₐₗ, then consider how current splits at the parallel junction once Q starts conducting.',
   },
   {
     name: 'Question 4',
@@ -138,7 +138,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- For resistors in parallel, 1/R_p = 1/R₁ + 1/R₂.\n- Combine the two fractions before inverting to find R_p.',
+    clues: '- For resistors in parallel, 1/Rₚ = 1/R₁ + 1/R₂.\n- Combine the two fractions before inverting to find Rₚ.',
   },
   {
     name: 'Question 5',
@@ -182,7 +182,7 @@ const aiExplanation = {
       marks: 2,
       clues: '- Work out the circuit’s total resistance with S closed, then with S open, and see how the total current from the battery changes.\n- For bulb Y specifically, track how its share of the current changes now that Z’s branch is disconnected.',
       approach: '- Redraw the circuit for S closed and S open, and identify which bulbs are in series/parallel in each case.\n- Compare total resistance in both cases to see how total current changes — this determines X’s brightness, since X carries all the current.\n- For Y, note that with S open, Y now carries the full circuit current instead of sharing it with Z.',
-      solution: '1. With S closed: Y and Z are in parallel (equal resistance R each, combined R/2), in series with X, so R_total = R + R/2 = 1.5R.\n2. With S open: the Z branch is broken, so only Y conducts; R_total = R + R = 2R.\n3. Total current I = V/R_total decreases when S opens (1.5R → 2R), and X carries this total current, so X’s brightness decreases.\n4. With S closed, Y shared the current equally with Z: I_Y = I_total/2 = V/(3R).\n5. With S open, Y carries the full (smaller) total current alone: I_Y = V/(2R), which is greater than V/(3R).\n6. So Y’s brightness increases. The correct answer is B: X decreases, Y increases.',
+      solution: '1. With S closed: Y and Z are in parallel (equal resistance R each, combined R/2), in series with X, so Rₜₒₜₐₗ = R + R/2 = 1.5R.\n2. With S open: the Z branch is broken, so only Y conducts; Rₜₒₜₐₗ = R + R = 2R.\n3. Total current I = V/Rₜₒₜₐₗ decreases when S opens (1.5R → 2R), and X carries this total current, so X’s brightness decreases.\n4. With S closed, Y shared the current equally with Z: I_Y = I_total/2 = V/(3R).\n5. With S open, Y carries the full (smaller) total current alone: I_Y = V/(2R), which is greater than V/(3R).\n6. So Y’s brightness increases. The correct answer is B: X decreases, Y increases.',
     },
     {
       number: '1.9',

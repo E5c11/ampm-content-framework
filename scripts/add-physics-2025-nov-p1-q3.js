@@ -99,7 +99,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- At maximum height, the ball’s velocity is momentarily zero.\n- Use v_f = vᵢ + aΔt with a = −g, and solve for Δt.',
+    clues: '- At maximum height, the ball’s velocity is momentarily zero.\n- Use v(f) = vᵢ + aΔt with a = −g, and solve for Δt.',
   },
   {
     name: 'Question 3',
@@ -121,7 +121,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- Take upward as positive. The ball ends up 10 m below its starting point, so Δy = −10 m.\n- Use v_f² = vᵢ² + 2aΔy, and take the magnitude of the (negative) result.',
+    clues: '- Take upward as positive. The ball ends up 10 m below its starting point, so Δy = −10 m.\n- Use v(f)² = vᵢ² + 2aΔy, and take the magnitude of the (negative) result.',
   },
   {
     name: 'Question 4',
@@ -200,16 +200,16 @@ const aiExplanation = {
     {
       number: '3.2',
       marks: 3,
-      clues: '- At time p, the ball’s velocity is zero — this is the moment it reaches maximum height.\n- Use v_f = vᵢ + aΔt with the given initial velocity and a = −g (taking upward as positive).',
-      approach: '- Identify that p is the time at which velocity = 0 (from the table).\n- Choose a direction convention (upward positive) and write v_f = vᵢ + aΔt.\n- Substitute v_f = 0, vᵢ = 15 m·s⁻¹, a = −9.8 m·s⁻², and solve for Δt.',
-      solution: '1. v_f = vᵢ + aΔt\n2. 0 = 15 + (−9.8)Δt\n3. Δt = 15 / 9.8\n4. p = 1.53 s',
+      clues: '- At time p, the ball’s velocity is zero — this is the moment it reaches maximum height.\n- Use v(f) = vᵢ + aΔt with the given initial velocity and a = −g (taking upward as positive).',
+      approach: '- Identify that p is the time at which velocity = 0 (from the table).\n- Choose a direction convention (upward positive) and write v(f) = vᵢ + aΔt.\n- Substitute v(f) = 0, vᵢ = 15 m·s⁻¹, a = −9.8 m·s⁻², and solve for Δt.',
+      solution: '1. v(f) = vᵢ + aΔt\n2. 0 = 15 + (−9.8)Δt\n3. Δt = 15 / 9.8\n4. p = 1.53 s',
     },
     {
       number: '3.3',
       marks: 3,
-      clues: '- q is the magnitude of the velocity at t = 3.36 s, when the ball strikes the ground.\n- Use v_f = vᵢ + aΔt with the total time of flight.',
-      approach: '- Write v_f = vᵢ + aΔt (upward positive).\n- Substitute vᵢ = 15 m·s⁻¹, a = −9.8 m·s⁻², Δt = 3.36 s.\n- Take the magnitude of the resulting (negative) velocity as q.',
-      solution: '1. v_f = vᵢ + aΔt\n2. v_f = 15 + (−9.8)(3.36)\n3. v_f = −17.93 m·s⁻¹\n4. q = 17.93 m·s⁻¹ (magnitude)',
+      clues: '- q is the magnitude of the velocity at t = 3.36 s, when the ball strikes the ground.\n- Use v(f) = vᵢ + aΔt with the total time of flight.',
+      approach: '- Write v(f) = vᵢ + aΔt (upward positive).\n- Substitute vᵢ = 15 m·s⁻¹, a = −9.8 m·s⁻², Δt = 3.36 s.\n- Take the magnitude of the resulting (negative) velocity as q.',
+      solution: '1. v(f) = vᵢ + aΔt\n2. v(f) = 15 + (−9.8)(3.36)\n3. v(f) = −17.93 m·s⁻¹\n4. q = 17.93 m·s⁻¹ (magnitude)',
     },
     {
       number: '3.4',

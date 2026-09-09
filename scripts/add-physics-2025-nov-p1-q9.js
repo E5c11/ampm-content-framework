@@ -77,9 +77,9 @@ const questions = [
     question:
       'Complete the working to find the cost of operating a circuit for 2 hours. An AC generator produces a maximum potential difference of 200 V across a resistance of 50 Ω; electricity costs R2.50 per kWh.',
     metadata: [
-      'V_rms = V_max/√2 = 200/√2 = 141.42 V',
-      'P_ave = V_rms²/R = (141.42)²/50 = 400 W',
-      'E = P_ave × Δt = 0.4 kW × 2 h = 0.8 kWh',
+      'Vᵣₘₛ = Vₘₐₓ/√2 = 200/√2 = 141.42 V',
+      'Pₐᵥₑ = Vᵣₘₛ²/R = (141.42)²/50 = 400 W',
+      'E = Pₐᵥₑ × Δt = 0.4 kW × 2 h = 0.8 kWh',
       'Cost = E × tariff, so cost (in Rand) =',
       '[ ]',
     ],
@@ -90,7 +90,7 @@ const questions = [
     skills: ['ac_power_cost_calculation'],
     difficulty: 4, exam_weight: 3, xp: 10, order: 3,
     syllabus: 'dbe', subject: 'physics', year: 2025, paper: 'nov_p1',
-    clues: '- First find V_rms from V_max, then use P_ave = V_rms²/R.\n- Convert power to kW and multiply by the time in hours to get energy in kWh, then multiply by the tariff.',
+    clues: '- First find Vᵣₘₛ from Vₘₐₓ, then use Pₐᵥₑ = Vᵣₘₛ²/R.\n- Convert power to kW and multiply by the time in hours to get energy in kWh, then multiply by the tariff.',
   },
   {
     name: 'Question 4',
@@ -148,9 +148,9 @@ const aiExplanation = {
     },
     {
       number: '9.3', marks: 5,
-      clues: '- First find V_rms from V_max, then use P_ave = V_rms²/R.\n- Convert power to kW, multiply by time in hours, then by the tariff.',
-      approach: '- Calculate V_rms = V_max/√2.\n- Calculate average power: P_ave = V_rms²/R.\n- Calculate energy used: E = P_ave × Δt (converted to kWh).\n- Multiply by the tariff to get the cost.',
-      solution: '1. V_rms = 311.11/√2 = 219.99 V\n2. P_ave = V_rms²/R = (219.99)²/60 = 806.59 W = 0.80659 kW\n3. E = Pave × Δt = 0.80659 × 1.5 = 1.21 kWh\n4. Cost = E × tariff = 1.21 × 3.33 = R4.03',
+      clues: '- First find Vᵣₘₛ from Vₘₐₓ, then use Pₐᵥₑ = Vᵣₘₛ²/R.\n- Convert power to kW, multiply by time in hours, then by the tariff.',
+      approach: '- Calculate Vᵣₘₛ = Vₘₐₓ/√2.\n- Calculate average power: Pₐᵥₑ = Vᵣₘₛ²/R.\n- Calculate energy used: E = Pₐᵥₑ × Δt (converted to kWh).\n- Multiply by the tariff to get the cost.',
+      solution: '1. Vᵣₘₛ = 311.11/√2 = 219.99 V\n2. Pₐᵥₑ = Vᵣₘₛ²/R = (219.99)²/60 = 806.59 W = 0.80659 kW\n3. E = Pave × Δt = 0.80659 × 1.5 = 1.21 kWh\n4. Cost = E × tariff = 1.21 × 3.33 = R4.03',
     },
     {
       number: '9.4', marks: 3,

@@ -107,7 +107,7 @@ const questions = [
     presentation: 'steps',
     type: 'calc',
     unit: 'waves_sound_light', topic: 'doppler_effect', subtopic: 'doppler_effect_experiment',
-    skills: ['doppler_effect_calculation', 'speed_of_sound_calculation'],
+    skills: ['doppler_effect_calculation', 'speed_ofₛound_calculation'],
     difficulty: 5, exam_weight: 3, xp: 10, order: 4,
     syllabus: 'dbe', subject: 'physics', year: 2025, paper: 'nov_p1',
     clues:
@@ -117,7 +117,7 @@ const questions = [
     name: 'Question 5',
     question:
       'A train sounds its horn at 500 Hz while approaching a stationary listener at 20 m·s⁻¹. The speed of sound in air is 340 m·s⁻¹. Calculate the frequency heard by the listener.',
-    metadata: ['f_L = ', '[ ]', ' Hz'],
+    metadata: ['fₗ = ', '[ ]', ' Hz'],
     answer: ['531.25', '', '', '', ''],
     presentation: 'fitb',
     type: 'calc',
@@ -125,7 +125,7 @@ const questions = [
     skills: ['doppler_effect_calculation'],
     difficulty: 3, exam_weight: 3, xp: 10, order: 5,
     syllabus: 'dbe', subject: 'physics', year: 2025, paper: 'nov_p1',
-    clues: '- Use f_L = [v / (v − v_s)] × f_s for a source moving toward a stationary listener.\n- Substitute the speed of sound, the train’s speed, and the emitted frequency.',
+    clues: '- Use fₗ = [v / (v − vₛ)] × fₛ for a source moving toward a stationary listener.\n- Substitute the speed of sound, the train’s speed, and the emitted frequency.',
   },
 ];
 
@@ -157,8 +157,8 @@ const aiExplanation = {
     },
     {
       number: '6.4', marks: 6,
-      clues: '- Write the Doppler equation for both Part A (approaching, 1298 Hz) and Part B (moving away, 1115 Hz) at v_s = 25 m·s⁻¹ — both share the same unknowns v (speed of sound) and fₛ.\n- Divide the two equations to eliminate fₛ and solve for v.',
-      approach: '- Write f_L = v/(v − v_s)·fₛ for the approaching case and f_L = v/(v + v_s)·fₛ for the receding case.\n- Substitute the known values from the graph into each to get two equations in v and fₛ.\n- Solve the two equations simultaneously for v.',
+      clues: '- Write the Doppler equation for both Part A (approaching, 1298 Hz) and Part B (moving away, 1115 Hz) at vₛ = 25 m·s⁻¹ — both share the same unknowns v (speed of sound) and fₛ.\n- Divide the two equations to eliminate fₛ and solve for v.',
+      approach: '- Write fₗ = v/(v − vₛ)·fₛ for the approaching case and fₗ = v/(v + vₛ)·fₛ for the receding case.\n- Substitute the known values from the graph into each to get two equations in v and fₛ.\n- Solve the two equations simultaneously for v.',
       solution: '1. Approaching: 1298 = [v/(v − 25)]fₛ ⇒ fₛ = 1298(v − 25)/v … eq (1)\n2. Moving away: 1115 = [v/(v + 25)]fₛ ⇒ fₛ = 1115(v + 25)/v … eq (2)\n3. Setting eq (1) = eq (2): 1298(v − 25) = 1115(v + 25)\n4. v = 329.64 m·s⁻¹',
     },
   ],
