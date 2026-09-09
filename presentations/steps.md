@@ -42,7 +42,12 @@ Verified against app code 2026-07-15:
 - `PresentationComponent.kt`: Submit button (no auto-validate); enabled once any blank
   has input.
 - Validation (`QuestionsValidator.kt`): all blank answers compared in order, trimmed,
-  **case-sensitive, no alternatives, no numeric normalization**.
+  **case-sensitive, no alternatives**. Numeric blanks get the same tolerance as `fitb`
+  (comma→period, `"9.8"` == `"9.80"`, `"540"` == `"540.00"` — via
+  `normalizeNumericString`) — added 2026-09-09 specifically so `steps` is usable for
+  physics's numeric multi-step calculations, not just Maths's symbolic proof completion.
+  A non-numeric blank value passes through unchanged, so symbolic steps (trig identities,
+  geometry proof reasons) are unaffected and still require exact-string match.
 
 **Failure modes:**
 - `metadata` with no `"[ ]"` rows → zero inputs, silent dead end (same class as fitb —

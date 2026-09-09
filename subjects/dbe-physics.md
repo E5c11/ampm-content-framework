@@ -25,7 +25,7 @@ confirms it — the same caveat `dbe-geography.md` carried for its first paper.
 | Papers | `nov_p1` (physics). `june_p1` presumed to exist once a June-diet paper is sourced. No `p2` — see subject/syllabus note above. |
 | **Curriculum document (`DESIGN-UNI-09`)** | Not strictly required every session — physics is procedural like Maths (see Subject rules below) — but `CAPS FET PHYSICAL SCIENCE WEB.pdf` (currently in `temp/`, not yet moved into `files/`) is the source for the curriculum-unit breakdown below and should be consulted for topic scope/grade placement, especially for the recall-item relational framing. |
 | **Source files not yet in `files/`** | All three source PDFs currently sit in `temp/` (gitignored working dir), not `files/` (tracked source material) — per `INSTRUCTIONS.md` Step 0.2 these need moving before a real authoring session. Also: **no P1 memo was supplied** — `temp/` has the P1 question paper and a P2 memo (`Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf`, Paper 2/Chemistry — out of scope here), but not a P1 marking guideline. Source the P1 memo before authoring. |
-| **New `subjects` reference row needed** | `id: "physics"`, `name` TBD (`"Physics"` vs. `"Physical Sciences P1"` — decide against actual app usage, cf. English HL's paper-named split), colour/icon TBD. Owner-gated insert, same as Geography's row. |
+| **New `subjects` reference row needed** | `id: "physics"`, `name` TBD (`"Physics"` vs. `"Physical Sciences P1"` — decide against actual app usage, cf. English HL's paper-named split), `color: "#6561A4"` (`Indigo400` in `AMPM/core/designsystem/.../theme/Colour.kt` — unclaimed by any current subject, same sourcing approach Geography used for `GreenLime`), icon TBD. Owner-gated insert, same as Geography's row. |
 
 ## Allowed presentation types
 
@@ -102,15 +102,49 @@ will the brightness of bulb Y be affected?") — distinct from `calc` (numeric w
   into "what is the reading on ammeter X?" (`fitb`), "identify all forces acting"
   (`match` or `multi_select`), "which statement about how Y is affected is correct?"
   (`multiple_choice`).
+- **`steps` is a first-class choice for numeric multi-step calculations, not just
+  symbolic proof completion.** `QuestionsValidator.kt`'s `STEPS` branch used to be
+  exact-string-only (no numeric tolerance), which made it a trap for physics's
+  "calculate the reading on A1" style numeric substitution work — fixed this session
+  (see App-side fixes below) so numeric `steps` blanks now get the same `"9.8"` ==
+  `"9.80"` / comma-decimal tolerance `fitb` has, while symbolic blanks stay
+  exact-match. Prefer `steps` over one big `fitb` when the working itself (not just
+  the final number) is the thing being tested — e.g. Q8's "calculate the emf" chain of
+  substitutions.
 
-## MathText scope — open item
+## App-side keyboard/calculator routing — resolved 2026-09-09
+
+Physics was an unrecognized subject string in three places in `AMPM` (`~/StudioProjects/
+AMPM`), each falling through to a wrong/missing default — fixed this session, before any
+physics content existed to expose the bug in production:
+
+- `SubjectMapper.kt` — added `PHYSICS_FIRESTORE = "physics"` (matches this profile's
+  `subject_id`).
+- `KeyboardResolver.kt` (`feature/watch/.../questions/ui/`) — `resolve()` and
+  `resolveSubjectDefault()` were falling to `QuestionKeyboardType.None` (no custom
+  keyboard at all) for physics; now routed the same as Maths (`ScientificMath` for
+  `equation`/`steps`, `StandardMath` for everything else). The file's own doc comment
+  already anticipated this: *"Add new subjects (e.g. Physics) by extending this resolver
+  only."*
+- `SubjectKeyboardType.kt` — `toSubjectKeyboardType()` was falling to `Default`, which
+  left `calculatorType` `null` (`QuestionsViewModel.kt`) and **suppressed the on-screen
+  calculator entirely** — a real problem given the paper explicitly permits "a
+  non-programmable calculator." Now maps `"physics"`/`"physical sciences"` to
+  `SubjectKeyboardType.Maths`, reusing the full `MathsCalculatorBottomSheet`.
+- Fixed two existing unit tests that had locked in the old (wrong) behaviour
+  (`SubjectKeyboardTypeTest.kt`, `KeyboardResolverTest.kt`), and added physics-specific
+  cases to both plus `QuestionsValidatorTest.kt`. `:feature:watch:testDebugUnitTest`
+  passes. Not yet committed in `AMPM` — do that alongside/after this profile.
+
+## MathText scope — still open
 
 `core/mathtext.md` currently scopes itself to `maths` and `math_lit` only. Physics needs
 subscripted variable names (v_i, v_f, E_k(max), F_net) and the data sheet's own notation
 conventions (`·` as the SI unit separator, `×`/`x` for scientific notation) at minimum —
-extend `MATHTEXT` scope to include `physics` before the first authoring session, and
-confirm whether subscripts need new markup or already pass through as Unicode/plain text
-against the actual renderer. Not resolved by this profile draft.
+extend `MATHTEXT` scope to include `physics` before the first authoring session. The
+keyboard-routing fix above means physics now gets the same *input* keyboard as Maths;
+whether `\frac`/`\sqrt` *display* correctly and whether subscripts need new markup is a
+separate, still-open rendering question — confirm against the actual renderer.
 
 ## Formula sheet (every paper)
 

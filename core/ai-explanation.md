@@ -129,8 +129,13 @@ question and memo images directly. It is not fetched from an API at runtime.
 3. Author as a JS constant in the upload script alongside `video` and `questions`
 
 **For English:**
-1. Read each practice question and its correct `answer`
-2. Derive `clues` (hint toward the rule or device), `approach` (how to identify or apply it),
-   `solution` (correct answer + why distractors are wrong)
-3. Set `marks: null` for all English questions
+1. Read the exam memo (marking guideline) for the real exam question the practice
+   questions are grouped under, to see how DBE frames the expected reasoning/answer for
+   this skill or device — practice questions are freshly authored (`DESIGN-UNI-01`), but
+   `clues`/`approach`/`solution` should still be derived from the memo's reasoning style,
+   not from the practice answer in isolation
+2. For each practice question: derive `clues` (hint toward the rule or device), `approach`
+   (how to identify or apply it), `solution` (correct answer + why distractors are wrong)
+3. Set `marks: null` for all English questions — practice questions carry no real exam
+   mark allocation
 4. Set `number` to the practice question order as a string (`"1"`, `"2"`, `"3"`)
