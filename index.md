@@ -45,6 +45,7 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `workflows/generate/upload-maths.md` | this repo |
 | `workflows/generate/upload-english.md` | this repo |
 | `workflows/generate/upload-geography.md` | this repo |
+| `workflows/generate/upload-physics.md` | this repo |
 | `workflows/generate/review-paper.md` | **AMPM repo root** (capture harness lives there) |
 
 ## tools/
