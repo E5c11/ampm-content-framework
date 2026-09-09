@@ -190,15 +190,19 @@ once a first session populates it, `PIPE-08`.)
 
 | Paper | Videos | Questions | Date |
 |---|---|---|---|
-| DBE 2025 Nov P1 | 1 (Q1, paper-only, no video) | 4 | 2026-09-09 — pilot for this profile |
+| DBE 2025 Nov P1 | 2 (Q1, Q2 — paper-only, no video) | 8 | 2026-09-09 — pilot for this profile |
 
 Formula sheet URLs (reuse per paper):
 - 2025 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/physics/2025/nov_p1/q0/question_1.png` (+ `question_2.png`, `question_3.png`)
 
-**Evidenced from Q1** (updates the "Allowed presentation types" section above once a
-second question confirms the pattern holds): `multiple_choice`, `fitb`, `multi_select`
-all used successfully; `steps`, `match`, `ordering`, `fraction`, `equation` not yet
-exercised. Q1's MCQ block needed no diagram recreation for its own fresh practice
-questions (concepts were expressible in text/fitb) — the diagram-heavy work
-`DESIGN-PHYS-04` anticipates will land on the long-form questions (free-body diagrams,
-circuit diagrams), not this MCQ block.
+**Evidenced from Q1 + Q2** (updates the "Allowed presentation types" section above):
+`multiple_choice`, `fitb`, `multi_select`, `match` all used successfully; `steps`,
+`ordering`, `fraction`, `equation` not yet exercised. Q1's MCQ block needed no diagram
+recreation (concepts were expressible in text/fitb); Q2 confirmed the diagram-heavy
+prediction — its free-body-diagram practice question needed a freshly generated
+schematic (matplotlib, force arrows on a crate), uploaded via the newly-built
+`tools/upload-question-supplementary.js` (the documented `question_supplementary/`
+path had no uploader before this). Also surfaced a real validator gap: a question-level
+field referencing a shared `const` (e.g. a base image URL) breaks
+`validate-questions.js`'s isolated eval of the `questions` array — inline literal URLs
+in per-question fields instead.
