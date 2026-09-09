@@ -27,6 +27,41 @@ confirms it — the same caveat `dbe-geography.md` carried for its first paper.
 | **Source files** | `files/Physical Sciences P1 Nov 2025 Eng.pdf` (question paper), `files/Physical Sciences P1 Nov 2025 MG Afr & Eng.pdf` (memo — sourced 2026-09-09), `files/CAPS FET PHYSICAL SCIENCE WEB.pdf` (curriculum). `temp/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf` is Paper 2/Chemistry — confirmed by its own title page, out of scope for this profile, left in `temp/` rather than moved to `files/`. |
 | **New `subjects` reference row needed** | `id: "physics"`, `name` TBD (`"Physics"` vs. `"Physical Sciences P1"` — decide against actual app usage, cf. English HL's paper-named split), `color: "#6561A4"` (`Indigo400` in `AMPM/core/designsystem/.../theme/Colour.kt` — unclaimed by any current subject, same sourcing approach Geography used for `GreenLime`), icon TBD. Owner-gated insert, same as Geography's row. |
 
+## Paper structure / video mapping
+
+**One lesson per exam numbered subsection when subsections are topically
+independent; one lesson per top-level exam question when its sub-parts share one
+continuous scenario.** Corrected 2026-09-10 after shipping Q1 wrong the first time
+(bundled all of 1.1–1.10 into a single "Question 1" lesson, copying Maths's
+convention without checking it actually fit) — the user caught it: *"why is the
+complete Q1 all together in one lesson?"*
+
+- **Q1 (MCQ block, 1.1–1.10):** each item is a wholly independent mini-scenario on a
+  different topic (mechanics, waves, electrostatics, circuits, electrodynamics,
+  optics) — matches Geography's "one video per exam numbered subsection" model, not
+  Maths's bundling. **10 lessons, orders 1–10**, `name: "Question 1.1"` … `"Question
+  1.10"`, 2 fresh practice questions each, one `ai_explanation` entry each.
+- **Q2–Q10 (long-form questions):** each top-level question's sub-parts (e.g. Q2's
+  2.1–2.4) share one continuous scenario/diagram/given-values set — bundling them
+  into one lesson (Maths's model) is correct here, since splitting would either
+  fragment shared context or force duplicating the setup across lessons. **One
+  lesson per top-level question**, `order` continuing the paper-wide sequence after
+  Q1's 10 (Q2 = order 11, Q3 = order 12, …).
+
+The deciding test for any future physics paper: **would a student watching just one
+sub-part's lesson be missing shared setup another sub-part depends on?** If yes,
+bundle. If no — each sub-part is really its own self-contained question — split.
+
+**Engineering note:** `lessons`/`questions`/sub-question IDs are deterministic from
+`(paper, order)` / `(lesson, question order)` / `(lesson, sub-question number)` alone
+(`tools/lib/uuid.js`) — reusing an `order` value for a differently-structured lesson
+silently leaves the old rows' children (extra questions, extra `ai_explanation`
+entries) orphaned-but-attached unless explicitly cleaned up first. Fixing Q1 required
+an explicit `DELETE` of the old order-1/order-2 rows before rebuilding, since no
+tooling in this repo does soft-delete for a full lesson (`PERSIST-04`'s soft-delete
+norm has no script backing it yet — direct SQL was used, justified only because this
+was same-session dev-only content, never shipped).
+
 ## Allowed presentation types
 
 Proposed, pending confirmation in the first authoring session — physics is procedural
@@ -190,7 +225,7 @@ once a first session populates it, `PIPE-08`.)
 
 | Paper | Videos | Questions | Date |
 |---|---|---|---|
-| DBE 2025 Nov P1 | 2 (Q1, Q2 — paper-only, no video) | 8 | 2026-09-09 — pilot for this profile |
+| DBE 2025 Nov P1 | 11 (Q1.1–Q1.10 + Q2 — paper-only, no video) | 24 | 2026-09-09/10 — pilot for this profile; Q1 rebuilt 2026-09-10 as 10 subsection lessons (see Paper structure / video mapping above) |
 
 Formula sheet URLs (reuse per paper):
 - 2025 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/physics/2025/nov_p1/q0/question_1.png` (+ `question_2.png`, `question_3.png`)
