@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 /**
- * DBE Physical Sciences: Physics P1 — November 2025 — Question 1.6 (order 6)
- * The Doppler effect: redshift/blueshift and the Doppler formula for sound.
+ * DBE Physical Sciences: Physics P1 — November 2025 — Question 1, Part 2 (order 2)
+ * MCQ item 1.6 — Waves, Sound & Light (the Doppler effect: redshift/blueshift).
  *
- * One of 10 subsection lessons — see add-physics-2025-nov-p1-q1-1.js header note.
+ * See subjects/dbe-physics.md's "Paper structure / video mapping". This is Part 2 of
+ * 4 — a single-item part because Waves, Sound & Light is a minor knowledge area on
+ * this paper's MCQ block (CAPS Grade 12 weighting: 3.75%); the Doppler effect gets
+ * fuller treatment later as its own long-form question.
  *
- *   node tools/validate-questions.js --script scripts/add-physics-2025-nov-p1-q1-6.js --curriculum temp/curriculum-vocab.json
- *   node scripts/add-physics-2025-nov-p1-q1-6.js --dry-run
- *   node scripts/add-physics-2025-nov-p1-q1-6.js
+ *   node tools/validate-questions.js --script scripts/add-physics-2025-nov-p1-q1-part2.js --curriculum temp/curriculum-vocab.json
+ *   node scripts/add-physics-2025-nov-p1-q1-part2.js --dry-run
+ *   node scripts/add-physics-2025-nov-p1-q1-part2.js
  */
 
 'use strict';
@@ -29,12 +32,12 @@ const video = {
   subject: 'physics',
   year: 2025,
   paper: 'nov_p1',
-  order: 6,
+  order: 2,
   content_tier: 'free',
   has_video: false,
   xp: 50,
   tags: ['doppler_effect'],
-  question_image_urls: [`${PAPER}/q1/question_3.png`],
+  question_image_urls: [`${PAPER}/q1/question_7.png`],
   memo_image_urls: [`${PAPER}/q1/memo_1.png`],
   exam_question_marks: 2,
   supplementary_materials: [
@@ -72,8 +75,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues:
-      '- Relate ‘blue’ to which end of the visible spectrum has the shorter wavelength.\n- A blueshift is the opposite case to a redshift.',
+    clues: '- Relate ‘blue’ to which end of the visible spectrum has the shorter wavelength.\n- A blueshift is the opposite case to a redshift.',
   },
   {
     name: 'Question 2',
@@ -95,8 +97,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues:
-      '- Use f_L = [v / (v − v_s)] × f_s for a source moving toward a stationary listener.\n- Substitute the speed of sound, the source’s speed, and the emitted frequency.',
+    clues: '- Use f_L = [v / (v − v_s)] × f_s for a source moving toward a stationary listener.\n- Substitute the speed of sound, the source’s speed, and the emitted frequency.',
   },
 ];
 

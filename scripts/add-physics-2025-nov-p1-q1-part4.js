@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 /**
- * DBE Physical Sciences: Physics P1 — November 2025 — Question 1.10 (order 10)
- * The photoelectric effect: threshold frequency and maximum kinetic energy.
+ * DBE Physical Sciences: Physics P1 — November 2025 — Question 1, Part 4 (order 4)
+ * MCQ item 1.10 — Matter & Materials (the photoelectric effect: threshold frequency,
+ * maximum kinetic energy).
  *
- * One of 10 subsection lessons — see add-physics-2025-nov-p1-q1-1.js header note.
+ * See subjects/dbe-physics.md's "Paper structure / video mapping". This is Part 4 of
+ * 4 — a single-item part, same reasoning as Part 2: minor knowledge-area weighting on
+ * this paper's MCQ block, fuller treatment later as its own long-form question.
  * Question 2 is the first practical use of the scientific-notation fitb pattern
  * DESIGN-PHYS-01 (subjects/dbe-physics.md) flagged as an open item — the exponent is a
  * static metadata label, not part of the matched numeric answer.
  *
- *   node tools/validate-questions.js --script scripts/add-physics-2025-nov-p1-q1-10.js --curriculum temp/curriculum-vocab.json
- *   node scripts/add-physics-2025-nov-p1-q1-10.js --dry-run
- *   node scripts/add-physics-2025-nov-p1-q1-10.js
+ *   node tools/validate-questions.js --script scripts/add-physics-2025-nov-p1-q1-part4.js --curriculum temp/curriculum-vocab.json
+ *   node scripts/add-physics-2025-nov-p1-q1-part4.js --dry-run
+ *   node scripts/add-physics-2025-nov-p1-q1-part4.js
  */
 
 'use strict';
@@ -32,7 +35,7 @@ const video = {
   subject: 'physics',
   year: 2025,
   paper: 'nov_p1',
-  order: 10,
+  order: 4,
   content_tier: 'free',
   has_video: false,
   xp: 50,
@@ -81,13 +84,11 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues:
-      '- Compare the light’s frequency to the threshold frequency f₀ for this metal.\n- Below f₀, no photoelectrons are emitted no matter how intense the light is — intensity only affects the rate of emission once emission is already possible, not whether it happens at all.',
+    clues: '- Compare the light’s frequency to the threshold frequency f₀ for this metal.\n- Below f₀, no photoelectrons are emitted no matter how intense the light is — intensity only affects the rate of emission once emission is already possible, not whether it happens at all.',
   },
   {
     name: 'Question 2',
-    question:
-      'Light of frequency 7 × 10¹⁴ Hz is incident on a metal with a work function of 3.0 × 10⁻¹⁹ J. Calculate the maximum kinetic energy of the emitted photoelectrons.',
+    question: 'Light of frequency 7 × 10¹⁴ Hz is incident on a metal with a work function of 3.0 × 10⁻¹⁹ J. Calculate the maximum kinetic energy of the emitted photoelectrons.',
     metadata: ['E_k(max) = ', '[ ]', ' × 10⁻¹⁹ J'],
     answer: ['1.64', '', '', '', ''],
     presentation: 'fitb',
