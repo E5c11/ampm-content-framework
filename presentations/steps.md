@@ -105,16 +105,32 @@ which rarely has one canonical written form even when the *value* is unambiguous
 **Keep the blank numeric to get tolerance, not exact-match.** `QuestionsValidator.kt`'s
 numeric tolerance (`normalizeNumericString`) only fires when the *entire* blank value
 parses as a number — `"0.2"` gets it, `"r = 0.2 Ω"` does not (mixed text/number strings
-fall through to exact-string match). Split the label and unit into their own given rows
-around the blank, same trick as `fitb`'s `DESIGN-PHYS-02` unit-placement rule:
+fall through to exact-string match).
+
+**Do not split the label/unit into their own `metadata` rows to achieve this — that was
+tried and is itself a defect** (caught 2026-09-10, same day as the fix above: every
+`metadata` row gets its own numbered "Step N" in `StepsPresentation.kt` — given or blank,
+no exceptions, no merging. `metadata: ['r =', '[ ]', 'Ω']` renders as three separate
+numbered steps for what is conceptually one line of working, which reads as broken —
+"Step 3: r =", "Step 4: [blank]", "Step 5: Ω" instead of one coherent "r = ___ Ω"). The
+fix is to **fold the label and unit into the *end of the preceding given row's text***,
+as a parenthetical, so the row count matches the real number of working-steps exactly —
+one given row ending right where the value is asked for, one blank:
 ```js
-metadata: ['ε = I(R + r)', '20 = 5(3.8 + r)', 'r =', '[ ]', 'Ω'],
+metadata: [
+  'ε = I(R + r)',
+  '20 = 5(3.8 + r), so r (in Ω) =',
+  '[ ]',
+],
 answer: ['0.2'],
 ```
-For scientific notation, pre-factor the exponent into the trailing given row (same
-convention several physics `fitb` answers already use) so the blank is still a bare
+For scientific notation, fold the exponent in the same way so the blank is still a bare
 coefficient:
 ```js
-metadata: ['ΔE = E_a − E_b', '...', 'f =', '[ ]', '× 10¹⁴ Hz'],
+metadata: ['ΔE = E_a − E_b', '...', 'E = hf ⇒ ... , so f (in ×10¹⁴ Hz) =', '[ ]'],
 answer: ['7.54'],
 ```
+This also answers a symbol-availability question for free: `Ω` above is *display* text in
+a given row (rendered via `MathText`, plain Unicode pass-through, unaffected by keyboard
+limits) — never something the student types — so it doesn't need to exist on any keyboard
+at all. Only the blank's own value needs to respect `core/keyboard-input.md`.

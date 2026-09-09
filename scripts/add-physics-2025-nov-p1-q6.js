@@ -100,10 +100,8 @@ const questions = [
     metadata: [
       'Approaching: 900 = [v/(v − 30)]fₛ … eq (1)',
       'Moving away: 700 = [v/(v + 30)]fₛ … eq (2)',
-      'Dividing eq (1) by eq (2): 900/700 = (v + 30)/(v − 30)',
-      'v =',
+      'Dividing eq (1) by eq (2): 900/700 = (v + 30)/(v − 30), so v (in m·s⁻¹) =',
       '[ ]',
-      'm·s⁻¹',
     ],
     answer: ['240'],
     presentation: 'steps',

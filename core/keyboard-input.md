@@ -105,18 +105,27 @@ against that keyboard's inventory.
 `steps`/`fitb`/`equation` wherever the subject allows it. This is the only shape that (a)
 is fully typeable on both custom keyboards and (b) gets `normalizeNumericString`'s
 tolerance (comma→period, `9.8`==`9.80`) instead of falling back to fragile exact-string
-match. Split any unit or exponent prefix into a separate **given** `metadata` row around
-the blank — same trick `DESIGN-PHYS-02` documents for `fitb`, reusable for `steps`:
-```js
-metadata: ['ε = I(R + r)', '20 = 5(3.8 + r)', 'r =', '[ ]', 'Ω'],
-answer: ['0.2'],
-```
+match. Get the unit/label text out of the blank without inflating the row count —
+**how** differs by presentation:
+- `fitb`: split into a separate **given** `metadata` token around the blank
+  (`DESIGN-PHYS-02`) — `fitb` doesn't number rows, so extra tokens are free:
+  `metadata: ['a = ', '[ ]', ' m·s⁻²']`.
+- `steps`: **do not** split into a separate row — every `metadata` row gets its own
+  numbered "Step N" (`StepsPresentation.kt`), so a separate label/unit row becomes a
+  spurious extra step (caught 2026-09-10 — see `presentations/steps.md`'s pitfalls
+  section for the incident). Fold the label/unit into the *end of the preceding given
+  row's text* instead, so the row count matches the real step count:
+  ```js
+  metadata: ['ε = I(R + r)', '20 = 5(3.8 + r), so r (in Ω) =', '[ ]'],
+  answer: ['0.2'],
+  ```
 
 **`KEYBOARD-03`** — For `steps` specifically: give the *entire* derivation as read-only
-rows and leave one well-defined blank, matching the Maths precedent — not "one given row,
-then everything else blank." See `presentations/steps.md`'s pitfalls section; this was
-the physics incident's other half (a scaffolding defect, independent of the character-set
-one, but the two compound — see Gotcha).
+rows and leave one well-defined blank per unknown, matching the Maths precedent — not "one
+given row, then everything else blank," and not one artificial extra row per blank for its
+label/unit either (`KEYBOARD-02`). See `presentations/steps.md`'s pitfalls section; this
+was the physics incident's other half (a scaffolding defect, independent of the
+character-set one, but the two compound — see Gotcha).
 
 ## Gotcha: the two custom keyboards used different minus-sign glyphs
 

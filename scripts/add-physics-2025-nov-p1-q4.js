@@ -69,8 +69,11 @@ const questions = [
     name: 'Question 3',
     question: 'Complete the working to find the magnitude of the ball’s initial velocity. A 0.2 kg ball moving at vᵢ is struck by a bat and reverses direction, leaving with a momentum of 2 kg·m·s⁻¹ (in the new direction). The bat exerts an average net force of 200 N on the ball for 0.025 s.',
     metadata: [
-      'F_net·Δt = p_f − p_i', '200(0.025) = 2 − p_i', 'p_i =', '[ ]', 'kg·m·s⁻¹',
-      'vᵢ = |p_i| / m =', '[ ]', 'm·s⁻¹',
+      'F_net·Δt = p_f − p_i',
+      '200(0.025) = 2 − p_i, so p_i (in kg·m·s⁻¹) =',
+      '[ ]',
+      'vᵢ = |p_i| / m, so vᵢ (in m·s⁻¹) =',
+      '[ ]',
     ],
     answer: ['-3', '15'],
     presentation: 'steps',

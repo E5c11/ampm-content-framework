@@ -150,6 +150,15 @@ Read each question's data alongside its screenshot; classify PASS / AUTO_FIX / F
       with no given row between/after them, or an expected answer that's a full sentence
       rather than a short value, is a FLAG/AUTO_FIX-worthy defect, not a pass — see
       `presentations/steps.md`'s pitfalls section for the corrected pattern.
+- [ ] **`steps` numbering reads as one coherent line per real step** (a second, separate
+      defect from completability above, caught the same day *after* a completability fix
+      had already landed and been re-verified live — passing one check doesn't mean the
+      other passed). Every `metadata` row, given or blank, gets its own numbered "Step N"
+      with no merging. Read the numbered rows top to bottom as a student would: does each
+      number correspond to one real unit of working? A label row immediately followed by
+      a blank immediately followed by a unit row — e.g. "Step 3: r =", "Step 4: [blank]",
+      "Step 5: Ω" — is three fake steps for one real line ("r = ___ Ω") and is a defect,
+      not a pass, even though the blank itself is perfectly typeable and correctly graded.
 - [ ] **`context_text` visible** above the question when non-null.
 - [ ] **Images resolve** — `https://media-dev.askmoreprepmore.app/...` renders, not a broken
       placeholder.

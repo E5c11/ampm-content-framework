@@ -187,6 +187,18 @@ will the brightness of bulb Y be affected?") — distinct from `calc` (numeric w
   is worth showing, but that means showing it as *given* text, not as more blanks — a
   `steps` question earns its keep by teaching the method via visible working, not by
   forcing the student to retype your derivation verbatim.
+  **Second correction, same day:** the first fix's own answer-scaffolding technique (split
+  a blank's label and unit into their own given `metadata` rows, e.g. `'r ='`, `[ ]`,
+  `'Ω'`) was itself wrong — every `metadata` row gets its own numbered "Step N"
+  (`StepsPresentation.kt`), so this rendered as three disconnected numbered steps for one
+  real line of working ("Step 3: r =", "Step 4: [blank]", "Step 5: Ω" instead of one
+  coherent "r = ___ Ω"). Caught by the user from a live screenshot, not by the emulator
+  re-check that had just been done (which verified the blank was *typeable and correct*,
+  not that the surrounding step numbering *read sensibly*). Re-fixed in all 5 questions by
+  folding the label/unit into the end of the *preceding* given row's text instead of a new
+  row — see `presentations/steps.md` and `core/keyboard-input.md`'s `KEYBOARD-02` for the
+  corrected pattern. Lesson: a completability fix and a "does the visible flow make sense"
+  check are different checks — passing one doesn't mean the other passed too.
 - **Practice-question count scales with bundled content — `DESIGN-UNI-11`** (promoted
   from here to `core/authoring-principles.md` on 2026-09-10, once it turned out
   English HL's `DESIGN-ENG-05` section caps were already the same principle in a
