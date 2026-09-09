@@ -12,12 +12,20 @@ All three scripts are done, dev-verified, and (render-only) run clean end-to-end
 - `scripts/review-build-manifest.js` / `scripts/patch-question.js` — repointed to Cloud SQL
   (2026-09-03). See their headers in `AMPM/scripts/`.
 - `scripts/review-capture.js` — rewired 2026-09-03 to navigate by `testTag`/`resource-id`
-  (`AMPM` commit `06685d9b7` shipped the tags — `AMPM/wiki/lesson/questions-pane.md` §
-  Automation selectors, `AMPM/wiki/lesson/presentation/{type}.md`) instead of coordinate
-  swipes + `content-desc` string matching. **Verified live** against a real emulator with real
-  dev content (maths 2019 nov_p1): `lesson_questions_pane` correctly gates readiness,
-  `question_next_button` correctly advances — confirmed by the captured screenshots showing
-  genuinely different questions per step, matching the manifest.
+  (`AMPM` commit `06685d9b7` shipped the tags) instead of coordinate swipes + `content-desc`
+  string matching. **It uses exactly 3 tags, all from `AMPM/wiki/lesson/questions-pane.md`
+  § Automation selectors** — `lesson_questions_pane` (pager root — gates readiness),
+  `question_maths_tools_fab` (opens the per-question supplementary/maths-tools sheet),
+  `question_next_button` (`PagerDotNavRow`'s within-video next button, advances). Grep the
+  script for `^const TAG_` to get the exact current list rather than trusting this prose if
+  it drifts. **Verified live** against a real emulator with real dev content (maths 2019
+  nov_p1, then the physics 2025 nov_p1 paper, 2026-09-10): `lesson_questions_pane` correctly
+  gates readiness, `question_next_button` correctly advances — confirmed by the captured
+  screenshots showing genuinely different questions per step, matching the manifest.
+  `AMPM/wiki/lesson/presentation/{type}.md` (per-presentation-type input/interaction
+  selectors) is **not used by this script** — those tags exist for a future
+  render+answer-feedback pass that actually fills in and submits answers; this capture is
+  render-only (see below) and never needs them.
 
 This capture is **render-only** (screenshots + the supplementary sheet) — it doesn't submit
 answers. The per-presentation-type input tags exist for a future render+answer-feedback pass
@@ -96,9 +104,10 @@ question saves under `temp/review/<paper>_<year>/screenshots/lesson_<order>/`:
 
 > If a screenshot is black or shows the wrong screen, re-run the capture for that lesson
 > (`--lessons <order>`). The emulator must be unlocked and the app not in a broken state.
-> Navigation selectors: `AMPM/wiki/lesson/questions-pane.md` § Automation selectors +
-> `AMPM/wiki/lesson/presentation/{type}.md` — not yet wired into `review-capture.js` (see
-> Status above).
+> Navigation selectors actually in use: `AMPM/wiki/lesson/questions-pane.md` § Automation
+> selectors (see Status above for the exact 3 tags). `AMPM/wiki/lesson/presentation/
+> {type}.md`'s selectors are not wired into `review-capture.js` — not a gap to fix, just
+> not needed by a render-only capture.
 
 ---
 
