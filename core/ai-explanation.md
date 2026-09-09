@@ -71,14 +71,19 @@ format rules below)
 
 ### `clues`
 
-**`AIEXP-03`** — `enforced_by: validator` (bullet prefix, max count, trailing newline),
-`human-review` (hint-not-solution)
+**`AIEXP-03`** — `enforced_by: validator` (bullet prefix, max count, trailing newline,
+answer-leak nudge), `human-review` (hint-not-solution, final call)
 
 - Bullet list: `"- text\n- text"`
 - 1–3 bullets
 - Each bullet starts with `"- "` (dash space)
 - Bullets separated by `"\n"` — no trailing newline
-- **Points toward method or technique only** — do not solve the question or state the answer
+- **Points toward method or technique only** — do not solve the question, compute the
+  final value, or state the answer. This applies equally to the per-question `clues`
+  field on `fitb`/`calc`-type questions and, for `multiple_choice` **definitional**
+  questions ("what is this called?"), to **naming the correct term while explaining
+  it** — defining the concept in order to hint at it is exactly how the answer leaks,
+  since the definition usually *is* the term.
 - Set to `null` only if no meaningful hint can be given
 
 ```
@@ -86,7 +91,25 @@ format rules below)
 
 ❌ "- Substitute A = 1200, r = 0.085, n = 3 to get R1 530.67"  // solves the question
 ❌ "Use the compound interest formula\nConvert the rate first\n"  // missing prefix, trailing newline
+
+❌ "- Period of cos 2x = 360° ÷ 2 = 180°."  // computes and states the final answer
+✅ "- The standard period of cos x is 360°.\n- Multiplying x by 2 divides the period by the same factor."
+
+❌ "- The informal sector is defined by being unregistered and untaxed."  // names the
+   // correct MC option ("The informal sector") while "explaining" it — student just
+   // pattern-matches the term against the visible options, no reasoning required
+✅ "- Think about whether this business is registered with government and pays tax on
+   what it earns.\n- The scenario doesn't fit the formal-sector definition."
 ```
+
+*Found in production data 2026-09-09 (audited maths and geography live content — 7 of
+144 maths questions and 3 of 51 geography questions with `clues` set had this leak,
+undetected since enforcement was human-review-only): a bare computed number ("= 51.",
+"= 180°") or a defining sentence that names the exact correct term is the two recurring
+patterns. `tools/validate-questions.js` now flags (⚠, non-blocking) any `clues` field
+that contains one of the question's own `answer[]` values verbatim — treat every hit as
+a rewrite, not a false positive, unless the match is clearly coincidental (e.g. a short,
+generic number that also appears for an unrelated reason).*
 
 ### `approach`
 

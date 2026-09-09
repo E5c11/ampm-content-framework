@@ -90,6 +90,8 @@ function validateQuestion(q, index, allQuestions) {
   const label = q.name || `Question ${index + 1}`;
   const errors = [];
   const warn = msg => errors.push({ level: 'error', msg });
+  const warnings = [];
+  const caution = msg => warnings.push(msg);
 
   // Required fields
   for (const field of REQUIRED_FIELDS) {
@@ -232,6 +234,22 @@ function validateQuestion(q, index, allQuestions) {
       if (q.clues.endsWith('\n')) {
         warn(`"clues" has a trailing newline`);
       }
+
+      // Answer leakage (AIEXP-03: "points toward method only — never solve the
+      // question or state the answer"). Non-blocking: a short/generic answer value
+      // can legitimately appear in a method-only hint by coincidence, so this is a
+      // nudge for human review, not a hard stop — enforced_by stays human-review,
+      // this just makes the failure mode visible instead of silent. Found by
+      // scanning live maths/geography data 2026-09-09: clues were computing the
+      // final numeric answer outright, or — for definitional MC — naming the exact
+      // correct term while "explaining" it.
+      if (Array.isArray(q.answer)) {
+        const answerValues = q.answer.filter(a => a && String(a).trim().length >= 2);
+        const leaked = answerValues.find(a => q.clues.includes(String(a).trim()));
+        if (leaked) {
+          caution(`"clues" appears to contain the answer verbatim ("${leaked}") — clues must point toward method/characteristic only, never state, compute, or (for definitional MC) name the correct option (AIEXP-03)`);
+        }
+      }
     }
   }
 
@@ -260,7 +278,7 @@ function validateQuestion(q, index, allQuestions) {
     warn(`"exam_weight" must be 1–3 (got ${q.exam_weight})`);
   }
 
-  return { label, errors };
+  return { label, errors, warnings };
 }
 
 function validateSet(questions) {
@@ -363,7 +381,7 @@ function validateAiExp(data) {
 // Reporting
 // ---------------------------------------------------------------------------
 
-function report(label, errors) {
+function report(label, errors, warnings = []) {
   if (errors.length === 0) {
     console.log(`  ✓  ${label}`);
   } else {
@@ -371,6 +389,9 @@ function report(label, errors) {
     for (const e of errors) {
       console.log(`       ${e.msg}`);
     }
+  }
+  for (const w of warnings) {
+    console.log(`  ⚠  ${label}: ${w}`);
   }
 }
 
@@ -409,8 +430,8 @@ if (scriptPath) {
 
   const { results, setErrors } = validateSet(questions);
 
-  for (const { label, errors } of results) {
-    report(label, errors);
+  for (const { label, errors, warnings } of results) {
+    report(label, errors, warnings);
     totalErrors += errors.length;
   }
 
