@@ -57,8 +57,11 @@ lived in AMPM.
 - Historical `add-*.js` upload scripts — provenance record of uploaded content.
 - Paper-review harness (`review-build-manifest.js`, `review-capture.js`,
   `patch-question.js`, `check-video.js`) — drives the app/emulator;
-  `workflows/generate/review-paper.md` runs from the AMPM repo root. `review-build-manifest.js`
-  and `patch-question.js` still read/write Firestore — repoint pending (AMPM side).
+  `workflows/generate/review-paper.md` runs from the AMPM repo root, in `AMPM/scripts/`.
+  `review-build-manifest.js` and `patch-question.js` were repointed to Cloud SQL Postgres
+  2026-09-03 (verified — grep either file for `lib/postgres` in `AMPM/scripts/`) — this
+  line used to say the repoint was still pending; it wasn't, by the time this was checked
+  2026-09-10. `check-video.js`'s status wasn't checked.
 
 ## Dead — replaced by this repo's tooling
 

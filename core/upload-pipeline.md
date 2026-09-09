@@ -160,6 +160,7 @@ name/colour columns below are kept only so you can sanity-check you picked the r
 | `maths` | Pure Mathematics |
 | `english_hl` | English Home Language |
 | `geography` | Geography |
+| `physics` | Physical Science (DBE Physical Sciences Paper 1 — physics only, chemistry is a separate future subject; see `dbe-physics.md`) |
 
 **Papers**
 

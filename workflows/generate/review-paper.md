@@ -61,7 +61,7 @@ The run, end to end:
 
 | Input | Value |
 |-------|-------|
-| Subject | `math_lit` \| `maths` \| `english_hl` |
+| Subject | `math_lit` \| `maths` \| `english_hl` \| `geography` \| `physics` — this list is illustrative, not enforced by the script (`review-build-manifest.js` takes the subject as a plain positional arg, no allowlist); any `subject_id` with rows in `lessons` works. Update this row when a new subject's first paper is authored, so it doesn't read as unsupported. |
 | Syllabus | e.g. `dbe` |
 | Year | e.g. `2021` |
 | Paper | e.g. `nov_p1` |

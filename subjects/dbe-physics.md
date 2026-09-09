@@ -8,24 +8,27 @@ tags: [subject, physics, physical-sciences, dbe, profile]
 
 # Subject Profile — DBE Physical Sciences: Physics (Paper 1)
 
-Not yet authored against a real session — drafted from a paper review of `temp/Physical
-Sciences P1 Nov 2025 Eng.pdf` + `temp/CAPS FET PHYSICAL SCIENCE WEB.pdf`, 2026-09-09.
-Treat every paper-structure claim below as illustrative until the first authoring session
-confirms it — the same caveat `dbe-geography.md` carried for its first paper.
+Drafted 2026-09-09 from a paper review (before any content existed), then evidenced
+2026-09-09/10 against a complete authored paper (`files/Physical Sciences P1 Nov 2025
+Eng.pdf`, DBE 2025 Nov P1 — all 10 questions, 13 lessons, 64 practice questions, dev
+Postgres) — see the Completed papers ledger for what that session actually confirmed vs.
+what's still only illustrative. Sections below are marked per-claim where something
+remains unconfirmed (e.g. "MathText scope — still open"); treat anything without such a
+marker as evidenced, not aspirational.
 
 ## Identity
 
 | Field | Value |
 |---|---|
-| `syllabus` / `subject` | `"dbe"` / `"physics"` — **Physics is Paper 1 only.** DBE Physical Sciences' Paper 2 is Chemistry (Matter & Materials / Chemical Systems / Chemical Change knowledge areas) — a separate future subject profile (`dbe-chemistry.md`), not covered here. |
+| `syllabus` / `subject` | `"dbe"` / `"physics"` — this `subject_id` is Physical Sciences as a whole (one subject, one DB row — see the `subjects` reference row below), not "physics" as distinct from a separate chemistry subject. Physics (Paper 1) and Chemistry (Paper 2, Matter & Materials / Chemical Systems / Chemical Change knowledge areas) are two **papers** under this same subject_id. This profile covers Paper 1 only; Paper 2/Chemistry content is a separate future authoring effort but reuses this same `subject_id = "physics"` — no new `subjects` row needed, just a `dbe-chemistry.md` paper-structure profile analogous to this one. |
 | Postgres tables | `lessons`, `questions` — `subject_id = "physics"` |
 | Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'physics'` — empty until the first authoring session populates them. Reuse before `tools/create-curriculum-node.js` / `create-skill.js` (`PIPE-08`) |
 | Vocabulary dump | `node tools/dump-curriculum-vocabulary.js --subject physics --out temp/curriculum-vocab.json` (Auth Proxy running) |
 | Not authored | display names/colours — resolved from the reference tables by JOIN |
-| Papers | `nov_p1` (physics). `june_p1` presumed to exist once a June-diet paper is sourced. No `p2` — see subject/syllabus note above. |
+| Papers | `nov_p1` (physics) authored. `june_p1` presumed to exist once a June-diet paper is sourced. `nov_p2`/`june_p2` (chemistry) not yet authored, but will land under this same `subject_id = "physics"` — see subject/syllabus note above. |
 | **Curriculum document (`DESIGN-UNI-09`)** | Not strictly required every session — physics is procedural like Maths (see Subject rules below) — but `files/CAPS FET PHYSICAL SCIENCE WEB.pdf` is the source for the curriculum-unit breakdown below and should be consulted for topic scope/grade placement, especially for the recall-item relational framing. |
 | **Source files** | `files/Physical Sciences P1 Nov 2025 Eng.pdf` (question paper), `files/Physical Sciences P1 Nov 2025 MG Afr & Eng.pdf` (memo — sourced 2026-09-09), `files/CAPS FET PHYSICAL SCIENCE WEB.pdf` (curriculum). `temp/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf` is Paper 2/Chemistry — confirmed by its own title page, out of scope for this profile, left in `temp/` rather than moved to `files/`. |
-| **New `subjects` reference row needed** | `id: "physics"`, `name` TBD (`"Physics"` vs. `"Physical Sciences P1"` — decide against actual app usage, cf. English HL's paper-named split), `color: "#6561A4"` (`Indigo400` in `AMPM/core/designsystem/.../theme/Colour.kt` — unclaimed by any current subject, same sourcing approach Geography used for `GreenLime`), icon TBD. Owner-gated insert, same as Geography's row. |
+| `subjects` reference row | **Already exists** — `id: "physics"`, `name: "Physical Science"`, `full_name: "Physical Sciences"`, `code: "PHYSICS"`, `category: "physics_lessons"`, `sort_order: 4`, `color: "#12B886"`, `icon: "atom"`, created 2026-07-09 (well before this profile or any physics content — confirmed by querying dev Postgres directly, 2026-09-10, after this profile incorrectly stated an owner-gated insert was still needed and proposed a different, wrong color; don't repeat that mistake — check the DB before assuming a reference row doesn't exist). **This is the single row for the whole Physical Sciences subject** (`name: "Physical Science"`), covering both Physics (P1) and Chemistry (P2) — the full `subjects` table having no separate `chemistry` row (checked 2026-09-10) is expected, not a gap: physics and chemistry are papers within one subject, not two subjects. A future `dbe-chemistry.md` profile reuses this same row/`subject_id`, it does not create a new one. |
 
 ## Paper structure / video mapping
 
@@ -92,14 +95,14 @@ same-session dev-only content, never shipped/published to real users).
 
 ## Allowed presentation types
 
-Proposed, pending confirmation in the first authoring session — physics is procedural
-like Maths, so all eight are plausible (unlike Geography's evidenced 5-type
-restriction): `fitb`, `multiple_choice`, `steps`, `match`, `ordering`, `multi_select`,
-`fraction`, `equation`. The sampled 2025 Nov P1 paper leans heavily on
-`multiple_choice` (including "which combination of statements is correct" items —
-encode as a normal MC with combo options, not `multi_select`) and `fitb`/`steps` for
-calculations; `equation`/`fraction` look rare (no ratio or symbolic-expression answers
-observed in this paper) but aren't excluded.
+**Confirmed against a complete paper** (2025 Nov P1, all 10 questions authored
+2026-09-10 — see the evidenced list in the ledger below for exactly which 6 of 8 were
+actually used): `fitb`, `multiple_choice`, `steps`, `match`, `ordering`, `multi_select`
+all confirmed working; `fraction`/`equation` remain unused so far (not excluded, just
+never came up — this paper's answers are always units-carrying numbers, MC options, or
+multi-step working, never a bare algebraic expression or true fraction) — reassess if a
+future paper's content calls for either, the way Geography reassessed and landed on a
+5-type restriction instead of physics's current no-restriction stance.
 
 Question `type` vocabulary (extends Maths's, minus `fraction`/`proof`, plus
 `interpretation` borrowed from Geography for diagram/graph reading): `definition`,
@@ -205,7 +208,8 @@ physics content existed to expose the bug in production:
 - Fixed two existing unit tests that had locked in the old (wrong) behaviour
   (`SubjectKeyboardTypeTest.kt`, `KeyboardResolverTest.kt`), and added physics-specific
   cases to both plus `QuestionsValidatorTest.kt`. `:feature:watch:testDebugUnitTest`
-  passes. Not yet committed in `AMPM` — do that alongside/after this profile.
+  passes. Committed in `AMPM` as `d0dd7adfa` ("Route physics through the maths
+  keyboard/calculator resolvers") — not pushed (no AMPM push without explicit request).
 
 ## MathText scope — still open
 
