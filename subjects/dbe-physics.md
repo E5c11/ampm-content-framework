@@ -29,38 +29,72 @@ confirms it — the same caveat `dbe-geography.md` carried for its first paper.
 
 ## Paper structure / video mapping
 
-**One lesson per exam numbered subsection when subsections are topically
-independent; one lesson per top-level exam question when its sub-parts share one
-continuous scenario.** Corrected 2026-09-10 after shipping Q1 wrong the first time
-(bundled all of 1.1–1.10 into a single "Question 1" lesson, copying Maths's
-convention without checking it actually fit) — the user caught it: *"why is the
-complete Q1 all together in one lesson?"*
+**Three-way decision, not two.** Went through two wrong shapes for Q1 before landing
+here on 2026-09-10 — recorded so a future session doesn't re-walk the same path:
 
-- **Q1 (MCQ block, 1.1–1.10):** each item is a wholly independent mini-scenario on a
-  different topic (mechanics, waves, electrostatics, circuits, electrodynamics,
-  optics) — matches Geography's "one video per exam numbered subsection" model, not
-  Maths's bundling. **10 lessons, orders 1–10**, `name: "Question 1.1"` … `"Question
-  1.10"`, 2 fresh practice questions each, one `ai_explanation` entry each.
-- **Q2–Q10 (long-form questions):** each top-level question's sub-parts (e.g. Q2's
-  2.1–2.4) share one continuous scenario/diagram/given-values set — bundling them
-  into one lesson (Maths's model) is correct here, since splitting would either
-  fragment shared context or force duplicating the setup across lessons. **One
-  lesson per top-level question**, `order` continuing the paper-wide sequence after
-  Q1's 10 (Q2 = order 11, Q3 = order 12, …).
+1. First cut: bundled all of 1.1–1.10 into one "Question 1" lesson, copying Maths's
+   convention without checking it fit. User caught it: *"why is the complete Q1 all
+   together in one lesson?"*
+2. Second cut (overcorrection): one lesson per numbered item, 10 lessons for Q1,
+   copying Geography's convention instead. Technically fixed the topic-mixing
+   problem, but each item is only 2 marks — 10x the curriculum-node/tag/image/script
+   overhead for content that thin is disproportionate, and it broke image cropping
+   (multiple items sharing one exam page needed precision `--inspect` cuts for every
+   boundary). User caught this too: *"question 1 is MCQs, and it's tough to create a
+   lesson out of each one."*
+3. **Where it landed: cluster independent MCQ items by the exam's own knowledge-area
+   grouping** — which turns out to exactly mirror CAPS's four knowledge areas
+   (confirmed by checking the curriculum document itself, Section 2.6 "Weighting of
+   Topics"). Q1's ten items aren't randomly ordered — DBE groups them by area, in the
+   same order the long-form questions later follow:
 
-The deciding test for any future physics paper: **would a student watching just one
-sub-part's lesson be missing shared setup another sub-part depends on?** If yes,
-bundle. If no — each sub-part is really its own self-contained question — split.
+   | Part | Items | Knowledge area | CAPS G12 weight |
+   |---|---|---|---|
+   | 1 | 1.1–1.5 | Mechanics | 17.5% |
+   | 2 | 1.6 | Waves, Sound & Light | 3.75% |
+   | 3 | 1.7–1.9 | Electricity & Magnetism | 7.5% |
+   | 4 | 1.10 | Matter & Materials | 3.75% |
+
+   **4 lessons, orders 1–4**, `name: "Question 1.1–1.5"` / `"1.6"` / `"1.7–1.9"` /
+   `"1.10"`. Practice-question count scales with the part's real weight (10, 2, 5–6,
+   2) rather than a fixed 2-per-item — the thin single-item parts (2, 4) are fine
+   left thin, since Waves and Matter & Materials both get much fuller treatment
+   later as their own long-form questions (presumably Q6, Q10) — Part 2/4 here are
+   only the MCQ warm-up, not that topic's only coverage.
+
+**The general rule this leaves for future papers, in priority order:**
+1. If sub-parts share one continuous scenario/diagram/given-values set (e.g. Q2's
+   2.1–2.4), bundle into one lesson — splitting would fragment shared context.
+   *(Applies to Q2–Q10, the long-form questions.)*
+2. Otherwise, if it's a block of independent items (an MCQ section), **cluster by
+   the exam's own knowledge-area ordering** before defaulting to either one-lesson-
+   total or one-lesson-per-item — check the curriculum document's topic/weighting
+   breakdown to confirm the clusters, don't just eyeball it.
+3. Never make the granularity finer than the content actually supports — a 2-mark
+   item doesn't need its own curriculum-node subtree and image crop unless nothing
+   else groups it.
+
+**Image cropping:** clustering by knowledge area minimized this — 4 of 5 exam pages
+in Q1 turned out to belong entirely to one part each (no crop needed, whole page
+reused), and only one page (page 5, spanning 1.5/1.6/1.7 across three different
+parts) needed splitting. Found the cut points empirically: `--inspect`'s band-scan
+output was too compressed to read reliably by itself here (short single-line MCQ
+options, unlike Geography's longer-form content), so cut points were found by
+extracting overlapping test slices (`--question-pages "5:end=N"` /
+`"5:start=N:end=M"`) and visually narrowing until each slice held exactly one
+item — confirmed clean at `end=333` (1.5), `start=333:end=478` (1.6), `start=478`
+(1.7). Prefer this iterate-and-view approach over trusting the band scan alone when
+content is dense/short-lined.
 
 **Engineering note:** `lessons`/`questions`/sub-question IDs are deterministic from
 `(paper, order)` / `(lesson, question order)` / `(lesson, sub-question number)` alone
 (`tools/lib/uuid.js`) — reusing an `order` value for a differently-structured lesson
 silently leaves the old rows' children (extra questions, extra `ai_explanation`
-entries) orphaned-but-attached unless explicitly cleaned up first. Fixing Q1 required
-an explicit `DELETE` of the old order-1/order-2 rows before rebuilding, since no
-tooling in this repo does soft-delete for a full lesson (`PERSIST-04`'s soft-delete
-norm has no script backing it yet — direct SQL was used, justified only because this
-was same-session dev-only content, never shipped).
+entries) orphaned-but-attached unless explicitly cleaned up first. Both restructures
+required an explicit `DELETE` of the old rows before rebuilding, since no tooling in
+this repo does soft-delete for a full lesson (`PERSIST-04`'s soft-delete norm has no
+script backing it yet — direct SQL was used, justified only because this was
+same-session dev-only content, never shipped/published to real users).
 
 ## Allowed presentation types
 
@@ -225,7 +259,7 @@ once a first session populates it, `PIPE-08`.)
 
 | Paper | Videos | Questions | Date |
 |---|---|---|---|
-| DBE 2025 Nov P1 | 11 (Q1.1–Q1.10 + Q2 — paper-only, no video) | 24 | 2026-09-09/10 — pilot for this profile; Q1 rebuilt 2026-09-10 as 10 subsection lessons (see Paper structure / video mapping above) |
+| DBE 2025 Nov P1 | 5 (Q1 parts 1–4 + Q2 — paper-only, no video) | 23 | 2026-09-09/10 — pilot for this profile; Q1 went through two rebuilds before landing on knowledge-area clustering (see Paper structure / video mapping above) |
 
 Formula sheet URLs (reuse per paper):
 - 2025 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/physics/2025/nov_p1/q0/question_1.png` (+ `question_2.png`, `question_3.png`)
