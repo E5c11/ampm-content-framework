@@ -76,8 +76,15 @@ const questions = [
     name: 'Question 3',
     question:
       'Complete the working to find the cost of operating a circuit for 2 hours. An AC generator produces a maximum potential difference of 200 V across a resistance of 50 Ω; electricity costs R2.50 per kWh.',
-    metadata: ['V_rms = V_max/√2 = 200/√2 = 141.42 V', '[ ]', '[ ]', '[ ]'],
-    answer: ['P_ave = V_rms²/R = (141.42)²/50 = 400 W', 'E = P_ave × Δt = 0.4 kW × 2 h = 0.8 kWh', 'Cost = E × tariff = 0.8 × 2.50 = R2.00'],
+    metadata: [
+      'V_rms = V_max/√2 = 200/√2 = 141.42 V',
+      'P_ave = V_rms²/R = (141.42)²/50 = 400 W',
+      'E = P_ave × Δt = 0.4 kW × 2 h = 0.8 kWh',
+      'Cost = E × tariff =',
+      '[ ]',
+      'Rand (R)',
+    ],
+    answer: ['2.00'],
     presentation: 'steps',
     type: 'calc',
     unit: 'electricity_magnetism', topic: 'electrodynamics', subtopic: 'ac_generator_rms',

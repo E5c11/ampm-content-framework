@@ -142,6 +142,14 @@ Read each question's data alongside its screenshot; classify PASS / AUTO_FIX / F
 - [ ] **Presentation matches UI:** per `presentations/{type}.md` renderer contract — chips
       for `multiple_choice`, input for `fitb`, num/denom for `fraction`, draggable items for
       `ordering`, columns for `match`, equation field for `equation`, step inputs for `steps`.
+- [ ] **`steps` completability** (missed entirely in the 2026-09-10 physics review — 5
+      questions all marked PASS despite being unanswerable): re-deriving the stored
+      `answer` independently is not enough. Look at the *given* rows only (everything in
+      `metadata` that isn't `"[ ]"`) and ask: with just those + the question text, does a
+      student have exactly one defensible thing to type per blank? Consecutive blanks
+      with no given row between/after them, or an expected answer that's a full sentence
+      rather than a short value, is a FLAG/AUTO_FIX-worthy defect, not a pass — see
+      `presentations/steps.md`'s pitfalls section for the corrected pattern.
 - [ ] **`context_text` visible** above the question when non-null.
 - [ ] **Images resolve** — `https://media-dev.askmoreprepmore.app/...` renders, not a broken
       placeholder.

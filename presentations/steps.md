@@ -83,3 +83,33 @@ presentation: "steps",
   `DESIGN-MATH-06`).
 - Blank values are compared exactly (after trim) — keep expected strings short and
   unambiguous.
+
+**Consecutive blanks with nothing given between/around them are a real defect, not just
+a style choice** (caught 2026-09-10: all 5 physics `steps` questions shipped with only
+`metadata[0]` given and every remaining row `"[ ]"` — 2-3 blanks in a row, no anchor. The
+student sees a bare "Enter answer" box with zero indication of what to type or in what
+format; several expected answers were also full algebraic sentences like `"20 = 5(3.8 +
+r)"` requiring character-exact reproduction, which is effectively unanswerable). Prefer
+**one blank per question, at the end**, matching the pre-existing Maths precedent (`"Determine
+f′(x) from first principles..."`, four given rows then one trailing blank worth `"3"`) —
+show the *entire* derivation as given/read-only rows and ask only for the final,
+well-defined result. This still teaches the method (the student reads every step) without
+demanding they reproduce your exact phrasing of an intermediate algebraic manipulation,
+which rarely has one canonical written form even when the *value* is unambiguous.
+
+**Keep the blank numeric to get tolerance, not exact-match.** `QuestionsValidator.kt`'s
+numeric tolerance (`normalizeNumericString`) only fires when the *entire* blank value
+parses as a number — `"0.2"` gets it, `"r = 0.2 Ω"` does not (mixed text/number strings
+fall through to exact-string match). Split the label and unit into their own given rows
+around the blank, same trick as `fitb`'s `DESIGN-PHYS-02` unit-placement rule:
+```js
+metadata: ['ε = I(R + r)', '20 = 5(3.8 + r)', 'r =', '[ ]', 'Ω'],
+answer: ['0.2'],
+```
+For scientific notation, pre-factor the exponent into the trailing given row (same
+convention several physics `fitb` answers already use) so the blank is still a bare
+coefficient:
+```js
+metadata: ['ΔE = E_a − E_b', '...', 'f =', '[ ]', '× 10¹⁴ Hz'],
+answer: ['7.54'],
+```

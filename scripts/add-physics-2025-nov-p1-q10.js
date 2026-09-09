@@ -110,8 +110,15 @@ const questions = [
     name: 'Question 5',
     question:
       'Complete the working to find the frequency of the emitted photon. An atom has electron energy levels at E_a = 8.0 × 10⁻¹⁹ J and E_b = 3.0 × 10⁻¹⁹ J. An electron moves from E_a to E_b, emitting a photon.',
-    metadata: ['ΔE = E_a − E_b', '[ ]', '[ ]', '[ ]'],
-    answer: ['ΔE = 8.0 × 10⁻¹⁹ − 3.0 × 10⁻¹⁹ = 5.0 × 10⁻¹⁹ J', 'E = hf ⇒ 5.0 × 10⁻¹⁹ = (6.63 × 10⁻³⁴)f', 'f = 7.54 × 10¹⁴ Hz'],
+    metadata: [
+      'ΔE = E_a − E_b',
+      'ΔE = 8.0 × 10⁻¹⁹ − 3.0 × 10⁻¹⁹ = 5.0 × 10⁻¹⁹ J',
+      'E = hf ⇒ 5.0 × 10⁻¹⁹ = (6.63 × 10⁻³⁴)f',
+      'f =',
+      '[ ]',
+      '× 10¹⁴ Hz',
+    ],
+    answer: ['7.54'],
     presentation: 'steps',
     type: 'calc',
     unit: 'matter_materials', topic: 'optical_phenomena', subtopic: 'atomic_energy_levels',

@@ -174,9 +174,19 @@ will the brightness of bulb Y be affected?") — distinct from `calc` (numeric w
   "calculate the reading on A1" style numeric substitution work — fixed this session
   (see App-side fixes below) so numeric `steps` blanks now get the same `"9.8"` ==
   `"9.80"` / comma-decimal tolerance `fitb` has, while symbolic blanks stay
-  exact-match. Prefer `steps` over one big `fitb` when the working itself (not just
-  the final number) is the thing being tested — e.g. Q8's "calculate the emf" chain of
-  substitutions.
+  exact-match.
+  **Correction, 2026-09-10 (caught by direct user testing, not the review agent):** all 5
+  `steps` questions shipped in this paper (Q4/Q6/Q8/Q9/Q10) initially had 2-3
+  *consecutive* blank rows after only `metadata[0]`, with nothing given in between to
+  anchor them — unanswerable in practice (no indication of expected content/format) and
+  several expected values were full algebraic sentences requiring character-exact
+  reproduction. Fixed by giving the *entire* derivation as read-only rows and leaving
+  **one blank, at the end** — see `presentations/steps.md`'s now-expanded pitfalls
+  section for the corrected pattern (matches the pre-existing Maths precedent, which
+  always did this correctly). Prefer `steps` over one big `fitb` when the working itself
+  is worth showing, but that means showing it as *given* text, not as more blanks — a
+  `steps` question earns its keep by teaching the method via visible working, not by
+  forcing the student to retype your derivation verbatim.
 - **Practice-question count scales with bundled content — `DESIGN-UNI-11`** (promoted
   from here to `core/authoring-principles.md` on 2026-09-10, once it turned out
   English HL's `DESIGN-ENG-05` section caps were already the same principle in a
@@ -287,3 +297,13 @@ path had no uploader before this). Also surfaced a real validator gap: a questio
 field referencing a shared `const` (e.g. a base image URL) breaks
 `validate-questions.js`'s isolated eval of the `questions` array — inline literal URLs
 in per-question fields instead.
+
+**A `workflows/generate/review-paper.md` run (2026-09-10) reported 62 PASS/2 AUTO_FIX/0
+FLAG across all 64 questions and missed the `steps`-scaffolding defect above entirely**
+(all 5 affected questions were marked PASS) — it verified the *stored answer values* were
+correct by independent re-derivation, but never assessed whether the on-screen blank
+layout was actually completable by a student. Caught instead by the user directly
+exercising the app. Lesson for future reviews: `steps` questions need a completability
+check (can a student, seeing only the given rows + blank inputs, know what to type?), not
+just an answer-correctness check — add this explicitly if `review-paper.md`'s Phase 3
+render checklist is revisited.
