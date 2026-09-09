@@ -273,7 +273,7 @@ once a first session populates it, `PIPE-08`.)
 
 | Paper | Videos | Questions | Date |
 |---|---|---|---|
-| DBE 2025 Nov P1 | 5 (Q1 parts 1–4 + Q2 — paper-only, no video) | 23 | 2026-09-09/10 — pilot for this profile; Q1 went through two rebuilds before landing on knowledge-area clustering (see Paper structure / video mapping above) |
+| DBE 2025 Nov P1 | 6 (Q1 parts 1–4, Q2, Q3 — paper-only, no video) | 28 | 2026-09-09/10 — pilot for this profile; Q1 went through two rebuilds before landing on knowledge-area clustering (see Paper structure / video mapping above); Q3 confirmed rule 1 (single-scenario bundling) and DESIGN-PHYS-06 (practice count scales with sub-part count) both hold on a second long-form question |
 
 Formula sheet URLs (reuse per paper):
 - 2025 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/physics/2025/nov_p1/q0/question_1.png` (+ `question_2.png`, `question_3.png`)
