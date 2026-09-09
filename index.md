@@ -35,6 +35,7 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `AMPM-CONTENT-SUBJ-DBE-MATHS` | `subjects/dbe-maths.md` | all 8 |
 | `AMPM-CONTENT-SUBJ-DBE-ENGLISH-HL` | `subjects/dbe-english-hl.md` | mc, multi-select, fitb, ordering, match |
 | `AMPM-CONTENT-SUBJ-DBE-GEOGRAPHY` | `subjects/dbe-geography.md` | mc, multi-select, fitb, match, steps |
+| `AMPM-CONTENT-SUBJ-DBE-PHYSICS` | `subjects/dbe-physics.md` | all 8 (proposed, unconfirmed) |
 
 ## workflows/generate/ (thin orchestrators)
 
