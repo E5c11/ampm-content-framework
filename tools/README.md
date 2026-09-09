@@ -12,6 +12,7 @@ touching Postgres / GCS / content data; Python for doc-graph upkeep only.
 | `create-tag.js` | Creates one `tags` row (lesson `tags` FK to it — `PIPE-06`). | Node |
 | `create-english-text.js` | Creates / `--retire` / `--reinstate` an `english_texts` row (Paper 2 prescribed text). | Node |
 | `upload-exam-images.js` | Uploads extracted exam-page PNGs to the media bucket (`media-dev.askmoreprepmore.app`, ADC auth); prints ready-to-paste URL arrays (`PIPE-02`). | Node |
+| `upload-question-supplementary.js` | Uploads a single question's own newly-generated `supplementary_material` figure (recreated diagram/graph, never a real-exam extract) to `question_supplementary/{subject}/{year}/{paper}/q{order}/{type}_{index}.png`; prints the ready-to-paste value. Added 2026-09-09 — the path was documented in subject profiles but had no uploader until physics Q2 needed a free-body diagram. | Node |
 | `extract-exam-pages.py` | Extracts question/annexure/memo page images from exam PDFs; `--inspect` finds crop points. | Python |
 | `upload-script-template.js` | Template for per-question-group upload scripts (pipeline Phase 4). Copy, fill, validate, run against dev. | Node |
 | `pg-smoke.js` | Read-only check that the Postgres write layer reaches Cloud SQL through the Auth Proxy; prints the Flyway head. | Node |
