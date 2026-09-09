@@ -128,8 +128,12 @@ directly (one-off, matching the same owner-gated direct-insert path used for the
 ## Paper structure / video mapping
 
 One video per exam **numbered subsection** (1.1, 1.2, 1.3, …) — same granularity as Math
-Lit/Maths's "one video per question group." `order` is the subsection's sequential
-position across the whole paper. nov_p2 2025 = 13 groups:
+Lit/Maths's "one video per question group." This is `DESIGN-UNI-10` (`core/
+authoring-principles.md`) rule 2 taken to its finest natural grain: every Geography
+subsection here is independently themed, so the cluster boundary and the subsection
+boundary coincide (contrast Physics, where several subsections share one knowledge-area
+cluster). `order` is the subsection's sequential position across the whole paper.
+nov_p2 2025 = 13 groups:
 
 | Group | Video | Marks | `map_key` |
 |---|---|---|---|

@@ -62,17 +62,11 @@ here on 2026-09-10 — recorded so a future session doesn't re-walk the same pat
    later as their own long-form questions (presumably Q6, Q10) — Part 2/4 here are
    only the MCQ warm-up, not that topic's only coverage.
 
-**The general rule this leaves for future papers, in priority order:**
-1. If sub-parts share one continuous scenario/diagram/given-values set (e.g. Q2's
-   2.1–2.4), bundle into one lesson — splitting would fragment shared context.
-   *(Applies to Q2–Q10, the long-form questions.)*
-2. Otherwise, if it's a block of independent items (an MCQ section), **cluster by
-   the exam's own knowledge-area ordering** before defaulting to either one-lesson-
-   total or one-lesson-per-item — check the curriculum document's topic/weighting
-   breakdown to confirm the clusters, don't just eyeball it.
-3. Never make the granularity finer than the content actually supports — a 2-mark
-   item doesn't need its own curriculum-node subtree and image crop unless nothing
-   else groups it.
+**The general decision (`DESIGN-UNI-10`, promoted from here to `core/authoring-
+principles.md` on 2026-09-10 once English HL turned out to already be following the
+same principle via `DESIGN-ENG-05`) — bundle sub-parts sharing one continuous scenario
+into one lesson (Q2–Q10 here); otherwise cluster independent items by the exam's own
+thematic ordering rather than one-lesson-total or one-lesson-per-item (Q1 here).**
 
 **Image cropping:** clustering by knowledge area minimized this — 4 of 5 exam pages
 in Q1 turned out to belong entirely to one part each (no crop needed, whole page
@@ -180,20 +174,14 @@ will the brightness of bulb Y be affected?") — distinct from `calc` (numeric w
   exact-match. Prefer `steps` over one big `fitb` when the working itself (not just
   the final number) is the thing being tested — e.g. Q8's "calculate the emf" chain of
   substitutions.
-- **`DESIGN-PHYS-06` — practice-question count scales with how much real content a
-  lesson bundles, it isn't a flat 2–4.** Same principle as English HL's
-  `DESIGN-ENG-05` section caps (2–4 for narrow sections, up to 7 for content-dense
-  ones like Comprehension) — a bundled long-form-question lesson (rule 1 in "Paper
-  structure" above) covers as many real exam sub-questions as that question has, so
-  its practice set should too. Caught 2026-09-10: Q2 (5 real sub-questions, 2.1–2.4
-  with 2.3 split) shipped with only 4 practice questions and no dedicated practice
-  for 2.3.2 — the highest-mark sub-part (5 of 17 marks) had no matching skill
-  exercised. Fixed by adding a 5th question. Rule of thumb: roughly one fresh
-  practice question per real exam sub-part for a bundled lesson (more for a
-  heavily-weighted sub-part, e.g. two angles on the same skill), not a fixed count —
-  check the sub-part breakdown before deciding the practice set is complete, don't
-  just default to "2-4 and done." Single-item parts (Q1's Part 2/Part 4 above) stay
-  at 2, since there's only one real sub-part to cover.
+- **Practice-question count scales with bundled content — `DESIGN-UNI-11`** (promoted
+  from here to `core/authoring-principles.md` on 2026-09-10, once it turned out
+  English HL's `DESIGN-ENG-05` section caps were already the same principle in a
+  different subject). Caught 2026-09-10: Q2 (5 real sub-questions, 2.1–2.4 with 2.3
+  split) shipped with only 4 practice questions and no dedicated practice for 2.3.2 —
+  the highest-mark sub-part (5 of 17 marks) had no matching skill exercised. Fixed by
+  adding a 5th question. Single-item parts (Q1's Part 2/Part 4) correctly stay at 2,
+  since there's only one real sub-part to cover.
 
 ## App-side keyboard/calculator routing — resolved 2026-09-09
 

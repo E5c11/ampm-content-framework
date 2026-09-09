@@ -128,6 +128,62 @@ freshness without needing the syllabus document consulted every session. Add the
 curriculum document's path to the subject profile's Identity table once sourced (see
 `dbe-geography.md`).
 
+### `DESIGN-UNI-10` — Lesson/video granularity: bundle vs. split
+
+`enforced_by: human-review`
+
+Promoted from `dbe-physics.md`, 2026-09-10, after Physics re-derived this from scratch
+through two wrong shapes on the same paper — the reasoning is subject-agnostic and every
+subject was already following some instance of it without it being written down anywhere
+general.
+
+**The decision, in priority order:**
+1. If an exam question's sub-parts share one continuous scenario/diagram/given-values
+   set — later sub-parts build on earlier ones, or all reference the same figure —
+   bundle them into **one lesson**. Splitting would fragment shared context a student
+   needs (either duplicating the setup across lessons, or leaving a lesson unusable on
+   its own).
+2. Otherwise, if it's a block of independent items (e.g. an MCQ section, each item a
+   fresh unrelated mini-scenario), **cluster by the exam's own thematic/topic ordering**
+   — check the curriculum document's topic breakdown to confirm the clusters, don't just
+   eyeball it — rather than defaulting to either one-lesson-for-the-whole-block (mixes
+   unrelated topics into one video) or one-lesson-per-item (disproportionate
+   curriculum-node/tag/image/script overhead for a single-mark item, and multiplies image-
+   cropping work when several items share one exam page).
+3. Never make the granularity finer than the content actually supports — a thin item
+   doesn't need its own curriculum-node subtree and image crop unless nothing else groups
+   it with related items.
+
+**Existing instances, once you know to look for it:** Geography's "one video per exam
+numbered subsection" (`dbe-geography.md`) is rule 2 taken to its finest natural grain,
+since each Geography subsection is independently themed — there was no coarser cluster
+to find. Maths bundling a top-level question's sub-parts into one lesson (e.g. 2019 Nov
+P1 Q1's 1.1.1–1.2, all one algebra theme) is rule 1. Physics's Q1 MCQ block clustered by
+CAPS knowledge area (`dbe-physics.md`) is rule 2 with a real cluster to find, and Q2–Q10
+(each one continuous scenario) is rule 1.
+
+### `DESIGN-UNI-11` — Practice-question count scales with bundled content
+
+`enforced_by: human-review`
+
+Promoted from `dbe-physics.md`'s `DESIGN-PHYS-06`, 2026-09-10. A lesson's practice-set
+size should scale with how much real exam content it bundles (how many real sub-parts,
+per `DESIGN-UNI-10` rule 1) — not default to a fixed count regardless. A lesson covering
+one real sub-question and a lesson covering five need different amounts of practice; a
+flat "2–4 and done" silently under-covers the latter (a real Physics case: a 5-sub-part
+lesson shipped with only 4 practice questions and no practice at all for its
+highest-mark sub-part).
+
+**English HL's `DESIGN-ENG-05` section caps are an instance of this rule, not a separate
+one** — 2–4 for narrow sections (Summary, Advertising, Media/Cartoons) vs. up to 7 for
+content-dense ones (Comprehension, Language, Paper 3) is exactly "scale with bundled
+content," just expressed as a per-section table instead of a per-lesson computation.
+Rule of thumb for a bundled lesson without a subject-specific table: roughly one fresh
+practice question per real exam sub-part (more for a heavily-weighted or multi-skill
+sub-part), checked against the sub-part breakdown before deciding the set is complete —
+not assumed from a flat default. A lesson covering only one real sub-part (rule 2's
+single-item clusters) stays at the subject's normal narrow-case count.
+
 ---
 
 ## Maths and Math Lit — Additional Rules
@@ -258,6 +314,11 @@ standard sentence case — matching is case-insensitive.
 ### `DESIGN-ENG-05` — Section caps
 
 `enforced_by: human-review`
+
+This is English HL's instance of the general `DESIGN-UNI-11` principle
+(practice-question count scales with bundled content) — a per-section table instead of
+a per-lesson computation, because English's sections have a fixed, known shape session
+to session.
 
 | Section | Max questions |
 |---------|--------------|
