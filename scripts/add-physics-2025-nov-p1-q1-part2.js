@@ -97,7 +97,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- Use fₗ = [v / (v − vₛ)] × fₛ for a source moving toward a stationary listener.\n- Substitute the speed of sound, the source’s speed, and the emitted frequency.',
+    clues: '- Use fₗ = \frac{v}{v − vₛ} × fₛ for a source moving toward a stationary listener.\n- Substitute the speed of sound, the source’s speed, and the emitted frequency.',
   },
 ];
 

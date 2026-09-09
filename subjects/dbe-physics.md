@@ -269,8 +269,27 @@ Postgres + their upload scripts. Verified live on the emulator.
 self-enforcing — it must actually block authoring, or be checked immediately before the
 first content ships, not discovered after. The data-sheet notation conventions (`·` as
 the SI unit separator, `×`/`x` for scientific notation) mentioned in the original version
-of this section turned out fine as plain Unicode pass-through — no markup issue there,
-only the subscript one.
+of this section turned out fine as plain Unicode pass-through — no markup issue there.
+
+**Same day, same root cause, a second pass**: the user then asked "why isn't `|pᵢ|/m`
+in fraction format" — a plain `/` violates `MATHTEXT-01` (fractions needing structural
+display must use `\frac{}{}`), a rule that already existed and would have applied to
+maths/math_lit content all along; physics just hadn't been checked against it. A full
+sweep found more plain-`/` fields across `questions` (12 fields, 11 rows) and
+`lesson_ai_explanation_sub_questions` (14 sub-questions) — all real math fractions fixed,
+correctly distinguishing genuine math fractions from English "or" usage ("heating/power
+effect", "series/parallel") which must stay untouched. This surfaced a third, more
+serious rendering gap while fixing it: `\frac{}{}` was first applied uniformly to both
+tables, but `lesson_ai_explanation_sub_questions` renders through a **completely
+different, plain-`Text()` composable** (`AiExplanationSheet.kt`) with no `MathText`
+support at all — so `\frac{}{}` there would have shown up as literal broken text, worse
+than the plain `/` it replaced. Caught by reading the actual renderer source before
+shipping, not by assumption; reverted for that table (kept as plain `/`) while the
+`questions` table (which does render through `MathText`) kept the `\frac{}{}` fix.
+Documented as `AIEXP-06` in `core/ai-explanation.md` so this distinction doesn't have to
+be rediscovered from source next time. Verified live for both the `metadata`-blank case
+(`presentations/steps.md`'s render path) and the separate `questions.clues` hint-dialog
+case, since they're two more distinct code paths that both needed checking independently.
 
 ## Formula sheet (every paper)
 

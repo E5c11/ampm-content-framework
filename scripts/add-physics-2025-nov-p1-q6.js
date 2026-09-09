@@ -98,16 +98,16 @@ const questions = [
     question:
       'Complete the working to find the speed of sound in air. A train’s horn emits sound at frequency fₛ. A stationary detector measures a frequency of 900 Hz as the train approaches at a constant speed of 30 m·s⁻¹, and 700 Hz as the same train moves away at the same speed.',
     metadata: [
-      'Approaching: 900 = [v/(v − 30)]fₛ … eq (1)',
-      'Moving away: 700 = [v/(v + 30)]fₛ … eq (2)',
-      'Dividing eq (1) by eq (2): 900/700 = (v + 30)/(v − 30), so v (in m·s⁻¹):',
+      'Approaching: 900 = \frac{v}{v − 30}fₛ … eq (1)',
+      'Moving away: 700 = \frac{v}{v + 30}fₛ … eq (2)',
+      'Dividing eq (1) by eq (2): \frac{900}{700} = \frac{v + 30}{v − 30}, so v (in m·s⁻¹):',
       '[ ]',
     ],
     answer: ['240'],
     presentation: 'steps',
     type: 'calc',
     unit: 'waves_sound_light', topic: 'doppler_effect', subtopic: 'doppler_effect_experiment',
-    skills: ['doppler_effect_calculation', 'speed_ofₛound_calculation'],
+    skills: ['doppler_effect_calculation', 'speed_of_sound_calculation'],
     difficulty: 5, exam_weight: 3, xp: 10, order: 4,
     syllabus: 'dbe', subject: 'physics', year: 2025, paper: 'nov_p1',
     clues:
@@ -125,7 +125,7 @@ const questions = [
     skills: ['doppler_effect_calculation'],
     difficulty: 3, exam_weight: 3, xp: 10, order: 5,
     syllabus: 'dbe', subject: 'physics', year: 2025, paper: 'nov_p1',
-    clues: '- Use fₗ = [v / (v − vₛ)] × fₛ for a source moving toward a stationary listener.\n- Substitute the speed of sound, the train’s speed, and the emitted frequency.',
+    clues: '- Use fₗ = \frac{v}{v − vₛ} × fₛ for a source moving toward a stationary listener.\n- Substitute the speed of sound, the train’s speed, and the emitted frequency.',
   },
 ];
 

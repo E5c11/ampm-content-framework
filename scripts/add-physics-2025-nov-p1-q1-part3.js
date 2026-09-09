@@ -89,7 +89,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- Use Coulomb’s law, F = kQ₁Q₂/r².\n- Substitute both charges, the distance, and Coulomb’s constant (k = 9 × 10⁹ N·m²·C⁻²).',
+    clues: '- Use Coulomb’s law, F = k\frac{Q₁Q₂}{r²}.\n- Substitute both charges, the distance, and Coulomb’s constant (k = 9 × 10⁹ N·m²·C⁻²).',
   },
   {
     name: 'Question 3',
@@ -117,7 +117,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- Redraw the circuit for S open and S closed, and work out the total resistance in each case.\n- Brightness depends on the current through each bulb — use I = V/Rₜₒₜₐₗ, then consider how current splits at the parallel junction once Q starts conducting.',
+    clues: '- Redraw the circuit for S open and S closed, and work out the total resistance in each case.\n- Brightness depends on the current through each bulb — use I = \frac{V}{Rₜₒₜₐₗ}, then consider how current splits at the parallel junction once Q starts conducting.',
   },
   {
     name: 'Question 4',
@@ -138,7 +138,7 @@ const questions = [
     subject: 'physics',
     year: 2025,
     paper: 'nov_p1',
-    clues: '- For resistors in parallel, 1/Rₚ = 1/R₁ + 1/R₂.\n- Combine the two fractions before inverting to find Rₚ.',
+    clues: '- For resistors in parallel, \frac{1}{Rₚ} = \frac{1}{R₁} + \frac{1}{R₂}.\n- Combine the two fractions before inverting to find Rₚ.',
   },
   {
     name: 'Question 5',

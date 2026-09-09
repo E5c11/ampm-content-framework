@@ -11,7 +11,7 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `AMPM-CONTENT-DESIGN` | `core/authoring-principles.md` | SCHEMA, MATHTEXT, AI-EXP, PIPELINE |
 | `AMPM-CONTENT-MATHTEXT` | `core/mathtext.md` | SCHEMA, DESIGN |
 | `AMPM-CONTENT-KEYBOARD-INPUT` | `core/keyboard-input.md` | SCHEMA, DESIGN, MATHTEXT, PRES-FITB, PRES-STEPS, PRES-EQUATION |
-| `AMPM-CONTENT-AI-EXP` | `core/ai-explanation.md` | SCHEMA, DESIGN, PIPELINE |
+| `AMPM-CONTENT-AI-EXP` | `core/ai-explanation.md` | SCHEMA, DESIGN, PIPELINE, MATHTEXT |
 | `AMPM-CONTENT-PIPELINE` | `core/upload-pipeline.md` | SCHEMA, DESIGN, MATHTEXT, AI-EXP |
 | `AMPM-CONTENT-PERSISTENCE` | `core/persistence.md` | SCHEMA, PIPELINE |
 

@@ -77,8 +77,8 @@ const questions = [
     question:
       'Complete the working to find the cost of operating a circuit for 2 hours. An AC generator produces a maximum potential difference of 200 V across a resistance of 50 Ω; electricity costs R2.50 per kWh.',
     metadata: [
-      'Vᵣₘₛ = Vₘₐₓ/√2 = 200/√2 = 141.42 V',
-      'Pₐᵥₑ = Vᵣₘₛ²/R = (141.42)²/50 = 400 W',
+      'Vᵣₘₛ = \frac{Vₘₐₓ}{√2} = \frac{200}{√2} = 141.42 V',
+      'Pₐᵥₑ = \frac{Vᵣₘₛ²}{R} = \frac{(141.42)²}{50} = 400 W',
       'E = Pₐᵥₑ × Δt = 0.4 kW × 2 h = 0.8 kWh',
       'Cost = E × tariff, so cost (in Rand):',
       '[ ]',
@@ -90,7 +90,7 @@ const questions = [
     skills: ['ac_power_cost_calculation'],
     difficulty: 4, exam_weight: 3, xp: 10, order: 3,
     syllabus: 'dbe', subject: 'physics', year: 2025, paper: 'nov_p1',
-    clues: '- First find Vᵣₘₛ from Vₘₐₓ, then use Pₐᵥₑ = Vᵣₘₛ²/R.\n- Convert power to kW and multiply by the time in hours to get energy in kWh, then multiply by the tariff.',
+    clues: '- First find Vᵣₘₛ from Vₘₐₓ, then use Pₐᵥₑ = \frac{Vᵣₘₛ²}{R}.\n- Convert power to kW and multiply by the time in hours to get energy in kWh, then multiply by the tariff.',
   },
   {
     name: 'Question 4',

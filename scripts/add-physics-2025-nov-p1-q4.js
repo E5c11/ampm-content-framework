@@ -63,7 +63,7 @@ const questions = [
     skills: ['graph_gradient_interpretation', 'force_from_graph'],
     difficulty: 2, exam_weight: 3, xp: 10, order: 2,
     syllabus: 'dbe', subject: 'physics', year: 2025, paper: 'nov_p1',
-    clues: '- The gradient of a momentum-vs-time graph is Δp / Δt, which is the net force (since Fₙₑₜ = Δp/Δt).\n- Use the two given points to calculate the gradient.',
+    clues: '- The gradient of a momentum-vs-time graph is \frac{Δp}{Δt}, which is the net force (since Fₙₑₜ = \frac{Δp}{Δt}).\n- Use the two given points to calculate the gradient.',
   },
   {
     name: 'Question 3',
@@ -72,7 +72,7 @@ const questions = [
       'Fₙₑₜ·Δt = p(f) − pᵢ',
       '200(0.025) = 2 − pᵢ, so pᵢ (in kg·m·s⁻¹):',
       '[ ]',
-      'vᵢ = |pᵢ| / m, so vᵢ (in m·s⁻¹):',
+      'vᵢ = \frac{|pᵢ|}{m}, so vᵢ (in m·s⁻¹):',
       '[ ]',
     ],
     answer: ['-3', '15'],

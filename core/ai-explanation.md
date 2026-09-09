@@ -2,7 +2,7 @@
 id: AMPM-CONTENT-AI-EXP
 type: reference
 layer: core
-related: [AMPM-CONTENT-SCHEMA, AMPM-CONTENT-DESIGN, AMPM-CONTENT-PIPELINE]
+related: [AMPM-CONTENT-SCHEMA, AMPM-CONTENT-DESIGN, AMPM-CONTENT-PIPELINE, AMPM-CONTENT-MATHTEXT]
 tags: [content, ai-explanation, clues, approach, solution, postgres]
 provenance: moved from AMPM/ampm-ai-framework/content/ai-exp.md, 2026-07-15
 ---
@@ -136,6 +136,30 @@ generic number that also appears for an unrelated reason).*
 ```
 ✅ "1. A = P(1 + r)^n\n2. A = 1200(1 + 0.085)^3\n3. A = 1200 × 1.277...\n4. A ≈ R1 532.52"
 ```
+
+### No markup support at all in `clues`/`approach`/`solution` — different renderer than `questions`
+
+**`AIEXP-06`** — `enforced_by: human-review`
+
+`lesson_ai_explanation_sub_questions.clues/approach/solution` render through
+`AiExplanationSheet.kt`'s `ExplanationSection` (`core/designsystem`), which is plain
+Compose `Text()`/`BulletLine`/`NumberedLine` — **no `MathText` component at all**. This is
+a different renderer from `questions.clues` (which does use `MathText`, via
+`CluesBottomSheet`/`CluesDialog` in `PresentationComponent.kt`) and from
+`questions.metadata` (`StepsPresentation.kt`, also `MathText`). Confirmed by reading the
+composable source directly, 2026-09-10, after `\frac{}{}` was mistakenly added to this
+table (copying the `questions`-table fix) and would have rendered as literal broken text
+— worse than the plain `/` it was meant to replace. Caught and reverted before it shipped.
+
+- **Never use `\frac{}{}` or `\sqrt{}` here** — `MATHTEXT-01`/`02` don't apply to this
+  table; there is no structural-markup renderer at all. A plain `/` for division is fine
+  (reads as informal notation in prose, unlike `\frac{}{}` showing up as literal text).
+- **Unicode subscript/superscript characters are fine** — `core/mathtext.md`'s
+  `MATHTEXT-06` still applies here, since those are just plain Unicode glyphs with no
+  markup processing required; `Fₙₑₜ`, `Eₖ(max)`, `vᵢ` etc. render correctly through plain
+  `Text()` the same as through `MathText()`.
+- If this table ever needs real structural fractions, that's a renderer change
+  (`ExplanationSection` would need `MathText`), not a content-authoring workaround.
 
 ---
 
