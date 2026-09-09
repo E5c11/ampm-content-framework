@@ -34,7 +34,7 @@ const video = {
   subject: 'physics',
   year: 2025,
   paper: 'nov_p1',
-  order: 2,
+  order: 11, // paper-wide position — Q1 became 10 subsection lessons (orders 1-10), see subjects/dbe-physics.md
   content_tier: 'free',
   has_video: false,
   xp: 50,
