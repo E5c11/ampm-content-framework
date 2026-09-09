@@ -180,6 +180,20 @@ will the brightness of bulb Y be affected?") — distinct from `calc` (numeric w
   exact-match. Prefer `steps` over one big `fitb` when the working itself (not just
   the final number) is the thing being tested — e.g. Q8's "calculate the emf" chain of
   substitutions.
+- **`DESIGN-PHYS-06` — practice-question count scales with how much real content a
+  lesson bundles, it isn't a flat 2–4.** Same principle as English HL's
+  `DESIGN-ENG-05` section caps (2–4 for narrow sections, up to 7 for content-dense
+  ones like Comprehension) — a bundled long-form-question lesson (rule 1 in "Paper
+  structure" above) covers as many real exam sub-questions as that question has, so
+  its practice set should too. Caught 2026-09-10: Q2 (5 real sub-questions, 2.1–2.4
+  with 2.3 split) shipped with only 4 practice questions and no dedicated practice
+  for 2.3.2 — the highest-mark sub-part (5 of 17 marks) had no matching skill
+  exercised. Fixed by adding a 5th question. Rule of thumb: roughly one fresh
+  practice question per real exam sub-part for a bundled lesson (more for a
+  heavily-weighted sub-part, e.g. two angles on the same skill), not a fixed count —
+  check the sub-part breakdown before deciding the practice set is complete, don't
+  just default to "2-4 and done." Single-item parts (Q1's Part 2/Part 4 above) stay
+  at 2, since there's only one real sub-part to cover.
 
 ## App-side keyboard/calculator routing — resolved 2026-09-09
 

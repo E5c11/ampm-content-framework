@@ -170,6 +170,29 @@ const questions = [
     clues:
       '- Resolve F into horizontal and vertical components, then see how the vertical component changes as θ increases.\n- The normal force balances weight minus the vertical component of F — think about how that changes, then apply the friction formula.',
   },
+  {
+    name: 'Question 5',
+    question:
+      'A 4 kg block is on the verge of sliding on a rough horizontal surface. A force of 20 N acts on the block at 30° above the horizontal; its horizontal component is 17.3 N. Given that the block is experiencing maximum static friction, calculate the coefficient of static friction between the block and the surface.',
+    metadata: ['μₛ = ', '[ ]'],
+    answer: ['0.59', '', '', '', ''],
+    presentation: 'fitb',
+    type: 'calc',
+    unit: 'mechanics',
+    topic: 'newtons_laws',
+    subtopic: 'static_friction',
+    skills: ['static_friction', 'force_components', 'normal_force'],
+    difficulty: 4,
+    exam_weight: 3,
+    xp: 10,
+    order: 5,
+    syllabus: 'dbe',
+    subject: 'physics',
+    year: 2025,
+    paper: 'nov_p1',
+    clues:
+      '- Find the vertical component of the force, then use it to find the normal force (weight minus the vertical component).\n- At maximum static friction, the horizontal component of the applied force equals fₛ(max) — use fₛ(max) = μₛN to solve for μₛ.',
+  },
 ];
 
 // ─── AI explanation (AMPM-CONTENT-AI-EXP) — one entry per exam sub-question ───
