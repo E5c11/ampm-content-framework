@@ -261,17 +261,23 @@ once a first session populates it, `PIPE-08`.)
 
 | Paper | Videos | Questions | Date |
 |---|---|---|---|
-| DBE 2025 Nov P1 | 6 (Q1 parts 1–4, Q2, Q3 — paper-only, no video) | 28 | 2026-09-09/10 — pilot for this profile; Q1 went through two rebuilds before landing on knowledge-area clustering (see Paper structure / video mapping above); Q3 confirmed rule 1 (single-scenario bundling) and DESIGN-PHYS-06 (practice count scales with sub-part count) both hold on a second long-form question |
+| DBE 2025 Nov P1 | 13 (Q1 parts 1–4, Q2–Q10 — paper-only, no video) — **complete paper** | 64 | 2026-09-09/10 — pilot for this profile; Q1 went through two rebuilds before landing on knowledge-area clustering (see Paper structure / video mapping above); Q2–Q10 each confirmed as one continuous scenario (rule 1) with practice count scaled to real sub-part count (`DESIGN-UNI-11`). All 13 lessons' `exam_question_marks` sum to exactly 150 — matches the real paper's total, cross-checking nothing was missed. |
 
 Formula sheet URLs (reuse per paper):
 - 2025 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/physics/2025/nov_p1/q0/question_1.png` (+ `question_2.png`, `question_3.png`)
 
-**Evidenced from Q1 + Q2** (updates the "Allowed presentation types" section above):
-`multiple_choice`, `fitb`, `multi_select`, `match` all used successfully; `steps`,
-`ordering`, `fraction`, `equation` not yet exercised. Q1's MCQ block needed no diagram
-recreation (concepts were expressible in text/fitb); Q2 confirmed the diagram-heavy
-prediction — its free-body-diagram practice question needed a freshly generated
-schematic (matplotlib, force arrows on a crate), uploaded via the newly-built
+**Evidenced from the full paper** (updates the "Allowed presentation types" section
+above): `multiple_choice`, `fitb`, `multi_select`, `match`, `steps`, `ordering` all
+used successfully across Q1–Q10; only `fraction`/`equation` not yet exercised
+(unsurprising — physics answers are units-carrying numbers or MC/match/steps, rarely a
+bare algebraic expression or a true fraction). `steps` turned out to be the natural fit
+for numeric multi-step working throughout (impulse-momentum, Doppler simultaneous
+equations, internal resistance, AC power/cost, photon energy) once its numeric-
+normalization fix (see App-side fixes) landed — used in 4 of the 7 long-form lessons.
+Q1's MCQ block needed no diagram recreation (concepts were expressible in text/fitb);
+Q2 confirmed the diagram-heavy prediction — its free-body-diagram practice question
+needed a freshly generated schematic (matplotlib, force arrows on a crate), uploaded
+via the newly-built
 `tools/upload-question-supplementary.js` (the documented `question_supplementary/`
 path had no uploader before this). Also surfaced a real validator gap: a question-level
 field referencing a shared `const` (e.g. a base image URL) breaks
