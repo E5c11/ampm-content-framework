@@ -184,6 +184,26 @@ sub-part), checked against the sub-part breakdown before deciding the set is com
 not assumed from a flat default. A lesson covering only one real sub-part (rule 2's
 single-item clusters) stays at the subject's normal narrow-case count.
 
+### `DESIGN-UNI-12` — Typed-answer values must match what the keyboard can actually type
+
+`enforced_by: human-review`
+
+Promoted from `dbe-physics.md`'s `steps` correction, 2026-09-10. Any expected typed value
+(`fitb` blank, `steps` blank, `equation` answer) must be composable entirely from the
+characters the resolved keyboard can actually produce — checked against
+`core/keyboard-input.md`, the central inventory sourced directly from the app's keyboard
+components, not assumed per-subject. Two real, previously-shipped failures this caught:
+
+1. A `steps` question asked for a full typed sentence (`"20 = 5(3.8 + r)"`) when the
+   keyboard has no letters for variable names — unanswerable regardless of formatting.
+2. A `steps` blank expected a plain negative number (`"-3"`), but
+   `ScientificMathKeyboard`'s minus key emitted a different Unicode character (`−`, U+2212)
+   than the validator's numeric parser recognized (ASCII `-`) — silently marking a
+   correctly-typed answer wrong. Neither failure is visible in a render-only screenshot
+   review; both require checking the *keyboard's* character set against the *answer's*
+   characters, which is exactly what `core/keyboard-input.md` exists to make checkable
+   without re-deriving it from app source every session.
+
 ---
 
 ## Maths and Math Lit — Additional Rules

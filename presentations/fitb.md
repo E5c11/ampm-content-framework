@@ -2,7 +2,7 @@
 id: AMPM-CONTENT-PRES-FITB
 type: reference
 layer: presentations
-related: [AMPM-CONTENT-SCHEMA, AMPM-CONTENT-MATHTEXT, AMPM-CONTENT-PRES-STEPS]
+related: [AMPM-CONTENT-SCHEMA, AMPM-CONTENT-MATHTEXT, AMPM-CONTENT-KEYBOARD-INPUT, AMPM-CONTENT-PRES-STEPS]
 tags: [presentation, fitb, blanks, metadata]
 ---
 

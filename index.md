@@ -10,6 +10,7 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `AMPM-CONTENT-SCHEMA` | `core/question-schema.md` | DESIGN, MATHTEXT, AI-EXP, PIPELINE |
 | `AMPM-CONTENT-DESIGN` | `core/authoring-principles.md` | SCHEMA, MATHTEXT, AI-EXP, PIPELINE |
 | `AMPM-CONTENT-MATHTEXT` | `core/mathtext.md` | SCHEMA, DESIGN |
+| `AMPM-CONTENT-KEYBOARD-INPUT` | `core/keyboard-input.md` | SCHEMA, DESIGN, MATHTEXT, PRES-FITB, PRES-STEPS, PRES-EQUATION |
 | `AMPM-CONTENT-AI-EXP` | `core/ai-explanation.md` | SCHEMA, DESIGN, PIPELINE |
 | `AMPM-CONTENT-PIPELINE` | `core/upload-pipeline.md` | SCHEMA, DESIGN, MATHTEXT, AI-EXP |
 | `AMPM-CONTENT-PERSISTENCE` | `core/persistence.md` | SCHEMA, PIPELINE |
@@ -35,7 +36,7 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `AMPM-CONTENT-SUBJ-DBE-MATHS` | `subjects/dbe-maths.md` | all 8 |
 | `AMPM-CONTENT-SUBJ-DBE-ENGLISH-HL` | `subjects/dbe-english-hl.md` | mc, multi-select, fitb, ordering, match |
 | `AMPM-CONTENT-SUBJ-DBE-GEOGRAPHY` | `subjects/dbe-geography.md` | mc, multi-select, fitb, match, steps |
-| `AMPM-CONTENT-SUBJ-DBE-PHYSICS` | `subjects/dbe-physics.md` | all 8 (proposed, unconfirmed) |
+| `AMPM-CONTENT-SUBJ-DBE-PHYSICS` | `subjects/dbe-physics.md` | mc, fitb, multi-select, match, ordering, steps (confirmed against a full paper 2026-09-10); fraction, equation not yet exercised |
 
 ## workflows/generate/ (thin orchestrators)
 

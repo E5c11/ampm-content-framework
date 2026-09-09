@@ -2,7 +2,7 @@
 id: AMPM-CONTENT-PRES-STEPS
 type: reference
 layer: presentations
-related: [AMPM-CONTENT-SCHEMA, AMPM-CONTENT-MATHTEXT, AMPM-CONTENT-PRES-FITB, AMPM-CONTENT-PRES-EQUATION]
+related: [AMPM-CONTENT-SCHEMA, AMPM-CONTENT-MATHTEXT, AMPM-CONTENT-KEYBOARD-INPUT, AMPM-CONTENT-PRES-FITB, AMPM-CONTENT-PRES-EQUATION]
 tags: [presentation, steps, proof, blanks]
 ---
 
@@ -63,6 +63,11 @@ Verified against app code 2026-07-15:
 Enforces: non-empty metadata and answer, embedded-`"[ ]"` rejection, `\frac`/`\sqrt`
 ban in `question`. Human-review only: blank-count ↔ answer-count match, exact `"[ ]"`
 token form (until the Phase 3 validator rule lands), canonical answer serialization.
+
+**Before writing any expected blank value, check `core/keyboard-input.md`
+(`DESIGN-UNI-12`)** for exactly which characters the resolved keyboard can produce —
+don't assume. A `steps` blank the student cannot physically type is unanswerable
+regardless of how well-scaffolded the surrounding rows are.
 
 ## Worked example + pitfalls
 
