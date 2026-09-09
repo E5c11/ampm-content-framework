@@ -200,6 +200,17 @@ will the brightness of bulb Y be affected?") — distinct from `calc` (numeric w
   row — see `presentations/steps.md` and `core/keyboard-input.md`'s `KEYBOARD-02` for the
   corrected pattern. Lesson: a completability fix and a "does the visible flow make sense"
   check are different checks — passing one doesn't mean the other passed too.
+  **Third correction, same day:** the second fix's own given row (`'20 = 5(3.8 + r), so r
+  (in Ω) ='`) had two `=` signs — one in the real equation, one appended to lead into the
+  blank — reading as genuinely confusing, not just stylistically off (caught by the user
+  again, from another live screenshot). Fixed by ending that row with a colon instead of a
+  second `=` whenever it already contains an equation. Three real defects in the same
+  handful of questions in one session, each only caught by a human actually reading the
+  rendered screen — none of the three were visible from re-deriving the stored answer
+  value, none were caught by the independent review agent, and two of the three were
+  introduced by the *previous* fix in the chain. Worth remembering next time a `steps`
+  question needs this scaffolding pattern: check the result against a screenshot, not just
+  against the rule that motivated the change.
 - **Practice-question count scales with bundled content — `DESIGN-UNI-11`** (promoted
   from here to `core/authoring-principles.md` on 2026-09-10, once it turned out
   English HL's `DESIGN-ENG-05` section caps were already the same principle in a

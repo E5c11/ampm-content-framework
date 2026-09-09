@@ -88,7 +88,7 @@ const questions = [
   {
     name: 'Question 4',
     question: 'Complete the working to find the internal resistance of a battery with EMF 20 V, which delivers a current of 5 A through an external resistance of 3.8 Ω.',
-    metadata: ['ε = I(R + r)', '20 = 5(3.8 + r), so r (in Ω) =', '[ ]'],
+    metadata: ['ε = I(R + r)', '20 = 5(3.8 + r), so r (in Ω):', '[ ]'],
     answer: ['0.2'],
     presentation: 'steps',
     type: 'calc',

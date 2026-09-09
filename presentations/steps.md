@@ -115,11 +115,17 @@ numbered steps for what is conceptually one line of working, which reads as brok
 "Step 3: r =", "Step 4: [blank]", "Step 5: Ω" instead of one coherent "r = ___ Ω"). The
 fix is to **fold the label and unit into the *end of the preceding given row's text***,
 as a parenthetical, so the row count matches the real number of working-steps exactly —
-one given row ending right where the value is asked for, one blank:
+one given row ending right where the value is asked for, one blank. **End that row with a
+colon, not `=`** if the row already contains an equation (it almost always does) — an
+`=` already appears mid-row as part of the real equation, and appending a second `=` at
+the end reads as two competing equals signs in one line (caught 2026-09-10, same day
+again: the first version of this example itself had this bug — `'20 = 5(3.8 + r), so r
+(in Ω) ='` has two `=`). A colon cues "the answer goes here" without colliding with the
+equation's own `=`:
 ```js
 metadata: [
   'ε = I(R + r)',
-  '20 = 5(3.8 + r), so r (in Ω) =',
+  '20 = 5(3.8 + r), so r (in Ω):',
   '[ ]',
 ],
 answer: ['0.2'],
@@ -127,7 +133,7 @@ answer: ['0.2'],
 For scientific notation, fold the exponent in the same way so the blank is still a bare
 coefficient:
 ```js
-metadata: ['ΔE = E_a − E_b', '...', 'E = hf ⇒ ... , so f (in ×10¹⁴ Hz) =', '[ ]'],
+metadata: ['ΔE = Eₐ − E(b)', '...', 'E = hf ⇒ ... , so f (in ×10¹⁴ Hz):', '[ ]'],
 answer: ['7.54'],
 ```
 This also answers a symbol-availability question for free: `Ω` above is *display* text in

@@ -80,7 +80,7 @@ const questions = [
       'Vᵣₘₛ = Vₘₐₓ/√2 = 200/√2 = 141.42 V',
       'Pₐᵥₑ = Vᵣₘₛ²/R = (141.42)²/50 = 400 W',
       'E = Pₐᵥₑ × Δt = 0.4 kW × 2 h = 0.8 kWh',
-      'Cost = E × tariff, so cost (in Rand) =',
+      'Cost = E × tariff, so cost (in Rand):',
       '[ ]',
     ],
     answer: ['2.00'],

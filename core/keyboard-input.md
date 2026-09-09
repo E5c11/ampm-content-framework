@@ -114,9 +114,11 @@ match. Get the unit/label text out of the blank without inflating the row count 
   numbered "Step N" (`StepsPresentation.kt`), so a separate label/unit row becomes a
   spurious extra step (caught 2026-09-10 — see `presentations/steps.md`'s pitfalls
   section for the incident). Fold the label/unit into the *end of the preceding given
-  row's text* instead, so the row count matches the real step count:
+  row's text* instead, so the row count matches the real step count — end that row with
+  a colon, not `=`, if it already contains an equation (an appended `=` collides with the
+  equation's own `=`, caught the same day as a second bug in this same example):
   ```js
-  metadata: ['ε = I(R + r)', '20 = 5(3.8 + r), so r (in Ω) =', '[ ]'],
+  metadata: ['ε = I(R + r)', '20 = 5(3.8 + r), so r (in Ω):', '[ ]'],
   answer: ['0.2'],
   ```
 
