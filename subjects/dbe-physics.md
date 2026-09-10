@@ -393,13 +393,21 @@ backend-only change, for no real benefit over the simpler version below):
   by hand. `isActive` is unrelated to this gate — it's a separate flag the app itself
   decides what to do with (see `SubjectSelectionViewModel`'s `isEnabled = item.isActive`);
   setting it doesn't change what the API returns.
-- **`physics` row, dev**: `min_app_version = '2.1.2'` (the app's current released version
-  is 2.1.1 at time of writing; the actual fix-containing release may land under a
-  different number — this value only needs to be non-null to have effect, but a real
-  target version keeps the row self-documenting). **Not yet set in prod** — prod has no
-  `physics` row at all yet (content was never pushed there this session), so there's
-  nothing to gate; set this at the same time physics content is first pushed to prod via
-  `push-paper-to-prod.js`, not before.
+- **`physics` row, dev and prod**: `min_app_version = '2.1.2'` (the app's current
+  released version is 2.1.1 at time of writing; the actual fix-containing release may
+  land under a different number — this value only needs to be non-null to have effect,
+  but a real target version keeps the row self-documenting).
+- **Prod state as of 2026-09-10**: the paper was pushed and published in full via
+  `push-paper-to-prod.js --publish` (13 lessons, 64 questions, both `is_published=true`)
+  *after* confirming the gate was live — order mattered here. The prod `subjects` row for
+  `physics` turned out to already exist (`is_published=true` from before this session,
+  `is_active=false` — the pre-existing, client-interpreted-only disable, which the new
+  gate now backs up with a real server-side exclusion) with zero published lessons under
+  it, so there was no prior exposure window; confirmed via a direct curl against the prod
+  API before and after publishing that `physics` never appears in `GET
+  /v1/content/subjects` or resolves via `GET /v1/content/subjects/{id}` (404,
+  `SUBJECT_NOT_FOUND`) throughout. The content is fully live in prod's database, ready to
+  serve the moment the gate is lifted — nothing further to push once that day comes.
 - **To re-enable physics for everyone**: `UPDATE subjects SET min_app_version = NULL
-  WHERE id = 'physics'` once a release containing the app-side fixes has shipped — no
-  redeploy needed, this is pure data.
+  WHERE id = 'physics'` (in prod, once a release containing the app-side fixes has
+  shipped) — no redeploy needed, this is pure data.
