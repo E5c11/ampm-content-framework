@@ -367,3 +367,39 @@ exercising the app. Lesson for future reviews: `steps` questions need a completa
 check (can a student, seeing only the given rows + blank inputs, know what to type?), not
 just an answer-correctness check — add this explicitly if `review-paper.md`'s Phase 3
 render checklist is revisited.
+
+## App-version gate — 2026-09-10, before any prod push
+
+All of physics's app-side rendering/keyboard fixes (`ScientificMathKeyboard`'s minus-sign
+glyph, the x/y/^/% keys, MathText subscript/fraction support) landed in `AMPM` commits
+this session but were **not in any released app build** at authoring time. Pushing this
+paper to prod before a release containing those fixes would break it for real users —
+the exact failure modes this whole session's live-testing caught (unanswerable `steps`
+questions, unrendered subscripts/fractions) would recur for anyone on an older client.
+
+Fixed with a subject-level content-readiness gate, not a per-client version compare
+(the originally-discussed design — see this profile's history — turned out to need
+touching `core-firebase`/`feature-profile`/`composeApp` in `ampm-kmp`, well beyond a
+backend-only change, for no real benefit over the simpler version below):
+
+- **`ampm-contracts` 0.36.0**: `SubjectResponse` gained `minAppVersion: String?` (wire
+  shape only, plain semver string, same convention as `UserDeviceInfoResponse.appVersion`
+  — no comparison logic lives here).
+- **`ampm-backend`**: `subjects.min_app_version` (migration `V78`, nullable). Both
+  `GET /v1/content/subjects` and `GET /v1/content/subjects/{id}` now hard-exclude any row
+  with a non-null value — full existence-hiding, the same treatment as `is_published =
+  false`, **not** a per-client comparison against the caller's own app version. A gated
+  subject is invisible to every client, old or new, until an operator clears the column
+  by hand. `isActive` is unrelated to this gate — it's a separate flag the app itself
+  decides what to do with (see `SubjectSelectionViewModel`'s `isEnabled = item.isActive`);
+  setting it doesn't change what the API returns.
+- **`physics` row, dev**: `min_app_version = '2.1.2'` (the app's current released version
+  is 2.1.1 at time of writing; the actual fix-containing release may land under a
+  different number — this value only needs to be non-null to have effect, but a real
+  target version keeps the row self-documenting). **Not yet set in prod** — prod has no
+  `physics` row at all yet (content was never pushed there this session), so there's
+  nothing to gate; set this at the same time physics content is first pushed to prod via
+  `push-paper-to-prod.js`, not before.
+- **To re-enable physics for everyone**: `UPDATE subjects SET min_app_version = NULL
+  WHERE id = 'physics'` once a release containing the app-side fixes has shipped — no
+  redeploy needed, this is pure data.
