@@ -123,6 +123,20 @@ scope for any typed input regardless of presentation type (`DESIGN-CHEM-01`).
 
 ## Subject rules (beyond core)
 
+- **Inverse of Physics's procedural default — Chemistry is a content-based subject
+  for a real chunk of itself** (`DESIGN-UNI-08` names Chemistry explicitly alongside
+  Geography/Life Sciences/History). Organic Molecules content (functional groups,
+  isomer types, IUPAC naming, homologous-series classification — Q1.1–1.3, Q2, Q3) is
+  fixed-fact/classificatory: rewording "identify the functional group of X" with a
+  different compound doesn't satisfy `DESIGN-UNI-01` freshness, since a student who
+  memorized the real answer trivially gets the reworded one too. These need
+  `DESIGN-UNI-08`'s relational framing (test a transformation/hierarchy/progression, or
+  synthesis of ≥2 facts) grounded in CAPS's own framing — `DESIGN-UNI-09`'s curriculum-
+  document consultation is **required** here, not optional the way it is for Physics.
+  The rest of Chemistry (Rate & Extent of Reaction, Chemical Equilibrium, Acids & Bases,
+  Electrochemistry calculations — Q5–Q9) is genuinely procedural like Physics/Maths:
+  varying the numbers is real freshness there. Decide per-question which regime applies
+  before drafting practice questions, not once per paper.
 - **Numeric answers carry units** (extends `DESIGN-PHYS-01` unchanged) — `mol`,
   `mol·dm⁻³`, `g`, `kJ·mol⁻¹`, `kPa` in place of Physics's mechanics/circuit units. Round
   per this paper's own instruction ("round off FINAL numerical answers to a minimum of
