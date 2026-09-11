@@ -220,7 +220,8 @@ a first session populates it, `PIPE-08`, same as Physics.)
 
 ## Completed papers ledger
 
-**`nov_p2` — in progress.** Q1's 5-way MCQ split, parts 1–4 of 5 done (2026-09-11):
+**`nov_p2` — complete, 2026-09-11.** All 13 lessons authored, validated, and upserted to
+dev (Cloud SQL); image URLs spot-checked resolving (200) with no cross-lesson bleed.
 
 | Lesson | Order | Real sub-Qs | Marks | Practice Qs | Presentations used |
 |---|---|---|---|---|---|
@@ -228,27 +229,62 @@ a first session populates it, `PIPE-08`, same as Physics.)
 | Question 1.4 (Rate & Extent of Reaction) | 2 | 1.4 | 2 | 2 | multiple_choice |
 | Question 1.5–1.6 (Chemical Equilibrium) | 3 | 1.5–1.6 | 4 | 3 | multiple_choice, multi_select |
 | Question 1.7–1.8 (Acids & Bases) | 4 | 1.7–1.8 | 4 | 3 | multiple_choice, ordering |
+| Question 1.9–1.10 (Electrochemistry) | 5 | 1.9–1.10 | 4 | 3 | multiple_choice, multi_select |
+| Question 2 (Organic Molecules — naming/isomers) | 6 | 9 | 22 | 5 | multiple_choice, match, multi_select, fitb |
+| Question 3 (Organic Molecules — physical properties) | 7 | 8 | 12 | 4 | multiple_choice, multi_select, ordering |
+| Question 4 (Organic Molecules — reactions/cracking) | 8 | 10 | 17 | 4 | multi_select, multiple_choice, fitb |
+| Question 5 (Rate & Extent of Reaction) | 9 | 10 | 20 | 5 | multi_select, fitb, multiple_choice |
+| Question 6 (Chemical Equilibrium) | 10 | 6 | 17 | 4 | multi_select, multiple_choice, fitb |
+| Question 7 (Acids & Bases) | 11 | 7 | 20 | 5 | multiple_choice, multi_select, fitb |
+| Question 8 (Electrochemistry — galvanic) | 12 | 4 | 11 | 4 | multi_select, multiple_choice, fitb |
+| Question 9 (Electrochemistry — electrolytic) | 13 | 4 | 11 | 4 | multi_select, multiple_choice, fitb |
 
-Formula sheet (4 pages, `q0/question_1–4.png` under this paper's path) uploaded once
-during part 1, reused unchanged across parts 2–4 — confirms the once-per-paper, reuse-URL
-pattern from `workflows/generate/upload-chemistry.md` Phase 2 holds for Chemistry too.
+150/150 marks covered (matches the paper total). Formula sheet (4 pages,
+`q0/question_1–4.png`) uploaded once during part 1, reused unchanged across all 13
+lessons — the once-per-paper, reuse-URL pattern from
+`workflows/generate/upload-chemistry.md` Phase 2 holds for the whole paper, not just Q1.
+
+**`DESIGN-CHEM-01`'s structural-formula-image requirement — resolved without generated
+diagrams.** Q2–Q4 (the Organic Molecules questions) needed structures/naming/reactions
+extensively, but every fresh practice question used *unambiguous condensed structural
+formulas as given text* (e.g. `CH₃CH(CH₃)CH₂CH₂OH`) — the same technique the real exam
+itself uses for compounds that don't need a drawn structure (C/D/E/F in Q2's own table).
+No compound in this paper's fresh practice set needed branching/connectivity too complex
+for condensed notation, so **no `type: "structure"` supplementary material was actually
+needed** — the mandatory-image path in this profile's "Per-question supplementary
+material" section remains correct policy but wasn't exercised this session. A future
+paper whose fresh scenarios need genuinely ambiguous structures (e.g. two isomers only
+distinguishable by a 2D diagram) will need actual generated images; note this as still
+untested, not resolved.
 
 New curriculum nodes created this session (none existed pre-Chemistry): unit
-`chemical_change`, topics `reaction_rate`/`chemical_equilibrium`/`acids_bases` (topic
-`electrochemistry` still to come with part 5), and their subtopics/skills — see
-`tools/dump-curriculum-vocabulary.js` output for the live set.
+`chemical_change`, topics `reaction_rate`/`chemical_equilibrium`/`acids_bases`/
+`electrochemistry`, ~30 subtopics, ~35 skills, ~15 tags — see
+`tools/dump-curriculum-vocabulary.js` output for the live set. `organic_molecules`
+(topic) and `matter_materials` (unit) were reused from Physics, not recreated.
 
-Live-testing correction: part 1's Q1 and Q2 practice questions both originally tested
-primary-alcohol-oxidation functional groups with near-identical stems — caught on
-dev live-testing, Q1 rewritten to an esterification scenario instead
-(`45120f1`). Worth an explicit eyeball pass across a lesson's questions for topical
-overlap, not just per-question `AIEXP-03` leak checks, going forward.
+**Live-testing correction:** part 1's Q1 and Q2 practice questions both originally tested
+primary-alcohol-oxidation functional groups with near-identical stems — caught on dev
+live-testing, Q1 rewritten to an esterification scenario instead (`45120f1`). Worth an
+explicit eyeball pass across a lesson's questions for topical overlap, not just
+per-question `AIEXP-03` leak checks — applied throughout the rest of this session (e.g.
+Q3's ordering question needed a second AIEXP-03 fix for naming an answer item inside its
+own clue, not a leak of the *answer value* itself but the same failure family).
 
-**Still open:** part 5 of 5 (Q1.9–1.10, Electrochemistry), then Q2–Q9 as standalone
-lessons (13 lessons total per the Paper structure table above). Nothing yet evidenced
-against `DESIGN-CHEM-01`'s structural-formula-image requirement (no Organic Molecules
-full question — Q2–Q4 — authored yet); that's the next real test of this profile's
-Chemistry-specific sections.
+**Local tooling gotcha hit this session, now avoided:** `temp/images/q3/`, `q4/` etc.
+already existed from Physics P1's own authoring (same bare `qN` folder names, unrelated
+content) — a first extraction into `temp/images/q3/` for this paper's Q3 silently picked
+up 3 stale Physics P1 memo pages alongside the new crop, and `upload-exam-images.js`
+uploaded all of them to Chemistry's GCS path before the mismatch was caught (fixed by
+deleting the 3 stray objects). Every extraction from Q4 onward used a
+`temp/images/chem_q{N}/` prefix instead. **If reusing this pattern for a future paper,
+always use a subject/paper-scoped local folder name, never bare `qN`** — the GCS
+destination path is controlled entirely by `--order`, but the local folder's file list is
+whatever's already sitting there, stale content included.
+
+**Still open:** June-diet paper (`june_p2`) once sourced, same as Physics's `june_p1`.
+On-device live testing of Q2 onward (only part 1 was tested live this session, which is
+what caught the Q1/Q2 overlap above).
 
 ## App-side inheritance — no separate work needed
 
