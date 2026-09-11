@@ -37,6 +37,7 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `AMPM-CONTENT-SUBJ-DBE-ENGLISH-HL` | `subjects/dbe-english-hl.md` | mc, multi-select, fitb, ordering, match |
 | `AMPM-CONTENT-SUBJ-DBE-GEOGRAPHY` | `subjects/dbe-geography.md` | mc, multi-select, fitb, match, steps |
 | `AMPM-CONTENT-SUBJ-DBE-PHYSICS` | `subjects/dbe-physics.md` | mc, fitb, multi-select, match, ordering, steps (confirmed against a full paper 2026-09-10); fraction, equation not yet exercised |
+| `AMPM-CONTENT-SUBJ-DBE-CHEMISTRY` | `subjects/dbe-chemistry.md` | not yet authored — illustrative only (drafted 2026-09-11); reuses Physics's `subject_id`, see `core/keyboard-input.md` for the shared keyboard constraint |
 
 ## workflows/generate/ (thin orchestrators)
 
