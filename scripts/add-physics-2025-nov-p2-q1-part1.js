@@ -54,15 +54,15 @@ const questions = [
   {
     name: 'Question 1',
     question:
-      'A primary alcohol is oxidised using an oxidising agent such as acidified potassium dichromate, initially forming a new compound that is not yet a carboxylic acid. Which functional group characterises this intermediate compound?',
-    metadata: ['Hydroxyl', 'Carboxyl', 'Formyl', 'Halide', ''],
-    answer: ['Formyl', '', '', '', ''],
+      'A carboxylic acid reacts with an alcohol in a condensation reaction, releasing water and forming a new organic product. Which homologous series does this new product belong to?',
+    metadata: ['Alcohol', 'Ester', 'Aldehyde', 'Carboxylic acid', ''],
+    answer: ['Ester', '', '', '', ''],
     presentation: 'multiple_choice',
     type: 'application',
     unit: 'matter_materials',
     topic: 'organic_molecules',
-    subtopic: 'alcohol_oxidation_ladder',
-    skills: ['functional_group_identification', 'alcohol_oxidation'],
+    subtopic: 'esterification_reactions',
+    skills: ['esterification', 'reaction_type_identification'],
     difficulty: 2,
     exam_weight: 2,
     xp: 10,
@@ -72,7 +72,7 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues:
-      "- A primary alcohol's first oxidation product belongs to the aldehyde homologous series.\n- Aldehydes are named with the suffix '-al', and their functional group has its own specific name distinct from the general C=O carbonyl group.",
+      "- A carboxylic acid and an alcohol reacting with loss of water is a condensation reaction, not simple addition.\n- The product's name always ends in '-oate', a different suffix from either starting material.",
   },
   {
     name: 'Question 2',
