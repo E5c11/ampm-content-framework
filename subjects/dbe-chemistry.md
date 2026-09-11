@@ -220,9 +220,35 @@ a first session populates it, `PIPE-08`, same as Physics.)
 
 ## Completed papers ledger
 
-_Empty — no Chemistry paper authored yet. This section fills in the same way
-`dbe-physics.md`'s did: per-paper row (videos/questions/date), evidenced presentation-type
-list, formula sheet URLs, and any correction notes from the first live-testing pass._
+**`nov_p2` — in progress.** Q1's 5-way MCQ split, parts 1–4 of 5 done (2026-09-11):
+
+| Lesson | Order | Real sub-Qs | Marks | Practice Qs | Presentations used |
+|---|---|---|---|---|---|
+| Question 1.1–1.3 (Organic Molecules) | 1 | 1.1–1.3 | 6 | 5 | multiple_choice, multi_select, match |
+| Question 1.4 (Rate & Extent of Reaction) | 2 | 1.4 | 2 | 2 | multiple_choice |
+| Question 1.5–1.6 (Chemical Equilibrium) | 3 | 1.5–1.6 | 4 | 3 | multiple_choice, multi_select |
+| Question 1.7–1.8 (Acids & Bases) | 4 | 1.7–1.8 | 4 | 3 | multiple_choice, ordering |
+
+Formula sheet (4 pages, `q0/question_1–4.png` under this paper's path) uploaded once
+during part 1, reused unchanged across parts 2–4 — confirms the once-per-paper, reuse-URL
+pattern from `workflows/generate/upload-chemistry.md` Phase 2 holds for Chemistry too.
+
+New curriculum nodes created this session (none existed pre-Chemistry): unit
+`chemical_change`, topics `reaction_rate`/`chemical_equilibrium`/`acids_bases` (topic
+`electrochemistry` still to come with part 5), and their subtopics/skills — see
+`tools/dump-curriculum-vocabulary.js` output for the live set.
+
+Live-testing correction: part 1's Q1 and Q2 practice questions both originally tested
+primary-alcohol-oxidation functional groups with near-identical stems — caught on
+dev live-testing, Q1 rewritten to an esterification scenario instead
+(`45120f1`). Worth an explicit eyeball pass across a lesson's questions for topical
+overlap, not just per-question `AIEXP-03` leak checks, going forward.
+
+**Still open:** part 5 of 5 (Q1.9–1.10, Electrochemistry), then Q2–Q9 as standalone
+lessons (13 lessons total per the Paper structure table above). Nothing yet evidenced
+against `DESIGN-CHEM-01`'s structural-formula-image requirement (no Organic Molecules
+full question — Q2–Q4 — authored yet); that's the next real test of this profile's
+Chemistry-specific sections.
 
 ## App-side inheritance — no separate work needed
 
