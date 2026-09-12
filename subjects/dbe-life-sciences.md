@@ -405,13 +405,19 @@ life_science --year 2025 --paper nov_p2`, no `--publish`): 15 lessons / 79 quest
 `lesson_ai_explanation_sub_questions`, and all 46 referenced images (exam pages +
 generated diagrams), mirrored from dev. Verified directly against prod Postgres (not
 just the script's own output): all lesson/question rows `is_published = false`;
-spot-checked image URLs on the prod bucket resolve (200). **No live-user exposure
-regardless of publish state** — prod's `life_science` subjects row is still
-`is_active = false` / `min_app_version = '3.0.0'` (unchanged by this push, and
-deliberately not touched — that's a separate, later decision about real-user
-visibility, same as Physics/Chemistry's own prod pushes treated their app-version
-gates). Re-check that value fresh before ever publishing, per the same warning
-Physics/Chemistry's own profiles already carry.
+spot-checked image URLs on the prod bucket resolve (200).
+
+**Subject activated in prod by the user, 2026-09-12**: `is_active` set to `true`,
+`min_app_version` set to `'1.8.9'` (superseding the `'3.0.0'` this profile earlier
+assumed was still current — confirms this doc's own warning to re-check the value
+fresh, not trust a prior snapshot). This made the subject selectable in the app before
+its content was published, surfacing as "Life Science shows up but has no content" —
+expected given the paper was still unpublished at that point, not a bug.
+
+**Published — 2026-09-12** (`--publish`, same command, no dev read): all 15 lessons and
+79 questions now `is_published = true` in prod, verified directly against Postgres
+(`bool_and(is_published)` over both tables). Fully live for real users now that the
+subject is both active and its content published — no further gate blocking visibility.
 
 **Still open**: `june_p2` once sourced, same as every other subject. The diagram-FAB
 overlap app bug (above) is unresolved and independent of any subject's content.
