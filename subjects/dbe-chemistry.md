@@ -309,9 +309,26 @@ week of prelims left, not this week's priority subject) — fix scheduled before
 pre-finals release, not blocking this paper. Full mechanism now documented in
 `AMPM/wiki/lesson/systems/keyboard-system.md`'s "Submitting an answer" section.
 
+The app bug above is now logged in `AMPM/workflows/bugs-tracking.md` (Scoped section),
+founder-accepted risk, fix scheduled before the pre-finals release.
+
+**Pushed to prod, unpublished — 2026-09-12** (`tools/push-paper-to-prod.js --subject
+physics --year 2025 --paper nov_p2`, no `--publish`): 13 lessons / 51 questions, plus 39
+new curriculum_nodes / 46 skills / 20 tags and all 48 referenced images, mirrored from
+dev. Verified in prod: all lesson/question rows `is_published = false`; spot-checked
+image URLs on the prod bucket resolve (200). **No live-user exposure regardless of
+publish state** — prod's `physics` subjects row still carries `min_app_version =
+'2.1.2'` (set 2026-09-10 for Physics P1, confirmed still live 2026-09-12), which
+hard-excludes the *entire* Physical Sciences subject from `GET /v1/content/subjects`
+and `GET /v1/content/subjects/{id}` for every client — chemistry inherits this
+automatically via the shared `subject_id`. **Still open, deliberately not run yet:**
+`--publish` (flips `is_published = true` on the prod rows already pushed, no dev read)
+— even once flipped, the subject stays invisible until the app-version gate is
+separately cleared (`UPDATE subjects SET min_app_version = NULL WHERE id = 'physics'`,
+prod, once a release containing the app-side keyboard/MathText fixes has shipped — same
+gate physics is still waiting on).
+
 **Still open:** June-diet paper (`june_p2`) once sourced, same as Physics's `june_p1`.
-The app bug above, tracked for the pre-finals release (not yet logged in `AMPM/
-workflows/bugs-tracking.md` — worth doing so it isn't lost between now and then).
 
 ## App-side inheritance — no separate work needed
 
