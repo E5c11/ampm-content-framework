@@ -31,6 +31,16 @@ This capture is **render-only** (screenshots + the supplementary sheet) — it d
 answers. The per-presentation-type input tags exist for a future render+answer-feedback pass
 if you want it; not wired in here.
 
+**Phase 6 (Verify Answerability) is NOT YET BUILT** — locked into this doc as of
+2026-09-12 (see that phase below for the why) but no script exists yet. Needs a new
+capture script (working name `review-capture-answers.js`) that, for every `fitb` /
+`equation` / `steps` question only, opens the input, types the stored `answer` via the
+app's actual custom keyboard (`AMPM/wiki/lesson/presentation/{type}.md`'s per-type
+selectors — the ones Phase 2's capture deliberately doesn't use), submits, and
+screenshots the result. Build this before relying on Phase 6 in a real review; until
+then, typed-answer questions get the same Phase 1–5 data/render checks as everything
+else and nothing more.
+
 **Setup:** `AMPM/.env` needs a `PG_*_DEV` block (`AMPM/.env.example`) for Phases 1 & 4 — same
 Auth Proxy convention as this repo's tooling. Password:
 `gcloud secrets versions access latest --secret=AMPM_DB_PASSWORD --project=ampm-b9661`.
@@ -52,8 +62,14 @@ The run, end to end:
    **PASS** / **AUTO_FIX** / **FLAG**.
 4. **Act** — AUTO_FIX → patch it in **dev** now (confident fixes only). FLAG → into the
    report, untouched. PASS → logged.
-5. **Report + hand off** — counts, the auto-fix table, every flagged item with reason +
-   screenshot path. The human resolves flagged items. **Prod is never touched in this run.**
+5. **Verify Answerability** (typed-answer presentations only — `fitb`/`equation`/`steps`;
+   **not yet built**, see Status) — actually type each stored `answer` through the app's
+   real keyboard and confirm it validates. Distinct risk from Phases 2–4: a question can
+   render perfectly and hold a correct `answer` string and still be unanswerable if the
+   keyboard available for that subject/presentation has no way to produce it.
+6. **Report + hand off** — counts, the auto-fix table, every flagged item with reason +
+   screenshot path (Phases 2–4), plus the answerability results once Phase 5 exists. The
+   human resolves flagged items. **Prod is never touched in this run.**
 
 ---
 
@@ -223,11 +239,71 @@ node scripts/patch-question.js \
 
 ---
 
-## Phase 5 — Write Report + Hand Off
+## Phase 5 — Verify Answerability (typed-answer types only) — NOT YET BUILT
+
+**Why this exists, separately from Phases 2–4:** every review so far (maths, physics,
+chemistry) has checked that a stored `answer` is *correct* and that the question
+*renders* cleanly, but never that a student can actually *produce* that answer on the
+keyboard the app gives them for that subject. `DESIGN-CHEM-01`/`KEYBOARD-01`/`-02`-style
+rules are supposed to guarantee this at authoring time, but authoring-time intent isn't
+the same as a confirmed observation — the same gap class as the render bugs Phase 3 was
+extended to catch after they shipped unnoticed. Scope this to **`fitb`, `equation`,
+`steps` only** — the only presentations with a typed input at all; `multiple_choice`/
+`multi_select`/`match`/`ordering` are selection-based and already fully covered by
+Phase 3's data-level checks (answer verbatim in `metadata`, no keyboard involved).
+
+**Not folded into Phase 2's capture**: rendering and answerability are different failure
+surfaces (a broken render vs. a missing keyboard key vs. an app-side validation bug),
+and conflating them would muddy PASS/FLAG classification. Keep this as its own capture +
+review + act pass over the same manifest, run after Phase 4 so any AUTO_FIX from the
+render pass is already live.
+
+**To build:** a new script, working name `review-capture-answers.js`, that for each
+`fitb`/`equation`/`steps` question:
+
+1. Navigates to it (reuse Phase 2's deep-link).
+2. Opens the input and triggers the actual custom keyboard for that subject
+   (`SubjectKeyboardType.kt`'s `ScientificMath`/`StandardMath`/etc.) — use the
+   per-presentation-type selectors in `AMPM/wiki/lesson/presentation/{type}.md`, the
+   ones Phase 2 deliberately leaves unused.
+3. Types the stored `answer` (all `|`-alternatives if present) key-by-key through that
+   keyboard — not `adb shell input text`, which bypasses the in-app keyboard entirely
+   and would validate nothing about what a student can actually press.
+4. Submits (Check/Submit per `presentations/{type}.md`'s renderer contract) and
+   screenshots the result.
+5. Records: did every character of `answer` have a corresponding key, and did the
+   correct-answer state show?
+
+**Review criteria once built:**
+
+- [ ] Every character in `answer` (and each `|`-alternative) has a key on the keyboard
+      actually presented — a missing key is a hard FLAG, not an AUTO_FIX (it's a content
+      design error: this answer should never have been authored as typeable for this
+      keyboard, per the subject's `KEYBOARD-*` rules — fix is to change presentation
+      type, not the answer string).
+- [ ] Typing the exact stored `answer` and submitting shows the correct-answer state.
+      A stored-correct `answer` that the app marks wrong is **always FLAG** — likely an
+      app-side validation bug (normalization mismatch, etc.), never something
+      `patch-question.js` should paper over by changing the answer to whatever the app
+      happens to accept.
+- [ ] For `fitb`/`steps` numeric answers: does the app's numeric normalization
+      (`"540"` == `"540.00"`, `,`→`.`) actually cover the format this paper's answers are
+      stored in (DBE papers use `,` as decimal separator throughout)?
+
+**Act:** AUTO_FIX space here is much smaller than Phases 2–4 — most findings will be
+FLAG (either a design error needing a presentation-type change, which is a bigger edit
+than `patch-question.js`'s whitelist covers, or a suspected app bug). Only patch
+directly when the fix is obviously answer-string-level (e.g. an untried `|` alternative
+for an equivalent valid phrasing).
+
+---
+
+## Phase 6 — Write Report + Hand Off
 
 `temp/review/<paper>_<year>/report.md`: summary counts (reviewed / passed / auto-fixed /
-flagged), the auto-fix table (lesson, Q#, field, old → new), and every flagged item with
-its reason, screenshot path, and suggested action.
+flagged) for Phases 2–4, a separate answerability summary for Phase 5 once it exists,
+the auto-fix table (lesson, Q#, field, old → new), and every flagged item with its
+reason, screenshot path, and suggested action.
 
 > Give the report to the user. The human resolves flagged items. **Prod is a separate,
 > later, human-gated step** — never updated as part of this run.
@@ -241,4 +317,8 @@ its reason, screenshot path, and suggested action.
 - [ ] Screenshot captured for every question (no black frames)
 - [ ] Every question reviewed against all logic, render, and crop criteria
 - [ ] Auto-fixes applied to **dev only**, confident cases only
+- [ ] `pm clear com.esma.ampm.dev` before re-capturing any lesson you just patched
+- [ ] Answerability verified for every `fitb`/`equation`/`steps` question (Phase 5, once
+      built) — until then, note in the report that this paper's typed-answer questions
+      have not had keyboard-level verification
 - [ ] Report written; flagged items handed to the human before any prod update
