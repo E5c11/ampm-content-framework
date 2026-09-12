@@ -46,10 +46,23 @@ Re-verify against these files if this doc and the app ever disagree — the app 
 | `math_lit` | any | `StandardMath` |
 | `maths`, `physics` | `equation`, `steps` | `ScientificMath` |
 | `maths`, `physics` | anything else (`fitb`, `fraction`) | `StandardMath` |
-| any other subject | any | `None` — **no custom keyboard, system IME never shown
-  either** (`QuestionKeyboardType.None` renders nothing; only affects blanks a subject
-  actually has — most presentations for e.g. `geography` are select-from-options, not
-  typed). Confirm before authoring a typed blank for a subject not in this table. |
+| any other subject | `fitb`, `fraction` | `None`, but **not actually unanswerable** —
+  corrected 2026-09-12, this doc previously claimed the system IME never shows either;
+  verified false by reading `DynamicTextInput`/`RoundedTextBox` in `TextInputs.kt`
+  directly. `LessonView.kt` sets `suppressSystemKeyboard = false` whenever the resolved
+  type is `None`, and both composables fall back to a **real, focusable `BasicTextField`**
+  in that case — the device's real system keyboard opens. The catch: `FillInTheBlank.kt`
+  never overrides `DynamicTextInput`'s `keyboardType` param, so the field always requests
+  `KeyboardType.Decimal` regardless of subject — a bare-numeric answer is fully typeable
+  today with no app change; a free-text letter answer depends entirely on whether the
+  device's decimal-mode IME happens to expose a letters toggle (inconsistent across
+  devices/IMEs, not something to author against). |
+| any other subject | `steps`, `equation` | `None`, and this one **is** genuinely
+  unanswerable — `EquationInput.kt` (used by both) has no system-IME fallback at all; it's
+  "driven entirely by the [custom] keyboard via ViewModel" and a bare tap does nothing
+  when `KeyboardResolver` returns `None` (`LessonView.kt`'s `None -> { /* no custom
+  keyboard */ }`). Avoid these two presentations entirely for a subject not in this table
+  until it's added to `KeyboardResolver.resolve`. |
 
 ## Character inventories
 
