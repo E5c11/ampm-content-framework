@@ -33,12 +33,13 @@ question. Questions test the same *skill* with a completely fresh scenario. This
 equally to no-video uploads: the exam image is the worked example; the practice
 questions are the independent exercise that follows — never a transcription.
 
-### `DESIGN-UNI-02` — Self-contained questions
+### `DESIGN-UNI-02` — Self-contained questions (default)
 
 `enforced_by: human-review`
 
 Each question must make complete sense on its own. No question may reference context,
-values, or results from another question in the set.
+values, or results from another question in the set. This is the default for every
+lesson; `DESIGN-UNI-13` names the one narrow, opt-in exception and how to invoke it.
 
 ### `DESIGN-UNI-03` — Distinct skills per video
 
@@ -224,6 +225,42 @@ components, not assumed per-subject. Two real, previously-shipped failures this 
    review; both require checking the *keyboard's* character set against the *answer's*
    characters, which is exactly what `core/keyboard-input.md` exists to make checkable
    without re-deriving it from app source every session.
+
+### `DESIGN-UNI-13` — Linked vs. independent lesson structure
+
+`enforced_by: human-review`
+
+Added 2026-09-12, ahead of `dbe-life-sciences.md` — surfaced by a Life Sciences design
+discussion, but the pattern isn't subject-specific: DBE exams routinely chain sub-parts
+("Identify the phase during which the process named in QUESTION 2.1.4(a) takes place"),
+and every subject's own multi-part questions could have used this. Written down now,
+before the first lesson that needs it, rather than re-derived from scratch the way
+`DESIGN-UNI-10` was.
+
+Decide once per lesson — at the same time as `DESIGN-UNI-10`'s bundle-vs-split call, and
+never mixed within one lesson — whether its question set is **independent**
+(`DESIGN-UNI-02`'s default) or **linked**: later questions may reference an earlier
+question's context or result from the same lesson, the way the real exam's own
+multi-part sub-questions often do.
+
+No new field is needed to express this. A question's `order` already fixes its position
+in the lesson, so a later question's `question` text can safely say "...the process
+identified above..." and the reference is unambiguous — what changes is only the
+authoring rule: a linked lesson relaxes `DESIGN-UNI-02` for its own question set; an
+independent lesson keeps it in full.
+
+**Choose linked only when the dependency is genuine** — a later sub-part builds on an
+earlier sub-part's own answer, not merely on shared context. Questions that only share a
+diagram or scenario (the existing per-question `supplementary_material` reuse pattern)
+stay independent by default; that alone is not a reason to link them — each must still
+stand on its own given the figure. Link only when writing every question to stand alone
+would force re-deriving or restating an earlier answer inside a later question's stem
+(padding, not real content), or would turn a genuinely sequential exam chain into
+disconnected trivia.
+
+**Never mix within one lesson** — either every question in the set may reference back to
+an earlier one, or none may. A student working through a lesson should not hit an
+unpredictable mix of self-contained and dependent items.
 
 ---
 
