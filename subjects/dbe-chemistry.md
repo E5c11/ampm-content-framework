@@ -422,6 +422,17 @@ only because it blocked live verification of this paper's diagrams and the fix (
 back-merge PR) is itself a routine, recurring chore in the `AMPM` repo's own release process,
 not something specific to content authoring.
 
+**Pushed to prod, unpublished — 2026-09-12** (`tools/push-paper-to-prod.js --subject
+physics --year 2023 --paper nov_p2`, no `--publish`): 13 lessons / 53 questions, plus all
+50 referenced images (including the 4 new generated diagrams), mirrored from dev.
+Verified in prod: all lesson/question rows `is_published = false`; spot-checked image
+URLs on the prod bucket resolve (200), including the two `question_supplementary/...`
+diagram paths. **No live-user exposure regardless of publish state** — prod's `physics`
+subjects row still carries `min_app_version = '2.1.2'`, unchanged, which hard-excludes
+the entire Physical Sciences subject from every client (same gate the 2025 paper is
+still waiting on). Not yet published — run with `--publish` once ready to flip live in
+prod's database (still invisible to clients until the app-version gate clears).
+
 ## App-side inheritance — no separate work needed
 
 Everything `dbe-physics.md`'s "App-side keyboard/calculator routing" and "App-version
