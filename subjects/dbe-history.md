@@ -329,8 +329,65 @@ tooling gap in `review-paper.md`'s Phase 5 section (a `None`-keyboard subject's
 tool fix — that's a separate task for whoever next needs Phase 5 automated end-to-end
 for Geography or History).
 
-**Still open:** Section B (Q4–Q6, essay questions, `DESIGN-HIST-02`), `june_p2` once
-sourced, and the `DESIGN-UNI-06` index-0 correction noted above. Prod push still not
-done — dev review is clean, but Section A alone is an incomplete paper; wait for
-Section B before pushing, same as every other subject's convention of pushing a whole
-paper at once, not half of one.
+## Section B — complete, 2026-09-12
+
+**All 3 essay lessons (Q4–Q6) authored, validated, and upserted to dev.** Same
+`DESIGN-HIST-01`-style discipline extended to essay questions per `DESIGN-HIST-02`: no
+free-text essay input exists in the app, so each lesson's 8 practice questions mix
+fresh content-knowledge items (real historical facts about the period — Biko/BCM,
+1990–1994 negotiations, Glasnost/Perestroika — freely reworkable since this is general
+historical knowledge, not exam-owned source material) with essay-strategy items
+(thesis identification, PEEL paragraph-structure sequencing) grounded in the real
+memo's own synopsis/main-aspects framing.
+
+| Lesson | Order | Marks | Practice Qs | Presentations used |
+|---|---|---|---|---|
+| Question 4 (Civil Resistance — Biko/BCM) | 4 | 50 | 8 | multiple_choice, fitb, multi_select, ordering |
+| Question 5 (Coming of Democracy — Negotiated Settlement) | 5 | 50 | 8 | multiple_choice, fitb, multi_select, ordering |
+| Question 6 (End of Cold War — Glasnost/Perestroika) | 6 | 50 | 8 | fitb, multiple_choice, multi_select, ordering |
+
+300/300 marks of the full question bank now covered (Section A + Section B — see Paper
+structure's "150 vs 300" note; a student attempts 150 of these on the day). Q4/Q5/Q6
+share one uploaded exam page (all three prompts appear together on it, same
+once-per-paper reuse pattern as a formula sheet); each has its own 2-page memo extract.
+`aiExplanation` carries **one** guidance entry per lesson (`marks: 50`, synopsis/
+main-aspects/rubric summarised from the real memo as approach guidance, not a model
+essay) rather than per-sub-question entries, since the real exam has no numbered
+sub-parts here — just one essay prompt.
+
+**`DESIGN-UNI-06` index-0 correction applied as planned:** 2 of the new 13
+`multiple_choice` questions across Section B were deliberately placed with their
+correct answer at `metadata` index 0 (Q4's Question 2, Q5's Question 3), correcting the
+0%-across-Section-A drift noted earlier. Combined running tally: 2 of 28
+`multiple_choice` questions at index 0 (7.1%), under the ~10% cap and no longer flat 0%.
+
+**Full-paper review — CLOSED CLEAN, 2026-09-12** (`workflows/generate/review-paper.md`):
+all 24 Section B questions captured and reviewed against their screenshots. 24 PASS, 0
+AUTO_FIX, 0 FLAG — no repeat of the Section A fitb defect (Section B's one `fitb` per
+lesson used short metadata correctly from the start), and the new long-text ordering/
+multi_select chips (PEEL-paragraph sentences, thesis-statement options) all render
+fully without clipping or overflow.
+
+**Concurrent-session collision, second instance this paper — now at the review-tooling
+layer, not just the upload layer.** A separate concurrent Claude Code session
+(reviewing `life_science`'s own `nov_p2` paper) was actively driving the *same*
+emulator via `adb` at the same time, causing `review-capture.js` to intermittently fail
+with "null root node returned by UiTestAutomationBridge" and wiping the shared
+`AMPM/temp/review/nov_p2_2025/` scratch directory (manifest, screenshots, report — all
+gitignored, no real data lost, but the working files were gone mid-review). That
+session had already independently patched `review-build-manifest.js` to namespace its
+output directory by subject (`temp/review/<subject>_<paper>_<year>/`), which is what
+this session's manifest rebuild picked up automatically (`history_nov_p2_2025/`
+instead of the shared `nov_p2_2025/`) — no further tooling fix needed here. **Lesson:
+if another session might be reviewing a different subject's paper concurrently, expect
+`temp/review/` collisions on the old un-namespaced path, and check `ps aux` for another
+`review-capture.js`/`review-build-manifest.js` process before assuming a uiautomator
+error is a genuine device problem** — it may just be two sessions fighting over one
+emulator.
+
+**Still open:** `june_p2` once sourced. Not yet done: dev live-testing's Phase 5
+answerability pass for Section B specifically (Section A's already-documented
+system-keyboard tooling gap applies equally here — Section B's `fitb` questions were
+verified by render/focus screenshot, not by the tool's own PASS signal), and the prod
+push (dev review is now clean for the *whole* paper — Section A + Section B — so this
+is the next real step, not blocked on anything further being authored).
