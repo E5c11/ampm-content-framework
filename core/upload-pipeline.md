@@ -288,7 +288,7 @@ profile's additional checklist items. `enforced_by: human-review`
 - [ ] Each question has non-null `unit_id`, `topic_id`, `subtopic_id`, and ≥1 `question_skills` row (`PIPE-08`)
 - [ ] `lesson_ai_explanation_sub_questions`: one row per exam sub-question (maths) / practice question (English), `sort_order` sequential
 - [ ] Array contracts hold per type — `answer` exactly 5 for `fitb`/`fraction`/`multiple_choice`/`multi_select`/`equation` (`SCHEMA-ARR-01`); `metadata` exactly 5 for `multiple_choice`/`multi_select` (`SCHEMA-ARR-02`); `metadata` empty for `fraction`/`equation` — `[]` authored, `{}` in Postgres, never NULL (`SCHEMA-ARR-03`, `PERSIST-01`); `fitb` metadata variable-length token list (`SCHEMA-ARR-04`); `ordering`/`match`/`steps` variable length, no padding, `ordering` lengths equal (`SCHEMA-ARR-05`/`06`)
-- [ ] `multiple_choice`/`multi_select`: every `answer` value exists verbatim in `metadata` (`SCHEMA-TYPE-02`); correct option never at index 0 (`SCHEMA-TYPE-06`)
+- [ ] `multiple_choice`/`multi_select`: every `answer` value exists verbatim in `metadata` (`SCHEMA-TYPE-02`); correct option at index 0 in ≤~10% of the paper's questions, not banned outright (`SCHEMA-TYPE-06`/`DESIGN-UNI-06` — check the running paper-level count, not just this set)
 - [ ] `fitb`/`steps`: `"[ ]"` always its own element (`MATHTEXT-05`); `steps` question field is a plain instruction (`MATHTEXT-04`)
 - [ ] No question content lifted from the real exam paper (`DESIGN-UNI-01`)
 - [ ] No `\n` in any `question` field (`DESIGN-UNI-04`)

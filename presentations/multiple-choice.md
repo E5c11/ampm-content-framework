@@ -11,9 +11,12 @@ tags: [presentation, multiple-choice, options]
 ## Metadata contract
 
 **`MC-01`** — `metadata` has exactly 5 elements (`SCHEMA-ARR-02`): 4 option strings +
-`""` (True/False questions: 2 options + three `""`). The correct option is **never at
-index 0** (`SCHEMA-TYPE-06` / `DESIGN-UNI-06`) — index 0 is always a distractor.
-`enforced_by: validator` (length), `human-review` (index-0 placement).
+`""` (True/False questions: 2 options + three `""`). The correct option lands at index 0
+in **at most ~10% of a paper's questions** — not banned outright, just capped, with the
+rest distributed across indices 1–3 (`SCHEMA-TYPE-06` / `DESIGN-UNI-06`, revised
+2026-09-12 from an absolute "never"). `enforced_by: validator` (length), `human-review`
+(index-0 running count, tracked per paper — a single lesson's set is too small a sample
+to check a percentage against).
 
 ## Answer contract
 
@@ -39,13 +42,16 @@ Verified against app code 2026-07-15:
 **Failure modes:**
 - `answer[0]` not verbatim in `metadata` → the question is **unanswerable** — every
   selection validates Incorrect, no error surfaces.
-- Options are not shuffled at render, so a correct answer stored at index 0 is
-  systematically exploitable (first option always right) — hence the index-0 rule.
+- Options are not shuffled at render, so any positional pattern in the correct answer
+  is exploitable by a student who notices it — not just "always index 0," equally
+  "never index 0." That's why the rule is a skewed distribution (~10% at index 0, ~90%
+  spread across 1–3) rather than either extreme.
 
 ## Validator coverage
 
 Enforces: 5-element metadata and answer. Human-review only: verbatim answer↔option
-match, index-0 placement, distractor plausibility. Set-level: True/False cap ≤20%
+match, index-0 distribution (running paper-level count, not per-set — see
+`DESIGN-UNI-06`), distractor plausibility. Set-level: True/False cap ≤20%
 (`DESIGN-UNI-05` — validator checks the set; the paper-level running count is on the
 author).
 

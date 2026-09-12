@@ -297,8 +297,16 @@ function validateSet(questions) {
     setErrors.push(`Variety rule: 4+ question set must use at least 3 different presentation types (only has: ${[...uniqueTypes].join(', ')})`);
   }
 
-  // ── Answer position distribution (index 0 max 10%) ──────────────────────
-  // Checked at paper level by audit-firestore-questions.js — sample too small here.
+  // ── Answer position distribution (index 0 max ~10% of a paper) ───────────
+  // DESIGN-UNI-06 (revised 2026-09-12: capped, not banned outright). No automated
+  // check here — a single upload script's set (2-5 questions) is too small a sample
+  // for a percentage rule; this is a human-tracked running count across the whole
+  // paper, same pattern as the True/False cap below except that one IS validated
+  // per-set at a larger N. (This comment used to point at "audit-firestore-
+  // questions.js" as the enforcement mechanism — that tool doesn't exist anywhere in
+  // this repo or its history, a stale Firestore-era reference nothing ever caught.
+  // No Postgres equivalent exists yet either; build one against a full paper's
+  // questions if this needs real enforcement rather than an author's own tally.)
 
   // ── True/False cap: ≤ 20% of the set ─────────────────────────────────────
 

@@ -139,9 +139,12 @@ Read each question's data alongside its screenshot; classify PASS / AUTO_FIX / F
 
 - [ ] **Answer correctness:** work the question independently; does `answer` hold the
       correct value for this stimulus?
-- [ ] **Correct-answer placement:** `multiple_choice` correct answer never at `metadata`
-      index 0 (`SCHEMA-TYPE-06`); every `answer` value appears verbatim in `metadata`
-      (`SCHEMA-TYPE-02`).
+- [ ] **Correct-answer placement:** `multiple_choice` correct answer at `metadata` index
+      0 in at most ~10% of the *paper's* questions (`SCHEMA-TYPE-06`/`DESIGN-UNI-06`,
+      revised 2026-09-12 from an absolute "never" — a skewed distribution, not a ban;
+      an index-0 occurrence on its own is not a defect, count it against the paper-wide
+      running tally before deciding); every `answer` value appears verbatim in
+      `metadata` (`SCHEMA-TYPE-02`).
 - [ ] **Array contracts** hold for the type (`SCHEMA-ARR-01..06`, `core/question-schema.md`).
 - [ ] **Context-text sufficiency** (English): answerable from `context_text` (+ shared
       stimulus) alone — no external knowledge.
@@ -207,13 +210,20 @@ Read each question's data alongside its screenshot; classify PASS / AUTO_FIX / F
 | **AUTO_FIX** | Clear, unambiguous error, known correct value | Patch in **dev** via `patch-question.js` |
 | **FLAG** | Ambiguous / needs human judgement | Report with reason + screenshot; **do not touch** |
 
-**Safe AUTO_FIX:** wrong `answer` value (confident), correct answer at index 0 (rotate),
-missing `|` alternative, obvious `context_text` typo, a `question`/`clues` rendering
+**Safe AUTO_FIX:** wrong `answer` value (confident), missing `|` alternative, obvious
+`context_text` typo, a `question`/`clues` rendering
 defect with a clear content-level fix (e.g. rephrasing to avoid a markup pattern the
 renderer misinterprets — see the chemistry nov_p2 review, 2026-09-12: `E°(Ag⁺/Ag)`, a
 standalone slash-pair alone in its own parens right after `E°`, rendered as a stacked
 math fraction instead of plain text; fixed by rephrasing to "The Ag⁺/Ag half-cell has
 E° = ... V" so the pair is never isolated in its own parens).
+
+**Correct answer at index 0 is no longer an automatic AUTO_FIX — count it, don't rotate
+it on sight** (revised 2026-09-12, `DESIGN-UNI-06`). Tally how many of the paper's
+`multiple_choice` questions have their correct answer at index 0 as you go; only
+FLAG/fix one if the running count would push the paper over ~10%. A paper with zero
+index-0 correct answers isn't a bug either — it's just under the cap, not something to
+"balance out" by moving one there.
 
 **After patching a question that was already viewed once in this app-data lifetime,
 `am force-stop` is NOT enough to see the fix** — the app caches lesson/question content

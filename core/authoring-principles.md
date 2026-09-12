@@ -63,12 +63,33 @@ A True/False question uses exactly two options: `metadata: ["True", "False", "",
 Appropriate for testing a single rule or fact — not for calculation, proof, or multi-step
 reasoning. Check the running count before adding one.
 
-### `DESIGN-UNI-06` — Correct answer not at index 0
+### `DESIGN-UNI-06` — Correct answer at index 0 capped, not banned — revised 2026-09-12
 
-`enforced_by: human-review` (see `SCHEMA-TYPE-06`)
+`enforced_by: human-review` (running paper-level count is on the author — same pattern
+as `DESIGN-UNI-05`'s True/False cap; a single lesson's small question set is too small a
+sample to check a percentage against, so this is tracked across the whole paper, not
+per-set)
 
-For `multiple_choice`, the correct option must never be at `metadata` index 0. Index 0
-is always a distractor. Place the correct answer randomly at index 1, 2, or 3.
+**Previously an absolute rule ("never at index 0") — loosened, not tightened.** Founder
+call 2026-09-12: students figure out a pattern like "the first option is always wrong"
+just as readily as they'd figure out any other tell, so a hard ban trades one
+exploitable pattern for another, equally exploitable one. The fix is a **skewed
+distribution, not a ban**: across a paper, the correct `multiple_choice` option should
+land at `metadata` index 0 no more than **~10% of the time**, with the remaining ~90%
+distributed across indices 1–3. Placing it at index 0 occasionally is now correct
+behavior, not a defect — don't "fix" an index-0 correct answer on sight the way the old
+rule implied; check the running count for the paper first.
+
+This was already anticipated once, then went stale: `tools/validate-questions.js` has
+carried a `// Answer position distribution (index 0 max 10%)` comment since before this
+revision, deferring enforcement to a tool named `audit-firestore-questions.js` — which
+does not exist anywhere in this repo or its history (a Firestore-era reference that
+outlived the Firestore pipeline itself — this repo's authoring tooling moved off
+Firestore onto Cloud SQL Postgres directly, see `workflows/archive/
+repoint-authoring-to-postgres.md`). Nothing was actually checking this. No such tool
+exists yet for Postgres either — this
+remains a human-tracked running count per paper until one is built, exactly like
+`DESIGN-UNI-05`'s own paper-level tally.
 
 ### `DESIGN-UNI-07` — Variety rule
 

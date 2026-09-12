@@ -128,8 +128,9 @@ carry the detail:
   (see `presentations/fitb.md`). `enforced_by: human-review`
 - **`SCHEMA-TYPE-05`** — `fitb`: never simulate fractions with `"/"` — use `fraction`.
   `enforced_by: human-review`
-- **`SCHEMA-TYPE-06`** — `multiple_choice`: correct option never at `metadata` index 0.
-  `enforced_by: human-review`
+- **`SCHEMA-TYPE-06`** — `multiple_choice`: correct option at `metadata` index 0 in at
+  most ~10% of a paper's questions, the rest distributed across indices 1–3 — not an
+  absolute "never," a running-tally cap (see `DESIGN-UNI-06`). `enforced_by: human-review`
 
 ---
 
