@@ -49,7 +49,7 @@ const questions = [
   {
     name: 'Question 1',
     question:
-      'Marble chips, CaCO₃(s), react with an EXCESS of dilute hydrochloric acid. In Experiment 1, 40 cm³ of 0,5 mol·dm⁻³ HCℓ(aq) is used. In Experiment 2, the SAME mass of marble chips reacts with 80 cm³ of 0,5 mol·dm⁻³ HCℓ(aq). Calculate how many times greater the TOTAL volume of CO₂(g) produced in Experiment 2 will be, compared to Experiment 1: []',
+      'An EXCESS of marble chips, CaCO₃(s), reacts with dilute hydrochloric acid. In Experiment 1, 40 cm³ of 0,5 mol·dm⁻³ HCℓ(aq) is used. In Experiment 2, the SAME mass of marble chips reacts with 80 cm³ of 0,5 mol·dm⁻³ HCℓ(aq). Calculate how many times greater the TOTAL volume of CO₂(g) produced in Experiment 2 will be, compared to Experiment 1: []',
     metadata: ['Volume of CO₂ in Experiment 2 = ', '[ ]', ' × the volume in Experiment 1'],
     answer: ['2', '', '', '', ''],
     presentation: 'fitb',
