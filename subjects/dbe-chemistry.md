@@ -321,12 +321,14 @@ publish state** — prod's `physics` subjects row still carries `min_app_version
 '2.1.2'` (set 2026-09-10 for Physics P1, confirmed still live 2026-09-12), which
 hard-excludes the *entire* Physical Sciences subject from `GET /v1/content/subjects`
 and `GET /v1/content/subjects/{id}` for every client — chemistry inherits this
-automatically via the shared `subject_id`. **Still open, deliberately not run yet:**
-`--publish` (flips `is_published = true` on the prod rows already pushed, no dev read)
-— even once flipped, the subject stays invisible until the app-version gate is
-separately cleared (`UPDATE subjects SET min_app_version = NULL WHERE id = 'physics'`,
-prod, once a release containing the app-side keyboard/MathText fixes has shipped — same
-gate physics is still waiting on).
+automatically via the shared `subject_id`. **Published — 2026-09-12** (`--publish`, same command, no dev read): all 13 lessons and
+51 questions now `is_published = true` in prod, verified directly. Fully live in prod's
+database, ready to serve — still invisible to every client, re-confirmed
+`min_app_version = '2.1.2'` unchanged on the `physics` subjects row after publishing.
+**To actually go live for students:** `UPDATE subjects SET min_app_version = NULL WHERE
+id = 'physics'` (prod), once a release containing the app-side keyboard/MathText fixes
+has shipped — same gate physics's own P1 paper is still waiting on. Nothing further to
+push for this paper once that day comes.
 
 **Still open:** June-diet paper (`june_p2`) once sourced, same as Physics's `june_p1`.
 
