@@ -282,6 +282,18 @@ always use a subject/paper-scoped local folder name, never bare `qN`** — the G
 destination path is controlled entirely by `--order`, but the local folder's file list is
 whatever's already sitting there, stale content included.
 
+**Full-paper review completed 2026-09-12** (`workflows/generate/review-paper.md`,
+report at `AMPM/temp/review/nov_p2_2025/report.md`): all 13 lessons / 51 questions
+captured on emulator and reviewed against their screenshots. 48 PASS, 3 AUTO_FIX (all
+the same `E°(X/Y)` fraction-rendering defect — an electrode-couple value written as a
+standalone slash-pair in its own parens right after `E°` rendered as a stacked math
+fraction instead of plain text; fixed in dev and in the source scripts by rephrasing to
+"The X/Y half-cell has E° = ... V"), 0 FLAG. Every other rendering check passed clean:
+chemistry-specific Unicode (subscripts, `ℓ`, `⇌`, `Δ`, cell-notation `|`/`||`) all render
+correctly, every presentation type matches its renderer contract. This is the first
+live-device evidence for `dbe-chemistry.md`'s Chemistry-specific sections (keyboard
+constraint, presentation mix) beyond part 1 alone.
+
 **Still open:** June-diet paper (`june_p2`) once sourced, same as Physics's `june_p1`.
 On-device live testing of Q2 onward (only part 1 was tested live this session, which is
 what caught the Q1/Q2 overlap above).
