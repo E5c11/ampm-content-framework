@@ -380,6 +380,19 @@ intentional, partition by `order` range up front** — the deterministic-UUID de
 makes re-running a script safe is exactly what makes two *different* scripts targeting the
 same `order` silently destructive to each other.
 
+**Full-paper review — CLOSED CLEAN, 2026-09-12** (`workflows/generate/review-paper.md`,
+report at `AMPM/temp/review/nov_p2_2023/report.md`): all 13 lessons / 53 questions
+captured on emulator and reviewed against their screenshots. 48 PASS, 1 AUTO_FIX, 0 FLAG.
+The one AUTO_FIX was in a lesson authored by the concurrent session (Question 1.4, order
+2) — its question stem said the ACID was in excess when the stored answer/clues assumed
+the marble chips were in excess; swapping which reagent the stem calls "EXCESS" resolved
+the contradiction. Caught by independently re-deriving the chemistry for every question
+in the concurrent session's lessons (2–6) during this review, not just spot-checking.
+Phase 5 (answerability) also run: all 12 `fitb` questions in this paper (the only typed-
+answer presentation used) were typed through the app's real custom keyboard and
+submitted through the real app mechanism — all 12 confirmed `CORRECT`. DESIGN-UNI-06
+tally: 2/22 `multiple_choice` questions at index 0 (9.1%), under the cap.
+
 ## App-side inheritance — no separate work needed
 
 Everything `dbe-physics.md`'s "App-side keyboard/calculator routing" and "App-version
