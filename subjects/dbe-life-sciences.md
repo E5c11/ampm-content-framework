@@ -378,8 +378,40 @@ reviewable without them. Closed out properly:
   `lesson_ai_explanation_sub_questions` row counts) rather than trusted from script
   output alone.
 
-**Still open**: `june_p2` once sourced, same as every other subject. The full
-`review-paper.md` run (Phases 1-6, screenshot-based render/logic/crop review against
-the actual app) is the user's own next step, not run as part of this session — nothing
-above substitutes for that review, it only ensures there's a complete package to review
-in the first place.
+**Full `review-paper.md` run (Phases 1-5) — CLOSED CLEAN, 2026-09-12.** All 15 lessons /
+79 questions captured and reviewed. Report: `AMPM/temp/review/life_science_nov_p2_2025/
+report.md`. Found and resolved a real `fitb` layout defect this paper's longer labels
+exposed (2 of 8 `fitb` questions were completely unanswerable past a label-length
+threshold, the other 6 had a character-wrapping display bug) — root-caused in
+`FillInTheBlank.kt` (fixed single-line `Row`, no wrap support), mitigated by moving
+descriptive text into `question` (wraps fine at any length) and reducing `metadata` to a
+minimal `"= [ ]"` completion across all 8 `fitb` questions, then re-verified via a second
+Phase 5 pass after a full cache clear — all 8 now PASS end-to-end (render, type, submit,
+validate correct). One open app-bug remains, independent of content: a floating
+"view diagram" button overlaps the last answer option's wrapped text on some
+`match`/`multiple_choice`/`multi_select` questions with `supplementary_material` — needs
+an app-side fix, not a content change. Also fixed two pieces of shared review tooling
+while running this: `review-build-manifest.js`'s output path now scopes by subject
+(it previously collided with and partially overwrote a concurrent Chemistry review
+sharing the same paper/year — caught, Chemistry's actual `report.md`/`answer-
+results.json` were untouched), and `review-capture-answers.js` now supports Phase 5 for
+`None`-routed subjects (life_science, geography) via a system-keyboard fallback — it
+previously only knew how to type through a custom in-app keyboard, which doesn't exist
+for this subject.
+
+**Pushed to prod, unpublished — 2026-09-12** (`tools/push-paper-to-prod.js --subject
+life_science --year 2025 --paper nov_p2`, no `--publish`): 15 lessons / 79 questions,
+150/150 marks, plus 84 new curriculum_nodes, 79 skills, 21 tags, 84
+`lesson_ai_explanation_sub_questions`, and all 46 referenced images (exam pages +
+generated diagrams), mirrored from dev. Verified directly against prod Postgres (not
+just the script's own output): all lesson/question rows `is_published = false`;
+spot-checked image URLs on the prod bucket resolve (200). **No live-user exposure
+regardless of publish state** — prod's `life_science` subjects row is still
+`is_active = false` / `min_app_version = '3.0.0'` (unchanged by this push, and
+deliberately not touched — that's a separate, later decision about real-user
+visibility, same as Physics/Chemistry's own prod pushes treated their app-version
+gates). Re-check that value fresh before ever publishing, per the same warning
+Physics/Chemistry's own profiles already carry.
+
+**Still open**: `june_p2` once sourced, same as every other subject. The diagram-FAB
+overlap app bug (above) is unresolved and independent of any subject's content.
