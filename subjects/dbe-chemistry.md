@@ -393,6 +393,35 @@ answer presentation used) were typed through the app's real custom keyboard and
 submitted through the real app mechanism — all 12 confirmed `CORRECT`. DESIGN-UNI-06
 tally: 2/22 `multiple_choice` questions at index 0 (9.1%), under the cap.
 
+**Question-level generated diagrams added post-review, 2026-09-12 — the per-question
+`supplementary_material` path exercised for chemistry for the first time.** Owner feedback
+after the review: this paper has genuinely visual content (cell diagrams, Maxwell-Boltzmann
+curves, an equilibrium concentration-vs-time graph) that had all been resolved through text
+description alone, even though the mechanism and tooling (`upload-question-supplementary.js`,
+already used twice by physics for free-body diagrams) fully support generated images. Four
+questions were rewritten to depend on a real diagram instead of describing it in prose —
+Question 5 (order 9) Q4 (Maxwell-Boltzmann, two curves), Question 6 (order 10) Q5
+(concentration-vs-time), Question 8 (order 12) Q3 (galvanic cell, P/Q electrode labels), and
+Question 9 (order 13) Q3 (electrolytic cell, battery polarity). Images generated with
+matplotlib (never part of the source exam PDF — same "AMPM-generated study aid" category as
+physics's own precedent, per `AMPM/wiki/maths-media.md`'s founder correction), uploaded to
+`question_supplementary/physics/2023/nov_p2/q{order}/`, and verified live via the per-question
+maths-tools FAB. **Lesson for future papers:** the earlier "no generated images needed" note
+for this profile's structural-formula case doesn't generalise to graphs/diagrams — check each
+of those cases on their own merits rather than defaulting to text decomposition throughout.
+
+**Unrelated app-version-gate incident hit and resolved mid-follow-up.** Verifying the new
+diagrams required a fresh app install (`pm clear`), which re-triggered the subject picker and
+showed Physical Science as "Coming soon" — the local `dev` checkout of `AMPM`
+(`~/StudioProjects/AMPM`, repo `ampm-kmp`) was one version behind the already-merged
+`release/2.2.0`. Fixed by merging the pre-existing, CI-generated PR #96
+(`chore/back-merge-2.2.0` → `dev`, a routine version-bump-only merge, `mergeStateStatus:
+CLEAN`) via `gh pr merge`, pulling locally, and rebuilding
+(`./gradlew :composeApp:installDevGoogleDebug`). Not a chemistry-content issue — noted here
+only because it blocked live verification of this paper's diagrams and the fix (merging a
+back-merge PR) is itself a routine, recurring chore in the `AMPM` repo's own release process,
+not something specific to content authoring.
+
 ## App-side inheritance — no separate work needed
 
 Everything `dbe-physics.md`'s "App-side keyboard/calculator routing" and "App-version
