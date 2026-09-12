@@ -84,9 +84,9 @@ const questions = [
     name: 'Question 2',
     question: "According to Source 1A, COSATU's total membership in November 1985 was about [] workers.",
     metadata: [
-      "According to Source 1A, COSATU's total membership in November 1985 was about ",
+      'Total membership: ',
       '[ ]',
-      ' workers.',
+      ' workers',
     ],
     answer: ['500000', '', '', '', ''],
     presentation: 'fitb',
@@ -109,9 +109,8 @@ const questions = [
     name: 'Question 3',
     question: 'According to Source 1C, [] young recruits, including the author, formed a line at the top of the stairs leading to the station platform.',
     metadata: [
-      'According to Source 1C, ',
+      'Number of young recruits: ',
       '[ ]',
-      ' young recruits, including the author, formed a line at the top of the stairs leading to the station platform.',
     ],
     answer: ['14', '', '', '', ''],
     presentation: 'fitb',

@@ -85,9 +85,9 @@ const questions = [
     name: 'Question 2',
     question: 'The TRC rejected the amnesty applications under the Promotion of National Unity and Reconciliation Act, [] of 1995.',
     metadata: [
-      'The TRC rejected the amnesty applications under the Promotion of National Unity and Reconciliation Act, ',
+      'Act number: ',
       '[ ]',
-      ' of 1995.',
+      ' of 1995',
     ],
     answer: ['34', '', '', '', ''],
     presentation: 'fitb',
@@ -110,9 +110,8 @@ const questions = [
     name: 'Question 3',
     question: 'According to Source 2A, Farisani was detained without trial on [] separate occasions between 1977 and 1987.',
     metadata: [
-      'According to Source 2A, Farisani was detained without trial on ',
+      'Number of detentions: ',
       '[ ]',
-      ' separate occasions between 1977 and 1987.',
     ],
     answer: ['4', '', '', '', ''],
     presentation: 'fitb',

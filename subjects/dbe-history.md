@@ -25,8 +25,7 @@ authored and reviewed, the same evidencing discipline `dbe-chemistry.md` and
 | Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'history'` — empty until the first authoring session populates them. Reuse before `tools/create-curriculum-node.js` / `create-skill.js` |
 | Vocabulary dump | `node tools/dump-curriculum-vocabulary.js --subject history --out temp/curriculum-vocab.json` (Auth Proxy running) |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/caps_fet_history_gr_10-12_web_1.pdf` — required in-session before authoring, not optional (`DESIGN-UNI-08` names History as a content-based subject). Covers both papers; the Grade 12 topic tables for Civil Resistance (1970s–80s), Coming of Democracy/TRC, and End of the Cold War/New World Order are the P2-relevant sections — verify exact CAPS section numbers in-session, not assumed from this note |
-| **Source files** | `files/History P2 Nov 2025 Eng.pdf` (question paper, 9pp), `files/History P2 Nov 2025 Addendum Eng.pdf` (source material, 14pp) |
-| **Not yet sourced** | No marking guideline (memo) exists for this paper, unlike Chemistry/Geography's `... MG ...` files. Needed before authoring official answer keys or the synthesis-paragraph sub-questions' accepted-answer shape — treat as a session blocker until sourced, same severity as a missing curriculum document |
+| **Source files** | `files/History P2 Nov 2025 Eng.pdf` (question paper, 9pp), `files/History P2 Nov 2025 Addendum Eng.pdf` (source material, 14pp), `files/History P2 Nov 2025 MG Eng.pdf` (marking guideline, 26pp — sourced 2026-09-12, after Q1–Q3 were first authored; see ledger) |
 | `subjects` reference row | **Not yet created** — needs the same owner-gated direct insert as `geography`/`physics`'s rows before any authoring session (not something this framework creates itself) |
 | Papers | `nov_p2` (Nov 2025) profiled now. `june_p2` presumed to exist once sourced, same pattern as every other subject |
 
@@ -199,3 +198,139 @@ past), `end_of_cold_war_new_world_order` (1989 events, Gorbachev/Glasnost/Perest
 BRICS/Global North–South realignment). Illustrative only — the real set comes from the
 Phase 3.5 vocabulary dump once a first session populates it (`PIPE-08`), same as every
 other subject.
+
+## Completed papers ledger
+
+**`nov_p2` Section A (Q1–Q3) — complete, 2026-09-12.** All 3 lessons authored,
+validated, and upserted to dev (Cloud SQL); image URLs spot-checked resolving (200)
+with no cross-lesson bleed. `subjects` reference row created this session (`id:
+"history"`, `color: "#B8860B"`, `icon: "landmark"`, `min_app_version: null` — confirmed
+against `ObserveAvailableSubjectsUseCase.kt` that `null` falls back to `isActive`, the
+same state Maths/Math Lit/English HL/Geography are already live in).
+
+| Lesson | Order | Real sub-Qs | Marks | Practice Qs | Presentations used |
+|---|---|---|---|---|---|
+| Question 1 (Civil Resistance — COSATU) | 1 | 1.1.1–1.6 (17) | 50 | 8 | multiple_choice, fitb, multi_select, ordering, match |
+| Question 2 (Coming of Democracy — TRC/Farisani) | 2 | 2.1.1–2.6 (17) | 50 | 8 | multiple_choice, fitb, multi_select, match |
+| Question 3 (End of Cold War — BRICS) | 3 | 3.1.1–3.6 (16) | 50 | 8 | multiple_choice, fitb, ordering |
+
+150/300 marks of the full question bank covered (Section A only — see Paper structure's
+"150 vs 300" note; Section B's three essay questions, Q4–Q6, are still open). Each
+`aiExplanation.sub_questions` entry maps 1:1 to a real numbered exam sub-question with
+its real marks (Geography's convention, not English's `marks: null` one, since these
+sub-questions have real mark allocations).
+
+**Marking guideline sourced mid-session, 2026-09-12 (`files/History P2 Nov 2025 MG Eng.pdf`) — all three lessons' `ai_explanation` rewritten against it, not left on the
+first source-text-only derivation.** Worth naming explicitly because several official
+answers differ from what a plain close-reading of the sources alone would produce, not
+just in wording:
+- 2.3.1's accepted quote is the source's *political-objective* sentence, not the
+  formal-compliance sentence immediately before it in the same source — both are true
+  statements in Source 2C, only one is the memo's accepted answer.
+- 2.3.3's "oral testimonies" refers to the amnesty *applicants'* testimony in Source 2C,
+  not Farisani's own testimony in Source 2B — an easy source-mixup this paper's own
+  wording invites, since both sources involve someone testifying.
+- 3.4.3's accepted reasoning includes the Global North's *ageing/declining* population
+  vs. BRICS+'s workforce advantage — a demographic angle no amount of close-reading the
+  sources produces, since neither source states it explicitly.
+- 1.6/2.6/3.6's own-knowledge points (UWUSA as a rival, government-aligned union
+  countering COSATU; the New Development Bank as an IMF/World Bank alternative;
+  Thailand's interest in joining BRICS) aren't derivable from the sources at all —
+  genuine outside historical knowledge the memo expects, not source comprehension.
+
+**Second image-collision bug hit and fixed this session, same root cause as the first
+(see below), different files.** The memo PDF's own extracted pages are also named
+`question_N.png` by `extract-exam-pages.py` — uploading them as-is a second time
+overwrote the real exam question pages again. Fixed the same way: rename to
+`memo_N.png` before calling the upload tool. **Generalise this lesson beyond History:**
+`extract-exam-pages.py` always names output `question_N.png` regardless of source
+(exam page, addendum source, or memo page) — any extraction whose content isn't
+literally "the question paper" needs a rename pass before upload, every time, for every
+subject using this tool.
+
+**`DESIGN-HIST-01` in practice — every practice question stays pinned to the real
+source, tests an angle the exam's own sub-questions didn't.** E.g. Q1's practice set
+never repeats "quote evidence COSATU was the largest federation" (the exam's own 1.1.1)
+but asks about the same Source 1A's total-membership figure, and about a completely
+different source (1C's recruit count) the exam's 1.1–1.6 never turned into a discrete
+fact-extraction item. One genuinely fresh cross-source find this session: Source 3A
+lists five countries joining BRICS on 1 January 2024, but the real exam's own 3.1.4 says
+"six new countries" — Source 3D's footnote resolves this (Argentina had already
+withdrawn before that date), which became Q3's own Question 5, a corroboration item
+the real exam never asks.
+
+**`DESIGN-HIST-03` in practice — `fitb` stayed numeric-only across all 24 practice
+questions,** used for dates/counts/percentages/one calculated value (Q3's Question 3:
+computing the percentage-point change between 1995 and 2023 from Source 3C's graph,
+genuine relational work per `DESIGN-UNI-08`, not just extraction). Every
+name/term/quoted-phrase question went to `multiple_choice`/`multi_select`/`match`
+instead, confirming the profile's prediction that `fitb` would be a minority
+presentation for this subject.
+
+**`DESIGN-UNI-06` running tally, Section A only:** 0 of 15 `multiple_choice` questions
+across these 3 lessons have their correct answer at `metadata` index 0 (0%), well under
+the ~10% cap but drifting toward the "never index 0" pattern the 2026-09-12 revision
+specifically warned against — deliberately place one at index 0 in a future lesson to
+correct this, don't let it compound further.
+
+**Real per-question images extracted per source, not per exam question** — 4 separate
+`supplementary_materials` entries per lesson (`Source 1A`–`1D` etc.), each its own GCS
+object (`exam_papers/dbe/history/2025/nov_p2/q{N}/annexure_{label}.png`), matching
+`PIPE-03`'s "one entry per labeled TEXT/extract" rule.
+
+**Local tooling gotcha hit this session, now avoided — same failure family as
+Chemistry's `temp/images/qN/` collision, but on the *destination* side this time.**
+`tools/upload-exam-images.js` routes purely on local filename prefix
+(`question_`/`annexure_`/`memo_`), and `tools/extract-exam-pages.py` always names its
+output `question_N.png` regardless of what it conceptually contains. Extracting each of
+Q1's 4 sources into separate directories (each producing a file literally named
+`question_1.png`) and uploading them with `--supplementary-type source` did **not**
+route them to an annexure path — every one landed on the exact same `question_1.png`
+object key, silently overwriting each other and the real exam page. **Fix: after
+extraction, copy/rename each source's PNG to a uniquely-named `annexure_<label>.png`
+before calling the upload tool, one file per invocation.** Caught immediately via a
+post-upload `curl` HTTP-200 sweep across all 6 expected URLs per lesson (not just
+checking the tool's own success output) — applied correctly from Q2 onward, and the Q1
+corruption was caught and fixed (re-uploaded the real exam pages, then re-uploaded each
+source under its own unique filename) before the lesson was written to Postgres.
+
+**Full-paper review — CLOSED CLEAN, 2026-09-12** (`workflows/generate/review-paper.md`,
+report at `AMPM/temp/review/nov_p2_2025/report.md`): all 3 lessons / 24 questions
+captured on emulator and reviewed against their screenshots. 21 PASS, 7 AUTO_FIX (all
+one defect class), 0 FLAG.
+
+**AUTO_FIX — every `fitb` question was unanswerable or degraded, one root cause.**
+User-reported: "the fitb is not working, the text seems to be too much and it's hiding
+the fitb." `FillInTheBlank.kt` renders `metadata` tokens in a single `Row` that does
+**not** wrap — every one of this paper's 7 `fitb` questions had a `metadata`
+prefix/suffix token that duplicated the entire `question` sentence, instead of the
+short residual label `presentations/fitb.md`'s own worked example actually uses
+(`"2.5 hours = "`, not a restated sentence). A long prefix wraps into a tall multi-line
+`Text` that pushes the blank input off-screen entirely (6 of 7 — genuinely
+unanswerable); a long suffix after a short prefix instead overflows off-screen unseen
+without hiding the input (1 of 7 — degraded, not blocking). Fixed by shortening every
+fitb `metadata` token, patched live via `patch-question.js`, verified via `pm clear` +
+re-capture (all 7 confirmed rendering correctly), and updated the source-of-truth
+scripts to match so a re-run doesn't revert it. Documented generally in
+`presentations/fitb.md` since the root cause applies to any subject's `fitb`, not just
+History's. **Lesson for future lessons: never restate the full question sentence in
+`fitb` metadata — always author it as a short label, from the start.**
+
+**Phase 5 (answerability) run, with a caveat: the tool itself can't drive the system
+keyboard yet.** `scripts/review-capture-answers.js` only types via Compose
+`maths_key_$label` tags, which don't exist for a `None`-keyboard subject (Geography,
+History) — the system IME is a real Android keyboard outside the app's Compose tree.
+All 7 `fitb` questions came back `MISSING_KEY` on every character, which looked like a
+hard failure but wasn't: the `_typed.png` screenshots show each input correctly
+focused (cursor visible) with a real system keyboard genuinely open. Verified
+answerable by screenshot instead of by the tool's own PASS/FAIL signal. Documented as a
+tooling gap in `review-paper.md`'s Phase 5 section (a `None`-keyboard subject's
+`MISSING_KEY` result needs the same screenshot-based sanity check from now on, not a
+tool fix — that's a separate task for whoever next needs Phase 5 automated end-to-end
+for Geography or History).
+
+**Still open:** Section B (Q4–Q6, essay questions, `DESIGN-HIST-02`), `june_p2` once
+sourced, and the `DESIGN-UNI-06` index-0 correction noted above. Prod push still not
+done — dev review is clean, but Section A alone is an incomplete paper; wait for
+Section B before pushing, same as every other subject's convention of pushing a whole
+paper at once, not half of one.

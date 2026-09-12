@@ -82,3 +82,13 @@ presentation: "fitb",
 - Only use fitb when the answer is a specific, matchable string (`DESIGN-ENG-04`);
   open-ended questions go to `multiple_choice`.
 - Write answers in standard sentence case — matching is case-insensitive.
+- **`metadata` label tokens must stay short — never restate the full `question`
+  sentence.** Found live 2026-09-12 (History nov_p2 review): `FillInTheBlank.kt` renders
+  its tokens in a single `Row` that **does not wrap** — a long label token either wraps
+  internally into a tall multi-line `Text` (pushing the blank input off the visible
+  screen entirely, unanswerable) or, if it comes after the blank, simply overflows
+  off-screen unseen. The worked example above is the actual contract: `metadata`'s
+  prefix/suffix tokens are a short residual label (`"2.5 hours = "`), never a duplicate
+  of the full sentence already shown via `question`'s own `"[]"` → `"___"` rendering.
+  Affected 6 of 7 `fitb` questions in the same review session, all sharing this one root
+  cause — check every `fitb` metadata token against this before authoring more than one.
