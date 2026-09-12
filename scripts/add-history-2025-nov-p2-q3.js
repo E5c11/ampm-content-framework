@@ -39,7 +39,7 @@ const video = {
   xp: 50,
   tags: ['brics', 'global_north_south_relations', 'de_dollarisation', 'source_reliability'],
   question_image_urls: [`${IMG}/q3/question_1.png`, `${IMG}/q3/question_2.png`],
-  memo_image_urls: null, // no marking guideline sourced yet for this paper (subject profile, "Not yet sourced")
+  memo_image_urls: [`${IMG}/q3/memo_1.png`, `${IMG}/q3/memo_2.png`, `${IMG}/q3/memo_3.png`, `${IMG}/q3/memo_4.png`, `${IMG}/q3/memo_5.png`],
   exam_question_marks: 50,
   supplementary_materials: [
     { type: 'source', label: 'Source 3A', image_urls: [`${IMG}/q3/annexure_3A.png`] },
@@ -265,9 +265,12 @@ const questions = [
 ];
 
 // ─── AI explanation (AMPM-CONTENT-AI-EXP) — one entry per REAL exam sub-question ───
-// Derived directly from Sources 3A-3D (no marking guideline sourced yet for this paper —
-// subject profile flags this; answers below are grounded in the source text itself, since
-// this paper's own sub-questions are largely direct source-comprehension items).
+// Aligned against the official marking guideline (files/History P2 Nov 2025 MG Eng.pdf,
+// pages 16-20), sourced 2026-09-12. Superseded an earlier source-text-only derivation —
+// 3.1.4/3.2.4/3.4.3/3.4.4/3.5/3.6 needed the memo's specific accepted points (UN
+// collaboration leverage, Global North's ageing population vs BRICS+'s workforce, the
+// New Development Bank, Thailand's interest in joining), several of which a plain
+// close-reading of the sources alone would not have produced.
 
 const aiExplanation = {
   sub_questions: [
@@ -283,21 +286,21 @@ const aiExplanation = {
       marks: 4,
       clues: '- The four countries are named together in the first paragraph of Source 3A.',
       approach: '- Re-read the first paragraph for the four countries whose ministers attended.',
-      solution: '1. Source 3A names "Russia, Brazil and China" (foreign affairs ministers) "and the minister of defence of India".\n2. Answer: Russia, Brazil, China and India.',
+      solution: '1. Russia.\n2. Brazil.\n3. China.\n4. India.',
     },
     {
       number: '3.1.3',
       marks: 2,
-      clues: "- A summit is a high-level meeting, usually between heads of state or top leaders.\n- Contrast this with an ordinary ministerial meeting.",
+      clues: "- A summit is a high-level meeting, usually between heads of government.\n- Contrast this with an ordinary ministerial meeting.",
       approach: "- Define 'summit' using its general meaning.\n- Note the level of leader typically involved.",
-      solution: "1. A 'summit' is a formal meeting between heads of state, government, or other top-level leaders to discuss important matters.\n2. It is distinguished from lower-level meetings (such as the 2006 ministerial meeting) by the seniority of the representatives involved.",
+      solution: "1. A summit is a high-level meeting/conference of heads of government.",
     },
     {
       number: '3.1.4',
       marks: 4,
-      clues: '- Consider how many countries BRICS now includes, and what this means for its collective size and influence.\n- Think about the term "BRICS+" and what a larger group can achieve that a smaller one cannot.',
-      approach: '- Note which countries joined and what resources/regions they represent (e.g. energy-rich Gulf states).\n- Explain how this expands BRICS\'s combined economic and political weight.',
-      solution: "1. The addition of Egypt, Iran, the UAE, Saudi Arabia and Ethiopia significantly increases BRICS's combined population, economic output and geographic reach, including major energy-producing nations.\n2. This expansion strengthens BRICS's ability to challenge Western-led international institutions and to promote a multi-polar world order, as stated in Source 3A.\n3. It also broadens BRICS's influence across the Middle East and North/East Africa, regions not previously represented in the group.",
+      clues: '- Think about BRICS\'s political leverage (e.g. at the United Nations) as well as its economic weight.\n- Consider what "more inclusive" and "equal trading partner" mean for the Global North\'s own position.',
+      approach: '- Note the political/diplomatic angle (UN collaboration, recognition as an equal partner), not only the economic angle.\n- Combine any two distinct points for four marks.',
+      solution: "1. It helped strengthen BRICS countries to challenge the Global North/the balance of power, and neutralised the Global North's domination.\n2. It provided more BRICS members to collaborate at the United Nations.\n3. It offered support and development (political, economic and social) to members of Third World countries (the Global South).\n4. It directly threatened the Global North to recognise the Global South as an equal trading partner.\n5. It made BRICS more inclusive.\n6. Any two of these, explained, answer the question.",
     },
     {
       number: '3.2.1',
@@ -309,37 +312,37 @@ const aiExplanation = {
     {
       number: '3.2.2',
       marks: 2,
-      clues: "- The source itself defines this term in brackets right after it is first used.\n- Think about which currency BRICS wants to move away from.",
+      clues: "- The source itself defines this term in brackets right after it is first used.\n- Think about which currency BRICS wants to move away from, and what replaces it.",
       approach: "- Locate where 'de-dollarisation' first appears in Source 3B.\n- Use the bracketed explanation given immediately after it.",
-      solution: "1. Source 3B explains de-dollarisation as replacing the US dollar in international trade with an independent payment system using BRICS member currencies.\n2. This is intended to reduce the impact of Western (especially US) sanctions on BRICS members.",
+      solution: "1. De-dollarisation is the reduction of dependence on the US dollar in global trade by BRICS member states.\n2. It involves the increased use of local BRICS currencies as a substitute for the dollar in international trade transactions, and the establishment of an international payment system not reliant on dollar payments.",
     },
     {
       number: '3.2.3',
       marks: 2,
       clues: '- The reason is given directly in the third paragraph of Source 3B.',
       approach: '- Re-read the paragraph about the agricultural sector for the stated reason.',
-      solution: "1. Source 3B states BRICS wants to create an independent grain trading system to increase its negotiating power in grain prices and to combat sanctions imposed by the United States and its G7 partners.",
+      solution: "1. To create an independent grain trading system.\n2. This would increase the organisation's negotiating power in grain prices and help combat sanctions by the United States and its G7 partners.",
     },
     {
       number: '3.2.4',
       marks: 4,
-      clues: '- Think about what "diminished US influence" would mean for other countries and institutions that currently rely on US-led systems.',
-      approach: "- Explain what reduced US influence over global trade/finance would mean in practice.\n- Link this to a shift toward a more multi-polar international order.",
-      solution: "1. Diminished US influence would weaken Washington's ability to use economic tools such as sanctions and dollar-based trade to pressure other countries.\n2. Other nations, especially in the Global South, would gain more room to trade and cooperate independently of US-led systems.\n3. This would push the world toward a more multi-polar order, with power more evenly distributed between the Global North and Global South, rather than concentrated in the US and its allies.",
+      clues: '- Think about what "diminished US influence" would mean both for global trade rules and for the Global South\'s own standing.',
+      approach: "- Explain what reduced US leadership of the Global North/de-dollarisation would mean for the US's world position.\n- Link this to a narrowing of the gap between developed and developing countries.",
+      solution: "1. The US would lose its position as leader of the Global North through de-dollarisation, and the Global North would surrender its dominant position in the world.\n2. This would open doors for a shift in global leadership.\n3. Free trade under a changed order would narrow the economic gap between underdeveloped and developed countries.\n4. It would give the Global South a meaningful role in sharing political and economic spheres in the world.\n5. Any two of these, explained, answer the question.",
     },
     {
       number: '3.3.1',
       marks: 4,
-      clues: '- Compare the labelled percentages for each bloc across the three years shown (1995, 2010, 2023).',
-      approach: "- Read the G7's percentage in each of the three years and describe the trend.\n- Read BRICS's percentage in each of the three years and describe the trend.",
-      solution: "1. (a) The G7's share of global GDP steadily declined, from 44.9% in 1995 to 34.3% in 2010 to 29.6% in 2023.\n2. (b) BRICS's share of global GDP steadily increased, from 16.9% in 1995 to 26.6% in 2010 to 32.1% in 2023 — overtaking the G7's share by 2023.",
+      clues: '- Compare the labelled percentages for each bloc across the three years shown (1995, 2010, 2023), and think about what the trend itself implies, not just the numbers.',
+      approach: "- Describe the G7's trend and what it implies about its influence.\n- Describe BRICS's trend and what it implies about its influence.",
+      solution: "1. (a) The G7's GDP share noted a steady decline, meaning shrinking influence, and the gap between the G7 and developing countries was narrowing.\n2. (b) BRICS's GDP share noted a steady increase between 1995 and 2023, meaning growing influence — China and India in particular contributed more to economic development in BRICS countries.",
     },
     {
       number: '3.3.2',
       marks: 4,
-      clues: "- China is one of the BRICS countries shown in the graph.\n- Think about how one country's growth can lift the whole bloc's global standing.",
-      approach: "- Note that China is the largest economy within BRICS.\n- Explain how its GDP growth contributes to BRICS's overall rising share of global GDP, and what this means for global power balance.",
-      solution: "1. China's rapid economic growth from 1995 to 2023 was the single largest contributor to BRICS's overall share of global GDP rising from 16.9% to 32.1%.\n2. This growth gives China (and by extension BRICS) far greater economic leverage and influence in global trade and finance.\n3. It implies a significant shift in global economic power away from the traditionally dominant G7 nations toward China and the wider Global South.",
+      clues: "- China is one of the BRICS countries shown in the graph.\n- Think about China's position within BRICS specifically, not only its effect on the world generally.",
+      approach: "- Describe the shape of China's growth (gradual/steady).\n- Explain what this positions China as, both within BRICS and globally.",
+      solution: "1. It represents a gradual/steady rise in GDP.\n2. This positions China as a leader within the BRICS countries.\n3. It implies China is an emerging global power.\n4. It also implies China is challenging the dominance of the USA.\n5. Any two of these, explained, answer the question.",
     },
     {
       number: '3.4.1',
@@ -353,35 +356,35 @@ const aiExplanation = {
       marks: 2,
       clues: '- The reason is stated directly in the first paragraph of Source 3D.',
       approach: "- Re-read the first paragraph for BRICS+ countries' view of the Bretton Woods-era order.",
-      solution: "1. Source 3D states BRICS+ countries are critical of the 'rules-based' international order established by the US during the Bretton Woods era, which they see as benefitting the West (especially the US) over the Global South.",
+      solution: "1. BRICS+ countries are critical of the 'rules-based' international order, established by the United States.\n2. They see it as benefitting the West (especially the United States) over the emerging Global South.",
     },
     {
       number: '3.4.3',
       marks: 2,
-      clues: '- Think about what such a large share of global GDP and population means for BRICS+\'s collective economic and political weight.',
-      approach: "- Explain why a bloc with over a third of global GDP and nearly half the world's population becoming serious about de-dollarisation would worry US leaders.",
-      solution: "1. A bloc controlling 35% of world GDP and 45% of the world's population has enormous potential economic weight.\n2. If such a large bloc successfully reduced its reliance on the US dollar, it would significantly weaken US economic leverage and the dollar's position as the world's dominant reserve currency.\n3. This represents a direct long-term threat to US global economic and political influence.",
+      clues: "- Think beyond GDP alone: consider what BRICS+'s POPULATION size means, especially compared to the Global North's own demographic trend.",
+      approach: "- Link the GDP figure to a threat to Global North economic dominance/the dollar.\n- Link the population figure specifically to the Global North's ageing/declining population, and to BRICS+'s workforce advantage.",
+      solution: "1. The GDP of BRICS+ represents an emerging economic power and a threat to the economic dominance of the Global North, including a possible threat to the dominance of the US dollar in international trade if de-dollarisation proceeds.\n2. The substantial population of BRICS+ is a threat because the population of the Global North is generally ageing and in decline in many countries, while the large population of BRICS+ represents a large workforce that can fuel economic growth.",
     },
     {
       number: '3.4.4',
       marks: 4,
-      clues: '- Think about who is speaking (a senior US political figure) and in what setting (a public campaign speech).',
-      approach: "- Consider the value of hearing directly from Trump himself on this topic.\n- Consider any limitations of a campaign speech as a source.",
-      solution: "1. The source is useful because it is a direct, first-hand quotation from Trump himself, giving unfiltered insight into how a senior US leader personally viewed the BRICS+ threat.\n2. However, it has limitations: campaign speeches are often exaggerated or aimed at a domestic political audience, so the tone and claims may not fully reflect calm, considered US policy.\n3. Overall it is useful for showing Trump's personal reaction and rhetoric, but should be checked against more formal policy sources for balance.",
+      clues: '- Think about who is speaking, in what role, and how the timing of the speech connects to actual BRICS developments.',
+      approach: "- Note Trump's specific role and position at the time of the speech.\n- Note the timing relative to BRICS's own recent expansion.",
+      solution: "1. It is part of a speech delivered by Trump at a campaign rally when he felt threatened by BRICS's expansion — it gives insight into Trump's own perspective.\n2. Trump gave the speech as president-elect of the USA and the leading figure of the Global North, worried about the growth of the Global South.\n3. Trump addressed the rally soon after six new members had joined BRICS.\n4. It highlights how Trump was concerned about de-dollarisation by BRICS+.",
     },
     {
       number: '3.5',
       marks: 4,
-      clues: '- Look for a numeric/statistical claim in Source 3D that the graph in Source 3C can visually confirm.',
-      approach: "- Identify a specific claim Source 3D makes about BRICS's economic weight.\n- Match it to the actual data shown in Source 3C's graph.",
-      solution: "1. Source 3D claims BRICS+ countries form 35% of the world's GDP, a claim of growing economic weight relative to the West.\n2. Source 3C's graph provides supporting evidence for this trend, showing BRICS's share of global GDP rising from 16.9% in 1995 to 32.1% in 2023, overtaking the G7's declining share.\n3. The graph's hard data backs up Source 3D's concern that BRICS's economic weight is now large enough to challenge the existing US/G7-led balance of power.",
+      clues: '- Match specific claims in Source 3D to specific data/details in Source 3C\'s graph, point for point.',
+      approach: '- Pair the graph\'s declining-G7/rising-BRICS trend with Source 3D\'s de-dollarisation claim.\n- Pair the graph\'s specific percentage with Source 3D\'s own percentage claim.\n- Pair the graph\'s named leading countries with Source 3D\'s mention of US-China tension.',
+      solution: "1. Source 3C shows the declining G7 economic power, and Source 3D refers to BRICS countries leaving the dollar (de-dollarisation).\n2. Source 3C shows BRICS's GDP increasing to 32.1% over time, and Source 3D indicates BRICS countries formed 35% of the world's GDP — both sources show BRICS's GDP forming over 30% of the world's GDP.\n3. Source 3C shows the USA and China as the dominating leaders for the G7 and BRICS respectively, and Source 3D refers to a trade war between China and the USA as dominating powers.\n4. Any two of these paired comparisons, explained, answer the question.",
     },
     {
       number: '3.6',
       marks: 8,
-      clues: '- Draw on all four sources plus your own knowledge of global power shifts.\n- Aim for a short, structured paragraph, not a list.',
-      approach: "- Identify BRICS's growth and expansion (3A).\n- Identify its strategic challenges to Western economic dominance (3B).\n- Identify the hard data showing the shift in global GDP share (3C).\n- Identify how this is perceived as a direct threat by US leaders (3D).\n- Link these into one flowing paragraph.",
-      solution: "1. BRICS has grown from a small four-country grouping in 2006 into a much larger bloc, adding South Africa in 2011 and five more countries in 2024 (Source 3A).\n2. It is actively pursuing strategies such as de-dollarisation and an independent payment system to reduce Western economic leverage over its members (Source 3B).\n3. This shift is measurable: BRICS's share of global GDP rose from 16.9% in 1995 to 32.1% in 2023, overtaking the G7's declining share (Source 3C).\n4. US leaders, including Trump, view this expansion and de-dollarisation drive as a direct threat to American economic and political influence, given BRICS+'s huge share of world GDP and population (Source 3D).\n5. Together, these sources show BRICS's expansion genuinely threatens to shift the global balance of power away from the Global North toward the Global South.",
+      clues: '- Draw on all four sources plus your own knowledge of BRICS institutions and its wider international appeal.\n- Aim for a short, structured paragraph, not a list.',
+      approach: "- Identify BRICS's founding purpose and expansion (3A).\n- Identify its strategic economic challenges to the West (3B).\n- Add own-knowledge institutional detail (the New Development Bank; other countries interested in joining).\n- Identify how Trump/the USA perceives this as a threat (3D).\n- Link these into one flowing paragraph.",
+      solution: "1. The expansion of BRICS members from BRIC to BRICS+ was meant to challenge the Global North, since BRICS was created to focus on emerging markets and developing countries in the Global South (Source 3A).\n2. A priority of BRICS+ is to promote the formation of a multi-polar world order and strengthen global security, rejecting unilateral coercive measures used by the West — BRICS is seen as a way to counter-balance the economic dominance of the G7 (Source 3A, own knowledge).\n3. BRICS is challenging the international order through an AI governance framework, an independent economic system and regional security coalitions, aiming at de-dollarisation and diminishing the effect of Western sanctions, including an energy partnership and an independent grain trading system (Source 3B).\n4. BRICS created the New Development Bank (NDB) as an alternative to Western financial institutions like the IMF and World Bank, and other countries, such as Thailand, have shown interest in joining, which would further upset the existing global order (own knowledge).\n5. De-dollarisation is recognised as a threat by Donald Trump/the USA, given that BRICS+ countries form 35% of the world's GDP and 45% of the world's population, and possible sanctions or tariffs by Trump could ironically consolidate China's leadership of BRICS+ and lead to more innovation and integration among the Global South (Source 3D).",
     },
   ],
   model: 'claude-sonnet-5',

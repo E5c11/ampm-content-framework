@@ -38,7 +38,7 @@ const video = {
   xp: 50,
   tags: ['cosatu', 'trade_union_mobilisation', 'civil_resistance', 'source_reliability'],
   question_image_urls: [`${IMG}/q1/question_1.png`, `${IMG}/q1/question_2.png`],
-  memo_image_urls: null, // no marking guideline sourced yet for this paper (subject profile, "Not yet sourced")
+  memo_image_urls: [`${IMG}/q1/memo_1.png`, `${IMG}/q1/memo_2.png`, `${IMG}/q1/memo_3.png`, `${IMG}/q1/memo_4.png`],
   exam_question_marks: 50,
   supplementary_materials: [
     { type: 'source', label: 'Source 1A', image_urls: [`${IMG}/q1/annexure_1A.png`] },
@@ -283,9 +283,10 @@ const questions = [
 ];
 
 // ─── AI explanation (AMPM-CONTENT-AI-EXP) — one entry per REAL exam sub-question ───
-// Derived directly from Sources 1A-1D (no marking guideline sourced yet for this paper —
-// subject profile flags this; answers below are grounded in the source text itself, since
-// this paper's own sub-questions are largely direct source-comprehension items).
+// Aligned against the official marking guideline (files/History P2 Nov 2025 MG Eng.pdf,
+// pages 7-10), sourced 2026-09-12. Superseded an earlier source-text-only derivation —
+// several sub-questions' accepted answers differ meaningfully from a plain close-reading
+// (e.g. 1.1.3, 1.3, 1.4.3, 1.5.2, 1.6's own-knowledge points).
 
 const aiExplanation = {
   sub_questions: [
@@ -294,56 +295,56 @@ const aiExplanation = {
       marks: 2,
       clues: '- Look at the opening sentence of Source 1A.\n- The exact phrase you need is a direct quotation, not a paraphrase.',
       approach: "- Re-read the first sentence of Source 1A.\n- Identify the exact words that describe COSATU's size/status relative to other black worker organisations.\n- Copy the phrase exactly as it appears, in quotation marks.",
-      solution: '1. Source 1A states COSATU was formed when "more than 33 unions joined together".\n2. It then describes COSATU as "the largest federation (grouping) of black workers in South African history, with a total membership of some 500 000 workers".\n3. Either phrase, quoted directly, answers the question.',
+      solution: '1. Source 1A states "more than 33 unions joined together" to form COSATU.\n2. It also describes COSATU as having "a total membership of some 500 000 workers".\n3. Either quoted phrase answers the question.',
     },
     {
       number: '1.1.2',
       marks: 2,
       clues: "- Break the phrase into its two parts: 'non-parliamentary' and 'opposition group'.\n- Think about groups that oppose government policy from outside the formal political system.",
       approach: "- Identify what 'parliamentary' means (operating through formal government/legislature).\n- Combine this with 'opposition' (actively opposing government policy).\n- Write an own-words definition combining both ideas.",
-      solution: "1. 'Parliamentary' refers to formal government structures such as elected legislatures.\n2. 'Non-parliamentary' therefore means operating outside those formal government structures.\n3. An 'opposition group' actively challenges or resists government policy.\n4. Combined: a non-parliamentary opposition group is an organisation that opposes government policy from outside formal political/government structures, rather than through Parliament.",
+      solution: "1. A non-parliamentary opposition group is an organisation or political party that is not a member of parliament.\n2. In this context, it refers to groups fighting against apartheid, dedicated to overthrowing the white government (by force, in the case of the ANC referred to in the source).",
     },
     {
       number: '1.1.3',
       marks: 2,
-      clues: "- 'Allied itself to the aims, if not formally to the structures' means COSATU agreed with the ANC's goals without becoming an official part of it.\n- Think about what this reveals about how radical/political COSATU's stance had become.",
-      approach: "- Note the distinction the source draws between 'aims' and 'structures'.\n- Explain what sharing an organisation's aims without joining its structures implies about COSATU's political position.",
-      solution: "1. The statement shows that COSATU supported the ANC's goal of overthrowing white minority rule, even though it was not formally/organisationally part of the ANC.\n2. This implies COSATU had moved beyond purely workplace/labour concerns into direct political opposition to the apartheid government.\n3. It also suggests COSATU risked being seen by the state as linked to a banned organisation, given the ANC's exiled and outlawed status at the time.",
+      clues: "- 'Allied itself to the aims, if not formally to the structures' means COSATU agreed with the ANC's goals without becoming an official part of it.\n- Think about what this reveals about how COSATU's own focus had broadened.",
+      approach: "- Note the distinction the source draws between 'aims' and 'structures'.\n- Explain what sharing an organisation's aims implies about COSATU's own political focus, not just its relationship to the ANC.",
+      solution: "1. This shows COSATU no longer focused only on labour issues, but also on the wider struggle for liberation, just like the ANC.\n2. COSATU and the banned African National Congress shared the same political objective/mandate/goal of ending apartheid in South Africa.\n3. It also suggests COSATU believed in the aims of the Freedom Charter.",
     },
     {
       number: '1.1.4',
       marks: 4,
-      clues: '- Consider both what the source says about the economy, and what you know about labour legislation changes in this period.\n- Think about the numbers of workers involved and the industries mentioned.',
-      approach: '- Use the source\'s own evidence (economy\'s dependence on black labour, size of the black workforce in mining/textiles/steel).\n- Add outside knowledge (e.g. 1979 Wiehahn Commission reforms legalised black trade unions, giving them formal bargaining power).\n- Link the two: legal recognition plus economic leverage produced stronger unions.',
-      solution: "1. From the source: South Africa's modern economy had become increasingly dependent on black labour and skills, in industries such as mining, textiles and steel, giving unions real economic leverage through the threat of large-scale strikes.\n2. From own knowledge: the 1979 Wiehahn Commission reforms legally recognised black trade unions for the first time, allowing them to register, bargain, and organise openly.\n3. Together, legal recognition and the apartheid economy's growing reliance on black workers gave trade unions both the right and the practical power to organise and grow stronger through the 1980s.",
+      clues: '- Consider both what the source says about the economy and workforce, and what you know about labour-law changes and political conditions in this period.',
+      approach: "- Use the source's own evidence (many workers in industries/factories/plants).\n- Add outside knowledge (trade unions made legal after political parties were banned; heightened political activism in the 1980s; shop stewards recruiting workers).\n- Combine any two distinct reasons for four marks.",
+      solution: "1. There were many workers in industries, large factories and industrial plants, giving unions a large base to organise.\n2. Trade unions were made legal and could organise meetings after political parties were banned, giving them room to grow.\n3. It was easy for them to mobilise and hold meetings because the 1980s were generally a period of heightened political activism/consciousness/growing worker militancy against repression.\n4. They had union representatives (shop stewards) who recruited more workers and acted as a mouthpiece for the workers.\n5. Workers who felt exploited joined trade unions in greater numbers.\n6. Any two of these reasons, explained, answer the question.",
     },
     {
       number: '1.2.1',
       marks: 2,
-      clues: '- 1 May is International Workers\' Day (May Day).\n- Consider why choosing that specific date for a rally sends a message.',
+      clues: "- 1 May is International Workers' Day (May Day).\n- Consider why choosing that specific date for a rally sends a message.",
       approach: '- Identify what 1 May represents internationally.\n- Explain why COSATU deliberately chose that date for this rally.',
-      solution: "1. 1 May is International Workers' Day (May Day), a globally recognised day for celebrating and mobilising the labour movement.\n2. By holding the rally on this date, COSATU symbolically linked its own struggle to the wider international workers' movement.\n3. It also used the day to publicly demonstrate its scale and unity to the apartheid government.",
+      solution: "1. Workers in South Africa joined workers worldwide in celebrating/commemorating International Workers' Day.\n2. It united workers throughout the world in the struggle for their rights, linking COSATU's own struggle to a global movement.",
     },
     {
       number: '1.2.2',
       marks: 2,
-      clues: "- 'Forward' suggests continued progress/momentum.\n- 'Workers' struggle' links back to the broader anti-apartheid resistance, not just workplace issues.",
-      approach: "- Explain what the word 'forward' implies about the movement's direction.\n- Connect 'the workers' struggle' to the broader fight against apartheid, not only labour conditions.",
-      solution: "1. 'Forward' implies determination to keep advancing the movement rather than back down.\n2. 'The workers' struggle' frames the fight as an ongoing, collective battle linked to the wider anti-apartheid resistance, not just a dispute over wages or conditions.\n3. Together, the slogan is a rallying call for workers to keep mobilising and pushing the struggle onward.",
+      clues: "- 'Forward' suggests continued momentum.\n- 'Workers' struggle' links back to opposition to apartheid labour laws specifically.",
+      approach: "- Explain what the word 'forward' implies about the movement's direction.\n- Connect 'the workers' struggle' directly to resisting the apartheid government's labour laws.",
+      solution: "1. It indicates the commitment of, and a call for, workers to fight against the apartheid government's repressive labour laws.\n2. 'Forward' signals continued momentum and determination to keep pushing that struggle onward.",
     },
     {
       number: '1.2.3',
       marks: 2,
-      clues: '- The clenched fist is a well-known protest gesture.\n- Think about what it communicates about unity and defiance.',
-      approach: '- Recall what a raised clenched fist commonly symbolises in protest movements.\n- Apply this to what the workers in the photograph are communicating.',
-      solution: "1. A raised clenched fist is an internationally recognised symbol of resistance, defiance, unity and solidarity.\n2. In this photograph, it shows the workers' collective determination and refusal to back down against the apartheid government.\n3. It also expresses solidarity among the different unions and workers present at the rally.",
+      clues: '- The clenched fist is a well-known protest gesture.\n- Think about what it communicates about unity and defiance against a specific target.',
+      approach: '- Recall what a raised clenched fist commonly symbolises in protest movements.\n- Apply this specifically to the struggle against apartheid labour laws.',
+      solution: "1. It was a symbol of liberation and of the workers' struggle.\n2. It shows the unity and determination of workers in their struggle against the apartheid government's repressive labour laws.\n3. It symbolises the power that the workers had against the apartheid government.",
     },
     {
       number: '1.3',
       marks: 4,
-      clues: "- Look for a link between what 1A describes in words and what 1B shows in the photograph.\n- COSATU's scale/mobilisation described in 1A should be visible in 1B.",
-      approach: '- Identify a specific claim in Source 1A about COSATU\'s size, strength or mobilisation.\n- Match it to visual evidence in Source 1B that shows the same thing happening.',
-      solution: "1. Source 1A states COSATU had a total membership of some 500 000 workers and describes it as seeking 'the political high ground' in a mass struggle against white rule.\n2. Source 1B's photograph visually supports this by showing a massive crowd of workers packed into a stadium, carrying a large banner and raising clenched fists.\n3. The huge, organised crowd in the photograph is direct visual proof of the scale of mass mobilisation that Source 1A describes in words.",
+      clues: '- Match specific claims in Source 1A to specific visual details in Source 1B, point for point, rather than a general comparison.',
+      approach: '- Take a specific fact from Source 1A (union count, membership size, industrialisation).\n- Find the specific matching visual detail in Source 1B.\n- Pair them explicitly.',
+      solution: "1. Source 1A states COSATU became the largest federation of more than 33 unions, and Source 1B shows CCAWUSA as one of the unions affiliated to COSATU.\n2. Source 1A states COSATU had a membership of some 500 000 workers, and Source 1B shows a large crowd of workers attending the rally.\n3. Source 1A indicates South Africa was the most industrialised country (many workers), and Source 1B shows a large number of CCAWUSA members who worked in industries.\n4. Any two of these paired comparisons, explained, answer the question.",
     },
     {
       number: '1.4.1',
@@ -355,23 +356,23 @@ const aiExplanation = {
     {
       number: '1.4.2',
       marks: 2,
-      clues: '- A grievance is a specific complaint or cause for protest.\n- Think about what COSATU members felt aggrieved about.',
-      approach: "- Define 'grievances' in general terms.\n- Apply the definition to COSATU's specific complaints against the apartheid government/employers.",
-      solution: "1. A 'grievance' is a formal complaint or a real or perceived cause for complaint or resentment.\n2. In this context, COSATU's grievances were their complaints about unfair wages, working conditions and treatment of black workers under apartheid, which drove them to strike.\n3. The Riot Squad member (author) admits he neither understood nor cared about these grievances, showing the gap between strikers' and police's perspectives.",
+      clues: '- A grievance is a specific complaint or cause for protest.\n- Think about what COSATU members felt aggrieved about, against the apartheid labour system specifically.',
+      approach: "- Define 'grievances' in general terms.\n- Apply the definition to COSATU's specific complaints against apartheid labour laws/wages.",
+      solution: "1. Grievances are the complaints/demands/issues that COSATU members had against the apartheid government's labour laws and/or for better wages.\n2. These demands showed the strikers' resentment of, and rejection of, the apartheid government by unions affiliated to COSATU.",
     },
     {
       number: '1.4.3',
       marks: 3,
-      clues: '- Look at the second paragraph of Source 1C for words describing fear.\n- You need three separate quoted details.',
-      approach: "- Scan the second paragraph for language directly describing the recruits' emotional/physical state.\n- Select three distinct quoted phrases.",
-      solution: "1. 'the sound almost scared the life out of me'\n2. 'It was a terrifying sight'\n3. 'armed with knobkerries, whips, knives and a whole variety of vicious (dangerous) weapons'\n4. Any three direct quotations describing the recruits' fear or the threat they faced are acceptable.",
+      clues: "- Look at the second paragraph of Source 1C, describing the strikers' approach and the recruits' reaction to it.\n- You need any THREE separate quoted details.",
+      approach: "- Scan the second paragraph for language directly describing sound, sight or fear.\n- Select three distinct quoted phrases from the accepted list.",
+      solution: "1. 'The thunder of political jingles being sung in the deep angry voices …'\n2. '… 300 strikers resonated down the tunnel and up the stairway towards us'\n3. '… the sound almost scared the life out of me'\n4. 'Then they appeared at the bottom of the stairs and swung in our directions'\n5. 'It was a terrifying sight'\n6. 'They were armed with knobkerries, whips, knives and a whole variety of vicious weapons'\n7. Any three of these quotations are acceptable.",
     },
     {
       number: '1.4.4',
       marks: 4,
-      clues: '- Consider who wrote this source and when.\n- Think about whose perspective is missing.',
-      approach: "- Identify the author's role and relationship to the events described.\n- Explain how this affects the reliability/completeness of the account.\n- Note what is missing from the account.",
-      solution: "1. Source 1C is a memoir written by a former Riot Squad member describing his own unit's clash with COSATU strikers, so he has a personal interest in presenting his side sympathetically.\n2. As a memoir, it relies on personal memory recorded years after the events, which can be selective or inaccurate.\n3. It gives only the police perspective and omits the strikers' own experience of the clash.\n4. It also contains the author's own admission of not understanding or caring about the strikers' grievances, suggesting limited insight into their motives.",
+      clues: '- Consider who wrote this source, how experienced he was, and how the language itself reads.',
+      approach: "- Identify the author's role and level of experience.\n- Note the tone/language used.\n- Note that this is a memoir, not a contemporaneous record.",
+      solution: "1. The source is limited because it is only the perspective of a member of the East Rand Riot Unit.\n2. It is one-sided/biased/propaganda against the strikers.\n3. It is a version from a young, inexperienced recruit.\n4. The language used is exaggerated, e.g. 'the thunder of political jingles', 'the mob in hand-to-hand fighting', 'blood all over me'.\n5. The source is a memoir, and some of the information might have been forgotten, distorted, or selected before publication.\n6. Any two of these limitations, explained, answer the question.",
     },
     {
       number: '1.5.1',
@@ -383,30 +384,30 @@ const aiExplanation = {
     {
       number: '1.5.2',
       marks: 4,
-      clues: '- Look at the scale and nature of the destruction described in the second paragraph.\n- Think about how this compares to normal police conduct.',
-      approach: '- List the specific destructive acts described in Source 1D.\n- Use own knowledge of the scale of state repression to explain why this went beyond anything seen before.',
-      solution: "1. Source 1D describes filing cabinets and documents thrown from balconies, office equipment smashed, computers thrown out of windows, the security system destroyed, and items not destroyed simply stolen.\n2. This was not a targeted search but the wholesale destruction of an entire ten-storey building and its contents.\n3. The scale and totality of the destruction, attributed to 'accumulated rage and frustration' vented on the building, went far beyond a normal police raid or search, making it 'unprecedented and unparalleled' in the source's own words.",
+      clues: '- Think about both the SCALE of the destruction and the police\'s underlying MOTIVE for it.',
+      approach: '- Note that such force had never been seen before in South Africa.\n- Note that the goal seems to have been to eliminate COSATU itself, not just search the building.\n- Characterise the behaviour itself (reckless, unjustified).',
+      solution: "1. Such brutal force by the Riot Unit/Security Branch had never been seen in South Africa before.\n2. Everything in and out of the building was destroyed.\n3. The police wanted to shut down/eliminate the federation and its activities/destroy COSATU entirely, not merely search the premises.\n4. The behaviour of the police was reckless, immoral, criminal, unethical and unjustified.\n5. Any two of these, explained, answer the question.",
     },
     {
       number: '1.5.3',
       marks: 4,
-      clues: '- The second paragraph of Source 1D lists several separate destructive actions.',
-      approach: '- Scan the second paragraph and pick out four distinct actions.',
-      solution: '1. Filing cabinets and documents thrown from balconies.\n2. Office equipment smashed.\n3. Personal computers, video monitors and the security system thrown out or destroyed.\n4. Items not destroyed were stolen, and the printing machine in the basement was smashed.\n5. Any four of these are acceptable.',
+      clues: '- The second paragraph of Source 1D lists several separate destructive actions, each its own distinct fact.',
+      approach: '- Scan the second and third paragraphs and pick out four distinct destructive actions.',
+      solution: "1. Filing cabinets filled with documents and records rained down like confetti from the balconies.\n2. Office equipment was smashed.\n3. Personal computers were tossed out of the windows and over the balconies into the courtyard.\n4. Video monitors and an expensive security system were destroyed.\n5. What wasn't smashed or broken was stolen.\n6. The printing machine's plates and control panel were smashed.\n7. The printing machine had been completely destroyed.\n8. Cars in the basement had likewise been seriously damaged.\n9. Security Branch members started a fire.\n10. Any four of these are acceptable.",
     },
     {
       number: '1.5.4',
       marks: 2,
       clues: '- Think about what the Security Branch was trying to hide or protect by delaying the firefighters.\n- The fire was deliberately started, according to the source.',
-      approach: "- Consider the Security Branch's motive for starting the fire in the first place.\n- Link this to why they would want to delay firefighters reaching the actual source.",
-      solution: '1. Since Security Branch members had deliberately started the fire themselves, they likely wanted it to burn for as long as possible to destroy more evidence and documents.\n2. Misleading the firefighters about the fire\'s real location would delay it being extinguished, maximising the damage.\n3. It may also have been an attempt to disguise or downplay their own role in deliberately starting the fire.',
+      approach: "- Consider the Security Branch's motive for starting the fire in the first place.\n- Link this to why they would want to delay firefighters reaching it, or to avoid implicating themselves.",
+      solution: "1. Security Branch members did not want the firefighters to stop the fire, to ensure that everything in COSATU House was destroyed — a delaying tactic to let the fire spread.\n2. The police also did not want to implicate themselves or wanted to cover their tracks regarding who started the fire.",
     },
     {
       number: '1.6',
       marks: 8,
-      clues: '- Draw on all four sources plus your own knowledge of COSATU\'s history.\n- Aim for a short, structured paragraph, not a list.',
-      approach: "- Identify one or two key responses shown in each source (formation/scale, rallies, police repression, state demolition).\n- Link these into a flowing paragraph that answers 'what were the different responses'.\n- Keep to roughly 8 lines/80 words.",
-      solution: "1. COSATU mobilised at a massive scale, growing into the largest federation of black unions with roughly 500 000 members (Source 1A).\n2. It organised public rallies and mass action, such as the 1 May 1986 COSATU rally, to demonstrate unity and push the workers' struggle forward (Source 1B).\n3. The apartheid state responded with violent repression, using riot police to clash with strikers during actions like the March 1987 living wage campaign (Source 1C).\n4. State security forces escalated further, raiding and completely demolishing COSATU House in April 1987 to try to crush the organisation (Source 1D).\n5. Together, these sources show COSATU's responses ranged from mass, organised mobilisation to enduring escalating state violence and repression.",
+      clues: "- Draw on all four sources plus your own knowledge of COSATU's history and the wider anti-apartheid trade union movement.\n- Aim for a short, structured paragraph, not a list.",
+      approach: "- Take at least one point from each source (1A's growth and alliances, 1C's living wage campaign and police response, 1D's raid and demolition).\n- Add own-knowledge points beyond the sources (rival unions, repression of leaders, community support).\n- Link these into one flowing paragraph.",
+      solution: "1. More than 33 workers' unions decided to affiliate to COSATU, increasing the federation's membership, and ANC/UDF supporters aligned themselves with COSATU (Source 1A).\n2. Unfair new labour laws motivated domestic and farm workers to join COSATU (Source 1A), while community groups and students also supported COSATU (own knowledge).\n3. COSATU's living wage campaign was clamped down on by the East Rand Riot Unit, which confronted the striking mob and dispersed them (Source 1C).\n4. Strong leadership within workplaces, such as shop stewards, was silenced, and the apartheid government/Special Branch tortured, silenced or killed some COSATU leaders (own knowledge).\n5. The police raided COSATU House, and the Special Branch demolished the building, destroyed office equipment and records, set it on fire, and hindered firefighters from extinguishing it (Source 1D).\n6. The government also backed rival unions, such as UWUSA (aligned with the IFP), to counter COSATU's formation and influence (own knowledge).\n7. Together, these show a range of responses from worker/community mobilisation to escalating state violence and counter-organisation.",
     },
   ],
   model: 'claude-sonnet-5',

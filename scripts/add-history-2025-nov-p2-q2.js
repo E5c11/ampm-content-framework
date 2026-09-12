@@ -39,7 +39,7 @@ const video = {
   xp: 50,
   tags: ['truth_and_reconciliation_commission', 'human_rights_violations', 'apartheid_era_torture', 'source_reliability'],
   question_image_urls: [`${IMG}/q2/question_1.png`, `${IMG}/q2/question_2.png`],
-  memo_image_urls: null, // no marking guideline sourced yet for this paper (subject profile, "Not yet sourced")
+  memo_image_urls: [`${IMG}/q2/memo_1.png`, `${IMG}/q2/memo_2.png`, `${IMG}/q2/memo_3.png`, `${IMG}/q2/memo_4.png`, `${IMG}/q2/memo_5.png`],
   exam_question_marks: 50,
   supplementary_materials: [
     { type: 'source', label: 'Source 2A', image_urls: [`${IMG}/q2/annexure_2A.png`] },
@@ -278,9 +278,12 @@ const questions = [
 ];
 
 // ─── AI explanation (AMPM-CONTENT-AI-EXP) — one entry per REAL exam sub-question ───
-// Derived directly from Sources 2A-2D (no marking guideline sourced yet for this paper —
-// subject profile flags this; answers below are grounded in the source text itself, since
-// this paper's own sub-questions are largely direct source-comprehension items).
+// Aligned against the official marking guideline (files/History P2 Nov 2025 MG Eng.pdf,
+// pages 11-15), sourced 2026-09-12. Superseded an earlier source-text-only derivation —
+// several sub-questions' accepted answers differ meaningfully (2.3.1 quoted the wrong
+// sentence entirely; 2.3.3's "oral testimonies" refers to the applicants' testimony in
+// 2C, not Farisani's testimony in 2B; 2.4/2.5 needed the memo's specific point-for-point
+// pairings, not a general comparison).
 
 const aiExplanation = {
   sub_questions: [
@@ -289,70 +292,70 @@ const aiExplanation = {
       marks: 2,
       clues: "- Farisani's early activism organisations are named in the first sentence of Source 2A.\n- You need TWO organisation names, both within the Black Consciousness Movement.",
       approach: "- Re-read the first two sentences of Source 2A.\n- Identify the named organisations Farisani was a founding member of.",
-      solution: "1. Source 2A states Farisani was 'a founding member of the Black People's Convention (BPC)'.\n2. It also states he 'co-founded the Black Evangelical Youth Organisation (BEYO)'.\n3. Answer: the Black People's Convention (BPC) and the Black Evangelical Youth Organisation (BEYO).",
+      solution: "1. Source 2A names the Black People's Convention (BPC).\n2. Source 2A names the Black Evangelical Youth Organisation (BEYO).",
     },
     {
       number: '2.1.2',
       marks: 3,
       clues: '- The types of abuse are listed together in the second paragraph of Source 2A.\n- You need any THREE distinct types.',
       approach: "- Scan the second paragraph of Source 2A for the list of abuses Farisani suffered during his incarcerations.\n- Select any three.",
-      solution: '1. Source 2A states he was "subjected to brutal torture, including beatings, electric shocks and prolonged isolation".\n2. Any three of: beatings, electric shocks, prolonged isolation.',
+      solution: '1. Brutal torture.\n2. Beatings.\n3. Electric shocks.\n4. Prolonged isolation.\n5. Any three of these are acceptable.',
     },
     {
       number: '2.1.3',
       marks: 2,
-      clues: "- 'Prisoner of conscience' is a term used by Amnesty International for people detained purely for their beliefs, not for a crime.\n- Think about why Farisani was detained.",
-      approach: '- Recall what "prisoner of conscience" means.\n- Apply this to Farisani\'s situation as described in the source.',
-      solution: '1. Farisani was detained repeatedly without trial purely because of his outspoken political opposition to apartheid, not because he had committed any crime.\n2. Amnesty International uses "prisoner of conscience" specifically for people imprisoned for their beliefs or peaceful activism.\n3. Since his detention was a direct result of his activism rather than any criminal act, Amnesty International classified him this way and campaigned for his release.',
+      clues: "- 'Prisoner of conscience' is a term used by Amnesty International for people detained purely for their beliefs, not for a crime.\n- Think about the injustice of his imprisonment, and the international response to it.",
+      approach: '- Explain that his imprisonment was wrong because it targeted his political beliefs, not any crime.\n- Note the international solidarity/pressure this attracted.',
+      solution: "1. The injustices meted out against Farisani due to his political beliefs were wrong.\n2. The apartheid government imprisoned him because he held political views that were not tolerated by the state in which he lived — he was imprisoned for the peaceful expression of his political beliefs.\n3. This meant pledging solidarity with prisoners like Farisani who suffered physical abuse and were restricted solely for their stance against apartheid, and putting pressure on the apartheid government over the abuses suffered.",
     },
     {
       number: '2.1.4',
       marks: 2,
-      clues: '- Persecution involves being deliberately targeted and mistreated, usually over a sustained period.\n- Think about why the government kept detaining Farisani.',
-      approach: "- Define 'persecution' in general terms.\n- Link it to the pattern of repeated detention and torture described in the source.",
-      solution: "1. 'Persecution' means the sustained, hostile mistreatment of a person or group, typically because of their beliefs, identity or activities.\n2. In this context, persecution refers to the apartheid government's repeated detention, torture and harassment of Farisani because of his political opposition to the regime.",
+      clues: '- Persecution involves being deliberately targeted and mistreated, usually over a sustained period, because of who someone is or what they believe.',
+      approach: "- Define 'persecution' in general terms.\n- Note it can apply to beliefs, dissent, or other forms of identity, not only politics.",
+      solution: "1. Persecution is the cruel or unfair treatment of people because of their beliefs.\n2. It includes the harassment of people who hold dissenting views, or unfair treatment of a person on the basis of gender/sexual orientation/political beliefs.",
     },
     {
       number: '2.2.1',
       marks: 2,
-      clues: '- The names appear early in Source 2B, described as the authors of a letter.',
-      approach: '- Re-read the opening lines of Source 2B for the names of the two implicated policemen.',
-      solution: '1. Source 2B names "Mr JAM Silimela and Mr Magwaba, Venda Security Branch policemen".\n2. Answer: JAM Silimela and Magwaba.',
+      clues: '- The names appear early in Source 2B, described as the authors of a letter, plus a third policeman named later in the source.',
+      approach: '- Re-read Source 2B for the names of the Venda Security Branch policemen Farisani implicates.',
+      solution: '1. Mr JAM Silimela.\n2. Mr Magwaba.\n3. Ramaligela.\n4. Any two of these names are acceptable.',
     },
     {
       number: '2.2.2',
       marks: 2,
-      clues: "- Farisani says he doesn't hate the perpetrators, only wants the truth told.\n- Think about what tone this sets for his testimony.",
-      approach: "- Consider what it means for a torture victim to say he does not hate his torturers.\n- Link this to the purpose of the TRC (truth and reconciliation, not revenge).",
-      solution: "1. The statement suggests Farisani's testimony was not driven by a desire for revenge or hatred, but by a wish for honesty and accountability.\n2. This reflects the TRC's broader goal of reconciliation rather than punishment, and suggests his testimony can be seen as measured and credible rather than vengeful.",
+      clues: "- Farisani says he doesn't hate the perpetrators, only wants the truth told.\n- Think about the TRC's own goal of reconciliation through truth-telling, not revenge.",
+      approach: "- Consider what it means for a torture victim to say he does not hate his torturers.\n- Link this directly to the TRC's stated objectives.",
+      solution: "1. Farisani was showing willingness to restore relations with his torturers in a spirit of reconciliation, provided they reveal the truth.\n2. Farisani was longing for the truth in his quest to find closure, and did not show any vengeance or hatred towards his perpetrators.\n3. His words are premised on the primary objectives set out by the TRC in its attempt to reconcile the nation through truth-telling/restorative justice.",
     },
     {
       number: '2.2.3',
       marks: 2,
-      clues: '- Ramaligela sang this while Farisani was being tortured with electric shocks.\n- Think about what mocking someone\'s religious faith during torture reveals about the torturer.',
-      approach: "- Consider the context: this was said/sung during the torture itself.\n- Explain what mocking Farisani's faith suggests about the psychological tactics used.",
-      solution: "1. The phrase was sung mockingly while Farisani was being tortured, using his religious faith (he was a pastor) against him.\n2. This suggests the Security Branch used psychological cruelty and humiliation, not just physical pain, to break down victims during interrogation.",
+      clues: "- Ramaligela sang this while Farisani was being tortured with electric shocks.\n- Think about what mocking someone's faith is meant to achieve, and what it reveals about the police's own sense of power.",
+      approach: "- Consider the context: this was said/sung during the torture itself.\n- Explain the psychological goal behind mocking Farisani's faith.\n- Note what this reveals about the security police's attitude toward their own power.",
+      solution: "1. Ramaligela was mocking Farisani's religious beliefs to create psychological distress and completely break him down.\n2. The use of pretence and dishonest methods of interrogation was meant to erode Farisani's confidence in his own faith.\n3. The security police believed they had all the power and could not be challenged by an individual — the tactics were brutal and inhumane.",
     },
     {
       number: '2.2.4',
       marks: 2,
-      clues: '- Farisani is speaking about people who committed similar abuses but have not admitted to them.\n- Think about what "come back" implies about unresolved wrongdoing.',
-      approach: '- Consider what Farisani is warning will happen if perpetrators do not confess.\n- Link this to the broader purpose of the TRC amnesty process.',
-      solution: "1. Farisani is warning that perpetrators who do not honestly confess their crimes will not find genuine peace or resolution.\n2. This reflects the TRC's core principle: amnesty depended on full, truthful disclosure, and false or incomplete confessions would leave the underlying wrongs unresolved, likely to resurface.",
+      clues: '- Think about the TRC\'s own legal requirement of "full disclosure" for amnesty, and what happens if that requirement isn\'t met.',
+      approach: "- Link the statement directly to the TRC's amnesty process, not just a general moral point about honesty.\n- Explain the consequence of perpetrators not disclosing everything.",
+      solution: "1. If there is no full disclosure, perpetrators will continue to commit human rights abuses.\n2. Perpetrators of human rights abuses should disclose the whole truth in their quest to find closure and to prevent further prosecutions.\n3. The truth shall set them free, so that they will not be haunted by further prosecutions.",
     },
     {
       number: '2.2.5',
       marks: 4,
-      clues: '- This is direct first-hand oral testimony given under oath at an official hearing.\n- Consider how this differs from a second-hand or unofficial account.',
-      approach: "- Identify who is speaking and in what setting.\n- Explain why first-hand testimony given at a formal, recorded hearing carries reliability.",
-      solution: "1. Source 2B is Farisani's own first-hand account of what happened to him, given directly at an official TRC Human Rights Violation Committee hearing.\n2. Testimony given at a formal hearing, as part of the official TRC Final Report record, was recorded and scrutinised as part of a structured legal process.\n3. Farisani's own statement that he has no reason to lie about a named perpetrator (Ramaligela) supports the credibility of his account.\n4. This combination of first-hand experience and formal, recorded process makes it a reliable source for researching how the Committee dealt with his case.",
+      clues: '- This is direct first-hand oral testimony given under oath at an official hearing.\n- Consider whether other sources in this set back up the same account.',
+      approach: "- Identify who is speaking and in what official setting.\n- Note where the testimony was formally published.\n- Check whether it can be corroborated against other sources in this question.",
+      solution: "1. The testimony contains first-hand information from Farisani regarding how he was tortured during his detention and interrogation.\n2. It is from testimony Reverend Farisani presented to the TRC Human Rights Violation Committee hearings held on 4 October 1996 in Venda.\n3. The testimony is published in the TRC Final Report.\n4. His testimony regarding torture can be corroborated with other sources, e.g. Sources 2A and 2C.",
     },
     {
       number: '2.3.1',
       marks: 2,
-      clues: '- Look at the opening lines of Source 2C for a direct statement about compliance with the Act.',
-      approach: "- Re-read the first sentence of Source 2C.\n- Identify the exact wording showing the Committee accepted the applications met the Act's formal requirements.",
-      solution: '1. Source 2C states: "The TRC Amnesty Committee is satisfied that the applications comply with the formal requirements of the Promotion of National Unity and Reconciliation Act, 1995".\n2. This direct quotation answers the question.',
+      clues: "- Look for the specific sentence in Source 2C about the applicants' POLITICAL OBJECTIVE, not the sentence about formal/procedural compliance.",
+      approach: "- Re-read the first paragraph of Source 2C carefully — it contains two separate findings; you need the one about political objective specifically.",
+      solution: '1. Source 2C states: "… finds that all the acts in respect of which amnesty is sought by the applicants were committed with a political objective as required by the Act."\n2. This direct quotation answers the question.',
     },
     {
       number: '2.3.2',
@@ -364,44 +367,44 @@ const aiExplanation = {
     {
       number: '2.3.3',
       marks: 2,
-      clues: "- 'Oral' means spoken, not written.\n- Contrast this with the applicants' written applications, also mentioned in the source.",
-      approach: "- Define 'oral testimonies' using the word's meaning.\n- Distinguish it from the written applications mentioned alongside it in the source.",
-      solution: "1. 'Oral testimonies' are spoken statements or evidence given by a witness or applicant, as opposed to written documents.\n2. In this context, they refer to what the three applicants said out loud when they testified at the TRC Amnesty Committee hearing, in addition to their written applications.",
+      clues: "- In Source 2C's context, the 'oral testimonies' being referred to are given by the AMNESTY APPLICANTS (the perpetrators), not by Farisani.\n- Contrast this with their separate written applications, also mentioned in the source.",
+      approach: "- Note who is testifying in Source 2C specifically: the three policemen applying for amnesty.\n- Define 'oral testimonies' as their spoken account, given as part of their amnesty bid.",
+      solution: "1. Oral testimonies are the spoken/verbal accounts given by the policemen/perpetrators who tortured Farisani (or any victim) in order to plead for amnesty.\n2. They are the first-hand memories/accounts given by the amnesty applicants relating to the human rights abuses committed, given in their quest for amnesty.",
     },
     {
       number: '2.3.4',
       marks: 2,
       clues: "- 'Full disclosure' was a legal requirement for amnesty under the Act.\n- Think about what failing this requirement means for the outcome of the applications.",
       approach: '- Recall that full disclosure of all relevant facts was a legal requirement for amnesty.\n- Explain the consequence of the Committee finding this requirement unmet.',
-      solution: "1. Because the applicants did not make a full disclosure as required by section 20(1) of the Act, they failed to meet one of the Act's core legal requirements for amnesty.\n2. The conclusion is that their applications had to be rejected (FAIL), regardless of the political-objective requirement being met, since full disclosure was a separate, compulsory condition.",
+      solution: "1. The applicants did not tell the whole truth, as was expected by the TRC Act (Act 34 of 1995).\n2. The testimonies given by the applicants were not sufficient to make them qualify for amnesty.",
     },
     {
       number: '2.4',
       marks: 4,
-      clues: "- Look for specific details in Farisani's testimony (2B) that match the general pattern described in the TRC report (2C).",
-      approach: "- Identify a specific torture method or detail Farisani describes in Source 2B.\n- Match it to the general pattern of methods the TRC report (Source 2C) says emerged consistently across victims.",
-      solution: "1. Source 2B describes specific details such as electric shocks applied 'from the head to the toes and the thighs and even in my private parts', and being made to do press-ups and stand on his head.\n2. Source 2C confirms a consistent pattern across victims of 'electric shocks to their ear lobes and private parts' and 'instructions to do strenuous exercises'.\n3. Farisani's specific, first-hand account in Source 2B matches and supports the general pattern of abuse described in Source 2C, showing his case was part of a broader, consistent method of torture used by these applicants.",
+      clues: '- Match specific torture details in Source 2B to specific matching details in Source 2C, point for point, rather than a general comparison.',
+      approach: '- Take a specific torture method Farisani describes in Source 2B.\n- Find the matching general pattern described in Source 2C.\n- Pair them explicitly; a shared named perpetrator also counts.',
+      solution: "1. Source 2B mentions the bag pulled over Farisani's head to torture him, and Source 2C highlights the use of a bag filled with water — both sources highlight the use of a bag as a torture method used by the security police.\n2. Source 2B refers to the press-ups/'stand on my head' Farisani had to perform, and Source 2C highlights the strenuous exercises victims were instructed to do.\n3. Source 2B refers to the kicking meted out against Farisani, and Source 2C refers to vicious assaults victims had to endure — both highlight how Farisani was assaulted.\n4. Source 2B refers to the electric devices tied over his ears, and Source 2C mentions electric shocks applied to the ear lobes.\n5. Both sources mention Ramaligela was responsible for human rights violations committed against Farisani.\n6. Any two of these paired comparisons, explained, answer the question.",
     },
     {
       number: '2.5.1',
       marks: 4,
-      clues: '- Dullah Omar is drawn oversized, looming over the scene.\n- The security policemen are drawn small, huddled together beneath him.',
-      approach: '- Consider what size and positioning typically symbolise in a cartoon.\n- Apply this to both Dullah Omar and the group of security policemen.',
-      solution: "1. (a) Dullah Omar is drawn very large and dominant, symbolising his authority and central role in exposing the truth about human rights abuses through the TRC.\n2. (b) The security policemen are drawn small and grouped together, symbolising their diminished, exposed and powerless position now that their crimes are being revealed.",
+      clues: '- (a) Dullah Omar\'s real-life role was Minister of Justice, responsible for the TRC.\n- (b) Look at the police\'s facial expressions and body language (e.g. sweating) in the cartoon.',
+      approach: '- (a) Link his size/prominence in the cartoon to his real institutional role over the TRC.\n- (b) Read the police\'s drawn expression/reaction as a sign of their emotional state.',
+      solution: "1. (a) As Minister of Justice, Dullah Omar was responsible for the TRC; the Minister/government is shown exposing the acts of violence committed by the police under apartheid, ensuring truth-telling as the mandate of the TRC is achieved.\n2. (b) The sweating of the police suggests they were anxious about the truth being revealed; their facial expressions suggest fear of being implicated in human rights violations. They represent the apartheid government.",
     },
     {
       number: '2.5.2',
       marks: 4,
-      clues: "- Frame A is the police's official cover story; Frame B is what actually happened.\n- Compare the language and content of each frame.",
-      approach: "- Summarise what Frame A claims happened.\n- Summarise what Frame B reveals actually happened.\n- Explain why the two accounts differ so sharply.",
-      solution: "1. Frame A shows the official police version: that the prisoner 'slipped on soap, hit his head and died' — a claim of accidental death.\n2. Frame B reveals the real events: violence including a bag over the head, electric shocks to the testicles, and beating with an iron bar, ending in the prisoner's death.\n3. The two frames differ because Frame A is the false cover story the police originally gave to hide their crime, while Frame B is the true account exposed once the truth came out through the TRC process.",
+      clues: "- Frame A is the police's own version of events; Frame B is what the cartoon shows really happened.",
+      approach: "- State plainly what each frame represents in relation to the truth.",
+      solution: "1. Frame A refers to the security policemen's version of hiding the truth.\n2. Frame B reveals the hidden human rights violations committed by the security policemen.",
     },
     {
       number: '2.6',
       marks: 8,
-      clues: "- Draw on all four sources plus your own knowledge of the TRC process.\n- Aim for a short, structured paragraph, not a list.",
-      approach: "- Identify Farisani's own suffering and activism (2A, 2B).\n- Identify what the TRC's investigation and decision revealed and required (2C).\n- Identify how the truth was publicly exposed and contrasted with the cover-up (2D).\n- Link these into one flowing paragraph answering 'why did the TRC reject the amnesty applications'.",
-      solution: "1. Reverend Farisani was repeatedly detained and brutally tortured for his anti-apartheid activism, as shown by his own testimony and life story (Sources 2A, 2B).\n2. His first-hand account described consistent, severe torture methods including electric shocks, suffocation and forced exercises.\n3. The TRC's own investigation (Source 2C) found that the three applicants had continually downplayed their role, even though the evidence of multiple victims showed a consistent pattern of the same torture methods.\n4. Because the applicants failed to make a full disclosure of all relevant facts, as required by section 20(1) of the Act, the Committee rejected their applications.\n5. Source 2D's cartoon captures this outcome, contrasting the police's false cover story with the truth the TRC ultimately exposed.",
+      clues: "- Draw on all four sources plus your own knowledge of the TRC process and its legal requirements.\n- Aim for a short, structured paragraph, not a list.",
+      approach: "- Note that Farisani's own testimony (2B) undermines the applicants' political-objective claim.\n- Use the TRC's own finding on full disclosure (2C).\n- Use the cartoon's exposure of the cover-up (2D).\n- Add an own-knowledge point about why the perpetrators resisted full disclosure.",
+      solution: "1. Reverend Farisani presented his testimony at the TRC regarding the torture he suffered at the hands of the security policemen (Source 2B).\n2. Farisani's testimony suggests the policemen's brutal interrogation was unrelated to any genuine political motive that could qualify them for amnesty, and that vicious interrogation methods were used to compel a false confession (Source 2B).\n3. The Committee was not satisfied that the three applicants had made a full disclosure of all relevant facts, as required by section 20(1) of the Act (Source 2C).\n4. The three applicants played down their role and involvement in the assault and torture of victims who were tortured separately, even though the victims' testimonies were consistent and showed brutal methods that the Committee could not accept as compatible with the applicants' account (Source 2C).\n5. The cartoon highlights that the apartheid security policemen did not always tell the truth, and that the TRC did not grant them amnesty as a result (Source 2D) — the security policemen wanted to evade accountability rather than make a full disclosure.\n6. The security policemen likely also did not want to implicate their own superiors in the torture of Reverend Farisani (own knowledge).",
     },
   ],
   model: 'claude-sonnet-5',
