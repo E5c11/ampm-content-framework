@@ -188,7 +188,22 @@ Read each question's data alongside its screenshot; classify PASS / AUTO_FIX / F
 | **FLAG** | Ambiguous / needs human judgement | Report with reason + screenshot; **do not touch** |
 
 **Safe AUTO_FIX:** wrong `answer` value (confident), correct answer at index 0 (rotate),
-missing `|` alternative, obvious `context_text` typo.
+missing `|` alternative, obvious `context_text` typo, a `question`/`clues` rendering
+defect with a clear content-level fix (e.g. rephrasing to avoid a markup pattern the
+renderer misinterprets — see the chemistry nov_p2 review, 2026-09-12: `E°(Ag⁺/Ag)`, a
+standalone slash-pair alone in its own parens right after `E°`, rendered as a stacked
+math fraction instead of plain text; fixed by rephrasing to "The Ag⁺/Ag half-cell has
+E° = ... V" so the pair is never isolated in its own parens).
+
+**After patching a question that was already viewed once in this app-data lifetime,
+`am force-stop` is NOT enough to see the fix** — the app caches lesson/question content
+locally and re-navigating to an already-visited lesson shows the stale pre-patch text,
+even after force-stopping. Confirmed live 2026-09-12: two different patches to the same
+question both appeared to "not work" on re-capture, purely because the screenshot was
+of cached content, not the new dev-DB value. Fix: `adb shell pm clear
+com.esma.ampm.dev` (full app-data wipe) before re-running `review-capture.js` on a
+lesson you just patched — this forces a real refetch. Cheap to do unconditionally
+after any AUTO_FIX, before trusting a re-capture as verification.
 
 **Always FLAG:** answer arguable / interpretation-dependent, uncertain curriculum
 alignment, crop uncertain without the source PDF, equation itself possibly wrong.
