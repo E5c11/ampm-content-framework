@@ -430,8 +430,15 @@ URLs on the prod bucket resolve (200), including the two `question_supplementary
 diagram paths. **No live-user exposure regardless of publish state** — prod's `physics`
 subjects row still carries `min_app_version = '2.1.2'`, unchanged, which hard-excludes
 the entire Physical Sciences subject from every client (same gate the 2025 paper is
-still waiting on). Not yet published — run with `--publish` once ready to flip live in
-prod's database (still invisible to clients until the app-version gate clears).
+still waiting on). **Published — 2026-09-12** (`--publish`, same command, no dev read):
+all 13 lessons and 53 questions now `is_published = true` in prod, verified directly.
+Fully live in prod's database, ready to serve — still invisible to every client,
+re-confirmed `min_app_version = '2.1.2'` unchanged on the `physics` subjects row after
+publishing. **To actually go live for students:** `UPDATE subjects SET
+min_app_version = NULL WHERE id = 'physics'` (prod), once a release containing the
+app-side keyboard/MathText fixes has shipped — same gate physics's own P1 paper and the
+2025 chemistry paper are still waiting on. Nothing further to push for this paper once
+that day comes.
 
 ## App-side inheritance — no separate work needed
 
