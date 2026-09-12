@@ -99,9 +99,16 @@ const questions = [
   },
   {
     name: 'Question 3',
-    question: 'In the electrolytic refining of nickel, electrode R is impure nickel (the anode) and electrode Q is pure nickel (the cathode). In which direction do electrons flow in the EXTERNAL circuit?',
-    metadata: ['Q to R', 'R to Q', 'Electrons do not flow through the external circuit during electrolysis', 'Electrons flow in both directions simultaneously', ''],
-    answer: ['R to Q', '', '', '', ''],
+    question:
+      'The diagram below shows the electrolytic refining of nickel, with impure nickel at electrode R and pure nickel at electrode Q. Which ONE of the following correctly identifies the anode, and the direction electrons flow in the EXTERNAL circuit?',
+    metadata: [
+      'Q is the anode; electrons flow from Q to R',
+      'R is the anode; electrons flow from Q to R',
+      'R is the anode; electrons flow from R to Q',
+      'Q is the anode; electrons flow from R to Q',
+      '',
+    ],
+    answer: ['R is the anode; electrons flow from R to Q', '', '', '', ''],
     presentation: 'multiple_choice',
     type: 'application',
     unit: 'chemical_change',
@@ -116,7 +123,13 @@ const questions = [
     subject: 'physics',
     year: 2023,
     paper: 'nov_p2',
-    clues: '- Oxidation (loss of electrons) happens at the anode; those electrons must travel somewhere through the external circuit.\n- Electrons always flow, in any cell, from the electrode where oxidation occurs to the electrode where reduction occurs.',
+    clues:
+      '- The electrode connected to the POSITIVE terminal of the power source is always the anode, in any electrolytic cell — read the diagram to see which electrode that is.\n- Electrons flow through the external circuit from the anode to the cathode, the same direction as in a galvanic cell.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Electrolytic Cell',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/physics/2023/nov_p2/q13/diagram_1.png'],
+    },
   },
   {
     name: 'Question 4',

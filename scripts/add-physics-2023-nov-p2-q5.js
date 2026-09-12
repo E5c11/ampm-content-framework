@@ -124,15 +124,16 @@ const questions = [
   },
   {
     name: 'Question 4',
-    question: 'A reaction mixture is COOLED from 40 °C to 25 °C. Which ONE of the following correctly describes the resulting change to its Maxwell-Boltzmann distribution curve?',
+    question:
+      'The graph below shows the Maxwell-Boltzmann distribution of molecular kinetic energies for the same gas sample at two different temperatures. Which ONE of the following correctly identifies which curve represents the HIGHER temperature, and explains why?',
     metadata: [
-      'The peak shifts to the RIGHT and becomes SHORTER',
-      'The peak shifts to the LEFT and becomes TALLER and NARROWER',
-      'The curve shape stays exactly the same; only the reaction rate changes',
-      'The peak shifts to the RIGHT, but the height of the peak stays the same',
+      'Curve A; it has a taller, narrower peak at a lower kinetic energy value',
+      'Curve B; it has a lower, broader peak shifted toward higher kinetic energy values',
+      'Curve A; the total area under curve A is larger than curve B',
+      'Curve B; it has more molecules with very low kinetic energy than curve A',
       '',
     ],
-    answer: ['The peak shifts to the LEFT and becomes TALLER and NARROWER', '', '', '', ''],
+    answer: ['Curve B; it has a lower, broader peak shifted toward higher kinetic energy values', '', '', '', ''],
     presentation: 'multiple_choice',
     type: 'application',
     unit: 'chemical_change',
@@ -148,7 +149,12 @@ const questions = [
     year: 2023,
     paper: 'nov_p2',
     clues:
-      "- Cooling reduces the average kinetic energy of the particles, so the most probable kinetic energy value moves in a specific direction.\n- The total number of particles (the area under the curve) does not change on cooling — only how that area is distributed.",
+      '- A higher temperature gives particles more kinetic energy on average, shifting where most particles sit on the energy axis.\n- The total number of particles (the area under each curve) is the same for both curves — only how that area is spread out differs.',
+    supplementary_material: {
+      type: 'graph',
+      label: 'Maxwell-Boltzmann Distribution',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/physics/2023/nov_p2/q9/graph_1.png'],
+    },
   },
   {
     name: 'Question 5',

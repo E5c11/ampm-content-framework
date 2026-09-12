@@ -155,15 +155,15 @@ const questions = [
   {
     name: 'Question 5',
     question:
-      'In a closed container at constant temperature and volume, the reaction 2X(g) ⇌ Y(g) is at equilibrium. Extra X(g) is suddenly added to the container. Which ONE of the following correctly describes how the system responds?',
+      'The graph below shows [X(g)] and [Y(g)] over time for the equilibrium 2X(g) ⇌ Y(g) in a closed container at constant temperature and volume. At t = 60 s, extra X(g) is suddenly added. Which ONE of the following correctly describes what happens between t = 60 s and t = 120 s?',
     metadata: [
-      'The reverse reaction is favoured; more X(g) forms until a new equilibrium is reached',
-      'The forward reaction is favoured; more Y(g) forms until a new equilibrium is reached, and Kc stays the same',
-      'The forward reaction is favoured, and Kc increases at the new equilibrium',
-      'No shift occurs, since only X(g) was added directly',
+      'The reverse reaction is favoured; [Y(g)] decreases while [X(g)] increases further',
+      'The forward reaction is favoured; some of the added X(g) is converted to Y(g), and a new equilibrium is reached',
+      'No further change occurs; the system remains at the disturbed [X(g)] and [Y(g)] values',
+      'The reaction stops completely, since the equilibrium was disturbed',
       '',
     ],
-    answer: ['The forward reaction is favoured; more Y(g) forms until a new equilibrium is reached, and Kc stays the same', '', '', '', ''],
+    answer: ['The forward reaction is favoured; some of the added X(g) is converted to Y(g), and a new equilibrium is reached', '', '', '', ''],
     presentation: 'multiple_choice',
     type: 'application',
     unit: 'chemical_change',
@@ -178,7 +178,13 @@ const questions = [
     subject: 'physics',
     year: 2023,
     paper: 'nov_p2',
-    clues: "- Adding more of a substance increases its concentration, which the system will act to partially counteract.\n- Kc only changes with temperature, never with a concentration disturbance alone — the system finds a new equilibrium that still satisfies the same Kc value.",
+    clues:
+      '- Look at how [X(g)] and [Y(g)] change AFTER the sudden jump at t = 60 s, not just at the instant of the jump itself.\n- Reaching a NEW equilibrium means both concentrations level off again, rather than changing forever or freezing at the disturbed values.',
+    supplementary_material: {
+      type: 'graph',
+      label: 'Concentration vs Time',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/physics/2023/nov_p2/q10/graph_1.png'],
+    },
   },
 ];
 

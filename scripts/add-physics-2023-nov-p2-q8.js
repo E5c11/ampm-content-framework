@@ -100,15 +100,15 @@ const questions = [
   {
     name: 'Question 3',
     question:
-      'In the galvanic cell formed from a Zn/Zn²⁺ half-cell and a Cu/Cu²⁺ half-cell described above, select ALL of the following statements that are TRUE.',
+      'The diagram below shows the galvanic cell formed from a Zn/Zn²⁺ half-cell and a Cu/Cu²⁺ half-cell described above, with electrode P in the Zn²⁺ half-cell and electrode Q in the Cu²⁺ half-cell. Select ALL of the following statements that are TRUE.',
     metadata: [
-      'The zinc electrode is the anode',
-      'The copper electrode is the anode',
-      'Oxidation occurs at the zinc electrode',
-      'Electrons flow through the external circuit from the copper electrode to the zinc electrode',
+      'Electrode P is the anode',
+      'Electrode Q is the anode',
+      'Oxidation occurs at electrode P',
+      'Electrons flow through the external circuit from electrode Q to electrode P',
       '',
     ],
-    answer: ['The zinc electrode is the anode', 'Oxidation occurs at the zinc electrode', '', '', ''],
+    answer: ['Electrode P is the anode', 'Oxidation occurs at electrode P', '', '', ''],
     presentation: 'multi_select',
     type: 'application',
     unit: 'chemical_change',
@@ -123,7 +123,12 @@ const questions = [
     subject: 'physics',
     year: 2023,
     paper: 'nov_p2',
-    clues: '- The electrode with the LOWER (more negative) standard reduction potential is oxidised.\n- Electrons always flow through the external circuit from the anode to the cathode.',
+    clues: '- Read the diagram to identify which half-cell each electrode is in, then compare the two half-cells\' standard reduction potentials to decide which electrode is oxidised.\n- Electrons always flow through the external circuit from the anode to the cathode.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Galvanic Cell',
+      image_urls:['https://media-dev.askmoreprepmore.app/question_supplementary/physics/2023/nov_p2/q12/diagram_1.png'],
+    },
   },
   {
     name: 'Question 4',
