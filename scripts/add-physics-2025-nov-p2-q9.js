@@ -78,7 +78,7 @@ const questions = [
   {
     name: 'Question 2',
     question:
-      'During the electrolytic refining of nickel (impure nickel containing a cobalt impurity, with E°(Ni²⁺/Ni) = −0,25 V and E°(Co²⁺/Co) = −0,28 V), which ion will be preferentially reduced at the cathode?',
+      'During the electrolytic refining of nickel (impure nickel containing a cobalt impurity), where the Ni²⁺/Ni half-cell has E° = −0,25 V and the Co²⁺/Co half-cell has E° = −0,28 V, which ion will be preferentially reduced at the cathode?',
     metadata: ['Co²⁺, because it is the stronger oxidising agent', 'Ni²⁺, because it is the stronger oxidising agent', 'Both ions are reduced equally', 'Neither ion is reduced at the cathode', ''],
     answer: ['Ni²⁺, because it is the stronger oxidising agent', '', '', '', ''],
     presentation: 'multiple_choice',

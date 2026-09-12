@@ -77,7 +77,7 @@ const questions = [
   {
     name: 'Question 2',
     question:
-      'A galvanic cell has the following half-cells: Cr(s)|Cr³⁺(aq) and Cu²⁺(aq)|Cu(s), with E°(Cu²⁺/Cu) = +0,34 V and E°(Cr³⁺/Cr) = −0,74 V. Which ONE of the following is CORRECT?',
+      'A galvanic cell has the following half-cells: Cr(s)|Cr³⁺(aq) and Cu²⁺(aq)|Cu(s). The Cu²⁺/Cu half-cell has E° = +0,34 V and the Cr³⁺/Cr half-cell has E° = −0,74 V. Which ONE of the following is CORRECT?',
     metadata: [
       'The Cu²⁺(aq) concentration will increase, because Cu²⁺ is reduced',
       'The Cr³⁺(aq) concentration will increase, because Cr is oxidised',

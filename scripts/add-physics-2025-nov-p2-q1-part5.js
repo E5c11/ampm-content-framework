@@ -51,7 +51,7 @@ const questions = [
   {
     name: 'Question 1',
     question:
-      'A galvanic cell consists of the following half-cells: Cu²⁺(aq)|Cu(s) and Ag⁺(aq)|Ag(s), with E°(Ag⁺/Ag) = +0,80 V and E°(Cu²⁺/Cu) = +0,34 V. Which ONE of the following statements is CORRECT for this cell?',
+      'A galvanic cell consists of the following half-cells: Cu²⁺(aq)|Cu(s) and Ag⁺(aq)|Ag(s). The Ag⁺/Ag half-cell has E° = +0,80 V and the Cu²⁺/Cu half-cell has E° = +0,34 V. Which ONE of the following statements is CORRECT for this cell?',
     metadata: [
       'Ag is the anode and Cu is the cathode',
       'Cu²⁺ is reduced at the anode',
