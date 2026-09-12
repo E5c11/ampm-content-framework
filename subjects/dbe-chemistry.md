@@ -332,6 +332,54 @@ push for this paper once that day comes.
 
 **Still open:** June-diet paper (`june_p2`) once sourced, same as Physics's `june_p1`.
 
+**`nov_p2` 2023 — complete, 2026-09-12.** A second `nov_p2` sitting (same paper slot,
+different `year_id`, no UUID collision — `tools/lib/uuid.js`'s namespace includes year).
+All 13 lessons authored, validated, and upserted to dev (Cloud SQL); own formula sheet
+extracted fresh (4 pages, `2023/nov_p2/q0/`, not reused from 2025 — different year, no
+shared object path); image URLs spot-checked resolving (200) with no cross-lesson bleed
+on the shared Q1/Q2 and Q8/Q9 memo pages.
+
+| Lesson | Order | Real sub-Qs | Marks | Practice Qs | Presentations used |
+|---|---|---|---|---|---|
+| Question 1.1–1.3 (Organic Molecules) | 1 | 1.1–1.3 | 6 | 5 | ordering, match, multiple_choice, multi_select |
+| Question 1.4 (Rate & Extent of Reaction) | 2 | 1.4 | 2 | 2 | fitb, multiple_choice |
+| Question 1.5–1.6 (Chemical Equilibrium) | 3 | 1.5–1.6 | 4 | 3 | fitb, multiple_choice, multi_select |
+| Question 1.7–1.8 (Acids & Bases) | 4 | 1.7–1.8 | 4 | 3 | multiple_choice, multi_select, ordering |
+| Question 1.9–1.10 (Electrochemistry) | 5 | 1.9–1.10 | 4 | 3 | fitb, multiple_choice, multi_select |
+| Question 2 (Organic Molecules — naming/isomers/structures) | 6 | 10 | 16 | 5 | match, multiple_choice, multi_select |
+| Question 3 (Organic Molecules — physical properties) | 7 | 8 | 15 | 4 | ordering, match, multiple_choice, multi_select |
+| Question 4 (Organic Molecules — cracking/reactions) | 8 | 10 | 19 | 4 | fitb, multiple_choice, multi_select |
+| Question 5 (Rate & Extent of Reaction) | 9 | 6 | 19 | 5 | fitb, multiple_choice, multi_select |
+| Question 6 (Chemical Equilibrium) | 10 | 8 | 19 | 5 | fitb, multiple_choice, multi_select |
+| Question 7 (Acids & Bases) | 11 | 4 | 18 | 5 | fitb, multiple_choice, multi_select |
+| Question 8 (Electrochemistry — galvanic) | 12 | 7 | 12 | 4 | fitb, multiple_choice, multi_select |
+| Question 9 (Electrochemistry — electrolytic) | 13 | 5 | 12 | 5 | fitb, multiple_choice, multi_select |
+
+150/150 marks covered (matches the paper total). No `type: "structure"` supplementary
+material was needed this time either, same reason as part 1 of the 2025 paper: every
+fresh compound in the practice sets was representable as unambiguous condensed
+structural notation in plain question text. `DESIGN-UNI-06` running tally across the
+whole paper: 2 of 22 `multiple_choice` questions have their correct answer at index 0
+(9.1%), under the ~10% cap — left as-is, not rotated.
+
+**Concurrent-session collision, caught and resolved mid-session.** A second, independent
+Claude Code session on the same machine was found to be running this exact same
+upload-chemistry workflow on this exact paper concurrently — already 6 lessons in
+(`Q1.1–1.3` through `Q2`) by the time it was noticed. Since `lessons`/`questions` UUIDs
+are deterministic from `(paper, order)` (`tools/lib/uuid.js`), both sessions' image
+uploads and dev upserts for the same `order` silently overwrite each other — no error,
+no duplicate row, just whichever session runs last wins. Caught only because `git
+status`/`git log` showed commits and an untracked draft script this session never wrote.
+Founder confirmed the other session was stale and this session should continue as
+authoritative: re-committed this session's own version of the order-1 lesson (superseding
+the other session's commit for that one lesson), kept the other session's already-committed
+lessons 2–6 after a spot-check for quality, and continued the remaining lessons (7–13)
+without further collision (checked `git log` before every commit for the rest of the
+session). **If running two sessions against the same content-authoring task is ever
+intentional, partition by `order` range up front** — the deterministic-UUID design that
+makes re-running a script safe is exactly what makes two *different* scripts targeting the
+same `order` silently destructive to each other.
+
 ## App-side inheritance — no separate work needed
 
 Everything `dbe-physics.md`'s "App-side keyboard/calculator routing" and "App-version
