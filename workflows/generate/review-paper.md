@@ -293,7 +293,26 @@ Phase 5 problem to route around every time once it's fixed.)
 
 **Built:** `scripts/review-capture-answers.js` (`fitb` only so far — `equation`/`steps`
 need `MathInputState`-aware typing, e.g. fraction-mode entry, not just key-by-key text;
-not yet extended). For each `fitb` question:
+not yet extended). **System-keyboard subjects — found broken 2026-09-12 (History nov_p2
+review), fixed same day (Life Science nov_p2 review):** the script's typing step
+originally unconditionally looked for `maths_key_$label` tags, with no fallback for a
+subject whose `KeyboardResolver` resolution is `None` (Geography, History, life_science,
+any future subject not yet in that resolver). Every character came back `MISSING_KEY`
+regardless of whether the answer was actually typeable — a false negative, confirmed by
+checking the `_typed.png` screenshot directly (input correctly focused, real keyboard
+genuinely open). **Now fixed in the script itself**: it detects whether any
+`maths_key_*` tag rendered at all; if none did, it drives the already-focused real
+system text field directly (`adb shell input text`) instead of hunting for keys that
+don't exist — not bypassing an in-app keyboard component (there isn't one for a
+`None`-routed subject), but exercising the same real, focused field a physical keyboard
+or system IME would. Results now carry a `usedSystemFallback` flag so this path is
+never silently conflated with the custom-keyboard path. Verified against life_science's
+`nov_p2` 2025 paper — all 8 `fitb` questions correctly typed, submitted, and validated
+through this fallback. Worth re-running Geography's own Phase 5 with this fix, since
+that subject is also `None`-routed and (per `dbe-life-sciences.md`'s own ledger) appears
+to have never had Phase 5 run against it at all.
+
+For each `fitb` question:
 
 1. Navigates to it (reuse Phase 2's deep-link) — after the cache-warming prerequisite
    above.

@@ -81,9 +81,7 @@ const questions = [
     name: 'Question 2',
     question: 'Nelson Mandela was released from prison on 11 February [].',
     metadata: [
-      'Nelson Mandela was released from prison on 11 February ',
       '[ ]',
-      '.',
     ],
     answer: ['1990', '', '', '', ''],
     presentation: 'fitb',

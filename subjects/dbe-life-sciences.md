@@ -22,13 +22,13 @@ lean on each other.
 
 | Field | Value |
 |---|---|
-| `syllabus` / `subject` | `"dbe"` / `"life_sciences"` — a real new subject, not a shared row. Matches the app's own `SubjectMapper.kt` fallback (`displayName.lowercase().replace(" ", "_")` — `"Life Sciences"` → `"life_sciences"`), the same mechanism Geography already relies on with no explicit constant of its own. **No `SubjectMapper.kt` change needed.** |
-| Postgres tables | `lessons`, `questions` — `subject_id = "life_sciences"` |
-| Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'life_sciences'` — empty until the first authoring session populates them. Reuse before `tools/create-curriculum-node.js` / `create-skill.js` (`PIPE-08`) |
+| `syllabus` / `subject` | `"dbe"` / `"life_science"` (**singular** — confirmed against the live `subjects` row 2026-09-12; an earlier draft of this profile used `"life_sciences"` throughout, wrongly, before checking — fixed everywhere, including the upload scripts). Matches the app's own `SubjectMapper.kt` fallback (`displayName.lowercase().replace(" ", "_")` — `"Life Science"` → `"life_science"`), the same mechanism Geography already relies on with no explicit constant of its own. **No `SubjectMapper.kt` change needed.** |
+| Postgres tables | `lessons`, `questions` — `subject_id = "life_science"` |
+| Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'life_science'` — empty until the first authoring session populates them. Reuse before `tools/create-curriculum-node.js` / `create-skill.js` (`PIPE-08`) |
 | Papers | `nov_p2` (2025) reviewed for this draft, not yet authored. `june_p2` presumed once a June-diet paper is sourced. |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/CAPS FET _ LIFE SCIENCES _ GR 10-12 Web_2636.pdf` — Grade 12 content at Section 3.3 (physical pp. 59–70 of the PDF, printed page labels 54–65); Paper 2's own topic/weighting table at Section 4.5.3 (physical p. 78, printed page label 73). Both consulted for this draft. |
 | **Source files** | `files/Life Sciences P2 Nov 2025 Eng.pdf` (question paper, 17pp, 150 marks), `files/Life Sciences P2 Nov 2025 MG Eng.pdf` (memo) — already in `files/`, matching the other subjects' convention. |
-| `subjects` reference row | **Status not verified — check dev Postgres directly before assuming it doesn't exist** (the exact mistake `dbe-physics.md` flagged and corrected once already: don't assume an owner-gated insert is needed without checking). If it does need creating, a plausible row following Geography's (`color: "#82B420"`, `icon: "map"`) and Physics's (`color: "#12B886"`, `icon: "atom"`) precedent: `id: "life_sciences"`, `name: "Life Sciences"`, `code: "LIFE_SCIENCES"`, `category: "life_sciences_lessons"`, a distinct color/icon (e.g. a leaf/DNA-strand icon, a green distinct from Geography's) — proposal only, the actual insert is owner-gated, same as Geography's and Physics's rows were. |
+| `subjects` reference row | **Already exists** — `id: "life_science"`, `name: "Life Science"`, `full_name: "Life Science"`, `code: "LIFE_SCIENCE"`, `category: "life_science_lessons"`, `sort_order: 5`, `color: "#E64980"`, `icon: "flask"`, `is_published: true` — confirmed by querying dev Postgres directly 2026-09-12 (this profile originally, wrongly, assumed it needed creating — same mistake `dbe-physics.md` already flagged once; check the DB before assuming). Pre-staged ahead of any content, same as Geography's and Physics's rows were. **`is_active` was `false` until this session** (why it wasn't showing as an onboarding option) — set to `true` 2026-09-12 at the user's request, along with `min_app_version` set from unset to `"1.0.0"` (the user's own call: current app builds read `min_app_version` for the subject gate, but older builds still read `is_active`, so both needed setting for it to show up everywhere). Unlike Physics/Chemistry's version gates, this is not currently hiding the subject from any app build — no lesson content exists yet regardless. |
 
 ## Paper structure / knowledge-area mapping (Nov 2025 P2, from paper review)
 
@@ -73,7 +73,7 @@ eyeball it" instruction.
 
 ## Keyboard — corrected finding, not the blocker it first looked like
 
-`life_sciences` isn't in `KeyboardResolver.resolve`'s routing table (`AMPM/feature/watch/
+`life_science` isn't in `KeyboardResolver.resolve`'s routing table (`AMPM/feature/watch/
 .../KeyboardResolver.kt`), so it resolves to `QuestionKeyboardType.None` — same as
 Geography. Initially assumed this made every typed blank unanswerable; **verified false
 by reading the actual composables**, not by trusting `core/keyboard-input.md`'s old
@@ -91,7 +91,7 @@ type:
 - **`steps`/`equation`** (`EquationInput.kt`): genuinely unanswerable for a `None`-routed
   subject — this composable has no system-IME fallback at all, it's "driven entirely by
   the [custom] keyboard via ViewModel," and `LessonView.kt` renders nothing when the
-  resolved type is `None`. Avoid both presentations entirely until `life_sciences` is
+  resolved type is `None`. Avoid both presentations entirely until `life_science` is
   added to the routing table (an app change, post-prelims per this session's call).
 
 **`DESIGN-LIFE-01`** — `enforced_by: human-review`. Given the above:
@@ -213,22 +213,173 @@ Unlike Chemistry (which inherited everything from Physics's `subject_id`), Life 
 needs its own app-side check before it can be more than partially typed content:
 
 - **`SubjectMapper.kt`**: no change needed — the fallback branch already resolves
-  `"Life Sciences"` → `"life_sciences"` correctly (verified by reading the source, not
+  `"Life Science"` → `"life_science"` correctly (verified by reading the source, not
   assumed).
-- **`KeyboardResolver.kt`**: no route for `life_sciences` — resolves to `None`. Per
+- **`KeyboardResolver.kt`**: no route for `life_science` — resolves to `None`. Per
   `DESIGN-LIFE-01` above, this blocks `steps`/`equation` and free-text `fitb` (but not
   bare-numeric `fitb`) until fixed. Deferred post-prelims per this session's call, same as
   the broader "no app changes before prelims" decision.
-- **`min_app_version` gate**: not yet relevant — no content authored yet to gate. Revisit
-  once the first lesson is ready to push, following Physics/Chemistry's established
-  push-unpublished-then-publish pattern.
+- **`subjects` row `is_active`/`min_app_version`**: the row itself was already pre-staged
+  (`is_published: true`) but `is_active` was `false` — the actual reason it wasn't
+  showing as an onboarding option, not a missing row. Fixed 2026-09-12: `is_active` set
+  to `true`, `min_app_version` set from unset to `"1.0.0"` (user's own call — current app
+  builds gate on `min_app_version`, older builds still read `is_active`, both needed
+  setting). Unlike Physics/Chemistry's version gates, this doesn't currently hide
+  anything from any app build — there's no lesson content yet regardless.
 - **Note for whoever eventually fixes the keyboard gap**: Geography (`None`-routed, same
-  as Life Sciences) already ships `fitb` content today — this session's code read found
+  as Life Science) already ships `fitb` content today — this session's code read found
   no evidence its answerability was ever confirmed on-device (no Phase 5 record in
   `dbe-geography.md`). Worth checking Geography too when this gets fixed, not just
-  Life Sciences — flagged here since it surfaced during this session, not filed
+  Life Science — flagged here since it surfaced during this session, not filed
   separately.
 
 ## Completed papers ledger
 
-Nothing authored yet. `nov_p2` (2025) is reviewed for this draft only.
+**`nov_p2` (2025) — complete, 2026-09-12.** All 15 lessons authored, validated, and
+upserted to dev (Cloud SQL); verified directly against the `lessons` table — 150/150
+marks, 79 practice questions, question counts matching `questions_count` exactly.
+
+| Lesson | Order | Marks | Questions | Presentations used |
+|---|---|---|---|---|
+| Question 1 (DNA: Code of Life) | 1 | 11 | 7 | multiple_choice, multi_select, match |
+| Question 1 (Meiosis) | 2 | 8 | 6 | multiple_choice, multi_select, fitb |
+| Question 1 (Genetics and Inheritance) | 3 | 12 | 7 | multiple_choice, multi_select, match |
+| Question 1 (Evolution) | 4 | 4 | 4 | multiple_choice, match, multi_select |
+| Question 1.4 (Mitosis and Meiosis) | 5 | 8 | 6 | fitb, ordering, multiple_choice, multi_select |
+| Question 1.5 (Protein Synthesis) | 6 | 7 | 5 | ordering, multiple_choice, multi_select |
+| Question 2.1 (Meiosis and Sex Chromosomes) | 7 | 11 | 6 | multiple_choice, multi_select, match |
+| Question 2.2 (DNA Fingerprinting) | 8 | 9 | 5 | multiple_choice, multi_select, ordering |
+| Question 2.3 (Pedigree Analysis) | 9 | 9 | 5 | multiple_choice, fitb, multi_select |
+| Question 2.4 (Blood Group Inheritance) | 10 | 9 | 4 | multiple_choice, fitb, multi_select |
+| Question 2.5 (Incomplete Dominance and Selective Breeding) | 11 | 12 | 5 | multiple_choice, multi_select, fitb |
+| Question 3.1 (Human Evolution: Comparative Anatomy) | 12 | 12 | 4 | multi_select, multiple_choice, match |
+| Question 3.2 (Hominid Brain Volume) | 13 | 13 | 5 | fitb, ordering, multiple_choice |
+| Question 3.3 (Speciation and Reproductive Isolation) | 14 | 12 | 5 | match, multiple_choice, multi_select |
+| Question 3.4 (Natural Selection Experiment) | 15 | 13 | 5 | match, multi_select, multiple_choice |
+
+150/150 marks covered (matches the paper total), across Section A (Q1's 4 knowledge-
+area clusters + Q1.4 + Q1.5, 50 marks / 6 lessons), Section B (Q2.1-2.5, 50 marks / 5
+lessons), Section C (Q3.1-3.4, 50 marks / 4 lessons) — 15 lessons total (the profile's
+earlier "~11-14 lessons" estimate landed close, actual count 15).
+
+**Diagram strategy — resolved without generated images, same shape as Chemistry's
+structural-formula finding but broader.** Every real sub-question flagged as diagram-
+heavy in this profile's "Images/diagrams/graphs" discussion (mitosis/meiosis cell
+diagrams, protein synthesis, sex-chromosome diagram, DNA-fingerprint gel, pedigree,
+blood-group bar graph, world distribution map, experimental setup + population graphs)
+turned out to be fully testable as a **text-described scenario** instead — the same
+escape hatch Chemistry validated for structural formulas, extended further here. No
+`supplementary_material` (per-question generated diagrams) was used in any of the 15
+lessons — that part really was skipped this pass, not a discovery that diagrams are
+never needed. A future pass could still add real generated diagrams to strengthen
+fidelity, particularly for the most inherently visual content (mitosis/meiosis phase
+diagrams, pedigrees).
+
+**Exam-page images (`question_image_urls`/`memo_image_urls`) — extracted and uploaded
+after all**, once the user asked directly why they weren't showing up in the app.
+`extract-exam-pages.py` (whole-page crops, no `--inspect` fine-tuning needed — this
+paper's page boundaries were clean) + `upload-exam-images.js` run for all 15 orders
+against `files/Life Sciences P2 Nov 2025 Eng.pdf` / `... MG Eng.pdf`. For the four
+knowledge-area-cluster lessons (order 1-4), whose real sub-items are scattered
+non-contiguously across pages 3/4/5/6, `--question-pages` took a comma-separated page
+list (e.g. `"3,4,6"`) in one call rather than needing per-item crops.
+
+**Hit the exact stale-directory gotcha `dbe-chemistry.md` already documented, and it
+still bit — worth noting it recurs across subjects, not just within one.**
+`extract-exam-pages.py` doesn't clean its output directory first, and
+`upload-exam-images.js` uploads every `memo_N.png` present, not just the ones from the
+current run. Eight of the bare `temp/images/q2/`..`q9/` directories (order 2-9) still
+held stale `memo_N.png` files from an unrelated Sep 9/11 session (Chemistry's own
+authoring, same bare-`qN` collision the other ledger flagged) — these got silently
+uploaded to the `life_science` GCS path alongside the correct files, caught by comparing
+file timestamps inside each directory before wiring any URLs into the scripts. Fixed:
+deleted the stale local files (identified by pre-today mtime) and the resulting stray
+GCS objects (`gcloud storage rm` — `gsutil rm` itself failed with a credential/signature
+mismatch in this environment, `gcloud storage rm` worked instead), then re-verified
+every directory's file count against the expected question/memo page count per lesson
+before wiring URLs into the scripts. All 15 lessons' `question_image_urls`/
+`memo_image_urls` spot-checked resolving (200) after the fix. **Reinforces the other
+ledger's own advice**: a subject/paper-scoped local folder name (not bare `qN`) would
+have prevented this outright — worth actually adopting that convention next time rather
+than re-catching the same class of bug by inspection.
+
+**`DESIGN-LIFE-01` held up in practice**: every `fitb` used across all 15 lessons is
+bare-numeric (chromosome/gamete counts, percentages, ratio counts); every genotype/term-
+recall answer went to `multiple_choice`/`multi_select`/`match` instead of typed input,
+confirmed live-testable on the emulator (see below). `steps`/`equation`/`fraction` were
+not used anywhere in this paper.
+
+**`DESIGN-UNI-13` (linked lessons) exercised once**: `Question 2.1 (Meiosis and Sex
+Chromosomes)` (order 7) is authored linked — its Question 2 ("the process described in
+the previous question") and Question 3 ("the process described in Question 1")
+deliberately reference Question 1's result, mirroring the real exam's own 2.1.4(a)/(b)/(c)
+chain. Every other lesson is independent.
+
+**Live-tested on the emulator, 2026-09-12** (before the full paper existed — only the
+first 3 lessons at the time): subject visibility, lesson loading, and all four
+presentation types used in this paper (`multiple_choice`, `multi_select`, `match`,
+`fitb`) all confirmed working via `adb`, including the specific `fitb` answerability
+question this profile's keyboard section predicted from code alone. `ordering` was
+authored later (lessons 5+) and has not yet been live-tested — same status as
+everything else added after that check, pending the full `review-paper.md` run the user
+plans to do once the whole paper was uploaded (now true).
+
+**`subjects` row activated this session**: `is_active` was `false` (the actual reason
+Life Science wasn't showing as an onboarding option — the row itself already existed,
+pre-staged); set to `true`, and `min_app_version` set from unset to `"1.0.0"` (user's own
+call — current app builds gate on `min_app_version`, older builds still read
+`is_active`, both needed setting). See "App-side status" above for the fuller account.
+
+**Full package completed, 2026-09-12 (second pass, after the first pass shipped
+incomplete)** — the initial pass stopped at lessons/questions only, missing the pieces
+every other subject's papers ship with; caught when the user pointed out nothing was
+reviewable without them. Closed out properly:
+
+- **Curriculum vocabulary snapshot**: dumped via `tools/dump-curriculum-vocabulary.js
+  --subject life_science --out temp/curriculum-vocab-life-science.json` (a
+  subject-scoped filename, not the shared default `temp/curriculum-vocab.json` — the
+  first dump attempt silently got overwritten by a concurrent session's own dump for a
+  different subject before this was caught, same collision class as the image-directory
+  bug below). All 15 scripts re-validated clean against it with `--curriculum`.
+- **`aiExplanation` content**: real, populated `sub_questions[]` in every one of the 15
+  scripts — 84 entries total, each explaining the **actual real exam sub-question**
+  using the real memo's own data (not the fresh practice scenario in the same lesson),
+  per `AIEXP-06`'s intent. Format-checked programmatically against `AIEXP-03/04/05`
+  (bullet counts/prefixes, numbered solution steps) — caught and fixed 14 sub-questions
+  with a single-bullet `approach` field (rule requires 2-4). Caught and fixed one real
+  content bug during a self-review pass: the Hominid Brain Volume lesson's
+  `aiExplanation` had been grounded in the fresh practice question's fictional species
+  data instead of the real exam's actual species/values (Ardipithecus ramidus 350 mL,
+  Australopithecus africanus 461 mL, Homo habilis 609 mL, Homo erectus 959 mL, Homo
+  sapiens 1330 mL, 3 genera, 118.39% increase) — worth flagging as the specific failure
+  mode to watch for whenever a lesson's fresh scenario replaces a real diagram/dataset:
+  the aiExplanation must still describe the *real* sub-question, not the substitute.
+- **Generated diagrams**: 7 real images (matplotlib, not text-description substitutes)
+  created and wired as per-question `supplementary_material` across 6 lessons — a DNA
+  nucleotide structure (order 1 Q7), a mitosis-vs-meiosis-I chromosome-pairing
+  comparison (order 5 Q4), a sex-chromosome diagram with structure A/region P labeled
+  (order 7 Q4), a DNA-fingerprint gel (order 8 Q2), a pedigree diagram (order 9, all 5
+  questions — the whole lesson's family scenario), a blood-group bar graph (order 10
+  Q1-2), and an antibiotic-resistance-over-generations graph (order 15 Q4). Each
+  diagram's data was cross-checked against its question's own text before wiring — two
+  mismatches caught this way: the DNA-fingerprinting gel's suspect labels (1/2/3 vs. the
+  question's A/B/C) and which suspect showed the exact match. Uploaded via
+  `tools/upload-question-supplementary.js` (`question_supplementary/life_science/2025/
+  nov_p2/q{order}/{type}_{index}.png`), all URLs spot-checked resolving (200), all
+  wired via literal URL strings per that tool's own documented gotcha (never a shared
+  `const` reference — `validate-questions.js` evals the `questions` array in isolation).
+  Not every diagram-flagged question got a real image — the ones left as text-described
+  scenarios (protein synthesis, human evolution anatomy, hominid brain volume table,
+  speciation/world map, DNA replication) were judged answerable without one; this is a
+  narrower, more deliberate scope than "every diagram-shaped question," not an
+  oversight — revisit if a future review disagrees.
+- All 15 lessons re-uploaded to dev after each addition; final state verified directly
+  against Postgres (`questions.supplementary_material_type/label`,
+  `lesson_ai_explanation_sub_questions` row counts) rather than trusted from script
+  output alone.
+
+**Still open**: `june_p2` once sourced, same as every other subject. The full
+`review-paper.md` run (Phases 1-6, screenshot-based render/logic/crop review against
+the actual app) is the user's own next step, not run as part of this session — nothing
+above substitutes for that review, it only ensures there's a complete package to review
+in the first place.
