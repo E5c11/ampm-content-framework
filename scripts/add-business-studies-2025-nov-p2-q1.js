@@ -37,8 +37,8 @@ const video = {
   has_video: false,
   xp: 30,
   tags: ['leadership_styles', 'ownership_and_liability', 'team_development', 'corporate_social_responsibility'],
-  question_image_urls: [],
-  memo_image_urls: [],
+  question_image_urls: ["https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q1/question_1.png","https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q1/question_2.png","https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q1/question_3.png"],
+  memo_image_urls: ["https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q1/memo_1.png"],
   exam_question_marks: 30,
   supplementary_materials: [],
 };
