@@ -28,7 +28,7 @@ can say anything about it.
 | Papers | `nov_p2` (2025) — **fully authored 2026-09-13**, see Completed papers ledger below. `june_p2` presumed once a June-diet paper is sourced |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/CAPS FET _ BUSINESS STUDIES _ GR 10-12 _ Web_0CA7.pdf` — Grade 12's four-topic weighting table at Section 2.1 (physical p. 8), Grade 12 Annual Teaching Plan at Section 3.2.6 (physical pp. 33 onward). Both consulted for this draft. Required in-session before authoring, not optional (Business Studies is content-based, see below) |
 | **Source files** | `files/Business Studies P2 Nov 2025 Eng.pdf` (question paper, 9pp, 150 marks), `files/Business Studies P2 Nov 2025 MG Eng.pdf` (marking guideline, 32pp) — already in `files/`, matching the other subjects' convention |
-| `subjects` reference row | **Created in both dev and prod, 2026-09-13** — same `id`/`name`/`full_name`/`code`/`category`/`sort_order: 8`/`color: "#1971C2"`/`icon: "briefcase"`/`is_published: true` in both. **Dev**: `is_active: true`, `min_app_version: null` — fully visible, for the user's own review. **Prod**: `is_active: false`, `min_app_version: '3.0.0'` (a version no current build has reached — a deliberate hard gate on both flags at once, user's explicit request) — content is live in prod's database but the subject is invisible to real users until the user changes these, planned for once Paper 1 is also live. Direct Postgres inserts both times (no tooling exists for this — every `tools/` reference to `subjects` is a read-only FK-existence check). |
+| `subjects` reference row | **Created in both dev and prod, 2026-09-13** — same `id`/`name`/`full_name`/`code`/`category`/`sort_order: 8`/`color: "#1971C2"`/`icon: "briefcase"`/`is_published: true` in both. **Dev**: `is_active: true`, `min_app_version: null`. **Prod**: created gated (`is_active: false`, `min_app_version: '3.0.0'`) so content could go live in prod's database ahead of the subject being visible; **flipped to `is_active: true`, `min_app_version: null` the same day, at the user's explicit follow-up request** — Business Studies is now fully live and visible to real users in prod, ahead of Paper 1 (see Still open). Direct Postgres inserts/updates each time (no tooling exists for this — every `tools/` reference to `subjects` is a read-only FK-existence check). |
 
 ## Paper structure (Nov 2025 P2, from paper review)
 
@@ -438,21 +438,23 @@ the prod bucket. Verified directly against prod Postgres (not just script output
 lessons and 55 questions `is_published = true`; spot-checked image URLs on the prod
 bucket resolve (200).
 
-**`subjects` row created directly in prod, deliberately kept inactive at the user's
-explicit request** — `is_active: false`, `min_app_version: '3.0.0'` (a version no current
-build has reached, so it acts as a hard gate independent of `is_active`), same
-`sort_order: 8`/`color`/`icon` as dev. Content is fully live in prod's database, but the
-subject itself is invisible to real users on both gates at once until the user changes
-them — deliberately deferred until Paper 1 is also authored and pushed, so both papers go
-live together rather than Paper 2 appearing alone.
+**`subjects` row created directly in prod, initially kept inactive** — `is_active:
+false`, `min_app_version: '3.0.0'` (a version no current build had reached, so it acted
+as a hard gate independent of `is_active`), same `sort_order: 8`/`color`/`icon` as dev.
+
+**Activated in prod the same day, at the user's explicit follow-up request** —
+`is_active: true`, `min_app_version: null`. Business Studies is now genuinely live and
+visible to real users in prod, ahead of Paper 1 being authored — the original plan to
+wait until both papers were ready was superseded by this direct instruction, not an
+oversight.
 
 ## Still open
 
 `june_p2` unsourced. Paper 1 (Business Environment + Business Operation) needs its own
-source files and its own profile section before it can be authored at all. The prod
-`subjects` row's `is_active`/`min_app_version` stay at `false`/`'3.0.0'` until the user
-says otherwise (see the prod-push note above) — independent of dev, where `is_active` is
-already `true` for the user's own review. The "Video ID not
+source files and its own profile section before it can be authored at all — **Business
+Studies is now live in prod with Paper 2 only**, so a real user browsing it today sees a
+subject with no Paper 1 content yet, not a bug, just the current genuine state until
+Paper 1 is authored. The "Video ID not
 available" placeholder is worth a quick cross-subject check but isn't blocking. **The
 `multiple_choice` checkbox/row-sizing bug above is a real, cross-subject app defect** —
 someone needs to fix `MultipleChoice.kt` (or wherever its option rows are laid out) before
