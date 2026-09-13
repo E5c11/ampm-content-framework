@@ -24,7 +24,7 @@ can say anything about it.
 |---|---|
 | `syllabus` / `subject` | `"dbe"` / `"business_studies"` — derived from the app's own `SubjectMapper.kt` fallback (`displayName.lowercase().replace(" ", "_")` — `"Business Studies"` → `"business_studies"`), the same no-constant-needed mechanism Geography/Life Science already rely on. **No `SubjectMapper.kt` change needed.** |
 | Postgres tables | `lessons`, `questions` — `subject_id = "business_studies"` |
-| Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'business_studies'` — empty, no rows exist yet. Populate via `tools/create-curriculum-node.js` / `create-skill.js` (`PIPE-08`) once authoring starts |
+| Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'business_studies'` — populated 2026-09-13 during `nov_p2` authoring (8 units, 21 topics, 6 subtopics, 25 skills; see Completed papers ledger). Reuse before creating (`PIPE-08`) |
 | Papers | `nov_p2` (2025) — **fully authored 2026-09-13**, see Completed papers ledger below. `june_p2` presumed once a June-diet paper is sourced |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/CAPS FET _ BUSINESS STUDIES _ GR 10-12 _ Web_0CA7.pdf` — Grade 12's four-topic weighting table at Section 2.1 (physical p. 8), Grade 12 Annual Teaching Plan at Section 3.2.6 (physical pp. 33 onward). Both consulted for this draft. Required in-session before authoring, not optional (Business Studies is content-based, see below) |
 | **Source files** | `files/Business Studies P2 Nov 2025 Eng.pdf` (question paper, 9pp, 150 marks), `files/Business Studies P2 Nov 2025 MG Eng.pdf` (marking guideline, 32pp) — already in `files/`, matching the other subjects' convention |
