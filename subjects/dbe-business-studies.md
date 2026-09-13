@@ -332,14 +332,46 @@ Eng.pdf`, uploaded to `media-dev.askmoreprepmore.app`, all URLs spot-checked res
   next question's heading), verified by visual inspection of both resulting crops that
   neither bleeds into the other's content.
 
-No live emulator review yet (Phase 5 of `review-paper.md`) — recommended before this
-paper is pushed to prod, same discipline every other subject's `nov_p2` followed.
+**Full `review-paper.md` run against the live emulator — CLOSED CLEAN, 2026-09-13**
+(`workflows/generate/review-paper.md` Phases 1-4; Phase 5 explicitly does not apply —
+this paper has zero `fitb`/`equation`/`steps` questions, every one of its 55 questions is
+selection-based). All 55 questions checked at the data level (0 issues: `answer` verbatim
+in `metadata`, `match` ≤4 pairs with correct prefix format, `ordering` answers a genuine
+permutation not stored pre-solved, curriculum resolved on every question, no `\n` in any
+`question` field); MC index-0 tally unchanged at 1/32 (3.1%). Render checks sampled 13 of
+55 questions' live screenshots across all 6 lessons and all 4 presentation types used,
+weighted toward the longest/highest-risk text (the two essay lessons' 5-6-item `ordering`
+sequences, the longest `match`/`multi_select` option text) — a sample, not full 55/55
+visual coverage, noted honestly rather than overclaimed.
+
+Found and fixed one real defect this way: **Lesson 5 (Question 5) Q9**'s `question` field
+had `"...(Layout, Analysis/interpretation, Synthesis, Originality combined)..."` — a
+slash-pair isolated alone in its own parentheses, which rendered as a stacked math
+fraction instead of plain text. **Exactly the same defect class `review-paper.md` already
+documents from Chemistry's `E°(Ag⁺/Ag)` incident** (2026-09-12) — the second time this
+specific pattern has bitten a subject with no MathText content of its own. Fixed by
+rephrasing to `"(Layout, Analysis and Interpretation, Synthesis, Originality)"`, which
+removes the slash and, as a bonus, matches the marking guideline's own literal component
+name more closely than the original. Patched via `patch-question.js` (dev only), `pm
+clear com.esma.ampm.dev`'d, re-captured, re-verified rendering clean. Scanned all 55
+questions for the same isolated-slash-in-parens pattern programmatically — this was the
+only occurrence; the paper's other slash uses (`HIV/Aids`, `investment/insurance`,
+`investment/financing`, `health/safety`) are free-flowing in sentences, not isolated in
+parens, and didn't trigger it. Zero FLAGs.
+
+**One observation, not a FLAG**: every lesson's video area shows "Video ID not
+available" (expected — `has_video: false`). Functionally harmless in every screenshot
+sampled, but not independently verified against whether this matches History's/
+Geography's/Life Science's own `has_video: false` rendering or indicates something
+Business-Studies-specific about routing — a code-level question, out of this review's
+scope, worth someone checking directly against `dbe-history.md`'s "App-side navigation"
+claim before assuming it's fine.
 
 ## Still open
 
-Image extraction (`question_image_urls`/`memo_image_urls`) and a full `review-paper.md`
-Phase 1-5 pass against the live emulator remain before this paper is prod-ready. `june_p2`
-unsourced. Paper 1 (Business Environment + Business Operation) needs its own source files
-and its own profile section before it can be authored at all. The `subjects` row's
-`is_active`/`min_app_version` stay unset/false until after prelims, per the user's own
-no-app-updates-before-prelims call — this is independent of dev-authoring progress.
+`june_p2` unsourced. Paper 1 (Business Environment + Business Operation) needs its own
+source files and its own profile section before it can be authored at all. The
+`subjects` row's `min_app_version` stays unset until after prelims, per the user's own
+no-app-updates-before-prelims call — independent of dev-authoring progress (`is_active`
+is already `true` in dev only, per the Identity table above). The "Video ID not
+available" placeholder (above) is worth a quick cross-subject check but isn't blocking.
