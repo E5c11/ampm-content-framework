@@ -25,7 +25,7 @@ can say anything about it.
 | `syllabus` / `subject` | `"dbe"` / `"business_studies"` — derived from the app's own `SubjectMapper.kt` fallback (`displayName.lowercase().replace(" ", "_")` — `"Business Studies"` → `"business_studies"`), the same no-constant-needed mechanism Geography/Life Science already rely on. **No `SubjectMapper.kt` change needed.** |
 | Postgres tables | `lessons`, `questions` — `subject_id = "business_studies"` |
 | Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'business_studies'` — empty, no rows exist yet. Populate via `tools/create-curriculum-node.js` / `create-skill.js` (`PIPE-08`) once authoring starts |
-| Papers | `nov_p2` (2025) reviewed for this draft, authoring in progress. `june_p2` presumed once a June-diet paper is sourced |
+| Papers | `nov_p2` (2025) — **fully authored 2026-09-13**, see Completed papers ledger below. `june_p2` presumed once a June-diet paper is sourced |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/CAPS FET _ BUSINESS STUDIES _ GR 10-12 _ Web_0CA7.pdf` — Grade 12's four-topic weighting table at Section 2.1 (physical p. 8), Grade 12 Annual Teaching Plan at Section 3.2.6 (physical pp. 33 onward). Both consulted for this draft. Required in-session before authoring, not optional (Business Studies is content-based, see below) |
 | **Source files** | `files/Business Studies P2 Nov 2025 Eng.pdf` (question paper, 9pp, 150 marks), `files/Business Studies P2 Nov 2025 MG Eng.pdf` (marking guideline, 32pp) — already in `files/`, matching the other subjects' convention |
 | `subjects` reference row | **Created 2026-09-13** — `id: "business_studies"`, `name`/`full_name: "Business Studies"`, `code: "BUSINESS_STUDIES"`, `category: "business_studies_lessons"`, `sort_order: 8` (next free slot after History's 7), `color: "#1971C2"`, `icon: "briefcase"`, `is_published: true`, `is_active: false` (matches Life Science's original pre-staged state — not visible in onboarding until flipped), `min_app_version: null`. Direct dev-Postgres insert at the user's explicit request (no tooling exists for this — every `tools/` reference to `subjects` is a read-only FK-existence check, confirmed 2026-09-13). Per the user's own no-app-updates-before-prelims call, don't activate in prod until after prelims regardless of dev authoring progress. |
@@ -249,14 +249,85 @@ profile's constraints:
   Geography/Life Science. Per `DESIGN-BUS-01`, this doesn't block anything this subject's
   real content actually needs (no `steps`/`equation` content, and the one numeric item
   evidenced is already MCQ-shaped).
-- **`subjects` row**: does not exist yet (see Identity above) — a data-only insert, owner-
-  gated the same way Geography's/English's rows were, not an app release. Can happen
-  whenever the owner is ready; doesn't need to wait for the post-prelims app-fix window
-  the way `dbe-life-sciences.md`'s keyboard-routing gap does.
+- **`subjects` row**: **created 2026-09-13** (see Identity above) — a data-only insert,
+  not an app release, done directly at the user's request since no tooling exists for it.
+
+## Completed papers ledger
+
+**`nov_p2` (2025) — complete, 2026-09-13.** All 6 lessons authored, validated (`tools/
+validate-questions.js --curriculum`), and upserted to dev (Cloud SQL); verified directly
+against the `lessons`/`questions` tables — 230 marks (full question bank, a candidate
+answers a subset: Section A compulsory + 2 of Section B's 3 + 1 of Section C's 2, same
+"full bank vs. exam-day subset" shape as `dbe-history.md`'s own paper), 55 practice
+questions.
+
+| Lesson | Order | Marks | Questions | Presentations used |
+|---|---|---|---|---|
+| Question 1 (Section A — mixed compulsory items) | 1 | 30 | 9 | multiple_choice, multi_select, match |
+| Question 2 (Business Ventures) | 2 | 40 | 10 | multiple_choice, multi_select, ordering |
+| Question 3 (Business Roles) | 3 | 40 | 9 | ordering, multi_select, multiple_choice |
+| Question 4 (Miscellaneous — both topics) | 4 | 40 | 9 | multi_select, match, multiple_choice |
+| Question 5 (Investment: Insurance essay) | 5 | 40 | 9 | multiple_choice, multi_select, ordering |
+| Question 6 (Human Rights/Inclusivity/Environmental essay) | 6 | 40 | 9 | multiple_choice, multi_select, ordering |
+
+**Curriculum vocabulary**: 8 units, 21 topics, 6 subtopics, 25 skills created via
+`tools/create-curriculum-node.js`/`create-skill.js` (dev), reusing conceptual matches
+where they already existed under a different subject's namespace (`curriculum_nodes.id`
+is a **global** PK — `business_studies` isn't in `NAMESPACED_SUBJECTS`, so slugs had to be
+checked across all subjects, not just within this one). Subtopics deliberately kept coarse
+(skill-shape buckets: `term_definition_recall`, `scenario_application`,
+`classification_and_criteria`, `sequencing_and_process`, `scenario_evidence_identification`,
+`essay_structure_and_argumentation`) rather than one-per-question — this subject's content
+is discursive/skill-shaped like History, not fact-dense like Life Science, so History's
+coarse convention was followed, not Life Science's fine-grained one.
+
+**`DESIGN-BUS-02` held up in practice**: every discursive concept (leadership styles,
+insurance principles, King Code, CSR, human rights, diversity) went to `multiple_choice`/
+`multi_select`/`match`/`ordering`, never open `fitb` recall. `DESIGN-BUS-01` held too:
+zero letter-based `fitb` anywhere in the paper — the one arithmetic concept the real paper
+has (simple interest) was represented as an MCQ, matching the real exam's own shape,
+exactly as the profile predicted before authoring started.
+
+**`DESIGN-UNI-13` linked pairs exercised three times**: Q2's leadership-styles scenario
+(quote → explain-other), Q2's multimedia-presentation scenario (quote → explain-other),
+Q3's King Code scenario (quote → explain-other), and Q4's creative-thinking-environment
+scenario (quote → explain-other) — four total, each checked explicitly so the second
+sub-part's correct option set excludes the first's. Q3's conflict-scenario pair
+(quote causes → recommend a resolution) was *not* linked in the exclusion sense — the
+second sub-part is a different category of answer (a remedy, not more causes), so no
+overlap risk existed there; worth noting as the one paired-scenario shape that didn't need
+the exclusion check, in case it recurs.
+
+**MC index-0 distribution (`DESIGN-UNI-06`/`SCHEMA-TYPE-06`) — the one real mistake this
+session made, and the direct reason `workflows/generate/upload-business-studies.md` exists
+now.** Q1 originally shipped with 2 of 5 `multiple_choice` questions at `metadata[0]`,
+caught only after upload, mid-fix, when the session paused to write the generate doc
+instead of continuing blind. Fixed and re-verified (0/5) before Q2 started. Every
+subsequent lesson checked the live cumulative tally against Postgres *before* finalizing
+its own question set, per the generate doc's own instruction — final tally: **1 of 32
+`multiple_choice` questions at index 0 (3.1%)**, comfortably under the ~10% cap, with
+room to place more at index 0 in a future paper without approaching the limit.
+
+**Presentation-type variety rule caught twice** (`tools/validate-questions.js`'s
+"4+ question set needs ≥3 presentation types" check): Q2's first draft used only
+`multiple_choice`/`multi_select` — added an `ordering` item (investment decision process)
+that also happened to cover the real Q2.1 content ("factors to consider when making
+investment decisions") the draft had otherwise dropped for space. Worth the general
+lesson: the variety rule can double as a nudge toward content this subject's fine-grained
+Section B otherwise makes easy to skip.
+
+**Not done this pass**: no exam/memo images extracted or wired (`question_image_urls`/
+`memo_image_urls` are `[]` on every lesson) — deferred, same as it's fine to defer for any
+subject's first authoring session; a later pass should extract and wire these before a
+full `review-paper.md` run. No live emulator review yet (Phase 5 of `review-paper.md`) —
+recommended before this paper is pushed to prod, same discipline every other subject's
+`nov_p2` followed.
 
 ## Still open
 
-No lessons authored yet. `nov_p2` is reviewed only (this draft); authoring, validation,
-upload, and a full `review-paper.md` pass all remain, same as every subject's own first
-pass. `june_p2` unsourced. Paper 1 (Business Environment + Business Operation) needs its
-own source files and its own profile section before it can be authored at all.
+Image extraction (`question_image_urls`/`memo_image_urls`) and a full `review-paper.md`
+Phase 1-5 pass against the live emulator remain before this paper is prod-ready. `june_p2`
+unsourced. Paper 1 (Business Environment + Business Operation) needs its own source files
+and its own profile section before it can be authored at all. The `subjects` row's
+`is_active`/`min_app_version` stay unset/false until after prelims, per the user's own
+no-app-updates-before-prelims call — this is independent of dev-authoring progress.

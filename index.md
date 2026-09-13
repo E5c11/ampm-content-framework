@@ -39,7 +39,7 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `AMPM-CONTENT-SUBJ-DBE-PHYSICS` | `subjects/dbe-physics.md` | mc, fitb, multi-select, match, ordering, steps (confirmed against a full paper 2026-09-10); fraction, equation not yet exercised |
 | `AMPM-CONTENT-SUBJ-DBE-CHEMISTRY` | `subjects/dbe-chemistry.md` | not yet authored — illustrative only (drafted 2026-09-11); reuses Physics's `subject_id`, see `core/keyboard-input.md` for the shared keyboard constraint |
 | `AMPM-CONTENT-SUBJ-DBE-LIFE-SCIENCES` | `subjects/dbe-life-sciences.md` | Paper 2 only, not yet authored — illustrative only (drafted 2026-09-12); genuinely new `subject_id`, see `core/keyboard-input.md` for the `fitb`-vs-`steps` keyboard-fallback distinction this profile surfaced |
-| `AMPM-CONTENT-SUBJ-DBE-BUSINESS-STUDIES` | `subjects/dbe-business-studies.md` | Paper 2 only, not yet authored — illustrative only (drafted 2026-09-13); no `subjects` row yet, `None`-routed keyboard same as Geography/Life Science but not load-bearing here (no app change needed); Section C essays get English HL/History-style objective essay-strategy lessons grounded in the memo's own LASO rubric (`DESIGN-BUS-03`) |
+| `AMPM-CONTENT-SUBJ-DBE-BUSINESS-STUDIES` | `subjects/dbe-business-studies.md` | mc, multi-select, match, ordering (confirmed against a full paper 2026-09-13 — Paper 2 only, 6 lessons/55 questions/230 marks); fitb/fraction/equation/steps not used; Section C essays get English HL/History-style objective essay-strategy lessons grounded in the memo's own LASO rubric (`DESIGN-BUS-03`) |
 
 ## workflows/generate/ (thin orchestrators)
 
