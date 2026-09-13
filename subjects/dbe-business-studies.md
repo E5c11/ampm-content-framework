@@ -367,6 +367,47 @@ Business-Studies-specific about routing — a code-level question, out of this r
 scope, worth someone checking directly against `dbe-history.md`'s "App-side navigation"
 claim before assuming it's fine.
 
+**Follow-up verification pass, same day, after the above — found a real `multiple_choice`
+render defect the first pass's sample didn't happen to hit.** The first pass weighted its
+13-question render sample toward `ordering`/`match`/`multi_select` (the longest-text
+presentations); re-checking specifically for `multiple_choice` checkbox/label alignment
+surfaced a genuine defect, confirmed twice visually (Lesson 5 Q1 "What is the key
+difference between insurance and assurance?", Lesson 4 Q9 rural pricing) and once more
+via a live `uiautomator dump` for numeric proof: **when one `multiple_choice` option
+wraps to 3 lines while its neighbours wrap to 2, the option's own row container does not
+grow to fit the extra line.** Live-dumped bounds for Lesson 5 Q1's four options: row
+heights `126px, 129px, 126px, 126px` — the 3-line option (`"Insurance covers uncertain
+events; assurance covers..."`) got only 129px, 3px more than its 2-line neighbours,
+nowhere near the ~189px three lines actually need. The next option's row (and its
+checkbox) still starts immediately after that insufficient height, so the 3-line option's
+overflowing third line visually lands on top of the next option's checkbox — a checkbox
+that then reads as "belonging" to the wrong line. Confirmed absent when all four options
+wrap to the same line count (Lesson 1 Q4, team-development stages — evenly spaced,
+correctly aligned).
+
+**This is an app-side renderer bug (`MultipleChoice.kt`'s per-option row sizing), not a
+content defect, and not Business-Studies-specific** — it will reproduce for any subject's
+`multiple_choice` question whose options wrap to an uneven number of lines, which this
+paper's discursive, prose-heavy distractors hit often. **FLAGged, not AUTO_FIXed**: no
+`patch-question.js` field fixes the layout; forcing every option to the same line count by
+shortening text would be a content compromise for an app bug, not a real fix, and
+wouldn't help any other subject hitting the same layout. Needs someone to size each
+option row to its own measured content height (or restructure so checkbox+label are
+measured together per option, not two independently-stacked elements) before this paper
+or any subject with similarly uneven `multiple_choice` option lengths ships to prod.
+`~/StudioProjects/AMPM/temp/review/business_studies_nov_p2_2025/report.md` has the fuller
+write-up (that file also re-covers Phases 1-3's already-clean logic checks for a
+consolidated single reference, superseding the first pass's report file of the same
+name — the git-tracked ledger here, not that gitignored file, is the durable record).
+
+Also found while investigating the above: the **"Paper Review" button visible at the
+bottom of a lesson's practice pager is disabled/greyed out until all of that lesson's
+practice questions are completed** — plausibly where `question_image_urls`/
+`memo_image_urls` (the real exam page + memo) actually render, but not confirmed, since
+reaching it means actually answering all 9 questions, out of a render-only capture's
+scope. Resolves the open item above about where exam/memo images surface in-app — likely
+answer, not a confirmed one.
+
 ## Still open
 
 `june_p2` unsourced. Paper 1 (Business Environment + Business Operation) needs its own
@@ -374,4 +415,10 @@ source files and its own profile section before it can be authored at all. The
 `subjects` row's `min_app_version` stays unset until after prelims, per the user's own
 no-app-updates-before-prelims call — independent of dev-authoring progress (`is_active`
 is already `true` in dev only, per the Identity table above). The "Video ID not
-available" placeholder (above) is worth a quick cross-subject check but isn't blocking.
+available" placeholder is worth a quick cross-subject check but isn't blocking. **The
+`multiple_choice` checkbox/row-sizing bug above is a real, cross-subject app defect** —
+someone needs to fix `MultipleChoice.kt` (or wherever its option rows are laid out) before
+this paper, or any subject with uneven-length `multiple_choice` options, ships to prod;
+not blocking further Business Studies authoring (Paper 1, `june_p2`) since it's a
+rendering issue independent of content correctness. Confirming exactly what "Paper
+Review" unlocks (likely the exam-page/memo viewer) is a quick follow-up, not urgent.
