@@ -270,6 +270,28 @@ questions.
 | Question 5 (Investment: Insurance essay) | 5 | 40 | 9 | multiple_choice, multi_select, ordering |
 | Question 6 (Human Rights/Inclusivity/Environmental essay) | 6 | 40 | 9 | multiple_choice, multi_select, ordering |
 
+**`aiExplanation` corrected to `AIEXP-08`, 2026-09-13 (same day, follow-up).** Q1–Q4's
+`aiExplanation.sub_questions` were originally authored against the lesson's own fresh
+practice questions (numbered `"1"`–`"9"`/`"10"`/`"11"` by practice order, `marks: null`)
+— wrong, per a new framework rule (`AIEXP-08`, `core/ai-explanation.md`) written the same
+day specifically because of this mistake: `sub_questions[]` must always be the **real
+exam's own numbered sub-questions**, real marks, with `clues`/`approach`/`solution`
+genuinely derived from the **real memo's actual answer** — a guided-solution companion to
+the actual past paper, decoupled entirely from whatever the lesson's fresh practice
+questions test. Regenerated against the real exam/memo (`files/Business Studies P2 Nov
+2025 Eng.pdf`/`... MG Eng.pdf`): Q1 now carries 15 entries (`1.1.1`–`1.3.5`, 2 marks
+each, 30 total), Q2 carries 9 (`2.1`–`2.8`, 40 total), Q3 carries 9 (`3.1`–`3.7`, 40
+total), Q4 carries 11 (`4.1`–`4.9`, 40 total) — 44 entries, replacing the old 37, plus
+Q5/Q6's 2 already-correct essay entries (46 total across the paper). Old rows had to be
+explicitly `DELETE`d from dev Postgres, not just superseded by the upsert — this table's
+deterministic UUID is keyed on `(lesson_id, number)` (`tools/lib/content-rows.js`), so
+changing `number` from the old scheme to the real one produces entirely new row IDs
+rather than overwriting the old ones; re-running the upload script alone would have left
+both sets coexisting (confirmed live: 37 stale + new rows present until the explicit
+delete). **Worth knowing for any future `aiExplanation` renumbering in any subject**, not
+Business-Studies-specific. English HL's own already-published content still uses the
+pre-`AIEXP-08` convention and has not been reconciled — a separate future pass.
+
 **Curriculum vocabulary**: 8 units, 21 topics, 6 subtopics, 25 skills created via
 `tools/create-curriculum-node.js`/`create-skill.js` (dev), reusing conceptual matches
 where they already existed under a different subject's namespace (`curriculum_nodes.id`
