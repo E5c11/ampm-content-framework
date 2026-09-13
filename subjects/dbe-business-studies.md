@@ -28,7 +28,7 @@ can say anything about it.
 | Papers | `nov_p2` (2025) — **fully authored 2026-09-13**, see Completed papers ledger below. `june_p2` presumed once a June-diet paper is sourced |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/CAPS FET _ BUSINESS STUDIES _ GR 10-12 _ Web_0CA7.pdf` — Grade 12's four-topic weighting table at Section 2.1 (physical p. 8), Grade 12 Annual Teaching Plan at Section 3.2.6 (physical pp. 33 onward). Both consulted for this draft. Required in-session before authoring, not optional (Business Studies is content-based, see below) |
 | **Source files** | `files/Business Studies P2 Nov 2025 Eng.pdf` (question paper, 9pp, 150 marks), `files/Business Studies P2 Nov 2025 MG Eng.pdf` (marking guideline, 32pp) — already in `files/`, matching the other subjects' convention |
-| `subjects` reference row | **Created 2026-09-13** — `id: "business_studies"`, `name`/`full_name: "Business Studies"`, `code: "BUSINESS_STUDIES"`, `category: "business_studies_lessons"`, `sort_order: 8` (next free slot after History's 7), `color: "#1971C2"`, `icon: "briefcase"`, `is_published: true`, `min_app_version: null`. Direct dev-Postgres insert at the user's explicit request (no tooling exists for this — every `tools/` reference to `subjects` is a read-only FK-existence check, confirmed 2026-09-13). **`is_active` flipped `true` in dev 2026-09-13** (same session, after `nov_p2` was fully authored) so the user could view it on the dev app — **dev only**; per the user's own no-app-updates-before-prelims call, don't activate in prod until after prelims. |
+| `subjects` reference row | **Created in both dev and prod, 2026-09-13** — same `id`/`name`/`full_name`/`code`/`category`/`sort_order: 8`/`color: "#1971C2"`/`icon: "briefcase"`/`is_published: true` in both. **Dev**: `is_active: true`, `min_app_version: null` — fully visible, for the user's own review. **Prod**: `is_active: false`, `min_app_version: '3.0.0'` (a version no current build has reached — a deliberate hard gate on both flags at once, user's explicit request) — content is live in prod's database but the subject is invisible to real users until the user changes these, planned for once Paper 1 is also live. Direct Postgres inserts both times (no tooling exists for this — every `tools/` reference to `subjects` is a read-only FK-existence check). |
 
 ## Paper structure (Nov 2025 P2, from paper review)
 
@@ -430,13 +430,29 @@ reaching it means actually answering all 9 questions, out of a render-only captu
 scope. Resolves the open item above about where exam/memo images surface in-app — likely
 answer, not a confirmed one.
 
+**Pushed to prod and published, 2026-09-13** (`tools/push-paper-to-prod.js --subject
+business_studies --year 2025 --paper nov_p2`, then `--publish`): 6 lessons / 55 questions
+/ 230 marks, plus 35 new curriculum_nodes, 25 skills, 18 new tags, 46
+`lesson_ai_explanation_sub_questions`, and all 35 referenced images, mirrored from dev to
+the prod bucket. Verified directly against prod Postgres (not just script output): all 6
+lessons and 55 questions `is_published = true`; spot-checked image URLs on the prod
+bucket resolve (200).
+
+**`subjects` row created directly in prod, deliberately kept inactive at the user's
+explicit request** — `is_active: false`, `min_app_version: '3.0.0'` (a version no current
+build has reached, so it acts as a hard gate independent of `is_active`), same
+`sort_order: 8`/`color`/`icon` as dev. Content is fully live in prod's database, but the
+subject itself is invisible to real users on both gates at once until the user changes
+them — deliberately deferred until Paper 1 is also authored and pushed, so both papers go
+live together rather than Paper 2 appearing alone.
+
 ## Still open
 
 `june_p2` unsourced. Paper 1 (Business Environment + Business Operation) needs its own
-source files and its own profile section before it can be authored at all. The
-`subjects` row's `min_app_version` stays unset until after prelims, per the user's own
-no-app-updates-before-prelims call — independent of dev-authoring progress (`is_active`
-is already `true` in dev only, per the Identity table above). The "Video ID not
+source files and its own profile section before it can be authored at all. The prod
+`subjects` row's `is_active`/`min_app_version` stay at `false`/`'3.0.0'` until the user
+says otherwise (see the prod-push note above) — independent of dev, where `is_active` is
+already `true` for the user's own review. The "Video ID not
 available" placeholder is worth a quick cross-subject check but isn't blocking. **The
 `multiple_choice` checkbox/row-sizing bug above is a real, cross-subject app defect** —
 someone needs to fix `MultipleChoice.kt` (or wherever its option rows are laid out) before
