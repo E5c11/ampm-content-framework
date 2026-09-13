@@ -316,12 +316,24 @@ investment decisions") the draft had otherwise dropped for space. Worth the gene
 lesson: the variety rule can double as a nudge toward content this subject's fine-grained
 Section B otherwise makes easy to skip.
 
-**Not done this pass**: no exam/memo images extracted or wired (`question_image_urls`/
-`memo_image_urls` are `[]` on every lesson) — deferred, same as it's fine to defer for any
-subject's first authoring session; a later pass should extract and wire these before a
-full `review-paper.md` run. No live emulator review yet (Phase 5 of `review-paper.md`) —
-recommended before this paper is pushed to prod, same discipline every other subject's
-`nov_p2` followed.
+**Exam/memo images extracted and wired, 2026-09-13 (second pass, at the user's request
+after viewing the dev app with none wired).** All 6 lessons' `question_image_urls`/
+`memo_image_urls` populated from `files/Business Studies P2 Nov 2025 Eng.pdf`/`... MG
+Eng.pdf`, uploaded to `media-dev.askmoreprepmore.app`, all URLs spot-checked resolving
+(200). Two genuinely shared boundaries handled:
+- **Question paper page 9**: Q5 and Q6's essay prompts are printed on the same physical
+  page — extracted and uploaded once (under Q5), the identical URL reused directly in
+  Q6's script rather than re-extracting, same convention `dbe-history.md`'s Q4/Q5/Q6
+  already established for a shared prompts page.
+- **Memo pages 12 and 17**: genuine two-question boundaries (Q2/Q3 and Q3/Q4 each end/
+  start partway down one physical page) — split via `extract-exam-pages.py`'s
+  `N:start=Y`/`N:end=Y` page-spec syntax, y-coordinates found from a density scan of the
+  rendered page (a blank gap between the prior question's mark-breakdown table and the
+  next question's heading), verified by visual inspection of both resulting crops that
+  neither bleeds into the other's content.
+
+No live emulator review yet (Phase 5 of `review-paper.md`) — recommended before this
+paper is pushed to prod, same discipline every other subject's `nov_p2` followed.
 
 ## Still open
 
