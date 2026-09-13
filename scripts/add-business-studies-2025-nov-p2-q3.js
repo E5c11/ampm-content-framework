@@ -39,8 +39,8 @@ const video = {
   has_video: false,
   xp: 40,
   tags: ['problem_solving_techniques', 'king_code_principles', 'conflict_management', 'corporate_social_responsibility'],
-  question_image_urls: [],
-  memo_image_urls: [],
+  question_image_urls: ["https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q3/question_1.png"],
+  memo_image_urls: ["https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q3/memo_1.png","https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q3/memo_2.png","https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q3/memo_3.png","https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q3/memo_4.png","https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q3/memo_5.png","https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q3/memo_6.png"],
   exam_question_marks: 40,
   supplementary_materials: [],
 };
