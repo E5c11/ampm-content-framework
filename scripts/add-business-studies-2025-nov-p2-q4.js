@@ -39,8 +39,8 @@ const video = {
   has_video: false,
   xp: 40,
   tags: ['non_insurable_risks', 'forms_of_ownership', 'corporate_social_responsibility', 'creative_thinking'],
-  question_image_urls: [],
-  memo_image_urls: [],
+  question_image_urls: ["https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q4/question_1.png"],
+  memo_image_urls: ["https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q4/memo_1.png","https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q4/memo_2.png","https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q4/memo_3.png","https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q4/memo_4.png","https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p2/q4/memo_5.png"],
   exam_question_marks: 40,
   supplementary_materials: [],
 };
