@@ -57,13 +57,58 @@ format rules below)
 
 ```js
 {
-  number: "1",      // sub-question number as a string ("1", "2", "1.1", etc.)
-  marks: N,         // mark allocation as a number — null for English questions
+  number: "1",      // the REAL exam's own sub-question number, exactly as printed
+                     // ("1.1.1", "2.4", "3.3.2", or a bare "5" for a no-sub-part essay)
+  marks: N,         // the REAL mark allocation from the memo — never null (AIEXP-08)
   clues: "...",     // see format rules below
   approach: "...",  // see format rules below
   solution: "...",  // see format rules below
 }
 ```
+
+**`AIEXP-08`** — `enforced_by: human-review`. Added 2026-09-13, after a Business Studies
+review found `sub_questions` authored against the lesson's own fresh practice questions
+instead of the real exam — corrected here as a rule for every subject, not just that one
+paper.
+
+`sub_questions[]` always corresponds **1:1 to the real exam's own numbered
+sub-questions**, never to the lesson's fresh practice-question set. Concretely:
+
+- `number` is the real exam's own sub-question number, exactly as the paper prints it
+  (`"1.1.1"`, `"2.4"`, `"3.3.2"`; a bare `"5"` for an essay/proof question with no
+  numbered sub-parts).
+- `marks` is that sub-question's real mark allocation from the memo — always a number,
+  never `null`.
+- `clues`/`approach`/`solution` are a genuine, guided walkthrough of **that real
+  sub-question**, derived from **the real memo's actual answer** — in your own words
+  (never verbatim memo prose), but describing the real exam content, not the lesson's
+  invented scenario.
+
+**Why:** the practice questions in a lesson are freshly authored per `DESIGN-UNI-01` (new
+numbers, new scenarios, new wording) so a student can't just memorize our version and
+trivially pass the exam's own version. `aiExplanation` serves the opposite purpose: it is
+the guided-solution companion to the *real* exam paper, so a student revising with the
+real past paper and memo in hand gets clearer scaffolding on the real questions than the
+bare memo bullet points give — the memo stays the ground truth; the "AI explanation" adds
+guidance on top of it, never substitutes a different (fresh) question in its place. A
+lesson's number of `sub_questions` entries is therefore driven by the real exam's own
+sub-question count for that lesson, which will often differ from its fresh practice
+question count — that's expected, not a mismatch to reconcile.
+
+**This supersedes the "Generation process" section's old English-specific convention**
+(`marks: null`, `number` = the practice question's own order) — that predates this rule
+and does not apply to newly authored content in any subject, English included. English
+HL's already-published `nov_p1`/`nov_p2`/`nov_p3` content was authored under the old
+convention and has not been reconciled to this one; that is a separate future pass, not
+retroactively fixed by this rule change.
+
+Caught once already, before this rule existed: Life Science's Hominid Brain Volume lesson
+had an `aiExplanation` entry grounded in its fresh practice question's fictional species
+data instead of the real exam's actual species/values — flagged and fixed in that
+session, but not generalized into a written rule until now. History's and Life Science's
+own ledgers already independently followed something close to this convention (real
+exam numbering, real marks) for their non-essay lessons without it being written down
+anywhere general — this rule is that write-down, not a new behavior for those two.
 
 ---
 
@@ -165,24 +210,28 @@ table (copying the `questions`-table fix) and would have rendered as literal bro
 
 ## Generation process
 
-**`AIEXP-06`** — `enforced_by: human-review`
+**`AIEXP-07`** — `enforced_by: human-review`
 
-The `ai_explanation` is generated **in the Claude Code upload session** by analysing
-question and memo images directly. It is not fetched from an API at runtime.
+The `ai_explanation` is generated **in the Claude Code upload session** by analysing the
+real exam question and memo images/text directly. It is not fetched from an API at
+runtime.
 
-**For maths and math_lit:**
-1. Read the exam question image and memo image
-2. For each sub-question: derive `clues`, `approach`, and `solution` from the worked memo solution
-3. Author as a JS constant in the upload script alongside `video` and `questions`
+**For every subject, per `AIEXP-08`:**
+1. Read the real exam question paper and the real marking guideline (memo) — required
+   before writing a single `sub_questions` entry, not optional supporting material.
+2. For **each of the real exam's own numbered sub-questions** covered by this lesson
+   (not the lesson's fresh practice questions — those are a separate, independently
+   authored set per `DESIGN-UNI-01`): derive `clues` (hint at the concept/method without
+   revealing the answer), `approach` (2–4 steps to identify or derive it), `solution`
+   (the real memo's actual answer, explained in your own words, numbered steps) —
+   grounded in what the memo actually says for that real sub-question.
+3. `number` = the real sub-question's own number exactly as printed (`"1.1.1"`, `"2.4"`,
+   or a bare `"5"` for an essay with no numbered sub-parts). `marks` = its real
+   allocation from the memo — always a number, never `null`.
+4. Author as a JS constant in the upload script alongside `video` and `questions`.
 
-**For English:**
-1. Read the exam memo (marking guideline) for the real exam question the practice
-   questions are grouped under, to see how DBE frames the expected reasoning/answer for
-   this skill or device — practice questions are freshly authored (`DESIGN-UNI-01`), but
-   `clues`/`approach`/`solution` should still be derived from the memo's reasoning style,
-   not from the practice answer in isolation
-2. For each practice question: derive `clues` (hint toward the rule or device), `approach`
-   (how to identify or apply it), `solution` (correct answer + why distractors are wrong)
-3. Set `marks: null` for all English questions — practice questions carry no real exam
-   mark allocation
-4. Set `number` to the practice question order as a string (`"1"`, `"2"`, `"3"`)
+**Superseded, do not follow for new work (`AIEXP-08`):** an earlier convention, used for
+English HL's already-published content, set `marks: null` and numbered `sub_questions`
+by the practice question's own order instead of the real exam's numbering. That content
+has not yet been reconciled to the current rule (`AIEXP-08`) — a separate future pass,
+not something this doc's rule change retroactively fixes.
