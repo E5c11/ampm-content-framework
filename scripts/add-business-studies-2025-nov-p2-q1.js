@@ -49,7 +49,7 @@ const questions = [
   {
     name: 'Question 1',
     question: 'A leadership theory holds that the most effective style depends on the specific circumstances a leader faces, rather than one fixed approach. Which theory is this?',
-    metadata: ['Situational leadership theory', 'Transformational leadership theory', 'Autocratic leadership', 'Servant leadership', ''],
+    metadata: ['Transformational leadership theory', 'Autocratic leadership', 'Situational leadership theory', 'Servant leadership', ''],
     answer: ['Situational leadership theory', '', '', '', ''],
     presentation: 'multiple_choice',
     type: 'definition',
@@ -172,7 +172,7 @@ const questions = [
   {
     name: 'Question 6',
     question: 'A business lists the forces driving a proposed change against the forces resisting it, then weighs the two sides to decide whether to proceed. Which problem-solving technique is being used?',
-    metadata: ['Force-field analysis', 'Delphi technique', 'Brainstorming', 'Nominal group technique', ''],
+    metadata: ['Delphi technique', 'Brainstorming', 'Force-field analysis', 'Nominal group technique', ''],
     answer: ['Force-field analysis', '', '', '', ''],
     presentation: 'multiple_choice',
     type: 'definition',
