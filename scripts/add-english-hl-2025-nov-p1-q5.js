@@ -57,7 +57,7 @@ const questions = [
     context_text: 'Our eldest is remarkably CAUTIOUS: she tests every step of the staircase before trusting her weight to it.',
     question: "Provide a suitable antonym for 'CAUTIOUS', in context.",
     metadata: ['Antonym:', '[ ]'],
-    answer: ['reckless|careless|rash|daring|bold|impulsive|incautious|fearless|heedless|carefree', '', '', '', ''],
+    answer: ['reckless|careless|rash|daring|bold|impulsive|incautious|fearless|heedless', '', '', '', ''],
     presentation: 'fitb',
     type: 'application',
     unit: 'language',
