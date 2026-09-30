@@ -57,7 +57,7 @@ const questions = [
     order: 1,
     text_key: "solitude",
     context_text: null,
-    question: "In 'Solitude', the speaker repeatedly pairs a joyful action with a sorrowful one ('Laugh' / 'Weep', 'Sing' / 'Sigh', 'Feast' / 'Fast'). What is the main effect of this structural pattern?",
+    question: "In 'Solitude', the speaker repeatedly pairs a joyful action with a sorrowful one: 'Laugh' with 'Weep', 'Sing' with 'Sigh', and 'Feast' with 'Fast'. What is the main effect of this structural pattern?",
     metadata: ["It shows that the speaker values sorrow more highly than happiness.","Each pairing sets a shared, joyful experience against a lonely, sorrowful one, reinforcing that grief isolates a person.","It creates a cheerful, sing-song rhythm that lightens the mood of the whole poem.","It suggests that joy and sorrow are always experienced together in a group.",""],
     answer: ["Each pairing sets a shared, joyful experience against a lonely, sorrowful one, reinforcing that grief isolates a person.","","","",""],
     presentation: "multiple_choice",
