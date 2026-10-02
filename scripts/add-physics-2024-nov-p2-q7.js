@@ -130,7 +130,7 @@ const questions = [
   },
   {
     name: 'Question 6',
-    question: '250 cm³ of the 0,125 mol·dm⁻³ Na₂CO₃ solution was made by completely dissolving 8,94 g of hydrated sodium carbonate, Na₂CO₃·xH₂O, in water. Calculate the value of x: []',
+    question: '250 cm³ of a 0,125 mol·dm⁻³ Na₂CO₃ solution was made by completely dissolving 8,94 g of hydrated sodium carbonate, Na₂CO₃·xH₂O, in water. Calculate the value of x: []',
     metadata: ['x = ', '[ ]'],
     answer: ['10', '', '', '', ''],
     presentation: 'fitb', type: 'calc',

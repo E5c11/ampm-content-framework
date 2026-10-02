@@ -61,7 +61,7 @@ const questions = [
   },
   {
     name: 'Question 2',
-    question: 'In the zinc experiment above, the concentration of the acid stays effectively constant, yet the rate of the reaction decreases with time. Select ALL the statements that form part of the collision-theory explanation.',
+    question: 'A strip of zinc reacts with EXCESS hydrochloric acid. The concentration of the acid stays effectively constant, yet the rate of the reaction decreases with time. Select ALL the statements that form part of the collision-theory explanation.',
     metadata: [
       'The exposed surface area of the zinc strip decreases',
       'The activation energy of the reaction increases',

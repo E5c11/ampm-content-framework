@@ -66,7 +66,7 @@ const questions = [
   },
   {
     name: 'Question 2',
-    question: 'For the cobalt–copper cell above, calculate the initial emf of the cell under standard conditions, in V (round off to a minimum of TWO decimal places): []',
+    question: 'A standard galvanic cell is made from a cobalt electrode in Co²⁺(aq) and a copper electrode in Cu²⁺(aq). Calculate the initial emf of the cell under standard conditions, in V (round off to a minimum of TWO decimal places): []',
     metadata: ['E°cell = ', '[ ]', ' V'],
     answer: ['0.62', '', '', '', ''],
     presentation: 'fitb', type: 'calc',

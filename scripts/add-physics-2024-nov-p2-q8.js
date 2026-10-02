@@ -127,7 +127,7 @@ const questions = [
   },
   {
     name: 'Question 6',
-    question: 'In the nickel–iron(III) cell above, the Ni half-cell is replaced by a Zn half-cell, with the same Fe³⁺/Fe²⁺ half-cell and standard conditions. How does the initial emf compare with that of the original cell?',
+    question: 'A standard galvanic cell Ni(s) | Ni²⁺(aq) || Fe³⁺(aq), Fe²⁺(aq) | Pt(s) is set up. The Ni half-cell is then replaced by a Zn half-cell, keeping the same Fe³⁺/Fe²⁺ half-cell and standard conditions. How does the initial emf compare with that of the original cell?',
     metadata: [
       'It increases, because Zn is a stronger reducing agent than Ni',
       'It stays the same, because the oxidising agent has not changed',
