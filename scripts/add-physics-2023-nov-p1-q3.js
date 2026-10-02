@@ -78,7 +78,7 @@ const questions = [
     question:
       'A stone is thrown vertically upwards from a bridge and rises 7.2 m above the point of release. Ignore air friction. Using equations of motion, calculate the speed at which the stone was thrown.',
     metadata: ['vᵢ = ', '[ ]', ' m·s⁻¹'],
-    answer: ['11.88', '', '', '', ''],
+    answer: ['11.88|11.879', '', '', '', ''],
     presentation: 'fitb',
     type: 'calc',
     unit: 'mechanics', topic: 'vertical_projectile_motion', subtopic: 'projectile_motion_calculations',
@@ -112,7 +112,7 @@ const questions = [
     question:
       'A ball leaves the ground vertically upwards with a speed of 13.3 m·s⁻¹. Ignore air friction. Calculate the time it takes to reach its maximum height.',
     metadata: ['Δt = ', '[ ]', ' s'],
-    answer: ['1.36', '', '', '', ''],
+    answer: ['1.36|1.357', '', '', '', ''],
     presentation: 'fitb',
     type: 'calc',
     unit: 'mechanics', topic: 'vertical_projectile_motion', subtopic: 'projectile_motion_calculations',
@@ -128,7 +128,7 @@ const questions = [
       'A ball is thrown upwards from a balcony, falls to the ground and bounces. Its velocity-time graph is drawn from release until it reaches the top of its first bounce. Ignore air friction. Match each feature of the graph to what it represents.',
     metadata: [
       'A - The gradient of each straight-line section',
-      'B - A point where the graph crosses the time axis',
+      'B - A point where a sloping section crosses the time axis',
       'C - The sudden jump in velocity at the bounce',
       'D - The area between the graph and the time axis',
       '1 - The ball is at a maximum height',

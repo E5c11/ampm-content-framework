@@ -132,7 +132,7 @@ const questions = [
     name: 'Question 5',
     question: 'The maximum current in an AC circuit is 5.2 A. Calculate the rms current.',
     metadata: ['Iᵣₘₛ = ', '[ ]', ' A'],
-    answer: ['3.68', '', '', '', ''],
+    answer: ['3.68|3.677', '', '', '', ''],
     presentation: 'fitb',
     type: 'calc',
     unit: 'electricity_magnetism', topic: 'electrodynamics', subtopic: 'ac_generator_rms',

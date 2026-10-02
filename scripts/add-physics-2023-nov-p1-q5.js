@@ -126,10 +126,10 @@ const questions = [
     metadata: [
       'Wₙₑₜ = ΔEₖ, so fΔx cos 180° = 0 − Eₖᵢ, which gives Δx = \\frac{1}{f}Eₖᵢ',
       'Gradient = \\frac{3.2}{20} = 0.16 = \\frac{1}{f}, so f = 6.25 N',
-      'fₖ = μₖN = μₖmg, so 6.25 = (0.22)(m)(9.8), and m (in kg):',
+      'fₖ = μₖN = μₖmg, so 6.25 = (0.22)(m)(9.8), and m (in kg, to two decimal places):',
       '[ ]',
     ],
-    answer: ['2.9'],
+    answer: ['2.90'],
     presentation: 'steps',
     type: 'calc',
     unit: 'mechanics', topic: 'work_energy_power', subtopic: 'work_energy_theorem_applications',

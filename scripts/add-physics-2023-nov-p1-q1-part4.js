@@ -69,7 +69,7 @@ const questions = [
     question:
       'The threshold frequency of a metal is 1.2 × 10¹⁵ Hz. Calculate the work function of the metal.',
     metadata: ['W₀ = ', '[ ]', ' × 10⁻¹⁹ J'],
-    answer: ['7.96', '', '', '', ''],
+    answer: ['7.96|7.956', '', '', '', ''],
     presentation: 'fitb',
     type: 'calc',
     unit: 'matter_materials', topic: 'optical_phenomena', subtopic: 'photoelectric_effect_threshold',

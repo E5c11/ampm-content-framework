@@ -97,7 +97,7 @@ const questions = [
       'Point charges X and Y, each +2 × 10⁻⁹ C, are fixed on a straight line. Point M lies between them, r metres from X and 3r metres from Y. The net electric field at M is 40 N·C⁻¹. Complete the working to calculate r.',
     metadata: [
       'At M the fields of X and Y point in opposite directions, so Eₙₑₜ = E(X) − E(Y), with E = \\frac{kQ}{r²}',
-      '40 = \\frac{(9 × 10⁹)(2 × 10⁻⁹)}{r²} − \\frac{(9 × 10⁹)(2 × 10⁻⁹)}{(3r)²}, so r (in m):',
+      '40 = \\frac{(9 × 10⁹)(2 × 10⁻⁹)}{r²} − \\frac{(9 × 10⁹)(2 × 10⁻⁹)}{(3r)²}, so r (in m, to two decimal places):',
       '[ ]',
     ],
     answer: ['0.63'],

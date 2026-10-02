@@ -109,7 +109,7 @@ const questions = [
     question:
       'A 0.06 kg lump of clay moving east at 20 m·s⁻¹ strikes and sticks to a 1.4 kg cart moving west at 0.5 m·s⁻¹. Ignore friction. Calculate the magnitude of the velocity of the clay-cart combination after the collision.',
     metadata: ['v(f) = ', '[ ]', ' m·s⁻¹'],
-    answer: ['0.34', '', '', '', ''],
+    answer: ['0.34|0.342', '', '', '', ''],
     presentation: 'fitb',
     type: 'calc',
     unit: 'mechanics', topic: 'momentum_impulse', subtopic: 'conservation_of_momentum',
