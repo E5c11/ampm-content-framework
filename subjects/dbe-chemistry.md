@@ -477,8 +477,26 @@ upserted to dev (Cloud SQL), and verified there directly: 13 lessons, 150/150 ma
   (6.9%). The positions are spread 2/10/9/8 after rotating 5 answers off option D. The
   correct option is the strictly longest in 3/29 (plus 8 ties).
 
-**Not yet done:** the emulator review (`workflows/generate/review-paper.md`) and the
-prod push. Re-check the `physics` subjects row's `min_app_version` before pushing.
+**Full-paper review — CLOSED CLEAN, 2026-10-02** (`workflows/generate/review-paper.md`,
+report at `AMPM/temp/review/nov_p2_2024/report.md`). All 13 lessons / 59 questions were
+captured on the emulator and reviewed against their screenshots: 55 PASS, 4 AUTO_FIX, 0 FLAG.
+
+- **AUTO_FIX:** all four had the same defect, a stem that leaned on an earlier question
+  ("the … cell above", "the zinc experiment above", "the 0,125 mol·dm⁻³ solution").
+  They were rewritten to be self-contained in the source scripts, re-upserted, and
+  verified on-device.
+- **Phase 5:** all 8 `fitb` answers were typed on the custom maths keyboard and marked
+  CORRECT.
+- **Upload/sync race:** the review hit one, not a content defect. Lesson 9 showed only 1
+  of 5 questions, because the app synced in the middle of its original upsert and cached
+  Q1 only. The likely cause is that the incremental sync watermark skipped the rest
+  (inferred, not confirmed from app code). Re-running the unchanged upsert fixed it.
+- **Lesson for future uploads:** don't use the app on the same subject while a paper is
+  being upserted. Before a prod push, check that the push can't be half-synced by a live
+  device.
+
+**Not yet done:** the prod push. Re-check the `physics` subjects row's
+`min_app_version` before pushing.
 
 ## App-side inheritance — no separate work needed
 
