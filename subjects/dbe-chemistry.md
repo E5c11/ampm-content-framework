@@ -440,6 +440,46 @@ app-side keyboard/MathText fixes has shipped — same gate physics's own P1 pape
 2025 chemistry paper are still waiting on. Nothing further to push for this paper once
 that day comes.
 
+**`nov_p2` 2024 — complete (dev), 2026-10-02.** Third `nov_p2` sitting, same 13-lesson
+shape (Q1 → 5 clusters, Q2–Q9 one lesson each). Source files `files/Physical Sciences P2
+Nov 2024 Eng.pdf` / `... MG Afr & Eng.pdf`. All 13 lessons authored, validated and
+upserted to dev (Cloud SQL), and verified there directly: 13 lessons, 150/150 marks,
+59 question rows. All 48 referenced image URLs return 200. Own formula sheet extracted
+(`2024/nov_p2/q0/`, 4 pages).
+
+| Lesson | Order | Real sub-Qs | Marks | Practice Qs | Presentations used |
+|---|---|---|---|---|---|
+| Question 1.1–1.3 (Organic Molecules) | 1 | 1.1–1.3 | 6 | 5 | multi_select, multiple_choice, match, ordering |
+| Question 1.4 (PE diagram / activation energy) | 2 | 1.4 | 2 | 3 | fitb, multiple_choice, multi_select |
+| Question 1.5–1.6 (Chemical Equilibrium) | 3 | 1.5–1.6 | 4 | 3 | multiple_choice, multi_select |
+| Question 1.7–1.8 (Acids & Bases) | 4 | 1.7–1.8 | 4 | 3 | multi_select, ordering, multiple_choice |
+| Question 1.9–1.10 (Electrochemistry) | 5 | 1.9–1.10 | 4 | 3 | multiple_choice, fitb, multi_select |
+| Question 2 (naming/isomers/esterification) | 6 | 11 | 18 | 6 | match, multi_select, multiple_choice |
+| Question 3 (vapour pressure / IMFs) | 7 | 5 | 11 | 4 | multiple_choice, ordering, multi_select |
+| Question 4 (cracking / reaction flow diagram) | 8 | 11 | 22 | 5 | multiple_choice, match, multi_select |
+| Question 5 (Rate & Extent of Reaction) | 9 | 7 | 17 | 5 | fitb, multi_select, multiple_choice |
+| Question 6 (Chemical Equilibrium) | 10 | 9 | 20 | 5 | multiple_choice, multi_select, fitb |
+| Question 7 (Acids & Bases — titration, hydrate) | 11 | 7 | 17 | 6 | multiple_choice, match, fitb |
+| Question 8 (Electrochemistry — redox/galvanic) | 12 | 6 | 12 | 6 | multiple_choice, multi_select, fitb |
+| Question 9 (Electrochemistry — electrolytic) | 13 | 5 | 13 | 5 | multiple_choice, multi_select, ordering |
+
+- **Local images:** `temp/images/chem_p2_2024/q{order}/`. This follows the
+  subject/paper-scoped folder rule from the 2025 entry above, and it held this time.
+- **Generated diagram:** one, a Maxwell–Boltzmann curve with two activation-energy
+  markers for Question 5 (order 9) Q4 (catalyst identification). It is at
+  `question_supplementary/physics/2024/nov_p2/q9/graph_1.png`. No `structure` images
+  were needed: condensed formulas were unambiguous throughout.
+- **New dev skills:** `indicator_selection`, `oxidation_number_analysis`,
+  `haloalkane_classification` and `hydrate_formula_calculation`. They need to reach
+  prod before the push; `push-paper-to-prod.js` copies missing ones. No new
+  curriculum nodes or tags.
+- **`DESIGN-UNI-06`:** 2/29 `multiple_choice` questions have the answer at index 0
+  (6.9%). The positions are spread 2/10/9/8 after rotating 5 answers off option D. The
+  correct option is the strictly longest in 3/29 (plus 8 ties).
+
+**Not yet done:** the emulator review (`workflows/generate/review-paper.md`) and the
+prod push. Re-check the `physics` subjects row's `min_app_version` before pushing.
+
 ## App-side inheritance — no separate work needed
 
 Everything `dbe-physics.md`'s "App-side keyboard/calculator routing" and "App-version
