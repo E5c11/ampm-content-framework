@@ -110,7 +110,7 @@ const questions = [
   {
     name: 'Question 4',
     question:
-      'In the experiment above, a graph of the crate’s acceleration against the hanging mass stays at zero until a certain hanging mass is reached, and only then rises. At the moment the crate starts to move, the weight of the hanging mass is equal to which force?',
+      'A crate on a rough horizontal table is pulled by a string over a pulley to a mass hanger, and mass pieces are added one at a time. A graph of the crate’s acceleration against the hanging mass stays at zero until a certain hanging mass is reached, and only then rises. At the moment the crate starts to move, the weight of the hanging mass is equal to which force?',
     metadata: [
       'The kinetic frictional force on the crate',
       'The maximum static frictional force on the crate',

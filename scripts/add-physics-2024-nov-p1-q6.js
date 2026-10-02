@@ -116,7 +116,7 @@ const questions = [
     metadata: [
       'Frequency heard by the listener: f(L) = \\frac{v}{λ(L)} = \\frac{340}{0.46} = 739.13 Hz',
       'Source moving towards the listener: f(L) = \\frac{v}{v − vₛ}fₛ, so 739.13 = \\frac{340}{340 − vₛ}(680)',
-      '340 − vₛ = \\frac{(340)(680)}{739.13} = 312.80, so vₛ (in m·s⁻¹, to two decimal places):',
+      '340 − vₛ = \\frac{(340)(680)}{739.13}, so vₛ (in m·s⁻¹, to two decimal places):',
       '[ ]',
     ],
     answer: ['27.20'],
@@ -127,7 +127,7 @@ const questions = [
     difficulty: 4, exam_weight: 3, xp: 10, order: 4,
     syllabus: 'dbe', subject: 'physics', year: 2024, paper: 'nov_p1',
     clues:
-      '- The Doppler equation needs frequencies, not wavelengths. That is why f(L) is found first.\n- Subtract 312.80 from 340.',
+      '- The Doppler equation needs frequencies, not wavelengths. That is why f(L) is found first.\n- Evaluate the fraction first, then rearrange for vₛ.',
   },
   {
     name: 'Question 5',

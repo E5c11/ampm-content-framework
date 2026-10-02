@@ -130,7 +130,7 @@ const questions = [
   {
     name: 'Question 5',
     question:
-      'A 3 kg box is placed inside the crate. The same force F, at the same angle, pulls the crate over the same 2 m. What happens to the work done BY FORCE F?',
+      'A crate is pulled 2 m along a rough horizontal floor by a force F at 25° above the horizontal. A 3 kg box is then placed inside the crate, and the same force F, at the same angle, pulls it over the same 2 m. What happens to the work done BY FORCE F?',
     metadata: [
       'It increases, because the normal force on the crate increases',
       'It decreases, because the crate now accelerates less',

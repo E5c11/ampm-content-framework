@@ -129,7 +129,7 @@ const questions = [
     metadata: [
       'Take right as positive. Σpᵢ = Σp(f)',
       '0 = (2.5)v(P) + (1.5)(3.96)',
-      'v(P) = −2.376 m·s⁻¹, so the speed of P (in m·s⁻¹, to two decimal places):',
+      '(2.5)v(P) = −5.94, so the speed of P (in m·s⁻¹, to two decimal places):',
       '[ ]',
     ],
     answer: ['2.38'],

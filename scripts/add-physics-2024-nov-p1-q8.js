@@ -113,7 +113,7 @@ const questions = [
     metadata: [
       'The branches are in parallel, so the potential difference across branch 2 equals that across L₂: 12 V',
       'V(R₁) = 12 − 6 = 6 V, and the current through L₁ (and R₁) is I = \\frac{P}{V} = \\frac{12}{6} = 2 A',
-      'R₁ = \\frac{V}{I} = \\frac{6}{2}, so R₁ (in Ω):',
+      'R₁ = \\frac{V(R₁)}{I}, so R₁ (in Ω):',
       '[ ]',
     ],
     answer: ['3'],

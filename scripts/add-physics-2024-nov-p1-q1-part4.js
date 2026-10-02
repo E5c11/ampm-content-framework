@@ -96,7 +96,7 @@ const questions = [
     difficulty: 4, exam_weight: 3, xp: 10, order: 2,
     syllabus: 'dbe', subject: 'physics', year: 2024, paper: 'nov_p1',
     clues:
-      '- Two of the options are not photoelectric observations at all. They are wave behaviours (diffraction).\n- Ask of each remaining option: would a wave delivering energy continuously predict this?',
+      '- First ask whether each option is something actually observed in a photoelectric experiment.\n- Then ask: would a wave delivering energy continuously and evenly predict it?',
   },
 ];
 
