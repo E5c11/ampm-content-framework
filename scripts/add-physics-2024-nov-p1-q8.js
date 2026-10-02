@@ -164,23 +164,23 @@ const questions = [
   {
     name: 'Question 7',
     question:
-      'After L₁ burns out, the current through L₂ rises from its rated 1.5 A to about 1.98 A. How does the brightness of L₂ change?',
+      'After L₁ burns out, the current through L₂ (rated 18 W ; 12 V) rises from 1.5 A to about 1.98 A. Its resistance stays constant. Which statement about the power L₂ now dissipates is CORRECT?',
     metadata: [
-      'It stays the same, because its rated power has not changed',
-      'It glows dimmer, because the total resistance increased',
-      'It glows brighter, because its power is now above 18 W',
-      'It goes out, because the circuit is now incomplete',
+      'It is still 18 W, since a bulb’s power rating is fixed',
+      'It is about 12 W, lower than before, so L₂ now glows dimmer',
+      'It is about 31 W, over its 18 W rating, so L₂ may burn out',
+      'It is zero, because the circuit through L₂ is now open',
       '',
     ],
-    answer: ['It glows brighter, because its power is now above 18 W', '', '', '', ''],
+    answer: ['It is about 31 W, over its 18 W rating, so L₂ may burn out', '', '', '', ''],
     presentation: 'multiple_choice',
-    type: 'interpretation',
+    type: 'application',
     unit: 'electricity_magnetism', topic: 'electric_circuits', subtopic: 'internal_resistance_circuits',
-    skills: ['brightness_current_relationship', 'power'],
+    skills: ['power_calculation', 'brightness_current_relationship', 'power'],
     difficulty: 3, exam_weight: 3, xp: 10, order: 7,
     syllabus: 'dbe', subject: 'physics', year: 2024, paper: 'nov_p1',
     clues:
-      '- Brightness depends on the power the bulb actually dissipates, P = I²R.\n- L₂ is still in a complete loop with the battery and R₂.',
+      '- A rating gives the power at the rated voltage only. Find R(L₂) from the rating with P = \\frac{V²}{R}.\n- Then use P = I²R with the new current. L₂ is still in a complete loop with the battery and R₂.',
   },
 ];
 
