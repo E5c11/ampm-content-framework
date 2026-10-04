@@ -204,7 +204,12 @@ function buildContentRows(video, questions, aiExplanation, now = new Date()) {
     const supp = q.supplementary_material ?? null;
     rows.push({
       table: 'questions',
-      columns: QUESTIONS_COLUMNS,
+      // keyboard_type is only written when the script SAYS something about it (a value, or an explicit
+      // null to clear). Omitted -> the column isn't in the upsert, so a re-upload never nulls a value
+      // set by tools/backfill-keyboard-types.js (the upsert only SETs the columns it is given).
+      columns: q.keyboard_type === undefined
+        ? QUESTIONS_COLUMNS.filter((c) => c !== 'keyboard_type')
+        : QUESTIONS_COLUMNS,
       conflictColumns: ['id'],
       row: {
         id: questionId,
@@ -232,8 +237,9 @@ function buildContentRows(video, questions, aiExplanation, now = new Date()) {
         supplementary_material_image_urls: supp?.image_urls ?? null,
         context_text: q.context_text ?? null,
         // Closed set in tools/lib/feature-versions.js (DECLARABLE_KEYBOARDS). null = the client
-        // infers the keyboard from subject/presentation (core/keyboard-input.md).
-        keyboard_type: q.keyboard_type ?? null,
+        // infers the keyboard from subject/presentation (core/keyboard-input.md). Omit to leave the
+        // database value untouched on re-upload.
+        ...(q.keyboard_type !== undefined ? { keyboard_type: q.keyboard_type } : {}),
         ...audit(now),
       },
     });

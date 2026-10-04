@@ -67,7 +67,8 @@ Optional: `clues`, `context_text` (English inline stimulus), `text_key` (English
 `standard_math`, `scientific_math`, `physics`, `chemistry`, `text`, or **omitted/`null`** meaning "the
 app infers the keyboard from subject and presentation". Only the first three are released; a
 planned value is valid to author but makes the exam dev-only until its release is tagged (`VER-05`). Full semantics, inventories and the
-`KEYBOARD-0x` rules: `core/keyboard-input.md`. Declare it whenever subject inference would pick the
+`KEYBOARD-0x` rules: `core/keyboard-input.md`. On re-upload an **omitted** `keyboard_type` leaves the database value unchanged (it never nulls a
+backfilled value); write an explicit `null` to clear it. Declare it whenever subject inference would pick the
 wrong keyboard — notably Physical Sciences, where `subject = "physics"` covers Paper 1 (Physics) and
 Paper 2 (Chemistry). `enforced_by: validator` (value set; planned values mark the exam `next-release`)
 

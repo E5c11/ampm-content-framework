@@ -88,7 +88,7 @@ const questions = [
     name: 'Question 3',
     question: 'A quadratic sequence has general term Tₙ = 2n² − 20n + 3. Determine the value of the smallest term in the sequence.',
     metadata: ['smallest term = ', '[ ]'],
-    answer: ['−47', '', '', '', ''],
+    answer: ['-47', '', '', '', ''],
     presentation: 'fitb',
     type: 'calc',
     unit: 'number_patterns',
