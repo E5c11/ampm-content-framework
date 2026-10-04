@@ -44,6 +44,7 @@ SYM = {
     0xA3: '≤', 0xB3: '≥', 0xB9: '≠', 0xB4: '×', 0xB8: '÷', 0xB1: '±', 0xA5: '∞', 0xD6: '√', 0xC7: '∩', 0xC8: '∪',
     0xCE: '∈', 0xCF: '∉', 0xB6: '∂', 0xB7: '•', 0xD0: '∠', 0xAE: '→', 0xDE: '⇒', 0xDB: '⇔', 0xAB: '↔', 0xBB: '≈',
     0xBA: '≡', 0xB0: '°', 0xA2: '′', 0xB2: '″', 0x7C: '|', 0x28: '(', 0x29: ')', 0x22: '∀', 0x24: '∃', 0xD7: '⋅',
+    0xE5: 'Σ', 0x5E: '⊥',
     0xE7: '(bracket piece)', 0xF7: '(bracket piece)', 0xE6: '(bracket piece)', 0xF6: '(bracket piece)',
     0xE8: '(bracket piece)', 0xF8: '(bracket piece)', 0xEA: '(bracket piece)', 0xFA: '(bracket piece)',
     0xE9: '(bracket piece)', 0xF9: '(bracket piece)', 0xEB: '(bracket piece)', 0xFB: '(bracket piece)',
@@ -83,6 +84,22 @@ def census(text):
         if n is None or (n.isalnum() and ord(n[0]) < 128):
             continue
         c[n] += 1
+    return c
+
+
+def brackets(text):
+    """Split `[ ... ]` into mark totals ("[25]"), memo annotations ("[vert opp s]", "[accept 80 - 84]") and real
+    notation (intervals, grouping in formulae, chemistry concentrations "[O2]"). Heuristic: a lower-case word of
+    3+ letters inside the brackets marks an annotation. Mis-sorts a few geometry reasons like "[PT || RS]"."""
+    c = collections.Counter()
+    for m in re.finditer(r'\[([^\[\]\n]{0,60})\]', text):
+        body = m.group(1).strip()
+        if re.fullmatch(r'\d+', body):
+            c['mark totals [25]'] += 1
+        elif re.search(r'[a-zà-ÿ]{3,}', body):
+            c['memo annotations [accept …]'] += 1
+        else:
+            c['notation (intervals, grouping, [O2])'] += 1
     return c
 
 
@@ -136,7 +153,7 @@ def survey(pdf):
     if len(text.strip()) < 200:
         return {'pdf': pdf, 'error': 'no usable text layer (scanned PDF?) — use the memorandum instead'}
     sup, sub = sup_sub(pdf)
-    return {'pdf': pdf, 'symbols': census(text), 'tokens': tokens(text), 'letters': letters(text),
+    return {'pdf': pdf, 'symbols': census(text), 'brackets': brackets(text), 'tokens': tokens(text), 'letters': letters(text),
             'superscripts': sup, 'subscripts': sub}
 
 
@@ -149,6 +166,7 @@ def show(r, top=40):
     print('  symbols      :', ' '.join(f'{k}×{v}' for k, v in sym))
     print('  superscripts :', sum(r['superscripts'].values()), '|', ' '.join(f'{k}×{v}' for k, v in r['superscripts'].most_common(12)))
     print('  subscripts   :', sum(r['subscripts'].values()), '|', ' '.join(f'{k}×{v}' for k, v in r['subscripts'].most_common(14)))
+    print('  [ ] split    :', ' | '.join(f'{k} {v}' for k, v in r['brackets'].items()))
     print('  tokens       :', ' '.join(f'{k}×{v}' for k, v in r['tokens'].items()))
     print('  letters      :', ' '.join(f'{k}×{v}' for k, v in r['letters'].most_common(28)))
 
