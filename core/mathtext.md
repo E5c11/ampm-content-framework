@@ -151,33 +151,36 @@ treatment: `Eₖ(max)`.
 
 ---
 
-## Planned for the next release: structural `_{…}` / `^{…}` markup
+## Planned for the next release: sub/superscripts — plain forms and `_{…}` / `^{…}`
 
 **`MATHTEXT-07`** — `enforced_by: validator` (valid to author; marks the exam `next-release` = dev-only)
 
-Decision D4 (2026-10-03): sub- and superscripts will become structural MathText markup, parsed and
-rendered by the same code as `\frac{}{}` / `\sqrt{}`:
+Decision D4 + D16 (2026-10-03/04): MathText renders raised and lowered text, in question text, option text, feedback
+and given steps, **and live in the equation/steps answer input**. Built in AMPM initiative 4b, merged to `dev`,
+verified on the emulator, **not yet in a released build**. Accepted forms:
 
-| Markup | Renders as | Example |
+| Form | Renders | Example |
 |---|---|---|
-| `x_{n}`, `H_{2}O`, `\log_{2}` | lowered subscript | `T_{n}`, `F_{net}` |
-| `x^{2}`, `Fe^{3+}`, `10^{-3}` | raised superscript | `10^{14}` |
+| `^` / `_` + optional minus + **a number or exactly one letter** | raised / lowered | `3^x`, `x^n`, `2^15`, `x^-2`, `x_1`, `T_n` |
+| `^(…)` / `_(…)` (balanced parentheses; the outer parentheses are dropped) | raised / lowered group | `x^(n−1)`, `(1 + i)^n`, `3^(2x)`, `x^(−1/3)` |
+| `^{…}` / `_{…}` (balanced braces) | raised / lowered group | `H_{2}O`, `Fe^{3+}`, `10^{-19}`, `F_{net}` |
 
-Why: Unicode has subscripts for only some letters (not `b c d f g q w y z`, `MATHTEXT-06`), has no
-uppercase subscripts, and Chemistry/Physics/Maths all need arbitrary ones (`H₂O`, `Fe³⁺`, `Tₙ`, `log₂`).
-A structural form also lets the answer be stored and compared exactly: a typed answer stores the
-markup, and it is normalised before comparison (the keyboards gain sub/super mode keys, like `a/b`
-today, that insert the markup and place the cursor).
+Anything that matches none of these (a trailing `^`, an unbalanced group) stays literal text. Exponent/subscript
+contents are plain text — a fraction inside one shows as `1/3`, not stacked. Checked against real content first:
+prod has 9 rows using a caret in exactly these forms (`3^x`, `x^n`, `(1 + i)^n`, `x^(n−1)`, `x^(−1/3)`, `3^(2x)`) and
+none using an underscore.
 
-**Status: planned for the next app release** (BLA-21 plan item 5d). It is not in any *released* build yet,
-and the `MathText` parser on `dev` does not parse it yet (it handles `\frac{…}`, `\sqrt{…}` and canonical
-`(a/b)` fractions; everything else is plain text) — so until the renderer change lands and is tagged, a
-build would show `_{n}` literally, which is the 2026-09-10 failure below. The release number isn't known
-until it's tagged, so for now:
+**`MATHTEXT-08`** — `enforced_by: validator` — **plain `_` takes ONE letter or number.** `F_net` would lower only the
+`n` and print `et` at full size (`Fₙet`, confirmed on the emulator). Write `F_{net}`. The validator errors on `_` followed
+by two or more letters in `maths` / `math_lit` / `physics` text.
 
-- `MATHTEXT-06` stays **fully in force** for anything published, until a release ships the renderer.
-- **`_{…}` / `^{…}` is valid to author now.** `validate-questions.js` accepts it and marks the question as
-  depending on a planned capability, so the exam's derived minimum is `next-release` (no version number to
-  give it yet). Such content is **dev-only**: `push-paper-to-prod.js` refuses to copy it to prod and
-  `set-exam-gate.js` refuses `--min next`, until the release is tagged and its real version is entered in
-  `core/app-feature-versions.md` (`VER-06`). Content added in the meantime goes to dev only.
+**Typed answers.** The answer input renders the same forms while typing in the equation/steps input. A plain **`fitb`**
+box is an ordinary text field and shows the raw characters (`5^x`) — a known gap, not rendered. Marking compares a
+**canonical** spelling of both sides: `^{x}` and `^x` become `^x`; `^{n-1}`, `^(n-1)` and `^(n−1)` become `^{n-1}`; the same
+for `_`; U+2212 becomes `-` inside scripts (`canonicalizeScripts`). So `5^x` equals `5^{x}` and `x^(n-1)` equals `x^{n-1}`.
+
+**Status and what it means for authors.** No *released* build parses `_` or `^{…}`, so a plain `_` or a brace form shows
+literally there — the 2026-09-10 failure below. Plain `^` already reads fine unrendered, so it does **not** raise an
+exam's minimum. The brace forms and plain `_` are `NEXT` (dev-only until the release is tagged, `VER-05`); `MATHTEXT-06`
+stays in force for anything published. When it ships, replace `NEXT` with the real version in
+`tools/lib/feature-versions.js` and `core/app-feature-versions.md` (`VER-06`) and rewrite `MATHTEXT-06`.

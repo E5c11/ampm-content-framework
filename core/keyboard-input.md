@@ -111,6 +111,23 @@ Unicode superscript cannot be typed, so a typed expected value spells exponents 
 *given/display* text in the same question uses real superscripts (`10¹⁴`) — those are different
 things (rendered label vs typed value) and needn't match glyph-for-glyph. This tab is **full**.
 
+### `ScientificMath` — the Maths variant coming in the next release (planned; AMPM `dev`, unreleased)
+
+Decisions D13/D14, built as initiative 4a on the evidence in AMPM `plan/active/scientific-keyboard-survey.md`
+(five Maths memos including both Paper 2s). Three tabs — **Numbers · Symbols · ABC**:
+
+- **Numbers:** the existing grid plus `;` in the free slot (Paper 2 uses `;` for coordinates ~70–80 times a paper).
+- **Symbols (4 rows of 5, in evidence order):** `< > ≤ ≥ ≠` / `° ∠ Δ θ π` / `, ! ∞ → ±` / `∈ √ ^ ∴ %`. `°`, `∠` and `Δ` are the
+  Paper 2 staples (`°` 150–180 times a paper). Removed from this tab: `sin cos tan log` (moved to ABC), `|x|`, `∵`, `ℤ`,
+  `x`, `y` (now ordinary letters) and the duplicate `a/b` key (still on Numbers).
+- **ABC:** a top row of whole-token keys `sin` `cos` `tan` `log`, then QWERTY a–z with a **one-shot shift** (tap → the next
+  letter is upper case → back to lower; tapping shift twice cancels). Upper case matters: Paper 2 labels points and shapes
+  (`R S A B M O D …`), and `steps`/`equation` marking is case-sensitive.
+
+The validator's `scientific_math` inventory (`tools/lib/feature-versions.js`) now matches this exactly; every new key is `NEXT`
+(dev-only until the release is tagged). Not on this keyboard: `[ ]`, `'`, `∩ ∪ Σ σ`, Greek beyond `θ Δ`, `ln lim nCr nPr`
+(type `ln`/`lim` as letters), sub/superscript mode keys — those belong to the Physics/Chemistry variants (4d/4e).
+
 ### `English` (legacy, subject-inferred; not declarable)
 
 Letters `A`–`Z`, `'` and space. Keys emit upper case; marking lower-cases both sides (see § Marking),

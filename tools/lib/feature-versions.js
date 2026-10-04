@@ -80,11 +80,13 @@ const KEYBOARD_CHARS = {
     '-': '2.2.0',
     // x / y / ^ / % were added in the same commit (v2.2.0).
     ...chars('xy^%', '2.2.0'),
-    // PLANNED (BLA-21 item 5c0 "Maths completeness" + Letters tab + sub/super mode keys): all letters
-    // (variables a r d n k T A P i f g h m c …), the relational/set/interval/punctuation keys, Greek and
-    // physics symbols, and the characters sub/superscript markup is typed with. The final layout is not
-    // designed yet (survey real Grade 12 papers first) — this is the superset the plan commits to.
-    ...chars(LATIN + LATIN.toUpperCase() + '<>;,[]°\'±∞∩∪!ΣσΔΩμεαβ_{}', NEXT),
+    // PLANNED — the Maths variant of ScientificKeyboard (initiative 4a, merged to AMPM `dev`, unreleased; decisions
+    // D13/D14): `;` on Numbers; Symbols `< > ≤ ≥ ≠ / ° ∠ Δ θ π / , ! ∞ → ± / ∈ √ ^ ∴ %`; the ABC tab (a-z with a
+    // one-shot shift for A-Z, plus the sin/cos/tan/log function keys). Everything else the old inventory listed
+    // here ([ ] ' ∩ ∪ Σ σ Ω μ ε α β _ { }, ln lim nCr nPr x-bar) is NOT on this keyboard — the Physics/Chemistry
+    // variants (4d/4e) will own the sub/superscript keys and Greek letters.
+    ...chars(';<>,!°∠Δ∞→±', NEXT),
+    ...chars(LATIN.replace(/[xy]/g, '') + LATIN.toUpperCase(), NEXT),
   },
 
   // Legacy subject-inferred English keyboard (QWERTY + apostrophe + space; keys emit upper case,
@@ -102,7 +104,6 @@ const KEYBOARD_CHARS = {
 // Multi-letter keys on scientific_math that type a whole token.
 const SCIENTIFIC_TOKENS = {
   sin: FLOOR, cos: FLOOR, tan: FLOOR, log: FLOOR,
-  ln: NEXT, lim: NEXT, nCr: NEXT, nPr: NEXT, 'x̄': NEXT,
 };
 
 /**
@@ -191,6 +192,9 @@ const PRESENTATION_SINCE = {
   fraction: FLOOR, match: FLOOR, equation: FLOOR, steps: FLOOR,
 };
 
+// Subjects whose question text is rendered by MathText (core/mathtext.md); English is not.
+const MATHTEXT_SUBJECTS = new Set(['maths', 'math_lit', 'physics']);
+
 // Sub/superscript MathText markup (`_{..}` / `^{..}`) — decision D4, planned for the next release
 // (BLA-21 item 5d). Valid to author; dev-only until tagged.
 const MARKUP = [
@@ -260,6 +264,17 @@ function analyzeQuestion(q) {
   const markupText = [q.question, ...(Array.isArray(q.metadata) ? q.metadata : [])].filter((x) => typeof x === 'string');
   for (const m of MARKUP) {
     if (markupText.some((t) => m.re.test(t))) need(m.since, m.id);
+  }
+
+  // Plain `_` (D16): MathText lowers ONE letter or number after it (`x_1`, `T_n`) or a parenthesised group; anything
+  // longer needs braces. `F_net` would render as F, subscript n, then "et" — an error, not a style point. Scoped to the
+  // MathText subjects: other subjects' text may contain a literal underscore.
+  if (MATHTEXT_SUBJECTS.has((q.subject || '').toLowerCase())) {
+    if (markupText.some((t) => /_[A-Za-z]{2,}/.test(t))) {
+      errors.push('"_" followed by two or more letters is not a subscript in plain form (it would lower only the first letter): write _{net}, or use one letter/number (x_1, T_n)');
+    } else if (markupText.some((t) => /_([A-Za-z0-9]|\()/.test(t))) {
+      need(NEXT, 'mathtext-plain-subscript');
+    }
   }
 
   return { errors, warnings, requires };
