@@ -255,8 +255,9 @@ physics content existed to expose the bug in production:
   `physics` row) says nothing about individual exams. `node tools/derive-exam-min.js
   scripts/add-physics-2025-nov-*.js` derives **2.2.0** for Physics/Chemistry 2025 Nov, because
   `add-physics-2025-nov-p1-q4.js` has the answer `-3` typed on `ScientificMath`, whose minus key
-  emitted U+2212 until **2.2.0** — on 2.1.2–2.1.x builds a correct typed `-3` is marked wrong. Not yet
-  acted on (it is live in prod); the options are gating the exam at 2.2.0 or raising the subject gate.
+  emitted U+2212 until **2.2.0** — on 2.1.2–2.1.x builds a correct typed `-3` is marked wrong. **Fixed on dev 2026-10-04**
+  (`scripts/fix-keyboard-defects-2026-10-04.js`): the step now asks for |pᵢ| = `3`, so the exam needs no gate; the
+  same script updates prod when run there.
 
 ## MathText scope — resolved 2026-09-10 (the hard way)
 

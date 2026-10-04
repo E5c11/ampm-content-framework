@@ -172,8 +172,23 @@ content defects, unrelated to this version work, and **not yet fixed**:
 | `maths` 2019 Nov | P2 Q1 (`QR = x`, "express in terms of x") | answer `x`; `StandardMath` has no letters. | Declare `keyboard_type: scientific_math` (typeable from 2.2.0 — the `x` key — and honoured only by builds that read `keyboard_type`), or change the question to a numeric answer. |
 | `english_hl` 2021, 2022, 2024 Nov (P1) | 3 + 2 + 2 questions | sentence answers ending in `.` (one also contains the digits `2015`); the English keyboard has no punctuation or digits, and marking does not strip punctuation. | Remove the trailing full stop from stored answers now, or wait for the `text` keyboard (BLA-58) and its trailing-punctuation-tolerant marking; the digit one needs `text`. |
 
-Also: **Physics (Physical Sciences) 2025 Nov** is live with subject gate 2.1.2, and its derived exam minimum
-is 2.2.0 (above). The tool prints the exact `set-exam-gate.js` command; applying it is a product decision.
+Also: **Physics (Physical Sciences) 2025 Nov** was live with subject gate 2.1.2 while its derived exam minimum
+was 2.2.0 (above).
+
+**Status (2026-10-04): all 12 fixed on dev, not yet on prod.** `scripts/fix-keyboard-defects-2026-10-04.js`
+(dry run by default; row-checked; validates each corrected row with the same analysis; bumps `updated_at`):
+- Maths 2019 P1 Q2, P1 Q3, P2 Q3 became `fraction` questions (`144`/`5`, `63`/`10`, `-4`/`3`).
+- Maths 2019 P2 Q1 became numeric (`PQ = 14 cm`, answer `7`) instead of "in terms of x".
+- Seven English HL P1 answers lost their trailing full stop; 2021 Q4's year became given text.
+- Physics 2025 P1 Q3 now asks for |pᵢ| = `3` instead of `-3`, so the exam no longer derives 2.2.0 and
+  needs no gate.
+Each was driven through the real dev app on the emulator (fraction boxes + number pad incl. the minus key,
+the numeric fitb, the English keyboard on a rewritten question and on a two-alternative answer, the
+ScientificMath `steps` input) and marked correct. The same row IDs exist in prod; run the script with
+`--env prod --apply --i-know-this-is-prod` when you're ready (and see the order caveat in the pipeline: the
+script edits rows in place and bumps `updated_at`, so devices pick the change up on their next sync).
+The two Maths 2025 Nov answers `−47` / `−22` (U+2212) are **not** fixed — they are dev-only content and still
+derive 2.2.0; storing ASCII `-47` / `-22` would remove that.
 
 Decimal commas (`8,6`) are **not** a defect: marking converts `,` to `.` on both sides for `fitb`, `fraction`
 and `steps`, so a student types `8.6`. (An early version of the tool flagged 57 of them; the analysis now
