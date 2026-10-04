@@ -158,6 +158,27 @@ Consequences, **not yet acted on** (each is a prod/product decision):
 - Prefer fixing the *content* where possible: store `-47` (ASCII) rather than `−47`; that removes
   the dependency on the normalisation and drops those two scripts back to the floor.
 
+## Findings from the database-wide run (2026-10-04, dev and prod identical)
+
+`node tools/backfill-keyboard-types.js --env prod` (read-only dry run) derives each exam from the rows in the
+database, not from scripts, so it also covers content that was migrated from Firestore and has no upload
+script. Prod: 18 exams, 1,542 questions. The script-based findings above stand, plus **11 questions whose
+stored answer cannot be typed on the keyboard they resolve to** (`KEYBOARD-01`). These are existing live
+content defects, unrelated to this version work, and **not yet fixed**:
+
+| Exam | Questions | Problem | Fix options |
+|---|---|---|---|
+| `maths` 2019 Nov | P1 Q2 `144/5`, P1 Q3 `63/10`, P2 Q3 `-4/3` | `fitb` answers written as slash fractions; `StandardMath` has no `/` key. `SCHEMA-TYPE-05` already forbids simulating fractions with `/`. | Convert to the `fraction` presentation, or store a decimal. |
+| `maths` 2019 Nov | P2 Q1 (`QR = x`, "express in terms of x") | answer `x`; `StandardMath` has no letters. | Declare `keyboard_type: scientific_math` (typeable from 2.2.0 — the `x` key — and honoured only by builds that read `keyboard_type`), or change the question to a numeric answer. |
+| `english_hl` 2021, 2022, 2024 Nov (P1) | 3 + 2 + 2 questions | sentence answers ending in `.` (one also contains the digits `2015`); the English keyboard has no punctuation or digits, and marking does not strip punctuation. | Remove the trailing full stop from stored answers now, or wait for the `text` keyboard (BLA-58) and its trailing-punctuation-tolerant marking; the digit one needs `text`. |
+
+Also: **Physics (Physical Sciences) 2025 Nov** is live with subject gate 2.1.2, and its derived exam minimum
+is 2.2.0 (above). The tool prints the exact `set-exam-gate.js` command; applying it is a product decision.
+
+Decimal commas (`8,6`) are **not** a defect: marking converts `,` to `.` on both sides for `fitb`, `fraction`
+and `steps`, so a student types `8.6`. (An early version of the tool flagged 57 of them; the analysis now
+models that.)
+
 ## Source of truth
 
 If this doc and the app disagree, **the app wins**; then fix the table above and

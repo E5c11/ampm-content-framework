@@ -6,6 +6,7 @@ touching Postgres / GCS / content data; Python for doc-graph upkeep only.
 | Tool | What | Language |
 |---|---|---|
 | `validate-questions.js` | Validates a `questions` array in an upload script (`--script`), optionally against a curriculum snapshot (`--curriculum`), and ai_explanation data (`--ai-exp`). Exit 0 = pass. The pipeline's HARD STOP (`PIPE-10`). | Node |
+| `backfill-keyboard-types.js` | Phase 4 backfill: sets `questions.keyboard_type` (`standard_math`/`scientific_math`) where subject inference already resolves to it, never overwrites, leaves `updated_at` alone unless `--bump-updated-at`; also reports each exam's derived minimum, the existing gate and any untypeable-answer defects, and prints the `set-exam-gate.js` commands (it never applies gates). Dry run by default; `--apply`; prod needs `--i-know-this-is-prod` and the V80 column. | Node |
 | `derive-exam-min.js` | Derives an **exam's** minimum app version from all its upload scripts (highest of each script's derived minimum); the number `set-exam-gate.js` takes. `VER-02`. | Node |
 | `set-exam-gate.js` | Sets / changes / `--clear`s the per-exam `exam_versions` gate **and** bumps `updated_at` on the exam's rows in one transaction (`VER-04`). Dry run by default; `--apply` writes; prod needs `--i-know-this-is-prod`. | Node |
 | `lib/feature-versions.js` | Keyboard resolution + per-keyboard typeable characters + the first app version each became typeable; the validator's copy of `core/keyboard-input.md` / `core/app-feature-versions.md`. | Node |

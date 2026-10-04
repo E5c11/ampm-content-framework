@@ -148,6 +148,9 @@ function typeabilityOf(text, keyboard, opts = {}) {
     lower = lower.replace(/−/g, '-');
     version = maxVersion(version, MINUS_NORMALIZATION_SINCE);
   }
+  // Stored ',' is normalised to '.' before comparing (QuestionsValidator: fitb, fraction and steps all
+  // do `.replace(',', '.')` on BOTH sides), so SA decimal commas ("8,6") are typed as "8.6".
+  if (lower.includes(',') && opts.normalizesComma) lower = lower.replace(/,/g, '.');
   let i = 0;
   while (i < lower.length) {
     const tokenHit = keyboard === 'scientific_math'
@@ -241,7 +244,10 @@ function analyzeQuestion(q) {
       const slots = p === 'fraction' ? q.answer.slice(0, 2) : q.answer;
       slots.forEach((a, i) => {
         if (a === undefined || a === null || String(a).trim() === '') return;
-        const t = bestTypeability(a, keyboard, { normalizesMinus: p === 'fitb' || p === 'steps' });
+        const t = bestTypeability(a, keyboard, {
+          normalizesMinus: p === 'fitb' || p === 'steps',
+          normalizesComma: p === 'fitb' || p === 'fraction' || p === 'steps',
+        });
         if (t.missing !== null) {
           errors.push(`answer[${i}] ${JSON.stringify(a)} cannot be typed on the ${keyboard} keyboard: "${t.missing}" is not a key (KEYBOARD-01)`);
         } else {
