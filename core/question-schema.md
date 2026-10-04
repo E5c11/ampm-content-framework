@@ -72,6 +72,14 @@ backfilled value); write an explicit `null` to clear it. Declare it whenever sub
 wrong keyboard — notably Physical Sciences, where `subject = "physics"` covers Paper 1 (Physics) and
 Paper 2 (Chemistry). `enforced_by: validator` (value set; planned values mark the exam `next-release`)
 
+**`SCHEMA-CS-01`** — `case_sensitive` (→ `questions.case_sensitive`, backend V82, `ampm-contracts` 0.40.0) is an optional
+boolean, **false by default**. `true` makes `fitb` marking skip its lower-casing of both the typed and the stored answers, so
+`Co` and `CO` differ — needed for Chemistry formulae and the odd Maths answer. It changes **only `fitb`** (`steps`/`equation`
+already compare case-sensitively, so the validator warns it has no effect there) and it needs a keyboard that can type both
+cases (`scientific_math`, `physics`, `chemistry` — **not** `english`, `text` or the number pad, which the validator rejects).
+Omitted on re-upload = the database value is left alone. Unreleased until the next app release, so it is `NEXT` (dev-only,
+`VER-05`). `enforced_by: validator`
+
 **`SCHEMA-EXAM-01`** — Content is gated by **exam** (subject + syllabus + year + session), never per
 question or per paper: an exam whose questions need a newer build than the floor gets one
 `exam_versions` row, derived by `tools/derive-exam-min.js` and written by `tools/set-exam-gate.js`.

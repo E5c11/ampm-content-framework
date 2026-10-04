@@ -168,8 +168,10 @@ From `QuestionsValidator.kt` (App wins if this drifts):
 - **Punctuation is not stripped.** A student who types a trailing `.` on a text answer is currently
   marked wrong. When `text` ships, marking must ignore a trailing `. , ; ! ?` (BLA-58); accents stay
   significant (`leë` ≠ `lee`).
-- Case never matters for `fitb`. If a question must test capitalisation, author it as multiple choice
-  or add a per-question case-sensitive flag later — do not add a shift key.
+- Case never matters for `fitb` **unless the question sets `case_sensitive: true`** (`SCHEMA-CS-01`, D15), which makes `fitb`
+  compare exactly — Chemistry formulae (`Co` ≠ `CO`) are the intended use. It is only valid on a keyboard that can type both
+  cases (the scientific variants' ABC tab has a one-shot shift); the Text keyboard still has no shift, so its answers stay
+  case-insensitive.
 
 ## Rules
 

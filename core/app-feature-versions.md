@@ -131,6 +131,7 @@ the commit that added the capability.
 | `X-App-Version` header; full resync on app-version change | **next release after 2.3.2 — not yet tagged** | Prerequisite for any prod exam gate to take effect. |
 | `physics`, `chemistry`, `text` keyboards | **planned — next release** | BLA-21 / BLA-58. Valid to author; `NEXT` in the tooling until tagged. |
 | Extended `scientific_math` keys: all letters, `< > ; , [ ] ° ' ± ∞ ∩ ∪ !`, `Σ σ Δ Ω μ ε α β`, `ln lim nCr nPr`, sub/super mode keys | **planned — next release** | BLA-21 item 5c0 (final layout still to be designed from real Grade 12 papers). `NEXT` until tagged. |
+| `case_sensitive` flag (fitb marking skips lower-casing) | **planned — next release** | D15 / initiative 4c. Needs contracts 0.40.0 (published), backend V82 (deployed to dev), the app change (merged to `dev`, verified on the emulator). `NEXT` until the release is tagged. |
 | MathText `_{…}` / `^{…}` markup | **planned — next release** | Decision D4, BLA-21 item 5d. Recorded as `NEXT` in the tooling until the release is tagged and its number is entered here (`VER-06`). |
 
 A capability row marked "next release after 2.3.2" must be replaced with the real tag as soon as it

@@ -261,6 +261,25 @@ function analyzeQuestion(q) {
     }
   }
 
+  // case_sensitive (D15, off by default): fitb stops lower-casing both sides, so `Co` and `CO` differ. Backend V82 / contracts
+  // 0.40.0 / app, unreleased -> NEXT. Only meaningful when the student can TYPE both cases, and only changes fitb
+  // (steps/equation already compare case-sensitively).
+  if (q.case_sensitive !== undefined && q.case_sensitive !== null) {
+    if (typeof q.case_sensitive !== 'boolean') {
+      errors.push('"case_sensitive" must be true or false');
+    } else if (q.case_sensitive === true) {
+      need(NEXT, 'case_sensitive flag');
+      const kb = resolveKeyboard(q.subject, p, declared);
+      if (p === 'steps' || p === 'equation') {
+        warnings.push('"case_sensitive" has no effect on steps/equation — they already compare case-sensitively');
+      } else if (p === 'fitb' && !['scientific_math', 'physics', 'chemistry'].includes(kb)) {
+        errors.push(`"case_sensitive" needs a keyboard that can type both cases; this question resolves to "${kb}" (the English/text/number keyboards cannot) — declare keyboard_type scientific_math, physics or chemistry`);
+      } else if (p !== 'fitb' && p !== 'steps' && p !== 'equation') {
+        warnings.push(`"case_sensitive" is ignored for ${p} questions`);
+      }
+    }
+  }
+
   const markupText = [q.question, ...(Array.isArray(q.metadata) ? q.metadata : [])].filter((x) => typeof x === 'string');
   for (const m of MARKUP) {
     if (markupText.some((t) => m.re.test(t))) need(m.since, m.id);

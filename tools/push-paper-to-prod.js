@@ -184,6 +184,7 @@ async function main() {
     for (const q of questions) {
       const { requires } = fv.analyzeQuestion({
         subject: q.subject_id, presentation: q.presentation_id, keyboard_type: q.keyboard_type ?? null,
+        case_sensitive: q.case_sensitive === true ? true : undefined,
         answer: q.answer, question: q.question, metadata: q.metadata,
       });
       if (fv.dependsOnNext(requires)) {
@@ -316,10 +317,10 @@ async function main() {
   const { rows: prodQCols } = await prod.query(
     `SELECT column_name FROM information_schema.columns WHERE table_name = 'questions'`);
   const prodHasQCol = new Set(prodQCols.map((r) => r.column_name));
-  for (const extra of ['keyboard_type']) {
+  for (const extra of ['keyboard_type', 'case_sensitive']) {
     if (prodHasQCol.has(extra)) {
       questionCols.push(extra);
-    } else if (questions.some((q) => q[extra] !== null && q[extra] !== undefined)) {
+    } else if (questions.some((q) => q[extra] !== null && q[extra] !== undefined && q[extra] !== false)) {
       throw new Error(`dev questions carry "${extra}" values but prod's questions table has no such column yet — deploy the backend migration to prod first.`);
     }
   }

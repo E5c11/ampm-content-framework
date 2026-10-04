@@ -42,9 +42,13 @@ const QUESTIONS_COLUMNS = [
   'metadata', 'syllabus_id', 'subject_id', 'year_id', 'paper_id', 'sort_order', 'xp',
   'unit_id', 'topic_id', 'subtopic_id', 'difficulty', 'exam_weight', 'clues',
   'english_text_id', 'geography_map_id', 'supplementary_material_type', 'supplementary_material_label',
-  'supplementary_material_image_urls', 'context_text', 'keyboard_type',
+  'supplementary_material_image_urls', 'context_text', 'keyboard_type', 'case_sensitive',
   'created_at', 'updated_at', 'is_deleted', 'is_published', 'published_at',
 ];
+
+// Columns a script may leave out: omitted means "keep whatever the database already holds" (a re-upload must
+// never reset a backfilled keyboard_type or a case_sensitive set earlier).
+const OPTIONAL_QUESTION_COLUMNS = ['keyboard_type', 'case_sensitive'];
 
 const QUESTION_SKILLS_COLUMNS = ['question_id', 'skill_id'];
 const LESSON_TAGS_COLUMNS = ['lesson_id', 'tag_id'];
@@ -207,9 +211,7 @@ function buildContentRows(video, questions, aiExplanation, now = new Date()) {
       // keyboard_type is only written when the script SAYS something about it (a value, or an explicit
       // null to clear). Omitted -> the column isn't in the upsert, so a re-upload never nulls a value
       // set by tools/backfill-keyboard-types.js (the upsert only SETs the columns it is given).
-      columns: q.keyboard_type === undefined
-        ? QUESTIONS_COLUMNS.filter((c) => c !== 'keyboard_type')
-        : QUESTIONS_COLUMNS,
+      columns: QUESTIONS_COLUMNS.filter((c) => !(OPTIONAL_QUESTION_COLUMNS.includes(c) && q[c] === undefined)),
       conflictColumns: ['id'],
       row: {
         id: questionId,
@@ -240,6 +242,9 @@ function buildContentRows(video, questions, aiExplanation, now = new Date()) {
         // infers the keyboard from subject/presentation (core/keyboard-input.md). Omit to leave the
         // database value untouched on re-upload.
         ...(q.keyboard_type !== undefined ? { keyboard_type: q.keyboard_type } : {}),
+        // false (the DB default) unless the script opts in: fitb then skips its lower-casing (D15). Omitted ->
+        // untouched on re-upload, like keyboard_type.
+        ...(q.case_sensitive !== undefined ? { case_sensitive: q.case_sensitive } : {}),
         ...audit(now),
       },
     });
