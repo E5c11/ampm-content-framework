@@ -38,6 +38,7 @@ mapping and row-identity rules: `core/persistence.md` + `tools/lib/content-rows.
 | 3.5 | Dump current curriculum vocabulary | no |
 | 4 | Fill the upload script → **validate (hard stop)** → upsert to dev | **yes** |
 | 5 | Verify (psql / read API) | no |
+| 6 | Gate the exam (once per exam, after its last script) | no |
 
 ---
 
@@ -293,3 +294,32 @@ profile's additional checklist items. `enforced_by: human-review`
 - [ ] No question content lifted from the real exam paper (`DESIGN-UNI-01`)
 - [ ] No `\n` in any `question` field (`DESIGN-UNI-04`)
 - [ ] Image URLs resolve (`https://media-dev.askmoreprepmore.app/...` → `200`)
+
+---
+
+## Phase 6 — Gate the Exam
+
+**Required framework docs:** `AMPM-CONTENT-APP-VERSIONS`
+
+**`PIPE-13`** — Runs **once per exam** (subject + syllabus + year + session — every paper of the
+sitting), after the *last* script of the exam is verified, not per script. `enforced_by: tooling`
+
+```bash
+node tools/derive-exam-min.js scripts/add-<subject>-<year>-<session>-*.js
+```
+
+- Result is the floor (`2.0.0`): nothing to do (`VER-07`).
+- Result is a higher version: gate the exam —
+  `node tools/set-exam-gate.js --env dev --subject <id> --year <YYYY> --session <june|november> --min <result>`
+  (dry run first, then `--apply`). Never raw SQL (`VER-04`: the tool also bumps `updated_at`).
+- Result is `next-release`: the exam depends on a planned keyboard/key/markup (valid to author). It is **dev-only**: do not
+  gate it and do not push it to prod until that release is tagged and the real version is recorded (`VER-05`/`VER-06`).
+
+**Prod ordering (`VER-03`).** `tools/push-paper-to-prod.js` upserts the paper to prod
+**unpublished**; publishing is a separate step. Set the prod gate (`--env prod --i-know-this-is-prod`)
+**after** the push and **before** publishing. Dev publishes on upsert (`PERSIST-05`), so on dev the
+gate is set after the fact — fine, dev builds are your own; do not rely on that on prod.
+
+Also: `push-paper-to-prod.js` now copies `questions.keyboard_type` and refuses to run if dev holds
+values prod's `questions` table cannot store (prod's V80 not deployed yet).
+

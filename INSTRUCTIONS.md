@@ -113,6 +113,8 @@ Record each resolution inline in the winning doc with a one-line
 | `AMPM-CONTENT-MATHTEXT` | `core/mathtext.md` | moved from `.../content/mathtext.md` |
 | `AMPM-CONTENT-AI-EXP` | `core/ai-explanation.md` | moved from `.../content/ai-exp.md` |
 | `AMPM-CONTENT-PIPELINE` | `core/upload-pipeline.md` | new — shared skeleton of AMPM's three upload workflow docs |
+| `AMPM-CONTENT-KEYBOARD-INPUT` | `core/keyboard-input.md` | new 2026-09-10; rewritten 2026-10-04 around per-question `keyboard_type` |
+| `AMPM-CONTENT-APP-VERSIONS` | `core/app-feature-versions.md` | new 2026-10-04 — per-exam app-version gating, derived minimum, feature→version table |
 
 AMPM keeps pointer stubs at the old paths under the same IDs, so pre-extraction
 references resolve.

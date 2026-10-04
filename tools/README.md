@@ -6,6 +6,9 @@ touching Postgres / GCS / content data; Python for doc-graph upkeep only.
 | Tool | What | Language |
 |---|---|---|
 | `validate-questions.js` | Validates a `questions` array in an upload script (`--script`), optionally against a curriculum snapshot (`--curriculum`), and ai_explanation data (`--ai-exp`). Exit 0 = pass. The pipeline's HARD STOP (`PIPE-10`). | Node |
+| `derive-exam-min.js` | Derives an **exam's** minimum app version from all its upload scripts (highest of each script's derived minimum); the number `set-exam-gate.js` takes. `VER-02`. | Node |
+| `set-exam-gate.js` | Sets / changes / `--clear`s the per-exam `exam_versions` gate **and** bumps `updated_at` on the exam's rows in one transaction (`VER-04`). Dry run by default; `--apply` writes; prod needs `--i-know-this-is-prod`. | Node |
+| `lib/feature-versions.js` | Keyboard resolution + per-keyboard typeable characters + the first app version each became typeable; the validator's copy of `core/keyboard-input.md` / `core/app-feature-versions.md`. | Node |
 | `dump-curriculum-vocabulary.js` | Dumps unit/topic/subtopic/skills vocabulary from Cloud SQL (`curriculum_nodes`, `skills`) for the validator's `--curriculum` check (`PIPE-09`). Needs the Auth Proxy. | Node |
 | `create-curriculum-node.js` | Creates one `curriculum_nodes` row (unit/topic/subtopic) — the "create it first" step of `PIPE-08`. | Node |
 | `create-skill.js` | Creates one `skills` row — `PIPE-08`. | Node |

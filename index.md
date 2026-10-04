@@ -10,7 +10,8 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `AMPM-CONTENT-SCHEMA` | `core/question-schema.md` | DESIGN, MATHTEXT, AI-EXP, PIPELINE |
 | `AMPM-CONTENT-DESIGN` | `core/authoring-principles.md` | SCHEMA, MATHTEXT, AI-EXP, PIPELINE |
 | `AMPM-CONTENT-MATHTEXT` | `core/mathtext.md` | SCHEMA, DESIGN |
-| `AMPM-CONTENT-KEYBOARD-INPUT` | `core/keyboard-input.md` | SCHEMA, DESIGN, MATHTEXT, PRES-FITB, PRES-STEPS, PRES-EQUATION |
+| `AMPM-CONTENT-KEYBOARD-INPUT` | `core/keyboard-input.md` | SCHEMA, DESIGN, MATHTEXT, APP-VERSIONS, PRES-FITB, PRES-STEPS, PRES-EQUATION |
+| `AMPM-CONTENT-APP-VERSIONS` | `core/app-feature-versions.md` | SCHEMA, KEYBOARD-INPUT, MATHTEXT, PIPELINE |
 | `AMPM-CONTENT-AI-EXP` | `core/ai-explanation.md` | SCHEMA, DESIGN, PIPELINE, MATHTEXT |
 | `AMPM-CONTENT-PIPELINE` | `core/upload-pipeline.md` | SCHEMA, DESIGN, MATHTEXT, AI-EXP |
 | `AMPM-CONTENT-PERSISTENCE` | `core/persistence.md` | SCHEMA, PIPELINE |
@@ -37,7 +38,7 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `AMPM-CONTENT-SUBJ-DBE-ENGLISH-HL` | `subjects/dbe-english-hl.md` | mc, multi-select, fitb, ordering, match |
 | `AMPM-CONTENT-SUBJ-DBE-GEOGRAPHY` | `subjects/dbe-geography.md` | mc, multi-select, fitb, match, steps |
 | `AMPM-CONTENT-SUBJ-DBE-PHYSICS` | `subjects/dbe-physics.md` | mc, fitb, multi-select, match, ordering, steps (confirmed against a full paper 2026-09-10); fraction, equation not yet exercised |
-| `AMPM-CONTENT-SUBJ-DBE-CHEMISTRY` | `subjects/dbe-chemistry.md` | not yet authored — illustrative only (drafted 2026-09-11); reuses Physics's `subject_id`, see `core/keyboard-input.md` for the shared keyboard constraint |
+| `AMPM-CONTENT-SUBJ-DBE-CHEMISTRY` | `subjects/dbe-chemistry.md` | Paper 2 of Physical Sciences (`subject_id = "physics"`, `nov_p2`) — authored and live in prod for 2023 and 2025 Nov; typed blanks bare-numeric per `DESIGN-CHEM-01` until the `chemistry` keyboard ships (see `core/keyboard-input.md`) |
 | `AMPM-CONTENT-SUBJ-DBE-LIFE-SCIENCES` | `subjects/dbe-life-sciences.md` | Paper 2 only, not yet authored — illustrative only (drafted 2026-09-12); genuinely new `subject_id`, see `core/keyboard-input.md` for the `fitb`-vs-`steps` keyboard-fallback distinction this profile surfaced |
 | `AMPM-CONTENT-SUBJ-DBE-BUSINESS-STUDIES` | `subjects/dbe-business-studies.md` | mc, multi-select, match, ordering (confirmed against a full paper 2026-09-13 — Paper 2 only, 6 lessons/55 questions/230 marks); fitb/fraction/equation/steps not used; Section C essays get English HL/History-style objective essay-strategy lessons grounded in the memo's own LASO rubric (`DESIGN-BUS-03`) |
 
@@ -61,7 +62,8 @@ See `tools/README.md`. Validator = the pipeline's HARD STOP (`PIPE-10`).
 
 ## Rule-ID prefixes
 
-`SCHEMA-*` (question-schema), `DESIGN-*` (authoring-principles), `MATHTEXT-*`,
-`AIEXP-*`, `PIPE-*` (upload-pipeline), `PERSIST-*` (persistence), and per-presentation
+`SCHEMA-*` (question-schema; incl. `SCHEMA-KB-01`, `SCHEMA-EXAM-01`), `DESIGN-*` (authoring-principles), `MATHTEXT-*`,
+`AIEXP-*`, `PIPE-*` (upload-pipeline), `PERSIST-*` (persistence), `KEYBOARD-*` (keyboard-input),
+`VER-*` (app-feature-versions), and per-presentation
 `FITB-* / FRAC-* / MC-* / MS-* / ORD-* / MATCH-* / EQ-* / STEPS-*`. Every rule carries
-`enforced_by: validator | db-constraint | renderer | human-review`.
+`enforced_by: validator | db-constraint | renderer | tooling | human-review`.

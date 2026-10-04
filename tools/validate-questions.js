@@ -20,6 +20,7 @@
 
 const path = require('path');
 const fs   = require('fs');
+const fv   = require('./lib/feature-versions');
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -278,7 +279,16 @@ function validateQuestion(q, index, allQuestions) {
     warn(`"exam_weight" must be 1–3 (got ${q.exam_weight})`);
   }
 
-  return { label, errors, warnings };
+  // ── keyboard_type, answer typeability, and the app version this question needs ──────────
+  // KEYBOARD-01 (core/keyboard-input.md) was human-review only; this makes it a check. `requires`
+  // feeds the exam's derived minimum app version (core/app-feature-versions.md, D7). The logic is
+  // shared with push-paper-to-prod.js (tools/lib/feature-versions.js analyzeQuestion).
+  const analysis = fv.analyzeQuestion(q);
+  analysis.errors.forEach(m => warn(m));
+  analysis.warnings.forEach(m => caution(m));
+  const requires = analysis.requires;
+
+  return { label, errors, warnings, requires };
 }
 
 function validateSet(questions) {
@@ -441,6 +451,26 @@ if (scriptPath) {
   for (const { label, errors, warnings } of results) {
     report(label, errors, warnings);
     totalErrors += errors.length;
+  }
+
+  // ── Derived minimum app version for this set (D7) ───────────────────────
+  const allReq = results.flatMap(r => r.requires || []);
+  const derived = fv.maxVersion(...allReq.map(r => r.version));
+  console.log('');
+  if (derived === fv.NEXT) {
+    const planned = [...new Set(allReq.filter(r => r.version === fv.NEXT).map(r => r.reason))];
+    console.log(`  Derived minimum app version: next-release (planned capability — version set when tagged)`);
+    console.log(`    - depends on: ${planned.join('; ')}`);
+    console.log(`    DEV ONLY until that release is tagged (core/app-feature-versions.md VER-05) — do not push to prod.`);
+  } else {
+    console.log(`  Derived minimum app version: ${derived}${derived === fv.FLOOR ? ' (the Spring floor — no gate needed)' : ''}`);
+    const raising = allReq.filter(r => fv.versionCode(r.version) > fv.versionCode(fv.FLOOR));
+    for (const r of [...new Map(raising.map(x => [x.reason, x])).values()]) {
+      console.log(`    - needs ${r.version}: ${r.reason}`);
+    }
+    if (derived !== fv.FLOOR) {
+      console.log(`    Gate the exam: node tools/set-exam-gate.js ... --min ${derived} (core/app-feature-versions.md)`);
+    }
   }
 
   if (setErrors.length > 0) {

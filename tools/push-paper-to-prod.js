@@ -173,6 +173,27 @@ async function main() {
     [lessonIds],
   );
   const questions = questionsRes.rows;
+
+  // ── dev-only guard (runs before ANY prod write) ──
+  // Content that depends on a planned capability (physics/chemistry/text keyboard, the extra Maths
+  // keys, sub/superscript markup — tools/lib/feature-versions.js NEXT) must not reach prod until
+  // that release is tagged and its version is recorded (core/app-feature-versions.md VER-05).
+  {
+    const fv = require('./lib/feature-versions');
+    const planned = [];
+    for (const q of questions) {
+      const { requires } = fv.analyzeQuestion({
+        subject: q.subject_id, presentation: q.presentation_id, keyboard_type: q.keyboard_type ?? null,
+        answer: q.answer, question: q.question, metadata: q.metadata,
+      });
+      if (fv.dependsOnNext(requires)) {
+        planned.push(`${q.name} (${requires.filter((r) => r.version === fv.NEXT).map((r) => r.reason).join('; ')})`);
+      }
+    }
+    if (planned.length > 0) {
+      throw new Error(`${planned.length} question(s) depend on a capability planned for the next release — dev-only until it is tagged (VER-05). Not pushing to prod:\n  ${planned.slice(0, 8).join('\n  ')}${planned.length > 8 ? `\n  … and ${planned.length - 8} more` : ''}`);
+    }
+  }
   const questionIds = questions.map((q) => q.id);
   console.log(`questions: ${questions.length}`);
 
@@ -289,6 +310,19 @@ async function main() {
     'updated_at', 'is_deleted', 'deleted_at', 'english_text_id', 'is_published', 'published_at',
     'supplementary_material_type', 'supplementary_material_label', 'supplementary_material_image_urls',
     'context_text'];
+  // Columns added after this list was written. Only copied when prod HAS the column (its Flyway
+  // migration may not be deployed there yet); if dev holds a value prod can't store, stop rather
+  // than silently dropping it (a dropped keyboard_type = the question silently loses its keyboard).
+  const { rows: prodQCols } = await prod.query(
+    `SELECT column_name FROM information_schema.columns WHERE table_name = 'questions'`);
+  const prodHasQCol = new Set(prodQCols.map((r) => r.column_name));
+  for (const extra of ['keyboard_type']) {
+    if (prodHasQCol.has(extra)) {
+      questionCols.push(extra);
+    } else if (questions.some((q) => q[extra] !== null && q[extra] !== undefined)) {
+      throw new Error(`dev questions carry "${extra}" values but prod's questions table has no such column yet — deploy the backend migration to prod first.`);
+    }
+  }
   const questionRows = questions.map((q) => ({
     ...q,
     supplementary_material_image_urls: q.supplementary_material_image_urls

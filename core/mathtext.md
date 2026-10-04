@@ -2,7 +2,7 @@
 id: AMPM-CONTENT-MATHTEXT
 type: reference
 layer: core
-related: [AMPM-CONTENT-SCHEMA, AMPM-CONTENT-DESIGN]
+related: [AMPM-CONTENT-SCHEMA, AMPM-CONTENT-DESIGN, AMPM-CONTENT-KEYBOARD-INPUT, AMPM-CONTENT-APP-VERSIONS]
 tags: [content, markup, fractions, sqrt, subscript, maths, math-lit, physics]
 provenance: moved from AMPM/ampm-ai-framework/content/mathtext.md, 2026-07-15
 ---
@@ -148,3 +148,36 @@ Two correct options, chosen per identifier:
 A parenthetical qualifier that was never meant to be a subscript (e.g. `E_k(max)`'s
 `(max)`) stays exactly as parenthetical text — only the `k` needs the Unicode-subscript
 treatment: `Eₖ(max)`.
+
+---
+
+## Planned for the next release: structural `_{…}` / `^{…}` markup
+
+**`MATHTEXT-07`** — `enforced_by: validator` (valid to author; marks the exam `next-release` = dev-only)
+
+Decision D4 (2026-10-03): sub- and superscripts will become structural MathText markup, parsed and
+rendered by the same code as `\frac{}{}` / `\sqrt{}`:
+
+| Markup | Renders as | Example |
+|---|---|---|
+| `x_{n}`, `H_{2}O`, `\log_{2}` | lowered subscript | `T_{n}`, `F_{net}` |
+| `x^{2}`, `Fe^{3+}`, `10^{-3}` | raised superscript | `10^{14}` |
+
+Why: Unicode has subscripts for only some letters (not `b c d f g q w y z`, `MATHTEXT-06`), has no
+uppercase subscripts, and Chemistry/Physics/Maths all need arbitrary ones (`H₂O`, `Fe³⁺`, `Tₙ`, `log₂`).
+A structural form also lets the answer be stored and compared exactly: a typed answer stores the
+markup, and it is normalised before comparison (the keyboards gain sub/super mode keys, like `a/b`
+today, that insert the markup and place the cursor).
+
+**Status: planned for the next app release** (BLA-21 plan item 5d). It is not in any *released* build yet,
+and the `MathText` parser on `dev` does not parse it yet (it handles `\frac{…}`, `\sqrt{…}` and canonical
+`(a/b)` fractions; everything else is plain text) — so until the renderer change lands and is tagged, a
+build would show `_{n}` literally, which is the 2026-09-10 failure below. The release number isn't known
+until it's tagged, so for now:
+
+- `MATHTEXT-06` stays **fully in force** for anything published, until a release ships the renderer.
+- **`_{…}` / `^{…}` is valid to author now.** `validate-questions.js` accepts it and marks the question as
+  depending on a planned capability, so the exam's derived minimum is `next-release` (no version number to
+  give it yet). Such content is **dev-only**: `push-paper-to-prod.js` refuses to copy it to prod and
+  `set-exam-gate.js` refuses `--min next`, until the release is tagged and its real version is entered in
+  `core/app-feature-versions.md` (`VER-06`). Content added in the meantime goes to dev only.

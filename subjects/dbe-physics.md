@@ -245,6 +245,19 @@ physics content existed to expose the bug in production:
   passes. Committed in `AMPM` as `d0dd7adfa` ("Route physics through the maths
   keyboard/calculator resolvers") — not pushed (no AMPM push without explicit request).
 
+**Update 2026-10-04 — per-question keyboards, and a gate this profile didn't have.**
+
+- `physics` is Physical Sciences: Paper 1 = Physics, Paper 2 = Chemistry. Both resolve to the same
+  keyboard from subject inference. Questions can now declare `keyboard_type` (`core/keyboard-input.md`,
+  `KEYBOARD-04`); the dedicated `physics` / `chemistry` keyboards are **planned** (BLA-21), not built —
+  until then leave it null.
+- **Exam gate.** `core/app-feature-versions.md`: the *subject* gate (`min_app_version = 2.1.2` on the
+  `physics` row) says nothing about individual exams. `node tools/derive-exam-min.js
+  scripts/add-physics-2025-nov-*.js` derives **2.2.0** for Physics/Chemistry 2025 Nov, because
+  `add-physics-2025-nov-p1-q4.js` has the answer `-3` typed on `ScientificMath`, whose minus key
+  emitted U+2212 until **2.2.0** — on 2.1.2–2.1.x builds a correct typed `-3` is marked wrong. Not yet
+  acted on (it is live in prod); the options are gating the exam at 2.2.0 or raising the subject gate.
+
 ## MathText scope — resolved 2026-09-10 (the hard way)
 
 This section originally warned "extend `MATHTEXT` scope to include `physics` before the

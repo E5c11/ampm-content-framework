@@ -42,7 +42,7 @@ const QUESTIONS_COLUMNS = [
   'metadata', 'syllabus_id', 'subject_id', 'year_id', 'paper_id', 'sort_order', 'xp',
   'unit_id', 'topic_id', 'subtopic_id', 'difficulty', 'exam_weight', 'clues',
   'english_text_id', 'geography_map_id', 'supplementary_material_type', 'supplementary_material_label',
-  'supplementary_material_image_urls', 'context_text',
+  'supplementary_material_image_urls', 'context_text', 'keyboard_type',
   'created_at', 'updated_at', 'is_deleted', 'is_published', 'published_at',
 ];
 
@@ -231,6 +231,9 @@ function buildContentRows(video, questions, aiExplanation, now = new Date()) {
         supplementary_material_label: supp?.label ?? null,
         supplementary_material_image_urls: supp?.image_urls ?? null,
         context_text: q.context_text ?? null,
+        // Closed set in tools/lib/feature-versions.js (DECLARABLE_KEYBOARDS). null = the client
+        // infers the keyboard from subject/presentation (core/keyboard-input.md).
+        keyboard_type: q.keyboard_type ?? null,
         ...audit(now),
       },
     });

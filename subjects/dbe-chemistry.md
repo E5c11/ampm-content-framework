@@ -109,6 +109,15 @@ content-authoring rule, not an app limitation to work around — see
 alternative of a question-level keyboard field, which wouldn't remove this constraint
 anyway since no chemistry-notation keyboard component exists yet either.
 
+**Status update 2026-10-04.** Chemistry is no longer unauthored: Paper 2 is **in prod** for 2023 Nov and
+2025 Nov (stored under `subject_id = "physics"`, `paper = "nov_p2"`; ~104 questions between them). The
+"deferred" `keyboard-type-as-data` idea above is **implemented** as `questions.keyboard_type`
+(`core/keyboard-input.md`, BLA-20) — but the `chemistry` keyboard itself (sub/superscripts, `→ ⇌`, state
+symbols, plus the MathText `_{…}`/`^{…}` markup it needs — `core/mathtext.md` `MATHTEXT-07`) is **planned,
+not built** (BLA-21). `DESIGN-CHEM-01` therefore still holds in full: typed blanks stay bare-numeric.
+Once the keyboard ships, Chemistry questions declare `keyboard_type: "chemistry"` (`KEYBOARD-04`) and this
+rule can be relaxed for formulae/equations.
+
 ## Allowed presentation types (illustrative, not yet evidenced against authored content)
 
 Expect a heavier `multiple_choice`/`match`/`multi_select` mix than Physics's P1, driven
