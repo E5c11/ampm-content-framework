@@ -119,6 +119,13 @@ and check them on the emulator (this session's own suggestion) — code-reading 
 what *should* happen, not what actually renders on-device. Treat this section as
 verified-by-code, not yet verified-by-device, until that check runs.
 
+**Update 2026-10-04 — `keyboard_type` and the planned `text` keyboard.** Nothing above changes for
+content published today. What's new: questions can now declare a `keyboard_type` (`core/keyboard-input.md`),
+and a general-purpose `text` keyboard (Linear BLA-58: QWERTY + a second screen for punctuation/digits) is
+specified to replace this system-IME fallback — but it is **not built**, so until it ships `life_science` typed
+blanks stay bare-numeric. `validate-questions.js` now enforces this: it **warns** on any non-numeric `fitb`
+answer under a `None`-routed subject and **errors** on `steps`/`equation` there (`KEYBOARD-01`).
+
 ## Allowed presentation types
 
 Given `DESIGN-LIFE-01`: `multiple_choice`, `multi_select`, `match`, `ordering` carry most

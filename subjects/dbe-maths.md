@@ -77,3 +77,14 @@ Formula sheet URLs (reuse per paper):
 - 2019 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/maths/2019/nov_p1/q0/question_1.png`
 - 2019 Nov P2: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/maths/2019/nov_p2/q0/question_1.png`
 - 2025 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/maths/2025/nov_p1/q0/question_1.png`
+
+## Keyboard — completeness and negative answers (added 2026-10-04)
+
+`ScientificMath` is **not complete for a Grade 12 Maths paper** (no `<` `>`, letters only `x y θ`, no
+`;` `[` `]` `°` `ln` `e` `∞` `±`, no subscripts — full list in `core/keyboard-input.md` § Known gaps;
+BLA-21 item 5c0). Prod Maths 2019 Nov uses only numeric `fitb`/`fraction`/MC/ordering, so nothing live is
+affected; it blocks authoring `equation`/`steps` questions. **Store negative answers with ASCII `-`**:
+`scripts/add-maths-2025-nov-p1-q3.js` (`"−47"`) and `…-q9.js` (`"−22"`) use U+2212, which only matches via
+the 2.2.0 normalisation and, with the rest of that exam, derives a **2.2.0** minimum
+(`tools/derive-exam-min.js`) — switching them to `-47` / `-22` drops the dependency
+(`core/app-feature-versions.md`).

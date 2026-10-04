@@ -46,7 +46,7 @@ const questions = [
     name: 'Question 1',
     question: 'The graph of f(x) = x³ − 3x² − 9x + 5 has a local minimum turning point. Determine the y-coordinate of that turning point.',
     metadata: ['y = ', '[ ]'],
-    answer: ['−22', '', '', '', ''],
+    answer: ['-22', '', '', '', ''],
     presentation: 'fitb',
     type: 'calc',
     unit: 'calculus',

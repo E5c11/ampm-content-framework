@@ -77,3 +77,12 @@ Crop rules (citation boundaries, Part 1/2 splits) live in
   wrong** (`AIEXP-05`).
 - Theme + structure rules (`DESIGN-ENG-01`/`02`): same theme as the year's exam text,
   same sub-question types, all-new content.
+
+## Keyboard — the English keyboard is letters-only (added 2026-10-04)
+
+The released English keyboard types `A`–`Z`, `'` and space only: **no digits and no punctuation**
+(`core/keyboard-input.md`). `validate-questions.js` now enforces this on `fitb` answers — an answer
+containing a comma, hyphen, full stop, digit, etc. is an error (`KEYBOARD-01`), because the student cannot
+type it. Case never matters (marking lower-cases both sides). The planned `text` keyboard (BLA-58) adds
+punctuation and digits on a second screen, and — for Afrikaans FAL — accented letters; marking will then
+ignore a trailing `. , ; ! ?` but keep accents significant.

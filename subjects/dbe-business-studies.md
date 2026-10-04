@@ -79,6 +79,13 @@ blank the exam itself never uses. If a future paper does require a typed numeric
 token split out into `metadata` as a given, same as Physics's unit convention — but don't
 assume this is needed until a paper actually evidences it.
 
+**Update 2026-10-04 — `keyboard_type` and the planned `text` keyboard.** Nothing above changes for
+content published today. What's new: questions can now declare a `keyboard_type` (`core/keyboard-input.md`),
+and a general-purpose `text` keyboard (Linear BLA-58: QWERTY + a second screen for punctuation/digits) is
+specified to replace this system-IME fallback — but it is **not built**, so until it ships `business_studies` typed
+blanks stay bare-numeric. `validate-questions.js` now enforces this: it **warns** on any non-numeric `fitb`
+answer under a `None`-routed subject and **errors** on `steps`/`equation` there (`KEYBOARD-01`).
+
 ## No physics/chemistry-style symbol problem — the real finding here
 
 The user's question going in was whether Business Studies has anything like Physics'/

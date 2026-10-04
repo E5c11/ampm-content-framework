@@ -147,6 +147,13 @@ and Geography's `fitb` answers happen to already be purely numeric (scale ratios
   `DESIGN-CHEM-01` is: a content-authoring rule that must actually block a letter-based
   `fitb` from shipping, not just a note.
 
+**Update 2026-10-04 — `keyboard_type` and the planned `text` keyboard.** Nothing above changes for
+content published today. What's new: questions can now declare a `keyboard_type` (`core/keyboard-input.md`),
+and a general-purpose `text` keyboard (Linear BLA-58: QWERTY + a second screen for punctuation/digits) is
+specified to replace this system-IME fallback — but it is **not built**, so until it ships `history` typed
+blanks stay bare-numeric. `validate-questions.js` now enforces this: it **warns** on any non-numeric `fitb`
+answer under a `None`-routed subject and **errors** on `steps`/`equation` there (`KEYBOARD-01`).
+
 ## App-side navigation — no separate work needed
 
 Investigated 2026-09-12 in `ampm-kmp` (`~/StudioProjects/AMPM`, `dev`). `ExamPaperScreen`

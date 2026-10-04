@@ -2,7 +2,7 @@
 id: AMPM-CONTENT-SCHEMA
 type: reference
 layer: core
-related: [AMPM-CONTENT-DESIGN, AMPM-CONTENT-MATHTEXT, AMPM-CONTENT-AI-EXP, AMPM-CONTENT-PIPELINE]
+related: [AMPM-CONTENT-DESIGN, AMPM-CONTENT-MATHTEXT, AMPM-CONTENT-AI-EXP, AMPM-CONTENT-PIPELINE, AMPM-CONTENT-KEYBOARD-INPUT, AMPM-CONTENT-APP-VERSIONS]
 tags: [content, questions, schema, postgres, presentation-types]
 provenance: moved from AMPM/ampm-ai-framework/content/schema.md, 2026-07-15
 ---
@@ -60,7 +60,23 @@ presence check); `human-review` for the remainder (`subtopic`, `skills`, `exam_w
 | `paper` | string | e.g. `"nov_p1"` |
 
 Optional: `clues`, `context_text` (English inline stimulus), `text_key` (English P2 — a real
-`english_texts` id), `supplementary_material` (`{type, label, image_urls}`).
+`english_texts` id), `supplementary_material` (`{type, label, image_urls}`), `keyboard_type`
+(below).
+
+**`SCHEMA-KB-01`** — `keyboard_type` (→ `questions.keyboard_type`) is one of `none`,
+`standard_math`, `scientific_math`, `physics`, `chemistry`, `text`, or **omitted/`null`** meaning "the
+app infers the keyboard from subject and presentation". Only the first three are released; a
+planned value is valid to author but makes the exam dev-only until its release is tagged (`VER-05`). Full semantics, inventories and the
+`KEYBOARD-0x` rules: `core/keyboard-input.md`. On re-upload an **omitted** `keyboard_type` leaves the database value unchanged (it never nulls a
+backfilled value); write an explicit `null` to clear it. Declare it whenever subject inference would pick the
+wrong keyboard — notably Physical Sciences, where `subject = "physics"` covers Paper 1 (Physics) and
+Paper 2 (Chemistry). `enforced_by: validator` (value set; planned values mark the exam `next-release`)
+
+**`SCHEMA-EXAM-01`** — Content is gated by **exam** (subject + syllabus + year + session), never per
+question or per paper: an exam whose questions need a newer build than the floor gets one
+`exam_versions` row, derived by `tools/derive-exam-min.js` and written by `tools/set-exam-gate.js`.
+You never author a version number in a question. See `core/app-feature-versions.md`.
+`enforced_by: tooling`
 
 **`SCHEMA-DOC-02`** — `unit`, `topic`, `subtopic`, and every `skills` entry must exist as a
 `curriculum_nodes` / `skills` row *before* being written into a question (reuse-before-creating;
