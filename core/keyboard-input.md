@@ -54,7 +54,7 @@ CHECK on purpose, so adding a keyboard needs no migration):
 | `none` | **released** | No custom keyboard. |
 | `standard_math` | **released** | Numeric pad (`StandardMath`). |
 | `scientific_math` | **released** | Two-tab symbolic keyboard (`ScientificMath`). |
-| `physics` | **planned** (BLA-21) | `ScientificMath` layout with a Physics Symbols/Letters tab. |
+| `physics` | **built, dev-only until the next release** (initiative 4d) | The Physics variant of `ScientificKeyboard`. Numbers = Maths. Symbols: `Δ θ µ ε Ω / ° ± · × ÷ / < > √ α β / x₂ xⁿ λ ρ σ`. ABC = Maths (a–z, one-shot shift, `sin cos tan log`). `x₂` / `xⁿ` open a **flat** `_{…}` / `^{…}` group, left with the exit arrow; the output is MathText markup, so author answers as `F_{net}`, `10^{-19}`, `kg·m·s^{-1}`. `µ` is U+00B5 (micro sign), **not** Greek mu U+03BC; `·` is U+00B7. Reached **only** by declaring it. |
 | `chemistry` | **planned** (BLA-21) | `ScientificMath` layout with a Chemistry tab (sub/superscripts, `→ ⇌`, state symbols). |
 | `text` | **planned** (BLA-58) | Free-text QWERTY with a second screen for punctuation, digits and (Afrikaans only) accented letters. |
 

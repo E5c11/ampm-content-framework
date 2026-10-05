@@ -129,7 +129,7 @@ the commit that added the capability.
 | Stored U+2212 normalised to `-` when marking `fitb`/`steps` (not `fraction`) | **2.2.0** | `QuestionsValidator.normalizeNumericString`, same commit. |
 | `questions.keyboard_type` honoured by the client (`none`, `standard_math`, `scientific_math`) | **next release after 2.3.2 — not yet tagged** | Older builds ignore the field and infer by subject, so declaring a keyboard older builds already infer anyway needs no gate. |
 | `X-App-Version` header; full resync on app-version change | **next release after 2.3.2 — not yet tagged** | Prerequisite for any prod exam gate to take effect. |
-| `physics`, `chemistry`, `text` keyboards | **planned — next release** | BLA-21 / BLA-58. Valid to author; `NEXT` in the tooling until tagged. |
+| `physics`, `chemistry`, `text` keyboards | **planned — next release** | BLA-21 / BLA-58. Valid to author; `NEXT` in the tooling until tagged. `physics` is built on AMPM `dev` (initiative 4d, emulator-verified); `chemistry` (4e) is not built yet. |
 | Extended `scientific_math` keys: all letters, `< > ; , [ ] ° ' ± ∞ ∩ ∪ !`, `Σ σ Δ Ω μ ε α β`, `ln lim nCr nPr`, sub/super mode keys | **planned — next release** | BLA-21 item 5c0 (final layout still to be designed from real Grade 12 papers). `NEXT` until tagged. |
 | `case_sensitive` flag (fitb marking skips lower-casing) | **planned — next release** | D15 / initiative 4c. Needs contracts 0.40.0 (published), backend V82 (deployed to dev), the app change (merged to `dev`, verified on the emulator). `NEXT` until the release is tagged. |
 | MathText `_{…}` / `^{…}` markup | **planned — next release** | Decision D4, BLA-21 item 5d. Recorded as `NEXT` in the tooling until the release is tagged and its number is entered here (`VER-06`). |

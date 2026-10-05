@@ -98,7 +98,18 @@ const KEYBOARD_CHARS = {
     ...chars(LATIN + LATIN.toUpperCase() + DIGITS + ' .,;:!?\'"-()/&%', NEXT),
     ...chars('êëéèôöûüîïäŉÊËÉÈÔÖÛÜÎÏÄ', NEXT),
   },
-  // physics / chemistry: planned, layout not designed -> no character constraint modelled.
+  // PLANNED (initiative 4d, merged to AMPM `dev`, unreleased): the Physics variant of ScientificKeyboard.
+  // Numbers tab = Maths (digits . + - × ÷ ( ) = ;); Symbols `Δ θ µ ε Ω / ° ± · × ÷ / < > √ α β / x₂ xⁿ λ ρ σ`
+  // (µ is U+00B5, the micro sign — NOT Greek mu U+03BC; `·` is U+00B7); ABC = a-z + A-Z (one-shot shift) and the
+  // sin/cos/tan/log keys. The x₂ / xⁿ keys emit the `_{…}` / `^{…}` markup, so `_ ^ { }` are typeable as a group
+  // (groups are flat — nesting is rejected by the keyboard).
+  physics: {
+    ...chars(DIGITS + '.+-×÷()=;', NEXT),
+    ...chars('Δθ\u00b5εΩ°±\u00b7<>√αβλρσ', NEXT),
+    ...chars(LATIN + LATIN.toUpperCase(), NEXT),
+    ...chars('^_{}', NEXT),
+  },
+  // chemistry: planned, layout not designed -> no character constraint modelled.
 };
 
 // Multi-letter keys on scientific_math that type a whole token.
@@ -140,7 +151,7 @@ function alternativesOf(answer) {
  */
 function typeabilityOf(text, keyboard, opts = {}) {
   const table = KEYBOARD_CHARS[keyboard];
-  if (!table) return { version: FLOOR, missing: null }; // none / physics / chemistry — not modelled
+  if (!table) return { version: FLOOR, missing: null }; // none / chemistry — not modelled
   let version = FLOOR;
   let lower = keyboard === 'english' ? text.toLowerCase() : text;
   // U+2212 (true minus) in a STORED answer: the app's normalizeNumericString converts it to ASCII '-'
@@ -154,7 +165,7 @@ function typeabilityOf(text, keyboard, opts = {}) {
   if (lower.includes(',') && opts.normalizesComma) lower = lower.replace(/,/g, '.');
   let i = 0;
   while (i < lower.length) {
-    const tokenHit = keyboard === 'scientific_math'
+    const tokenHit = (keyboard === 'scientific_math' || keyboard === 'physics')
       ? Object.keys(SCIENTIFIC_TOKENS).find((t) => lower.startsWith(t, i))
       : null;
     if (tokenHit) { version = maxVersion(version, SCIENTIFIC_TOKENS[tokenHit]); i += tokenHit.length; continue; }
