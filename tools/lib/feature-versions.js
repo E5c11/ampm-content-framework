@@ -109,7 +109,17 @@ const KEYBOARD_CHARS = {
     ...chars(LATIN + LATIN.toUpperCase(), NEXT),
     ...chars('^_{}', NEXT),
   },
-  // chemistry: planned, layout not designed -> no character constraint modelled.
+  // PLANNED (initiative 4e, merged to AMPM `dev`, unreleased): the Chemistry variant of ScientificKeyboard. Numbers and
+  // ABC are the Maths ones (so `+ -` are the charge keys, `( ) [` come from Numbers / Formula); Formula tab
+  // `x₂ xⁿ → ⇌ Δ / (aq) (s) (l) (g) ℓ / [ ] · ° ,`. `ℓ` is U+2113 (script l, the litre; the memo's `HCℓ`), `⇌` U+21CC,
+  // `·` U+00B7. The mode keys emit `_{…}` / `^{…}` (flat groups). The state symbols are whole-token keys, but each is also
+  // just its characters, which are all on the ABC/Formula tabs, so they need no token entry.
+  chemistry: {
+    ...chars(DIGITS + '.+-×÷()=;', NEXT),
+    ...chars('→⇌Δℓ[]\u00b7°,', NEXT),
+    ...chars(LATIN + LATIN.toUpperCase(), NEXT),
+    ...chars('^_{}', NEXT),
+  },
 };
 
 // Multi-letter keys on scientific_math that type a whole token.
@@ -151,7 +161,7 @@ function alternativesOf(answer) {
  */
 function typeabilityOf(text, keyboard, opts = {}) {
   const table = KEYBOARD_CHARS[keyboard];
-  if (!table) return { version: FLOOR, missing: null }; // none / chemistry — not modelled
+  if (!table) return { version: FLOOR, missing: null }; // none — not modelled
   let version = FLOOR;
   let lower = keyboard === 'english' ? text.toLowerCase() : text;
   // U+2212 (true minus) in a STORED answer: the app's normalizeNumericString converts it to ASCII '-'
@@ -165,7 +175,7 @@ function typeabilityOf(text, keyboard, opts = {}) {
   if (lower.includes(',') && opts.normalizesComma) lower = lower.replace(/,/g, '.');
   let i = 0;
   while (i < lower.length) {
-    const tokenHit = (keyboard === 'scientific_math' || keyboard === 'physics')
+    const tokenHit = (keyboard === 'scientific_math' || keyboard === 'physics' || keyboard === 'chemistry')
       ? Object.keys(SCIENTIFIC_TOKENS).find((t) => lower.startsWith(t, i))
       : null;
     if (tokenHit) { version = maxVersion(version, SCIENTIFIC_TOKENS[tokenHit]); i += tokenHit.length; continue; }
