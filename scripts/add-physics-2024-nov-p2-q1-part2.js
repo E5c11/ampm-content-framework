@@ -51,7 +51,7 @@ const questions = [
     question: 'For an exothermic reaction, ΔH = −150 kJ·mol⁻¹ and the activation energy of the forward reaction is 90 kJ·mol⁻¹. Calculate the activation energy of the REVERSE reaction, in kJ·mol⁻¹: []',
     metadata: ['EA(reverse) = ', '[ ]', ' kJ·mol⁻¹'],
     answer: ['240|240.00', '', '', '', ''],
-    presentation: 'fitb', type: 'calc',
+    presentation: 'fitb', keyboard_type: 'standard_math', type: 'calc',
     unit: 'chemical_change', topic: 'chemical_equilibrium', subtopic: 'activation_energy_diagrams',
     skills: ['activation_energy_relationship'],
     difficulty: 3, exam_weight: 2, xp: 15, order: 1,

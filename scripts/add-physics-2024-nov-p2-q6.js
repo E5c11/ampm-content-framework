@@ -125,7 +125,7 @@ const questions = [
     question: 'Initially, 0,4 mol H₂(g), 0,4 mol CO₂(g), 0,1 mol H₂O(g) and 0,1 mol CO(g) are sealed in a 2 dm³ flask at T °C. Equilibrium is reached: H₂(g) + CO₂(g) ⇌ H₂O(g) + CO(g). Kc = 2,25 at T °C. Calculate the mass of CO₂(g) in the flask at equilibrium, in g (round off to a minimum of TWO decimal places): []',
     metadata: ['m(CO₂) = ', '[ ]', ' g'],
     answer: ['8.80|8.8', '', '', '', ''],
-    presentation: 'fitb', type: 'calc',
+    presentation: 'fitb', keyboard_type: 'standard_math', type: 'calc',
     unit: 'chemical_change', topic: 'chemical_equilibrium', subtopic: 'equilibrium_constant_kc',
     skills: ['kc_calculation'],
     difficulty: 5, exam_weight: 3, xp: 20, order: 5,

@@ -152,6 +152,7 @@ const questions = [
     metadata: ['Impulse = ', '[ ]', ' N·s'],
     answer: ['2.00', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'mechanics', topic: 'momentum_impulse', subtopic: 'impulse_calculations',
     skills: ['impulse_momentum_theorem', 'momentum_calculation'],

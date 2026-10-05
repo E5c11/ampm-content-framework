@@ -97,13 +97,14 @@ const questions = [
     question:
       'An 8 kg crate starts from rest. A constant force F at 25° above the horizontal pulls it 2 m along a horizontal floor, against a constant frictional force of 12 N. Its speed after 2 m is 3 m·s⁻¹. Using energy principles, complete the working to calculate F.',
     metadata: [
-      'Wₙₑₜ = ΔEₖ, so W(F) + W(f) = ½mv(f)² − ½mvᵢ²',
+      'W_{net} = ΔE_{k}, so W_{F} + W_{f} = ½mv_{f}² − ½mv_{i}²',
       'F(2) cos 25° + (12)(2) cos 180° = ½(8)(3²) − 0',
       '1.8126F − 24 = 36, so F (in N, to two decimal places):',
       '[ ]',
     ],
     answer: ['33.10'],
     presentation: 'steps',
+    keyboard_type: 'physics',
     type: 'calc',
     unit: 'mechanics', topic: 'work_energy_power', subtopic: 'work_energy_theorem_applications',
     skills: ['work_energy_theorem', 'work_calculation', 'net_work'],
@@ -119,6 +120,7 @@ const questions = [
     metadata: ['Wₙₑₜ = ', '[ ]', ' J'],
     answer: ['36', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'mechanics', topic: 'work_energy_power', subtopic: 'work_energy_theorem_applications',
     skills: ['work_energy_theorem', 'kinetic_energy_calculation'],

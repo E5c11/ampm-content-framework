@@ -69,7 +69,7 @@ const questions = [
     question: 'A standard galvanic cell is made from a cobalt electrode in Co²⁺(aq) and a copper electrode in Cu²⁺(aq). Calculate the initial emf of the cell under standard conditions, in V (round off to a minimum of TWO decimal places): []',
     metadata: ['E°cell = ', '[ ]', ' V'],
     answer: ['0.62', '', '', '', ''],
-    presentation: 'fitb', type: 'calc',
+    presentation: 'fitb', keyboard_type: 'standard_math', type: 'calc',
     unit: 'chemical_change', topic: 'electrochemistry', subtopic: 'standard_electrode_potentials',
     skills: ['cell_emf_calculation'],
     difficulty: 2, exam_weight: 2, xp: 15, order: 2,

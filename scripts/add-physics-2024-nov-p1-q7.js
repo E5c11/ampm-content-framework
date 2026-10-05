@@ -57,6 +57,7 @@ const questions = [
     metadata: ['E = ', '[ ]', ' × 10⁴ N·C⁻¹'],
     answer: ['1.08', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'electricity_magnetism', topic: 'electrostatics', subtopic: 'electric_field_strength',
     skills: ['electric_field_calculation', 'inverse_square_relationship'],
@@ -133,13 +134,14 @@ const questions = [
     question:
       'Using the same arrangement (M = +3 nC, N = −3 nC 4 cm to its right, W 3 cm to the right of N), the net force on W is 2.0 × 10⁻⁴ N to the right. Complete the working to calculate the magnitude of the charge on W.',
     metadata: [
-      'W is 3 cm from N and 7 cm from M. Fₙₑₜ = F(NW) − F(MW), with F = \\frac{kQ₁Q₂}{r²}',
+      'W is 3 cm from N and 7 cm from M. F_{net} = F_{NW} − F_{MW}, with F = \\frac{kQ_{1}Q_{2}}{r²}',
       '2.0 × 10⁻⁴ = \\frac{(9 × 10⁹)(3 × 10⁻⁹)q}{(0.03)²} − \\frac{(9 × 10⁹)(3 × 10⁻⁹)q}{(0.07)²}',
       '2.0 × 10⁻⁴ = (30 000 − 5 510.20)q = 24 489.80q, so q (in × 10⁻⁹ C, to two decimal places):',
       '[ ]',
     ],
     answer: ['8.17'],
     presentation: 'steps',
+    keyboard_type: 'physics',
     type: 'calc',
     unit: 'electricity_magnetism', topic: 'electrostatics', subtopic: 'coulombs_law',
     skills: ['coulombs_law', 'inverse_square_relationship'],

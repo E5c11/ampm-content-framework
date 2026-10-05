@@ -52,7 +52,7 @@ const questions = [
     question: 'A 1,30 g strip of zinc reacts with EXCESS hydrochloric acid: Zn(s) + 2HCℓ(aq) → ZnCℓ₂(aq) + H₂(g). For the first 4 minutes, the average rate of formation of H₂(g) is 0,060 dm³·min⁻¹. Take the molar gas volume as 24,5 dm³·mol⁻¹. Calculate the mass of zinc LEFT in the flask at t = 4 minutes, in g (round off to a minimum of TWO decimal places): []',
     metadata: ['m(Zn) left = ', '[ ]', ' g'],
     answer: ['0.66', '', '', '', ''],
-    presentation: 'fitb', type: 'calc',
+    presentation: 'fitb', keyboard_type: 'standard_math', type: 'calc',
     unit: 'chemical_change', topic: 'reaction_rate', subtopic: 'average_rate_calculations',
     skills: ['average_rate_calculation', 'gas_volume_stoichiometry'],
     difficulty: 4, exam_weight: 3, xp: 20, order: 1,

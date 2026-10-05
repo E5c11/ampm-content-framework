@@ -118,7 +118,7 @@ const questions = [
     question: 'Calculate the initial emf of the cell Ni(s) | Ni²⁺(aq) || Fe³⁺(aq), Fe²⁺(aq) | Pt(s) under standard conditions, in V (round off to a minimum of TWO decimal places): []',
     metadata: ['E°cell = ', '[ ]', ' V'],
     answer: ['1.04', '', '', '', ''],
-    presentation: 'fitb', type: 'calc',
+    presentation: 'fitb', keyboard_type: 'standard_math', type: 'calc',
     unit: 'chemical_change', topic: 'electrochemistry', subtopic: 'galvanic_cells',
     skills: ['cell_emf_calculation'],
     difficulty: 2, exam_weight: 2, xp: 15, order: 5,
