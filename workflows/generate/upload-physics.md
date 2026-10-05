@@ -77,7 +77,8 @@ PDFs (`files/`).
    as the answer (marking `^{…}` is exact-string). In content you intend for the next release write
    **every subscript in typed-question given text as `_{…}`** (`F_{net}`, `V_{R1}`); `clues` and the
    AI explanation do not render markup (`MATHTEXT-09`) — keep Unicode glyphs/parentheticals there.
-   The `question` text may end with the blank-slot marker `[]` (rendered `___`, `FITB-03`).
+   Physics `fitb` questions use the label/metadata form only; the question-text slot marker `[]` (`FITB-03`) is a Chemistry-paper convention and is
+   not needed here.
    **Practice-question count scales with the real sub-part count** (`DESIGN-UNI-11`) —
    check the sub-part breakdown before calling the set complete, don't default to a
    flat number; a single-item clustered part stays at ~2. Presentation variety

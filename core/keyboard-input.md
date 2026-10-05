@@ -176,10 +176,25 @@ From `QuestionsValidator.kt` (App wins if this drifts):
 ## Retrofitting `keyboard_type` onto already-uploaded content
 
 **`KEYBOARD-06`** — `enforced_by: human-review`. For rows already on dev (`KEYBOARD-04` covers *new* content):
+
+0. **Is the paper/exam in prod?** If any paper of it is live in prod, do not add a not-yet-released feature to it (step 4). Check read-only; the
+   framework has no tool that answers this directly (`backfill-keyboard-types.js --env prod` reports by subject/paper/presentation, not by year).
+   Start the prod Cloud SQL Auth Proxy (`cloud-sql-proxy <PROD_PROJECT>:us-central1:ampm-backend --port 15433`; the `PG_*_PROD` block must be in
+   `.env` — credentials are never written in docs or chat) and run a SELECT only, e.g.
+   `node -e "const {getPool,closePool}=require('./tools/lib/postgres');getPool('prod').query(\"SELECT year_id, paper_id, count(*) AS questions, count(*) FILTER (WHERE is_published) AS published FROM questions WHERE subject_id='physics' AND NOT is_deleted GROUP BY 1,2 ORDER BY 1,2\").then(r=>{console.table(r.rows);return closePool()})"`.
+   Current status per paper is recorded in the subject profile (`subjects/dbe-physics.md`, "Prod status").
+   **Retrofit decision.** What "works with the new keyboards" means depends on the content:
+   - **Every typed answer is bare numeric and no label needs markup** → the retrofit is only an **explicit `keyboard_type`** per `KEYBOARD-04`
+     (`standard_math` for `fitb`, `scientific_math` for `steps`/`equation`). Do **not** add `physics`/`chemistry` or `_{…}`; the exam stays releasable at its
+     floor — do not force it to `next-release`. (2023 Nov P1 is this case.)
+   - **A label or given text needs markup, or an answer needs a key only the new keyboards have** → declare `physics`/`chemistry` only where an
+     *answer* needs it (`KEYBOARD-04`), use `_{…}` per `MATHTEXT-11`, and accept that the exam becomes `next-release` / dev-only. (2024 Nov P1 is this case.)
 1. **Check what the database holds.** `tools/backfill-keyboard-types.js` already wrote `standard_math` / `scientific_math` / etc. on existing rows, and
    an upload script that never declared `keyboard_type` knows nothing about it (omitted = the database value is left alone on re-upload). Compare
    script vs rows before assuming anything.
-2. **Edit the upload script** (the source of truth) *and* update the dev rows with a one-off fix script in the style of
+   **If the dev rows already hold the intended value** (the backfill usually wrote `standard_math`/`scientific_math`), only edit the script so it declares
+   it — no fix script, no database write.
+2. **Edit the upload script** (the source of truth) *and*, when the rows differ, update the dev rows with a one-off fix script in the style of
    `scripts/fix-keyboard-defects-2026-10-04.js` / `scripts/fix-keyboard-retrofit-physics-2024-2026-10-05.js`: match rows by (paper, question text), refuse any
    row that no longer looks as expected, run `fv.analyzeQuestion` on the new row, **dry-run first**, write only the changed columns, and
    **bump `updated_at`** (`VER-04` — clients delta-sync on it). Do not re-run the whole upload script for this: it rewrites the lesson and
@@ -226,8 +241,10 @@ keyboard** — declare `standard_math` (`fitb`/`fraction`) or `scientific_math` 
 did, so a script and its database row agree. (Decision 2026-10-05, the 2024 Nov P1/P2 retrofit: a `physics` keyboard on a number-only blank
 replaced the number pad with a bigger keyboard for no benefit.) Presentation-specific: a `fitb` with markup only in its *label* does not
 need `physics` either — labels are rendered, not typed. Until a release carries the new keyboards, content that declares them is dev-only
-(`KEYBOARD-05`). TODO (open): the 9 P1 `steps` rows of 2024 Nov are declared `physics` although their answers are bare numeric
-(`scientific_math` would satisfy this rule); decide and align. `enforced_by: human-review`
+(`KEYBOARD-05`). Worked cases: Physical Sciences 2023 and 2024 Nov P1 — every `fitb` is `standard_math`, every `steps` is `scientific_math`
+(the 2024 `steps` rows carry `_{…}` markup in their given text, which is rendered, not typed, so they still do not need `physics`).
+`validate-questions.js` **warns** (non-blocking) when a `fitb`/`steps`/`equation`/`fraction` question has no `keyboard_type` declared.
+`enforced_by: human-review` (the missing-declaration warning is `validator`)
 
 **`KEYBOARD-05`** — Planned keyboards and keys (`physics`, `chemistry`, `text`, the extended
 `scientific_math` letters/symbols) are **valid to author** but content that uses them is **dev-only until the

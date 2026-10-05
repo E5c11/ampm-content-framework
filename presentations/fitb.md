@@ -29,7 +29,8 @@ real data).*
 **`FITB-03`** — The `question` text may carry a **blank-slot marker**, `[]` (or `[ ]`), where the answer goes: the app
 renders it as `___` in the question stem, and the answer box appears in the row below (the `metadata` row). It is
 intended, not a leftover — the Chemistry papers use it on every typed `fitb` (`"... in g (round off to a minimum of TWO
-decimal places): []"`). It is a question-text convention only: the *metadata* blank must still be the whole element
+decimal places): []"`). **Status quo for Physical Sciences:** the Chemistry (P2) papers use it; the Physics (P1) `fitb` questions use only the
+label/metadata form (`["Height = ", "[ ]", " m"]`) and do not need the marker — do not retrofit it. It is a question-text convention only: the *metadata* blank must still be the whole element
 `"[ ]"` (`FITB-01`). A question with no marker is also fine. `enforced_by: human-review`
 *(Added 2026-10-05 from the Physical Sciences 2024 retrofit — the marker was already in the renderer contract below but no
 authoring rule or generation doc mentioned it.)*
