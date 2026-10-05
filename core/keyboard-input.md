@@ -60,8 +60,8 @@ CHECK on purpose, so adding a keyboard needs no migration):
 
 Released clients honour only the first three; any other value (or one added later) makes them fall
 back to subject inference. **Planned values are valid to author and store now** — the validator accepts
-them and models their key sets (the `text` and extended `scientific_math` inventories, plus the
-`physics`/`chemistry` keyboards, which have no character constraint modelled yet). Content that depends on
+them and models their key sets (the `text`, `physics`, `chemistry` and extended `scientific_math` inventories in
+`tools/lib/feature-versions.js`; `KEYBOARD-01` rejects an answer that needs a key they lack). Content that depends on
 one is marked `next-release` and is **dev-only** until that release is tagged (`VER-05`,
 `core/app-feature-versions.md`): the prod push is refused, and until the keyboard exists in a build the
 question falls back to subject inference and may not be answerable on a device.
