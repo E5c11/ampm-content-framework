@@ -288,6 +288,13 @@ function validateQuestion(q, index, allQuestions) {
   analysis.warnings.forEach(m => caution(m));
   const requires = analysis.requires;
 
+  // KEYBOARD-04: a typed question declares its keyboard explicitly so the script and its database row agree
+  // (a bare-numeric fitb is 'standard_math', a bare-numeric steps/equation 'scientific_math'). Non-blocking:
+  // omitted still works (the app infers it, and a re-upload leaves the database value alone).
+  if (['fitb', 'steps', 'equation', 'fraction'].includes(q.presentation) && (q.keyboard_type === undefined || q.keyboard_type === null)) {
+    caution('no "keyboard_type" declared on a typed question — declare it explicitly (core/keyboard-input.md KEYBOARD-04)');
+  }
+
   return { label, errors, warnings, requires };
 }
 
