@@ -160,6 +160,8 @@ why the tooling marks everything planned as `NEXT_RELEASE` (2.4.0, dev-only unti
 
 ## Known findings from the first run (2026-10-04, existing scripts)
 
+> **Historical — superseded by `VER-08`/`VER-09` and the concrete 2.4.0 (`NEXT_RELEASE` / `LATEST_RELEASED`, 2026-10-05).** Kept as a record; do not follow its gating advice.
+
 `derive-exam-min.js` over the 115 existing upload scripts: 112 need only the floor; three need
 **2.2.0**, all from the negative-number cases above:
 
@@ -180,6 +182,8 @@ Consequences, **not yet acted on** (each is a prod/product decision):
   the dependency on the normalisation and drops those two scripts back to the floor.
 
 ## Findings from the database-wide run (2026-10-04, dev and prod identical)
+
+> **Historical — superseded by `VER-08`/`VER-09` and the concrete 2.4.0 (`NEXT_RELEASE` / `LATEST_RELEASED`, 2026-10-05).** Kept as a record; do not follow its gating advice.
 
 `node tools/backfill-keyboard-types.js --env prod` (read-only dry run) derives each exam from the rows in the
 database, not from scripts, so it also covers content that was migrated from Firestore and has no upload
