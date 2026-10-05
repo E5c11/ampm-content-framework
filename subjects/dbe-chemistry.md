@@ -119,7 +119,7 @@ Once the keyboard ships, Chemistry questions declare `keyboard_type: "chemistry"
 rule can be relaxed for formulae/equations.
 
 **Update 2026-10-05.** The `chemistry` keyboard is now **built on AMPM `dev`** (initiative 4e; `x₂ xⁿ → ⇌ Δ`, state symbols, `ℓ`, `[ ] · ° ,`, one-shot
-shift) but unreleased, so content that uses it is `next-release` = dev-only (`VER-05`). `DESIGN-CHEM-01` stays in force for release-bound
+shift) but unreleased, so content that uses it is `2.4.0` = dev-only (`VER-05`). `DESIGN-CHEM-01` stays in force for release-bound
 content; the relaxation applies only to the dev-only track (TODO, owner decision: which track new papers default to — see
 `workflows/generate/upload-chemistry.md` Phase 1). Structural formulas remain images. The 2024 Nov P2 typed blanks are all bare-numeric and stay on
 `standard_math` (`KEYBOARD-04`). Whether IUPAC names with locants are typeable on the new keyboard is untested — TODO.

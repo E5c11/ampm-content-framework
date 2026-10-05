@@ -39,11 +39,11 @@ Nov 2025 Eng.pdf`, `files/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf`).
    sub-question, decide up front (feeds both Phase 3 and Phase 2):
    - **Typeable or not** — bare-numeric calc (→ typed blank on the basic keyboard), a
      formula / equation / charge / state symbol (typeable **only on the `chemistry` keyboard**,
-     next release, so dev-only — see Phase 4), or a structural formula (never typed — an image;
+     next release (2.4.0), so dev-only — see Phase 4), or a structural formula (never typed — an image;
      identify it with `multiple_choice`/`match`)? That decides the presentation family before
      you draft anything. TODO (open, owner decision): do new Chemistry papers default to the
      release-bound track (`DESIGN-CHEM-01` unchanged: typed blanks bare-numeric) or the
-     next-release track (typed formulae allowed)? Until decided, use the release-bound track.
+     2.4.0 track (typed formulae allowed)? Until decided, use the release-bound track.
    - **Content-based or procedural** (profile's "Subject rules", first bullet) — Organic
      Molecules naming/classification (Q1.1–1.3, Q2, Q3) is fixed-fact: needs
      `DESIGN-UNI-08` relational framing, not a reworded compound, or a student who
@@ -87,7 +87,7 @@ Nov 2025 Eng.pdf`, `files/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf`).
    **Keyboard declaration (`KEYBOARD-04`).** A bare-numeric blank declares
    `keyboard_type: 'standard_math'` (`fitb`) / `'scientific_math'` (`steps`). A blank whose answer
    or label needs the `chemistry` keyboard (formula, charge, state symbol, `→ ⇌`) declares
-   `keyboard_type: 'chemistry'`, which makes the exam `next-release` (dev-only, `VER-05`).
+   `keyboard_type: 'chemistry'`, which makes the exam `2.4.0` (dev-only, `VER-05`).
    On that keyboard store answers as markup with **no spaces** (`H_{2}O`, `Fe^{3+}`,
    `SO_{4}^{2-}`, `NaCl(aq)`, `HCℓ` with U+2113) and set **`case_sensitive: true`** on every
    `fitb` formula/symbol answer (`Co` ≠ `CO`, `SCHEMA-CS-01`); numeric and word answers leave it
@@ -143,5 +143,16 @@ Nov 2025 Eng.pdf`, `files/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf`).
    Update `subjects/dbe-chemistry.md`'s Completed papers ledger (currently empty).
 
 **Retrofitting an already-uploaded paper**: `core/keyboard-input.md` `KEYBOARD-06` (not a re-generation; a
-`chemistry` keyboard or markup makes the exam `next-release`, and an exam already live in prod is not
+`chemistry` keyboard or markup makes the exam `2.4.0`, and an exam already live in prod is not
 retrofitted before the release is tagged). Worked example: `scripts/fix-keyboard-retrofit-physics-2024-2026-10-05.js`.
+
+## How a new or retrofitted paper gets its gate (`VER-09`, `core/app-feature-versions.md`)
+
+The last step of every upload **and** of every retrofit — the exam's minimum app version is *derived*, never typed:
+
+1. `node tools/derive-exam-min.js scripts/add-physics-<year>-<session>-*.js` — all papers of the exam (this workflow's P1 and P2 scripts share the glob).
+2. `node tools/apply-exam-gate.js --env dev --subject physics --year <YYYY> --session november` — dry run: shows the exam's derived minimum, each paper's
+   minimum, the gate it would write, and how many published questions it would hide from older builds. Read it, then re-run with `--apply`.
+   (Upload scripts built from `tools/upload-script-template.js` run this automatically after a real dev upload; a retrofit fix script does not — run it yourself.)
+3. The result is per **exam** (subject + syllabus + year + session): if one paper needs 2.4.0, its sibling paper is gated at 2.4.0 too, and **no** paper of the exam goes
+   to prod until 2.4.0 is tagged and `LATEST_RELEASED` is bumped (`push-paper-to-prod.js` refuses the whole exam, `VER-08`). At the floor nothing is written.

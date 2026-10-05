@@ -310,10 +310,10 @@ node tools/derive-exam-min.js scripts/add-<subject>-<year>-<session>-*.js
 
 - Result is the floor (`2.0.0`): nothing to do (`VER-07`).
 - Result is a higher version: gate the exam —
-  `node tools/set-exam-gate.js --env dev --subject <id> --year <YYYY> --session <june|november> --min <result>`
-  (dry run first, then `--apply`). Never raw SQL (`VER-04`: the tool also bumps `updated_at`).
-- Result is `next-release`: the exam depends on a planned keyboard/key/markup (valid to author). It is **dev-only**: do not
-  gate it and do not push it to prod until that release is tagged and the real version is recorded (`VER-05`/`VER-06`).
+  `node tools/apply-exam-gate.js --env dev --subject <id> --year <YYYY> --session <june|november>` (dry run first, then `--apply`;
+  derives the gate from the rows — never hand-typed — and bumps `updated_at`, `VER-04`/`VER-09`). Never raw SQL.
+- Result is `2.4.0`: the exam depends on a planned keyboard/key/markup (valid to author). It is gated at 2.4.0 on dev and **dev-only**:
+  do not push it to prod until that release is tagged and `LATEST_RELEASED` is bumped (`VER-05`/`VER-06`/`VER-08`).
 
 **Prod ordering (`VER-03`).** `tools/push-paper-to-prod.js` upserts the paper to prod
 **unpublished**; publishing is a separate step. Set the prod gate (`--env prod --i-know-this-is-prod`)

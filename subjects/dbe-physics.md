@@ -357,7 +357,7 @@ once a first session populates it, `PIPE-08`.)
 
 **Prod status** (read-only check, 2026-10-05; method: `core/keyboard-input.md` `KEYBOARD-06` step 0). In prod: **2023 nov_p2, 2025 nov_p1, 2025 nov_p2.**
 Dev only: **2023 nov_p1** (declares explicit `standard_math`/`scientific_math`, derives the 2.0.0 floor — releasable), **2024 nov_p1** and **2024 nov_p2**
-(2024 P1 carries `_{…}` markup → derives `next-release` → dev-only; 2024 P2 alone derives the floor). Re-check before relying on this.
+(2024 P1 carries `_{…}` markup → derives `2.4.0` → dev-only; 2024 P2 alone derives the floor). Re-check before relying on this.
 
 Formula sheet URLs (reuse per paper):
 - 2025 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/physics/2025/nov_p1/q0/question_1.png` (+ `question_2.png`, `question_3.png`)

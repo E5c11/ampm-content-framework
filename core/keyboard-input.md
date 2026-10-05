@@ -62,8 +62,8 @@ Released clients honour only the first three; any other value (or one added late
 back to subject inference. **Planned values are valid to author and store now** — the validator accepts
 them and models their key sets (the `text`, `physics`, `chemistry` and extended `scientific_math` inventories in
 `tools/lib/feature-versions.js`; `KEYBOARD-01` rejects an answer that needs a key they lack). Content that depends on
-one is marked `next-release` and is **dev-only** until that release is tagged (`VER-05`,
-`core/app-feature-versions.md`): the prod push is refused, and until the keyboard exists in a build the
+one is marked `2.4.0` and is **dev-only** until that release is tagged (`VER-05`,
+`core/app-feature-versions.md`): the prod push is refused (until `LATEST_RELEASED` reaches 2.4.0), and until the keyboard exists in a build the
 question falls back to subject inference and may not be answerable on a device.
 
 ## Routing — what a question resolves to
@@ -183,12 +183,14 @@ From `QuestionsValidator.kt` (App wins if this drifts):
    `.env` — credentials are never written in docs or chat) and run a SELECT only, e.g.
    `node -e "const {getPool,closePool}=require('./tools/lib/postgres');getPool('prod').query(\"SELECT year_id, paper_id, count(*) AS questions, count(*) FILTER (WHERE is_published) AS published FROM questions WHERE subject_id='physics' AND NOT is_deleted GROUP BY 1,2 ORDER BY 1,2\").then(r=>{console.table(r.rows);return closePool()})"`.
    Current status per paper is recorded in the subject profile (`subjects/dbe-physics.md`, "Prod status").
+   `push-paper-to-prod.js` also checks this itself, exam-wide, before any write: it prints each paper's dev/prod presence and derived minimum plus the exam-level
+   minimum and `LATEST_RELEASED`, and refuses an unreleased exam or a partial one (`VER-08`). 2023 Nov P2 being in prod without P1 predates that rule.
    **Retrofit decision.** What "works with the new keyboards" means depends on the content:
    - **Every typed answer is bare numeric and no label needs markup** → the retrofit is only an **explicit `keyboard_type`** per `KEYBOARD-04`
      (`standard_math` for `fitb`, `scientific_math` for `steps`/`equation`). Do **not** add `physics`/`chemistry` or `_{…}`; the exam stays releasable at its
-     floor — do not force it to `next-release`. (2023 Nov P1 is this case.)
+     floor — do not force it to `2.4.0`. (2023 Nov P1 is this case.)
    - **A label or given text needs markup, or an answer needs a key only the new keyboards have** → declare `physics`/`chemistry` only where an
-     *answer* needs it (`KEYBOARD-04`), use `_{…}` per `MATHTEXT-11`, and accept that the exam becomes `next-release` / dev-only. (2024 Nov P1 is this case.)
+     *answer* needs it (`KEYBOARD-04`), use `_{…}` per `MATHTEXT-11`, and accept that the exam becomes `2.4.0` / dev-only. (2024 Nov P1 is this case.)
 1. **Check what the database holds.** `tools/backfill-keyboard-types.js` already wrote `standard_math` / `scientific_math` / etc. on existing rows, and
    an upload script that never declared `keyboard_type` knows nothing about it (omitted = the database value is left alone on re-upload). Compare
    script vs rows before assuming anything.
@@ -199,8 +201,8 @@ From `QuestionsValidator.kt` (App wins if this drifts):
    row that no longer looks as expected, run `fv.analyzeQuestion` on the new row, **dry-run first**, write only the changed columns, and
    **bump `updated_at`** (`VER-04` — clients delta-sync on it). Do not re-run the whole upload script for this: it rewrites the lesson and
    explanation rows too.
-3. Run `validate-questions.js` per script and `derive-exam-min.js` on the exam; a `physics`/`chemistry` keyboard or `_{…}` markup makes it `next-release`.
-4. **Never push `next-release` content to prod** (`push-paper-to-prod.js` refuses it), and **do not retrofit an exam that is already live in prod**
+3. Run `validate-questions.js` per script and `derive-exam-min.js` on the exam; then `node tools/apply-exam-gate.js --env dev --subject <id> --year <YYYY> --session <session>` (dry run, then `--apply`) writes the derived gate — the gate is per exam, so it also gates the sibling paper (`VER-01`/`VER-09`); a `physics`/`chemistry` keyboard or `_{…}` markup makes it `2.4.0`.
+4. **Never push content that needs an unreleased version (2.4.0 today) to prod** (`push-paper-to-prod.js` refuses it — the whole exam, `VER-08`), and **do not retrofit an exam that is already live in prod**
    with a not-yet-released feature until the release is tagged — the prod devices that already synced it would receive markup / a keyboard they cannot render.
 5. TODO (follow-up, not built): a generic `tools/set-question-keyboard-type.js` (exam + question filter → keyboard, dry-run, `updated_at` bump) would replace the
    per-retrofit fix scripts.
@@ -248,9 +250,10 @@ need `physics` either — labels are rendered, not typed. Until a release carrie
 
 **`KEYBOARD-05`** — Planned keyboards and keys (`physics`, `chemistry`, `text`, the extended
 `scientific_math` letters/symbols) are **valid to author** but content that uses them is **dev-only until the
-release carrying them is tagged**: its derived minimum is `next-release`, `push-paper-to-prod.js` refuses it,
-and `set-exam-gate.js` won't take it. When the release ships, replace `NEXT` with the real version in
-`tools/lib/feature-versions.js` and `core/app-feature-versions.md` (`VER-06`). `enforced_by: tooling`
+release carrying them is tagged**: its derived minimum is `2.4.0`, `push-paper-to-prod.js` refuses it
+(the whole exam, `VER-08`), and `set-exam-gate.js` writes it to prod only once it is `<= LATEST_RELEASED`. On dev the exam gate is
+derived and written for you (`tools/apply-exam-gate.js`, `VER-09`). When the release is tagged, bump `LATEST_RELEASED` in
+`tools/lib/feature-versions.js` (`VER-06`). `enforced_by: tooling`
 
 ## Gotcha: the two custom keyboards used different minus-sign glyphs
 

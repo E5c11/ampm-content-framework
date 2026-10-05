@@ -3,7 +3,7 @@
 **Profile:** `subjects/dbe-physics.md` · **Skeleton:** `core/upload-pipeline.md`
 (`AMPM-CONTENT-PIPELINE`) · **Rules:** `AMPM-CONTENT-SCHEMA`, `AMPM-CONTENT-DESIGN`,
 `AMPM-CONTENT-AI-EXP`, `presentations/{type}.md` per type used. `AMPM-CONTENT-MATHTEXT`
-covers physics (`MATHTEXT-06` published; `MATHTEXT-07`–`-11` next release, incl. which subscript
+covers physics (`MATHTEXT-06` published; `MATHTEXT-07`–`-11` from 2.4.0, incl. which subscript
 rule applies and which fields render markup). **`AMPM-CONTENT-KEYBOARD-INPUT`** governs the
 keyboard each typed question declares (`KEYBOARD-04`) — read it before Phase 4.
 
@@ -72,9 +72,9 @@ PDFs (`files/`).
    (the usual case — `DESIGN-PHYS-02`, unit and power of ten as static labels) declares
    `keyboard_type: 'standard_math'` (`fitb`) or `'scientific_math'` (`steps`/`equation`). Declare
    `'physics'` **only** where the answer needs a letter, Greek, markup or symbol the basic keyboards
-   cannot type; that makes the exam `next-release` (dev-only, `VER-05`). A number in scientific
+   cannot type; that makes the exam `2.4.0` (dev-only, `VER-05`). A number in scientific
    notation stays a bare mantissa (`2.33`) with `" × 10⁻⁷ C"` as the label — never `2.33×10^{-7}`
-   as the answer (marking `^{…}` is exact-string). In content you intend for the next release write
+   as the answer (marking `^{…}` is exact-string). In content for 2.4.0 (the next release) write
    **every subscript in typed-question given text as `_{…}`** (`F_{net}`, `V_{R1}`); `clues` and the
    AI explanation do not render markup (`MATHTEXT-09`) — keep Unicode glyphs/parentheticals there.
    Physics `fitb` questions use the label/metadata form only; the question-text slot marker `[]` (`FITB-03`) is a Chemistry-paper convention and is
@@ -107,5 +107,16 @@ PDFs (`files/`).
 
 **Retrofitting an already-uploaded paper** (keyboard or markup added after the upload): not a
 re-generation — follow `core/keyboard-input.md` `KEYBOARD-06` (edit the script, one-off dry-run-first
-fix script for the dev rows, bump `updated_at`, never push `next-release` content to prod).
+fix script for the dev rows, bump `updated_at`, never push `2.4.0` content to prod).
 Worked example: `scripts/fix-keyboard-retrofit-physics-2024-2026-10-05.js` and its `-2-` pass.
+
+## How a new or retrofitted paper gets its gate (`VER-09`, `core/app-feature-versions.md`)
+
+The last step of every upload **and** of every retrofit — the exam's minimum app version is *derived*, never typed:
+
+1. `node tools/derive-exam-min.js scripts/add-physics-<year>-<session>-*.js` — all papers of the exam (this workflow's P1 and P2 scripts share the glob).
+2. `node tools/apply-exam-gate.js --env dev --subject physics --year <YYYY> --session november` — dry run: shows the exam's derived minimum, each paper's
+   minimum, the gate it would write, and how many published questions it would hide from older builds. Read it, then re-run with `--apply`.
+   (Upload scripts built from `tools/upload-script-template.js` run this automatically after a real dev upload; a retrofit fix script does not — run it yourself.)
+3. The result is per **exam** (subject + syllabus + year + session): if one paper needs 2.4.0, its sibling paper is gated at 2.4.0 too, and **no** paper of the exam goes
+   to prod until 2.4.0 is tagged and `LATEST_RELEASED` is bumped (`push-paper-to-prod.js` refuses the whole exam, `VER-08`). At the floor nothing is written.

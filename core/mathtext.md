@@ -153,7 +153,7 @@ treatment: `Eₖ(max)`.
 
 ## Planned for the next release: sub/superscripts — plain forms and `_{…}` / `^{…}`
 
-**`MATHTEXT-07`** — `enforced_by: validator` (valid to author; marks the exam `next-release` = dev-only)
+**`MATHTEXT-07`** — `enforced_by: validator` (valid to author; marks the exam `2.4.0` = dev-only)
 
 Decision D4 + D16 (2026-10-03/04): MathText renders raised and lowered text, in question text, option text, feedback
 and given steps, **and live in the equation/steps answer input**. Built in AMPM initiative 4b, merged to `dev`,
@@ -182,9 +182,9 @@ for `_`; U+2212 becomes `-` inside scripts (`canonicalizeScripts`). So `5^x` equ
 
 **Status and what it means for authors.** No *released* build parses `_` or `^{…}`, so a plain `_` or a brace form shows
 literally there — the 2026-09-10 failure below. Plain `^` already reads fine unrendered, so it does **not** raise an
-exam's minimum. The brace forms and plain `_` are `NEXT` (dev-only until the release is tagged, `VER-05`); `MATHTEXT-06`
-stays in force for anything published. When it ships, replace `NEXT` with the real version in
-`tools/lib/feature-versions.js` and `core/app-feature-versions.md` (`VER-06`) and rewrite `MATHTEXT-06`.
+exam's minimum. The brace forms and plain `_` need **2.4.0** (the next release; dev-only until it is tagged, `VER-05`); `MATHTEXT-06`
+stays in force for anything published. When the release is tagged, bump `LATEST_RELEASED` in
+`tools/lib/feature-versions.js` (`VER-06`) and rewrite `MATHTEXT-06`.
 
 ---
 
@@ -203,7 +203,7 @@ A `fitb` row label only renders markup from the next release (AMPM `dev` e3e3fac
 arguments; `\frac{v}{λ_{L}}` and `\frac{V_{R1}}{I}` verified on a device).
 
 **`MATHTEXT-11`** — `enforced_by: human-review` — **Which subscript rule applies (precedence of `MATHTEXT-06` vs `-07`):**
-- **New content** for an exam that will be dev-only / `next-release` anyway (it declares a `physics`/`chemistry` keyboard or uses any other `NEXT` feature):
+- **New content** for an exam that will be dev-only / `2.4.0` anyway (it declares a `physics`/`chemistry` keyboard or uses any other `NEXT` feature):
   write **every subscript in typed-question given text as `_{…}`** — one rule, renders consistently, and covers multi-letter subscripts
   (`net`, `R1`) that Unicode cannot (`Fₙₑₜ` works but `p_f` / `V_R1` do not exist as glyphs).
 - **Content that must work on a released build** keeps `MATHTEXT-06` (Unicode glyph, else `Variable(subscript)`): a released build prints `_{…}` literally.

@@ -58,8 +58,9 @@ paper of that sitting together, never a single paper. A student must not see Pap
 Papers 1 and 2. One `exam_versions` row per exam; `session` is `papers.session` (`june` |
 `november`). `enforced_by: schema (primary key), tooling`
 
-**`VER-02`** — An exam's minimum version is **derived, never hand-set**:
-`node tools/derive-exam-min.js scripts/add-<subject>-<year>-<session>-*.js`. It is the highest
+**`VER-02`** — An exam's minimum version is **derived, never hand-set**: from upload scripts with
+`node tools/derive-exam-min.js scripts/add-<subject>-<year>-<session>-*.js`, or from the database rows (what actually gets gated) with
+`node tools/apply-exam-gate.js` (`VER-09`). It is the highest
 version needed by any question in any script of the exam: its presentation types, the keyboard it
 resolves to, every character of every typed answer (against that keyboard's inventory and the
 version each key shipped), and any markup. A hand-set number drifts the moment a script changes.
@@ -70,7 +71,7 @@ version each key shipped), and any markup. A hand-set number drifts the moment a
 device that synced earlier. Set the gate while the exam is still unpublished.
 `enforced_by: human-review` (`set-exam-gate.js` warns when it sees published rows)
 
-**`VER-04`** — Every gate change goes through `node tools/set-exam-gate.js` — **never raw SQL**.
+**`VER-04`** — Every gate change goes through `node tools/apply-exam-gate.js` (derived) or `node tools/set-exam-gate.js` (manual) — **never raw SQL**.
 The tool also sets `updated_at = now()` on the exam's lessons and questions in the same
 transaction. Reason (verified live on dev, 2026-10-04): clients sync with a `since` cursor and the
 server returns rows with `updated_at > since`; changing or removing a gate touches none of the
@@ -78,23 +79,42 @@ exam's rows, so a client that synced past them never receives an exam that just 
 to it. Removing the temporary gate on dev did **not** bring the exam back until `updated_at` was
 bumped. `enforced_by: tooling`
 
-**`VER-05`** — **Planned capabilities are valid to author, and dev-only until tagged.** Everything on the
+**`VER-05`** — **Planned capabilities are valid to author, and dev-only until tagged.** Their version is concrete: **`NEXT_RELEASE = '2.4.0'`**
+(`tools/lib/feature-versions.js`; `version.properties` is 2.3.3 and the release is a `minor` bump). `LATEST_RELEASED` (today **2.3.2**) is the newest
+tagged version; anything whose derived minimum is above it is dev-only. Everything on the
 keyboard/exam-gating plan (the `physics` / `chemistry` / `text` keyboards, the extended `scientific_math`
 keys and letters, MathText `_{…}` / `^{…}`) validates now. Content that depends on one has the derived minimum
-`next-release` (`NEXT` in `feature-versions.js`: "the next release, number unknown until it is tagged"). Such
-content may live on **dev only**: `push-paper-to-prod.js` refuses to copy it to prod, `set-exam-gate.js`
-refuses `--min next`, and until the capability is in a build the question falls back to subject inference and
-may not be answerable on a device. Nothing here blocks authoring; it blocks *publishing*.
+**2.4.0**. Such content may live on **dev only**: `push-paper-to-prod.js` refuses to copy it to prod, `set-exam-gate.js`
+writes a gate to prod only when it is `<= LATEST_RELEASED`, and a build below 2.4.0 never receives the exam once it is gated (`VER-09`).
+Nothing here blocks authoring; it blocks *publishing*.
 `enforced_by: tooling`
 
-**`VER-06`** — When a release adds a capability, in the **same change**: set its `since` in
-`tools/lib/feature-versions.js`, add/adjust its row below, and (if it raises what existing exams
-need) re-run `derive-exam-min.js` on affected exams. Take the version from the release tag, not
-from memory. `enforced_by: human-review`
+**`VER-06`** — When a release is **tagged**, in the **same change**: bump `LATEST_RELEASED` in `tools/lib/feature-versions.js` (the single place; if the tag
+differs from the planned `NEXT_RELEASE`, also fix `NEXT_RELEASE` and re-run the validator), update the capability table below with the tag, and re-run
+`apply-exam-gate.js` / `derive-exam-min.js` on the affected exams. Take the version from the release tag, not from memory. `enforced_by: human-review`
 
-**`VER-07`** — Don't gate unless the derived minimum is above the floor. An exam whose derived
+**`VER-07`** — Don't gate unless the derived minimum is above the floor (`apply-exam-gate.js` does nothing at the floor). An exam whose derived
 minimum is `2.0.0` needs no `exam_versions` row (a missing row means no gate).
 `enforced_by: human-review`
+
+**`VER-08`** — **The prod push is exam-level.** `push-paper-to-prod.js` derives the minimum over **all papers of the exam** (subject + syllabus + year + session) from the
+dev rows and **refuses** when that exam-level minimum is above `LATEST_RELEASED` — even when the paper being pushed is itself releasable (with 2024 P1 needing 2.4.0,
+2024 P2 is refused too, until the release is tagged and `LATEST_RELEASED` is bumped). It also refuses a *partial exam* (a sibling paper on dev that is neither in prod
+nor being pushed) unless `--allow-partial-exam` is passed; that override is named in the output and **never applies to an unreleased dependency**. Every run, dry-run
+included, prints per paper: on dev, in prod, derived minimum; then the exam-level minimum, `LATEST_RELEASED` and the decision. (Decision of 2026-10-05, gap-4 option A.)
+2023 Nov P2 is in prod without 2023 P1 — that predates this rule; pushing 2023 P1 (all papers at the floor) is allowed. `enforced_by: tooling`
+
+**`VER-09`** — **How a new or retrofitted paper gets its gate.** The gate is per **exam**, not per paper, so one paper that needs 2.4.0 gates its sibling paper too (a
+build below 2.4.0 sees neither). After uploading or retrofitting, run `node tools/apply-exam-gate.js --env dev --subject <id> --year <YYYY> --session <june|november>`
+(dry run by default; `--apply` writes). It derives the minimum from the database rows (never hand-typed), writes `exam_versions`, bumps `updated_at` on the exam's
+lessons and questions (`VER-04`), does nothing at the floor (`VER-07`) and is idempotent. Upload scripts built from `tools/upload-script-template.js` do this
+automatically after a real dev upload. Raising a gate hides the exam from builds below it on their *next* sync; rows already on a device stay (`VER-03`) — the
+dry-run says how many published questions are affected, so read it before `--apply`. Prod: only a gate `<= LATEST_RELEASED` is written, with
+`--i-know-this-is-prod`. `enforced_by: tooling`
+
+Worked cases (2026-10-05): **2024 Nov** — P1 has `_{…}` markup (2.4.0), P2 is bare numeric (floor): the exam derives 2.4.0, both papers are gated, neither can be
+pushed to prod. **2023 Nov** — all bare numeric: floor, no gate, pushable (2023 P2 is already live in prod; P1 may follow). A build below 2.4.0 (including the normal
+dev build 2.3.3) does not see 2024 Nov on dev; a build reporting 2.4.0 does.
 
 ## Procedure — new or changed exam content
 
@@ -102,15 +122,15 @@ minimum is `2.0.0` needs no `exam_versions` row (a missing row means no gate).
    Fix every error; read the "Derived minimum app version" line.
 2. Derive the exam: `node tools/derive-exam-min.js scripts/add-<subject>-<year>-<session>-*.js`.
 3. If the result is above the floor: set the gate **before** publishing —
-   `node tools/set-exam-gate.js --env dev … --min <result>` (dry run), then `--apply`.
+   `node tools/apply-exam-gate.js --env dev --subject <id> --year <YYYY> --session <session>` (dry run), then `--apply` (`VER-09`).
 4. Publish the exam (`core/upload-pipeline.md`).
 5. Verify on a dev build **below** the minimum that the exam is absent and on one at/above it that
    it is present.
 6. Prod: same commands with `--env prod --i-know-this-is-prod` after the dev check, and only once
    prod has the backend migrations and an app release that sends the header (see Status above).
 
-If the result is `next-release` the exam depends on a planned capability: keep it on dev, do not gate it and do
-not push it to prod until that release is tagged and the real version replaces `NEXT` (`VER-06`).
+If the result is above `LATEST_RELEASED` (2.4.0 today) the exam depends on a planned capability: it is gated on dev, and not
+pushed to prod until that release is tagged and `LATEST_RELEASED` is bumped (`VER-06`/`VER-08`).
 
 ## Feature → first app version
 
@@ -127,16 +147,16 @@ the commit that added the capability.
 | ScientificMath: ASCII `-` typeable (minus key previously emitted U+2212) | **2.2.0** | Commit b3e7a8ed0. Before it a typed negative number never matched a stored `-47`. |
 | ScientificMath: `x y ^ %` keys | **2.2.0** | Same commit. Before it no variable letter or power could be typed. |
 | Stored U+2212 normalised to `-` when marking `fitb`/`steps` (not `fraction`) | **2.2.0** | `QuestionsValidator.normalizeNumericString`, same commit. |
-| `questions.keyboard_type` honoured by the client (`none`, `standard_math`, `scientific_math`) | **next release after 2.3.2 — not yet tagged** | Older builds ignore the field and infer by subject, so declaring a keyboard older builds already infer anyway needs no gate. |
-| `X-App-Version` header; full resync on app-version change | **next release after 2.3.2 — not yet tagged** | Prerequisite for any prod exam gate to take effect. |
-| `physics`, `chemistry`, `text` keyboards | **planned — next release** | BLA-21 / BLA-58. Valid to author; `NEXT` in the tooling until tagged. `physics` (4d) and `chemistry` (4e) are both built on AMPM `dev` and emulator-verified, as is the `fitb` answer box / row label rendering of `^`/`_` markup. |
-| Extended `scientific_math` keys: all letters, `< > ; , [ ] ° ' ± ∞ ∩ ∪ !`, `Σ σ Δ Ω μ ε α β`, `ln lim nCr nPr`, sub/super mode keys | **planned — next release** | BLA-21 item 5c0 (final layout still to be designed from real Grade 12 papers). `NEXT` until tagged. |
-| `case_sensitive` flag (fitb marking skips lower-casing) | **planned — next release** | D15 / initiative 4c. Needs contracts 0.40.0 (published), backend V82 (deployed to dev), the app change (merged to `dev`, verified on the emulator). `NEXT` until the release is tagged. |
-| MathText `_{…}` / `^{…}` markup | **planned — next release** | Decision D4, BLA-21 item 5d. Recorded as `NEXT` in the tooling until the release is tagged and its number is entered here (`VER-06`). |
+| `questions.keyboard_type` honoured by the client (`none`, `standard_math`, `scientific_math`) | **2.4.0 (planned; next release after 2.3.2, not yet tagged)** | Older builds ignore the field and infer by subject, so declaring a keyboard older builds already infer anyway needs no gate. |
+| `X-App-Version` header; full resync on app-version change | **2.4.0 (planned; next release after 2.3.2, not yet tagged)** | Prerequisite for any prod exam gate to take effect. |
+| `physics`, `chemistry`, `text` keyboards | **2.4.0 (planned)** | BLA-21 / BLA-58. Valid to author; `NEXT_RELEASE` (2.4.0) in the tooling until `LATEST_RELEASED` reaches it. `physics` (4d) and `chemistry` (4e) are both built on AMPM `dev` and emulator-verified, as is the `fitb` answer box / row label rendering of `^`/`_` markup. |
+| Extended `scientific_math` keys: all letters, `< > ; , [ ] ° ' ± ∞ ∩ ∪ !`, `Σ σ Δ Ω μ ε α β`, `ln lim nCr nPr`, sub/super mode keys | **2.4.0 (planned)** | BLA-21 item 5c0 (final layout still to be designed from real Grade 12 papers). `NEXT` until tagged. |
+| `case_sensitive` flag (fitb marking skips lower-casing) | **2.4.0 (planned)** | D15 / initiative 4c. Needs contracts 0.40.0 (published), backend V82 (deployed to dev), the app change (merged to `dev`, verified on the emulator). `NEXT` until the release is tagged. |
+| MathText `_{…}` / `^{…}` markup | **2.4.0 (planned)** | Decision D4, BLA-21 item 5d. Recorded as `NEXT_RELEASE` (2.4.0) in the tooling until `LATEST_RELEASED` is bumped (`VER-06`). |
 
 A capability row marked "next release after 2.3.2" must be replaced with the real tag as soon as it
 ships (`VER-06`) — until then content depending on it cannot be given an honest number, which is
-why the tooling marks everything planned as `NEXT` (dev-only) instead of guessing a number.
+why the tooling marks everything planned as `NEXT_RELEASE` (2.4.0, dev-only until tagged).
 
 ## Known findings from the first run (2026-10-04, existing scripts)
 
