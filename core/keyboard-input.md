@@ -148,9 +148,9 @@ subscript (`Tₙ`, `log₂`). Tracked as BLA-21 (plan item 5c0): configurable ta
 (`Numbers | Symbols | Letters`) so Maths, Physics and Chemistry share one component. **Survey real DBE
 Grade 12 Maths P1/P2 papers before designing it.**
 
-**Physics** needs the letters `r v m E F n t`, `Δ Ω μ ε`, a comma and sub/superscripts; none exist.
-**Chemistry** needs subscripts/superscripts (`H₂O`, `Fe³⁺`), `→`, `⇌`, `(aq)(s)(l)(g)`; none exist
-(`DESIGN-CHEM-01` therefore keeps Chemistry typed answers to bare numerics).
+**Physics** and **Chemistry**: the released keyboards cannot type the letters `r v m E F n t`, `Δ Ω μ ε`, a comma, sub/superscripts
+(`H₂O`, `Fe³⁺`), `→`, `⇌` or `(aq)(s)(l)(g)`. The `physics` / `chemistry` keyboards (next release) can — see § Declaring a keyboard.
+Until that release is tagged, a typed answer needing them is dev-only.
 
 **Text / Afrikaans** (`text`, BLA-58) is specified, not built: QWERTY plus a second screen for
 punctuation, digits and — shown only for Afrikaans questions — `ê ë é è ô ö û ü î ï ä ŉ`. No
@@ -172,6 +172,23 @@ From `QuestionsValidator.kt` (App wins if this drifts):
   compare exactly — Chemistry formulae (`Co` ≠ `CO`) are the intended use. It is only valid on a keyboard that can type both
   cases (the scientific variants' ABC tab has a one-shot shift); the Text keyboard still has no shift, so its answers stay
   case-insensitive.
+
+## Retrofitting `keyboard_type` onto already-uploaded content
+
+**`KEYBOARD-06`** — `enforced_by: human-review`. For rows already on dev (`KEYBOARD-04` covers *new* content):
+1. **Check what the database holds.** `tools/backfill-keyboard-types.js` already wrote `standard_math` / `scientific_math` / etc. on existing rows, and
+   an upload script that never declared `keyboard_type` knows nothing about it (omitted = the database value is left alone on re-upload). Compare
+   script vs rows before assuming anything.
+2. **Edit the upload script** (the source of truth) *and* update the dev rows with a one-off fix script in the style of
+   `scripts/fix-keyboard-defects-2026-10-04.js` / `scripts/fix-keyboard-retrofit-physics-2024-2026-10-05.js`: match rows by (paper, question text), refuse any
+   row that no longer looks as expected, run `fv.analyzeQuestion` on the new row, **dry-run first**, write only the changed columns, and
+   **bump `updated_at`** (`VER-04` — clients delta-sync on it). Do not re-run the whole upload script for this: it rewrites the lesson and
+   explanation rows too.
+3. Run `validate-questions.js` per script and `derive-exam-min.js` on the exam; a `physics`/`chemistry` keyboard or `_{…}` markup makes it `next-release`.
+4. **Never push `next-release` content to prod** (`push-paper-to-prod.js` refuses it), and **do not retrofit an exam that is already live in prod**
+   with a not-yet-released feature until the release is tagged — the prod devices that already synced it would receive markup / a keyboard they cannot render.
+5. TODO (follow-up, not built): a generic `tools/set-question-keyboard-type.js` (exam + question filter → keyboard, dry-run, `updated_at` bump) would replace the
+   per-retrofit fix scripts.
 
 ## Rules
 
@@ -202,11 +219,15 @@ well-defined blank per unknown, matching the Maths precedent — not "one given 
 else blank", and not one artificial extra row per blank for its label/unit either (`KEYBOARD-02`).
 See `presentations/steps.md`. `enforced_by: human-review`
 
-**`KEYBOARD-04`** — Declare `keyboard_type` whenever subject inference would pick the wrong
-keyboard for the question — in particular every Physical Sciences (`physics`) question once the
-`physics` / `chemistry` keyboards ship (Paper 1 → `physics`, Paper 2 → `chemistry`). Until then leave
-it null on anything headed for prod. On dev you may declare planned keyboards ahead of their release
-(`KEYBOARD-05`). `enforced_by: human-review`
+**`KEYBOARD-04`** — Declare `keyboard_type` **only where subject inference would pick the wrong keyboard, or where the answer or its label
+needs something the basic keyboards cannot type** — letters, `_{…}`/`^{…}` markup, Greek, `→ ⇌ Δ`, state symbols, charges. In
+Physical Sciences (`physics`) that means: Paper 1 → `physics`, Paper 2 → `chemistry`, **but a bare-numeric answer stays on the basic
+keyboard** — declare `standard_math` (`fitb`/`fraction`) or `scientific_math` (`steps`/`equation`) explicitly, as `backfill-keyboard-types.js`
+did, so a script and its database row agree. (Decision 2026-10-05, the 2024 Nov P1/P2 retrofit: a `physics` keyboard on a number-only blank
+replaced the number pad with a bigger keyboard for no benefit.) Presentation-specific: a `fitb` with markup only in its *label* does not
+need `physics` either — labels are rendered, not typed. Until a release carries the new keyboards, content that declares them is dev-only
+(`KEYBOARD-05`). TODO (open): the 9 P1 `steps` rows of 2024 Nov are declared `physics` although their answers are bare numeric
+(`scientific_math` would satisfy this rule); decide and align. `enforced_by: human-review`
 
 **`KEYBOARD-05`** — Planned keyboards and keys (`physics`, `chemistry`, `text`, the extended
 `scientific_math` letters/symbols) are **valid to author** but content that uses them is **dev-only until the

@@ -26,6 +26,14 @@ render a blank whose custom-keyboard input count disagrees. Contract decision: *
 only**; renderer left as-is (dev scan of 1006 question docs found zero `"[]"` tokens in
 real data).*
 
+**`FITB-03`** — The `question` text may carry a **blank-slot marker**, `[]` (or `[ ]`), where the answer goes: the app
+renders it as `___` in the question stem, and the answer box appears in the row below (the `metadata` row). It is
+intended, not a leftover — the Chemistry papers use it on every typed `fitb` (`"... in g (round off to a minimum of TWO
+decimal places): []"`). It is a question-text convention only: the *metadata* blank must still be the whole element
+`"[ ]"` (`FITB-01`). A question with no marker is also fine. `enforced_by: human-review`
+*(Added 2026-10-05 from the Physical Sciences 2024 retrofit — the marker was already in the renderer contract below but no
+authoring rule or generation doc mentioned it.)*
+
 ## Answer contract
 
 **`FITB-02`** — `answer` has exactly 5 elements (`SCHEMA-ARR-01`): one correct value per
@@ -49,7 +57,7 @@ Verified against app code 2026-07-15:
   as `"___"`; FITB shows an inline "Check" button (no auto-validate — the user must
   finish typing).
 - Validation (`QuestionsValidator.kt`, FITB branch): per blank, in order;
-  case-insensitive; trims; `,`→`.`; numeric normalization (`"540"` == `"540.00"`,
+  case-insensitive **unless the question sets `case_sensitive: true`** (`SCHEMA-CS-01`); trims; `,`→`.`; numeric normalization (`"540"` == `"540.00"`,
   `"2.5"` == `"2.50"`); `|` alternatives accepted per element. User must fill **all**
   blanks — answer count must equal blank count or the result is Incorrect.
 
@@ -81,7 +89,11 @@ presentation: "fitb",
   use `fraction` presentation.
 - Only use fitb when the answer is a specific, matchable string (`DESIGN-ENG-04`);
   open-ended questions go to `multiple_choice`.
-- Write answers in standard sentence case — matching is case-insensitive.
+- Write answers in standard sentence case — matching is case-insensitive, **except** when `case_sensitive: true` is set
+  (Chemistry formulae and symbols, `Co` ≠ `CO`; needs a keyboard that can type both cases — `core/keyboard-input.md`).
+- **Label tokens and MathText.** From the next release (AMPM `dev`, e3e3fac0d) the static label tokens render `_{…}` /
+  `^{…}` markup (`"λ_{L} = "`), and — with a custom keyboard — so does the answer box. On a released build both show the
+  raw characters. Keep the *answer* itself bare numeric where it is a number (`KEYBOARD-02`).
 - **`metadata` label tokens must stay short — never restate the full `question`
   sentence.** Found live 2026-09-12 (History nov_p2 review): `FillInTheBlank.kt` renders
   its tokens in a single `Row` that **does not wrap** — a long label token either wraps

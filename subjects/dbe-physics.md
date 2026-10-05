@@ -249,8 +249,10 @@ physics content existed to expose the bug in production:
 
 - `physics` is Physical Sciences: Paper 1 = Physics, Paper 2 = Chemistry. Both resolve to the same
   keyboard from subject inference. Questions can now declare `keyboard_type` (`core/keyboard-input.md`,
-  `KEYBOARD-04`); the dedicated `physics` / `chemistry` keyboards are **planned** (BLA-21), not built —
-  until then leave it null.
+  `KEYBOARD-04`); the dedicated `physics` / `chemistry` keyboards are **built on AMPM `dev`, unreleased** (2026-10-05) —
+  declare `physics` only where an answer or label needs letters/Greek/markup (a bare-numeric answer stays `standard_math` / `scientific_math`),
+  and content that does is dev-only (`VER-05`). Trap: the keyboard's `µ` is U+00B5, whereas given text here uses Greek `μ` (U+03BC) in `μₛ`;
+  a typed symbolic answer containing µ must use U+00B5.
 - **Exam gate.** `core/app-feature-versions.md`: the *subject* gate (`min_app_version = 2.1.2` on the
   `physics` row) says nothing about individual exams. `node tools/derive-exam-min.js
   scripts/add-physics-2025-nov-*.js` derives **2.2.0** for Physics/Chemistry 2025 Nov, because

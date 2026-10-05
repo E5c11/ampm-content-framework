@@ -3,8 +3,9 @@
 **Profile:** `subjects/dbe-physics.md` · **Skeleton:** `core/upload-pipeline.md`
 (`AMPM-CONTENT-PIPELINE`) · **Rules:** `AMPM-CONTENT-SCHEMA`, `AMPM-CONTENT-DESIGN`,
 `AMPM-CONTENT-AI-EXP`, `presentations/{type}.md` per type used. `AMPM-CONTENT-MATHTEXT`
-not yet in scope for physics — still an open item in the profile, check before relying
-on it.
+covers physics (`MATHTEXT-06` published; `MATHTEXT-07`–`-11` next release, incl. which subscript
+rule applies and which fields render markup). **`AMPM-CONTENT-KEYBOARD-INPUT`** governs the
+keyboard each typed question declares (`KEYBOARD-04`) — read it before Phase 4.
 
 > Do NOT enter plan mode. Run once per lesson — which is *not* always one per exam
 > question for physics; see Phase 0. Commit after Phase 4.
@@ -67,6 +68,16 @@ PDFs (`files/`).
    for free-hand drawing or a full analysis from scratch (`DESIGN-PHYS-03`/`05`).
    `steps` is a first-class choice for numeric multi-step working, not just symbolic
    proof (its `QuestionsValidator.kt` branch now has `fitb`-style numeric tolerance).
+   **Keyboard and answer shape (`KEYBOARD-04`, `MATHTEXT-11`).** A bare-numeric typed answer
+   (the usual case — `DESIGN-PHYS-02`, unit and power of ten as static labels) declares
+   `keyboard_type: 'standard_math'` (`fitb`) or `'scientific_math'` (`steps`/`equation`). Declare
+   `'physics'` **only** where the answer needs a letter, Greek, markup or symbol the basic keyboards
+   cannot type; that makes the exam `next-release` (dev-only, `VER-05`). A number in scientific
+   notation stays a bare mantissa (`2.33`) with `" × 10⁻⁷ C"` as the label — never `2.33×10^{-7}`
+   as the answer (marking `^{…}` is exact-string). In content you intend for the next release write
+   **every subscript in typed-question given text as `_{…}`** (`F_{net}`, `V_{R1}`); `clues` and the
+   AI explanation do not render markup (`MATHTEXT-09`) — keep Unicode glyphs/parentheticals there.
+   The `question` text may end with the blank-slot marker `[]` (rendered `___`, `FITB-03`).
    **Practice-question count scales with the real sub-part count** (`DESIGN-UNI-11`) —
    check the sub-part breakdown before calling the set complete, don't default to a
    flat number; a single-item clustered part stays at ~2. Presentation variety
@@ -84,8 +95,16 @@ PDFs (`files/`).
    then upsert to dev. **Commit**
    (`[Data] Add physics <year> <paper> Q<N> lesson and questions`).
 7. **Verify** (pipeline Phase 5 checklist), plus: every numeric answer's unit is
-   present as a metadata label, not folded into the matched value; formula sheet on
+   present as a metadata label, not folded into the matched value; every typed question's
+   `keyboard_type` matches the rule above and `validate-questions.js` raises no keyboard error
+   (the physics/chemistry inventories are checked, `KEYBOARD-01`); no `_{…}` / `^{…}` in `clues`
+   or the AI explanation; formula sheet on
    every video; no `⚠` clue-leak warning left unresolved; image URLs resolve
    (`curl -o /dev/null -w "%{http_code}"`); if this lesson shares a source exam page
    with another lesson, spot-check both images show only their own content, no
    cross-lesson bleed. Update the profile's completed-papers ledger.
+
+**Retrofitting an already-uploaded paper** (keyboard or markup added after the upload): not a
+re-generation — follow `core/keyboard-input.md` `KEYBOARD-06` (edit the script, one-off dry-run-first
+fix script for the dev rows, bump `updated_at`, never push `next-release` content to prod).
+Worked example: `scripts/fix-keyboard-retrofit-physics-2024-2026-10-05.js` and its `-2-` pass.

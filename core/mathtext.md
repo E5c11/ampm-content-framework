@@ -185,3 +185,32 @@ literally there — the 2026-09-10 failure below. Plain `^` already reads fine u
 exam's minimum. The brace forms and plain `_` are `NEXT` (dev-only until the release is tagged, `VER-05`); `MATHTEXT-06`
 stays in force for anything published. When it ships, replace `NEXT` with the real version in
 `tools/lib/feature-versions.js` and `core/app-feature-versions.md` (`VER-06`) and rewrite `MATHTEXT-06`.
+
+---
+
+## Where MathText renders — and which subscript rule applies (added 2026-10-05)
+
+From the Physical Sciences 2024 retrofit (verified on the emulator, AMPM `dev`).
+
+**`MATHTEXT-09`** — `enforced_by: human-review` — **Fields that render MathText** (so `\frac`, `\sqrt`, `^`/`_` forms work in them): the
+`question` text, `metadata` (including `fitb` row labels and `steps` given rows), `multiple_choice` / `multi_select` option text, and the
+`fitb` answer box (custom keyboard only). **Fields that do NOT:** `clues` and the AI explanation (`approach`, `solution` — the AI-explanation
+sheet is a plain `Text`). Never author markup in those two; a subscript there is a Unicode glyph or the `Variable(subscript)` parenthetical
+(`MATHTEXT-06`). Consequence: a given step may read `p_{f}` while the matching solution reads `p(f)` — that is expected, not a defect.
+A `fitb` row label only renders markup from the next release (AMPM `dev` e3e3fac0d; before it a label such as `λ_{L} =` showed raw `_{L}`).
+
+**`MATHTEXT-10`** — `enforced_by: human-review` — **Scripts inside `\frac{…}{…}` and `\sqrt{…}` are supported** (the parser descends into their
+arguments; `\frac{v}{λ_{L}}` and `\frac{V_{R1}}{I}` verified on a device).
+
+**`MATHTEXT-11`** — `enforced_by: human-review` — **Which subscript rule applies (precedence of `MATHTEXT-06` vs `-07`):**
+- **New content** for an exam that will be dev-only / `next-release` anyway (it declares a `physics`/`chemistry` keyboard or uses any other `NEXT` feature):
+  write **every subscript in typed-question given text as `_{…}`** — one rule, renders consistently, and covers multi-letter subscripts
+  (`net`, `R1`) that Unicode cannot (`Fₙₑₜ` works but `p_f` / `V_R1` do not exist as glyphs).
+- **Content that must work on a released build** keeps `MATHTEXT-06` (Unicode glyph, else `Variable(subscript)`): a released build prints `_{…}` literally.
+- **Unicode subscripts stay valid** in any question that needs no markup, and **are not mass-converted**: published prod content cannot render markup and
+  conversion is churn. Only convert a Unicode subscript when it sits on the **same line** (same `metadata` element / same string) as a `_{…}` you add, so no
+  line mixes `pᵢ` with `p_{f}`.
+- Parenthetical qualifiers that were never subscripts (`Eₖ(max)`, `m(Zn)`, `c(Na₂CO₃)`) stay as they are.
+- **Answers:** a number stays a bare mantissa (`2.33`) with the power of ten in the given label (`" × 10⁻⁷ C"`) — marking a number is numeric-tolerant, marking
+  `^{…}` markup is canonical-string only. Use `^{…}` / `_{…}` in an *answer* only for a symbolic / exact-string answer (a formula, a charge, a unit).
+- TODO (open): when the release is tagged, `MATHTEXT-06` is rewritten (`VER-06`); decide then whether existing Unicode-subscript content is converted.

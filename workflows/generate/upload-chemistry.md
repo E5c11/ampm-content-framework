@@ -3,10 +3,11 @@
 **Profile:** `subjects/dbe-chemistry.md` · **Skeleton:** `core/upload-pipeline.md`
 (`AMPM-CONTENT-PIPELINE`) · **Rules:** `AMPM-CONTENT-SCHEMA`, `AMPM-CONTENT-DESIGN`,
 `AMPM-CONTENT-AI-EXP`, `presentations/{type}.md` per type used. `AMPM-CONTENT-MATHTEXT`
-already extended to `subject: "physics"` (covers Chemistry's given-text rendering — no
-open item here, unlike physics's own doc). **`DESIGN-CHEM-01`** (the profile's keyboard
-constraint) governs every question's presentation choice below — read the profile's
-"Keyboard constraint" section before Phase 3, not during it.
+already extended to `subject: "physics"` (covers Chemistry's given-text rendering;
+`MATHTEXT-09`–`-11` say which fields render markup and which subscript rule applies).
+**`DESIGN-CHEM-01`** (the profile's keyboard constraint) and **`core/keyboard-input.md`**
+(`KEYBOARD-04`, the `chemistry` keyboard's inventory) together govern every question's
+presentation and keyboard choice below — read both before Phase 3, not during it.
 
 > Do NOT enter plan mode. Run once per lesson. Commit after Phase 4.
 
@@ -36,9 +37,13 @@ Nov 2025 Eng.pdf`, `files/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf`).
 1. **Analyse** (pipeline Phase 1): curriculum unit/topic/subtopic per the profile's
    curriculum-units section — reuse before creating (`PIPE-08`). For each real
    sub-question, decide up front (feeds both Phase 3 and Phase 2):
-   - **Typeable or not** (`DESIGN-CHEM-01`) — bare-numeric calc, or does the real answer
-     need a structural formula / IUPAC name / equation / subscript / charge? That
-     decides the presentation family before you draft anything.
+   - **Typeable or not** — bare-numeric calc (→ typed blank on the basic keyboard), a
+     formula / equation / charge / state symbol (typeable **only on the `chemistry` keyboard**,
+     next release, so dev-only — see Phase 4), or a structural formula (never typed — an image;
+     identify it with `multiple_choice`/`match`)? That decides the presentation family before
+     you draft anything. TODO (open, owner decision): do new Chemistry papers default to the
+     release-bound track (`DESIGN-CHEM-01` unchanged: typed blanks bare-numeric) or the
+     next-release track (typed formulae allowed)? Until decided, use the release-bound track.
    - **Content-based or procedural** (profile's "Subject rules", first bullet) — Organic
      Molecules naming/classification (Q1.1–1.3, Q2, Q3) is fixed-fact: needs
      `DESIGN-UNI-08` relational framing, not a reworded compound, or a student who
@@ -75,10 +80,24 @@ Nov 2025 Eng.pdf`, `files/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf`).
 4. **Questions** (pipeline Phase 3): fresh scenarios per `DESIGN-UNI-01`, with
    `DESIGN-UNI-08` relational framing **required, not optional**, for the content-based
    sub-parts flagged in Phase 1. `DESIGN-CHEM-01` gates presentation choice for every
-   question: no typed blank (`fitb`/`equation`/`steps`) may require a letter beyond
-   `x`/`y`/`θ` or a subscript/charge — use `multiple_choice`/`multi_select`/`match`/
-   `ordering` instead, and present structural formulas as given images, never as typed
-   or MathText content. Reserve typed blanks for genuinely bare-numeric answers only.
+   question on the **release-bound track**: no typed blank (`fitb`/`equation`/`steps`) may
+   require a letter beyond `x`/`y`/`θ` or a subscript/charge — use `multiple_choice`/
+   `multi_select`/`match`/`ordering` instead, and present structural formulas as given
+   images, never as typed content. Reserve typed blanks for bare-numeric answers.
+   **Keyboard declaration (`KEYBOARD-04`).** A bare-numeric blank declares
+   `keyboard_type: 'standard_math'` (`fitb`) / `'scientific_math'` (`steps`). A blank whose answer
+   or label needs the `chemistry` keyboard (formula, charge, state symbol, `→ ⇌`) declares
+   `keyboard_type: 'chemistry'`, which makes the exam `next-release` (dev-only, `VER-05`).
+   On that keyboard store answers as markup with **no spaces** (`H_{2}O`, `Fe^{3+}`,
+   `SO_{4}^{2-}`, `NaCl(aq)`, `HCℓ` with U+2113) and set **`case_sensitive: true`** on every
+   `fitb` formula/symbol answer (`Co` ≠ `CO`, `SCHEMA-CS-01`); numeric and word answers leave it
+   off. `case_sensitive` has no effect on `steps`/`equation` (already case-sensitive). With
+   `|` alternatives, each alternative is compared exactly, so list every accepted spelling
+   (e.g. with and without a state symbol). TODO (unverified): which spellings of a full
+   equation are accepted and whether `→` must be typed — decide from the first typed-equation
+   question before writing guidance. Numbers in scientific notation stay a bare mantissa with the
+   power of ten in the label (`MATHTEXT-11`). The `question` text ends with the blank-slot marker
+   `[]` (rendered `___`, the answer box below it — `FITB-03`); this is intended.
    Numeric answers: unit as a static `fitb` label, never folded into the matched value
    (`DESIGN-PHYS-02` pattern, same split here); round to the paper's own instruction
    (minimum two decimal places). Graphs (concentration-vs-time, Maxwell-Boltzmann)
@@ -115,8 +134,14 @@ Nov 2025 Eng.pdf`, `files/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf`).
    unresolved, and no two questions in the same lesson testing the same fact from the
    same angle; every non-bare-numeric question uses `multiple_choice`/`multi_select`/
    `match`/`ordering`, never a typed blank needing a letter beyond `x`/`y`/`θ` or a
-   subscript/charge (`DESIGN-CHEM-01` spot check); structural-formula images present
+   subscript/charge (`DESIGN-CHEM-01` spot check, release-bound track); every typed
+   question's `keyboard_type` follows `KEYBOARD-04` and `validate-questions.js` raises no
+   keyboard error; every formula/symbol `fitb` answer sets `case_sensitive: true`; structural-formula images present
    wherever the source paper draws one; image URLs resolve
    (`curl -o /dev/null -w "%{http_code}"`); if this lesson shares a source exam page
    with another (Q1's 5-way split), spot-check both images show only their own content.
    Update `subjects/dbe-chemistry.md`'s Completed papers ledger (currently empty).
+
+**Retrofitting an already-uploaded paper**: `core/keyboard-input.md` `KEYBOARD-06` (not a re-generation; a
+`chemistry` keyboard or markup makes the exam `next-release`, and an exam already live in prod is not
+retrofitted before the release is tagged). Worked example: `scripts/fix-keyboard-retrofit-physics-2024-2026-10-05.js`.
