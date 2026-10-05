@@ -174,8 +174,9 @@ none using an underscore.
 `n` and print `et` at full size (`Fₙet`, confirmed on the emulator). Write `F_{net}`. The validator errors on `_` followed
 by two or more letters in `maths` / `math_lit` / `physics` text.
 
-**Typed answers.** The answer input renders the same forms while typing in the equation/steps input. A plain **`fitb`**
-box is an ordinary text field and shows the raw characters (`5^x`) — a known gap, not rendered. Marking compares a
+**Typed answers.** The answer input renders the same forms while typing in the equation/steps input, **and in a `fitb` box when a
+custom keyboard is active** (AMPM `dev`, unreleased: `5^x`, `H_{2}O`, `Fe^{3+}` are drawn raised/lowered; answers with no `^`/`_`
+look exactly as before). On a released build a `fitb` box is a plain text field and shows the raw characters. Marking compares a
 **canonical** spelling of both sides: `^{x}` and `^x` become `^x`; `^{n-1}`, `^(n-1)` and `^(n−1)` become `^{n-1}`; the same
 for `_`; U+2212 becomes `-` inside scripts (`canonicalizeScripts`). So `5^x` equals `5^{x}` and `x^(n-1)` equals `x^{n-1}`.
 
