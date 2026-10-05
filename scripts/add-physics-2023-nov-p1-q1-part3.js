@@ -77,6 +77,7 @@ const questions = [
     metadata: ['V = ', '[ ]', ' V'],
     answer: ['9', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'interpretation',
     unit: 'electricity_magnetism', topic: 'electric_circuits', subtopic: 'series_parallel_combination',
     skills: ['circuit_analysis', 'terminal_voltage'],

@@ -77,6 +77,7 @@ const questions = [
     metadata: ['fₛ = ', '[ ]', ' N'],
     answer: ['49.70', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'mechanics', topic: 'newtons_laws', subtopic: 'static_friction',
     skills: ['static_friction', 'force_components', 'force_balance'],

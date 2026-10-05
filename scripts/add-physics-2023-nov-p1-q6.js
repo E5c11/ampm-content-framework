@@ -81,6 +81,7 @@ const questions = [
     ],
     answer: ['340'],
     presentation: 'steps',
+    keyboard_type: 'scientific_math',
     type: 'calc',
     unit: 'waves_sound_light', topic: 'doppler_effect', subtopic: 'doppler_effect_experiment',
     skills: ['speed_of_sound_calculation', 'doppler_effect_calculation'],

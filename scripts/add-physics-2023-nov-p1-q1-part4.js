@@ -71,6 +71,7 @@ const questions = [
     metadata: ['W₀ = ', '[ ]', ' × 10⁻¹⁹ J'],
     answer: ['7.96|7.956', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'matter_materials', topic: 'optical_phenomena', subtopic: 'photoelectric_effect_threshold',
     skills: ['work_function', 'threshold_frequency', 'photon_energy_calculation'],
