@@ -104,7 +104,7 @@ const questions = [
     ],
     answer: ['7.18'],
     presentation: 'steps',
-    keyboard_type: 'physics',
+    keyboard_type: 'scientific_math',
     type: 'calc',
     unit: 'matter_materials', topic: 'optical_phenomena', subtopic: 'photoelectric_effect_threshold',
     skills: ['work_function', 'photon_energy_calculation', 'photoelectric_effect'],

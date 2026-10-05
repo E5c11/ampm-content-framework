@@ -141,7 +141,7 @@ const questions = [
     ],
     answer: ['8.17'],
     presentation: 'steps',
-    keyboard_type: 'physics',
+    keyboard_type: 'scientific_math',
     type: 'calc',
     unit: 'electricity_magnetism', topic: 'electrostatics', subtopic: 'coulombs_law',
     skills: ['coulombs_law', 'inverse_square_relationship'],

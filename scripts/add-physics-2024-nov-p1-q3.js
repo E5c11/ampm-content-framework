@@ -66,7 +66,7 @@ const questions = [
     ],
     answer: ['3.75'],
     presentation: 'steps',
-    keyboard_type: 'physics',
+    keyboard_type: 'scientific_math',
     type: 'calc',
     unit: 'mechanics', topic: 'vertical_projectile_motion', subtopic: 'projectile_motion_calculations',
     skills: ['kinematics_equations', 'time_calculation', 'free_fall'],

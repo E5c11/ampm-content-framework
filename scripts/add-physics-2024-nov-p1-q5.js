@@ -104,7 +104,7 @@ const questions = [
     ],
     answer: ['33.10'],
     presentation: 'steps',
-    keyboard_type: 'physics',
+    keyboard_type: 'scientific_math',
     type: 'calc',
     unit: 'mechanics', topic: 'work_energy_power', subtopic: 'work_energy_theorem_applications',
     skills: ['work_energy_theorem', 'work_calculation', 'net_work'],

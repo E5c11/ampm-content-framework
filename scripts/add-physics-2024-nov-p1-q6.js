@@ -122,7 +122,7 @@ const questions = [
     ],
     answer: ['27.20'],
     presentation: 'steps',
-    keyboard_type: 'physics',
+    keyboard_type: 'scientific_math',
     type: 'calc',
     unit: 'waves_sound_light', topic: 'doppler_effect', subtopic: 'doppler_effect_calculations',
     skills: ['doppler_effect_calculation', 'wave_speed_frequency_relationship'],

@@ -136,7 +136,7 @@ const questions = [
     ],
     answer: ['2.38'],
     presentation: 'steps',
-    keyboard_type: 'physics',
+    keyboard_type: 'scientific_math',
     type: 'calc',
     unit: 'mechanics', topic: 'momentum_impulse', subtopic: 'conservation_of_momentum',
     skills: ['momentum_calculation', 'momentum'],

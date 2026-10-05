@@ -141,7 +141,7 @@ const questions = [
     ],
     answer: ['2.72'],
     presentation: 'steps',
-    keyboard_type: 'physics',
+    keyboard_type: 'scientific_math',
     type: 'calc',
     unit: 'mechanics', topic: 'newtons_laws', subtopic: 'net_force_acceleration',
     skills: ['newtons_second_law', 'kinetic_friction', 'net_force'],
