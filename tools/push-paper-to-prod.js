@@ -59,7 +59,7 @@ const PUBLISH = hasFlag('publish');
 
 if (!subject || !year || !paper) {
   console.error(
-    'Usage: node tools/push-paper-to-prod.js --subject <s> --year <y> --paper <p> [--dry-run] [--publish]',
+    'Usage: node tools/push-paper-to-prod.js --subject <s> --year <y> --paper <p> [--dry-run] [--publish] [--allow-partial-exam]',
   );
   process.exit(1);
 }
@@ -175,9 +175,10 @@ async function main() {
   const questions = questionsRes.rows;
 
   // ── dev-only guard (runs before ANY prod write) ──
-  // Content that depends on a planned capability (physics/chemistry/text keyboard, the extra Maths
-  // keys, sub/superscript markup — tools/lib/feature-versions.js NEXT) must not reach prod until
-  // that release is tagged and its version is recorded (core/app-feature-versions.md VER-05).
+  // Content that needs an app version above LATEST_RELEASED (the physics/chemistry/text keyboards, the extra Maths
+  // keys, sub/superscript markup — tools/lib/feature-versions.js NEXT_RELEASE) must not reach prod until that release
+  // is tagged and LATEST_RELEASED is bumped (core/app-feature-versions.md VER-05/VER-06). The gate is per EXAM, so the
+  // check is twice: this paper's rows, and every sibling paper of the same exam in dev.
   {
     const fv = require('./lib/feature-versions');
     const planned = [];
@@ -188,11 +189,22 @@ async function main() {
         answer: q.answer, question: q.question, metadata: q.metadata,
       });
       if (fv.dependsOnNext(requires)) {
-        planned.push(`${q.name} (${requires.filter((r) => r.version === fv.NEXT).map((r) => r.reason).join('; ')})`);
+        planned.push(`${q.name} (${requires.filter((r) => fv.isUnreleased(r.version)).map((r) => `${r.version}: ${r.reason}`).join('; ')})`);
       }
     }
     if (planned.length > 0) {
-      throw new Error(`${planned.length} question(s) depend on a capability planned for the next release — dev-only until it is tagged (VER-05). Not pushing to prod:\n  ${planned.slice(0, 8).join('\n  ')}${planned.length > 8 ? `\n  … and ${planned.length - 8} more` : ''}`);
+      throw new Error(`${planned.length} question(s) need an app version above the latest released ${fv.LATEST_RELEASED} — dev-only until it is tagged and LATEST_RELEASED is bumped (VER-05). Not pushing to prod:\n  ${planned.slice(0, 8).join('\n  ')}${planned.length > 8 ? `\n  … and ${planned.length - 8} more` : ''}`);
+    }
+    const { deriveExams, examPushDecision } = require('./lib/exam-gate');
+    const sess = (await dev.query('SELECT session FROM papers WHERE id = $1', [paper])).rows[0]?.session;
+    const [exam] = sess ? await deriveExams(dev, { subject, syllabus: lessons[0].syllabus_id, year, session: sess }) : [];
+    if (exam) {
+      // Which papers of this exam are already in prod (read-only).
+      const pr = await prod.query(
+        'SELECT DISTINCT l.paper_id FROM lessons l WHERE l.subject_id = $1 AND l.year_id = $2 AND NOT l.is_deleted', [subject, year]);
+      const d = examPushDecision({ exam, paper, prodPapers: new Set(pr.rows.map((r) => r.paper_id)), allowPartial: process.argv.includes('--allow-partial-exam') });
+      console.log(d.report.join('\n') + '\n');
+      if (d.decision === 'refuse') throw new Error(`Not pushing ${subject}/${year}/${paper} to prod:\n  ${d.reasons.join('\n  ')}`);
     }
   }
   const questionIds = questions.map((q) => q.id);

@@ -9,7 +9,7 @@
  * Prints the per-script minimums that raise the exam above the floor, then the exam's result,
  * then the command that applies it. Exit 1 only if a script fails validation. Planned capabilities
  * (the physics/chemistry/text keyboards, the extra Maths keys, sub/superscript markup) are valid:
- * they make the exam's minimum `next-release`, meaning DEV ONLY until that release is tagged.
+ * they make the exam's minimum the next release's version (NEXT_RELEASE), meaning DEV ONLY until it is tagged.
  */
 
 'use strict';
@@ -37,10 +37,10 @@ for (const file of files) {
     exitCode = 1;
     continue;
   }
-  const v = m[1] === 'next-release' ? fv.NEXT : m[1];
+  const v = m[1];
   versions.push(v);
-  if (v === fv.NEXT || fv.versionCode(v) > fv.versionCode(fv.FLOOR)) {
-    raisers.push(`${v === fv.NEXT ? 'next-release' : v}  ${path.basename(file)}`);
+  if (fv.versionCode(v) > fv.versionCode(fv.FLOOR)) {
+    raisers.push(`${v}  ${path.basename(file)}`);
   }
 }
 
@@ -49,15 +49,13 @@ const exam = fv.maxVersion(...versions);
 
 console.log(`Scripts checked: ${versions.length}/${files.length}`);
 for (const line of raisers) console.log(`  raises the minimum: ${line}`);
-if (exam === fv.NEXT) {
-  console.log('\nExam minimum app version: next-release — depends on planned capabilities (version set when tagged).');
-  console.log('DEV ONLY: do not push this exam to prod, and do not gate it, until that release is tagged and the');
-  console.log('real version replaces `NEXT` in tools/lib/feature-versions.js + core/app-feature-versions.md (VER-06).');
-} else {
-  console.log(`\nExam minimum app version: ${exam}${exam === fv.FLOOR ? ' (the Spring floor — no gate needed)' : ''}`);
-  if (exam !== fv.FLOOR) {
-    console.log('Apply (dry run first, no --apply):');
-    console.log(`  node tools/set-exam-gate.js --env dev --subject <id> --year <YYYY> --session <june|november> --min ${exam}`);
-  }
+console.log(`\nExam minimum app version: ${exam}${exam === fv.FLOOR ? ' (the Spring floor — no gate needed)' : ''}`);
+if (fv.isUnreleased(exam)) {
+  console.log(`UNRELEASED (latest released is ${fv.LATEST_RELEASED}): DEV ONLY — do not push this exam to prod until ${exam} is tagged and`);
+  console.log('LATEST_RELEASED in tools/lib/feature-versions.js is bumped (VER-06).');
+}
+if (exam !== fv.FLOOR) {
+  console.log('Gate it on dev (derives from the database rows; dry run first, then --apply):');
+  console.log('  node tools/apply-exam-gate.js --env dev --subject <id> --year <YYYY> --session <june|november>');
 }
 process.exit(exitCode);

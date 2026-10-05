@@ -464,11 +464,11 @@ if (scriptPath) {
   const allReq = results.flatMap(r => r.requires || []);
   const derived = fv.maxVersion(...allReq.map(r => r.version));
   console.log('');
-  if (derived === fv.NEXT) {
-    const planned = [...new Set(allReq.filter(r => r.version === fv.NEXT).map(r => r.reason))];
-    console.log(`  Derived minimum app version: next-release (planned capability — version set when tagged)`);
+  if (fv.isUnreleased(derived)) {
+    const planned = [...new Set(allReq.filter(r => fv.isUnreleased(r.version)).map(r => r.reason))];
+    console.log(`  Derived minimum app version: ${derived} (unreleased — latest released is ${fv.LATEST_RELEASED})`);
     console.log(`    - depends on: ${planned.join('; ')}`);
-    console.log(`    DEV ONLY until that release is tagged (core/app-feature-versions.md VER-05) — do not push to prod.`);
+    console.log(`    DEV ONLY until ${derived} is tagged (core/app-feature-versions.md VER-05) — do not push to prod. Gate the exam: node tools/apply-exam-gate.js --env dev ...`);
   } else {
     console.log(`  Derived minimum app version: ${derived}${derived === fv.FLOOR ? ' (the Spring floor — no gate needed)' : ''}`);
     const raising = allReq.filter(r => fv.versionCode(r.version) > fv.versionCode(fv.FLOOR));
@@ -476,7 +476,7 @@ if (scriptPath) {
       console.log(`    - needs ${r.version}: ${r.reason}`);
     }
     if (derived !== fv.FLOOR) {
-      console.log(`    Gate the exam: node tools/set-exam-gate.js ... --min ${derived} (core/app-feature-versions.md)`);
+      console.log(`    Gate the exam: node tools/apply-exam-gate.js --env dev --subject <id> --year <YYYY> --session <june|november> (derives and writes it; core/app-feature-versions.md)`);
     }
   }
 

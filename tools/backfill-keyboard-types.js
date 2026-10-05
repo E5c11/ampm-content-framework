@@ -150,7 +150,7 @@ async function main() {
   const examRows = [...exams.entries()].map(([k, e]) => {
     const derived = fv.maxVersion(...e.requires.map((r) => r.version));
     const raising = [...new Map(e.requires
-      .filter((r) => r.version === fv.NEXT || fv.versionCode(r.version) > fv.versionCode(fv.FLOOR))
+      .filter((r) => fv.versionCode(r.version) > fv.versionCode(fv.FLOOR))
       .map((r) => [r.reason, r])).values()];
     return { key: k, ...e, derived, raising, existing: examVersions.get(k) ?? null, subjectGate: subjectGates.get(e.subject) ?? null };
   }).sort((a, b) => a.key.localeCompare(b.key));
@@ -180,13 +180,13 @@ async function main() {
   let needGate = 0;
   for (const e of examRows) {
     const label = `${e.subject} ${e.year} ${e.session}`;
-    const derivedTxt = e.derived === fv.NEXT ? 'next-release' : e.derived;
-    const raises = e.derived === fv.NEXT || fv.versionCode(e.derived) > fv.versionCode(fv.FLOOR);
+    const derivedTxt = e.derived;
+    const raises = fv.versionCode(e.derived) > fv.versionCode(fv.FLOOR);
     if (!raises && e.existing === null && e.errors.length === 0) continue;
     if (raises) needGate += 1;
     console.log(`  ${label.padEnd(26)} derived ${String(derivedTxt).padEnd(12)} existing gate ${String(e.existing ?? '-').padEnd(7)} subject gate ${e.subjectGate ?? '-'}`);
-    for (const r of e.raising.slice(0, 4)) console.log(`      needs ${r.version === fv.NEXT ? 'next-release' : r.version}: ${r.reason}`);
-    if (raises && e.derived !== fv.NEXT) {
+    for (const r of e.raising.slice(0, 4)) console.log(`      needs ${r.version}: ${r.reason}`);
+    if (raises && !fv.isUnreleased(e.derived)) {
       const sg = e.subjectGate;
       if (sg && fv.versionCode(sg) < fv.versionCode(e.derived)) console.log(`      NOTE: subject gate ${sg} is below the exam's ${derivedTxt} — builds in between get this exam but can't answer part of it.`);
       console.log(`      node tools/set-exam-gate.js --env ${env} --subject ${e.subject} --syllabus ${e.syllabus} --year ${e.year} --session ${e.session} --min ${e.derived}`);

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sets, changes or clears the per-EXAM minimum app version — one `exam_versions` row per
+ * Sets, changes or clears the per-EXAM minimum app version (MANUALLY — normally `apply-exam-gate.js` derives and writes it) — one `exam_versions` row per
  * (subject, syllabus, year, session), so every paper of a sitting is gated together (D6: a student
  * must never see Paper 3 without Papers 1 and 2).
  *
@@ -27,7 +27,8 @@
 'use strict';
 
 const { getPool, closePool } = require('./lib/postgres');
-const { versionCode } = require('./lib/feature-versions');
+const { versionCode, isUnreleased, LATEST_RELEASED } = require('./lib/feature-versions');
+const { writeExamGate } = require('./lib/exam-gate');
 
 const args = process.argv.slice(2);
 const flag = (n) => { const i = args.indexOf(n); return i !== -1 ? args[i + 1] : null; };
@@ -51,10 +52,10 @@ function usage(msg) {
 if (!subject || !year || !session) usage('--subject, --year and --session are required');
 if (!min && !clear) usage('give --min <x.y.z> or --clear');
 if (min && clear) usage('--min and --clear are mutually exclusive');
-if (min === 'next') usage('--min next is not a version: the exam depends on a capability planned for the next release, so it is dev-only. Tag the release, record its number in tools/lib/feature-versions.js, then gate with that.');
 if (min && versionCode(min) === null) usage(`--min "${min}" is not major.minor.patch`);
 if (!['dev', 'prod'].includes(env)) usage('--env must be dev or prod');
 if (env === 'prod' && !has('--i-know-this-is-prod')) usage('prod changes need --i-know-this-is-prod (owner-gated)');
+if (env === 'prod' && min && isUnreleased(min)) usage(`${min} is above the latest released version ${LATEST_RELEASED} (tools/lib/feature-versions.js) — content for unreleased builds does not go to prod; tag the release and bump LATEST_RELEASED first.`);
 
 const EXAM = [subject, syllabus, year, session];
 const EXAM_WHERE = (alias) =>
@@ -100,30 +101,9 @@ async function main() {
     return;
   }
 
-  const client = await pool.connect();
-  try {
-    await client.query('BEGIN');
-    if (clear) {
-      await client.query('DELETE FROM exam_versions WHERE subject_id=$1 AND syllabus_id=$2 AND year_id=$3 AND session=$4', EXAM);
-    } else {
-      await client.query(
-        `INSERT INTO exam_versions (subject_id, syllabus_id, year_id, session, min_app_version)
-              VALUES ($1,$2,$3,$4,$5)
-         ON CONFLICT (subject_id, syllabus_id, year_id, session)
-         DO UPDATE SET min_app_version = EXCLUDED.min_app_version, updated_at = now()`, [...EXAM, min]);
-    }
-    const l = await client.query(
-      `UPDATE lessons l SET updated_at = now() FROM papers p WHERE p.id = l.paper_id AND ${EXAM_WHERE('l')}`, EXAM);
-    const q = await client.query(
-      `UPDATE questions q SET updated_at = now() FROM papers p WHERE p.id = q.paper_id AND ${EXAM_WHERE('q')}`, EXAM);
-    await client.query('COMMIT');
-    console.log(`\nApplied. Gate ${clear ? 'cleared' : `set to ${min}`}; bumped updated_at on ${l.rowCount} lessons and ${q.rowCount} questions.`);
-  } catch (e) {
-    await client.query('ROLLBACK');
-    throw e;
-  } finally {
-    client.release();
-  }
+  const exam = { subject, syllabus, year, session };
+  const w = await writeExamGate(pool, exam, clear ? null : min);
+  console.log(`\nApplied. Gate ${clear ? 'cleared' : `set to ${min}`}; bumped updated_at on ${w.lessons} lessons and ${w.questions} questions.`);
 }
 
 main().catch((e) => { console.error(e.message); process.exitCode = 1; }).finally(closePool);

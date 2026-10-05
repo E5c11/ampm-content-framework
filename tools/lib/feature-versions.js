@@ -12,19 +12,25 @@
  *
  * PLANNED capabilities (the physics / chemistry / text keyboards, the extra Maths keys, MathText
  * sub/superscript markup — everything in AMPM `plan/active/question-keyboards-and-exam-version-
- * gating.md`) are treated as AVAILABLE for authoring: they validate. Their `since` is `NEXT`,
- * "the next release, version not known until it is tagged". Content that depends on any of them
- * is DEV-ONLY until that release is tagged and the real version replaces `NEXT` here and in
- * `core/app-feature-versions.md` (`VER-05`/`VER-06`). `push-paper-to-prod.js` refuses to copy such
- * content to prod; `set-exam-gate.js` refuses `--min next`.
+ * gating.md`) are treated as AVAILABLE for authoring: they validate. Their `since` is `NEXT_RELEASE`
+ * ('2.4.0', the version the next release will carry). Content that depends on any of them is DEV-ONLY
+ * while its derived minimum is above `LATEST_RELEASED`: `push-paper-to-prod.js` refuses to copy it to
+ * prod and `set-exam-gate.js` only writes it to prod once it is <= `LATEST_RELEASED`. When a release is
+ * tagged, bump `LATEST_RELEASED` (the single place) — see `core/app-feature-versions.md` `VER-06`.
  */
 
 // First Spring-backend build (`pre-2.0.0` builds read Firestore and never see Spring content),
 // and the version the backend assumes for a request with no `X-App-Version` header.
 const FLOOR = '2.0.0';
 
-// "The next release" — a planned capability whose version number is not known until it is tagged.
-const NEXT = 'next';
+// The version the next release will carry (version.properties is 2.3.3; the release is dispatched as a `minor`
+// bump). Planned capabilities have `since = NEXT_RELEASE`. `NEXT` is kept as an alias for older call sites.
+const NEXT_RELEASE = '2.4.0';
+const NEXT = NEXT_RELEASE;
+
+// The newest app version that has actually been RELEASED (tagged). THE ONE PLACE to bump when a release is tagged
+// (VER-06): content whose derived minimum is above this is dev-only — prod push and prod gates refuse it.
+const LATEST_RELEASED = '2.3.2';
 
 // ---------------------------------------------------------------------------
 // Version helpers (same major*1_000_000 + minor*1_000 + patch code the backend stores)
@@ -35,9 +41,9 @@ function versionCode(v) {
   return m ? Number(m[1]) * 1_000_000 + Number(m[2]) * 1_000 + Number(m[3]) : null;
 }
 
-const rank = (v) => (v === NEXT ? Infinity : versionCode(v));
+const rank = (v) => versionCode(v);
 
-/** Highest of the given versions; `NEXT` outranks every concrete version. */
+/** Highest of the given versions (never below the floor). */
 function maxVersion(...versions) {
   let best = FLOOR;
   for (const v of versions) {
@@ -85,8 +91,8 @@ const KEYBOARD_CHARS = {
     // one-shot shift for A-Z, plus the sin/cos/tan/log function keys). Everything else the old inventory listed
     // here ([ ] ' ∩ ∪ Σ σ Ω μ ε α β _ { }, ln lim nCr nPr x-bar) is NOT on this keyboard — the Physics/Chemistry
     // variants (4d/4e) will own the sub/superscript keys and Greek letters.
-    ...chars(';<>,!°∠Δ∞→±', NEXT),
-    ...chars(LATIN.replace(/[xy]/g, '') + LATIN.toUpperCase(), NEXT),
+    ...chars(';<>,!°∠Δ∞→±', NEXT_RELEASE),
+    ...chars(LATIN.replace(/[xy]/g, '') + LATIN.toUpperCase(), NEXT_RELEASE),
   },
 
   // Legacy subject-inferred English keyboard (QWERTY + apostrophe + space; keys emit upper case,
@@ -95,8 +101,8 @@ const KEYBOARD_CHARS = {
 
   // PLANNED (BLA-58): QWERTY + second screen — digits, punctuation, and (Afrikaans only) accents.
   text: {
-    ...chars(LATIN + LATIN.toUpperCase() + DIGITS + ' .,;:!?\'"-()/&%', NEXT),
-    ...chars('êëéèôöûüîïäŉÊËÉÈÔÖÛÜÎÏÄ', NEXT),
+    ...chars(LATIN + LATIN.toUpperCase() + DIGITS + ' .,;:!?\'"-()/&%', NEXT_RELEASE),
+    ...chars('êëéèôöûüîïäŉÊËÉÈÔÖÛÜÎÏÄ', NEXT_RELEASE),
   },
   // PLANNED (initiative 4d, merged to AMPM `dev`, unreleased): the Physics variant of ScientificKeyboard.
   // Numbers tab = Maths (digits . + - × ÷ ( ) = ;); Symbols `Δ θ µ ε Ω / ° ± · × ÷ / < > √ α β / x₂ xⁿ λ ρ σ`
@@ -104,10 +110,10 @@ const KEYBOARD_CHARS = {
   // sin/cos/tan/log keys. The x₂ / xⁿ keys emit the `_{…}` / `^{…}` markup, so `_ ^ { }` are typeable as a group
   // (groups are flat — nesting is rejected by the keyboard).
   physics: {
-    ...chars(DIGITS + '.+-×÷()=;', NEXT),
-    ...chars('Δθ\u00b5εΩ°±\u00b7<>√αβλρσ', NEXT),
-    ...chars(LATIN + LATIN.toUpperCase(), NEXT),
-    ...chars('^_{}', NEXT),
+    ...chars(DIGITS + '.+-×÷()=;', NEXT_RELEASE),
+    ...chars('Δθ\u00b5εΩ°±\u00b7<>√αβλρσ', NEXT_RELEASE),
+    ...chars(LATIN + LATIN.toUpperCase(), NEXT_RELEASE),
+    ...chars('^_{}', NEXT_RELEASE),
   },
   // PLANNED (initiative 4e, merged to AMPM `dev`, unreleased): the Chemistry variant of ScientificKeyboard. Numbers and
   // ABC are the Maths ones (so `+ -` are the charge keys, `( ) [` come from Numbers / Formula); Formula tab
@@ -115,10 +121,10 @@ const KEYBOARD_CHARS = {
   // `·` U+00B7. The mode keys emit `_{…}` / `^{…}` (flat groups). The state symbols are whole-token keys, but each is also
   // just its characters, which are all on the ABC/Formula tabs, so they need no token entry.
   chemistry: {
-    ...chars(DIGITS + '.+-×÷()=;', NEXT),
-    ...chars('→⇌Δℓ[]\u00b7°,', NEXT),
-    ...chars(LATIN + LATIN.toUpperCase(), NEXT),
-    ...chars('^_{}', NEXT),
+    ...chars(DIGITS + '.+-×÷()=;', NEXT_RELEASE),
+    ...chars('→⇌Δℓ[]\u00b7°,', NEXT_RELEASE),
+    ...chars(LATIN + LATIN.toUpperCase(), NEXT_RELEASE),
+    ...chars('^_{}', NEXT_RELEASE),
   },
 };
 
@@ -155,7 +161,7 @@ function alternativesOf(answer) {
 }
 
 /**
- * One alternative on one keyboard: the minimum version at which it's fully typeable (`NEXT` if it
+ * One alternative on one keyboard: the minimum version at which it's fully typeable (`NEXT_RELEASE` if it
  * needs a planned key), and `missing` = the first character that is not on the keyboard at all
  * (then `version` is null).
  */
@@ -219,8 +225,8 @@ const MATHTEXT_SUBJECTS = new Set(['maths', 'math_lit', 'physics']);
 // Sub/superscript MathText markup (`_{..}` / `^{..}`) — decision D4, planned for the next release
 // (BLA-21 item 5d). Valid to author; dev-only until tagged.
 const MARKUP = [
-  { id: 'mathtext-subscript', re: /_\{[^}]*\}/, since: NEXT },
-  { id: 'mathtext-superscript', re: /\^\{[^}]*\}/, since: NEXT },
+  { id: 'mathtext-subscript', re: /_\{[^}]*\}/, since: NEXT_RELEASE },
+  { id: 'mathtext-superscript', re: /\^\{[^}]*\}/, since: NEXT_RELEASE },
 ];
 
 // ---------------------------------------------------------------------------
@@ -232,7 +238,7 @@ const MARKUP = [
  * metadata}). Returns `{ errors, warnings, requires }`:
  *  - `errors`   — real defects (unknown keyboard, unanswerable, an answer that cannot be typed)
  *  - `warnings` — advisory (system-IME numeric-only caveat)
- *  - `requires` — `[{version, reason}]` the app version each dependency needs (`NEXT` = planned)
+ *  - `requires` — `[{version, reason}]` the app version each dependency needs (a planned capability carries NEXT_RELEASE)
  */
 function analyzeQuestion(q) {
   const errors = [];
@@ -248,7 +254,7 @@ function analyzeQuestion(q) {
     if (!DECLARABLE_KEYBOARDS.includes(declared)) {
       errors.push(`"keyboard_type" "${declared}" is not a known keyboard (one of: ${DECLARABLE_KEYBOARDS.join(', ')}, or omit for subject inference)`);
     } else if (!SHIPPED_DECLARABLE.has(declared)) {
-      need(NEXT, `keyboard ${declared}`);
+      need(NEXT_RELEASE, `keyboard ${declared}`);
     }
   }
 
@@ -283,13 +289,13 @@ function analyzeQuestion(q) {
   }
 
   // case_sensitive (D15, off by default): fitb stops lower-casing both sides, so `Co` and `CO` differ. Backend V82 / contracts
-  // 0.40.0 / app, unreleased -> NEXT. Only meaningful when the student can TYPE both cases, and only changes fitb
+  // 0.40.0 / app, unreleased -> NEXT_RELEASE. Only meaningful when the student can TYPE both cases, and only changes fitb
   // (steps/equation already compare case-sensitively).
   if (q.case_sensitive !== undefined && q.case_sensitive !== null) {
     if (typeof q.case_sensitive !== 'boolean') {
       errors.push('"case_sensitive" must be true or false');
     } else if (q.case_sensitive === true) {
-      need(NEXT, 'case_sensitive flag');
+      need(NEXT_RELEASE, 'case_sensitive flag');
       const kb = resolveKeyboard(q.subject, p, declared);
       if (p === 'steps' || p === 'equation') {
         warnings.push('"case_sensitive" has no effect on steps/equation — they already compare case-sensitively');
@@ -313,7 +319,7 @@ function analyzeQuestion(q) {
     if (markupText.some((t) => /_[A-Za-z]{2,}/.test(t))) {
       errors.push('"_" followed by two or more letters is not a subscript in plain form (it would lower only the first letter): write _{net}, or use one letter/number (x_1, T_n)');
     } else if (markupText.some((t) => /_([A-Za-z0-9]|\()/.test(t))) {
-      need(NEXT, 'mathtext-plain-subscript');
+      need(NEXT_RELEASE, 'mathtext-plain-subscript');
     }
   }
 
@@ -321,11 +327,18 @@ function analyzeQuestion(q) {
 }
 
 /** True when any requirement is a planned (not-yet-tagged) capability — i.e. dev-only content. */
-const dependsOnNext = (requires) => requires.some((r) => r.version === NEXT);
+/** True when `version` is above the latest released app version — i.e. dev-only content. */
+const isUnreleased = (version) => versionCode(version) > versionCode(LATEST_RELEASED);
+
+/** True when any requirement needs an unreleased app version. */
+const dependsOnNext = (requires) => requires.some((r) => isUnreleased(r.version));
 
 module.exports = {
   FLOOR,
   NEXT,
+  NEXT_RELEASE,
+  LATEST_RELEASED,
+  isUnreleased,
   DECLARABLE_KEYBOARDS,
   SHIPPED_DECLARABLE,
   KEYBOARD_CHARS,

@@ -47,9 +47,9 @@ const questions = [
   // Optional per-question fields (core/keyboard-input.md, KEYBOARD-04; core/question-schema.md SCHEMA-CS-01):
   //   keyboard_type: 'standard_math'   — a bare-numeric fitb stays on the number pad; 'scientific_math' for a bare-numeric steps.
   //                                       'physics' / 'chemistry' ONLY where the answer or label needs letters, Greek, markup,
-  //                                       state symbols or charges (next-release, dev-only). Omit = leave the database value alone.
+  //                                       state symbols or charges (needs the unreleased 2.4.0 build — dev-only). Omit = leave the database value alone.
   //   case_sensitive: true             — fitb formula/symbol answers (Co vs CO); needs physics/chemistry/scientific_math.
-  // Typed-question given text in next-release content: subscripts as _{...} (core/mathtext.md MATHTEXT-11); question text may
+  // Typed-question given text in 2.4.0 content: subscripts as _{...} (core/mathtext.md MATHTEXT-11); question text may
   // end with the blank-slot marker [] (presentations/fitb.md FITB-03).
 ];
 
@@ -105,6 +105,16 @@ async function upload() {
 
   console.log(`\n${DRY_RUN ? '[dry-run] ' : ''}✅ lesson ${lessonId} (${ENV})`);
   for (const [t, n] of Object.entries(byTable)) console.log(`   ${t}: ${n}`);
+
+  // Exam gate (VER-02/VER-04, tools/apply-exam-gate.js): derive the exam's minimum app version from the rows now in the
+  // database and write it to exam_versions, bumping updated_at on the exam's rows. Dev only; a no-op when the derived
+  // minimum is the floor (VER-07); idempotent. The gate is per EXAM, so it also gates the sibling papers.
+  if (!DRY_RUN && ENV === 'dev') {
+    const { applyExamGates } = require('./lib/exam-gate');
+    await applyExamGates(pool, { env: ENV, apply: true, filter: { subject: video.subject, syllabus: video.syllabus, year: String(video.year) } });
+  } else if (DRY_RUN) {
+    console.log('   (dry-run: the exam gate is derived and written after a real upload — node tools/apply-exam-gate.js shows it)');
+  }
 }
 
 // Only run when invoked directly — so validate-questions.js (and anything else) can load
