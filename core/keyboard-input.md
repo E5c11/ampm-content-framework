@@ -38,6 +38,11 @@ If this doc and the app ever disagree, **the app wins** — re-verify, then fix 
 
 ## Declaring a keyboard — `keyboard_type` (per question)
 
+**One authoring track (decision 2026-10-06).** There is no separate "release-bound" and "next-release" way to author a Physical Sciences paper. Every new
+paper is authored for the new infrastructure — the `physics` / `chemistry` keyboards, `_{…}`/`^{…}` markup, `case_sensitive`, typed formulae / equations / names
+— wherever that makes the better question. The only thing that varies is the **derived minimum app version**: a paper that uses any of it derives 2.4.0 and is gated
+automatically (`VER-09`); a paper that happens to use none of it derives the floor and needs no gate. Nobody chooses a track; the validator derives the result.
+
 Each question may carry `keyboard_type`, stored in `questions.keyboard_type` (nullable; backend V80,
 `ampm-contracts` 0.39.0). It exists because **subject is the wrong key**: `physics` is the subject id
 for **Physical Sciences** — Paper 1 is Physics, Paper 2 is Chemistry — so one subject needs
@@ -162,16 +167,49 @@ business_studies) to bare numerics.
 
 From `QuestionsValidator.kt` (App wins if this drifts):
 
-- `fitb` (and `steps`): both sides trimmed and **lower-cased**; `,` → `.`; numeric strings normalised
-  (`540` = `540.00`); stored `|` separates accepted alternatives; U+2212 `−` → `-` (**from 2.2.0**,
-  `fitb`/`steps` only — `fraction` only maps `,` → `.`).
-- **Punctuation is not stripped.** A student who types a trailing `.` on a text answer is currently
-  marked wrong. When `text` ships, marking must ignore a trailing `. , ; ! ?` (BLA-58); accents stay
-  significant (`leë` ≠ `lee`).
+- `fitb`: both sides trimmed and **lower-cased**; `,` → `.`; numeric strings normalised
+  (`540` = `540.00`); stored `|` separates accepted alternatives (**`fitb` only**); U+2212 `−` → `-` inside a number (**from 2.2.0**);
+  `^`/`_` scripts canonicalised (below). `steps` is the same **except** it is case-sensitive and has **no `|` alternatives**;
+  `fraction` only maps `,` → `.` (no alternatives); `equation` compares canonicalised strings (case-sensitive, no alternatives, no numeric normalisation).
+- **Trailing punctuation.** In the current AMPM `dev` code (next release) a `fitb` answer's trailing `. , ; ! ?` and whitespace are stripped on **both** sides
+  (BLA-58), so `leë.` matches `leë`; accents stay significant (`leë` ≠ `lee`). On *released* builds punctuation is not stripped (a typed trailing `.` was marked wrong).
 - Case never matters for `fitb` **unless the question sets `case_sensitive: true`** (`SCHEMA-CS-01`, D15), which makes `fitb`
   compare exactly — Chemistry formulae (`Co` ≠ `CO`) are the intended use. It is only valid on a keyboard that can type both
   cases (the scientific variants' ABC tab has a one-shot shift); the Text keyboard still has no shift, so its answers stay
   case-insensitive.
+
+## Typed answers on the `chemistry` (and `physics`) keyboard — what to store
+
+Verified = read in AMPM `dev` (`QuestionsValidator.kt`, `MathScripts.kt` `canonicalizeScripts`, commit 2478245aa, 2026-10-06). **Unverified on device** = a recommendation
+the marking code does not settle; test it on the emulator before relying on it.
+
+*Verified — how `fitb` compares a typed value with a stored one (both sides get the same treatment):*
+1. Trim the ends (**internal spaces are kept**; the keyboards have **no space key**, so a stored answer must contain none).
+2. Lower-case, **unless `case_sensitive: true`** (`SCHEMA-CS-01`).
+3. `,` → `.` (so `2,2-dimethylbutane` and `2.2-dimethylbutane` are the same string — harmless, but the comma is typeable on the Formula tab).
+4. Strip trailing `. , ; ! ?` / whitespace; a whole-string number is normalised (`0.50` = `0.5`; U+2212 → `-`).
+5. `canonicalizeScripts`: `^{x}` = `^x`; `^(3+)` = `^{3+}`; `_{2}` = `_2`; U+2212 → `-` inside a script; text outside scripts untouched. So `H_{2}O` = `H_2O`, `Fe^{3+}` = `Fe^(3+)`,
+   `SO_{4}^{2-}` = `SO_4^{2-}`. Store the braced form (what the keyboard's `x₂`/`xⁿ` keys emit); any of those spellings typed will match. `Fe³⁺` (Unicode) is **not** typeable and
+   would not match `Fe^{3+}`.
+6. A blank is correct if the typed string equals **any** `|`-separated alternative of that blank's stored answer (the alternatives are canonicalised too). Every blank must match, in order.
+   `steps`, `fraction`, `equation` and `ordering` have **no** alternatives.
+- Only the characters on the keyboard exist: `Δ → ⇌ ℓ [ ] · ° ,` on the Formula tab; `+ - = ( ) ;` and digits on Numbers; `a–z A–Z` (one-shot shift) on ABC. There is **no `>`** (so `->` cannot be typed:
+  the arrow is `→`), no `|`, no space. `ℓ` is U+2113 (`HCℓ`); a student may type `l` instead, and with `case_sensitive` `HCℓ` ≠ `HCl`.
+
+*Rules for authors (follow from the above):*
+- **Formula / ion / symbol answers** (`NaCl`, `Fe^{3+}`, `SO_{4}^{2-}`, `H_{2}O(ℓ)`): `case_sensitive: true`, markup as above, no spaces, `keyboard_type: 'chemistry'`; list accepted spellings with `|`
+  (e.g. `HCℓ|HCl`, `NaOH(aq)|NaOH`). *Whether a student reliably types `ℓ` rather than `l` is unverified on device — listing both is a recommendation.*
+- **IUPAC names**: typeable (letters, digits, `-` on Numbers, `,` on Formula). `case_sensitive` stays **off** (a name is not case-significant, and the shift key is then not a trap). Store them in the
+  form the student can type: lower-case, **no spaces**, ASCII hyphen (never U+2212 — it is only normalised inside numbers): `2-bromobutane`, `2,2-dimethylpropane`, `but-1-ene`. A **multi-word name**
+  (`propanoic acid`, `ethyl ethanoate`) cannot be typed with a space: give **one blank per word** (`metadata: ["", "[ ]", " ", "[ ]"]`, answer `["propanoic", "acid", "", "", ""]`) or choose
+  multiple choice. List accepted variants with `|` (`but-1-ene|1-butene`). *One-blank-per-word and the variants are recommendations, unverified on device.*
+- **Chemical equations**: prefer asking for **the missing species or coefficient, one blank each** (`["Zn(s) + ", "[ ]", " → ZnCℓ", "₂", ...]`) over typing a whole equation — alternatives stay few and a partly-right answer is
+  not wasted. Use `fitb` (not `equation`: that presentation is the maths structural input, case-sensitive with no alternatives — *recommendation, unverified*). If a whole equation is
+  typed: markup subscripts/charges, **no spaces**, `→` (or `⇌` for a reversible reaction) typed as that character, `case_sensitive: true`, and list as `|` alternatives each spelling you accept — with
+  and without state symbols (`Zn+2HCℓ→ZnCℓ_{2}+H_{2}` and `Zn(s)+2HCℓ(aq)→ZnCℓ_{2}(aq)+H_{2}(g)`) and, if you want both, `ℓ`/`l`. Do **not** list `=` or `->` as an arrow substitute unless you want
+  `=` accepted (`=` is on the Numbers tab; `->` cannot be typed). *Which variants a student actually types is unverified on device.*
+- **Numbers** stay bare (`KEYBOARD-02`): a bare-numeric answer stays `standard_math` / `scientific_math`; the unit goes in the label.
+- Trailing `. , ; ! ?` on a text answer is ignored on `dev`/next release but **not** on released builds — never rely on a student's trailing punctuation.
 
 ## Retrofitting `keyboard_type` onto already-uploaded content
 
@@ -187,8 +225,8 @@ From `QuestionsValidator.kt` (App wins if this drifts):
    minimum and `LATEST_RELEASED`, and refuses an unreleased exam or a partial one (`VER-08`). 2023 Nov P2 being in prod without P1 predates that rule.
    **Retrofit decision.** What "works with the new keyboards" means depends on the content:
    - **Every typed answer is bare numeric and no label needs markup** → the retrofit is only an **explicit `keyboard_type`** per `KEYBOARD-04`
-     (`standard_math` for `fitb`, `scientific_math` for `steps`/`equation`). Do **not** add `physics`/`chemistry` or `_{…}`; the exam stays releasable at its
-     floor — do not force it to `2.4.0`. (2023 Nov P1 is this case.)
+     (`standard_math` for `fitb`, `scientific_math` for `steps`/`equation`). Do **not** add `physics`/`chemistry` or `_{…}` just to "use" them; nothing needs them, so the exam derives the
+     floor and needs no gate — do not force it to `2.4.0`. (2023 Nov P1 is this case.)
    - **A label or given text needs markup, or an answer needs a key only the new keyboards have** → declare `physics`/`chemistry` only where an
      *answer* needs it (`KEYBOARD-04`), use `_{…}` per `MATHTEXT-11`, and accept that the exam becomes `2.4.0` / dev-only. (2024 Nov P1 is this case.)
 1. **Check what the database holds.** `tools/backfill-keyboard-types.js` already wrote `standard_math` / `scientific_math` / etc. on existing rows, and

@@ -79,7 +79,9 @@ exam's rows, so a client that synced past them never receives an exam that just 
 to it. Removing the temporary gate on dev did **not** bring the exam back until `updated_at` was
 bumped. `enforced_by: tooling`
 
-**`VER-05`** — **Planned capabilities are valid to author, and dev-only until tagged.** Their version is concrete: **`NEXT_RELEASE = '2.4.0'`**
+**`VER-05`** — **Planned capabilities are valid to author, and dev-only until tagged.** There is **one authoring track** (decision 2026-10-06): papers are authored for the new
+infrastructure wherever it makes a better question, and the only variable is the *derived* minimum — a paper using none of it derives the floor and needs no gate, one using any of it derives 2.4.0
+and is gated automatically (`VER-09`). There is no "releasable" vs "next-release" choice to make while authoring. Their version is concrete: **`NEXT_RELEASE = '2.4.0'`**
 (`tools/lib/feature-versions.js`; `version.properties` is 2.3.3 and the release is a `minor` bump). `LATEST_RELEASED` (today **2.3.2**) is the newest
 tagged version; anything whose derived minimum is above it is dev-only. Everything on the
 keyboard/exam-gating plan (the `physics` / `chemistry` / `text` keyboards, the extended `scientific_math`
@@ -98,7 +100,7 @@ minimum is `2.0.0` needs no `exam_versions` row (a missing row means no gate).
 `enforced_by: human-review`
 
 **`VER-08`** — **The prod push is exam-level.** `push-paper-to-prod.js` derives the minimum over **all papers of the exam** (subject + syllabus + year + session) from the
-dev rows and **refuses** when that exam-level minimum is above `LATEST_RELEASED` — even when the paper being pushed is itself releasable (with 2024 P1 needing 2.4.0,
+dev rows and **refuses** when that exam-level minimum is above `LATEST_RELEASED` — even when the paper being pushed is itself at or below `LATEST_RELEASED` (with 2024 P1 needing 2.4.0,
 2024 P2 is refused too, until the release is tagged and `LATEST_RELEASED` is bumped). It also refuses a *partial exam* (a sibling paper on dev that is neither in prod
 nor being pushed) unless `--allow-partial-exam` is passed; that override is named in the output and **never applies to an unreleased dependency**. Every run, dry-run
 included, prints per paper: on dev, in prod, derived minimum; then the exam-level minimum, `LATEST_RELEASED` and the decision. (Decision of 2026-10-05, gap-4 option A.)
