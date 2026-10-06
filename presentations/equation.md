@@ -39,6 +39,10 @@ stored string by one space or exponent style, it validates Incorrect. This is wh
 canonical format and the "prefer `multiple_choice` for expressions" rule
 (`DESIGN-MATH-05`) exist.
 
+**Open (2026-10-06): the serialization produced by the new Maths keyboard is not specified here.** The format above (spaces around operators, `"3/4"`) predates the Maths variant of the
+keyboard, which has no space key and no literal `/` (`core/keyboard-input.md`). Until someone documents what a correctly-typed expression serializes to — from a device spot-check, not from
+guessing — author typed Maths expressions as `fitb` (`DESIGN-MATH-05`) and keep `equation` answers to ones already verified on a device.
+
 ## Validator coverage
 
 Enforces: empty metadata, 5-element answer. Human-review only: canonical serialization

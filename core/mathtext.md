@@ -199,6 +199,8 @@ sheet is a plain `Text`). Never author markup in those two; a subscript there is
 (`MATHTEXT-06`). Consequence: a given step may read `p_{f}` while the matching solution reads `p(f)` — that is expected, not a defect.
 A `fitb` row label only renders markup from the next release (AMPM `dev` e3e3fac0d; before it a label such as `λ_{L} =` showed raw `_{L}`).
 
+**Primes (device observation 2026-10-06):** typographic primes `′` / `″` (U+2032/U+2033) render with the font's quote glyphs (`'`, `"`) on screen. Harmless; prefer plain `f'(x)` in new content.
+
 **`MATHTEXT-10`** — `enforced_by: human-review` — **Scripts inside `\frac{…}{…}` and `\sqrt{…}` are supported** (the parser descends into their
 arguments; `\frac{v}{λ_{L}}` and `\frac{V_{R1}}{I}` verified on a device).
 

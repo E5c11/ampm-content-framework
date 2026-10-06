@@ -129,8 +129,14 @@ Decisions D13/D14, built as initiative 4a on the evidence in AMPM `plan/active/s
   letter is upper case → back to lower; tapping shift twice cancels). Upper case matters: Paper 2 labels points and shapes
   (`R S A B M O D …`), and `steps`/`equation` marking is case-sensitive.
 
-The validator's `scientific_math` inventory (`tools/lib/feature-versions.js`) now matches this exactly; every new key is `NEXT`
-(dev-only until the release is tagged). Not on this keyboard: `[ ]`, `'`, `∩ ∪ Σ σ`, Greek beyond `θ Δ`, `ln lim nCr nPr`
+The validator's `scientific_math` inventory (`tools/lib/feature-versions.js`) now matches this exactly; every new key needs **2.4.0**
+(dev-only until the release is tagged).
+
+**What this keyboard does *not* have (checked against the validator, `KEYBOARD-01`):** there is **no literal `/` key** — the only division is the structural `a/b` fraction input, so a typed
+answer can never contain `/` (`x^(-1/2)`, `1/2` are untypeable: use a decimal exponent or the `fraction` presentation); there is **no space key** (every stored `fitb`/`steps` answer must be
+space-free — `0≤x≤4`, not `0 ≤ x ≤ 4`); and no `|`, `{ }`, `[ ]`, `'`. **Which keys raise an exam's minimum (derived, `VER-02`):** released at the floor (2.0.0) — digits, `. + × ÷ ( ) =`, `π θ √ ≤ ≥ ∴ ∵ ≠ ∈ ℤ`,
+`sin cos tan log`; released in **2.2.0** — `-` (ASCII), `x`, `y`, `^`, `%`; new in **2.4.0** — `;`, `< > ° ∠ Δ , ! ∞ → ±`, every other letter (`a–z` except `x y`, and upper case via shift). Device-verified (2.4.0 test build, 2026-10-06): `;`, `≤`, `^`, `-`, `=`, the letters `h`/`x` and the one-shot shift all type and mark correctly in `fitb`; `<` `>` `°` and trig keys were not exercised. So a typed
+`0≤x≤4` or `2^(x-3)` derives **2.2.0** by itself, `h=30-x` or `(3;-22)` derives **2.4.0**, and MathText `_{…}` markup also derives 2.4.0 (plain `^` does not). Not on this keyboard: `[ ]`, `'`, `∩ ∪ Σ σ`, Greek beyond `θ Δ`, `ln lim nCr nPr`
 (type `ln`/`lim` as letters), sub/superscript mode keys — those belong to the Physics/Chemistry variants (4d/4e).
 
 ### `English` (legacy, subject-inferred; not declarable)

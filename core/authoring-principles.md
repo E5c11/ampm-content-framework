@@ -312,9 +312,16 @@ Do not ask for a full written proof. Test with:
 
 `enforced_by: human-review`
 
-When the answer is an algebraic expression (e.g. f'(x), equation of a line):
-- Prefer `multiple_choice` — provide 4 plausible expressions
-- Use `equation` only when MCQ options would be too similar to distinguish without working
+When the answer is an algebraic expression (e.g. f'(x), equation of a line) or an inequality:
+- **Typed (`fitb` with `keyboard_type: 'scientific_math'`)** when the question can fix **one canonical form** (`y=x-1`, `0≤x≤4`, `2^(x-3)`, `h=30-x`, coordinates `(3;-22)`): answers are space-free (no space key),
+  use only keys the validator accepts (no `/`), and list `|` alternatives for the other natural orderings (`h=30-x|h=-x+30`); say the required form in the question ("write it as a ≤ x ≤ b"). Marking is
+  exact-string after trim, lower-casing and script canonicalisation — no algebraic equivalence.
+- A coefficient form is more robust than a whole expression: ask for the numbers (`[ ]x² + [ ]x` → `12`, `-12`) — numeric tolerance, no spelling traps.
+- **`multiple_choice`** — 4 plausible expressions — where several equivalent written forms are natural and cannot be constrained, or the answer needs a key the keyboard lacks (`/`).
+- `equation` only when neither works: its canonical serialization on the new Maths keyboard is **not specified in these docs** (TODO — the old doc says spaces around operators, the keyboard has no space key); do
+  not author `equation` answers until it is documented from a device spot-check (`presentations/equation.md`).
+- Interaction with `DESIGN-UNI-07`: typed expressions are `fitb`, so converting multiple-choice rows to typed ones reduces the number of distinct presentation types — a 4-question set needs 3. Keep at least one
+  `multiple_choice`/`ordering`/`steps` row beside the `fitb` and `ordering` rows. TODO (owner decision): whether the variety rule should count typed-expression `fitb` separately, or accept `multi_select`/`match` to restore variety.
 
 ### `DESIGN-MATH-06` — Paper 2 variety requirements by topic
 

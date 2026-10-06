@@ -66,5 +66,5 @@ presentation: "multiple_choice",
 
 - Distractors must be plausible — a matric student should have to think.
 - Use for open-ended English questions instead of fitb (`DESIGN-ENG-04`) and for
-  expression answers in Maths (`DESIGN-MATH-05`).
+  expression answers in Maths **only where a typed answer cannot fix one canonical form** (`DESIGN-MATH-05`).
 - True/False: exactly `["True", "False", "", "", ""]`; single rule/fact only.

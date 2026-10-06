@@ -110,7 +110,7 @@ included, prints per paper: on dev, in prod, derived minimum; then the exam-leve
 build below 2.4.0 sees neither). After uploading or retrofitting, run `node tools/apply-exam-gate.js --env dev --subject <id> --year <YYYY> --session <june|november>`
 (dry run by default; `--apply` writes). It derives the minimum from the database rows (never hand-typed), writes `exam_versions`, bumps `updated_at` on the exam's
 lessons and questions (`VER-04`), does nothing at the floor (`VER-07`) and is idempotent. Upload scripts built from `tools/upload-script-template.js` do this
-automatically after a real dev upload. Raising a gate hides the exam from builds below it on their *next* sync; rows already on a device stay (`VER-03`) — the
+automatically after a real dev upload. (Device-verified 2026-10-06: a 2.4.0 build resynced and received a gated exam with its new keyboard types; a pre-2.4.0 build *not* receiving it is backend-tested only.) Raising a gate hides the exam from builds below it on their *next* sync; rows already on a device stay (`VER-03`) — the
 dry-run says how many published questions are affected, so read it before `--apply`. Prod: only a gate `<= LATEST_RELEASED` is written, with
 `--i-know-this-is-prod`. `enforced_by: tooling`
 
