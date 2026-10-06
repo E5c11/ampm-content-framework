@@ -68,11 +68,14 @@ PDFs (`files/`).
    for free-hand drawing or a full analysis from scratch (`DESIGN-PHYS-03`/`05`).
    `steps` is a first-class choice for numeric multi-step working, not just symbolic
    proof (its `QuestionsValidator.kt` branch now has `fitb`-style numeric tolerance).
+   **One authoring track (decision 2026-10-06).** Physics papers use the `physics` keyboard and `_{…}`/`^{…}` notation **wherever the answer or label needs it** — symbols with
+   subscripts (`F_{net}`, `V_{R1}`), Greek (`θ µ λ Ω …`), `±`, `°`, and units with powers when the answer is *symbolic* (`kg·m·s^{-1}`) — and keep bare-numeric answers bare. There is no
+   separate "releasable" way to author: anything that uses the new infrastructure is gated at 2.4.0 **automatically** (`VER-09`, last section below); a paper that uses none of it derives the floor.
    **Keyboard and answer shape (`KEYBOARD-04`, `MATHTEXT-11`).** A bare-numeric typed answer
    (the usual case — `DESIGN-PHYS-02`, unit and power of ten as static labels) declares
    `keyboard_type: 'standard_math'` (`fitb`) or `'scientific_math'` (`steps`/`equation`). Declare
    `'physics'` **only** where the answer needs a letter, Greek, markup or symbol the basic keyboards
-   cannot type; that makes the exam `2.4.0` (dev-only, `VER-05`). A number in scientific
+   cannot type; that makes the exam derive 2.4.0 (gated automatically, dev-only until the release is tagged, `VER-05`/`VER-09`). A number in scientific
    notation stays a bare mantissa (`2.33`) with `" × 10⁻⁷ C"` as the label — never `2.33×10^{-7}`
    as the answer (marking `^{…}` is exact-string). In content for 2.4.0 (the next release) write
    **every subscript in typed-question given text as `_{…}`** (`F_{net}`, `V_{R1}`); `clues` and the

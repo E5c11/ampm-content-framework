@@ -5,9 +5,12 @@
 `AMPM-CONTENT-AI-EXP`, `presentations/{type}.md` per type used. `AMPM-CONTENT-MATHTEXT`
 already extended to `subject: "physics"` (covers Chemistry's given-text rendering;
 `MATHTEXT-09`–`-11` say which fields render markup and which subscript rule applies).
-**`DESIGN-CHEM-01`** (the profile's keyboard constraint) and **`core/keyboard-input.md`**
-(`KEYBOARD-04`, the `chemistry` keyboard's inventory) together govern every question's
-presentation and keyboard choice below — read both before Phase 3, not during it.
+**`core/keyboard-input.md`** (`KEYBOARD-04`, the `chemistry` keyboard's inventory, and its
+"Typed answers on the chemistry keyboard" spelling rules) governs every question's presentation and
+keyboard choice below — read it before Phase 3, not during it. **One authoring track (decision
+2026-10-06):** every new Chemistry paper is authored for the `chemistry` keyboard; anything that uses
+it is gated at 2.4.0 automatically (`VER-09`, last section). `DESIGN-CHEM-01` (the old "no typed blank
+may need a letter/subscript/charge" rule) is **history** — see the profile.
 
 > Do NOT enter plan mode. Run once per lesson. Commit after Phase 4.
 
@@ -37,13 +40,13 @@ Nov 2025 Eng.pdf`, `files/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf`).
 1. **Analyse** (pipeline Phase 1): curriculum unit/topic/subtopic per the profile's
    curriculum-units section — reuse before creating (`PIPE-08`). For each real
    sub-question, decide up front (feeds both Phase 3 and Phase 2):
-   - **Typeable or not** — bare-numeric calc (→ typed blank on the basic keyboard), a
-     formula / equation / charge / state symbol (typeable **only on the `chemistry` keyboard**,
-     next release (2.4.0), so dev-only — see Phase 4), or a structural formula (never typed — an image;
-     identify it with `multiple_choice`/`match`)? That decides the presentation family before
-     you draft anything. TODO (open, owner decision): do new Chemistry papers default to the
-     release-bound track (`DESIGN-CHEM-01` unchanged: typed blanks bare-numeric) or the
-     2.4.0 track (typed formulae allowed)? Until decided, use the release-bound track.
+   - **Typed or not** — decide per sub-question which assessment is *better*, not which is
+     possible: a typed answer with proper notation (formula, ion with charge, state symbol,
+     balanced or half equation, IUPAC name — typeable on the `chemistry` keyboard) when recalling or
+     writing it **is** the skill; `multiple_choice`/`match`/`multi_select`/`ordering` where choosing or
+     classifying is the better assessment; a bare-numeric blank for a calculation; a structural formula
+     is **never typed** (an image to identify with `multiple_choice`/`match`). That decides the
+     presentation family before you draft anything.
    - **Content-based or procedural** (profile's "Subject rules", first bullet) — Organic
      Molecules naming/classification (Q1.1–1.3, Q2, Q3) is fixed-fact: needs
      `DESIGN-UNI-08` relational framing, not a reworded compound, or a student who
@@ -63,7 +66,7 @@ Nov 2025 Eng.pdf`, `files/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf`).
    multi-lesson-per-page cropping care as physics if a source page is shared across
    this paper's 5-way Q1 split.
    **Structural formulas are mandatory, not judgment-call**, wherever the source paper
-   draws one (e.g. Q2's compound table) — `DESIGN-CHEM-01` bars typing them, so the
+   draws one (e.g. Q2's compound table) — a structural formula cannot be typed on any keyboard, so the
    image is the only representation of that compound; use `type: "structure"` (new
    value, extends physics's `"diagram"|"circuit"|"graph"|"table"` set). Everything else
    (cell diagrams, graphs, reaction-vessel diagrams) uses the same no-figure-
@@ -79,24 +82,21 @@ Nov 2025 Eng.pdf`, `files/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf`).
 
 4. **Questions** (pipeline Phase 3): fresh scenarios per `DESIGN-UNI-01`, with
    `DESIGN-UNI-08` relational framing **required, not optional**, for the content-based
-   sub-parts flagged in Phase 1. `DESIGN-CHEM-01` gates presentation choice for every
-   question on the **release-bound track**: no typed blank (`fitb`/`equation`/`steps`) may
-   require a letter beyond `x`/`y`/`θ` or a subscript/charge — use `multiple_choice`/
-   `multi_select`/`match`/`ordering` instead, and present structural formulas as given
-   images, never as typed content. Reserve typed blanks for bare-numeric answers.
-   **Keyboard declaration (`KEYBOARD-04`).** A bare-numeric blank declares
-   `keyboard_type: 'standard_math'` (`fitb`) / `'scientific_math'` (`steps`). A blank whose answer
-   or label needs the `chemistry` keyboard (formula, charge, state symbol, `→ ⇌`) declares
-   `keyboard_type: 'chemistry'`, which makes the exam `2.4.0` (dev-only, `VER-05`).
-   On that keyboard store answers as markup with **no spaces** (`H_{2}O`, `Fe^{3+}`,
-   `SO_{4}^{2-}`, `NaCl(aq)`, `HCℓ` with U+2113) and set **`case_sensitive: true`** on every
-   `fitb` formula/symbol answer (`Co` ≠ `CO`, `SCHEMA-CS-01`); numeric and word answers leave it
-   off. `case_sensitive` has no effect on `steps`/`equation` (already case-sensitive). With
-   `|` alternatives, each alternative is compared exactly, so list every accepted spelling
-   (e.g. with and without a state symbol). TODO (unverified): which spellings of a full
-   equation are accepted and whether `→` must be typed — decide from the first typed-equation
-   question before writing guidance. Numbers in scientific notation stay a bare mantissa with the
-   power of ten in the label (`MATHTEXT-11`). The `question` text ends with the blank-slot marker
+   sub-parts flagged in Phase 1. **Typed answers on the chemistry keyboard.** Prefer a typed answer with proper notation
+   where it makes a better question than multiple choice or a bare number: formulae, ions with
+   charges, state symbols, balanced and half equations, names. Keep multiple choice where it is the
+   better assessment. Structural formulas stay images, never typed content.
+   **Keyboard declaration (`KEYBOARD-04`).** Every typed Chemistry question declares
+   `keyboard_type: 'chemistry'` — **unless the answer is purely numeric**, then it stays
+   `'standard_math'` (`fitb`) / `'scientific_math'` (`steps`). Formula, symbol and ion answers set
+   **`case_sensitive: true`** (`Co` ≠ `CO`, `SCHEMA-CS-01`); numeric, word and name answers leave it off.
+   Store answers as markup with **no spaces** (`H_{2}O`, `Fe^{3+}`, `SO_{4}^{2-}`, `NaCl(aq)`,
+   `HCℓ` with U+2113) and use `|` alternatives for every accepted spelling (`fitb` only — `steps` has
+   none). The exact marking rules (what is normalised, which spellings match, IUPAC names, whole
+   equations, what is still unverified on device) are in `core/keyboard-input.md` § "Typed answers on
+   the chemistry (and physics) keyboard". A typed equation is a `fitb` (one blank per missing species is
+   preferred), not the `equation` presentation. Numbers in scientific notation stay a bare mantissa with
+   the power of ten in the label (`MATHTEXT-11`). The `question` text ends with the blank-slot marker
    `[]` (rendered `___`, the answer box below it — `FITB-03`); this is intended.
    Numeric answers: unit as a static `fitb` label, never folded into the matched value
    (`DESIGN-PHYS-02` pattern, same split here); round to the paper's own instruction
@@ -106,8 +106,8 @@ Nov 2025 Eng.pdf`, `files/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf`).
    decompose it instead). **Practice-question count scales with the real sub-part
    count** (`DESIGN-UNI-11`) — check the sub-part breakdown before calling the set
    complete. Presentation variety (`DESIGN-UNI-07`) — expect a heavier
-   `multiple_choice`/`match`/`multi_select` mix than physics, that's `DESIGN-CHEM-01`
-   working as intended, not a gap to fill with more `fitb`. Before finalizing each
+   `multiple_choice`/`match`/`multi_select` mix than physics wherever choosing or classifying is the
+   better assessment, but typed notation answers are now first-class (see the typed-answers rules above). Before finalizing each
    `clues` field, check it doesn't state, compute, or (for definitional MC) name the
    answer verbatim (`AIEXP-03` — `validate-questions.js`'s non-blocking `⚠`, treat every
    hit as a real rewrite — this is exactly the bug that hit Q1/Q2 of part1: two
@@ -132,10 +132,7 @@ Nov 2025 Eng.pdf`, `files/Physical Sciences P2 Nov 2025 MG Afr & Eng.pdf`).
    metadata label, not folded into the matched value; formula sheet on every video, all
    4 pages including both Table 4A/4B orderings; no `⚠` clue-leak warning left
    unresolved, and no two questions in the same lesson testing the same fact from the
-   same angle; every non-bare-numeric question uses `multiple_choice`/`multi_select`/
-   `match`/`ordering`, never a typed blank needing a letter beyond `x`/`y`/`θ` or a
-   subscript/charge (`DESIGN-CHEM-01` spot check, release-bound track); every typed
-   question's `keyboard_type` follows `KEYBOARD-04` and `validate-questions.js` raises no
+   same angle; every typed question's `keyboard_type` follows `KEYBOARD-04` and `validate-questions.js` raises no
    keyboard error; every formula/symbol `fitb` answer sets `case_sensitive: true`; structural-formula images present
    wherever the source paper draws one; image URLs resolve
    (`curl -o /dev/null -w "%{http_code}"`); if this lesson shares a source exam page

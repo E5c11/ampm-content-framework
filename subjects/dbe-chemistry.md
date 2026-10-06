@@ -96,7 +96,10 @@ keyboards fine: Q2.3.2 (volume calc), Q5.2.2 (rate calc), Q6.2.3 (mass at equili
 Q7.2.1/7.2.2 (concentration/moles), Q8.4 (mass), Q9.2.3 (mass change) — each resolves to
 a plain number, several already carrying units the way `DESIGN-PHYS-01` requires.
 
-**`DESIGN-CHEM-01`** — `enforced_by: human-review`, extends `core/keyboard-input.md`'s
+**`DESIGN-CHEM-01` — HISTORY (superseded 2026-10-06; kept as a record of why the 2023/2024/2025 Chemistry papers are multiple-choice-heavy).** Chemistry authoring now follows the single 2.4.0
+track: typed answers with proper notation (formulae, ions, state symbols, equations, names) are first-class on the `chemistry` keyboard — see `workflows/generate/upload-chemistry.md` Phase 4 and
+`core/keyboard-input.md` § "Typed answers on the chemistry (and physics) keyboard". What still holds from this rule: **structural formulas are images, never typed** (no keyboard can type them).
+The original rule, as it stood while no chemistry keyboard existed — `enforced_by: human-review`, extends `core/keyboard-input.md`'s
 `KEYBOARD-01`/`KEYBOARD-02` with a Chemistry-specific reading: **no typed answer
 (`fitb`/`equation`/`steps` blank) may require a structural formula, IUPAC name, chemical
 equation, or any answer containing a letter beyond `x`/`y`/`θ` or a subscript/charge**.
@@ -119,16 +122,18 @@ Once the keyboard ships, Chemistry questions declare `keyboard_type: "chemistry"
 rule can be relaxed for formulae/equations.
 
 **Update 2026-10-05.** The `chemistry` keyboard is now **built on AMPM `dev`** (initiative 4e; `x₂ xⁿ → ⇌ Δ`, state symbols, `ℓ`, `[ ] · ° ,`, one-shot
-shift) but unreleased, so content that uses it is `2.4.0` = dev-only (`VER-05`). `DESIGN-CHEM-01` stays in force for release-bound
-content; the relaxation applies only to the dev-only track (TODO, owner decision: which track new papers default to — see
-`workflows/generate/upload-chemistry.md` Phase 1). Structural formulas remain images. The 2024 Nov P2 typed blanks are all bare-numeric and stay on
-`standard_math` (`KEYBOARD-04`). Whether IUPAC names with locants are typeable on the new keyboard is untested — TODO.
+shift) but unreleased, so content that uses it derives 2.4.0 and is dev-only until that release is tagged (`VER-05`). The 2024 Nov P2 typed blanks are all bare-numeric and stay on
+`standard_math` (`KEYBOARD-04`).
+
+**Decision 2026-10-06 — one authoring track.** There is no longer a "release-bound" track. All new Chemistry papers are authored for the `chemistry` keyboard; the exam's derived minimum (2.4.0 if it
+uses any new infrastructure, else the floor) is the only variable, and the gate is written automatically (`VER-09`). `DESIGN-CHEM-01` above is history, except that structural formulas remain images.
+IUPAC names **are** typeable (letters, digits, `-`, `,`; no space key — see `core/keyboard-input.md` for the spelling rules and what is still unverified on device).
 
 ## Allowed presentation types (illustrative, not yet evidenced against authored content)
 
-Expect a heavier `multiple_choice`/`match`/`multi_select` mix than Physics's P1, driven
-directly by `DESIGN-CHEM-01`: naming/structure/equation questions that Physics would
-rarely need this treatment for are Chemistry's majority content (Q2–Q4, most of Q1).
+The existing papers (2023–2025) are a heavier `multiple_choice`/`match`/`multi_select` mix than Physics's P1 because they were authored under `DESIGN-CHEM-01`
+(history); new papers choose per question between a typed notation answer and a choice question (`upload-chemistry.md` Phase 4). Naming/structure/equation questions are
+Chemistry's majority content (Q2–Q4, most of Q1).
 `steps` remains the right fit for the paper's genuine multi-step numeric work (Q6.2.3,
 Q7.2.1–2.2, Q9.2.3), same as Physics's momentum/circuit calculations. `fraction`/
 `equation` presentations: same "not excluded, just unconfirmed" status as Physics — the
