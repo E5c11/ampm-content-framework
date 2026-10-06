@@ -44,10 +44,11 @@ const video = {
 const questions = [
   {
     name: 'Question 1',
-    question: 'The graph of f(x) = x³ − 3x² − 9x + 5 has a local minimum turning point. Determine the y-coordinate of that turning point.',
-    metadata: ['y = ', '[ ]'],
-    answer: ['-22', '', '', '', ''],
+    question: 'The graph of f(x) = x³ − 3x² − 9x + 5 has a local minimum turning point. Determine the coordinates of that turning point, written as (x;y).',
+    metadata: ['Turning point: ', '[ ]'],
+    answer: ['(3;-22)', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'scientific_math',
     type: 'calc',
     unit: 'calculus',
     topic: 'cubic_analysis',
@@ -121,6 +122,7 @@ const questions = [
     metadata: ['largest other x-intercept = ', '[ ]'],
     answer: ['4', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'calculus',
     topic: 'cubic_analysis',
