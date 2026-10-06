@@ -71,20 +71,19 @@ to a pointer.)
 |---|---|---|---|
 | DBE 2019 Nov P1 | 15 | 51 | 2026-04-23 (re-uploaded with clues, variety, markup) |
 | DBE 2019 Nov P2 | 15 | 49 | 2026-04-24 (re-uploaded with clues, variety, markup) |
-| DBE 2025 Nov P1 | 11 (paper-only, no video) | 44 | 2026-09-03 — one lesson per exam question Q1–Q11, 4 practice questions each, dev only |
+| DBE 2025 Nov P1 | 11 (paper-only, no video) | 44 | 2026-09-03 — one lesson per exam question Q1–Q11, 4 practice questions each, dev only. **2026-10-06:** 6 lessons retrofitted for the new Maths keyboard (typed inequality / equation / exponent / coordinate / letter answers, `keyboard_type` on all 23 typed rows); exam gated at 2.4.0 on dev (`VER-09`) |
+| DBE 2025 Nov P2 | 11 (paper-only, no video) | 44 | 2026-10-06 — one lesson per exam question Q1–Q11, 4 practice questions each, dev only. Practice questions are text-complete (no per-question `supplementary_material` figures generated). Typed `scientific_math` answers in Q1 (`y=52.3-3.7x`), Q3 (`4√5`, `(2;-3)`), Q4 (`(x-4)^2+(y+3)^2=36`), Q5 (`tan36°`, `90°≤x≤270°`, steps `-cosx`), Q6 (`sinx`), Q7 (`h(x)=sin(2x+60°)`); the exam derives 2.4.0 (same gate as P1, `VER-09`) — dev-only until 2.4.0 is tagged |
 
 Formula sheet URLs (reuse per paper):
 - 2019 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/maths/2019/nov_p1/q0/question_1.png`
 - 2019 Nov P2: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/maths/2019/nov_p2/q0/question_1.png`
 - 2025 Nov P1: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/maths/2025/nov_p1/q0/question_1.png`
+- 2025 Nov P2: `https://media-dev.askmoreprepmore.app/exam_papers/dbe/maths/2025/nov_p2/q0/question_1.png`
 
-## Keyboard — completeness and negative answers (added 2026-10-04)
+## Keyboard — Maths variant of `ScientificMath` (updated 2026-10-06)
 
-`ScientificMath` is **not complete for a Grade 12 Maths paper** (no `<` `>`, letters only `x y θ`, no
-`;` `[` `]` `°` `ln` `e` `∞` `±`, no subscripts — full list in `core/keyboard-input.md` § Known gaps;
-BLA-21 item 5c0). Prod Maths 2019 Nov uses only numeric `fitb`/`fraction`/MC/ordering, so nothing live is
-affected; it blocks authoring `equation`/`steps` questions. **Store negative answers with ASCII `-`**:
-`scripts/add-maths-2025-nov-p1-q3.js` (`"−47"`) and `…-q9.js` (`"−22"`) use U+2212, which only matches via
-the 2.2.0 normalisation and, with the rest of that exam, derives a **2.2.0** minimum
-(`tools/derive-exam-min.js`) — switching them to `-47` / `-22` drops the dependency
-(`core/app-feature-versions.md`).
+The old `ScientificMath` (released) is **not complete** for a Grade 12 Maths paper: no `< >`, letters only `x y θ`, no `; [ ] ° ln e ∞ ±`, no subscripts — so Prod Maths 2019 Nov uses only numeric
+`fitb`/`fraction`/MC/ordering. The **Maths variant** (2.4.0, AMPM `dev`) adds `;`, `< > ° ∠ , ! ∞ → ±`, a full a–z ABC tab with one-shot shift and `sin cos tan log`. Its inventory, what it still
+lacks (**no `/` key, no space key**, no `[ ] { } |`), and which keys raise an exam to 2.2.0 vs 2.4.0 are in `core/keyboard-input.md`. Authoring rules for typed Maths answers: `DESIGN-MATH-05` and
+`workflows/generate/upload-maths.md` Phase 4. **Store negative answers with ASCII `-`** (the 2025 P1 `-47` / `-22` already do). Device-verified on the 2025 Nov P1 retrofit (2026-10-06): the typed answers and the `lim_{h→0}` steps row listed in `workflows/generate/upload-maths.md` Phase 4;
+not covered there: `<`/`>`, `°`, trig, `ln`/`log`, `fraction`, upper case beyond the shift check, and a pre-2.4.0 build *not* receiving the gated exam (backend-tested only).
