@@ -83,6 +83,11 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- A line parallel to one side of a triangle divides the other two sides in the same ratio.\n- Write the ratio of the segments on AB equal to the ratio of the segments on AC.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q11_1/diagram_1.png'],
+    },
   },
   {
     name: 'Question 2',
@@ -110,6 +115,11 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- The statement compares ratios of lengths on two sides of a triangle.\n- The condition that makes this possible is a parallel line.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q11_2/diagram_1.png'],
+    },
   },
   {
     name: 'Question 3',
@@ -132,6 +142,11 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- The ratio of the areas of similar triangles is the square of the ratio of their sides.\n- Set up a proportion for the area of △PQR.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q11_3/diagram_1.png'],
+    },
   },
   {
     name: 'Question 4',

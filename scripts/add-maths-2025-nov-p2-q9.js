@@ -72,6 +72,11 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- OA and OB are both radii of the circle, so triangle OAB is special.\n- The angles of a triangle add up to 180°.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q9_1/diagram_1.png'],
+    },
   },
   {
     name: 'Question 2',
@@ -99,6 +104,11 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- Think about the angle between a tangent and the line from the centre to the point where it touches.\n- Check that the reason given really belongs to that theorem.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q9_2/diagram_1.png'],
+    },
   },
   {
     name: 'Question 3',
@@ -132,6 +142,11 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- A proof starts with the construction, and each statement uses a theorem about the centre.\n- The two angles at the centre form a full turn.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q9_3/diagram_1.png'],
+    },
   },
   {
     name: 'Question 4',
@@ -154,6 +169,11 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- First find the angle at the centre that stands on the same arc as the 24° angle.\n- Then use the right angle between the tangent and the diameter in triangle OYZ.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q9_4/diagram_1.png'],
+    },
   },
 ];
 

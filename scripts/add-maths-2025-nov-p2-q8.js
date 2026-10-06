@@ -94,18 +94,23 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- The diagonal is the hypotenuse of a right-angled triangle whose legs are the width and the length.\n- Round only at the end.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q8_2/diagram_1.png'],
+    },
   },
   {
     name: 'Question 3',
-    question: 'In △PQR, ∠Q = 98°, ∠P = 41° and QR = 22 cm. Which expression gives the length of PR?',
+    question: 'In △PQR, ∠Q = 98°, ∠P = 37° and QR = 22 cm. Which expression gives the length of PR?',
     metadata: [
-      'PR = 22 sin 41° ÷ sin 98°',
-      'PR = 22 sin 98° ÷ sin 41°',
-      'PR = 22 cos 98° ÷ cos 41°',
-      'PR = 22 ÷ (sin 98° × sin 41°)',
+      'PR = 22 sin 37° ÷ sin 98°',
+      'PR = 22 sin 98° ÷ sin 37°',
+      'PR = 22 cos 98° ÷ cos 37°',
+      'PR = 22 ÷ (sin 98° × sin 37°)',
       '',
     ],
-    answer: ['PR = 22 sin 98° ÷ sin 41°', '', '', '', ''],
+    answer: ['PR = 22 sin 98° ÷ sin 37°', '', '', '', ''],
     presentation: 'multiple_choice',
     type: 'calc',
     unit: 'trigonometry',
@@ -121,6 +126,11 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- Match each side with the angle that lies opposite it.\n- The sine rule sets two side-to-sine ratios equal.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q8_3v2/diagram_1.png'],
+    },
   },
   {
     name: 'Question 4',
@@ -152,6 +162,11 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- The unknown angle must be opposite the side that is squared on the left of the formula.\n- You cannot use the inverse cosine until the value of cos θ is known.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q8_4/diagram_1.png'],
+    },
   },
 ];
 

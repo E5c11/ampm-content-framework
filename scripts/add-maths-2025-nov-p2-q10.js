@@ -72,6 +72,11 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- ∠ABC and ∠ADC are opposite angles of the quadrilateral.\n- Opposite angles of a cyclic quadrilateral have a fixed sum.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q10_1/diagram_1.png'],
+    },
   },
   {
     name: 'Question 2',
@@ -129,6 +134,11 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- Decide which statement involves a diameter, which two angles stand on the same chord, and which involves a straight line produced.\n- Each reason is used exactly once.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q10_3/diagram_1.png'],
+    },
   },
   {
     name: 'Question 4',
@@ -151,6 +161,11 @@ const questions = [
     year: 2025,
     paper: 'nov_p2',
     clues: '- ∠ABC and ∠ADC are opposite angles of a cyclic quadrilateral.\n- Write their sum as an equation and solve for x.',
+    supplementary_material: {
+      type: 'diagram',
+      label: 'Diagram',
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2025/nov_p2/q10_4/diagram_1.png'],
+    },
   },
 ];
 
