@@ -45,9 +45,10 @@ const questions = [
   // { name, question, metadata, answer, presentation, type, unit, topic, subtopic,
   //   skills, difficulty, exam_weight, xp, order, syllabus, subject, year, paper }
   // Optional per-question fields (core/keyboard-input.md, KEYBOARD-04; core/question-schema.md SCHEMA-CS-01):
-  //   keyboard_type: 'standard_math'   — a bare-numeric fitb stays on the number pad; 'scientific_math' for a bare-numeric steps.
+  //   keyboard_type: REQUIRED on every fitb/steps/equation/fraction (KEYBOARD-04; the validator errors without it, english_hl excepted).
+  //                                    'standard_math' — a bare-numeric fitb stays on the number pad; 'scientific_math' for a bare-numeric steps.
   //                                       'physics' / 'chemistry' ONLY where the answer or label needs letters, Greek, markup,
-  //                                       state symbols or charges (needs the unreleased 2.4.0 build — dev-only). Omit = leave the database value alone.
+  //                                       state symbols or charges (needs the unreleased 2.4.0 build — dev-only).
   //   case_sensitive: true             — fitb formula/symbol answers (Co vs CO); needs physics/chemistry/scientific_math.
   // Typed-question given text in 2.4.0 content: subscripts as _{...} (core/mathtext.md MATHTEXT-11); question text may
   // end with the blank-slot marker [] (presentations/fitb.md FITB-03).

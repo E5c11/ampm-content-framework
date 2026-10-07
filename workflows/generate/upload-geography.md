@@ -51,7 +51,9 @@ Geography (unconfirmed — check before Phase 2; may ship `has_video: false`).
    an entirely fresh stimulus on the same theme; Section B keeps the real map as the
    worked example but asks about different grid blocks/features/values than the real
    exam did. Presentation types restricted to `multiple_choice`, `multi_select`, `fitb`,
-   `match`, `steps` per profile. Scale/ratio answers: two `fitb` blanks split on a literal
+   `match`, `steps` per profile. **Every `fitb`/`steps`/`equation`/`fraction` declares
+   `keyboard_type`** (`KEYBOARD-04`, validator error): `standard_math` for numeric `fitb`,
+   `scientific_math` for numeric `steps`; no typed words (use MC/multi-select). Scale/ratio answers: two `fitb` blanks split on a literal
    `":"` token, never `fraction`. `type` is `definition`/`calc`/`interpretation`/
    `application`. Vocabulary reuse-before-creating against `curriculum_nodes`/`skills`
    (`subject_id = 'geography'`) (`PIPE-08`).

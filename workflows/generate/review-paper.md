@@ -88,6 +88,7 @@ The run, end to end:
 | Environment | **dev Cloud SQL** (always review dev first) — `ampm-b9661:us-central1:ampm-backend` |
 | Cloud SQL Auth Proxy | running: `cloud-sql-proxy ampm-b9661:us-central1:ampm-backend --port 15432` |
 | Emulator | Running and unlocked (`adb devices` shows one device), dev app installed (`com.esma.ampm.dev`) |
+| Dev build version | `versionName` of the installed dev app is **at least the exam's derived minimum** (`node tools/derive-exam-min.js scripts/add-<subject>-<year>-<session>-*.js`). A lower build still opens lessons by deep link but lacks the keyboard and tags the exam needs — see *Gotchas* below |
 
 ---
 
@@ -356,6 +357,34 @@ for an equivalent valid phrasing).
 
 ---
 
+## Gotchas — learned reviewing Maths Nov 2025 P2 (2026-10-06/07)
+
+- **Check the build version against the exam gate before anything else.** An exam gated at 2.4.0 needs a 2.4.0 dev build. A
+  `2.3.3-dev01` build (rebuilt from `version.properties` 2.3.3) deep-links to the lessons but: capture warns `expected supplementary
+  FAB … not found` / `"question_next_button" not found, stopping lesson early`, and typed Maths answers have no new keys. Check with
+  `adb shell dumpsys package com.esma.ampm.dev | grep versionName`. To test unreleased content the owner bumps `version.name` in
+  `AMPM/version.properties` (e.g. 2.4.0) **temporarily** and reinstalls (`./gradlew :composeApp:installDevGoogleDebug`, ~30 s). Never
+  commit that bump; revert the file afterwards.
+- **After re-uploading a lesson**: re-run `review-build-manifest.js` (so new `supplementary_material` URLs are in the manifest),
+  then `adb shell pm clear com.esma.ampm.dev` (the app caches lessons), then re-capture only the changed lessons (`--lessons 8,9`).
+- **Per-question diagrams (Phase 2 `q<n>_diagram.png`).** Check the figure sits fully inside the bottom sheet: a tall portrait figure
+  (height much more than width) is clipped at the bottom with its last label cut off — redraw it landscape. A sheet screenshot taken
+  mid-slide can look faded or cut off; recapture before calling it a defect. In a multi-figure lesson upload each figure to its own
+  path (`upload-question-supplementary.js --order <lesson>_<question>`) and never overwrite one (the bucket serves a one-year cache).
+- **Typed Maths answers (Phase 5) need a tab-aware runner**, not `review-capture-answers.js` (digits only). The ScientificKeyboard
+  tab bar moves per tab — re-read tab bounds after every switch; the number pad has no tabs; `sin/cos/tan/log` are single keys
+  (details: `AMPM/wiki/lesson/systems/keyboard-system.md`, "The tab bar moves between tabs"). `steps` blanks are
+  `question_step_input_<n>`; submit with `maths_key_done` (builds ≥ `aae56556b`) else `content-desc="Submit answer"`. Per question:
+  relaunch the lesson, tap next to the question, tap the blank, learn the tabs, type, submit, read `question_feedback_*`.
+- **Test every `|` alternative, not just the first** (`fitb` only — `steps`/`ordering`/`equation`/`fraction` have no alternatives, and
+  a `|` inside an ordering item such as `△ABC ||| △DEF` is text, not an alternatives separator): one typing run per alternative.
+- **Before reading a Phase 5 FAIL as a content defect, open the `_typed.png`.** If the field holds the wrong characters
+  (e.g. `sinxcos` for `4√5`) the runner mistyped; the first Phase 5 pass of this paper marked all 23 answers incorrect for exactly that
+  reason and all 23 passed once fixed.
+- **Shell traps while driving this:** `until ! pgrep -f "<pattern>"` and `pkill -f "<pattern>"` match their own command line — the
+  wait never ends or the shell kills itself (exit 144). Use a bracket pattern (`pgrep -f "[n]ode scripts/review-capture.js"`) or kill
+  by PID. A background capture is done when its log stops growing and the last lesson's screenshots exist.
+
 ## Phase 6 — Write Report + Hand Off
 
 `temp/review/<paper>_<year>/report.md`: summary counts (reviewed / passed / auto-fixed /
@@ -371,6 +400,7 @@ reason, screenshot path, and suggested action.
 ## Checklist
 
 - [ ] Cloud SQL Auth Proxy up; `adb devices` shows one running emulator
+- [ ] Installed dev build `versionName` ≥ the exam's derived minimum (see Gotchas)
 - [ ] All lessons present in the manifest; counts plausible
 - [ ] Screenshot captured for every question (no black frames)
 - [ ] Every question reviewed against all logic, render, and crop criteria

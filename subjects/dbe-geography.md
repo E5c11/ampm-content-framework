@@ -9,8 +9,12 @@ tags: [subject, geography, dbe, profile]
 # Subject Profile — DBE Geography
 
 First paper authored against this profile: `nov_p2` 2025 (`files/Geography P2 Nov 2025
-Eng.pdf` + `... MG Eng.pdf`). Everything below is evidenced against that paper; treat
-anything paper-structure-specific as illustrative until a second paper confirms it holds.
+Eng.pdf` + `... MG Eng.pdf`). `nov_p1` 2025 (`files/Geography P1 Nov 2025 Eng.pdf` + `...
+MG Eng.pdf`) was **read and analysed against the CAPS document on 2026-10-07 but not yet
+authored** — the P1 findings below (marked *P1*) are from paper/memo/CAPS analysis only, not
+from an upload session, so treat anything P1-specific as unverified until a P1 lesson ships.
+The two papers agree on the overall shape (see *Paper structure*), which confirms that
+shape is DBE Geography's, not P2's quirk.
 
 ## Identity
 
@@ -21,17 +25,31 @@ anything paper-structure-specific as illustrative until a second paper confirms 
 | Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'geography'` — flat slug IDs, empty until the first authoring session populates them. Reuse before `tools/create-curriculum-node.js` / `create-skill.js` |
 | Vocabulary dump | `node tools/dump-curriculum-vocabulary.js --subject geography --out temp/curriculum-vocab.json` (Auth Proxy running) |
 | Not authored | display names/colours — resolved from the reference tables by JOIN |
-| Papers | `nov_p2` confirmed (Rural/Urban Settlements + Economic Geography + Geographical Skills). `nov_p1` presumed to exist (DBE Geography's other paper is Climate/Weather + Geomorphology) but not yet authored against this profile — don't assume its structure matches P2 |
+| Papers | `nov_p2` authored (Rural/Urban Settlements + Economic Geography + Geographical Skills). `nov_p1` confirmed to exist and analysed 2026-10-07 (Climate and Weather + Geomorphology + Geographical Skills; 150 marks, 3 h) — not yet authored. `june_p1`/`june_p2` presumed once a June paper is sourced |
+| **Source files** | P2: `files/Geography P2 Nov 2025 Eng.pdf` + `... MG Eng.pdf`. P1: `files/Geography P1 Nov 2025 Eng.pdf` + `files/Geography P1 Nov 2025 MG Eng.pdf`. Curriculum: the CAPS PDF below |
+| **CAPS exam outline is out of date** | CAPS Annexure 4.7.1 describes Grade 12 Paper 1 as 225 marks (3×75, "answer any three") and Paper 2 as 75 marks of MC/map calculations. The real 2025 papers are **150 marks each, all questions compulsory**: Q1 60 + Q2 60 + Q3 30. Use CAPS for *content scope and hierarchy*, never for paper structure or mark weights — take those from the paper |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/CAPS FET _ GEOGRAPHY _ GR 10-12 _ WEB_C9A9.pdf` — required in-session before authoring, not optional. Geography is a content-based subject (`DESIGN-UNI-08`): a fresh scenario alone doesn't satisfy `DESIGN-UNI-01` for classificatory content, and the curriculum document is what supplies the relational/hierarchical structure to frame around, and the scope boundary against drifting into content the exam would never touch |
 | `subjects` reference row | **Already exists** — `id: "geography"`, `name: "Geography"`, `full_name: "Geography"`, `code: "GEOGRAPHY"`, `category: "geography_lessons"`, `sort_order: 6`, `color: "#82B420"`, `icon: "map"`, created 2026-09-07 (confirmed by querying dev Postgres directly, 2026-09-10 — matches exactly what this row once proposed pre-insert; the "New row needed" framing below is what's stale, not the values). This was an owner-gated insert (same path as `english_texts` rows) done once, in the past — not a per-session step and not something this framework authors itself. |
 
 ## Allowed presentation types
 
 `multiple_choice`, `multi_select`, `fitb`, `match`, `steps` **only** — evidenced against
-nov_p2 2025. `fraction`, `equation`, `ordering` not used: scale/ratio answers use `fitb`
+nov_p2 2025; *P1* analysis finds nothing that needs a sixth type. `fraction`, `equation`, `ordering` not used: scale/ratio answers use `fitb`
 with a literal `":"` token (below), not `fraction`; nothing in this paper requires
 algebraic manipulation (`equation`) or step-reordering (`ordering`) — reassess if a future
 paper's content calls for either. MathText does not apply (no symbolic maths markup).
+
+*P1* item formats and how they map (proposed, not yet uploaded):
+
+| P1 exam item | Maps to |
+|---|---|
+| Column A / Column B "write only Y or Z" statements (1.1, 2.1 — 8×1 each) | `multiple_choice` with the two Column B options per statement — it is a binary pick. **Caveat:** P2 Q1.1 was authored as `match` for the same exam format, so decide deliberately and record which in the ledger; either way don't copy the "Y/Z" lettering |
+| A–D choice (1.2, 2.2 — 7×1 each) | `multiple_choice` |
+| A–D choice over "(i) and (iii)" roman-numeral combinations (1.2.3, 1.2.5, 2.2.7) | `multiple_choice`, same as the P2 precedent (`add-geography-2025-nov-p2-q2-1.js`) — the numbered statements go in the stem, the combinations are the options. Prefer `multi_select` when the *learning* is "which of these apply" rather than the exam's lettered-combo trick |
+| Options that are sketches (2.1.8 water-table profiles Y/Z) | Needs image options — **check `presentations/multiple-choice.md` for image-option support before authoring**; otherwise describe the profile in words |
+| One-word answers (name/state/identify/list — 1.3.1, 1.4.1, 3.3.2) | `fitb`, with `\|` alternatives for accepted synonyms (the memo's "accept examples" / spelling-tolerance rules) |
+| Gradient as a ratio (3.1.3 → `1 : 6,33`) | two `fitb` blanks around a literal `":"` token — the same pattern as scale below |
+| Explain / describe / suggest (2- and 4-mark F+Q items, 8-mark paragraphs) | reframe objectively — see *Subject rules* |
 
 Question `type` vocabulary: `definition`, `calc`, `interpretation`, `application`.
 `interpretation` is Geography-specific — reading a graph/table/map feature and stating
@@ -40,6 +58,19 @@ cause/effect, evaluate impact).
 
 ## Subject rules (beyond core)
 
+- **Every typed question declares `keyboard_type` — decision 2026-10-07, `KEYBOARD-04`
+  (now a validator error).** Geography has no subject default (it resolves to `None`), so
+  nothing is inferred and the system keyboard is never used. In practice: **typed blanks are
+  numeric only → `keyboard_type: 'standard_math'`** (heights, gradients, ratio halves, scale
+  values; `-` and `.` only, no `,` `:` or spaces typed — a ratio's `":"` is a literal
+  *metadata* token, and a decimal-comma answer is stored with `.`). **Words are never typed**:
+  name/state/identify/list items become `multiple_choice` / `multi_select`. The declarable
+  free-text keyboard (`text`) is unbuilt (2.4.0, dev-only) and the `English` keyboard is
+  `english_hl`-only, so neither is an option today; revisit if `text` ships. `steps` is
+  available only with `scientific_math` declared (use it solely for a genuine multi-row
+  derivation of bare-numeric blanks). Any existing Geography `fitb`/`steps` with no declaration
+  (P2: `q1-2` and `q3-1`, 2 scripts flagged by the validator 2026-10-07) is to be retrofitted
+  per `KEYBOARD-06`; check whether their answers are words.
 - **Relational framing over isolated recall (`DESIGN-UNI-08`), grounded in the curriculum
   document (`DESIGN-UNI-09`).** Geography's classificatory content (settlement hierarchy,
   siting, pattern, land-use zones, …) has a small fixed answer space — rewording a
@@ -87,6 +118,41 @@ cause/effect, evaluate impact).
   mark-weight; reframe as an objective-format question testing the same underlying
   reasoning (`multiple_choice`/`multi_select`), the way English HL's Paper 3 tests essay
   *theory* objectively rather than asking students to write one.
+- **Marking-guideline vocabulary (*P1* memo; P2's memo is expected to use the same).** Learn
+  these before reading a memo — they carry the mark structure the explanations must reflect:
+  `(n x m)` = n facts at m marks each (`(4 x 2)` = four facts, 2 marks each = 8);
+  `[ANY ONE]`/`[ANY TWO]` = the memo lists more acceptable facts than needed; **`F+Q`** =
+  fact plus qualification (a 2-mark point is 1 for the fact, 1 for the qualifying
+  explanation — "Presence of vegetation (1)" + "…provides shade (1)"); `[CONCEPT]` = mark for
+  the idea, not the wording; `[MUST MENTION …]`/`[MUST INCLUDE TEMPERATURE AND MOISTURE]` =
+  an answer missing a named element can't reach full marks; `(accept examples)` = a specific
+  instance of the listed category counts; *INSTRUCTIONS FOR PART MARKING* = split-mark rules.
+  Action words decide format: list/name/state/identify accept one word; describe/explain/
+  suggest/differentiate/define/why/how need a full sentence. When reframing an F+Q or
+  `[ANY FOUR]` item objectively, test *recognising the correct fact and its qualification*, and
+  distractors should be plausible-but-wrong facts from the same topic (`DESIGN-UNI-08`) —
+  never a bare "which is true?" over trivially wrong options.
+- **Memo quirk — stray first page (*P1*).** `Geography P1 Nov 2025 MG Eng.pdf` page 3 is a
+  leftover marking table for a *different* paper (a "QUESTION 1" with South Atlantic High /
+  katabatic / stream-order answers that match nothing in the 2025 P1 booklet) sitting before
+  the real memo, which starts on page 4. Take answers only from the section headed
+  `SECTION A: CLIMATE AND WEATHER AND GEOMORPHOLOGY`; if an answer disagrees with page 3,
+  page 3 is the wrong one. Check P2's memo for the same before trusting its page 3.
+- **Measured-value answers carry ranges (*P1* 3.1.3).** The memo accepts `3,7–3,9 cm` and
+  `1 : 6,16 – 1 : 6,50` because students measure with a ruler. Practice questions use
+  invented *given* measurements, so their answers are exact — don't import ranges, and don't
+  ask a student to measure anything. DBE uses the decimal comma (`3,8`, `239,5 m`) and requires
+  units in the final answer (exam instruction 10) — follow both in stems and solutions.
+- **Freehand drawing in P1 (1.3.5 draw a cold-front cross-section).** Same rule as above — no
+  drawing input. Reframe as `multiple_choice` over pre-drawn labelled cross-sections (one
+  correct, others with the wrong cloud type / sector / direction) or `multi_select` of the
+  four marked elements (correct profile, direction of movement, cloud type, sector).
+- **Eight-line paragraphs (*P1* 1.5.4, 2.4.4 — 8 marks, any four 2-mark facts).** The 8-mark
+  slot is the biggest single mark-weight in Section A. Don't collapse it to one 1-mark MC:
+  `multi_select` (choose the four correct facts) keeps the weight and the reasoning. For
+  oxbow formation, which is a sequence, `ordering` would fit but is not in this subject's
+  allowed set — add it deliberately (reassess per *Allowed presentation types*) or stay with
+  `multi_select`.
 - Tags: geography concepts or curriculum topics only — never scenario wrappers
   (✗ `dube_trade_port`, `richards_bay`; ✓ `industrial_development_zone`,
   `informal_sector`) (`PIPE-06`).
@@ -98,6 +164,23 @@ cause/effect, evaluate impact).
 current set comes from the Phase 3.5 vocabulary dump, never a list in a doc (`PIPE-08`).
 Illustrative units from nov_p2 2025 only: `rural_urban_settlement`, `economic_geography`,
 `geographical_skills` (with `map_work`/`gis` as likely topics) — dump per session.
+
+*P1* adds two units — **`climate_weather`** and **`geomorphology`** — and **reuses
+`geographical_skills`** (P1 Q3 and P2 Q3 are the same CAPS strand applied to different
+topics; one unit, don't fork a `geographical_skills_p1`). CAPS Grade 12 topic list for the
+two new units, to hang topics/subtopics from (names are CAPS's, slugs are flat per the
+vocabulary dump):
+
+| Unit | CAPS topics → subtopics worth a node |
+|---|---|
+| `climate_weather` | Mid-latitude cyclones (stages, fronts and their weather, formation conditions); Tropical cyclones (formation factors, stages, quadrants, impact, management); Subtropical anticyclones (pressure cells, ridging, moisture front, line thunderstorms, coastal lows, berg winds); Valley climates (slope aspect, anabatic/katabatic winds, inversion, frost, radiation fog); Urban climates (heat island, pollution dome) |
+| `geomorphology` | Drainage systems (basin vocabulary, river types, drainage patterns/density, discharge); Fluvial processes (long/cross profiles, grading, base levels, landforms, rejuvenation, river capture); Catchment and river management |
+| `geographical_skills` | Mapwork (synoptic charts/satellite images, topographic maps: gradient, intervisibility, height difference, cross-section, magnetic declination, grid reference), Orthophoto maps, GIS |
+
+**Scope guard.** Urban climates is a Grade 12 CAPS topic that did **not** appear in the
+2025 P1 booklet. A topic being absent from one paper doesn't take it out of scope or put
+it in — CAPS defines scope, the paper defines emphasis. Don't author unseen-topic lessons
+speculatively, and don't treat the real paper's choice as exhaustive.
 
 ## `geography_maps` reference table (new — engineering dependency)
 
@@ -121,11 +204,75 @@ references):
 | `emalahleni_topo_2529cc_2025` | Topographical | 1:50 000 | 2529CC |
 | `emalahleni_ortho_2529cc15_2025` | Orthophoto | 1:10 000 | 2529CC15 |
 
+*P1 addition — a third and fourth sheet.* P1 Section B uses a **different** pair from P2:
+1:50 000 topo **3318DD Stellenbosch** and 1:10 000 orthophoto **3318DD18 Stellenbosch**
+(exam instruction 14). Neither is in `geography_maps`. Because Section B teaches technique
+generically and no sheet is available as source (see *Subject rules*), no *question* needs
+a `map_key`, but the **lesson-level provenance `map_key` still does**, so adding the two
+rows is a prerequisite for uploading P1 Q3 lessons. Proposed rows (owner-gated direct insert,
+same path as the first two; confirm sheet-number format against the existing rows first):
+
+| `map_key` | map | scale | sheet |
+|---|---|---|---|
+| `stellenbosch_topo_3318dd_2025` | Topographical | 1:50 000 | 3318DD |
+| `stellenbosch_ortho_3318dd18_2025` | Orthophoto | 1:10 000 | 3318DD18 |
+
 No `tools/create-geography-map.js` script exists yet — these two rows were inserted
 directly (one-off, matching the same owner-gated direct-insert path used for the
 `subjects`/`question_types` rows). Build the script if/when a third map is needed.
 
-## Paper structure / video mapping
+## Paper structure — shared shape (*P1* and P2)
+
+Both papers: 150 marks, 3 h, all questions compulsory, **Section A = Q1 (60) + Q2 (60),
+Section B = Q3 Geographical Skills and Techniques (30)**. Each Section A question has the
+same five-subsection skeleton:
+
+| Sub | Marks | Format |
+|---|---|---|
+| x.1 | 8 | eight 1-mark objective items (P1: Column A/B Y/Z in both Q1.1 and Q2.1; P2: A–D in 1.2/2.1, Column A/B in 1.1 and 2.2 — the 8+7 pair swaps order, so read each paper) |
+| x.2 | 7 | seven 1-mark items in the other objective format, often on a shared photo/graph |
+| x.3, x.4, x.5 | 15 each | stimulus + a ladder of 1-, 2-, 4-mark items, one of x.3–x.5 ending in an 8-mark paragraph or a 6-mark "suggest strategies" |
+
+In both papers the 15-mark subsections carry a **sustainability/management
+strategies** item ("suggest strategies the municipality can…", "sustainable strategies to
+reduce veld fire impact") — these are the open-ended, memo-lists-12-accept-any-3 items.
+Their answer space is a *large fixed list*, so an objective reframe should be a
+`multi_select` over genuine strategies vs. plausible non-strategies, not a recall of the
+memo's exact phrasing.
+
+## Paper structure / video mapping — *P1* (`nov_p1`, 13 groups, one video per subsection)
+
+Same grain as P2 below. `order` runs 1–13 across the paper. CAPS topic is the curriculum
+anchor each lesson should pull its node from.
+
+| Group | Video | Marks | CAPS topic | `map_key` |
+|---|---|---|---|---|
+| 1.1 | Synoptic charts: pressure cells, ridging, fronts | 8 | Subtropical anticyclones | null |
+| 1.2 | Valley climates: slope aspect, valley winds, frost | 7 | Valley climates | null |
+| 1.3 | Mid-latitude cyclone | 15 | Mid-latitude cyclones | null |
+| 1.4 | Tropical Cyclone Dikeledi | 15 | Tropical cyclones | null |
+| 1.5 | Berg winds and veld fires | 15 | Subtropical anticyclones | null |
+| 2.1 | Drainage basin | 8 | Drainage systems | null |
+| 2.2 | River capture | 7 | Fluvial processes | null |
+| 2.3 | Longitudinal and cross profiles | 15 | Fluvial processes | null |
+| 2.4 | Meanders, oxbow lakes, rejuvenation | 15 | Fluvial processes | null |
+| 2.5 | Catchment and river management | 15 | Catchment and river management | null |
+| 3.1 | Map skills and calculations | 10 | Topographic maps | set (Stellenbosch topo + ortho) |
+| 3.2 | Map interpretation | 12 | Mapwork / orthophoto | set |
+| 3.3 | GIS | 8 | GIS | set |
+
+Marks sum to 150 (60 + 60 + 30). Q3 content, by technique, to reteach generically with
+invented values (no sheet): height difference between two trig stations / spot heights;
+gradient as `VI : HE` (ratio via the `":"` fitb pattern) and matching a gradient to a
+profile sketch; intervisibility with an obstruction; climate/microclimate evidence on
+a map (windbreak rows → prevailing wind, perennial vs non-perennial rivers → seasonality,
+vegetation cooling → heat island); watershed and river-course evidence; GIS spatial vs
+attribute data, line/point/polygon vector features, scale manipulation, resolution and
+pixel size. Several 3.2 items ("evidence from block A5", "row of trees J in block E3", "K in block D1 or L in block C2") are meaningless without the
+sheet — convert them to a **self-contained schematic** (a small recreated figure) per the
+*Simple schematic figures* rule, not to a question about a block nobody can see.
+
+## Paper structure / video mapping — P2
 
 One video per exam **numbered subsection** (1.1, 1.2, 1.3, …) — same granularity as Math
 Lit/Maths's "one video per question group." This is `DESIGN-UNI-10` (`core/
@@ -133,7 +280,8 @@ authoring-principles.md`) rule 2 taken to its finest natural grain: every Geogra
 subsection here is independently themed, so the cluster boundary and the subsection
 boundary coincide (contrast Physics, where several subsections share one knowledge-area
 cluster). `order` is the subsection's sequential position across the whole paper.
-nov_p2 2025 = 13 groups:
+nov_p2 2025 = 13 groups (the table below is at *question* level; the 13 videos are the
+numbered subsections 1.1–1.5, 2.1–2.5, 3.1–3.3 — same count as P1):
 
 | Group | Video | Marks | `map_key` |
 |---|---|---|---|
@@ -156,6 +304,12 @@ whether Geography ships `has_video: false` initially like English HL often does.
   3.2 spans into page 19) — used `--inspect` to find exact pt cut points rather than
   guess; guessing would have been wrong (3.1 and 3.2 do not split cleanly at a page
   boundary).
+- *P1* extras: photographs (valley winds, meanders, informal settlement on a river bank) are
+  cropped, never recreated. Synoptic charts, satellite images and the infographic (1.4: fact
+  file + location map + two satellite images) are one composite visual per lesson — extract
+  once, label parts A–D as the paper does. The Stellenbosch map sheets and the Danie Craven
+  stadium image pair (3.3.5, an actual image-resolution comparison) can't be re-created from
+  anything in the booklet; for 3.3 rebuild a pixel-grid comparison as a fresh schematic.
 - Recreated schematic diagrams (per Subject rules above) are new assets, not extracted
   from the PDF — produced separately, then uploaded the same way as any other image.
 

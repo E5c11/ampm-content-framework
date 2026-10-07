@@ -288,11 +288,12 @@ function validateQuestion(q, index, allQuestions) {
   analysis.warnings.forEach(m => caution(m));
   const requires = analysis.requires;
 
-  // KEYBOARD-04: a typed question declares its keyboard explicitly so the script and its database row agree
-  // (a bare-numeric fitb is 'standard_math', a bare-numeric steps/equation 'scientific_math'). Non-blocking:
-  // omitted still works (the app infers it, and a re-upload leaves the database value alone).
-  if (['fitb', 'steps', 'equation', 'fraction'].includes(q.presentation) && (q.keyboard_type === undefined || q.keyboard_type === null)) {
-    caution('no "keyboard_type" declared on a typed question — declare it explicitly (core/keyboard-input.md KEYBOARD-04)');
+  // KEYBOARD-04: EVERY typed question declares its keyboard explicitly, never relying on subject inference or the
+  // system keyboard (a bare-numeric fitb is 'standard_math', a bare-numeric steps/equation 'scientific_math').
+  // Blocking. Only exemption: english_hl, whose legacy English keyboard is subject-inferred and not declarable.
+  if (['fitb', 'steps', 'equation', 'fraction'].includes(q.presentation) && (q.keyboard_type === undefined || q.keyboard_type === null)
+      && String(q.subject || '').toLowerCase() !== 'english_hl') {
+    warn('no "keyboard_type" declared on a typed question — every typed question must declare one (core/keyboard-input.md KEYBOARD-04)');
   }
 
   return { label, errors, warnings, requires };
