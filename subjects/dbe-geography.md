@@ -298,3 +298,42 @@ whether Geography ships `has_video: false` initially like English HL often does.
 The `scripts/add-*.js` files committed here are the provenance record. Check dev Postgres
 for what's already uploaded before starting a paper:
 `psql -c "SELECT name, sort_order FROM lessons WHERE subject_id='geography' AND paper_id='<paper>' AND year_id='<year>' ORDER BY sort_order"`.
+
+### `nov_p2` 2025 — authored 2026-09 (dev)
+
+13 lessons (`scripts/add-geography-2025-nov-p2-*.js`). Its three Q3 lessons carry the
+eMalahleni `map_key`, set before the "no maps" rule existed; leave as is. Three `fitb` rows
+(`q1-2`, `q3-1`) declare no `keyboard_type` and now fail `KEYBOARD-04` if re-run (retrofit
+needed; check whether their answers are words). Phase 5 has not been run on this paper.
+
+### `nov_p1` 2025 — authored and reviewed 2026-10-07 (dev only)
+
+- **Scope:** 13 lessons, 59 practice questions, one script per subsection
+  (`scripts/add-geography-2025-nov-p1-q<N>-<M>.js`): Q1 climate and weather (1.1–1.5),
+  Q2 geomorphology (2.1–2.5), Q3 skills (3.1–3.3). 82 `aiExplanation` entries, one per real
+  exam sub-question with real memo marks (`AIEXP-08`). Presentation mix: 23 `multiple_choice`,
+  11 `multi_select`, 10 `match` in Section A; Section B adds 2 numeric `fitb`.
+- **Curriculum rows created this session:** units `climate_weather`, `geomorphology`; topics,
+  subtopics, skills and tags listed in the scripts. Q3 reuses the existing
+  `geographical_skills` unit, its `map_skills_and_calculations`, `map_interpretation` and
+  `gis` topics, and the `map_skills`/`map_interpretation`/`gis` tags.
+- **No maps (rule written during this paper):** no Q3 question depends on a map sheet, and
+  `map_key` is null on all 13 lessons. The Stellenbosch sheets (3318DD, 3318DD18) were
+  deliberately not added to `geography_maps`. Section B teaches technique on invented,
+  fully stated data; the real exam pages stay as the worked example.
+- **Keyboards:** words are never typed. The only typed blanks are 3.1 Q1 (`276.5`) and 3.1 Q2
+  (`1`, `6.22` around a literal `":"`), both `keyboard_type: 'standard_math'`. Derived minimum
+  app version is the 2.0.0 floor, so no exam gate is needed.
+- **Reframes used:** the Y/Z Column A/B items became `multiple_choice`/`match`; the freehand
+  cold-front cross-section (1.3.5) became a "which description is drawn correctly"
+  `multiple_choice`; the two 8-mark paragraphs (1.5.4, 2.4.4) became `multi_select` over
+  the correct facts. No new schematic images were generated for this paper.
+- **Image extraction:** cut points for shared pages (P1 pp. 7–8; memo pp. 4–12) were taken
+  from heading positions with PyMuPDF word coordinates, not by eye; every crop was checked.
+  Memo page 3 is a stray page from another paper and was not used.
+- **Phase 5 (2026-10-07):** all 59 questions captured and reviewed, no render defects, no
+  auto-fixes. Both typed questions answered correctly through the real number pad. The
+  harness `review-capture-answers.js` handles single-blank `fitb` only, so 3.1 Q2 (two
+  blanks) was driven by a one-off script.
+- **Not done:** no prod push (`push-paper-to-prod.js`), no video (`has_video: false`), and
+  `june_p1` is not sourced.
