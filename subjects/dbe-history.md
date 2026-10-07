@@ -442,7 +442,12 @@ questions captured and reviewed against their screenshots: 50 PASS, 0 AUTO_FIX, 
 answerability **8/8 PASS** with `usedSystemFallback: false` — the declared `standard_math` number pad
 opened for every History `fitb` and marked each stored answer correct, the first time a History typed
 blank has been verified through a custom keyboard (the Phase 5 tooling gap in the P2 ledger below does
-not apply to declared keyboards). Report: `AMPM/temp/review/history_nov_p1_2025/report.md`.
+not apply to declared keyboards). **Scope of that result:** 2.3.3-dev01 is a dev build that already
+reads `keyboard_type`; **released builds (≤ 2.3.2) ignore the field** (`core/app-feature-versions.md`:
+honoured from 2.4.0) and infer by subject, so on them P1's blanks open the system decimal keyboard,
+exactly like live P2 — still typeable because every answer is a plain number, which is why the exam
+needs no gate. That released-build behaviour is inferred from the P2 finding and the version table, not
+re-tested on P1. Report: `AMPM/temp/review/history_nov_p1_2025/report.md`.
 - **FLAG (content, minor, left as authored):** in the three essay-strategy "which introduction is best"
   multiple-choice items (Q4/Q5/Q6 item 7) the correct option is also the longest, so a test-wise student can
   pick it by length. Lengthening the distractors would fix it; deliberately not done (length is partly the lesson).
