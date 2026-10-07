@@ -92,6 +92,7 @@ const questions = [
     metadata: ['Eₖ(max) = ', '[ ]', ' × 10⁻¹⁹ J'],
     answer: ['1.64', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'matter_materials',
     topic: 'optical_phenomena',

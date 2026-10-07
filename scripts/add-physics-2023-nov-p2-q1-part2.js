@@ -53,6 +53,7 @@ const questions = [
     metadata: ['Volume of CO₂ in Experiment 2 = ', '[ ]', ' × the volume in Experiment 1'],
     answer: ['2', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'chemical_change',
     topic: 'reaction_rate',

@@ -81,6 +81,7 @@ const questions = [
     metadata: ['Average rate = ', '[ ]', ' mol·s⁻¹'],
     answer: ['0.04', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'chemical_change',
     topic: 'reaction_rate',

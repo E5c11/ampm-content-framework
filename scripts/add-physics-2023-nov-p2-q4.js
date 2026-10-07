@@ -53,6 +53,7 @@ const questions = [
     metadata: ['n = ', '[ ]'],
     answer: ['2', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'matter_materials',
     topic: 'organic_molecules',

@@ -83,6 +83,7 @@ const questions = [
     metadata: ['E = ', '[ ]', ' × 10⁶ N·C⁻¹'],
     answer: ['9', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'electricity_magnetism', topic: 'electrostatics', subtopic: 'electric_field_diagrams',
     skills: ['electric_field_calculation'],

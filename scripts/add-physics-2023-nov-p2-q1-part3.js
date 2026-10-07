@@ -53,6 +53,7 @@ const questions = [
     metadata: ['Kc = ', '[ ]'],
     answer: ['4', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'chemical_change',
     topic: 'chemical_equilibrium',

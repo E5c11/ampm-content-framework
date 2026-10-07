@@ -85,6 +85,7 @@ const questions = [
     ],
     answer: ['2.00'],
     presentation: 'steps',
+    keyboard_type: 'scientific_math',
     type: 'calc',
     unit: 'electricity_magnetism', topic: 'electrodynamics', subtopic: 'ac_generator_rms',
     skills: ['ac_power_cost_calculation'],

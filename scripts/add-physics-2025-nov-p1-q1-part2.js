@@ -84,6 +84,7 @@ const questions = [
     metadata: ['fₗ = ', '[ ]', ' Hz'],
     answer: ['637.5', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'waves_sound_light',
     topic: 'doppler_effect',

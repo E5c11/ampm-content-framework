@@ -53,6 +53,7 @@ const questions = [
     metadata: ['Ecell = ', '[ ]', ' V'],
     answer: ['1.10', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'chemical_change',
     topic: 'electrochemistry',

@@ -105,6 +105,7 @@ const questions = [
     metadata: ['Number of carbon atoms in Y = ', '[ ]'],
     answer: ['3', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'matter_materials',
     topic: 'organic_molecules',

@@ -133,6 +133,7 @@ const questions = [
     metadata: ['Total volume = ', '[ ]', ' cm³'],
     answer: ['55', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'matter_materials',
     topic: 'organic_molecules',

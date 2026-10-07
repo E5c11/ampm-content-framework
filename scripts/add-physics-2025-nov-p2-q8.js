@@ -139,6 +139,7 @@ const questions = [
     metadata: ['Mass of ZnSO₄ = ', '[ ]', ' g'],
     answer: ['80.5', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'chemical_change',
     topic: 'electrochemistry',

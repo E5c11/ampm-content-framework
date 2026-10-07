@@ -82,6 +82,7 @@ const questions = [
     metadata: ['I = ', '[ ]', ' A'],
     answer: ['2.44', '', '', '', ''],
     presentation: 'fitb',
+    keyboard_type: 'standard_math',
     type: 'calc',
     unit: 'chemical_change',
     topic: 'electrochemistry',
