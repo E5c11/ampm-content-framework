@@ -21,7 +21,7 @@ shape is DBE Geography's, not P2's quirk.
 | Field | Value |
 |---|---|
 | `syllabus` / `subject` | `"dbe"` / `"geography"` |
-| Postgres tables | `lessons`, `questions` — `subject_id = "geography"` — plus `geography_maps` (new, see below) |
+| Postgres tables | `lessons`, `questions` — `subject_id = "geography"` (`geography_maps` exists but is legacy — maps are not available, see Subject rules) |
 | Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'geography'` — flat slug IDs, empty until the first authoring session populates them. Reuse before `tools/create-curriculum-node.js` / `create-skill.js` |
 | Vocabulary dump | `node tools/dump-curriculum-vocabulary.js --subject geography --out temp/curriculum-vocab.json` (Auth Proxy running) |
 | Not authored | display names/colours — resolved from the reference tables by JOIN |
@@ -104,9 +104,18 @@ cause/effect, evaluate impact).
   topographic feature recognition, GIS data layering/vector-raster/buffering) with fresh
   invented values, not tied to any specific real map. The real exam page (formulas,
   instructions, GIS sketch) is still shown as the worked example per `DESIGN-UNI-01`
-  where it doesn't depend on seeing the map itself. `map_key` is still set at the
-  **lesson** level (provenance — which real map the worked example refers to) even
-  though no individual practice question needs one anymore.
+  where it doesn't depend on seeing the map itself.
+- **Maps are not available, so no question may depend on one (rule, 2026-10-07).** The
+  topographic and orthophoto sheets are never part of this system: not as source material,
+  not as images, not as a table. A practice question must be fully answerable from its own
+  stem (given values, a described contour pattern or a recreated schematic) with no
+  reference to a map block, grid reference, spot height "on the map", symbol "on the
+  orthophoto" or feature "in block X". If a real exam sub-question only makes sense with the
+  sheet (reading a height at a station, a coordinate lookup, "evidence from block A5"), keep
+  its mark-weight by teaching the *technique* on invented data instead. The `aiExplanation`
+  entries still follow the real exam's numbering (`AIEXP-08`) and may quote what the memo
+  says about the real map, since they are the guide to the real paper. **`map_key` is null on
+  every new lesson and question**; the `geography_maps` table is not extended for new papers.
 - **Simple schematic figures** (the exam's own "Examiner's own sketch" diagrams —
   settlement pattern shapes, urban land-use zone profiles, GIS data-layering sketches)
   may be recreated as new diagrams with different specific values, the way Maths
@@ -182,44 +191,15 @@ vocabulary dump):
 it in — CAPS defines scope, the paper defines emphasis. Don't author unseen-topic lessons
 speculatively, and don't treat the real paper's choice as exhaustive.
 
-## `geography_maps` reference table (new — engineering dependency)
+## `geography_maps` reference table — legacy, do not extend
 
-Section B's three subsections (3.1–3.3) all reference the *same* physical
-topo+orthophoto map pair by grid block. This is the same shape of need English HL solved
-with `english_texts` (`text_key` FK, reused across many lessons/questions for one
-prescribed text) — not a reason to duplicate `lessons`/`questions` into a subject-specific
-table. Recommend a `geography_maps` table (`id`, `name`, `map_type` `topo`/`ortho`,
-`scale`, `sheet_number`, `year`) with a `map_key` FK on lessons/questions, mirroring
-`text_key`: **null for Section A lessons, set for Section B lessons.**
-
-**Live in dev as of 2026-09-07** (`V75`/`V76`, deployed): `geography_maps` has two rows,
-one per physical map sheet (not one row per pair — `map_type` is singular per row, so
-Section B's mixed topo/ortho questions within one lesson are disambiguated per-*question*,
-not per-lesson; leave the lesson's own `map_key` null or set to whichever map the lesson's
-primary stimulus is, and set each question's own `map_key` to the specific map it
-references):
-
-| `map_key` | map | scale | sheet |
-|---|---|---|---|
-| `emalahleni_topo_2529cc_2025` | Topographical | 1:50 000 | 2529CC |
-| `emalahleni_ortho_2529cc15_2025` | Orthophoto | 1:10 000 | 2529CC15 |
-
-*P1 addition — a third and fourth sheet.* P1 Section B uses a **different** pair from P2:
-1:50 000 topo **3318DD Stellenbosch** and 1:10 000 orthophoto **3318DD18 Stellenbosch**
-(exam instruction 14). Neither is in `geography_maps`. Because Section B teaches technique
-generically and no sheet is available as source (see *Subject rules*), no *question* needs
-a `map_key`, but the **lesson-level provenance `map_key` still does**, so adding the two
-rows is a prerequisite for uploading P1 Q3 lessons. Proposed rows (owner-gated direct insert,
-same path as the first two; confirm sheet-number format against the existing rows first):
-
-| `map_key` | map | scale | sheet |
-|---|---|---|---|
-| `stellenbosch_topo_3318dd_2025` | Topographical | 1:50 000 | 3318DD |
-| `stellenbosch_ortho_3318dd18_2025` | Orthophoto | 1:10 000 | 3318DD18 |
-
-No `tools/create-geography-map.js` script exists yet — these two rows were inserted
-directly (one-off, matching the same owner-gated direct-insert path used for the
-`subjects`/`question_types` rows). Build the script if/when a third map is needed.
+`geography_maps` exists in dev (`V75`/`V76`) with two rows for the P2 2025 eMalahleni sheets
+(`emalahleni_topo_2529cc_2025`, `emalahleni_ortho_2529cc15_2025`); the three P2 Q3 lessons
+carry the topo key as lesson-level provenance, set before the rule above was written.
+Leave those as they are. **Do not add rows for further papers** (P1 2025's Stellenbosch
+sheets 3318DD / 3318DD18 were deliberately not added) and do not set `map_key` on new
+content: no sheet exists in the system, so there is nothing for the key to point at in
+the app and no question may depend on one.
 
 ## Paper structure — shared shape (*P1* and P2)
 
@@ -257,9 +237,9 @@ anchor each lesson should pull its node from.
 | 2.3 | Longitudinal and cross profiles | 15 | Fluvial processes | null |
 | 2.4 | Meanders, oxbow lakes, rejuvenation | 15 | Fluvial processes | null |
 | 2.5 | Catchment and river management | 15 | Catchment and river management | null |
-| 3.1 | Map skills and calculations | 10 | Topographic maps | set (Stellenbosch topo + ortho) |
-| 3.2 | Map interpretation | 12 | Mapwork / orthophoto | set |
-| 3.3 | GIS | 8 | GIS | set |
+| 3.1 | Map skills and calculations | 10 | Topographic maps | null (no maps in the system) |
+| 3.2 | Map interpretation | 12 | Mapwork / orthophoto | null |
+| 3.3 | GIS | 8 | GIS | null |
 
 Marks sum to 150 (60 + 60 + 30). Q3 content, by technique, to reteach generically with
 invented values (no sheet): height difference between two trig stations / spot heights;
@@ -287,7 +267,7 @@ numbered subsections 1.1–1.5, 2.1–2.5, 3.1–3.3 — same count as P1):
 |---|---|---|---|
 | 1.1–1.5 | Q1 Rural and Urban Settlements | 60 | null |
 | 2.1–2.5 | Q2 Economic Geography of South Africa | 60 | null |
-| 3.1–3.3 | Q3 Geographical Skills and Techniques | 30 | set (eMalahleni topo + orthophoto) |
+| 3.1–3.3 | Q3 Geographical Skills and Techniques | 30 | set (eMalahleni topo; legacy — new lessons leave it null) |
 
 No YouTube video data source confirmed yet for Geography (unlike Math Lit's
 `files/youtube_video_data.csv`) — check before Phase 2 whether one exists per lesson, or
