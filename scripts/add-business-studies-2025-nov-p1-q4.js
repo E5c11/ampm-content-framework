@@ -48,7 +48,9 @@ const video = {
   "memo_image_urls": [
     "https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p1/q4/memo_1.png",
     "https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p1/q4/memo_2.png",
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p1/q4/memo_3.png"
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p1/q4/memo_3.png",
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p1/q4/memo_4.png",
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/business_studies/2025/nov_p1/q4/memo_5.png"
   ],
   "exam_question_marks": 40,
   "supplementary_materials": []
