@@ -77,7 +77,7 @@ boolean, **false by default**. `true` makes `fitb` marking skip its lower-casing
 `Co` and `CO` differ — needed for Chemistry formulae and the odd Maths answer. It changes **only `fitb`** (`steps`/`equation`
 already compare case-sensitively, so the validator warns it has no effect there) and it needs a keyboard that can type both
 cases (`scientific_math`, `physics`, `chemistry` — **not** `english`, `text` or the number pad, which the validator rejects).
-Omitted on re-upload = the database value is left alone. Unreleased until the next app release (2.4.0), so it is dev-only
+Omitted on re-upload = the database value is left alone. The V82 column is live on dev and prod (prod since 2026-10-06, so the push tool copies it), but the app feature is unreleased until 2.4.0, so content that sets it is dev-only — held back by the 2.4.0 derived-minimum rule (`VER-08`), not by the schema
 (`VER-05`). `enforced_by: validator`
 
 **`SCHEMA-EXAM-01`** — Content is gated by **exam** (subject + syllabus + year + session), never per

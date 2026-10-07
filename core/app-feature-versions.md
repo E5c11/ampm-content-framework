@@ -153,7 +153,7 @@ the commit that added the capability.
 | `X-App-Version` header; full resync on app-version change | **2.4.0 (planned; next release after 2.3.2, not yet tagged)** | Prerequisite for any prod exam gate to take effect. |
 | `physics`, `chemistry`, `text` keyboards | **2.4.0 (planned)** | BLA-21 / BLA-58. Valid to author; `NEXT_RELEASE` (2.4.0) in the tooling until `LATEST_RELEASED` reaches it. `physics` (4d) and `chemistry` (4e) are both built on AMPM `dev` and emulator-verified, as is the `fitb` answer box / row label rendering of `^`/`_` markup. |
 | Extended `scientific_math` keys: all letters, `< > ; , [ ] ° ' ± ∞ ∩ ∪ !`, `Σ σ Δ Ω μ ε α β`, `ln lim nCr nPr`, sub/super mode keys | **2.4.0 (planned)** | BLA-21 item 5c0 (final layout still to be designed from real Grade 12 papers). `NEXT` until tagged. |
-| `case_sensitive` flag (fitb marking skips lower-casing) | **2.4.0 (planned)** | D15 / initiative 4c. Needs contracts 0.40.0 (published), backend V82 (deployed to dev), the app change (merged to `dev`, verified on the emulator). `NEXT` until the release is tagged. |
+| `case_sensitive` flag (fitb marking skips lower-casing) | **2.4.0 (planned)** | D15 / initiative 4c. Needs contracts 0.40.0 (published), backend V82 (deployed to dev, and to **prod since 2026-10-06**, Flyway head 82 — all rows `case_sensitive = false`), the app change (merged to `dev`, verified on the emulator). 2.4.0 until `LATEST_RELEASED` reaches it. |
 | MathText `_{…}` / `^{…}` markup | **2.4.0 (planned)** | Decision D4, BLA-21 item 5d. Recorded as `NEXT_RELEASE` (2.4.0) in the tooling until `LATEST_RELEASED` is bumped (`VER-06`). |
 
 A capability row marked "next release after 2.3.2" must be replaced with the real tag as soon as it
