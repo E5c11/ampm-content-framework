@@ -388,17 +388,60 @@ one theme; reuse a node only where it is genuinely the same concept (e.g. *Domin
 
 ## Completed papers ledger
 
-**`nov_p1` — analysed 2026-10-07, not authored.** Source files (question paper, addendum,
-marking guideline) and the CAPS document read in full; the Section A visual sources
-inspected (two cartoons, one photograph). Produced: the P1 paper-structure table, item-format mapping, memo vocabulary and
-cautions, scope guard, curriculum units, and the revised keyboard decision (*numeric-only,
-`standard_math` for numbers, `text` permitted sparingly for single-token words — owner accepted the 2.4.0 gate on 2026-10-07*). Not produced: any lesson, question, image or database row.
-**Next steps for the P1 session:** (1) vocabulary dump for `history` (P2 is not retrofitted — see *Keyboard*;
-write P1 scripts from the template, not from a P2 script); (2) extract page images per source (`extract-exam-pages.py`, **rename each to a
-unique `annexure_<label>.png` / `memo_N.png` before upload** — see the collision notes below, which
-apply unchanged); (3) author Q1→Q6 per `workflows/generate/upload-history.md`, one commit per
-lesson; (4) track the `DESIGN-UNI-06` MC index-0 tally **for `nov_p1` separately** (the 10 % cap
-is paper-level; P2 finished at 2 of 28, 7.1 %); (5) full-paper review via `review-paper.md`.
+**`nov_p1` — authored and uploaded to dev, 2026-10-07; emulator review and prod push still open.**
+All 6 lessons (3 source-based, 3 essay), `order` 1–6, 51 practice questions, validated
+(`--curriculum`, 0 errors, 0 warnings, derived minimum 2.0.0) and upserted to dev Cloud SQL, one
+commit per lesson (`dc19588`…`a8a8eaf`). Verified in Postgres: 6 lessons / 51 questions all
+published, every `fitb` declares `keyboard_type = 'standard_math'`, no `\n` in any stem,
+every question has unit/topic/subtopic, `aiExplanation` sums to 50 marks per lesson (18 entries
+for each of Q1–Q3, one for each of Q4–Q6) so **300/300 marks of the question bank covered**.
+All 36 image URLs (question pages, memo pages, 12 source images) return 200 and are distinct
+objects (no `question_N.png` collision — each source was renamed `annexure_<label>.png` before upload).
+
+| Lesson | Order | Real sub-Qs | Marks | Practice Qs | Presentations used |
+|---|---|---|---|---|---|
+| Question 1 (Cold War — containment, 1947) | 1 | 1.1.1–1.6 (18) | 50 | 9 | multiple_choice, multi_select, fitb, match, ordering |
+| Question 2 (Independent Africa — USA in Angola) | 2 | 2.1.1–2.6 (18) | 50 | 9 | multiple_choice, multi_select, fitb, match, ordering |
+| Question 3 (Civil society — King's non-violence) | 3 | 3.1.1–3.6 (18) | 50 | 9 | multiple_choice, multi_select, fitb, match, ordering |
+| Question 4 (Cold War — Vietnam, essay) | 4 | 4 (essay) | 50 | 8 | multiple_choice, multi_select, fitb, match, ordering |
+| Question 5 (Independent Africa — Mobutu, essay) | 5 | 5 (essay) | 50 | 8 | multiple_choice, multi_select, fitb, match, ordering |
+| Question 6 (Civil society — Black Power, essay) | 6 | 6 (essay) | 50 | 8 | multiple_choice, multi_select, fitb, match, ordering |
+
+**Keyboard outcome.** The paper was authored with `text` permitted (owner accepted the 2.4.0 gate)
+but **no question needed it**: every typed blank is a year, a count or a computed figure (1946, 6, 22,
+58.3, 3, 1965, 1971, 1966), declared `standard_math`. Consequently the 2025 exam derives the floor
+(2.0.0), `apply-exam-gate.js` wrote nothing, and P1 is not held behind the 2.4.0 release. The upload
+script's post-upload gate step confirmed it ("derived minimum is the floor — no gate needed").
+
+**`DESIGN-UNI-06` tally for `nov_p1`:** 2 of 20 `multiple_choice` questions have the correct answer at
+`metadata` index 0 (10 %, exactly at the cap — Q1's Domino Theory item and Q4's thesis item). A paper
+total, tracked separately from P2's 2 of 28.
+
+**What was new in the authoring, worth reusing.**
+- **Curriculum rows are per (unit, topic, subtopic), not flat.** `create-curriculum-node.js` derives a
+  hierarchical id, so the same subtopic slug (`evidence_extraction`) must be created once under *each*
+  topic that uses it — 26 subtopic rows for 6 topics. The vocabulary dump collapses them to bare slugs,
+  which hides this; the upload's FK preflight is what catches a missing one. Each create call opens its
+  own connection (~5 s), so a batch of ~50 rows (3 units, 6 topics, 26 subtopics, 5 skills, 24 tags) runs
+  for several minutes — run it in the background.
+- **`validate-questions.js` extracts `const questions = [...]` by regex and evals it in isolation**, so the
+  array must be a pure literal (no helper calls, no outer constants, no `];` inside a string). The six
+  scripts were generated from compact Python definitions that emit literal arrays; the generator is not
+  kept in the repo — the scripts are the source of truth, as for every other paper.
+- **Fresh angles actually used (`DESIGN-HIST-01`).** Verdict-reversal on source evaluation (limitations of
+  1A, usefulness of 2C, reliability caution on 2D/3B rather than the exam's own reliability/limitations
+  items); attribution items (match each quotation to its source; match each speaker in 3D); chronology
+  items built from the source introductions; cross-source pairings the exam did not ask (1C↔1D, 2B↔2C);
+  a real calculation (2B: $100 m requested vs $41,7 m authorised → 58.3).
+- **Memo cautions applied.** Practice items on Tet are framed on political impact; Vietnamisation is kept
+  distinct from "winning hearts and minds"; Seale/Davis spelled correctly; Source 1B is described as a
+  figure representing the USA, not asserted to be Truman.
+
+**Still open for `nov_p1`:** (1) the emulator full-paper review (`review-paper.md`) — not run; in
+particular confirm on the first `fitb` that a declared `standard_math` History question drives through
+Phase 5 (this profile's *Keyboard* section predicts it should); (2) the prod push
+(`push-paper-to-prod.js`; the exam is at the floor so nothing blocks it, but it is owner-gated data
+mutation); (3) the P2 `keyboard_type` non-retrofit stays as documented.
 
 **`nov_p2` Section A (Q1–Q3) — complete, 2026-09-12.** All 3 lessons authored,
 validated, and upserted to dev (Cloud SQL); image URLs spot-checked resolving (200)
