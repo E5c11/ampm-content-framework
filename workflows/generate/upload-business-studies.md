@@ -85,7 +85,10 @@ than silently uploading placeholders.
 4. **Questions** (pipeline Phase 3) — the Business-Studies-specific decisions:
    - **`DESIGN-BUS-01`**: default numeric-literacy content to `multiple_choice`, matching
      the real paper's own evidenced shape. Never author a `fitb` blank that needs a
-     letter — this subject's `None`-routed keyboard only reliably types digits.
+     letter unless the blank declares `keyboard_type: 'text'` (2.4.0, gated); a bare-numeric blank declares
+     `standard_math`. Every typed question declares a keyboard (`KEYBOARD-04`); the 2.4.0 app's fallback is a safety net.
+     `text` is allowed sparingly (single canonical term, alternatives via `|`). Owner accepted 2026-10-07 that it gates the whole
+     2025 Nov exam, incl. live P2, at 2.4.0 (`VER-09`; profile § Keyboard) — run `apply-exam-gate.js` after upload.
    - **`DESIGN-BUS-02`**: every discursive/indirect-question concept decomposes into
      `multiple_choice`/`multi_select`/`match`/`ordering` against the *marking
      guideline's own listed points* — never a `fitb` open-recall blank for a term, name,
@@ -123,7 +126,7 @@ than silently uploading placeholders.
      (async () => {
        const pool = getPool('dev');
        const { rows } = await pool.query(\`
-         SELECT count(*) FILTER (WHERE metadata->>0 = answer->>0) AS at_index_0, count(*) AS total
+         SELECT count(*) FILTER (WHERE metadata[1] = answer[1]) AS at_index_0, count(*) AS total
          FROM questions q JOIN lessons l ON q.lesson_id = l.id
          WHERE l.subject_id = 'business_studies' AND l.paper_id = 'nov_p2' AND l.year_id = '2025'
            AND q.presentation_id = 'multiple_choice'

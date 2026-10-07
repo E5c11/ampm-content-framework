@@ -21,9 +21,9 @@ governs the opposite direction: what characters a student can **type** into a bl
 resolves to.** An answer needing a character that keyboard lacks makes the question unanswerable,
 and no render-only screenshot review will ever catch it.
 
-The app never falls back to the system IME for `steps`/`equation` blanks, and for `fitb`/`fraction`
-only when no custom keyboard applies (see § Routing). The custom Compose keyboards emit exactly the
-key labels in their source. If a label isn't listed below, it cannot be typed, full stop.
+From **2.4.0** the app's keyboard decision is **total**: every typed answer input gets a custom keyboard and the system keyboard is never used for a lesson answer (declared `keyboard_type` →
+subject → fallback; see § Routing). Builds **before** 2.4.0 keep the old behaviour (a `fitb` in a subject with no keyboard of its own gets the decimal-only system keyboard; `steps`/`equation`
+there are unanswerable). The custom Compose keyboards emit exactly the key labels in their source. If a label isn't listed below, it cannot be typed, full stop.
 
 ## Source of truth
 
@@ -56,7 +56,7 @@ CHECK on purpose, so adding a keyboard needs no migration):
 
 | `keyboard_type` | Status | What it is |
 |---|---|---|
-| `none` | **released** | No custom keyboard. |
+| `none` | **not a value** | Not a keyboard: from 2.4.0 the app ignores it (an unrecognised value is skipped), and the validator **errors** on it. Omit `keyboard_type` or declare a real one. |
 | `standard_math` | **released** | Numeric pad (`StandardMath`). |
 | `scientific_math` | **released** | Two-tab symbolic keyboard (`ScientificMath`). |
 | `physics` | **built, dev-only until the next release** (initiative 4d) | The Physics variant of `ScientificKeyboard`. Numbers = Maths. Symbols: `Δ θ µ ε Ω / ° ± · × ÷ / < > √ α β / x₂ xⁿ λ ρ σ`. ABC = Maths (a–z, one-shot shift, `sin cos tan log`). `x₂` / `xⁿ` open a **flat** `_{…}` / `^{…}` group, left with the exit arrow; the output is MathText markup, so author answers as `F_{net}`, `10^{-19}`, `kg·m·s^{-1}`. `µ` is U+00B5 (micro sign), **not** Greek mu U+03BC; `·` is U+00B7. Reached **only** by declaring it. |
@@ -73,8 +73,9 @@ question falls back to subject inference and may not be answerable on a device.
 
 ## Routing — what a question resolves to
 
-Resolution order (`KeyboardResolver.resolve`): **declared `keyboard_type` (released values only) →
-else the subject table below.**
+Resolution order (`KeyboardResolver.resolve`, AMPM `dev` 1ca3581ef, 2.4.0+): **declared `keyboard_type` (a value this build recognises) → else the subject table below → else the fallback:
+`ScientificMath` for `steps`/`equation`, `Text` for everything else.** An unrecognised declared value (a future keyboard, or `none`) is skipped, not an error. The fallback is a **safety net, not a plan** —
+content must still declare a `keyboard_type` (`KEYBOARD-04`).
 
 | Subject | Presentation | Keyboard |
 |---|---|---|
@@ -82,8 +83,12 @@ else the subject table below.**
 | `math_lit` | any | `StandardMath` |
 | `maths`, `physics` | `equation`, `steps` | `ScientificMath` |
 | `maths`, `physics` | anything else (`fitb`, `fraction`) | `StandardMath` |
-| any other subject | `fitb`, `fraction` | `None` — **legacy path, do not author against it (`KEYBOARD-04`: every typed question declares a keyboard; the owner has also changed the app so the fallback is not to be relied on — re-verify the app's `KeyboardResolver.kt`, which wins)**. Historically **not unanswerable**: `LessonView.kt` sets `suppressSystemKeyboard = false` for `None`, and `DynamicTextInput`/`RoundedTextBox` fall back to a real focusable `BasicTextField`, so the device's system keyboard opens. But `FillInTheBlank.kt` never overrides the `keyboardType` param, so the field always requests `KeyboardType.Decimal`: a bare-numeric answer is fully typeable; a free-text answer depends on whether the device's decimal-mode IME exposes a letters toggle (inconsistent across devices — not something to author against). |
-| any other subject | `steps`, `equation` | `None`, and this **is** genuinely unanswerable — `EquationInput.kt` has no system-IME fallback ("driven entirely by the [custom] keyboard via ViewModel"; `LessonView.kt`'s `None -> { /* no custom keyboard */ }`). The validator errors on it. |
+| `afrikaans_fal` | any | `Text` |
+| any other subject (Life Sciences, Geography, History, Business Studies, anything new) | `fitb`, `fraction` | **2.4.0+: the `Text` fallback** (letters + a digits/punctuation screen). **Before 2.4.0:** no custom keyboard — the device's system keyboard opens, but `FillInTheBlank.kt` always requests `KeyboardType.Decimal`, so only a bare-numeric answer is reliably typeable. |
+| any other subject | `steps`, `equation` | **2.4.0+: the `ScientificMath` fallback.** **Before 2.4.0:** genuinely unanswerable (`EquationInput.kt` has no system-IME fallback). |
+
+The fallback needs **no exam gate** (`core/app-feature-versions.md`): it changes only what a 2.4.0+ build shows for content that declared nothing; older builds simply keep their old behaviour. Declaring `text` on content is what
+makes an exam need 2.4.0.
 
 `physics` is therefore resolved identically for Physics (P1) and Chemistry (P2) today; they only
 diverge once a question declares `physics` / `chemistry`.
@@ -166,8 +171,8 @@ Until that release is tagged, a typed answer needing them is dev-only.
 **Text / Afrikaans** (`text`, BLA-58) is specified, not built: QWERTY plus a second screen for
 punctuation, digits and — shown only for Afrikaans questions — `ê ë é è ô ö û ü î ï ä ŉ`. No
 long-press, no shift key. Until it ships, free-text answers for `english_hl` are limited to letters,
-apostrophe and space, and for the `None`-routed subjects (life_science, geography, history,
-business_studies) to bare numerics.
+apostrophe and space. For the subjects with no keyboard of their own (life_science, geography, history,
+business_studies) the 2.4.0 `text` keyboard (or its fallback) types prose; on builds before 2.4.0 only bare numerics are typeable.
 
 ## Marking — how a typed value is compared (affects what you can store)
 
@@ -281,15 +286,15 @@ else blank", and not one artificial extra row per blank for its label/unit eithe
 See `presentations/steps.md`. `enforced_by: human-review`
 
 **`KEYBOARD-04`** — **Every typed question (`fitb`, `steps`, `equation`, `fraction`) declares `keyboard_type`. No exceptions, in any subject.**
-Never rely on subject inference, the `None` fallback or the system keyboard (decision 2026-10-07: nothing in this product uses the system keyboard).
+Never rely on subject inference, the app's fallback (Text) or the system keyboard (decision 2026-10-07: nothing in this product uses the system keyboard).
 Choose the value by what the answer needs: a bare-numeric `fitb`/`fraction` → `standard_math`; a bare-numeric `steps`/`equation` → `scientific_math`; letters,
 `_{…}`/`^{…}` markup, Greek, `→ ⇌ Δ`, state symbols, charges → `physics` (P1) / `chemistry` (P2) / the extended `scientific_math`; free words → `text`
 (planned, 2.4.0, dev-only). **A bare-numeric answer stays on the basic keyboard** — declare `standard_math`/`scientific_math` explicitly, as `backfill-keyboard-types.js`
 did, so a script and its database row agree (decision 2026-10-05: a `physics` keyboard on a number-only blank replaced the number pad with a bigger keyboard for
-no benefit). A `fitb` with markup only in its *label* does not need `physics` — labels are rendered, not typed. **Corollary: if a subject has no declarable
-keyboard that can type the answer, the answer is not typed** — make it `multiple_choice`/`multi_select` instead (Geography, History, Life Sciences, Business
-Studies words; see each profile). Until a release carries the new keyboards, content declaring them is dev-only (`KEYBOARD-05`). Worked cases: Physical Sciences
-2023 and 2024 Nov P1 — every `fitb` is `standard_math`, every `steps` is `scientific_math`. The only exemption is `english_hl`, whose legacy `English` keyboard is
+no benefit). A `fitb` with markup only in its *label* does not need `physics` — labels are rendered, not typed. **Prose answers in a subject with no keyboard of its own** (Life Sciences, Geography, History, Business Studies) declare **`text`** (2.4.0 — the exam then derives 2.4.0 and is gated, `VER-09`); if the
+answer needs a character `text` cannot type, it is not typed — make it `multiple_choice`/`multi_select`. **The app's fallback (Text; ScientificMath for `steps`/`equation`) is a safety net, not a plan:** it exists so an
+undeclared typed row never opens the system keyboard on 2.4.0+, and it does not excuse leaving `keyboard_type` off. Until a release carries the new keyboards, content declaring them is dev-only (`KEYBOARD-05`). Worked cases: Physical Sciences
+2023 and 2024 Nov P1 — every `fitb` is `standard_math`, every `steps` is `scientific_math`. **Legacy allowance (validator):** `validate-questions.js` makes a missing declaration an **error** for new or re-uploaded content, except for the scripts listed in `tools/lib/legacy-keyboard-allowlist.js` — already-live exams in no-keyboard subjects (today: 14 scripts, 21 rows, **all bare numeric** — Geography 2025 Nov P2, History 2025 Nov P2, Life Sciences 2025 Nov P2) that stay undeclared because retrofitting means updating live prod rows (History P2 is an explicit owner decision). The honest declaration for those rows would be `standard_math` — released, **no gate**; declaring `text` on a live exam would gate it at 2.4.0 and hide published content from older builds, so don't. The validator prints a visible `LEGACY ALLOWANCE` line per row; entries are deleted when their exam is retrofitted. Never add a script there to dodge the rule. The only other exemption is `english_hl`, whose legacy `English` keyboard is
 subject-inferred and cannot be declared. `validate-questions.js` **errors** on a missing declaration (it used to warn). Scripts uploaded before 2026-10-07 that
 lack it (≈60: english-hl aside, geography/history/life-science P2 and physics 2023/2025) fail the validator if re-run — fix them with a `KEYBOARD-06`-style
 retrofit, don't loosen the rule. `enforced_by: validator`

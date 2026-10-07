@@ -55,7 +55,9 @@ page(s), memo page(s), YouTube ID (usually null).
 4. **Questions** (pipeline Phase 3): counts + section rules per profile; each question
    self-contained with own `context_text` where the section requires; `type` is
    `definition`/`application`; presentation subset per profile; questions must not
-   reference "the passage" or line numbers.
+   reference "the passage" or line numbers. **Keyboard:** `english_hl` is the one subject exempt from
+   declaring `keyboard_type` (its legacy `English` keyboard is subject-inferred and not declarable —
+   `KEYBOARD-04`); the `text` keyboard (2.4.0) will supersede it.
 5. **Vocab dump** (pipeline Phase 3.5): `--subject english_hl`. English HL skills are real
    `skills` rows now (reuse against those; create with `tools/create-skill.js --subject
    english_hl` when nothing fits).

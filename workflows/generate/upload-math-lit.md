@@ -24,7 +24,9 @@ year, paper key, paper + memo PDFs. Collections and denormalized values: profile
 4. **Questions** (pipeline Phase 3): 2–4 questions, fresh scenarios (`DESIGN-UNI-01`),
    FITB ≤65% paper-wide (`DESIGN-ML-01`), non-trivial answers (`DESIGN-ML-02`),
    vocabulary reuse-before-creating against `curriculum_nodes` / `skills`
-   (`subject_id = 'math_lit'`) (`PIPE-08`).
+   (`subject_id = 'math_lit'`) (`PIPE-08`). **Keyboard (`KEYBOARD-04`):** every typed question
+   (`fitb`/`fraction`) declares `keyboard_type: 'standard_math'` — the subject's own keyboard, released,
+   no gate; the validator errors on a missing declaration.
 5. **Vocab dump** (pipeline Phase 3.5): `--subject math_lit` (Auth Proxy running).
 6. **Upload script** (pipeline Phase 4): copy `tools/upload-script-template.js` to
    `add-<year>-<paper>-q<N>.js`; `subject: "math_lit"` on every block; `aiExplanation`

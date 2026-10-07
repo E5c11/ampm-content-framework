@@ -63,9 +63,9 @@ Optional: `clues`, `context_text` (English inline stimulus), `text_key` (English
 `english_texts` id), `supplementary_material` (`{type, label, image_urls}`), `keyboard_type`
 (below).
 
-**`SCHEMA-KB-01`** — `keyboard_type` (→ `questions.keyboard_type`) is one of `none`,
-`standard_math`, `scientific_math`, `physics`, `chemistry`, `text`, or **omitted/`null`** meaning "the
-app infers the keyboard from subject and presentation". Only the first three are released; a
+**`SCHEMA-KB-01`** — `keyboard_type` (→ `questions.keyboard_type`) is one of
+`standard_math`, `scientific_math`, `physics`, `chemistry`, `text`; `none` is **not a value** (the app ignores it; the validator errors). **Omitted/`null`** means "the app resolves it: subject →
+fallback" — **not** allowed for a typed question in new content (`KEYBOARD-04`). Only the first two are released; a
 planned value is valid to author but makes the exam dev-only until its release is tagged (`VER-05`). Full semantics, inventories and the
 `KEYBOARD-0x` rules: `core/keyboard-input.md`. On re-upload an **omitted** `keyboard_type` leaves the database value unchanged (it never nulls a
 backfilled value); write an explicit `null` to clear it. Declare it whenever subject inference would pick the

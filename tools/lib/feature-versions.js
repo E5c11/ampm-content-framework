@@ -59,11 +59,12 @@ function maxVersion(...versions) {
 
 // Values the backend `questions.keyboard_type` column may hold (closed set, owned here and in
 // core/keyboard-input.md — the DB has no CHECK on purpose, so adding one needs no migration).
-const DECLARABLE_KEYBOARDS = ['none', 'standard_math', 'scientific_math', 'physics', 'chemistry', 'text'];
+// (`none` is NOT a value: the app ignores it since the total keyboard resolution, 2.4.0 — every typed input gets a custom keyboard.)
+const DECLARABLE_KEYBOARDS = ['standard_math', 'scientific_math', 'physics', 'chemistry', 'text'];
 
 // Declared values a RELEASED build honours today. Anything else a released build ignores and
 // falls back to subject inference, so a planned value is dev-only until its release.
-const SHIPPED_DECLARABLE = new Set(['none', 'standard_math', 'scientific_math']);
+const SHIPPED_DECLARABLE = new Set(['standard_math', 'scientific_math']);
 
 const chars = (s, since) => Object.fromEntries([...s].map((c) => [c, since]));
 const DIGITS = '0123456789';
@@ -144,10 +145,11 @@ function resolveKeyboard(subject, presentation, declared) {
   switch ((subject || '').toLowerCase()) {
     case 'english_hl': return 'english';
     case 'math_lit': return 'standard_math';
+    case 'afrikaans_fal': return 'text';
     case 'maths':
     case 'physics':
       return presentation === 'equation' || presentation === 'steps' ? 'scientific_math' : 'standard_math';
-    default: return 'none';
+    default: return 'none'; // no keyboard of its own: the 2.4.0 app falls back to Text (ScientificMath for steps/equation); older builds use the system keyboard
   }
 }
 
@@ -251,7 +253,9 @@ function analyzeQuestion(q) {
 
   const declared = q.keyboard_type ?? null;
   if (declared !== null) {
-    if (!DECLARABLE_KEYBOARDS.includes(declared)) {
+    if (declared === 'none') {
+      errors.push('"keyboard_type" "none" is not a keyboard — the app ignores it (every typed input gets a custom keyboard from 2.4.0). Omit it, or declare text / standard_math / scientific_math / physics / chemistry');
+    } else if (!DECLARABLE_KEYBOARDS.includes(declared)) {
       errors.push(`"keyboard_type" "${declared}" is not a known keyboard (one of: ${DECLARABLE_KEYBOARDS.join(', ')}, or omit for subject inference)`);
     } else if (!SHIPPED_DECLARABLE.has(declared)) {
       need(NEXT_RELEASE, `keyboard ${declared}`);
@@ -262,12 +266,15 @@ function analyzeQuestion(q) {
   if (typed) {
     const keyboard = resolveKeyboard(q.subject, p, declared);
     if (keyboard === 'none') {
+      // No declared keyboard and no subject keyboard. From 2.4.0 the app falls back to Text (ScientificMath for steps/equation),
+      // so this is a safety net, not a plan: older builds have NO custom keyboard here (steps/equation are unanswerable there,
+      // fitb gets the decimal-only system keyboard). Declare a keyboard_type (the validator requires it for new content).
       if (p === 'steps' || p === 'equation') {
-        errors.push(`"${p}" resolves to NO keyboard for subject "${q.subject}" — it is unanswerable (no system-IME fallback); declare a keyboard_type or pick another presentation`);
+        warnings.push(`"${p}" has no keyboard for subject "${q.subject}" — builds before 2.4.0 cannot answer it (no system-IME fallback; 2.4.0+ falls back to ScientificMath); declare a keyboard_type`);
       } else if (Array.isArray(q.answer)) {
         const nonNumeric = q.answer.filter((a) => a && !/^-?[0-9]+([.,][0-9]+)?$/.test(String(a).trim()));
         if (nonNumeric.length > 0) {
-          warnings.push(`resolves to the system keyboard (no custom keyboard for "${q.subject}"), which forces a decimal-mode IME — only bare-numeric answers are reliably typeable (non-numeric: ${nonNumeric.map((a) => JSON.stringify(a)).join(', ')})`);
+          warnings.push(`no keyboard declared and none for "${q.subject}": builds before 2.4.0 use the decimal-mode system keyboard (only bare-numeric answers are reliably typeable), 2.4.0+ falls back to the Text keyboard (non-numeric: ${nonNumeric.map((a) => JSON.stringify(a)).join(', ')})`);
         }
       }
     } else if (p !== 'equation' && Array.isArray(q.answer)) {

@@ -13,6 +13,15 @@ Business Studies before any lessons shipped. Recorded here so the pattern below 
 followed deliberately on `june_p2` or any future Life Science paper, instead of being
 re-derived (or silently varied) per session the way it was for `nov_p2`.
 
+> **Paper 1 (authored 2026-10-07 — `nov_p1`, 16 lessons):** this doc was written for `nov_p2`. For `nov_p1`/`june_p1` the Section A
+> clusters are *Human reproduction / Nervous system and senses / Endocrine and homeostasis / Plants*, the dominant mark type is
+> explain/describe (→ `ordering`/`multi_select`, `DESIGN-LIFE-02`), diagrams are label-identification figures
+> (`DESIGN-LIFE-03`), and graph-drawing / unit-bearing calculation / tabulation need decomposing (`DESIGN-LIFE-04`) — all in
+> `subjects/dbe-life-sciences.md` § "Paper structure — Nov 2025 P1" and the `nov_p1` ledger entry. **Owner decisions 2026-10-07:**
+> `text` is allowed for single canonical terms (gating the exam at 2.4.0 is accepted); P2 is not retrofitted.
+> **`questions.type` is one of `application, calc, conversion, definition, fraction, interpretation, ordering, proof, ratio,
+> reading, rounding`** — the validator does not check it, the upload preflight does.
+
 ## Required inputs
 
 Lesson name (`"Question N.M (Description)"` or `"Question N (Knowledge Area)"` for
@@ -41,12 +50,12 @@ paper, year, order, `nov_p2`'s exam + memo PDFs.
    (formula-sheet-style reuse) — each question must still stand alone unless the lesson
    is explicitly linked (`DESIGN-UNI-13`).
 4. **Questions** (pipeline Phase 3) — the Life-Science-specific decisions:
-   - **`DESIGN-LIFE-01`** (the subject's core keyboard-driven rule): `fitb` blanks must
-     be bare-numeric only (percentages, counts, ratio splits with a literal `":"` token)
-     — never a biological term/name recall, which goes to `multiple_choice`/`match`
-     instead. `steps`/`equation`/`fraction` are excluded entirely (the `None`-routed
-     keyboard has no fallback for them at all, unlike `fitb`'s system-IME escape hatch —
-     see `core/keyboard-input.md`).
+   - **`DESIGN-LIFE-01`** (revised 2026-10-07): every typed `fitb` declares `keyboard_type` (`KEYBOARD-04`) —
+     `'standard_math'` for a bare number (percentages, counts, mass, ratio splits with a literal `":"`; released, no
+     gate), `'text'` for a **single canonical term** with accepted spellings listed via `|` (2.4.0 — gates the exam,
+     accepted). Anything paraphrasable (explain/describe/reason) is `multiple_choice`/`multi_select`/`match`/`ordering`.
+     `steps`/`equation`/`fraction` stay excluded as a *content* decision. The app's fallback (Text) is a safety net, not a
+     plan — see `core/keyboard-input.md`. Never copy a P2 script as a template (they predate `KEYBOARD-04`).
    - Genotype/allele answers needing a superscript (`Xʳ`, `Iᴬ`) can't be typed on any
      keyboard — always `multiple_choice`/`multi_select` with candidate genotypes as
      options, never `fitb`.
@@ -95,8 +104,7 @@ paper, year, order, `nov_p2`'s exam + memo PDFs.
 ## `subjects` row / app-side status (already resolved for `nov_p2`, re-check if stale)
 
 `subject_id = "life_science"` (matches `SubjectMapper.kt`'s fallback — no app code
-change). `life_science` has no `KeyboardResolver.kt` route (`None`) — this is genuinely
-load-bearing here (unlike Business Studies): `fitb` numeric works via the system-IME
-fallback, but `steps`/`equation` are unanswerable until the app is fixed, deferred to the
-post-prelims window. `subjects` row already exists and is live in prod
+change). `life_science` has no subject keyboard of its own: on 2.4.0+ builds an undeclared typed
+input falls back to Text (`steps`/`equation`: ScientificMath) — a safety net; builds before 2.4.0 give
+`fitb` the decimal-only system keyboard and cannot answer `steps`/`equation`. Declare `keyboard_type`. `subjects` row already exists and is live in prod
 (`is_active: true`, `min_app_version: '1.8.9'`) — don't re-create it.

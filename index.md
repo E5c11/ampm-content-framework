@@ -39,7 +39,7 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `AMPM-CONTENT-SUBJ-DBE-GEOGRAPHY` | `subjects/dbe-geography.md` | mc, multi-select, fitb, match, steps |
 | `AMPM-CONTENT-SUBJ-DBE-PHYSICS` | `subjects/dbe-physics.md` | mc, fitb, multi-select, match, ordering, steps (confirmed against a full paper 2026-09-10); fraction, equation not yet exercised |
 | `AMPM-CONTENT-SUBJ-DBE-CHEMISTRY` | `subjects/dbe-chemistry.md` | Paper 2 of Physical Sciences (`subject_id = "physics"`, `nov_p2`) — authored and live in prod for 2023 and 2025 Nov; typed blanks bare-numeric per `DESIGN-CHEM-01` until the `chemistry` keyboard ships (see `core/keyboard-input.md`) |
-| `AMPM-CONTENT-SUBJ-DBE-LIFE-SCIENCES` | `subjects/dbe-life-sciences.md` | Paper 2 only, not yet authored — illustrative only (drafted 2026-09-12); genuinely new `subject_id`, see `core/keyboard-input.md` for the `fitb`-vs-`steps` keyboard-fallback distinction this profile surfaced |
+| `AMPM-CONTENT-SUBJ-DBE-LIFE-SCIENCES` | `subjects/dbe-life-sciences.md` | Papers 1 and 2. P2 authored and published (2026-09-12); P1 analysed 2026-10-07, not authored (prose-heavy, label-identification diagrams; `DESIGN-LIFE-01` revised for the 2.4.0 total keyboard, `DESIGN-LIFE-02`–`04` new). Genuinely new `subject_id` |
 | `AMPM-CONTENT-SUBJ-DBE-BUSINESS-STUDIES` | `subjects/dbe-business-studies.md` | mc, multi-select, match, ordering (confirmed against a full paper 2026-09-13 — Paper 2 only, 6 lessons/55 questions/230 marks); fitb/fraction/equation/steps not used; Section C essays get English HL/History-style objective essay-strategy lessons grounded in the memo's own LASO rubric (`DESIGN-BUS-03`) |
 
 ## workflows/generate/ (thin orchestrators)

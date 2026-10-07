@@ -21,6 +21,7 @@
 const path = require('path');
 const fs   = require('fs');
 const fv   = require('./lib/feature-versions');
+const { legacyReason } = require('./lib/legacy-keyboard-allowlist');
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -293,7 +294,10 @@ function validateQuestion(q, index, allQuestions) {
   // Blocking. Only exemption: english_hl, whose legacy English keyboard is subject-inferred and not declarable.
   if (['fitb', 'steps', 'equation', 'fraction'].includes(q.presentation) && (q.keyboard_type === undefined || q.keyboard_type === null)
       && String(q.subject || '').toLowerCase() !== 'english_hl') {
-    warn('no "keyboard_type" declared on a typed question — every typed question must declare one (core/keyboard-input.md KEYBOARD-04)');
+    const msg = 'no "keyboard_type" declared on a typed question — declare `text` (prose answers in a subject with no keyboard of its own), `standard_math` / `scientific_math` (numeric), or `physics` / `chemistry` only where the answer needs them (core/keyboard-input.md KEYBOARD-04)';
+    const legacy = legacyReason(scriptPath);
+    if (legacy) caution(`LEGACY ALLOWANCE (${legacy}): ${msg} — live exam, not retrofitted (a prod data fix; declaring \`text\` would gate it at 2.4.0 — a bare-numeric row would be \`standard_math\`); the 2.4.0 app falls back to the Text keyboard (tools/lib/legacy-keyboard-allowlist.js)`);
+    else warn(msg);
   }
 
   return { label, errors, warnings, requires };
