@@ -127,7 +127,7 @@ const questions = [
     "subject": "business_studies",
     "year": 2025,
     "paper": "nov_p1",
-    "clues": "- A business must know where it wants to go before it studies its surroundings.\n- Strategies are formulated before they are implemented, and evaluation comes last."
+    "clues": "- Think of the logical flow from direction, to analysis, to action, to results.\n- A business must have chosen a strategy before it can implement it."
   },
   {
     "name": "Question 3",
@@ -371,7 +371,7 @@ const questions = [
     "subject": "business_studies",
     "year": 2025,
     "paper": "nov_p1",
-    "clues": "- The scenario is about having the resources to do the job, not about measuring results or training people.\n- Money, staff and equipment are the resources in question."
+    "clues": "- The scenario is about what the business has available to run its quality system, not about measuring results or developing people.\n- Compare each option with what the business is actually described as doing."
   },
   {
     "name": "Question 10",

@@ -227,7 +227,7 @@ const questions = [
     "subject": "business_studies",
     "year": 2025,
     "paper": "nov_p1",
-    "clues": "- The trial and its results have already happened; the question is what is done with them.\n- Standardising a successful method comes at the end of the cycle."
+    "clues": "- The trial and its results have already happened; the question is what the business does with the proven method next.\n- Think about which step turns a result into standard practice."
   },
   {
     "name": "Question 6",
