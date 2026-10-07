@@ -388,7 +388,7 @@ one theme; reuse a node only where it is genuinely the same concept (e.g. *Domin
 
 ## Completed papers ledger
 
-**`nov_p1` — authored and uploaded to dev, 2026-10-07; emulator review and prod push still open.**
+**`nov_p1` — authored, uploaded to dev and reviewed on emulator, 2026-10-07; prod push still open.**
 All 6 lessons (3 source-based, 3 essay), `order` 1–6, 51 practice questions, validated
 (`--curriculum`, 0 errors, 0 warnings, derived minimum 2.0.0) and upserted to dev Cloud SQL, one
 commit per lesson (`dc19588`…`a8a8eaf`). Verified in Postgres: 6 lessons / 51 questions all
@@ -437,11 +437,22 @@ total, tracked separately from P2's 2 of 28.
   distinct from "winning hearts and minds"; Seale/Davis spelled correctly; Source 1B is described as a
   figure representing the USA, not asserted to be Truman.
 
-**Still open for `nov_p1`:** (1) the emulator full-paper review (`review-paper.md`) — not run; in
-particular confirm on the first `fitb` that a declared `standard_math` History question drives through
-Phase 5 (this profile's *Keyboard* section predicts it should); (2) the prod push
-(`push-paper-to-prod.js`; the exam is at the floor so nothing blocks it, but it is owner-gated data
-mutation); (3) the P2 `keyboard_type` non-retrofit stays as documented.
+**Emulator full-paper review — run 2026-10-07 (`review-paper.md`, dev build 2.3.3-dev01).** 51/51
+questions captured and reviewed against their screenshots: 50 PASS, 0 AUTO_FIX, 1 FLAG; Phase 5
+answerability **8/8 PASS** with `usedSystemFallback: false` — the declared `standard_math` number pad
+opened for every History `fitb` and marked each stored answer correct, the first time a History typed
+blank has been verified through a custom keyboard (the Phase 5 tooling gap in the P2 ledger below does
+not apply to declared keyboards). Report: `AMPM/temp/review/history_nov_p1_2025/report.md`.
+- **FLAG (content, minor, left as authored):** in the three essay-strategy "which introduction is best"
+  multiple-choice items (Q4/Q5/Q6 item 7) the correct option is also the longest, so a test-wise student can
+  pick it by length. Lengthening the distractors would fix it; deliberately not done (length is partly the lesson).
+- **App finding, not content:** Question 3's source tabs render as 3C, 3D, 3A, 3B although
+  `lesson_supplementary_materials.sort_order` is 3A–3D (Q1 and Q2 rendered in order). Verify whether the
+  client orders by something other than `sort_order`; the data is right.
+- Match items clip their last row at first view (scrollable); capture needed one re-run for a loading-spinner frame.
+
+**Still open for `nov_p1`:** the prod push (`push-paper-to-prod.js`; the exam is at the floor so nothing
+blocks it, but it is owner-gated data mutation). The P2 `keyboard_type` non-retrofit stays as documented.
 
 **`nov_p2` Section A (Q1–Q3) — complete, 2026-09-12.** All 3 lessons authored,
 validated, and upserted to dev (Cloud SQL); image URLs spot-checked resolving (200)
