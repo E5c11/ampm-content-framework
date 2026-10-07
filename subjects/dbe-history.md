@@ -6,15 +6,18 @@ related: [AMPM-CONTENT-SCHEMA, AMPM-CONTENT-DESIGN, AMPM-CONTENT-KEYBOARD-INPUT,
 tags: [subject, history, dbe, profile]
 ---
 
-# Subject Profile — DBE History (Paper 2)
+# Subject Profile — DBE History (Papers 1 and 2)
 
 Drafted 2026-09-12 from a paper review of `files/History P2 Nov 2025 Eng.pdf` +
-`files/History P2 Nov 2025 Addendum Eng.pdf`, before any History content exists. **Paper 2
-only, by founder decision 2026-09-12** — one profile doc covers History going forward, but
-Paper 1 (a different set of CAPS topics under the same subject) is explicitly out of scope
-for now, not just unsourced. Sections below are illustrative until a first paper is fully
-authored and reviewed, the same evidencing discipline `dbe-chemistry.md` and
-`dbe-geography.md` used for their own first drafts.
+`files/History P2 Nov 2025 Addendum Eng.pdf`; Paper 2 was then fully authored and reviewed
+(see the ledger). **Paper 1 added 2026-10-07** — read and analysed against the CAPS document
+(`files/caps_fet_history_gr_10-12_web_1.pdf`) and the three P1 source files, **not yet
+authored**. This reverses the 2026-09-12 founder decision that scoped the profile to Paper 2
+only; the two papers are different CAPS topics under one subject, so one profile covers both.
+Everything marked *P1* below comes from paper/memo/CAPS analysis, not an upload session —
+treat it as unverified until a P1 lesson ships, the same evidencing discipline
+`dbe-chemistry.md` and `dbe-geography.md` used. The two papers agree on the whole structural
+shape (see *Paper structure*), which confirms that shape is DBE History's, not P2's quirk.
 
 ## Identity
 
@@ -24,12 +27,13 @@ authored and reviewed, the same evidencing discipline `dbe-chemistry.md` and
 | Postgres tables | `lessons`, `questions` — `subject_id = "history"` |
 | Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'history'` — empty until the first authoring session populates them. Reuse before `tools/create-curriculum-node.js` / `create-skill.js` |
 | Vocabulary dump | `node tools/dump-curriculum-vocabulary.js --subject history --out temp/curriculum-vocab.json` (Auth Proxy running) |
-| **Curriculum document (`DESIGN-UNI-09`)** | `files/caps_fet_history_gr_10-12_web_1.pdf` — required in-session before authoring, not optional (`DESIGN-UNI-08` names History as a content-based subject). Covers both papers; the Grade 12 topic tables for Civil Resistance (1970s–80s), Coming of Democracy/TRC, and End of the Cold War/New World Order are the P2-relevant sections — verify exact CAPS section numbers in-session, not assumed from this note |
-| **Source files** | `files/History P2 Nov 2025 Eng.pdf` (question paper, 9pp), `files/History P2 Nov 2025 Addendum Eng.pdf` (source material, 14pp), `files/History P2 Nov 2025 MG Eng.pdf` (marking guideline, 26pp — sourced 2026-09-12, after Q1–Q3 were first authored; see ledger) |
-| `subjects` reference row | **Not yet created** — needs the same owner-gated direct insert as `geography`/`physics`'s rows before any authoring session (not something this framework creates itself) |
-| Papers | `nov_p2` (Nov 2025) profiled now. `june_p2` presumed to exist once sourced, same pattern as every other subject |
+| **Curriculum document (`DESIGN-UNI-09`)** | `files/caps_fet_history_gr_10-12_web_1.pdf` — required in-session before authoring, not optional (`DESIGN-UNI-08` names History as a content-based subject). Covers both papers. **P2:** the Grade 12 topic tables for Civil Resistance (1970s–80s), Coming of Democracy/TRC, and End of the Cold War/New World Order. **P1 (read 2026-10-07):** §3.3 Grade 12 — Topic 1 *The Cold War* (origins; case studies China/Vietnam), Topic 2 *Independent Africa* (Congo, Tanzania; Africa in the Cold War — Angola), Topic 3 *Civil society protests 1950s to 1970s* (US Civil Rights; Black Power); and §4.4.5 *Allocation of content per question paper*, which gives each paper's six question foci. Verify exact CAPS page numbers in-session |
+| **Source files** | P2: `files/History P2 Nov 2025 Eng.pdf` (question paper, 9pp), `files/History P2 Nov 2025 Addendum Eng.pdf` (source material, 14pp), `files/History P2 Nov 2025 MG Eng.pdf` (marking guideline, 26pp — sourced 2026-09-12, after Q1–Q3 were first authored; see ledger). P1: `files/History P1 Nov 2025 Eng.pdf` (9pp), `files/History P1 Nov 2025 Addendum Eng.pdf` (14pp), `files/History P1 Nov 2025 MG Eng.pdf` (27pp) — **all three in hand before any authoring**, so the P2 mid-session memo rewrite does not repeat |
+| `subjects` reference row | **Already exists** — created 2026-09-12 with the P2 session (`id: "history"`, `color: "#B8860B"`, `icon: "landmark"`, `min_app_version: null`; see ledger). Nothing to insert for P1 |
+| Papers | `nov_p2` (Nov 2025) authored. `nov_p1` (Nov 2025) analysed 2026-10-07, not authored. `june_p1`/`june_p2` presumed once a June paper is sourced |
+| **CAPS exam outline agrees with the real papers** | Unlike Geography (whose CAPS outline is out of date), History's CAPS §4.4.5 matches the 2025 papers exactly: each paper 150 marks / 3 h, six questions × 50, three source-based + three essay, a candidate answers three (at least one of each kind, third free). CAPS also fixes each question's **focus** per paper (§4.4.5) — use that to bound scope, and the paper to see emphasis |
 
-## Paper structure (Nov 2025 P2, from paper review)
+## Paper structure — Nov 2025 P2 (from paper review)
 
 **150 marks on any one student's script, but 300 marks of content across the full
 question bank — the defining structural difference from every subject profiled so
@@ -69,6 +73,50 @@ profiled so far, but each is unusually large (50 real marks; Section A lessons c
 likely 8–10 practice questions per Section A lesson (compare Chemistry's largest
 lesson: 22 marks → 5 practice questions).
 
+## Paper structure — Nov 2025 P1 (*P1*, from paper/memo/CAPS analysis, 2026-10-07)
+
+Same skeleton as P2: **six 50-mark questions, a candidate answers three** (at least one
+source-based and one essay; the third free), so 150 marks on a script and **300 marks of
+content in the question bank** — the "check coverage against 300, not 150" rule above applies
+unchanged. Instructions 4.1/4.2 on the paper and CAPS §4.4.5 say the same thing.
+
+| Q | Section | Marks | CAPS topic → question focus | Real 2025 content | Sources |
+|---|---|---|---|---|---|
+| 1 | A | 50 | Cold War → *origins, Cold War in Europe, Cuban crisis* | Policy of containment and 1947 tensions: Churchill's Iron Curtain speech, Truman Doctrine/Marshall Plan, Molotov Plan/COMECON | 1A speech extract · 1B cartoon (SJ Ray, *Kansas City Star*, 13 Mar 1947) · 1C journal extract (Burk) · 1D book extract (McLean) |
+| 2 | A | 50 | Independent Africa → *Africa in the Cold War* (Angola) | Why the USA entered the Angolan Civil War from 1975: CIA covert support (IAFEATURE) for FNLA/UNITA against the MPLA | 2A book extract (Guta) · 2B book extract (Stiff) · 2C interview (Gleijeses/Hultslander) · 2D cartoon (L Silva, 1993) |
+| 3 | A | 50 | Civil society protests 1950s–70s → *Civil Rights and Black Power* | MLK Jr's non-violent approach in the 1960s: Gandhi's influence, riots vs militant non-violence, sit-ins, Malcolm X/Baldwin's criticism | 3A article extract (Risen) · 3B King's own words (Walton) · 3C photograph (sit-in, Jackson MS, 28 May 1963) · 3D interview (Clark–King) |
+| 4 | B | 50 | Cold War → *China **or** Vietnam* (candidates choose) | Viet Cong tactics 1962–75 — "agree?" | none |
+| 5 | B | 50 | Independent Africa → *successes and challenges of the Congo and Tanzania* | Mobutu's political/economic/social/cultural policies — "critically discuss: a dismal failure" | none |
+| 6 | B | 50 | Civil society protests → *Civil Rights and Black Power* | Black Power Movement — "to what extent was it successful" | none |
+
+**Decision: author all six as separate lesson groups, `order` 1–6, `paper: nov_p1`** — same
+reasoning and same `DESIGN-UNI-10` application as P2 (one lesson per real question; each
+Section A question's four sources are one continuous scenario ending in a cross-source 8-mark
+synthesis, so rule 1 bundles them). **6 lessons, 8 practice questions each** is the starting
+estimate, as P2. Section A sub-part counts (counting `(a)`/`(b)` as separate): **Q1 18, Q2 18,
+Q3 18** — each sums to exactly 50 marks (checked 2026-10-07 against the paper), so the
+per-lesson `aiExplanation.sub_questions` entries should total 50 as P2's did.
+
+**Skeleton inside every Section A question** (P1 Q1–Q3 all follow it, and P2's did): four
+sources → one or two extraction items per source (L1) → interpretation / definition items (L2) →
+one reliability-or-usefulness-or-limitations item on a text source (L3: 1.1.5, 2.1.4, 3.2.5) →
+one cross-source "how does A support B" item (L3: 1.3, 2.5, 3.4) → the 8-mark paragraph (`x.6`).
+Every Section A question has exactly one visual source: a cartoon in Q1 (1B) and Q2 (2D), a
+photograph in Q3 (3C). The others are text.
+
+**Scope guard — what P1 CAPS covers that 2025 did not examine.** CAPS defines scope; the paper
+defines emphasis. Do not author these speculatively, and do not read their absence from one
+paper as exclusion:
+- Q1 focus lists the Berlin Crises (1949–61), NATO/Warsaw Pact and the **Cuban crisis**; 2025 asked
+  only containment/Marshall/Molotov. (Q1 *background* only — don't treat 2025's slice as the whole
+  of "origins".)
+- Q4: **China** is the year-alternate to Vietnam ("examined each year as an option to Vietnam").
+- Q5: **Tanzania** (African socialism, Nyerere/*ujamaa*) — CAPS says the Congo/Tanzania case studies
+  are "comparative … not meant to be separately examined", yet 2025 set the Congo alone.
+- Q3/Q6: Montgomery bus boycott, Birmingham, Selma, Little Rock, March on Washington, and the
+  Topic 3 introduction (women's liberation, peace movements) are CAPS content; 2025 examined
+  King's non-violence and Black Power only.
+
 ## Source-based questions (Section A) — sources are real, fixed historical record
 
 Sources here are real primary/secondary historical material — actual quoted testimony,
@@ -106,6 +154,30 @@ invented, and History's specific historical record can't):
   which of these claims the sources actually support; `ordering`: sequence the
   argument's causal/logical structure), never asked as a written paragraph.
 
+**P1 item formats and how they map** (*P1*, proposed — not yet uploaded). The memo tags every
+sub-question with its skill and cognitive level (`[Extraction of evidence from Source 1A – L1]`
+etc.; see *Marking-guideline vocabulary*) — use those tags as the item's skill classification:
+
+| P1 exam item | Examples | Maps to |
+|---|---|---|
+| Extract / "quote" evidence (L1) | 1.1.1, 1.4.2, 1.4.3, 1.5.2, 2.1.2, 2.2.1–2.2.3, 2.3.1, 2.3.4, 3.1.2, 3.2.1, 3.2.3, 3.5.1, 3.5.2 | `multiple_choice` (one item) / `multi_select` (TWO or THREE) over **verbatim phrases**: correct ones from the real source, distractors from *another part of the same source or a neighbouring source* — never invented quotations (`DESIGN-HIST-01`) |
+| Define / explain a term (L1–L2) | Iron Curtain 1.1.3, satellite states 1.5.3, self-determination 2.2.5, covert action 2.3.2, non-violent mass protests 3.1.3, racial justice 3.2.4 | `multiple_choice` best-definition; distractors are real neighbouring terms (Iron Curtain vs. containment vs. sphere of influence), not nonsense |
+| Interpret / comment on what is implied (L2) | 1.1.2, 1.1.4, 1.4.4, 1.5.4, 2.1.3, 2.2.4, 2.3.3, 3.1.4, 3.2.2, 3.5.3 | `multiple_choice` / `multi_select`: which inferences does the source actually support |
+| Cartoon / photograph reading (L2) | 1.2.1(a)(b), 1.2.2, 2.4.2(a)(b), 3.3.1(a)(b), 3.3.2 | `multiple_choice` with the image in `supplementary_materials`; options describe the symbolism / intention |
+| Reliability, usefulness, limitations (L3) | 1.1.5 reliable, 2.1.4 limitations, 3.2.5 useful | `multiple_choice` / `multi_select` over provenance features. **Freshness angle (`DESIGN-HIST-01`): ask the verdict the exam did *not*** — limitations of 1A (a Cold War warning speech by a former PM, delivered in the USA), usefulness of 2A, reliability of 3B — grounded in the same provenance line printed above each source |
+| Cross-source support (L3) | 1.3 (1A↔1B), 2.5 (2A↔2D), 3.4 (3A↔3C) | `match` (claim in source X ↔ corroborating detail in source Y) or `multi_select`. Practice questions should pair a **different** two sources from the same set (e.g. 1C↔1D, 2B↔2C) |
+| Accept-any-two / `(any 2 x 2)` items | most L2/L3 items | the memo lists 3–6 acceptable points and takes any N — a `multi_select` of the genuinely supported points beats a single-answer `multiple_choice` for the same marks |
+| Numeric / date | 22 million dollars, $41,7 million of $100 million, 1946/1947/1949/1963/1971/1968 | `fitb` with `keyboard_type: 'standard_math'` (*Keyboard* below); store the decimal comma as `.` |
+| 8-mark paragraph (`x.6`) | 1.6, 2.6, 3.6 | `DESIGN-HIST-02` — `multi_select` of source-supported claims / `ordering` of the causal chain; each memo "aspect" carries its provenance tag `(Source 1B)` or `(own knowledge)` |
+
+**What each source's own-knowledge points are** (*P1*, the memo expects these beyond the
+source — they cannot be derived from reading): Q1 — the Domino Theory, the Molotov Plan
+intensifying tensions; Q2 — South Africa's capitalist interest, access to Angola's natural
+resources, a capitalist regional order; Q3 — King wanting integration, King protecting the
+image of African Americans. Items on these are knowledge items, not source-comprehension items:
+tag them `type: definition`/`application` per the *Allowed presentation types* section, not
+`interpretation`.
+
 ## Essay questions (Section B) — no free-text writing, same as English HL Paper 3
 
 **`DESIGN-HIST-02`** — `enforced_by: human-review`. No free-text/essay input exists in
@@ -117,42 +189,89 @@ supporting evidence for a line of argument, distinguishing a strong thesis from 
 one, structuring a paragraph (topic sentence → evidence → analysis → link), evaluating
 a counter-argument. Never ask the student to produce the essay itself.
 
-## Keyboard constraint — `fitb` is numeric-only for this subject (app limitation)
+**P1 essays (*P1*)** — three prompts, one exam page (all three print on p.9, so the
+upload-once, reuse-the-URL pattern from P2 applies), no sources. What makes them useful
+practice material under `DESIGN-HIST-02` is that **each uses a different instruction word and
+the memo expects a different stance**:
 
-Investigated 2026-09-12 in `ampm-kmp` (`AMPM/.../KeyboardResolver.kt`): History has no
-entry in `KeyboardResolver.resolve()`, so it falls through to `else ->
-QuestionKeyboardType.None` — the real OS system keyboard, same as Geography gets today.
-**That looks like the safe default but isn't, for `fitb` specifically**:
-`FillInTheBlank.kt` never threads a `keyboardType` through to `DynamicTextInput`
-(`core/designsystem/.../TextInputs.kt`), whose own default is `KeyboardType.Decimal` —
-numeric-only, no letters, on any platform. Never surfaced before because English's
-`fitb` uses its own custom `EnglishKeyboard` component (bypasses this path entirely)
-and Geography's `fitb` answers happen to already be purely numeric (scale ratios).
+| Q | Prompt shape | Memo's expected stance | Essay-strategy item it supports |
+|---|---|---|---|
+| 4 Vietnam | "Do you **agree** …?" | Take a side (agree *or* disagree) and defend it | Which thesis sentence takes a clear line vs. hedges |
+| 5 Congo | "**Critically discuss** …" | The memo's introduction says *some successes as well as some failures* — a balanced, evaluative stance; and its elaboration tags each point "(success)"/"(failure)" | Sort Mobutu policies into success/failure; why a one-sided "dismal failure" thesis under-scores |
+| 6 Black Power | "**To what extent** …" | Take a stance on *greater or lesser extent*; memo tags points "(great extent)" | Which evidence supports "greater extent"; calibrating a claim |
 
-**Decision 2026-09-12 — content-side constraint, no app fix scoped for now:**
+Content-knowledge practice items are free to be fresh (general historical knowledge, per
+`DESIGN-HIST-02`): Viet Cong tactics (guerrilla warfare, tunnels, the Ho Chi Minh Trail), US
+escalation (Gulf of Tonkin, Rolling Thunder, Operation Ranch Hand — see cautions), Vietnamisation; Mobutu's
+Zaireanisation, Authenticité, the MPR one-party state, retrocession; the origins of Black Power,
+Malcolm X, Carmichael, the Black Panther Party. The memo's seven-level matrix (content × presentation,
+marks 0–50) is approach guidance for `aiExplanation`, not something to reproduce as an item.
 
-- **`DESIGN-HIST-03`** — `enforced_by: human-review`, extends `core/keyboard-input.md`'s
-  `KEYBOARD-01`/`KEYBOARD-02` the same way `DESIGN-CHEM-01` did for Chemistry's own
-  app-limitation-driven constraint: **no `fitb` blank in History may require a letter.**
-  Reserve `fitb` for genuinely numeric/date answers this paper's own sub-questions
-  already show plenty of (a year — "when did the first BRIC summit take place?", a
-  count — "name the FOUR countries", a percentage — GDP share figures). Any answer that
-  is a name, term, quoted phrase, or place — the majority of this paper's natural
-  short-answer shape — uses `multiple_choice`/`multi_select`/`match` instead (e.g.
-  "define the term X" becomes a best-definition multiple-choice; "quote evidence that
-  Y" becomes select-the-correct-quote from options).
-- This is a real, narrow app gap, not a permanent design preference — revisit if the
-  app-side fix (threading a text-capable `KeyboardType` from `KeyboardResolver` down to
-  `DynamicTextInput`) is ever scoped. Until then, treat it as load-bearing the same way
-  `DESIGN-CHEM-01` is: a content-authoring rule that must actually block a letter-based
-  `fitb` from shipping, not just a note.
+## Keyboard — numeric blanks `standard_math`; `text` allowed for single-token words (from 2.4.0)
 
-**Update 2026-10-04 — `keyboard_type` and the planned `text` keyboard.** Nothing above changes for
-content published today. What's new: questions can now declare a `keyboard_type` (`core/keyboard-input.md`),
-and a general-purpose `text` keyboard (Linear BLA-58: QWERTY + a second screen for punctuation/digits) is
-specified to replace this system-IME fallback — but it is **not built**, so until it ships `history` typed
-blanks stay bare-numeric. `validate-questions.js` now enforces this: it **warns** on any non-numeric `fitb`
-answer under a `None`-routed subject and **errors** on `steps`/`equation` there (`KEYBOARD-01`).
+**Where this stands (re-verified 2026-10-07; the app wins — re-check `KeyboardResolver.kt`).**
+
+*Original finding, 2026-09-12 (still true of released builds).* History had no `KeyboardResolver`
+entry, so a `fitb` fell to `QuestionKeyboardType.None` — the system keyboard — and `FillInTheBlank.kt`
+requested `KeyboardType.Decimal`: numeric-only. On any **released** build (latest tag 2.3.2) the 10
+History `fitb` live on prod still behave that way.
+
+*What changed 2026-10-07 (AMPM branch `feature/keyboard-always-custom`, `d302da0a6`/`ed135fee6`,
+`workflows/active/keyboard-always-custom.md` — not yet in `dev` when checked).* `KeyboardResolver.resolve`
+becomes **total**: declared `keyboard_type` → subject → fallback (`ScientificMath` for `steps`/`equation`,
+otherwise `Text`). `None` is deleted; the system keyboard is never used for a lesson answer. So a History
+`fitb` that declares nothing starts getting `Text` — nothing may be left to inference (`KEYBOARD-04`).
+
+**`DESIGN-HIST-03` — revised 2026-10-07 (twice).** `enforced_by: human-review` (the validator enforces the
+declaration; it cannot tell a word from a number).
+
+1. **Every typed History question declares `keyboard_type`.** Numeric answers (year, count, dollar figure,
+   percentage; `.` as decimal mark, so `$41,7 million` is stored `41.7`; unit in a `metadata` label,
+   `KEYBOARD-02`) → **`standard_math`**. Words → **`text`** (rule 2).
+2. **`text` is permitted** (owner decision 2026-10-07: the 2.4.0 requirement is acceptable, a release is due
+   within days). Consequences to accept knowingly: any `text` question derives **2.4.0**, the gate is **per
+   exam** (`VER-01`/`VER-09`), so the whole 2025 exam (P1 **and** the live P2) is gated on dev, and
+   `push-paper-to-prod.js` refuses both until 2.4.0 is tagged and `LATEST_RELEASED` is bumped
+   (`KEYBOARD-05`, `VER-06`/`VER-08`). Run `apply-exam-gate.js` after upload (`VER-09`). **Stay selective —
+   the assessment-quality reason for objective formats is unchanged:** `fitb` marking is exact-string
+   (case-insensitive, trailing punctuation stripped, `|` alternatives) while the memo's answers are
+   paraphrasable ("any 1 x 2 … any other relevant response"). Use `text` only for a **single-token answer
+   with a canonical spelling** (`COMECON`, `Gandhi`, `Zaire`, `Kinshasa`, a named plan), list accepted
+   spellings with `|`, no spaces beyond what the `text` keyboard types, and keep everything
+   definition/quotation/explanation-shaped as `multiple_choice`/`multi_select`/`match`/`ordering`.
+   Multi-word names are fine (the `text` keyboard has a space key) but multiply the spelling variants —
+   prefer a choice item.
+3. Mixed lessons are fine: each question declares its own keyboard.
+
+**P2 is deliberately NOT retrofitted — owner decision 2026-10-07; it is a known, accepted
+deviation, not a template.** None of the six `scripts/add-history-2025-nov-p2-q{1..6}.js` declares
+`keyboard_type` (checked 2026-10-07), and `backfill-keyboard-types.js` skipped History as a
+`None`-routed subject, so the dev rows and the ≈10 live prod rows are `NULL` and will stay so. Every
+P2 `fitb` answer is bare numeric, so once the always-custom resolver ships those rows resolve to the
+fallback `Text` keyboard, where digits and `.` remain typeable — they keep working, they just get a
+bigger keyboard than needed. What this means for everyone after:
+
+- **Never copy a P2 History script as the starting point for a new one.** Start from
+  `tools/upload-script-template.js` and add `keyboard_type` to every `fitb` (`standard_math` for
+  numbers, `text` for a permitted single-token word). The P2 scripts are the *content* precedent
+  (source handling, `aiExplanation` shape, image paths), not the *schema* precedent.
+- **Re-running a P2 script will fail `validate-questions.js`** (`KEYBOARD-04` is an error). Do not
+  re-run them, and do not "fix" them by loosening the rule; if one ever has to change, patch the
+  rows with `patch-question.js` and declare the keyboard in that same change.
+- **P2 is not evidence for the keyboard rules.** Anything this profile says about declarations comes
+  from `KEYBOARD-04` and the P1 analysis; P2's `fitb` never declared anything.
+- **Exam gate unaffected:** P2's rows being `NULL` adds nothing to the exam's derived minimum; only P1
+  (or later) `text` questions do. Under `VER-08` P2 still sits behind the exam-level gate if any
+  sibling uses `text`.
+- Every future History paper (`nov_p1`, `june_p1`, `june_p2`, later years) is authored to the
+  rules above from its first script.
+
+**Phase 5 / review tooling.** The 2026-09-12 ledger note below ("`review-capture-answers.js`
+can't drive the system keyboard, so every History `fitb` came back `MISSING_KEY`") is a
+property of the *old* `None` path. A declared `standard_math` `fitb` is typed through the
+custom keyboard's own `maths_key_<label>` test tags, so Phase 5 should be able to run
+end-to-end for History `fitb` once it is declared — verify on the first P1 review rather than
+assuming; if it still reports `MISSING_KEY`, that is a tooling bug, not an answerability pass.
 
 ## App-side navigation — no separate work needed
 
@@ -176,7 +295,7 @@ requires a client fix first, so it's optional rollout hygiene, not a blocking ga
 ## Allowed presentation types (illustrative, not yet evidenced against authored content)
 
 Expect `multiple_choice`/`multi_select`/`match`/`ordering` to dominate, driven directly
-by `DESIGN-HIST-03`'s numeric-only `fitb` constraint — this paper's natural
+by `DESIGN-HIST-03`'s restriction of `fitb` to numbers and rare single-token words — this paper's natural
 short-answer shape (define, quote, name, explain symbolism, comment on reliability) is
 almost entirely textual. `fitb` reserved for the minority of genuinely numeric
 sub-questions (years, counts, percentages). No MathText; `fraction`/`equation`/`steps`
@@ -184,6 +303,11 @@ not used — nothing in this subject is symbolic/numeric-procedural. Question `t
 vocabulary: `definition`, `interpretation` (source reading, reusing Geography's sense
 of the term rather than inventing a new one), `application` (synthesis/argument
 evaluation).
+
+*P1 analysis finds nothing that needs another type* — the six P1 item shapes map onto the
+same five presentations (`multiple_choice`, `multi_select`, `match`, `ordering`, `fitb`; table
+under *Source-based questions*). Every `fitb` declares `keyboard_type: 'standard_math'`
+(*Keyboard* above).
 
 ## Subject rules (beyond core)
 
@@ -193,6 +317,45 @@ evaluation).
   satisfy `DESIGN-UNI-01`. Prefer relational framing (causal chains, comparison between
   periods/movements, "what changed between X and Y") grounded in the curriculum
   document (`DESIGN-UNI-09`).
+- **Marking-guideline vocabulary (*P1* memo; P2's uses the same).** `(2 x 1)` = two facts at
+  1 mark each; `(any 2 x 2)` = the memo lists more acceptable points than needed — any two earn
+  2 marks each; `(1 x 2)` = one point, 2 marks. **`[Extraction … – L1]`, `[Interpretation … – L2]`,
+  `[Determining the reliability/usefulness/limitations … – L3]`, `[Comparison of evidence … – L3]`,
+  `[Interpretation, evaluation and synthesis – L3]`** tag each item's skill and cognitive level
+  (weights 30 % L1 / 40 % L2 / 30 % L3, CAPS §4.3.2). "Any other relevant response" = the list is
+  illustrative, so a practice item's *correct* option must be a listed point or an equally
+  well-evidenced one, and a distractor must be genuinely **not** supported by the source.
+  Extraction items are marked on the **quoted evidence**, not on a paraphrase (the memo's
+  answers are verbatim, with ellipses) — an objective reframe is "pick the verbatim phrase",
+  never "pick the idea". The 8-mark paragraph is marked on a 3-level holistic rubric
+  (0–2 / 3–5 / 6–8) and each memo "aspect" is tagged with its source or `(own knowledge)`;
+  the 50-mark essay on a 7-level content × presentation matrix (0–50).
+- **Memo-vs-source cautions (*P1*).** Practice questions are fresh and must be true history —
+  don't import the memo's wording where it is loose:
+  - **Q4 Vietnam essay memo.** It calls the Tet Offensive "a success for the Viet Cong" and says
+    more than 80 cities were "taken over"; Tet is usually taught as a military failure for the
+    Viet Cong and a political/psychological turning point — frame practice items on the
+    *political impact*, not on territory held. It places the *Search and Destroy* policy as a
+    "response to Tet", but Search and Destroy operations began in 1965–66, before it. It calls
+    napalm a "gas" (it is an incendiary) and equates **Vietnamisation** with WHAM ("winning
+    hearts and minds"), which was a separate pacification programme. Keep Vietnamisation =
+    Nixon's withdrawal-and-handover policy.
+  - **Spelling.** The memo writes "Bobby Searle" and "Angela Davies" — Bobby **Seale**, Angela
+    **Davis**; "Mobuto" appears in CAPS for Mobutu. Use the correct spellings in stems and
+    options, and don't offer a misspelling as a distractor.
+  - **Paper stems vs sources.** 2.3.4 says "[Senator] Clarke", Source 2C says "Clark". Source 1B's
+    caption/introduction says the cartoon depicts **President Truman**, but the drawn figure is
+    the Uncle Sam hat-and-goatee personification of the USA — in a cartoon-reading practice item
+    ask what the figure *represents* (the United States) rather than asserting it is Truman. The
+    paper's 1.2.1(a) describes the dark mass as "a bear/wolf"; it is labelled "COMMUNIST
+    INFILTRATION AND DICTATORSHIP THREATS" with onion domes (Kremlin) — safe wording is
+    "the communist threat".
+  - **Decimal comma.** The paper writes `$41,7 million` and `22 million dollars`; store `.`
+    in answers, follow the source's own form in displayed stems.
+- **One source set per lesson (`DESIGN-HIST-01` across lessons).** Q2's Source 2B is about Mobutu
+  and Zaire, Q2's 2A mentions Vietnam — which are also the Q5 and Q4 essay topics. Keep a lesson's
+  practice questions pinned to *its own* four sources (source-based) or its own topic (essay)
+  so the six lessons don't duplicate each other's facts; link in tags, not in content.
 - Tags: historical concepts/events/figures only, never invented scenario wrappers —
   same discipline as Geography's `PIPE-06`.
 
@@ -204,9 +367,38 @@ apartheid), `coming_of_democracy` (negotiations 1990–94, TRC/coming to terms w
 past), `end_of_cold_war_new_world_order` (1989 events, Gorbachev/Glasnost/Perestroika,
 BRICS/Global North–South realignment). Illustrative only — the real set comes from the
 Phase 3.5 vocabulary dump once a first session populates it (`PIPE-08`), same as every
-other subject.
+other subject. (The P2 set above has since been populated by the `nov_p2` session — dump it
+before authoring P1.)
+
+*P1* adds three units — **`cold_war`**, **`independent_africa`**, **`civil_society_protests_1950s_70s`**
+(named to stay distinct from P2's `civil_resistance_1970s_80s`, CAPS Topic 4, which is a
+different topic — don't merge them). CAPS Grade 12 topics to hang topics/subtopics from (names
+are CAPS's; slugs are flat per the vocabulary dump):
+
+| Unit | CAPS topics → worth a node |
+|---|---|
+| `cold_war` | Origins (spheres of interest, satellite states, containment: Truman Doctrine, Marshall Plan, **Molotov Plan/COMECON**, Berlin Crises, NATO/Warsaw Pact, Cuban crisis, "who was to blame?"); Extension — Vietnam (stages 1957–75, guerrilla warfare, US escalation, withdrawal) and China (alternate) |
+| `independent_africa` | Ideas that influenced independent states; Congo (Lumumba, Mobutu — political/economic/social/cultural policies); Tanzania (African socialism); Africa in the Cold War — Angola (colonialism and independence, MPLA/FNLA/UNITA, USA/USSR/Cuba/China/South Africa involvement, Cuito Cuanavale) |
+| `civil_society_protests_1950s_70s` | US Civil Rights Movement (King and Gandhi's influence, civil disobedience: boycott/sit-ins/marches, gains); Black Power (reasons, Black Panther Party, Carmichael, Malcolm X, gains); conclusion — progress made |
+
+Cross-paper nodes are likely (`DESIGN-UNI-09` — *check the dump first*): P2's
+`end_of_cold_war_new_world_order` and P1's `cold_war` are different CAPS topics (1 vs 6) under
+one theme; reuse a node only where it is genuinely the same concept (e.g. *Domino Theory*,
+*containment*), never to merge the units.
 
 ## Completed papers ledger
+
+**`nov_p1` — analysed 2026-10-07, not authored.** Source files (question paper, addendum,
+marking guideline) and the CAPS document read in full; the Section A visual sources
+inspected (two cartoons, one photograph). Produced: the P1 paper-structure table, item-format mapping, memo vocabulary and
+cautions, scope guard, curriculum units, and the revised keyboard decision (*numeric-only,
+`standard_math` for numbers, `text` permitted sparingly for single-token words — owner accepted the 2.4.0 gate on 2026-10-07*). Not produced: any lesson, question, image or database row.
+**Next steps for the P1 session:** (1) vocabulary dump for `history` (P2 is not retrofitted — see *Keyboard*;
+write P1 scripts from the template, not from a P2 script); (2) extract page images per source (`extract-exam-pages.py`, **rename each to a
+unique `annexure_<label>.png` / `memo_N.png` before upload** — see the collision notes below, which
+apply unchanged); (3) author Q1→Q6 per `workflows/generate/upload-history.md`, one commit per
+lesson; (4) track the `DESIGN-UNI-06` MC index-0 tally **for `nov_p1` separately** (the 10 % cap
+is paper-level; P2 finished at 2 of 28, 7.1 %); (5) full-paper review via `review-paper.md`.
 
 **`nov_p2` Section A (Q1–Q3) — complete, 2026-09-12.** All 3 lessons authored,
 validated, and upserted to dev (Cloud SQL); image URLs spot-checked resolving (200)
@@ -324,7 +516,7 @@ History's. **Lesson for future lessons: never restate the full question sentence
 `fitb` metadata — always author it as a short label, from the start.**
 
 **Phase 5 (answerability) run, with a caveat: the tool itself can't drive the system
-keyboard yet.** `scripts/review-capture-answers.js` only types via Compose
+keyboard yet.** (Update 2026-10-07: this is a property of the old system-keyboard path — see the Keyboard section; it should not recur once `fitb` declares `standard_math`.) `scripts/review-capture-answers.js` only types via Compose
 `maths_key_$label` tags, which don't exist for a `None`-keyboard subject (Geography,
 History) — the system IME is a real Android keyboard outside the app's Compose tree.
 All 7 `fitb` questions came back `MISSING_KEY` on every character, which looked like a
@@ -391,6 +583,8 @@ if another session might be reviewing a different subject's paper concurrently, 
 `review-capture.js`/`review-build-manifest.js` process before assuming a uiautomator
 error is a genuine device problem** — it may just be two sessions fighting over one
 emulator.
+
+**Update 2026-10-07:** the always-custom-keyboard commit message (AMPM `d302da0a6`) counts 10 History `fitb` live on prod, so P2 has evidently been pushed since this note was written — re-check read-only before relying on it (`KEYBOARD-06` step 0). The prod-push item below is therefore likely done. The `keyboard_type` retrofit is intentionally not being done (*Keyboard* above).
 
 **Still open:** `june_p2` once sourced. Not yet done: dev live-testing's Phase 5
 answerability pass for Section B specifically (Section A's already-documented

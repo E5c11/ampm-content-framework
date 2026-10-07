@@ -6,7 +6,12 @@
 fitb}.md` (History subset only — profile).
 
 > Do NOT enter plan mode. Run once per lesson (one real exam question — Q1–Q3 Section A
-> source-based, Q4–Q6 Section B essay). Commit after Phase 4, per lesson.
+> source-based, Q4–Q6 Section B essay). Commit after Phase 4, per lesson. **Both papers
+> follow it:** `nov_p2` was authored with it; `nov_p1` (analysed 2026-10-07 in the profile,
+> not yet authored) is next — the profile's *Paper structure — Nov 2025 P1* section has the
+> per-question table and item mapping, and its *Keyboard* section the (deliberate) P2 non-retrofit: **write new
+> scripts from `tools/upload-script-template.js`, never from a `nov_p2` script** — those
+> predate `KEYBOARD-04` and declare no `keyboard_type`.
 
 Written retroactively, 2026-09-13, after `nov_p2` (Section A + Section B, 6 lessons) was
 already fully authored, validated, and reviewed without one — same gap this session
@@ -44,12 +49,13 @@ optional supporting material.
    any `has_video: false` lesson through the generic no-video screen — no app change
    needed for routing).
 4. **Questions** (pipeline Phase 3) — the History-specific decisions:
-   - **`DESIGN-HIST-03`** (keyboard, app-limitation-driven, `enforced_by: human-review`):
-     History has no `KeyboardResolver.kt` route (`None`), and `FillInTheBlank.kt` never
-     threads a text-capable `keyboardType` through — **no `fitb` blank may require a
-     letter.** Reserve `fitb` for genuinely numeric/date answers (a year, a count, a
-     percentage). Any name/term/quoted-phrase/place answer — most of this paper's natural
-     short-answer shape — goes to `multiple_choice`/`multi_select`/`match` instead.
+   - **`DESIGN-HIST-03`** (keyboard, `enforced_by: human-review`, revised 2026-10-07): **every
+     typed question declares `keyboard_type`** (`KEYBOARD-04`; validator errors otherwise).
+     Numeric/date answers → `standard_math` (decimal comma stored as `.`). Words → `text`
+     **only** for a single-token answer with a canonical spelling (`|` for variants); `text`
+     derives 2.4.0 and gates the whole 2025 exam, which the owner has accepted (release due).
+     Everything definition/quotation/explanation-shaped stays `multiple_choice`/`multi_select`/
+     `match`. After upload run `apply-exam-gate.js` (`VER-09`); the prod push waits for the tag.
    - Section A's final sub-question in each real question (e.g. 1.6/2.6/3.6, "write a
      paragraph using the sources and your own knowledge") is a synthesis mini-essay, not
      a short-answer item — same no-free-text problem as Section B, resolved the same way:
@@ -78,8 +84,9 @@ optional supporting material.
    with `--curriculum` — HARD STOP (`PIPE-10`) — then `--dry-run` and upsert to dev.
    **Commit** (`[Data] Add history <year> <paper> Q<N> lesson and questions`).
 7. **Verify** (pipeline Phase 5 checklist, run via `review-paper.md` against the live
-   emulator, not render-only screenshots), plus: no `fitb` blank requires a letter
-   (`DESIGN-HIST-03`); every Section B lesson's `aiExplanation` is a single guidance entry
+   emulator, not render-only screenshots), plus: `fitb` words are single-token only
+   and each declares the right keyboard (`DESIGN-HIST-03`; Phase 5 should now drive the custom
+   keyboard — if it reports `MISSING_KEY`, that is a tooling bug, not a pass); every Section B lesson's `aiExplanation` is a single guidance entry
    with the question's real total marks; MC index-0 tally re-checked live against the
    whole paper, not just this lesson's own set; long-text `ordering`/`multi_select`
    options (PEEL-paragraph sentences, thesis-statement options) render without clipping —
@@ -89,7 +96,7 @@ optional supporting material.
 ## `subjects` row / app-side status (already resolved for `nov_p2`, re-check if stale)
 
 `subject_id = "history"` (matches `SubjectMapper.kt`'s fallback — no app code change).
-`history` has no `KeyboardResolver.kt` route (`None`) — load-bearing per `DESIGN-HIST-03`
-above (numeric-only `fitb`), but not blocking (no `steps`/`equation` content in this
+`history` has no subject-level `KeyboardResolver.kt` route, so every typed question must
+declare its own keyboard — load-bearing per `DESIGN-HIST-03` above (`standard_math` for numbers, `text` for rare single-token words), but not blocking (no `steps`/`equation` content in this
 subject at all). `subjects` row already exists (`color: "#B8860B"`, `icon: "landmark"`,
 `min_app_version: null` — falls back to `is_active`) — don't re-create it.
