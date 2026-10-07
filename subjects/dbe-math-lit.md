@@ -65,3 +65,9 @@ the group's sequential position across the whole paper. YouTube ID + duration fr
 The `scripts/add-*.js` files committed here are the provenance record. Check dev Postgres
 for what's already uploaded before starting a paper:
 `psql -c "SELECT name, sort_order FROM lessons WHERE subject_id='math_lit' AND paper_id='<paper>' AND year_id='<year>' ORDER BY sort_order"`.
+
+**Papers in the database with no upload scripts in this repo.** DBE 2015 Nov P1 and P2 (`subject_id = 'math_lit'`, `year_id = '2015'`) exist on dev but have **no `scripts/add-*.js`**
+and no earlier ledger entry — provenance scripts are missing (they were created before the scripts were committed, or outside this repo). What the dev database shows (2026-10-06): lessons created
+2026-08-22 18:47 UTC, questions 2026-08-22 19:07 UTC — **P1: 12 lessons ("Question 1.1" … "Question 5.3"), 35 questions** (20 `fitb` + 3 `fraction` on `standard_math`, 12 `multiple_choice`),
+**P2: 15 lessons, 37 questions**; all published on dev; the exam derives the 2.0.0 floor (no gate). P2 is already in prod. Push tooling reads the dev rows, so it does not need scripts, but a content change to
+these papers would have to be a fix script against the rows (`KEYBOARD-06` style), not a re-upload.
