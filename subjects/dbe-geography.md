@@ -337,3 +337,26 @@ needed; check whether their answers are words). Phase 5 has not been run on this
   blanks) was driven by a one-off script.
 - **Not done:** no prod push (`push-paper-to-prod.js`), no video (`has_video: false`), and
   `june_p1` is not sourced.
+
+### `nov_p1` 2024 — authored 2026-10-08 (dev only, not reviewed)
+
+- **Scope:** 13 lessons, 63 practice questions (`scripts/add-geography-2024-nov-p1-q<N>-<M>.js`),
+  82 `aiExplanation` entries with real memo marks (1.4.4 and 3.2.1 split into `(a)`–`(d)` /
+  `(a)`–`(b)`). Mix: 28 `multiple_choice`, 18 `multi_select`, 12 `match`, 5 numeric `fitb`
+  (`standard_math`). Derived minimum 2.0.0, so no gate.
+- **Shape differs from 2025:** Q1.1 is A–D (8) and Q1.2 is A/B sketch matching (7); Q2.1 is
+  Column A/B Y/Z (7) and Q2.2 is A–D (8). The 15-mark subsections cover mid-latitude cyclones,
+  Tropical Cyclone Filipo, line thunderstorms, drainage patterns, rejuvenation and catchment
+  management. Q3 uses the Ladysmith sheets (2829DB, not added to `geography_maps`).
+- **Memo quirk repeats:** `Geography P1 Nov 2024 MG Eng.pdf` page 3 is again a stray page from
+  another paper (Q1.1 "South Atlantic High", 1.5 "Gauteng and the Eastern Cape"); the real memo
+  starts on page 4. Images: `temp/images/geography/2024/nov_p1/q{N}/`.
+- **New on dev (must reach prod with the push):** topic `urban_climates`; subtopics
+  `heat_island_and_pollution_dome`, `line_thunderstorms_and_moisture_front`,
+  `drainage_patterns_and_stream_order`, `fluvial_landforms`; 22 skills; tags `urban_climate`,
+  `line_thunderstorms`, `fluvial_landforms`, `drainage_patterns`, `stream_order`,
+  `river_terraces`, `magnetic_declination`. Snapshot: `temp/curriculum-vocab-geography-p1-2024.json`.
+- **MC balance:** answer at index 0 in 1/28; correct option strictly longest in 4/28 (6 ties).
+  Multi-select answer positions varied (chips are not shuffled).
+- **Validator variety rule** (≥3 presentation types in a 4+ set) failed the first draft of all
+  three Q3 lessons; each swapped one MC for a `match`.
