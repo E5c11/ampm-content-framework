@@ -630,6 +630,30 @@ indicators this paper tests), and 9 tags (`skills_development_act`, `setas`, `se
 `induction`, `job_analysis`, `quality_indicators`, `diversification_strategies`, `bbbee_act`). The memo accepts Q6's selection
 procedure "in any order", so it is a `multi_select`, not an `ordering` item. **Not done:** `review-paper.md` emulator run; prod push.
 
+**`nov_p2` (2024) — authored to dev, 2026-10-08; not reviewed on the emulator, not in prod.** Source:
+`files/Business Studies P2 Nov 2024 Eng.pdf` (9pp) + `... MG Eng.pdf` (29pp), committed `6257b74`. 6 lessons / 61 practice
+questions / 230 marks, one commit per lesson (`bbda888` … `fb3f919`), images wired from the start (31 URLs, all 200; Q6 reuses
+Q5's question page, shared paper page 9; every memo boundary falls on a page break, so no crops). Verified against Postgres:
+21 `multiple_choice` with **1 at index 0 (4.8%)**, correct option uniquely longest in 3/21; 30 `multi_select`, 5 `match`,
+4 `ordering`, 1 `fitb`.
+
+| Lesson | Marks | Questions | Real-paper content |
+|---|---|---|---|
+| Question 1 (Section A) | 30 | 10 | laissez-faire, cooperative, unfair advertising, health and safety reps, team criteria, share types, cultural rights, problem-solving techniques, expert personality, assurance |
+| Question 2 (Business Ventures) | 40 | 10 | investment options, state-owned company, average clause name + calculation, multimedia design, leadership theories (2.5 exclusion pair), autocratic impact, handling feedback |
+| Question 3 (Business Roles) | 40 | 10 | CSI focus areas, workers' health and safety duties, abuse of work time (3.3 exclusion pair), creative environment, performing stage, team dynamics theories, conflict steps (`ordering`), gender diversity |
+| Question 4 (Miscellaneous) | 40 | 11 | compulsory insurance, insurance advantages, visual aids → improvements (4.3, shared scenario only), private-company capital, problem-solving steps (`ordering`), employee well-being, human rights (4.7 table → `match`), ethical practice |
+| Question 5 (Investment securities essay) | 40 | 10 | JSE functions / investment factors / unit trusts / simple vs compound interest + LASO items |
+| Question 6 (CSR/CSI essay) | 40 | 10 | purpose of CSI / impact of CSR / triple bottom line / unemployment + LASO items |
+
+**First typed answer in this subject.** Q2.3.2 asks the candidate to *calculate* the average-clause payout, so `DESIGN-BUS-01`'s
+"if a paper evidences a numeric answer" case applies: Lesson 2 Q4 is a bare-numeric `fitb` (`100000`, the `R` in the label),
+`keyboard_type: 'standard_math'`, a released keyboard, so the exam stays at the 2.0.0 floor (`derive-exam-min.js` over all 12 P1+P2
+2024 scripts). The compound-vs-simple interest difference (Lesson 5 Q7) stays an MCQ, matching the 2025 shape. New vocabulary on dev
+(must reach prod with the push): one skill, `calculate_insurance_compensation`. Topics and tags all reused (leadership theories
+under `leadership_styles` and health and safety under `human_rights_and_diversity`, as P2 2025 did). **Not done:**
+`review-paper.md` emulator run (Phase 5 applies to the one `fitb`); prod push.
+
 ## Still open
 
 **Paper 1 (2026-10-07):** authored to dev (ledger above); remaining: emulator review, then prod push. The authoring checklist used: (1) use the generate
