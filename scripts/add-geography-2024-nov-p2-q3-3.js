@@ -35,7 +35,7 @@ const video = {
   content_tier: 'free',
   has_video: false,
   xp: 50,
-  tags: ['gis'],
+  tags: ['gis', 'data_integration'],
   question_image_urls: [
     `${IMG}/q13/question_1.png`,
   ],

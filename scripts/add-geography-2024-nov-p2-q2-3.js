@@ -35,7 +35,7 @@ const video = {
   content_tier: 'free',
   has_video: false,
   xp: 50,
-  tags: ['mining'],
+  tags: ['mining', 'energy_supply'],
   question_image_urls: [
     `${IMG}/q8/question_1.png`,
   ],

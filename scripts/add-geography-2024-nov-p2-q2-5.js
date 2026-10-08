@@ -35,7 +35,7 @@ const video = {
   content_tier: 'free',
   has_video: false,
   xp: 50,
-  tags: ['informal_sector'],
+  tags: ['informal_sector', 'urbanisation'],
   question_image_urls: [
     `${IMG}/q10/question_1.png`,
     `${IMG}/q10/question_2.png`,
