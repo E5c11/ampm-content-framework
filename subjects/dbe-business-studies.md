@@ -609,6 +609,27 @@ quote-three-challenges → `match` classification pair (three challenges, not th
 image is Q5's (shared page 10, same convention as P2). **Not done:** the `review-paper.md` emulator run; prod push (`push-paper-to-prod.js`
 for `nov_p1` — expect no gate, since no `text` rows).
 
+**`nov_p1` (2024) — authored to dev, 2026-10-08; not reviewed on the emulator, not in prod.** Source:
+`files/Business Studies P1 Nov 2024 Eng.pdf` (9pp) + `... MG Eng.pdf` (28pp), committed `c83212d`. 6 lessons / 62 practice
+questions / 230 marks, one commit per lesson (`b49c45c` … `5e93c1b`), images wired from the start (29 URLs, all 200; Q6 reuses
+Q5's question page, shared paper page 9). Verified against Postgres: 22 `multiple_choice` with **2 at index 0 (9.1%)**, correct
+option uniquely longest in 3/22; 32 `multi_select`, 5 `match`, 3 `ordering`; zero typed rows, so the exam stays at the 2.0.0 floor.
+
+| Lesson | Marks | Questions | Real-paper content |
+|---|---|---|---|
+| Question 1 (Section A) | 30 | 11 | EEA, SWOT, market-environment control, interviewee role, production function, LRA strike, backward integration, tertiary sector, placement, PDCA "act", term match |
+| Question 2 (Business Environments) | 40 | 10 | diversification, intensive and defensive strategies, PESTLE environmental (2.3 dependency pair), B-BBEE management control and purpose, CPA, LRA impact, strategic management process |
+| Question 3 (Business Operations) | 40 | 11 | internal recruitment, interviewer before interview, contract requirements and termination, EEA on HR, QMS benefits, financial function (3.6 exclusion pair), total client satisfaction, cost of quality |
+| Question 4 (Miscellaneous) | 40 | 10 | BCEA provisions, NCA rights, strategy evaluation (4.3 exclusion pair), power of suppliers, contract aspects, job analysis (4.6 table → match + classification), quality circles, general management |
+| Question 5 (SDA essay) | 40 | 10 | role of SETAs / purpose / impact / compliance + LASO items |
+| Question 6 (HR essay) | 40 | 10 | selection procedure / piecemeal and time-related pay / fringe benefits / induction + LASO items |
+
+New vocabulary on dev (must reach prod with the push): topic `business_function_quality_indicators` (under `quality_of_performance`;
+the existing `purchasing_and_public_relations` topic is too narrow for the financial, production and general management
+indicators this paper tests), and 9 tags (`skills_development_act`, `setas`, `selection_procedure`, `salary_determination`,
+`induction`, `job_analysis`, `quality_indicators`, `diversification_strategies`, `bbbee_act`). The memo accepts Q6's selection
+procedure "in any order", so it is a `multi_select`, not an `ordering` item. **Not done:** `review-paper.md` emulator run; prod push.
+
 ## Still open
 
 **Paper 1 (2026-10-07):** authored to dev (ledger above); remaining: emulator review, then prod push. The authoring checklist used: (1) use the generate
