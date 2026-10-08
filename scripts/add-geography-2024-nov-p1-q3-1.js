@@ -56,7 +56,7 @@ const questions = [
   {
     name: 'Question 1',
     question: 'A topographic map states that the mean magnetic declination was 19°40\' west of true north in 2006, with a mean annual change of 6\' westwards. Calculate the number of years from 2006 to 2026 and the total change in minutes over that time.',
-    metadata: ['Years = ', '[ ]', ', total change = ', '[ ]', ' minutes'],
+    metadata: ['Years = ', '[ ]', ', change in minutes = ', '[ ]'],
     answer: ['20', '120', '', '', ''],
     presentation: 'fitb',
     type: 'calc',
@@ -77,8 +77,8 @@ const questions = [
   },
   {
     name: 'Question 2',
-    question: 'Using the same map (19°40\' west of true north in 2006, changing 6\' westwards each year), calculate the magnetic declination for 2026.',
-    metadata: ['Magnetic declination = ', '[ ]', '° ', '[ ]', '\' west of true north'],
+    question: 'Using the same map (19°40\' west of true north in 2006, changing 6\' westwards each year), calculate the magnetic declination for 2026 in degrees and minutes west of true north.',
+    metadata: ['Declination = ', '[ ]', '° ', '[ ]', '\''],
     answer: ['21', '40', '', '', ''],
     presentation: 'fitb',
     type: 'calc',

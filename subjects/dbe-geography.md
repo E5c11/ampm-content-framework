@@ -338,7 +338,7 @@ needed; check whether their answers are words). Phase 5 has not been run on this
 - **Not done:** no prod push (`push-paper-to-prod.js`), no video (`has_video: false`), and
   `june_p1` is not sourced.
 
-### `nov_p1` 2024 — authored 2026-10-08 (dev only, not reviewed)
+### `nov_p1` 2024 — authored and reviewed 2026-10-08 (dev only)
 
 - **Scope:** 13 lessons, 63 practice questions (`scripts/add-geography-2024-nov-p1-q<N>-<M>.js`),
   82 `aiExplanation` entries with real memo marks (1.4.4 and 3.2.1 split into `(a)`–`(d)` /
@@ -360,6 +360,10 @@ needed; check whether their answers are words). Phase 5 has not been run on this
   Multi-select answer positions varied (chips are not shuffled).
 - **Validator variety rule** (≥3 presentation types in a 4+ set) failed the first draft of all
   three Q3 lessons; each swapped one MC for a `match`.
+- **Emulator review (2026-10-08, build 2.3.5-dev01):** 61 PASS / 2 AUTO_FIX / 0 FLAG; Phase 5 5/5
+  `fitb` correct on the number pad. Both fixes were 3.1 `fitb` rows whose text after the last blank
+  wrapped one letter per line — keep trailing tokens to a unit symbol and put words in the stem.
+  Report: `ampm-kmp/temp/review/geography_nov_p1_2024/report.md`.
 
 ### `nov_p2` 2024 — authored 2026-10-08 (dev only, not reviewed)
 
