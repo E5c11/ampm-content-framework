@@ -360,3 +360,28 @@ needed; check whether their answers are words). Phase 5 has not been run on this
   Multi-select answer positions varied (chips are not shuffled).
 - **Validator variety rule** (≥3 presentation types in a 4+ set) failed the first draft of all
   three Q3 lessons; each swapped one MC for a `match`.
+
+### `nov_p2` 2024 — authored 2026-10-08 (dev only, not reviewed)
+
+- **Scope:** 13 lessons, 66 practice questions (`scripts/add-geography-2024-nov-p2-q<N>-<M>.js`),
+  81 `aiExplanation` entries with real memo marks (3.2.2–3.2.4 and 3.3.3 split into `(a)`–`(c)`).
+  Mix: 27 `multiple_choice`, 22 `multi_select`, 12 `match`, 5 numeric `fitb` (`standard_math`;
+  3.1 Q4 is the `1 : x` two-blank ratio). Derived minimum 2.0.0, so no gate.
+- **Shape:** same as 2025 P2 except the formats swap: Q1.1 is Column A/B Y/Z (8), Q1.2 is A–D (7),
+  Q2.1 is A–D (8), Q2.2 is Column A/B Y/Z (7). The 15-mark subsections are rural-urban migration,
+  urban profile, informal settlements, coal mining, the Gauteng (PWV) core region and the informal
+  sector. Q3 uses the Bloemfontein-Noord sheets (2926AA, not added to `geography_maps`).
+- **Freshness choices:** the Gauteng (PWV), Saldanha/West Coast SDI and South-western Cape case
+  studies are in the real paper, so the practice questions use the other CAPS regions instead
+  (Durban-Pinetown, Port Elizabeth-Uitenhage, Coega). The Y/Z items were authored as
+  `multiple_choice`/`match` over relational content, not as two-option picks.
+- **Memo quirk repeats:** `Geography P2 Nov 2024 MG Eng.pdf` page 3 is a stray P1 page (South
+  Atlantic High, "Gauteng and the Eastern Cape"); the real memo starts on page 4.
+  Images: `temp/images/geography/2024/nov_p2/q{N}/`.
+- **New on dev (must reach prod with the push):** topic `industrial_regions`; subtopics
+  `informal_settlements_and_upgrading`, `core_industrial_regions`; 18 skills (see the scripts);
+  tags `central_place_theory`, `urban_profile`, `informal_settlements`, `industrial_regions`, `sdi`,
+  `true_bearing`, `energy_supply`, `data_integration`. Snapshot:
+  `temp/curriculum-vocab-geography-p2-2024.json`.
+- **MC balance:** answer at index 0 in 2/27; correct option strictly longest in 4/27 (after
+  lengthening six distractors), 5 ties.
