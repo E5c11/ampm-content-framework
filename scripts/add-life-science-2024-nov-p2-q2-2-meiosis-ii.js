@@ -39,7 +39,8 @@ const video = {
   "has_video": false,
   "xp": 60,
   "tags": [
-    "meiosis"
+    "meiosis",
+    "cell_division"
   ],
   "question_image_urls": [
     "https://media-dev.askmoreprepmore.app/exam_papers/dbe/life_science/2024/nov_p2/q8/question_1.png"
