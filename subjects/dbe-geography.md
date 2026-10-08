@@ -365,7 +365,7 @@ needed; check whether their answers are words). Phase 5 has not been run on this
   wrapped one letter per line — keep trailing tokens to a unit symbol and put words in the stem.
   Report: `ampm-kmp/temp/review/geography_nov_p1_2024/report.md`.
 
-### `nov_p2` 2024 — authored 2026-10-08 (dev only, not reviewed)
+### `nov_p2` 2024 — authored and reviewed 2026-10-08 (dev only)
 
 - **Scope:** 13 lessons, 66 practice questions (`scripts/add-geography-2024-nov-p2-q<N>-<M>.js`),
   81 `aiExplanation` entries with real memo marks (3.2.2–3.2.4 and 3.3.3 split into `(a)`–`(c)`).
@@ -389,3 +389,8 @@ needed; check whether their answers are words). Phase 5 has not been run on this
   `temp/curriculum-vocab-geography-p2-2024.json`.
 - **MC balance:** answer at index 0 in 2/27; correct option strictly longest in 4/27 (after
   lengthening six distractors), 5 ties.
+- **Phase 5 (2026-10-08, build 2.3.5-dev01):** all 66 questions captured and reviewed; 2 auto-fixes, 0 flags.
+  A spaced number in a stem can wrap mid-number ("420" / "000"), so stems now join thousands groups
+  with U+00A0 — do the same in new Geography stems. The 3.1 Q4 ratio blanks gained a `Gradient = `
+  label. All 5 typed answers were entered on the custom number pad (`maths_key_*`, which this build
+  shows for `standard_math`) and marked correct, including `1` : `35.47`.
