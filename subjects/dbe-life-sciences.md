@@ -474,7 +474,7 @@ snapshot: `temp/curriculum-vocab-life-science-p2-2024.json`.
 `lesson_ai_explanation_sub_questions` (one per real sub-question, lettered parts as `2.2.1(a)`). Verified against dev Postgres:
 every lesson and question `is_published`, `questions_count` = rows, every question has unit/topic/subtopic + a skill, every `fitb`
 declares a keyboard, and all 41 image URLs return 200. Scripts `scripts/add-life-science-2024-nov-p1-*.js`, one commit per lesson.
-**Not reviewed on the emulator. Not in prod.**
+**Reviewed on the emulator 2026-10-08 (`review-paper.md` Phases 1–6, build 2.3.5-dev01; report `AMPM/temp/review/life_science_nov_p1_2024/report.md`): 76 PASS / 4 AUTO_FIX / 0 FLAG; Phase 5 22/22 typed alternatives CORRECT (all 10 `fitb`, text and standard_math keyboards). Not in prod.** The four fixes (commit `7df827b`): three units in round brackets rendered as stacked fractions (Q2.2 Q2 `(ng/mℓ)`, Q3.3 Q1 `(mmol/ℓ)`, Q3.3 Q2 a bracketed data note). Keep a slash out of round brackets in question stems, and grep `\([^()]*/[^()]*\)` before upload. The fourth: the diagram button covered the last (correct) option of Q2.6 Q3, so a short distractor now goes last.
 
 Shape (same as the 2025 P1, `DESIGN-UNI-10`): Section A clusters → *Human Reproduction* (1.1.2, 1.1.8, 1.2.1, 1.2.8, 1.3.1; 8 marks),
 *Nervous System and Senses* (1.1.5, 1.1.6, 1.1.9, 1.1.10, 1.2.2–1.2.4, 1.2.6, 1.3.2, 1.3.3; 16), *Endocrine System and Homeostasis*
@@ -502,7 +502,7 @@ snapshot is `temp/curriculum-vocab-life-science-p1-2024.json`.
   subtopics and 13 skills from 2025 were reused where the concept was the same. No new units or topics were needed.
 - Authored with a spec → script generator kept in the session scratchpad. The committed scripts are the source of truth.
 
-**Next for 2024 P1:** run `review-paper.md` on the emulator. Prod waits for the 2.4.0 release (same as the 2025 P1).
+**Next for 2024 P1:** prod, once the next release is settled (the shared 2024 exam gate is 2.4.0 on dev; see the review report, open item 1).
 
 **`nov_p1` (2025) — authored and uploaded to dev, 2026-10-07.** 16 lessons, 76 practice questions, 150/150 marks; verified
 directly against dev Postgres (every lesson `is_published`, `questions_count` = rows, 79 `lesson_ai_explanation_sub_questions` =
