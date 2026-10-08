@@ -27,7 +27,7 @@ The **keyboard** guidance was rewritten 2026-10-07 for the 2.4.0 total-keyboard 
 | `syllabus` / `subject` | `"dbe"` / `"life_science"` (**singular** — confirmed against the live `subjects` row 2026-09-12; an earlier draft of this profile used `"life_sciences"` throughout, wrongly, before checking — fixed everywhere, including the upload scripts). Matches the app's own `SubjectMapper.kt` fallback (`displayName.lowercase().replace(" ", "_")` — `"Life Science"` → `"life_science"`), the same mechanism Geography already relies on with no explicit constant of its own. **No `SubjectMapper.kt` change needed.** |
 | Postgres tables | `lessons`, `questions` — `subject_id = "life_science"` |
 | Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'life_science'` — empty until the first authoring session populates them. Reuse before `tools/create-curriculum-node.js` / `create-skill.js` (`PIPE-08`) |
-| Papers | `nov_p2` (2025) **authored, published** (ledger). `nov_p1` (2025) **authored on dev 2026-10-07, not reviewed, not in prod**. `nov_p1` (2024) **authored on dev 2026-10-08, not reviewed, not in prod; exam gated 2.4.0 on dev**. `june_p1`/`june_p2` presumed once June-diet papers are sourced. Both Nov 2025 papers are **one exam for gating** (`VER-01`/`VER-09`): P1 uses `text`, so the exam is gated at **2.4.0 on dev** (`exam_versions`), which also gates P2 (see Keyboard). |
+| Papers | `nov_p2` (2025) **authored, published** (ledger). `nov_p2` (2024) **authored on dev 2026-10-08, not reviewed, not in prod**. `nov_p1` (2025) **authored on dev 2026-10-07, not reviewed, not in prod**. `nov_p1` (2024) **authored on dev 2026-10-08, not reviewed, not in prod; exam gated 2.4.0 on dev**. `june_p1`/`june_p2` presumed once June-diet papers are sourced. Both Nov 2025 papers are **one exam for gating** (`VER-01`/`VER-09`): P1 uses `text`, so the exam is gated at **2.4.0 on dev** (`exam_versions`), which also gates P2 (see Keyboard). |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/CAPS FET _ LIFE SCIENCES _ GR 10-12 Web_2636.pdf` — Grade 12 content at Section 3.3 (physical pp. 59–70 of the PDF, printed page labels 54–65); both papers' topic/weighting tables at Section 4.5.3 (physical p. 78, printed page label 73). P1 content: Strand 2 (Human Reproduction, Responding to the Environment, Endocrine, Homeostasis, plants) and Strand 1 Meiosis/Reproduction in Vertebrates — same section, earlier pages. Both consulted. |
 | **Source files** | P2: `files/Life Sciences P2 Nov 2025 Eng.pdf` (question paper, 17pp, 150 marks), `... MG Eng.pdf` (memo). P1: `files/Life Sciences P1 Nov 2025 Eng.pdf` (16pp, 150 marks, 2½ h), `files/Life Sciences P1 Nov 2025 MG Eng.pdf` (memo, 9pp) — both staged in git, not yet committed at time of writing. |
 | `subjects` reference row | **Already exists** — `id: "life_science"`, `name: "Life Science"`, `full_name: "Life Science"`, `code: "LIFE_SCIENCE"`, `category: "life_science_lessons"`, `sort_order: 5`, `color: "#E64980"`, `icon: "flask"`, `is_published: true` — confirmed by querying dev Postgres directly 2026-09-12 (this profile originally, wrongly, assumed it needed creating — same mistake `dbe-physics.md` already flagged once; check the DB before assuming). Pre-staged ahead of any content, same as Geography's and Physics's rows were. **`is_active` was `false` until this session** (why it wasn't showing as an onboarding option) — set to `true` 2026-09-12 at the user's request, along with `min_app_version` set from unset to `"1.0.0"` (the user's own call: current app builds read `min_app_version` for the subject gate, but older builds still read `is_active`, so both needed setting for it to show up everywhere). Unlike Physics/Chemistry's version gates, this is not currently hiding the subject from any app build — no lesson content exists yet regardless. |
@@ -439,6 +439,36 @@ needs its own app-side check before it can be more than partially typed content:
   most lessons — re-test after any app fix, and keep final options short until then.
 
 ## Completed papers ledger
+
+**`nov_p2` (2024) — authored and uploaded to dev, 2026-10-08.** 15 lessons, 83 practice questions, 150/150 marks; 75
+`lesson_ai_explanation_sub_questions` (one per real sub-question). Verified against dev Postgres: every lesson and question `is_published`,
+`questions_count` = rows, every question has unit/topic/subtopic + a skill, every lesson has 2–3 tags, and all 43 image URLs return 200.
+Scripts `scripts/add-life-science-2024-nov-p2-*.js`, one commit per lesson (plus the PDFs commit and a tag fix for order 8).
+**Not reviewed on the emulator. Not in prod.**
+
+Shape (same as the 2025 P2, `DESIGN-UNI-10`): Section A clusters → *DNA: Code of Life* (1.1.1, 1.1.10, 1.2.1, 1.2.4, 1.2.5, 1.3.2; 9 marks),
+*Meiosis* (1.1.4, 1.1.8, 1.2.2, 1.2.3, 1.2.8, 1.3.3; 9), *Genetics and Inheritance* (1.1.2, 1.1.3, 1.2.6, 1.2.9; 6), *Evolution* (1.1.5–1.1.7,
+1.1.9, 1.2.7, 1.3.1; 11); then Q1.4 (DNA replication), Q1.5 (dihybrid cross), Q2.1 (transcription), Q2.2 (anaphase II), Q2.3 (blood groups),
+Q2.4 (muscular dystrophy pedigree), Q3.1 (Bt maize), Q3.2 (primate phylogenetic tree), Q3.3 (milk/height investigation), Q3.4 (Homo erectus,
+Out of Africa), Q3.5 (Chernobyl wolves), one lesson each (orders 5–15). Q3.1/3.2 share page 12 (`12:end=273` / `12:start=273`) and Q3.4/3.5
+share page 14 (`14:end=386` / `14:start=386`); memo pages are whole pages. Images: `temp/images/life_science/2024/nov_p2/q{N}/`; vocabulary
+snapshot: `temp/curriculum-vocab-life-science-p2-2024.json`.
+
+- **Three generated figures** (fresh data, each checked against its stems): blood-group bar graph (q9 `graph_1.png`, 500 learners O 44 / A 34 /
+  B 16 / AB 6 %), colour-blindness pedigree (q10 `pedigree_1.png`, individuals 1–8, 4 and 8 affected), carnivore phylogenetic tree (q12
+  `diagram_1.png`, ancestors J–O) under `question_supplementary/life_science/2024/nov_p2/`.
+- **Decomposed:** the anaphase II → metaphase II drawing (MC on the metaphase II cell + chromatid count), the bar graph (graph type + criteria +
+  reading), the genetic cross (gametes MC + percentage fitb), the tabulation (multi_select of skull differences), and every describe/explain
+  (transcription, replication, GM steps, natural selection) as `ordering`/`multi_select` (`DESIGN-LIFE-02`/`04`).
+- **Keyboards:** 3 `text` fitb (centromere, cytosine, centriole/centrosome) and 6 `standard_math`. The 2024 exam was already gated 2.4.0 on dev
+  by P1; it stays 2.4.0. Do not push to prod before 2.4.0 is released (`VER-08`).
+- **MC tallies:** 43 multiple_choice. The correct option is at index 0 in 3 (7%). It is never strictly the longest option; it ties for longest
+  in 8 (equal-length short answers such as numbers and genotypes). 15 multi_select, 9 match, 9 fitb, 5 ordering; no True/False.
+- **Vocabulary created on dev:** 52 subtopics, 57 skills (one, `identify_bipedalism_evidence`, ended up unused) and 6 tags (`dna_replication`,
+  `dihybrid_cross`, `genetic_engineering`, `phylogenetic_trees`, `mutations`, `cell_division`). Reused 2025 P2 subtopics only under their own topic.
+- Authored with a spec → script generator kept in the session scratchpad. The committed scripts are the source of truth.
+
+**Next for 2024 P2:** run `review-paper.md` on the emulator. Prod waits for the 2.4.0 release, together with 2024 P1.
 
 **`nov_p1` (2024) — authored and uploaded to dev, 2026-10-08.** 17 lessons, 80 practice questions, 150/150 marks; 88
 `lesson_ai_explanation_sub_questions` (one per real sub-question, lettered parts as `2.2.1(a)`). Verified against dev Postgres:
