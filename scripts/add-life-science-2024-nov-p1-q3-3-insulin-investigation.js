@@ -57,7 +57,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "Blood glucose (mmol/ℓ) was measured 0, 60 and 120 minutes after a glucose drink. Person P: 5.0, 7.4, 5.2. Person Q: 7.9, 12.6, 11.8. The normal fasting range is 3.9 to 5.6 mmol/ℓ. Which conclusion is supported?",
+    "question": "Blood glucose was measured in mmol/ℓ at 0, 60 and 120 minutes after a glucose drink. Person P: 5.0, 7.4, 5.2. Person Q: 7.9, 12.6, 11.8. The normal fasting range is 3.9 to 5.6 mmol/ℓ. Which conclusion is supported?",
     "metadata": [
       "Person Q is healthy, because the level rises higher, showing a stronger response",
       "Person P is healthy, because the level starts and ends in the normal range",
@@ -92,7 +92,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "Using the same data (person Q: 7.9 mmol/ℓ at 0 minutes and 12.6 mmol/ℓ at 60 minutes), calculate the increase in person Q's blood glucose level over the first 60 minutes.",
+    "question": "Person Q's blood glucose level was 7.9 mmol/ℓ before a glucose drink and 12.6 mmol/ℓ 60 minutes after it. Calculate the increase in person Q's blood glucose level over the first 60 minutes.",
     "metadata": [
       "= ",
       "[ ]",

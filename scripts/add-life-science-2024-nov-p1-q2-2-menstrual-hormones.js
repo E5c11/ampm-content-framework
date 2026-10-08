@@ -90,7 +90,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "Progesterone levels (ng/mℓ) were measured in another woman: day 5 = 0.4, day 11 = 0.2, day 17 = 9.8, day 22 = 13.6 and day 26 = 3.1. On which of these days was her corpus luteum most active?",
+    "question": "Progesterone levels were measured in ng/mℓ in another woman: day 5 = 0.4, day 11 = 0.2, day 17 = 9.8, day 22 = 13.6 and day 26 = 3.1. On which of these days was her corpus luteum most active?",
     "metadata": [
       "Day 11",
       "Day 17",

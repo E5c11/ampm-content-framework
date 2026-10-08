@@ -140,9 +140,9 @@ const questions = [
     "question": "Use the graph. Which statement describes the relationship between axon diameter and impulse speed in these axons?",
     "metadata": [
       "As the axon diameter increases, the impulse speed decreases",
-      "The impulse speed stays the same at every axon diameter",
       "The impulse speed increases only up to 6 µm, then levels off",
       "As the axon diameter increases, the impulse speed increases",
+      "Impulse speed stays constant",
       ""
     ],
     "answer": [
