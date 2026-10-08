@@ -143,8 +143,8 @@ const questions = [
     "metadata": [
       "They look more alike than the fox does",
       "They live in the same habitats as each other",
-      "They share the oldest common ancestor in the tree",
       "They share a more recent common ancestor",
+      "They share the oldest common ancestor in the tree",
       ""
     ],
     "answer": [
