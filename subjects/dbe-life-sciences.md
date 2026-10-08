@@ -27,7 +27,7 @@ The **keyboard** guidance was rewritten 2026-10-07 for the 2.4.0 total-keyboard 
 | `syllabus` / `subject` | `"dbe"` / `"life_science"` (**singular** — confirmed against the live `subjects` row 2026-09-12; an earlier draft of this profile used `"life_sciences"` throughout, wrongly, before checking — fixed everywhere, including the upload scripts). Matches the app's own `SubjectMapper.kt` fallback (`displayName.lowercase().replace(" ", "_")` — `"Life Science"` → `"life_science"`), the same mechanism Geography already relies on with no explicit constant of its own. **No `SubjectMapper.kt` change needed.** |
 | Postgres tables | `lessons`, `questions` — `subject_id = "life_science"` |
 | Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'life_science'` — empty until the first authoring session populates them. Reuse before `tools/create-curriculum-node.js` / `create-skill.js` (`PIPE-08`) |
-| Papers | `nov_p2` (2025) **authored, published** (ledger). `nov_p1` (2025) **authored on dev 2026-10-07, not reviewed, not in prod**. `june_p1`/`june_p2` presumed once June-diet papers are sourced. Both Nov 2025 papers are **one exam for gating** (`VER-01`/`VER-09`): P1 uses `text`, so the exam is gated at **2.4.0 on dev** (`exam_versions`), which also gates P2 (see Keyboard). |
+| Papers | `nov_p2` (2025) **authored, published** (ledger). `nov_p1` (2025) **authored on dev 2026-10-07, not reviewed, not in prod**. `nov_p1` (2024) **authored on dev 2026-10-08, not reviewed, not in prod; exam gated 2.4.0 on dev**. `june_p1`/`june_p2` presumed once June-diet papers are sourced. Both Nov 2025 papers are **one exam for gating** (`VER-01`/`VER-09`): P1 uses `text`, so the exam is gated at **2.4.0 on dev** (`exam_versions`), which also gates P2 (see Keyboard). |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/CAPS FET _ LIFE SCIENCES _ GR 10-12 Web_2636.pdf` — Grade 12 content at Section 3.3 (physical pp. 59–70 of the PDF, printed page labels 54–65); both papers' topic/weighting tables at Section 4.5.3 (physical p. 78, printed page label 73). P1 content: Strand 2 (Human Reproduction, Responding to the Environment, Endocrine, Homeostasis, plants) and Strand 1 Meiosis/Reproduction in Vertebrates — same section, earlier pages. Both consulted. |
 | **Source files** | P2: `files/Life Sciences P2 Nov 2025 Eng.pdf` (question paper, 17pp, 150 marks), `... MG Eng.pdf` (memo). P1: `files/Life Sciences P1 Nov 2025 Eng.pdf` (16pp, 150 marks, 2½ h), `files/Life Sciences P1 Nov 2025 MG Eng.pdf` (memo, 9pp) — both staged in git, not yet committed at time of writing. |
 | `subjects` reference row | **Already exists** — `id: "life_science"`, `name: "Life Science"`, `full_name: "Life Science"`, `code: "LIFE_SCIENCE"`, `category: "life_science_lessons"`, `sort_order: 5`, `color: "#E64980"`, `icon: "flask"`, `is_published: true` — confirmed by querying dev Postgres directly 2026-09-12 (this profile originally, wrongly, assumed it needed creating — same mistake `dbe-physics.md` already flagged once; check the DB before assuming). Pre-staged ahead of any content, same as Geography's and Physics's rows were. **`is_active` was `false` until this session** (why it wasn't showing as an onboarding option) — set to `true` 2026-09-12 at the user's request, along with `min_app_version` set from unset to `"1.0.0"` (the user's own call: current app builds read `min_app_version` for the subject gate, but older builds still read `is_active`, so both needed setting for it to show up everywhere). Unlike Physics/Chemistry's version gates, this is not currently hiding the subject from any app build — no lesson content exists yet regardless. |
@@ -439,6 +439,40 @@ needs its own app-side check before it can be more than partially typed content:
   most lessons — re-test after any app fix, and keep final options short until then.
 
 ## Completed papers ledger
+
+**`nov_p1` (2024) — authored and uploaded to dev, 2026-10-08.** 17 lessons, 80 practice questions, 150/150 marks; 88
+`lesson_ai_explanation_sub_questions` (one per real sub-question, lettered parts as `2.2.1(a)`). Verified against dev Postgres:
+every lesson and question `is_published`, `questions_count` = rows, every question has unit/topic/subtopic + a skill, every `fitb`
+declares a keyboard, and all 41 image URLs return 200. Scripts `scripts/add-life-science-2024-nov-p1-*.js`, one commit per lesson.
+**Not reviewed on the emulator. Not in prod.**
+
+Shape (same as the 2025 P1, `DESIGN-UNI-10`): Section A clusters → *Human Reproduction* (1.1.2, 1.1.8, 1.2.1, 1.2.8, 1.3.1; 8 marks),
+*Nervous System and Senses* (1.1.5, 1.1.6, 1.1.9, 1.1.10, 1.2.2–1.2.4, 1.2.6, 1.3.2, 1.3.3; 16), *Endocrine System and Homeostasis*
+(1.1.1, 1.1.3, 1.1.4, 1.1.7; 8), *Plant Responses* (1.2.5, 1.2.7; 2 — kept separate because no other Section A item is a plant item);
+then Q1.4 (male system), Q1.5 (homeostasis structures), Q2.1–Q2.6, Q3.1–Q3.5, one lesson each (orders 5–17). Q2.3 and Q2.4 share
+page 11 and are cropped at `11:end=375` / `11:start=375`. Images are in `temp/images/life_science/2024/nov_p1/q{N}/`; the vocabulary
+snapshot is `temp/curriculum-vocab-life-science-p1-2024.json`.
+
+- **Differences from the 2025 P1:** Section A has no A–F neuron item. Instead it has two lettered diagrams (Q1.4 male system, Q1.5
+  whole-body homeostasis). Section B adds a *pair of line graphs* (Q2.6, impulse speed against axon diameter). Section C is
+  investigation-heavy (Q3.3 insulin table, Q3.5 auxin/agar). There is no graph to draw and no unit-bearing calculation; the one
+  calculation is Q2.2.4's percentage (memo: 300%).
+- **Diagram check that mattered:** in the Q1.1.9 ear figure, **B is the round window and C is the Eustachian tube**, so the memo answer
+  is C ("pressure is absorbed at B"). The first draft of the aiExplanation misread this, and it was fixed before upload. Read the labels
+  on the figure, not the option text.
+- **One generated figure:** Q2.6's practice graph (myelinated axons 2–12 µm, speed = 5 × diameter) at
+  `question_supplementary/life_science/2024/nov_p1/q12/graph_1.png`. Every other label-identification item is asked by function or
+  consequence with no figure (`DESIGN-LIFE-03` option (i)).
+- **Keyboards:** 5 `text` fitb (Eustachian tube, hypothalamus, ADH, myelin sheath, TSH) and 5 `standard_math`. Because of the `text` rows,
+  the **2024 exam is gated at 2.4.0 on dev** (`exam_versions life_science/dbe/2024/november`). The gate is per exam, so it will also gate
+  any 2024 P2 (the P2 2024 PDFs were in `files/` at the time, but not yet authored). Do not push to prod before 2.4.0 is released (`VER-08`).
+- **MC tallies:** 34 multiple_choice. The correct option is at index 0 in 3 (9%). It is the longest option in 10 (29%, ties included), and
+  the length ranks are spread 10/13/7/4. 14 multi_select, 12 ordering, 10 match, 10 fitb; no True/False.
+- **Vocabulary created on dev:** 67 subtopics, 67 skills, 2 tags (`female_reproductive_system`, `pupillary_mechanism`). Thirteen
+  subtopics and 13 skills from 2025 were reused where the concept was the same. No new units or topics were needed.
+- Authored with a spec → script generator kept in the session scratchpad. The committed scripts are the source of truth.
+
+**Next for 2024 P1:** run `review-paper.md` on the emulator. Prod waits for the 2.4.0 release (same as the 2025 P1).
 
 **`nov_p1` (2025) — authored and uploaded to dev, 2026-10-07.** 16 lessons, 76 practice questions, 150/150 marks; verified
 directly against dev Postgres (every lesson `is_published`, `questions_count` = rows, 79 `lesson_ai_explanation_sub_questions` =
