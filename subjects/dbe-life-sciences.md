@@ -27,7 +27,7 @@ The **keyboard** guidance was rewritten 2026-10-07 for the 2.4.0 total-keyboard 
 | `syllabus` / `subject` | `"dbe"` / `"life_science"` (**singular** — confirmed against the live `subjects` row 2026-09-12; an earlier draft of this profile used `"life_sciences"` throughout, wrongly, before checking — fixed everywhere, including the upload scripts). Matches the app's own `SubjectMapper.kt` fallback (`displayName.lowercase().replace(" ", "_")` — `"Life Science"` → `"life_science"`), the same mechanism Geography already relies on with no explicit constant of its own. **No `SubjectMapper.kt` change needed.** |
 | Postgres tables | `lessons`, `questions` — `subject_id = "life_science"` |
 | Curriculum sources | `curriculum_nodes` / `skills` where `subject_id = 'life_science'` — empty until the first authoring session populates them. Reuse before `tools/create-curriculum-node.js` / `create-skill.js` (`PIPE-08`) |
-| Papers | `nov_p2` (2025) **authored, published** (ledger). `nov_p2` (2024) **authored on dev 2026-10-08, not reviewed, not in prod**. `nov_p1` (2025) **authored on dev 2026-10-07, not reviewed, not in prod**. `nov_p1` (2024) **authored on dev 2026-10-08, not reviewed, not in prod; exam gated 2.4.0 on dev**. `june_p1`/`june_p2` presumed once June-diet papers are sourced. Both Nov 2025 papers are **one exam for gating** (`VER-01`/`VER-09`): P1 uses `text`, so the exam is gated at **2.4.0 on dev** (`exam_versions`), which also gates P2 (see Keyboard). |
+| Papers | `nov_p2` (2025) **authored, published** (ledger). `nov_p2` (2024) **authored and reviewed on dev 2026-10-08, not in prod**. `nov_p1` (2025) **authored on dev 2026-10-07, not reviewed, not in prod**. `nov_p1` (2024) **authored on dev 2026-10-08, not reviewed, not in prod; exam gated 2.4.0 on dev**. `june_p1`/`june_p2` presumed once June-diet papers are sourced. Both Nov 2025 papers are **one exam for gating** (`VER-01`/`VER-09`): P1 uses `text`, so the exam is gated at **2.4.0 on dev** (`exam_versions`), which also gates P2 (see Keyboard). |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/CAPS FET _ LIFE SCIENCES _ GR 10-12 Web_2636.pdf` — Grade 12 content at Section 3.3 (physical pp. 59–70 of the PDF, printed page labels 54–65); both papers' topic/weighting tables at Section 4.5.3 (physical p. 78, printed page label 73). P1 content: Strand 2 (Human Reproduction, Responding to the Environment, Endocrine, Homeostasis, plants) and Strand 1 Meiosis/Reproduction in Vertebrates — same section, earlier pages. Both consulted. |
 | **Source files** | P2: `files/Life Sciences P2 Nov 2025 Eng.pdf` (question paper, 17pp, 150 marks), `... MG Eng.pdf` (memo). P1: `files/Life Sciences P1 Nov 2025 Eng.pdf` (16pp, 150 marks, 2½ h), `files/Life Sciences P1 Nov 2025 MG Eng.pdf` (memo, 9pp) — both staged in git, not yet committed at time of writing. |
 | `subjects` reference row | **Already exists** — `id: "life_science"`, `name: "Life Science"`, `full_name: "Life Science"`, `code: "LIFE_SCIENCE"`, `category: "life_science_lessons"`, `sort_order: 5`, `color: "#E64980"`, `icon: "flask"`, `is_published: true` — confirmed by querying dev Postgres directly 2026-09-12 (this profile originally, wrongly, assumed it needed creating — same mistake `dbe-physics.md` already flagged once; check the DB before assuming). Pre-staged ahead of any content, same as Geography's and Physics's rows were. **`is_active` was `false` until this session** (why it wasn't showing as an onboarding option) — set to `true` 2026-09-12 at the user's request, along with `min_app_version` set from unset to `"1.0.0"` (the user's own call: current app builds read `min_app_version` for the subject gate, but older builds still read `is_active`, so both needed setting for it to show up everywhere). Unlike Physics/Chemistry's version gates, this is not currently hiding the subject from any app build — no lesson content exists yet regardless. |
@@ -440,11 +440,11 @@ needs its own app-side check before it can be more than partially typed content:
 
 ## Completed papers ledger
 
-**`nov_p2` (2024) — authored and uploaded to dev, 2026-10-08.** 15 lessons, 83 practice questions, 150/150 marks; 75
+**`nov_p2` (2024) — authored and uploaded to dev, 2026-10-08.** 15 lessons, 82 practice questions, 150/150 marks; 75
 `lesson_ai_explanation_sub_questions` (one per real sub-question). Verified against dev Postgres: every lesson and question `is_published`,
 `questions_count` = rows, every question has unit/topic/subtopic + a skill, every lesson has 2–3 tags, and all 43 image URLs return 200.
 Scripts `scripts/add-life-science-2024-nov-p2-*.js`, one commit per lesson (plus the PDFs commit and a tag fix for order 8).
-**Not reviewed on the emulator. Not in prod.**
+**Reviewed 2026-10-08 (below). Not in prod.**
 
 Shape (same as the 2025 P2, `DESIGN-UNI-10`): Section A clusters → *DNA: Code of Life* (1.1.1, 1.1.10, 1.2.1, 1.2.4, 1.2.5, 1.3.2; 9 marks),
 *Meiosis* (1.1.4, 1.1.8, 1.2.2, 1.2.3, 1.2.8, 1.3.3; 9), *Genetics and Inheritance* (1.1.2, 1.1.3, 1.2.6, 1.2.9; 6), *Evolution* (1.1.5–1.1.7,
@@ -468,7 +468,13 @@ snapshot: `temp/curriculum-vocab-life-science-p2-2024.json`.
   `dihybrid_cross`, `genetic_engineering`, `phylogenetic_trees`, `mutations`, `cell_division`). Reused 2025 P2 subtopics only under their own topic.
 - Authored with a spec → script generator kept in the session scratchpad. The committed scripts are the source of truth.
 
-**Next for 2024 P2:** run `review-paper.md` on the emulator. Prod waits for the 2.4.0 release, together with 2024 P1.
+**Review — `review-paper.md` Phases 1–6, 2026-10-08 (build 2.3.5-dev01; report `AMPM/temp/review/life_science_nov_p2_2024/report.md`).**
+82 questions captured: 81 PASS, 1 AUTO_FIX, 0 FLAG. The fix: L12 Q3's correct option sat last and was covered by the floating diagram button,
+so it was moved to index 2 (dev patch + script commit `d05e6c5`, re-captured). Phase 5: all 9 `fitb`, 16 typed runs (every `|` alternative),
+all CORRECT. Superscript genotypes and the three generated figures render correctly. For the review, the dev gate for the 2024 exam was set to
+2.3.5 (as the P1 review did). **Re-running any 2024 upload script re-derives it to 2.4.0**, so patch with `patch-question.js` instead.
+
+**Next for 2024 P2:** prod, together with 2024 P1, once the release version for the text keyboard is settled.
 
 **`nov_p1` (2024) — authored and uploaded to dev, 2026-10-08.** 17 lessons, 80 practice questions, 150/150 marks; 88
 `lesson_ai_explanation_sub_questions` (one per real sub-question, lettered parts as `2.2.1(a)`). Verified against dev Postgres:
