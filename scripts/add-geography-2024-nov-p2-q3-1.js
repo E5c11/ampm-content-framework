@@ -55,7 +55,7 @@ const video = {
 const questions = [
   {
     name: 'Question 1',
-    question: 'Map X has a scale of 1 : 250 000 and Map Y has a scale of 1 : 25 000. Which statement is correct?',
+    question: 'Map X has a scale of 1 : 250\u00a0000 and Map Y has a scale of 1 : 25\u00a0000. Which statement is correct?',
     metadata: [
       'Map X has the larger scale and shows a smaller area in more detail',
       'Map Y has the smaller scale and shows a larger area in less detail',
@@ -131,8 +131,8 @@ const questions = [
   },
   {
     name: 'Question 4',
-    question: 'On a 1 : 50 000 map, spot height P is 1 284 m and trigonometrical station Q is 1 371,4 m. The distance from P to Q on the map is 6,2 cm. Calculate the average gradient from P to Q (round to two decimal places).',
-    metadata: ['[ ]', ' : ', '[ ]'],
+    question: 'On a 1 : 50\u00a0000 map, spot height P is 1\u00a0284 m and trigonometrical station Q is 1\u00a0371,4 m. The distance from P to Q on the map is 6,2 cm. Calculate the average gradient from P to Q (round to two decimal places).',
+    metadata: ['Gradient = ', '[ ]', ' : ', '[ ]'],
     answer: ['1', '35.47', '', '', ''],
     presentation: 'fitb',
     type: 'calc',

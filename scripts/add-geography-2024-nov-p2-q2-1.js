@@ -85,7 +85,7 @@ const questions = [
   },
   {
     name: 'Question 2',
-    question: 'Farm X grows maize on 3 ha, worked by a family with hand tools. Farm Y grows maize on 2 000 ha with combine harvesters. Why does Farm Y make far larger profits?',
+    question: 'Farm X grows maize on 3 ha, worked by a family with hand tools. Farm Y grows maize on 2\u00a0000 ha with combine harvesters. Why does Farm Y make far larger profits?',
     metadata: [
       'It pays less tax per hectare than a small farm does',
       'Its harvest is so large that each tonne costs less to produce',

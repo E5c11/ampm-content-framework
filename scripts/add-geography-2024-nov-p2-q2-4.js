@@ -56,7 +56,7 @@ const video = {
 const questions = [
   {
     name: 'Question 1',
-    question: "The Durban-Pinetown industrial region employs 420 000 of South Africa's 2 800 000 manufacturing workers. What percentage of the country's manufacturing workers is this?",
+    question: "The Durban-Pinetown industrial region employs 420\u00a0000 of South Africa's 2\u00a0800\u00a0000 manufacturing workers. What percentage of the country's manufacturing workers is this?",
     metadata: ['Share = ', '[ ]', ' %'],
     answer: ['15', '', '', '', ''],
     presentation: 'fitb',

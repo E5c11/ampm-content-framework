@@ -145,7 +145,7 @@ const questions = [
   },
   {
     name: 'Question 4',
-    question: "The population of a small town falls from 30 000 to 11 000 after its mine closes, and the town's only private hospital shuts down. Which concept best explains the closure?",
+    question: "The population of a small town falls from 30\u00a0000 to 11\u00a0000 after its mine closes, and the town's only private hospital shuts down. Which concept best explains the closure?",
     metadata: [
       "The hospital's range grew too large for the town to serve",
       'The town moved up the urban hierarchy and lost the hospital',

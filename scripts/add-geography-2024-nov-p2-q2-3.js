@@ -77,7 +77,7 @@ const questions = [
   },
   {
     name: 'Question 2',
-    question: 'Coal-mine employment was 77 400 in 2015, 80 100 in 2017, 82 900 in 2019, 79 300 in 2020 and 74 600 in 2021. Which statement best describes the trend?',
+    question: 'Coal-mine employment was 77\u00a0400 in 2015, 80\u00a0100 in 2017, 82\u00a0900 in 2019, 79\u00a0300 in 2020 and 74\u00a0600 in 2021. Which statement best describes the trend?',
     metadata: [
       'Employment rose steadily every year from 2015 to 2021',
       'Employment fell every year from 2015 to 2021',

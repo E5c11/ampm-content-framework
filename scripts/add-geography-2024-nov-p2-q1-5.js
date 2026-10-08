@@ -178,7 +178,7 @@ const questions = [
   },
   {
     name: 'Question 5',
-    question: 'A municipality must choose between moving 4 000 shack dwellers to a new site 35 km away or upgrading their settlement where it stands. Which is the strongest SOCIAL argument for upgrading on site?',
+    question: 'A municipality must choose between moving 4\u00a0000 shack dwellers to a new site 35 km away or upgrading their settlement where it stands. Which is the strongest SOCIAL argument for upgrading on site?',
     metadata: [
       'The new site would cost less, so bigger houses could be built',
       'Moving people far away would ease crowding in the city',
