@@ -30,7 +30,7 @@ const NEXT = NEXT_RELEASE;
 
 // The newest app version that has actually been RELEASED (tagged). THE ONE PLACE to bump when a release is tagged
 // (VER-06): content whose derived minimum is above this is dev-only — prod push and prod gates refuse it.
-const LATEST_RELEASED = '2.3.2';
+const LATEST_RELEASED = '2.4.0';
 
 // ---------------------------------------------------------------------------
 // Version helpers (same major*1_000_000 + minor*1_000 + patch code the backend stores)
