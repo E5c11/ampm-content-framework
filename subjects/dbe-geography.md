@@ -338,10 +338,10 @@ needed; check whether their answers are words). Phase 5 has not been run on this
 - **Not done:** no prod push (`push-paper-to-prod.js`), no video (`has_video: false`), and
   `june_p1` is not sourced.
 
-### `nov_p1` 2024 — authored and reviewed 2026-10-08 (dev only)
+### `nov_p1` 2024 — authored and reviewed 2026-10-08, live in prod 2026-10-09
 
 - **Scope:** 13 lessons, 63 practice questions (`scripts/add-geography-2024-nov-p1-q<N>-<M>.js`),
-  82 `aiExplanation` entries with real memo marks (1.4.4 and 3.2.1 split into `(a)`–`(d)` /
+  81 `aiExplanation` entries with real memo marks (1.4.4 and 3.2.1 split into `(a)`–`(d)` /
   `(a)`–`(b)`). Mix: 28 `multiple_choice`, 18 `multi_select`, 12 `match`, 5 numeric `fitb`
   (`standard_math`). Derived minimum 2.0.0, so no gate.
 - **Shape differs from 2025:** Q1.1 is A–D (8) and Q1.2 is A/B sketch matching (7); Q2.1 is
@@ -364,6 +364,10 @@ needed; check whether their answers are words). Phase 5 has not been run on this
   `fitb` correct on the number pad. Both fixes were 3.1 `fitb` rows whose text after the last blank
   wrapped one letter per line — keep trailing tokens to a unit symbol and put words in the stem.
   Report: `ampm-kmp/temp/review/geography_nov_p1_2024/report.md`.
+- **Prod (2026-10-09):** `push-paper-to-prod.js --allow-partial-exam` (sibling `nov_p2` 2024 is on
+  dev, unreviewed, held back). The tool created the missing curriculum nodes, skills and tags.
+  Landed unpublished; prod diffed against dev (0 differences after the domain swap), all 36
+  prod images 200, then `--publish`. No exam gate (2.0.0). Push `nov_p2` once it is reviewed.
 
 ### `nov_p2` 2024 — authored and reviewed 2026-10-08 (dev only)
 
