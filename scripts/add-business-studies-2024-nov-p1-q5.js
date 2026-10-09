@@ -197,7 +197,7 @@ const questions = [
   },
   {
     "name": "Question 5",
-    "question": "Amandla Engineering's annual payroll is R2 000 000. How much must it pay per year as a skills development levy?",
+    "question": "Amandla Engineering's annual payroll is R2\u00a0000\u00a0000. How much must it pay per year as a skills development levy?",
     "metadata": [
       "R2 000",
       "R20 000",
