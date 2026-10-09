@@ -369,7 +369,7 @@ needed; check whether their answers are words). Phase 5 has not been run on this
   Landed unpublished; prod diffed against dev (0 differences after the domain swap), all 36
   prod images 200, then `--publish`. No exam gate (2.0.0). Push `nov_p2` once it is reviewed.
 
-### `nov_p2` 2024 — authored and reviewed 2026-10-08 (dev only)
+### `nov_p2` 2024 — authored and reviewed 2026-10-08, live in prod 2026-10-09
 
 - **Scope:** 13 lessons, 66 practice questions (`scripts/add-geography-2024-nov-p2-q<N>-<M>.js`),
   81 `aiExplanation` entries with real memo marks (3.2.2–3.2.4 and 3.3.3 split into `(a)`–`(c)`).
@@ -398,3 +398,7 @@ needed; check whether their answers are words). Phase 5 has not been run on this
   with U+00A0 — do the same in new Geography stems. The 3.1 Q4 ratio blanks gained a `Gradient = `
   label. All 5 typed answers were entered on the custom number pad (`maths_key_*`, which this build
   shows for `standard_math`) and marked correct, including `1` : `35.47`.
+- **Prod (2026-10-09):** `push-paper-to-prod.js` with no override, because sibling `nov_p1` was already
+  live. The 1 topic, 2 subtopics, 18 skills and 8 tags above went with it. It landed unpublished;
+  prod was diffed against dev (0 differences after the domain swap), all 39 prod images returned 200,
+  then `--publish`. Both papers of the exam are now live.
