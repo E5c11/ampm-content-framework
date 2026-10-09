@@ -609,7 +609,7 @@ quote-three-challenges → `match` classification pair (three challenges, not th
 image is Q5's (shared page 10, same convention as P2). **Not done:** the `review-paper.md` emulator run; prod push (`push-paper-to-prod.js`
 for `nov_p1` — expect no gate, since no `text` rows).
 
-**`nov_p1` (2024) — authored to dev, 2026-10-08; not reviewed on the emulator, not in prod.** Source:
+**`nov_p1` (2024) — authored to dev 2026-10-08, reviewed on the emulator 2026-10-09 (1 fix, 0 flags); not in prod.** Source:
 `files/Business Studies P1 Nov 2024 Eng.pdf` (9pp) + `... MG Eng.pdf` (28pp), committed `c83212d`. 6 lessons / 62 practice
 questions / 230 marks, one commit per lesson (`b49c45c` … `5e93c1b`), images wired from the start (29 URLs, all 200; Q6 reuses
 Q5's question page, shared paper page 9). Verified against Postgres: 22 `multiple_choice` with **2 at index 0 (9.1%)**, correct
@@ -628,7 +628,16 @@ New vocabulary on dev (must reach prod with the push): topic `business_function_
 the existing `purchasing_and_public_relations` topic is too narrow for the financial, production and general management
 indicators this paper tests), and 9 tags (`skills_development_act`, `setas`, `selection_procedure`, `salary_determination`,
 `induction`, `job_analysis`, `quality_indicators`, `diversification_strategies`, `bbbee_act`). The memo accepts Q6's selection
-procedure "in any order", so it is a `multi_select`, not an `ordering` item. **Not done:** `review-paper.md` emulator run; prod push.
+procedure "in any order", so it is a `multi_select`, not an `ordering` item.
+
+**Emulator review, 2026-10-09** (`review-paper.md` Phases 1–4 on build 2.3.5-dev01; Phase 5 does not apply, as no question is
+typed). All 62 questions were captured (initial + scrolled) and read against their data; the Paper and Memo tabs render. Data
+checks were clean: answers resolve, match pairs are valid, orderings are stored scrambled, and there are no isolated slashes
+inside parentheses. **One AUTO_FIX:** Q5 Practice Q5's stem ended a line on `R2 000 000.`, which could break mid-number on a
+narrower screen, so its spaces are now U+00A0 (dev patch + script). The Rand amounts in the options are too short to wrap and
+were left alone. `multiple_choice` options that wrap to different line counts (Q3 Practice Q10) sized and aligned correctly,
+so the earlier row-sizing bug did not show. Report: `ampm-kmp/temp/review/business_studies_nov_p1_2024/report.md`.
+**Not done:** prod push.
 
 **`nov_p2` (2024) — authored to dev, 2026-10-08; not reviewed on the emulator, not in prod.** Source:
 `files/Business Studies P2 Nov 2024 Eng.pdf` (9pp) + `... MG Eng.pdf` (29pp), committed `6257b74`. 6 lessons / 61 practice
