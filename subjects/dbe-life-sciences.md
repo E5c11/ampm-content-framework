@@ -513,7 +513,7 @@ snapshot is `temp/curriculum-vocab-life-science-p1-2024.json`.
   subtopics and 13 skills from 2025 were reused where the concept was the same. No new units or topics were needed.
 - Authored with a spec → script generator kept in the session scratchpad. The committed scripts are the source of truth.
 
-**Next for 2024 P1:** prod, once the next release is settled (the shared 2024 exam gate is 2.4.0 on dev; see the review report, open item 1).
+**2024 P1 is live in prod since 2026-10-09** (pushed and published with 2024 P2, see the P2 entry above).
 
 **`nov_p1` (2025) — authored and uploaded to dev, 2026-10-07.** 16 lessons, 76 practice questions, 150/150 marks; verified
 directly against dev Postgres (every lesson `is_published`, `questions_count` = rows, 79 `lesson_ai_explanation_sub_questions` =
