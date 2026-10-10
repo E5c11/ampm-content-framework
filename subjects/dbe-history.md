@@ -388,6 +388,30 @@ one theme; reuse a node only where it is genuinely the same concept (e.g. *Domin
 
 ## Completed papers ledger
 
+**2024 `nov_p1` — authored and uploaded to dev, 2026-10-10; emulator review and prod push still open.**
+Sources: `files/History P1 Nov 2024 {Eng,Addendum Eng,MG Eng}.pdf` (all three in hand before authoring).
+Same structure as 2025 P1: Q1 Berlin Wall 1961 (1A travel-guide article, 1B Fisher eyewitness accounts,
+1C *Independent* on Noffke, 1D Hook cartoon), Q2 Cuito Cuanavale → Tripartite Accord (2A Goldberg, 2B Castro
+biography, 2C UN photograph, 2D Mandela's Matanzas speech), Q3 March on Washington (3A organisers' tape,
+3B Wilkinson, 3C placard photograph, 3D Kennedy's statement); essays Q4 Vietnam ("to what extent" US
+technology failed), Q5 Mobutu ("do you agree" anti-colonial), Q6 Black Power ("critically discuss" militant).
+6 lessons / 51 questions, one commit per lesson (`696bba2`…`983a847`), validator 0 errors, exam derives the
+floor (2.0.0, no gate). Verified in Postgres: all published, no null unit/topic/subtopic, no `\n` in stems,
+every `fitb` `standard_math`, `aiExplanation` 50 marks per lesson (20/18/17 entries for Q1–Q3; the paper
+splits (a)/(b)/(c) parts) → **300/300**. 40 image URLs return 200, all distinct objects.
+- New curriculum rows: topics `berlin_wall_1961`, `cuito_cuanavale_1988`, `march_on_washington_1963`; skill
+  `calculate_from_source_data`; tags `berlin_wall`, `berlin_crisis`, `defection`, `cuito_cuanavale`,
+  `tripartite_accord`, `cuban_internationalism`, `march_on_washington`, `us_technological_warfare`,
+  `anti_colonialism`. Q4–Q6 reuse the 2025 topics. Subtopic ids are flat (`evidence_extraction`, not
+  per-topic) — the 2025 note below about per-topic subtopic rows does not match the live table.
+- `DESIGN-UNI-06`: 1 of 17 `multiple_choice` at index 0 (Q2 item 4). Correct option is the longest in 2 of 17
+  (distractors lengthened before upload, including the three thesis items the 2025 review flagged).
+- **Memo cautions (2024 P1):** 2.4 calls "Dos Santos" in Source 2C the MPLA leader — 2C names General Antonio
+  dos Santos *Franca*, not President José Eduardo dos Santos; not repeated. Q5 memo says Mobutu was
+  "president for life until his death in 2007" — overthrown May 1997, died September 1997. Q4 memo repeats the
+  2025 errors (napalm a "gas", Vietnamisation = WHAM). Paper prints 2.4 after 2.5 on page 6 (layout only).
+- `aiExplanation` clue/approach bullets use `"- "`; the 2025 P1 scripts have a doubled `"- - "` prefix.
+
 **`nov_p2` 2024 — authored and uploaded to dev, 2026-10-10; emulator review and prod push open.**
 6 lessons, `order` 1–6, 51 practice questions (9/9/9/8/8/8), validated (`--curriculum`, 0 errors,
 0 warnings) and upserted, one commit per lesson (`f4d4c7b`…`87e3f97`, PDFs `6c86031`). Postgres check:
