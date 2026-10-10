@@ -112,8 +112,8 @@ const questions = [
     "metadata": [
       "to form the plural of 'family'",
       "to replace missing letters",
-      "to show that the hands belong to the family",
       "to introduce a quotation",
+      "to show that the hands belong to the family",
       ""
     ],
     "answer": [

@@ -87,9 +87,9 @@ const questions = [
     "context_text": "Streaming platforms let listeners in any country play a song within seconds of its release. Last year, several African artists reached audiences in cities they had never visited, and their monthly listener counts doubled.",
     "question": "Which ONE of the following statements about the extract is FALSE?",
     "metadata": [
+      "The monthly listener numbers of these artists fell.",
       "Songs can be played soon after they are released.",
       "Some African artists reached cities they had never visited.",
-      "The monthly listener numbers of these artists fell.",
       "Streaming makes it possible to hear music from other countries.",
       ""
     ],
@@ -231,8 +231,8 @@ const questions = [
     "metadata": [
       "It is a word that is difficult to pronounce.",
       "It shows that the word is spelled incorrectly.",
-      "It is the name of a song.",
       "It is the writer's own opinion.",
+      "It is the name of a song.",
       ""
     ],
     "answer": [
