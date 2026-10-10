@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 /**
  * DBE English FAL P2 — November 2025 — 'Triumph in the Face of Adversity' — Extract I (Thulisile and Mme Sadike). 5.1.1–5.1.7, 17 marks.
- * Practice questions are fresh (DESIGN-UNI-01), mirror the sub-question types (LANG-EX-02) and carry text_key
- * "triumph_in_the_face_of_adversity" on lesson and every question (SETWORK-LES-01). aiExplanation: one entry per REAL exam
- * sub-question with its real marks, derived from the memo in own words (AIEXP-08). Every fitb declares
- * keyboard_type 'text' (LANG-KB-01).
+ * Practice questions follow the HL Paper 2 pattern: context_text null, FRESH targets from elsewhere in the text, never the
+ * exam's own statements or the memo's answers (DESIGN-UNI-01); they carry text_key "triumph_in_the_face_of_adversity" on lesson and every
+ * question (SETWORK-LES-01). aiExplanation: one entry per REAL exam sub-question with its real marks, derived from the
+ * memo in own words (AIEXP-08). Every fitb declares keyboard_type 'text' (LANG-KB-01).
+ *
+ * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
+ * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
+ *   Q1: P: the extract is narrated with 'I' (Thulisile).
+ *   Q2: PT: vocabulary meaning of 'triumph'.
+ *   Q3: P: the narrator's name Thulisile is printed in the extract.
+ *   Q4: PT: derived from the words of the title only.
+ *   Q5: P: order as printed in Extract I.
  *
  *   node tools/validate-questions.js --script scripts/add-english-fal-2025-nov-p2-q9.js --curriculum temp/curriculum-vocab-english-fal.json
  *   node scripts/add-english-fal-2025-nov-p2-q9.js --dry-run
@@ -72,33 +80,32 @@ const questions = [
     "text_key": "triumph_in_the_face_of_adversity",
     "order": 1,
     "context_text": null,
-    "question": "Match each character from 'Triumph in the Face of Adversity' to the description that fits.",
+    "question": "From whose point of view is 'Triumph in the Face of Adversity' told in the extract?",
     "metadata": [
-      "A - Mme Sadike",
-      "B - Thembekile",
-      "C - Thulisile",
-      "1 - stays in her marriage despite the abuse",
-      "2 - the narrator who later succeeds against the odds",
-      "3 - comforts Thulisile and advises her where to find help"
+      "first-person narrator",
+      "third-person narrator",
+      "an unnamed observer",
+      "a narrator who is a teacher",
+      ""
     ],
     "answer": [
-      "A-3",
-      "B-1",
-      "C-2",
+      "first-person narrator",
+      "",
+      "",
       "",
       ""
     ],
-    "presentation": "match",
+    "presentation": "multiple_choice",
     "type": "application",
     "unit": "short_stories",
-    "topic": "character_analysis",
-    "subtopic": "match_characters_to_roles",
+    "topic": "narrative_voice_and_setting",
+    "subtopic": "point_of_view",
     "skills": [
-      "english_fal_match_characters_to_roles"
+      "english_fal_identify_narrative_voice"
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about who narrates and who gives advice in the extract.\n- Use the pair you are sure of first."
+    "clues": "- Look at the pronoun the narrator uses for herself.\n- Think about who 'I' is in the passage."
   },
   {
     "xp": 10,
@@ -109,17 +116,17 @@ const questions = [
     "name": "Question 2",
     "text_key": "triumph_in_the_face_of_adversity",
     "order": 2,
-    "context_text": "The woman held the crying girl in her arms and let her speak until she had finished.",
-    "question": "What does the action below reveal about the character who does it?",
+    "context_text": null,
+    "question": "What does the word 'triumph' mean in the title?",
     "metadata": [
-      "strict",
-      "indifferent",
-      "boastful",
-      "caring",
+      "a sad ending",
+      "a hard lesson",
+      "a long journey",
+      "a great victory or success",
       ""
     ],
     "answer": [
-      "caring",
+      "a great victory or success",
       "",
       "",
       "",
@@ -128,14 +135,14 @@ const questions = [
     "presentation": "multiple_choice",
     "type": "application",
     "unit": "short_stories",
-    "topic": "character_analysis",
-    "subtopic": "character_from_words",
+    "topic": "figurative_language",
+    "subtopic": "word_meaning_in_context",
     "skills": [
-      "english_fal_infer_character_from_words"
+      "english_fal_explain_word_in_context"
     ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Look at what she does when the girl cries.\n- Think about whether she is gentle or cold."
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- Think of a person who 'triumphs' in a contest.\n- It is a positive word."
   },
   {
     "xp": 10,
@@ -146,33 +153,31 @@ const questions = [
     "name": "Question 3",
     "text_key": "triumph_in_the_face_of_adversity",
     "order": 3,
-    "context_text": "'I cannot imagine how a girl like me will ever finish school,' she said.",
-    "question": "What is ironic about the narrator's words below?",
+    "context_text": null,
+    "question": "What is the first name of the girl who tells the story in the extract? Write one word.",
     "metadata": [
-      "Thulisile thinks she will succeed, and she does so at once.",
-      "Thulisile thinks she will fail, and she never recovers.",
-      "Thulisile thinks she cannot rise above her troubles, but she later becomes successful.",
-      "Thulisile has no troubles, yet she complains.",
-      ""
+      "Name:",
+      "[ ]"
     ],
     "answer": [
-      "Thulisile thinks she cannot rise above her troubles, but she later becomes successful.",
+      "Thulisile",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
-    "type": "application",
+    "presentation": "fitb",
+    "type": "definition",
     "unit": "short_stories",
-    "topic": "dramatic_techniques",
-    "subtopic": "irony_in_prose",
+    "topic": "character_analysis",
+    "subtopic": "narrator",
     "skills": [
-      "english_fal_explain_irony"
+      "english_fal_recall_key_events"
     ],
-    "difficulty": 3,
-    "exam_weight": 3,
-    "clues": "- Irony is a gap between what is said and what happens later.\n- Think about how her life turns out."
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- Her friends call her by a shorter name, but write her full first name.\n- Write one word.",
+    "keyboard_type": "text"
   },
   {
     "xp": 10,
@@ -184,17 +189,17 @@ const questions = [
     "text_key": "triumph_in_the_face_of_adversity",
     "order": 4,
     "context_text": null,
-    "question": "Select the TWO reasons why Mme Sadike suggests that Thulisile goes to a social worker or the police.",
+    "question": "Select the TWO themes that the title of the story suggests.",
     "metadata": [
-      "A social worker will give her counselling and emotional support",
-      "The school will give her a new uniform",
-      "The police will protect her family from her father's violence",
-      "The church will pay her school fees",
-      "A neighbour will give her a job"
+      "overcoming hardship",
+      "revenge",
+      "perseverance",
+      "the joy of wealth",
+      ""
     ],
     "answer": [
-      "A social worker will give her counselling and emotional support",
-      "The police will protect her family from her father's violence",
+      "overcoming hardship",
+      "perseverance",
       "",
       "",
       ""
@@ -202,14 +207,14 @@ const questions = [
     "presentation": "multi_select",
     "type": "application",
     "unit": "short_stories",
-    "topic": "plot_structure",
-    "subtopic": "reasons_for_events",
+    "topic": "theme_identification",
+    "subtopic": "themes_suggested_by_the_title",
     "skills": [
-      "english_fal_identify_stated_reasons"
+      "english_fal_identify_theme"
     ],
-    "difficulty": 3,
+    "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about what each of the two offices can do for a child in danger.\n- Reject options about school or church."
+    "clues": "- Think about what 'triumph' and 'adversity' mean together.\n- Reject themes that are not about success after difficulty."
   },
   {
     "xp": 10,
@@ -221,32 +226,32 @@ const questions = [
     "text_key": "triumph_in_the_face_of_adversity",
     "order": 5,
     "context_text": null,
-    "question": "Thembekile deserves to be praised. Which ONE answer is best substantiated by events in the story?",
+    "question": "Arrange these parts of the conversation in the extract in the order in which they happen.",
     "metadata": [
-      "Yes: Thembekile stays loyal to her vows and respects her cruel mother-in-law, but she gives up her dream to please her husband.",
-      "Yes: Thembekile leaves her husband immediately and moves to a new city.",
-      "No: Thembekile has no problems and lives happily.",
-      "No: Thembekile is never mentioned in the story.",
+      "The woman advises her to see a social worker or the police",
+      "She says where she stays",
+      "The narrator tells the woman her name",
+      "She admits that she stayed away from school",
       ""
     ],
     "answer": [
-      "Yes: Thembekile stays loyal to her vows and respects her cruel mother-in-law, but she gives up her dream to please her husband.",
-      "",
-      "",
-      "",
+      "The narrator tells the woman her name",
+      "She says where she stays",
+      "She admits that she stayed away from school",
+      "The woman advises her to see a social worker or the police",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "ordering",
     "type": "application",
     "unit": "short_stories",
-    "topic": "theme_identification",
-    "subtopic": "discuss_view_with_evidence",
+    "topic": "plot_structure",
+    "subtopic": "sequence_of_events",
     "skills": [
-      "english_fal_substantiate_a_view"
+      "english_fal_order_events"
     ],
-    "difficulty": 3,
-    "exam_weight": 3,
-    "clues": "- Look for an option that is supported by specific actions in the story.\n- Reject options that contradict the story."
+    "difficulty": 2,
+    "exam_weight": 2,
+    "clues": "- Start with how two people usually begin a conversation.\n- The advice comes after the problem is explained."
   }
 ];
 

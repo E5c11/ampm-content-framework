@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 /**
  * DBE English FAL P2 — November 2025 — Cry, the Beloved Country — Extract A (Kumalo and Msimangu, Book 1 Ch. 5). 1.1.1–1.1.7, 18 marks. Practice covers: matching characters, figure of speech, character from words, stated reasons, evaluating a view.
- * Practice questions are fresh (DESIGN-UNI-01), mirror the sub-question types (LANG-EX-02) and carry text_key
- * "cry_the_beloved_country" on lesson and every question (SETWORK-LES-01). aiExplanation: one entry per REAL exam
- * sub-question with its real marks, derived from the memo in own words (AIEXP-08). Every fitb declares
- * keyboard_type 'text' (LANG-KB-01).
+ * Practice questions follow the HL Paper 2 pattern: context_text null, FRESH targets from elsewhere in the text, never the
+ * exam's own statements or the memo's answers (DESIGN-UNI-01); they carry text_key "cry_the_beloved_country" on lesson and every
+ * question (SETWORK-LES-01). aiExplanation: one entry per REAL exam sub-question with its real marks, derived from the
+ * memo in own words (AIEXP-08). Every fitb declares keyboard_type 'text' (LANG-KB-01).
+ *
+ * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
+ * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
+ *   Q1: BK: Absalom is Stephen's son, John his brother, Gertrude his sister — core family facts of the novel.
+ *   Q2: P/BK: the village name Ndotsheni is printed in the exam extract B and is the setting named throughout the novel.
+ *   Q3: BK: widely stated as the central concerns of the novel (racial injustice, social breakdown).
+ *   Q4: BK: the novel moves between Ndotsheni and Johannesburg.
+ *   Q5: BK: broad plot sequence only (letter → journey → arrest → sentence).
  *
  *   node tools/validate-questions.js --script scripts/add-english-fal-2025-nov-p2-q1.js --curriculum temp/curriculum-vocab-english-fal.json
  *   node scripts/add-english-fal-2025-nov-p2-q1.js --dry-run
@@ -73,14 +81,14 @@ const questions = [
     "text_key": "cry_the_beloved_country",
     "order": 1,
     "context_text": null,
-    "question": "Match each character from Cry, the Beloved Country to the description that fits him.",
+    "question": "Match each character from Cry, the Beloved Country to his or her relationship to Stephen Kumalo.",
     "metadata": [
-      "A - Stephen Kumalo",
+      "A - Absalom",
       "B - John Kumalo",
-      "C - Absalom Kumalo",
-      "1 - a carpenter who has become a politician",
-      "2 - Stephen's son, found guilty of murdering Arthur Jarvis",
-      "3 - a priest from Ndotsheni who travels to Johannesburg"
+      "C - Gertrude",
+      "1 - Stephen Kumalo's brother",
+      "2 - Stephen Kumalo's sister",
+      "3 - Stephen Kumalo's son"
     ],
     "answer": [
       "A-3",
@@ -93,13 +101,13 @@ const questions = [
     "type": "application",
     "unit": "novel",
     "topic": "character_analysis",
-    "subtopic": "match_characters_to_roles",
+    "subtopic": "family_relationships",
     "skills": [
       "english_fal_match_characters_to_roles"
     ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Think about where each character lives and works in the novel.\n- Start with the character you know best and remove that pair."
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- Think about which characters are Stephen's own children and which are his brothers and sisters.\n- Start with the relationship you are most sure of."
   },
   {
     "xp": 10,
@@ -110,33 +118,31 @@ const questions = [
     "name": "Question 2",
     "text_key": "cry_the_beloved_country",
     "order": 2,
-    "context_text": "The silence in the little room reached out and gripped his hand.",
-    "question": "Which figure of speech is used in the sentence below?",
+    "context_text": null,
+    "question": "What is the name of the village in the hills where Stephen Kumalo is a priest? Write one word.",
     "metadata": [
-      "simile",
-      "personification",
-      "hyperbole",
-      "irony",
-      ""
+      "Village:",
+      "[ ]"
     ],
     "answer": [
-      "personification",
+      "Ndotsheni",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
-    "type": "application",
+    "presentation": "fitb",
+    "type": "definition",
     "unit": "novel",
-    "topic": "figurative_language",
-    "subtopic": "personification_identification",
+    "topic": "plot_structure",
+    "subtopic": "setting_of_the_novel",
     "skills": [
-      "english_fal_identify_figure_of_speech"
+      "english_fal_recall_key_events"
     ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Ask whether a non-living thing is given the actions of a person.\n- Check for the words 'like' or 'as' before choosing."
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- It is the home of the Kumalo family before the journey to the city.\n- Write one word only.",
+    "keyboard_type": "text"
   },
   {
     "xp": 10,
@@ -147,17 +153,17 @@ const questions = [
     "name": "Question 3",
     "text_key": "cry_the_beloved_country",
     "order": 3,
-    "context_text": "'I am only a poor country priest,' said the old man, 'and I know nothing of this great city.'",
-    "question": "What does the sentence below reveal about the speaker's character?",
+    "context_text": null,
+    "question": "Which of the following is the novel mainly concerned with?",
     "metadata": [
-      "arrogant",
-      "deceitful",
-      "humble",
-      "impatient",
+      "a war between two African kingdoms",
+      "a famine caused by an enemy army",
+      "racial injustice and the break-up of family and community life",
+      "a rivalry between two schools",
       ""
     ],
     "answer": [
-      "humble",
+      "racial injustice and the break-up of family and community life",
       "",
       "",
       "",
@@ -166,14 +172,14 @@ const questions = [
     "presentation": "multiple_choice",
     "type": "application",
     "unit": "novel",
-    "topic": "character_analysis",
-    "subtopic": "character_from_words",
+    "topic": "theme_identification",
+    "subtopic": "main_concerns_of_the_novel",
     "skills": [
-      "english_fal_infer_character_from_words"
+      "english_fal_identify_theme"
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Look at how the speaker describes himself and his own importance.\n- Consider whether he is boasting or playing himself down."
+    "clues": "- Think about the time and place in which the novel is set.\n- Look for the option that is about people and society."
   },
   {
     "xp": 10,
@@ -185,17 +191,17 @@ const questions = [
     "text_key": "cry_the_beloved_country",
     "order": 4,
     "context_text": null,
-    "question": "Select the TWO reasons why Stephen Kumalo travels from Ndotsheni to Johannesburg.",
+    "question": "Select the TWO places that are the main settings of the novel.",
     "metadata": [
-      "To find his sister Gertrude, who is reported to be ill",
-      "To collect payment owed to his church",
-      "To find his son Absalom, who has stopped writing",
-      "To attend a meeting called by the Bishop",
-      "To open a school in the city"
+      "Ndotsheni",
+      "Cape Town",
+      "Johannesburg",
+      "Durban",
+      "Kimberley"
     ],
     "answer": [
-      "To find his sister Gertrude, who is reported to be ill",
-      "To find his son Absalom, who has stopped writing",
+      "Ndotsheni",
+      "Johannesburg",
       "",
       "",
       ""
@@ -203,14 +209,14 @@ const questions = [
     "presentation": "multi_select",
     "type": "application",
     "unit": "novel",
-    "topic": "plot_structure",
-    "subtopic": "reasons_for_journey",
+    "topic": "setting_and_atmosphere",
+    "subtopic": "places_in_the_novel",
     "skills": [
-      "english_fal_identify_stated_reasons"
+      "english_fal_identify_setting"
     ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Think about which members of his family have not been heard from.\n- The reasons concern family, not church business."
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- One is a country village and the other is a big city.\n- The other options are real places that are not the main settings."
   },
   {
     "xp": 10,
@@ -222,32 +228,32 @@ const questions = [
     "text_key": "cry_the_beloved_country",
     "order": 5,
     "context_text": null,
-    "question": "Mrs Kumalo is a supportive person. Which ONE answer is best substantiated by events in the novel?",
+    "question": "Arrange these events from the novel in the order in which they happen.",
     "metadata": [
-      "Mrs Kumalo travels with Stephen to Johannesburg to search for their son.",
-      "Mrs Kumalo visits Absalom regularly while he waits on death row.",
-      "Mrs Kumalo refuses to take the young girl into her home.",
-      "Mrs Kumalo comforts Stephen when he is anxious about his journey and cares for Absalom's pregnant wife.",
+      "Absalom is arrested for a murder",
+      "Kumalo receives a letter saying that Gertrude is ill",
+      "Absalom is sentenced to death",
+      "Kumalo travels to Johannesburg",
       ""
     ],
     "answer": [
-      "Mrs Kumalo comforts Stephen when he is anxious about his journey and cares for Absalom's pregnant wife.",
-      "",
-      "",
-      "",
+      "Kumalo receives a letter saying that Gertrude is ill",
+      "Kumalo travels to Johannesburg",
+      "Absalom is arrested for a murder",
+      "Absalom is sentenced to death",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "ordering",
     "type": "application",
     "unit": "novel",
-    "topic": "theme_identification",
-    "subtopic": "discuss_view_with_evidence",
+    "topic": "plot_structure",
+    "subtopic": "sequence_of_events",
     "skills": [
-      "english_fal_substantiate_a_view"
+      "english_fal_order_events"
     ],
-    "difficulty": 3,
-    "exam_weight": 3,
-    "clues": "- Check each option against what Mrs Kumalo actually does in the story.\n- A well-substantiated answer refers to specific actions."
+    "difficulty": 2,
+    "exam_weight": 2,
+    "clues": "- Decide which event sets the journey in motion.\n- A sentence cannot come before an arrest."
   }
 ];
 

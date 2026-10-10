@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 /**
  * DBE English FAL P2 — November 2025 — My Children! My Africa! — Extract G (Mr M on the qualities of a good teacher, Act 1 Sc 3). 4.1.1–4.1.6, 18 marks.
- * Practice questions are fresh (DESIGN-UNI-01), mirror the sub-question types (LANG-EX-02) and carry text_key
- * "my_children_my_africa" on lesson and every question (SETWORK-LES-01). aiExplanation: one entry per REAL exam
- * sub-question with its real marks, derived from the memo in own words (AIEXP-08). Every fitb declares
- * keyboard_type 'text' (LANG-KB-01).
+ * Practice questions follow the HL Paper 2 pattern: context_text null, FRESH targets from elsewhere in the text, never the
+ * exam's own statements or the memo's answers (DESIGN-UNI-01); they carry text_key "my_children_my_africa" on lesson and every
+ * question (SETWORK-LES-01). aiExplanation: one entry per REAL exam sub-question with its real marks, derived from the
+ * memo in own words (AIEXP-08). Every fitb declares keyboard_type 'text' (LANG-KB-01).
+ *
+ * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
+ * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
+ *   Q1: P: the author is printed in the exam paper (Athol Fugard).
+ *   Q2: BK + M: Mr M's belief in education vs the boycott (memo mentions boycott and Mr M's death).
+ *   Q3: P + M: Thami and Isabel are pupils; Mr M and Miss Brockway are teachers (memo 4.2.6).
+ *   Q4: P + M: roles as printed in the exam extracts and memo.
+ *   Q5: M + BK: memo 4.2.2(b) and 4.1.6; broad plot order.
  *
  *   node tools/validate-questions.js --script scripts/add-english-fal-2025-nov-p2-q7.js --curriculum temp/curriculum-vocab-english-fal.json
  *   node scripts/add-english-fal-2025-nov-p2-q7.js --dry-run
@@ -73,14 +81,123 @@ const questions = [
     "text_key": "my_children_my_africa",
     "order": 1,
     "context_text": null,
-    "question": "Match each character from My Children! My Africa! to the description that fits.",
+    "question": "Who wrote the play My Children! My Africa!? Write the surname.",
+    "metadata": [
+      "Surname:",
+      "[ ]"
+    ],
+    "answer": [
+      "Fugard",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "presentation": "fitb",
+    "type": "definition",
+    "unit": "drama",
+    "topic": "plot_structure",
+    "subtopic": "text_information",
+    "skills": [
+      "english_fal_recall_key_events"
+    ],
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- The playwright is one of South Africa's best-known dramatists.\n- Write the surname only.",
+    "keyboard_type": "text"
+  },
+  {
+    "xp": 10,
+    "syllabus": "dbe",
+    "subject": "english_fal",
+    "year": 2025,
+    "paper": "nov_p2",
+    "name": "Question 2",
+    "text_key": "my_children_my_africa",
+    "order": 2,
+    "context_text": null,
+    "question": "Which of the following is the main conflict in the play?",
+    "metadata": [
+      "two schools that compete for a sports trophy",
+      "the education Mr M believes in and the boycott that the comrades demand",
+      "a rich family and a poor family",
+      "two brothers who share a farm",
+      ""
+    ],
+    "answer": [
+      "the education Mr M believes in and the boycott that the comrades demand",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "presentation": "multiple_choice",
+    "type": "application",
+    "unit": "drama",
+    "topic": "plot_structure",
+    "subtopic": "central_conflict",
+    "skills": [
+      "english_fal_identify_theme"
+    ],
+    "difficulty": 3,
+    "exam_weight": 3,
+    "clues": "- Think about what Mr M wants for his pupils and what the comrades want.\n- Look for the option that concerns education and politics."
+  },
+  {
+    "xp": 10,
+    "syllabus": "dbe",
+    "subject": "english_fal",
+    "year": 2025,
+    "paper": "nov_p2",
+    "name": "Question 3",
+    "text_key": "my_children_my_africa",
+    "order": 3,
+    "context_text": null,
+    "question": "Select the TWO characters who are pupils at their schools.",
+    "metadata": [
+      "Thami",
+      "Mr M",
+      "Isabel",
+      "Miss Brockway",
+      "the police inspector"
+    ],
+    "answer": [
+      "Thami",
+      "Isabel",
+      "",
+      "",
+      ""
+    ],
+    "presentation": "multi_select",
+    "type": "application",
+    "unit": "drama",
+    "topic": "character_analysis",
+    "subtopic": "characters_and_roles",
+    "skills": [
+      "english_fal_match_characters_to_roles"
+    ],
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- Two of the options are teachers.\n- One option is a policeman."
+  },
+  {
+    "xp": 10,
+    "syllabus": "dbe",
+    "subject": "english_fal",
+    "year": 2025,
+    "paper": "nov_p2",
+    "name": "Question 4",
+    "text_key": "my_children_my_africa",
+    "order": 4,
+    "context_text": null,
+    "question": "Match each character from the play to the description that fits.",
     "metadata": [
       "A - Mr M",
-      "B - Thami Mbikwana",
-      "C - Isabel Dyson",
-      "1 - is a gifted pupil and Mr M's protégé",
-      "2 - is a girl from another school who takes part in the quiz",
-      "3 - is a teacher who dreams of the one special pupil"
+      "B - Thami",
+      "C - Isabel",
+      "1 - a gifted pupil who joins the boycott",
+      "2 - a girl from another school who becomes Thami's friend",
+      "3 - a teacher who believes in the power of education"
     ],
     "answer": [
       "A-3",
@@ -99,116 +216,7 @@ const questions = [
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about who teaches, who is taught and who comes from the other school.\n- Use the pair you are sure of first."
-  },
-  {
-    "xp": 10,
-    "syllabus": "dbe",
-    "subject": "english_fal",
-    "year": 2025,
-    "paper": "nov_p2",
-    "name": "Question 2",
-    "text_key": "my_children_my_africa",
-    "order": 2,
-    "context_text": "MR M: I have no better pupil than Thami, young lady, and I will not pretend otherwise.",
-    "question": "What do the words below reveal about the speaker's character?",
-    "metadata": [
-      "boastful",
-      "secretive",
-      "honest",
-      "uncaring",
-      ""
-    ],
-    "answer": [
-      "honest",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "presentation": "multiple_choice",
-    "type": "application",
-    "unit": "drama",
-    "topic": "character_analysis",
-    "subtopic": "character_from_words",
-    "skills": [
-      "english_fal_infer_character_from_words"
-    ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Look at what the speaker admits about himself.\n- Think about whether he hides the truth."
-  },
-  {
-    "xp": 10,
-    "syllabus": "dbe",
-    "subject": "english_fal",
-    "year": 2025,
-    "paper": "nov_p2",
-    "name": "Question 3",
-    "text_key": "my_children_my_africa",
-    "order": 3,
-    "context_text": "A teacher plants seeds in a young mind and waits patiently for them to grow.",
-    "question": "Name the figure of speech used in the sentence below. Write one word.",
-    "metadata": [
-      "Figure:",
-      "[ ]"
-    ],
-    "answer": [
-      "metaphor",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "presentation": "fitb",
-    "type": "application",
-    "unit": "drama",
-    "topic": "figurative_language",
-    "subtopic": "metaphor_identification",
-    "skills": [
-      "english_fal_identify_figure_of_speech"
-    ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Look for a direct comparison between a mind and something that holds seeds.\n- Check for 'like' or 'as' before you decide.",
-    "keyboard_type": "text"
-  },
-  {
-    "xp": 10,
-    "syllabus": "dbe",
-    "subject": "english_fal",
-    "year": 2025,
-    "paper": "nov_p2",
-    "name": "Question 4",
-    "text_key": "my_children_my_africa",
-    "order": 4,
-    "context_text": "MR M: He is the best pupil I have ever had; he will go far in his studies.",
-    "question": "What is ironic about Mr M's words below?",
-    "metadata": [
-      "Thami hates school, yet he is the best pupil in the class.",
-      "Thami loves sport, yet he never plays with other boys.",
-      "Thami wants to leave Brakwater, yet he never does.",
-      "Thami wants to learn more than other boys want to play, yet he later leaves school to join the Struggle.",
-      ""
-    ],
-    "answer": [
-      "Thami wants to learn more than other boys want to play, yet he later leaves school to join the Struggle.",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "presentation": "multiple_choice",
-    "type": "application",
-    "unit": "drama",
-    "topic": "dramatic_techniques",
-    "subtopic": "irony_in_drama",
-    "skills": [
-      "english_fal_explain_irony"
-    ],
-    "difficulty": 3,
-    "exam_weight": 3,
-    "clues": "- Irony is a gap between what is said and what happens later.\n- Think about what Thami does in the play."
+    "clues": "- Think about who teaches, who is taught and who comes from the other school.\n- Start with the pair you know best."
   },
   {
     "xp": 10,
@@ -220,32 +228,32 @@ const questions = [
     "text_key": "my_children_my_africa",
     "order": 5,
     "context_text": null,
-    "question": "The apartheid system is responsible for Mr M's death. Which ONE answer is best substantiated by events in the play?",
+    "question": "Arrange these events from the play in the order in which they happen.",
     "metadata": [
-      "Yes: Mr M is killed because he joins the comrades.",
-      "Yes: the Bantu Education system angers the students, and they kill Mr M because they see him as an informer.",
-      "No: Mr M dies of an illness unrelated to the unrest.",
-      "No: the apartheid government never affects the students' school.",
+      "Mr M is killed",
+      "Thami and Isabel are paired for the quiz",
+      "Thami withdraws and joins the boycott",
+      "Thami and Isabel become friends",
       ""
     ],
     "answer": [
-      "Yes: the Bantu Education system angers the students, and they kill Mr M because they see him as an informer.",
-      "",
-      "",
-      "",
+      "Thami and Isabel are paired for the quiz",
+      "Thami and Isabel become friends",
+      "Thami withdraws and joins the boycott",
+      "Mr M is killed",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "ordering",
     "type": "application",
     "unit": "drama",
-    "topic": "theme_identification",
-    "subtopic": "discuss_view_with_evidence",
+    "topic": "plot_structure",
+    "subtopic": "sequence_of_events",
     "skills": [
-      "english_fal_substantiate_a_view"
+      "english_fal_order_events"
     ],
     "difficulty": 3,
     "exam_weight": 3,
-    "clues": "- Look for an option that connects the school system with the students' reaction.\n- Reject options that are not in the play."
+    "clues": "- Start with how the two pupils first meet.\n- Mr M's death is the tragic climax."
   }
 ];
 

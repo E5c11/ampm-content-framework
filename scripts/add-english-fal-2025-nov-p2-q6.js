@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 /**
  * DBE English FAL P2 — November 2025 — Macbeth — Extract F (Macbeth prepares for battle; Malcolm's army, Act 5 Sc 3–4). 3.2.1–3.2.8, 17 marks.
- * Practice questions are fresh (DESIGN-UNI-01), mirror the sub-question types (LANG-EX-02) and carry text_key
- * "macbeth" on lesson and every question (SETWORK-LES-01). aiExplanation: one entry per REAL exam
- * sub-question with its real marks, derived from the memo in own words (AIEXP-08). Every fitb declares
- * keyboard_type 'text' (LANG-KB-01).
+ * Practice questions follow the HL Paper 2 pattern: context_text null, FRESH targets from elsewhere in the text, never the
+ * exam's own statements or the memo's answers (DESIGN-UNI-01); they carry text_key "macbeth" on lesson and every
+ * question (SETWORK-LES-01). aiExplanation: one entry per REAL exam sub-question with its real marks, derived from the
+ * memo in own words (AIEXP-08). Every fitb declares keyboard_type 'text' (LANG-KB-01).
+ *
+ * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
+ * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
+ *   Q1: BK: Act 5.5 'She should have died hereafter … Tomorrow and tomorrow … a tale told by an idiot'.
+ *   Q2: BK: Macduff kills Macbeth (Act 5.8).
+ *   Q3: BK: Macduff was 'from his mother's womb untimely ripp'd' (Act 5.8).
+ *   Q4: BK: Act 5.4 → 5.5 → 5.8 (fight) → 5.8 (Malcolm proclaimed).
+ *   Q5: BK + P: prophecies of the apparitions (Act 4.1); the Birnam Wood line is also printed in Extract F.
  *
  *   node tools/validate-questions.js --script scripts/add-english-fal-2025-nov-p2-q6.js --curriculum temp/curriculum-vocab-english-fal.json
  *   node scripts/add-english-fal-2025-nov-p2-q6.js --dry-run
@@ -73,31 +81,33 @@ const questions = [
     "name": "Question 1",
     "text_key": "macbeth",
     "order": 1,
-    "context_text": "The title once held by a traitor is taken from him and given to Macbeth as a reward.",
-    "question": "After the battle, Duncan makes Macbeth Thane of …",
+    "context_text": null,
+    "question": "How does Macbeth react when he hears that Lady Macbeth is dead?",
     "metadata": [
-      "Word:",
-      "[ ]"
+      "He prays for forgiveness and gives up the crown.",
+      "He orders a great funeral for the queen.",
+      "He says that life is 'a tale told by an idiot, signifying nothing'.",
+      "He blames Malcolm for her death.",
+      ""
     ],
     "answer": [
-      "Cawdor",
+      "He says that life is 'a tale told by an idiot, signifying nothing'.",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "fitb",
+    "presentation": "multiple_choice",
     "type": "application",
     "unit": "drama",
-    "topic": "plot_structure",
-    "subtopic": "key_events",
+    "topic": "character_analysis",
+    "subtopic": "macbeth_reaction",
     "skills": [
       "english_fal_recall_key_events"
     ],
-    "difficulty": 2,
+    "difficulty": 3,
     "exam_weight": 2,
-    "clues": "- Think about the traitor whose title is given to Macbeth.\n- Write only the single word.",
-    "keyboard_type": "text"
+    "clues": "- Think about his famous speech that begins with 'Tomorrow'.\n- He is no longer able to feel hope."
   },
   {
     "xp": 10,
@@ -108,33 +118,31 @@ const questions = [
     "name": "Question 2",
     "text_key": "macbeth",
     "order": 2,
-    "context_text": "MACBETH: Canst thou not minister to a mind diseased, pluck from the memory a rooted sorrow, and cleanse the stuffed bosom of that perilous stuff?",
-    "question": "What does Macbeth ask the Doctor to do in the lines below?",
+    "context_text": null,
+    "question": "Which character kills Macbeth at the end of the play? Write one name.",
     "metadata": [
-      "He wants the Doctor to leave the castle at once.",
-      "He wants the Doctor to help the English army.",
-      "He wants the Doctor to write a letter to Malcolm.",
-      "He wants the Doctor to find and cure the illness that is troubling the land and his queen.",
-      ""
+      "Surname:",
+      "[ ]"
     ],
     "answer": [
-      "He wants the Doctor to find and cure the illness that is troubling the land and his queen.",
+      "Macduff",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
-    "type": "application",
+    "presentation": "fitb",
+    "type": "definition",
     "unit": "drama",
     "topic": "plot_structure",
-    "subtopic": "key_events",
+    "subtopic": "closing_events",
     "skills": [
-      "english_fal_explain_reason_in_context"
+      "english_fal_recall_key_events"
     ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Look at the words 'cure' and 'disease' in the speech.\n- Think about whom and what he wants healed."
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- He is a Scottish thane whose family Macbeth had killed.\n- Write one name.",
+    "keyboard_type": "text"
   },
   {
     "xp": 10,
@@ -145,17 +153,17 @@ const questions = [
     "name": "Question 3",
     "text_key": "macbeth",
     "order": 3,
-    "context_text": "DOCTOR: I will not stay in this house for any price; I fear for my conscience.",
-    "question": "What do the Doctor's words below reveal about his character?",
+    "context_text": null,
+    "question": "Macbeth believes that no man born of woman can harm him. Why can Macduff?",
     "metadata": [
-      "principled",
-      "greedy",
-      "cowardly but honest",
-      "loyal to Macbeth",
+      "He is a ghost who cannot be harmed.",
+      "He was born in England, so Scottish law does not apply.",
+      "He carries a magic sword given by the witches.",
+      "He was not born in the usual way, as he was 'untimely ripped' from his mother.",
       ""
     ],
     "answer": [
-      "principled",
+      "He was not born in the usual way, as he was 'untimely ripped' from his mother.",
       "",
       "",
       "",
@@ -164,14 +172,14 @@ const questions = [
     "presentation": "multiple_choice",
     "type": "application",
     "unit": "drama",
-    "topic": "character_analysis",
-    "subtopic": "character_from_words",
+    "topic": "plot_structure",
+    "subtopic": "the_prophecies",
     "skills": [
-      "english_fal_infer_character_from_words"
+      "english_fal_explain_reason_in_context"
     ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Look at what the Doctor refuses to be tempted by.\n- Consider whether he is loyal to Macbeth or to what is right."
+    "difficulty": 3,
+    "exam_weight": 3,
+    "clues": "- Think about the exact words of the prophecy and how Macduff was born.\n- The answer is about his birth, not a weapon."
   },
   {
     "xp": 10,
@@ -182,33 +190,33 @@ const questions = [
     "name": "Question 4",
     "text_key": "macbeth",
     "order": 4,
-    "context_text": "MALCOLM: Let each man cut a branch and march behind it, that the enemy may not count our host.",
-    "question": "What does Malcolm instruct his soldiers to do in the extract?",
+    "context_text": null,
+    "question": "Arrange these events from the end of the play in the order in which they happen.",
     "metadata": [
-      "Each soldier should burn the wood before the attack.",
-      "Each soldier should cut a branch and carry it in front of him as camouflage.",
-      "Each soldier should hide in the wood until dark.",
-      "Each soldier should leave his weapon in the forest.",
+      "Macduff kills Macbeth",
+      "Malcolm orders his soldiers to carry branches",
+      "Malcolm is hailed as king",
+      "Lady Macbeth's death is announced",
       ""
     ],
     "answer": [
-      "Each soldier should cut a branch and carry it in front of him as camouflage.",
-      "",
-      "",
-      "",
+      "Malcolm orders his soldiers to carry branches",
+      "Lady Macbeth's death is announced",
+      "Macduff kills Macbeth",
+      "Malcolm is hailed as king",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "ordering",
     "type": "application",
     "unit": "drama",
     "topic": "plot_structure",
-    "subtopic": "key_events",
+    "subtopic": "sequence_of_events",
     "skills": [
-      "english_fal_explain_reason_in_context"
+      "english_fal_order_events"
     ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Think about how an army could hide its numbers from an enemy.\n- Link it to the wood the soldiers are standing in."
+    "difficulty": 3,
+    "exam_weight": 3,
+    "clues": "- Think about the order of the final act: the plan, the news, the fight and the crowning.\n- The new king is named last."
   },
   {
     "xp": 10,
@@ -220,17 +228,17 @@ const questions = [
     "text_key": "macbeth",
     "order": 5,
     "context_text": null,
-    "question": "Select the TWO statements that best show the theme of honour in the play.",
+    "question": "Select the TWO prophecies that give Macbeth a false sense of safety.",
     "metadata": [
-      "Macbeth and Banquo are praised for their courage in battle",
-      "Macbeth refuses every reward Duncan offers him",
-      "Macbeth's honour is corrupted as his ambition grows",
-      "Duncan loses his honour by murdering Macbeth",
-      "Lady Macbeth leads the army against Malcolm"
+      "No man born of woman can harm him",
+      "He will die at sea",
+      "He will not be defeated until Birnam Wood comes to Dunsinane",
+      "Macduff will become king of Scotland",
+      ""
     ],
     "answer": [
-      "Macbeth and Banquo are praised for their courage in battle",
-      "Macbeth's honour is corrupted as his ambition grows",
+      "No man born of woman can harm him",
+      "He will not be defeated until Birnam Wood comes to Dunsinane",
       "",
       "",
       ""
@@ -238,14 +246,14 @@ const questions = [
     "presentation": "multi_select",
     "type": "application",
     "unit": "drama",
-    "topic": "theme_identification",
-    "subtopic": "theme_of_honour",
+    "topic": "plot_structure",
+    "subtopic": "the_prophecies",
     "skills": [
-      "english_fal_identify_theme_evidence"
+      "english_fal_identify_stated_reasons"
     ],
     "difficulty": 3,
     "exam_weight": 3,
-    "clues": "- Think about how Macbeth is first praised and what happens later.\n- Rule out statements that are not in the play."
+    "clues": "- Think about the second set of apparitions Macbeth sees.\n- One prophecy is about birth and one is about a forest."
   }
 ];
 

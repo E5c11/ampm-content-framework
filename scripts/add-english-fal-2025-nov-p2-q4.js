@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 /**
  * DBE English FAL P2 — November 2025 — Strange Case of Dr Jekyll and Mr Hyde — Extract D (Utterson visits Jekyll, 'Incident of the Letter'). 2.2.1–2.2.7, 18 marks.
- * Practice questions are fresh (DESIGN-UNI-01), mirror the sub-question types (LANG-EX-02) and carry text_key
- * "strange_case_of_dr_jekyll_and_mr_hyde" on lesson and every question (SETWORK-LES-01). aiExplanation: one entry per REAL exam
- * sub-question with its real marks, derived from the memo in own words (AIEXP-08). Every fitb declares
- * keyboard_type 'text' (LANG-KB-01).
+ * Practice questions follow the HL Paper 2 pattern: context_text null, FRESH targets from elsewhere in the text, never the
+ * exam's own statements or the memo's answers (DESIGN-UNI-01); they carry text_key "strange_case_of_dr_jekyll_and_mr_hyde" on lesson and every
+ * question (SETWORK-LES-01). aiExplanation: one entry per REAL exam sub-question with its real marks, derived from the
+ * memo in own words (AIEXP-08). Every fitb declares keyboard_type 'text' (LANG-KB-01).
+ *
+ * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
+ * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
+ *   Q1: BK: the novel ends with 'Henry Jekyll's Full Statement of the Case'.
+ *   Q2: BK: Utterson and Poole break down the cabinet door in 'The Last Night'. Verify.
+ *   Q3: BK: Hyde's body is found in the cabinet (apparent suicide).
+ *   Q4: BK: Lanyon dies after witnessing Hyde change; Poole and Utterson break the door; Utterson reads Lanyon's narrative.
+ *   Q5: BK: gothic features (fog/London, double identity) are standard commentary on the novella.
  *
  *   node tools/validate-questions.js --script scripts/add-english-fal-2025-nov-p2-q4.js --curriculum temp/curriculum-vocab-english-fal.json
  *   node scripts/add-english-fal-2025-nov-p2-q4.js --dry-run
@@ -71,17 +79,17 @@ const questions = [
     "name": "Question 1",
     "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
     "order": 1,
-    "context_text": "'He wishes to kill you,' said Utterson, 'and you are lucky to be alive.'",
-    "question": "What is the irony in the speaker's words in the extract?",
+    "context_text": null,
+    "question": "How is the full truth about Jekyll and Hyde finally revealed to Mr Utterson and the reader?",
     "metadata": [
-      "Utterson expects Jekyll to murder Hyde, who is actually his enemy.",
-      "Utterson fears Jekyll will leave London, though Jekyll plans to stay.",
-      "Utterson believes Poole is lying, but Poole is telling the truth.",
-      "Utterson fears that Hyde will kill Jekyll, but Jekyll and Hyde are the same person.",
+      "a confession made by Mr Utterson",
+      "a letter from Sir Danvers Carew",
+      "a written statement left by Dr Jekyll",
+      "a newspaper report about Mr Hyde",
       ""
     ],
     "answer": [
-      "Utterson fears that Hyde will kill Jekyll, but Jekyll and Hyde are the same person.",
+      "a written statement left by Dr Jekyll",
       "",
       "",
       "",
@@ -90,14 +98,14 @@ const questions = [
     "presentation": "multiple_choice",
     "type": "application",
     "unit": "novel",
-    "topic": "dramatic_techniques",
-    "subtopic": "irony_in_prose",
+    "topic": "plot_structure",
+    "subtopic": "how_the_truth_is_revealed",
     "skills": [
-      "english_fal_explain_irony"
+      "english_fal_recall_key_events"
     ],
     "difficulty": 3,
-    "exam_weight": 3,
-    "clues": "- Irony is a gap between what a character believes and what the reader knows.\n- Think about the secret the reader already suspects."
+    "exam_weight": 2,
+    "clues": "- Think about the last chapter of the novel.\n- It is written by the person who knows the whole secret."
   },
   {
     "xp": 10,
@@ -108,33 +116,31 @@ const questions = [
     "name": "Question 2",
     "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
     "order": 2,
-    "context_text": "'God forgive me,' said the doctor, and he sank into a chair with his head in his hands.",
-    "question": "What do the lines below reveal about Dr Jekyll's state of mind?",
+    "context_text": null,
+    "question": "What do Utterson and Poole break down to get into Jekyll's cabinet? Write one word.",
     "metadata": [
-      "cheerful",
-      "bored",
-      "remorseful",
-      "angry at others",
-      ""
+      "Word:",
+      "[ ]"
     ],
     "answer": [
-      "remorseful",
+      "door",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
-    "type": "application",
+    "presentation": "fitb",
+    "type": "definition",
     "unit": "novel",
-    "topic": "character_analysis",
-    "subtopic": "state_of_mind",
+    "topic": "plot_structure",
+    "subtopic": "key_events",
     "skills": [
-      "english_fal_infer_state_of_mind"
+      "english_fal_recall_key_events"
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Look at his gesture and the words about a lesson.\n- Think about how someone speaks after a terrible event."
+    "clues": "- It is the barrier that Poole's servants have been unable to open.\n- Write one word.",
+    "keyboard_type": "text"
   },
   {
     "xp": 10,
@@ -146,32 +152,32 @@ const questions = [
     "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
     "order": 3,
     "context_text": null,
-    "question": "Select the TWO things that are strange about the letter Utterson asks Poole about.",
+    "question": "What happens to Mr Hyde at the end of the novel?",
     "metadata": [
-      "It has no return address",
-      "It was delivered by a messenger Poole could describe",
-      "The handwriting is Jekyll's own",
-      "It arrived with a gift for Utterson",
-      "It was written in a foreign language"
+      "He sails away to a distant country.",
+      "He is sent to prison for life.",
+      "He is made Jekyll's heir and lives in comfort.",
+      "He is found dead in Jekyll's cabinet.",
+      ""
     ],
     "answer": [
-      "It has no return address",
-      "The handwriting is Jekyll's own",
+      "He is found dead in Jekyll's cabinet.",
+      "",
       "",
       "",
       ""
     ],
-    "presentation": "multi_select",
+    "presentation": "multiple_choice",
     "type": "application",
     "unit": "novel",
     "topic": "plot_structure",
-    "subtopic": "clues_in_letter",
+    "subtopic": "closing_events",
     "skills": [
-      "english_fal_identify_stated_reasons"
+      "english_fal_recall_key_events"
     ],
-    "difficulty": 3,
+    "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about how the letter reached the house and who it is addressed to.\n- Two options are about its delivery or contents and are false."
+    "clues": "- Think about where Utterson and Poole find him.\n- Reject options in which Hyde escapes or is rewarded."
   },
   {
     "xp": 10,
@@ -182,33 +188,34 @@ const questions = [
     "name": "Question 4",
     "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
     "order": 4,
-    "context_text": "Utterson weighed each fact in turn and allowed himself no conclusion that the evidence did not support.",
-    "question": "What does the passage below reveal about Mr Utterson's character at this point?",
+    "context_text": null,
+    "question": "Match each character from the novel to the event that involves him.",
     "metadata": [
-      "rash and impulsive",
-      "rational and careful",
-      "gullible",
-      "cruel",
-      ""
+      "A - Dr Lanyon",
+      "B - Poole",
+      "C - Mr Utterson",
+      "1 - helps Utterson break down the cabinet door",
+      "2 - reads Lanyon's sealed letter after his death",
+      "3 - dies after seeing the transformation"
     ],
     "answer": [
-      "rational and careful",
-      "",
-      "",
+      "A-3",
+      "B-1",
+      "C-2",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "match",
     "type": "application",
     "unit": "novel",
     "topic": "character_analysis",
-    "subtopic": "character_from_words",
+    "subtopic": "match_characters_to_roles",
     "skills": [
-      "english_fal_infer_character_from_words"
+      "english_fal_match_characters_to_roles"
     ],
-    "difficulty": 2,
+    "difficulty": 3,
     "exam_weight": 2,
-    "clues": "- Look at how he reasons from evidence before acting.\n- Consider whether he jumps to conclusions."
+    "clues": "- Think about which character is a doctor and which is a servant.\n- One character reads a document after another man's death."
   },
   {
     "xp": 10,
@@ -220,30 +227,32 @@ const questions = [
     "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
     "order": 5,
     "context_text": null,
-    "question": "Jekyll shares his will with Utterson and sends Poole for powders. Name the theme these events show. Write one word.",
+    "question": "Select the TWO features that make the novel a gothic story.",
     "metadata": [
-      "Theme:",
-      "[ ]"
+      "a mysterious London setting",
+      "a cheerful comic servant",
+      "a secret and a double identity",
+      "a long sea voyage",
+      ""
     ],
     "answer": [
-      "trust",
-      "",
+      "a mysterious London setting",
+      "a secret and a double identity",
       "",
       "",
       ""
     ],
-    "presentation": "fitb",
+    "presentation": "multi_select",
     "type": "application",
     "unit": "novel",
-    "topic": "theme_identification",
-    "subtopic": "theme_identification",
+    "topic": "setting_and_atmosphere",
+    "subtopic": "features_of_the_genre",
     "skills": [
-      "english_fal_identify_theme"
+      "english_fal_identify_genre_features"
     ],
-    "difficulty": 2,
+    "difficulty": 3,
     "exam_weight": 2,
-    "clues": "- Think about what Jekyll must believe about Utterson and Poole.\n- The theme concerns confidence in other people.",
-    "keyboard_type": "text"
+    "clues": "- Think about fog, dark streets and secrets.\n- Gothic stories are not about comedy or voyages."
   }
 ];
 

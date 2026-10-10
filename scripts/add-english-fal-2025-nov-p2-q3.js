@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 /**
  * DBE English FAL P2 — November 2025 — Strange Case of Dr Jekyll and Mr Hyde — Extract C (Enfield's story, 'Story of the Door'). 2.1.1–2.1.7, 17 marks.
- * Practice questions are fresh (DESIGN-UNI-01), mirror the sub-question types (LANG-EX-02) and carry text_key
- * "strange_case_of_dr_jekyll_and_mr_hyde" on lesson and every question (SETWORK-LES-01). aiExplanation: one entry per REAL exam
- * sub-question with its real marks, derived from the memo in own words (AIEXP-08). Every fitb declares
- * keyboard_type 'text' (LANG-KB-01).
+ * Practice questions follow the HL Paper 2 pattern: context_text null, FRESH targets from elsewhere in the text, never the
+ * exam's own statements or the memo's answers (DESIGN-UNI-01); they carry text_key "strange_case_of_dr_jekyll_and_mr_hyde" on lesson and every
+ * question (SETWORK-LES-01). aiExplanation: one entry per REAL exam sub-question with its real marks, derived from the
+ * memo in own words (AIEXP-08). Every fitb declares keyboard_type 'text' (LANG-KB-01).
+ *
+ * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
+ * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
+ *   Q1: BK: Jekyll's will leaves everything to Hyde; Utterson reads it early in the novel.
+ *   Q2: BK: Hyde's rooms are in Soho (Utterson and the police visit them). Verify.
+ *   Q3: BK: chapters 'Search for Mr Hyde' → 'The Carew Murder Case' → 'Remarkable Incident of Dr Lanyon' → 'The Last Night' (Poole).
+ *   Q4: BK: Lanyon (doctor, dies after the transformation), Poole (butler), Carew (murdered by Hyde).
+ *   Q5: BK: duality and good vs evil are standard themes.
  *
  *   node tools/validate-questions.js --script scripts/add-english-fal-2025-nov-p2-q3.js --curriculum temp/curriculum-vocab-english-fal.json
  *   node scripts/add-english-fal-2025-nov-p2-q3.js --dry-run
@@ -73,14 +81,123 @@ const questions = [
     "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
     "order": 1,
     "context_text": null,
-    "question": "Match each character from Strange Case of Dr Jekyll and Mr Hyde to the description that fits.",
+    "question": "Who does Dr Jekyll's will say will receive all his possessions if he disappears?",
     "metadata": [
-      "A - Mr Utterson",
-      "B - Mr Enfield",
-      "C - Poole",
-      "1 - a relative of Utterson who tells the story of the door",
-      "2 - Dr Jekyll's loyal servant",
-      "3 - a lawyer who investigates the mystery of Mr Hyde"
+      "Edward Hyde",
+      "Mr Utterson",
+      "Dr Lanyon",
+      "Mr Enfield",
+      ""
+    ],
+    "answer": [
+      "Edward Hyde",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "presentation": "multiple_choice",
+    "type": "application",
+    "unit": "novel",
+    "topic": "plot_structure",
+    "subtopic": "dr_jekylls_will",
+    "skills": [
+      "english_fal_recall_key_events"
+    ],
+    "difficulty": 2,
+    "exam_weight": 2,
+    "clues": "- Utterson is troubled by this will because of who is named in it.\n- The person named is not one of Jekyll's friends."
+  },
+  {
+    "xp": 10,
+    "syllabus": "dbe",
+    "subject": "english_fal",
+    "year": 2025,
+    "paper": "nov_p2",
+    "name": "Question 2",
+    "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
+    "order": 2,
+    "context_text": null,
+    "question": "In which district of London does Mr Hyde keep his rooms? Write one word.",
+    "metadata": [
+      "District:",
+      "[ ]"
+    ],
+    "answer": [
+      "Soho",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "presentation": "fitb",
+    "type": "definition",
+    "unit": "novel",
+    "topic": "setting_and_atmosphere",
+    "subtopic": "places_in_the_novel",
+    "skills": [
+      "english_fal_identify_setting"
+    ],
+    "difficulty": 3,
+    "exam_weight": 2,
+    "clues": "- Utterson goes there with an inspector after the murder.\n- It is a district known for its fog and narrow streets.",
+    "keyboard_type": "text"
+  },
+  {
+    "xp": 10,
+    "syllabus": "dbe",
+    "subject": "english_fal",
+    "year": 2025,
+    "paper": "nov_p2",
+    "name": "Question 3",
+    "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
+    "order": 3,
+    "context_text": null,
+    "question": "Arrange these events from the novel in the order in which they happen.",
+    "metadata": [
+      "Poole asks Utterson for help",
+      "Sir Danvers Carew is murdered",
+      "Utterson searches for Mr Hyde",
+      "Dr Lanyon dies after a shock",
+      ""
+    ],
+    "answer": [
+      "Utterson searches for Mr Hyde",
+      "Sir Danvers Carew is murdered",
+      "Dr Lanyon dies after a shock",
+      "Poole asks Utterson for help",
+      ""
+    ],
+    "presentation": "ordering",
+    "type": "application",
+    "unit": "novel",
+    "topic": "plot_structure",
+    "subtopic": "sequence_of_events",
+    "skills": [
+      "english_fal_order_events"
+    ],
+    "difficulty": 3,
+    "exam_weight": 3,
+    "clues": "- Start with the event that comes from Utterson's first suspicion.\n- The servant's request comes near the end of the story."
+  },
+  {
+    "xp": 10,
+    "syllabus": "dbe",
+    "subject": "english_fal",
+    "year": 2025,
+    "paper": "nov_p2",
+    "name": "Question 4",
+    "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
+    "order": 4,
+    "context_text": null,
+    "question": "Match each character from the novel to the description that fits.",
+    "metadata": [
+      "A - Dr Lanyon",
+      "B - Poole",
+      "C - Sir Danvers Carew",
+      "1 - the butler who fears for his master's safety",
+      "2 - a respected gentleman beaten to death by Hyde",
+      "3 - a doctor who is horrified by what he sees Hyde do"
     ],
     "answer": [
       "A-3",
@@ -99,118 +216,7 @@ const questions = [
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about who tells the story at the door and who is employed by Jekyll.\n- Use the pair you are sure of to narrow the rest."
-  },
-  {
-    "xp": 10,
-    "syllabus": "dbe",
-    "subject": "english_fal",
-    "year": 2025,
-    "paper": "nov_p2",
-    "name": "Question 2",
-    "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
-    "order": 2,
-    "context_text": "The fog was a grey blanket that smothered the street.",
-    "question": "Which figure of speech is used in the sentence below?",
-    "metadata": [
-      "metaphor",
-      "simile",
-      "alliteration",
-      "onomatopoeia",
-      ""
-    ],
-    "answer": [
-      "metaphor",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "presentation": "multiple_choice",
-    "type": "application",
-    "unit": "novel",
-    "topic": "figurative_language",
-    "subtopic": "metaphor_identification",
-    "skills": [
-      "english_fal_identify_figure_of_speech"
-    ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Look for a direct comparison without 'like' or 'as'.\n- Ask whether the sentence says one thing IS another."
-  },
-  {
-    "xp": 10,
-    "syllabus": "dbe",
-    "subject": "english_fal",
-    "year": 2025,
-    "paper": "nov_p2",
-    "name": "Question 3",
-    "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
-    "order": 3,
-    "context_text": null,
-    "question": "Select the TWO reasons why Mr Hyde agrees to pay the child's family.",
-    "metadata": [
-      "He wants to avoid a confrontation with the bystanders",
-      "He wants the girl's family to forgive him because he is sorry",
-      "He wants to avoid the police becoming involved",
-      "He wants to buy the house with the door",
-      "He wants to impress Mr Utterson"
-    ],
-    "answer": [
-      "He wants to avoid a confrontation with the bystanders",
-      "He wants to avoid the police becoming involved",
-      "",
-      "",
-      ""
-    ],
-    "presentation": "multi_select",
-    "type": "application",
-    "unit": "novel",
-    "topic": "plot_structure",
-    "subtopic": "motives_in_context",
-    "skills": [
-      "english_fal_identify_stated_reasons"
-    ],
-    "difficulty": 3,
-    "exam_weight": 2,
-    "clues": "- Think about who surrounds Hyde when he is caught.\n- Consider what trouble he would face if he refused to pay."
-  },
-  {
-    "xp": 10,
-    "syllabus": "dbe",
-    "subject": "english_fal",
-    "year": 2025,
-    "paper": "nov_p2",
-    "name": "Question 4",
-    "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
-    "order": 4,
-    "context_text": "'You need not worry,' said the stranger coolly. 'The money will be paid in full, and I will wait here while it is fetched.'",
-    "question": "What tone would a speaker use for the words below?",
-    "metadata": [
-      "frightened and apologetic",
-      "sad and ashamed",
-      "confident and sarcastic",
-      "excited and eager",
-      ""
-    ],
-    "answer": [
-      "confident and sarcastic",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "presentation": "multiple_choice",
-    "type": "application",
-    "unit": "novel",
-    "topic": "tone_and_mood",
-    "subtopic": "tone_identification",
-    "skills": [
-      "english_fal_identify_tone"
-    ],
-    "difficulty": 3,
-    "exam_weight": 2,
-    "clues": "- Think about how a person who is sure of himself would say these words.\n- A reassuring promise can also sound mocking."
+    "clues": "- Think about who is a servant, who is a doctor and who is a victim.\n- One character is killed in the story."
   },
   {
     "xp": 10,
@@ -222,32 +228,32 @@ const questions = [
     "text_key": "strange_case_of_dr_jekyll_and_mr_hyde",
     "order": 5,
     "context_text": null,
-    "question": "Mr Utterson respects boundaries. Which ONE answer is best substantiated by events in the novel?",
+    "question": "Select the TWO themes that are explored in the novel.",
     "metadata": [
-      "Utterson spreads Enfield's story to all his friends.",
-      "Utterson avoids gossip when Enfield tells his story, and only acts to investigate Hyde after the murder.",
-      "Utterson breaks into houses at the start of the book.",
-      "Utterson ignores every rumour about Hyde.",
-      ""
+      "the duality of human nature",
+      "the joys of foreign travel",
+      "the struggle between good and evil",
+      "ambition for political power",
+      "love between two families"
     ],
     "answer": [
-      "Utterson avoids gossip when Enfield tells his story, and only acts to investigate Hyde after the murder.",
-      "",
+      "the duality of human nature",
+      "the struggle between good and evil",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "multi_select",
     "type": "application",
     "unit": "novel",
     "topic": "theme_identification",
-    "subtopic": "discuss_view_with_evidence",
+    "subtopic": "themes_of_the_novel",
     "skills": [
-      "english_fal_substantiate_a_view"
+      "english_fal_identify_theme"
     ],
-    "difficulty": 3,
-    "exam_weight": 3,
-    "clues": "- Look for an option that shows Utterson holding back before he acts.\n- Eliminate options that are not in the novel."
+    "difficulty": 2,
+    "exam_weight": 2,
+    "clues": "- Think about what Jekyll's experiment reveals about people.\n- Reject themes that are not about the double life in the story."
   }
 ];
 

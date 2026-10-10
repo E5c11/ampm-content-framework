@@ -270,6 +270,10 @@
             {
               "slug": "state_of_mind",
               "name": "State Of Mind"
+            },
+            {
+              "slug": "family_relationships",
+              "name": "Family Relationships"
             }
           ]
         },
@@ -296,6 +300,34 @@
             {
               "slug": "clues_in_letter",
               "name": "Clues In Letter"
+            },
+            {
+              "slug": "setting_of_the_novel",
+              "name": "Setting Of The Novel"
+            },
+            {
+              "slug": "sequence_of_events",
+              "name": "Sequence Of Events"
+            },
+            {
+              "slug": "hope_for_ndotsheni",
+              "name": "Hope For Ndotsheni"
+            },
+            {
+              "slug": "closing_events",
+              "name": "Closing Events"
+            },
+            {
+              "slug": "key_characters",
+              "name": "Key Characters"
+            },
+            {
+              "slug": "dr_jekylls_will",
+              "name": "Dr Jekylls Will"
+            },
+            {
+              "slug": "how_the_truth_is_revealed",
+              "name": "How The Truth Is Revealed"
             }
           ]
         },
@@ -314,12 +346,30 @@
             {
               "slug": "theme_identification",
               "name": "Theme Identification"
+            },
+            {
+              "slug": "main_concerns_of_the_novel",
+              "name": "Main Concerns Of The Novel"
+            },
+            {
+              "slug": "themes_of_the_novel",
+              "name": "Themes Of The Novel"
             }
           ]
         },
         {
           "slug": "setting_and_atmosphere",
-          "name": "Setting and Atmosphere"
+          "name": "Setting and Atmosphere",
+          "subtopics": [
+            {
+              "slug": "places_in_the_novel",
+              "name": "Places In The Novel"
+            },
+            {
+              "slug": "features_of_the_genre",
+              "name": "Features Of The Genre"
+            }
+          ]
         },
         {
           "slug": "figurative_language",
@@ -376,6 +426,26 @@
             {
               "slug": "character_from_words",
               "name": "Character From Words"
+            },
+            {
+              "slug": "lady_macbeth",
+              "name": "Lady Macbeth"
+            },
+            {
+              "slug": "macbeth_reaction",
+              "name": "Macbeth Reaction"
+            },
+            {
+              "slug": "characters_and_roles",
+              "name": "Characters And Roles"
+            },
+            {
+              "slug": "mr_m",
+              "name": "Mr M"
+            },
+            {
+              "slug": "thami_motives",
+              "name": "Thami Motives"
             }
           ]
         },
@@ -386,6 +456,26 @@
             {
               "slug": "key_events",
               "name": "Key Events"
+            },
+            {
+              "slug": "sequence_of_events",
+              "name": "Sequence Of Events"
+            },
+            {
+              "slug": "closing_events",
+              "name": "Closing Events"
+            },
+            {
+              "slug": "the_prophecies",
+              "name": "The Prophecies"
+            },
+            {
+              "slug": "text_information",
+              "name": "Text Information"
+            },
+            {
+              "slug": "central_conflict",
+              "name": "Central Conflict"
             }
           ]
         },
@@ -400,6 +490,10 @@
             {
               "slug": "theme_of_honour",
               "name": "Theme Of Honour"
+            },
+            {
+              "slug": "themes_of_the_play",
+              "name": "Themes Of The Play"
             }
           ]
         },
@@ -410,6 +504,10 @@
             {
               "slug": "irony_in_drama",
               "name": "Irony In Drama"
+            },
+            {
+              "slug": "symbols_in_the_play",
+              "name": "Symbols In The Play"
             }
           ]
         },
@@ -462,6 +560,10 @@
             {
               "slug": "state_of_mind",
               "name": "State Of Mind"
+            },
+            {
+              "slug": "narrator",
+              "name": "Narrator"
             }
           ]
         },
@@ -476,6 +578,18 @@
             {
               "slug": "key_events",
               "name": "Key Events"
+            },
+            {
+              "slug": "sequence_of_events",
+              "name": "Sequence Of Events"
+            },
+            {
+              "slug": "text_information",
+              "name": "Text Information"
+            },
+            {
+              "slug": "eveline_family",
+              "name": "Eveline Family"
             }
           ]
         },
@@ -490,12 +604,30 @@
             {
               "slug": "reasons_for_events",
               "name": "Reasons For Events"
+            },
+            {
+              "slug": "themes_suggested_by_the_title",
+              "name": "Themes Suggested By The Title"
+            },
+            {
+              "slug": "themes_of_the_story",
+              "name": "Themes Of The Story"
             }
           ]
         },
         {
           "slug": "narrative_voice_and_setting",
-          "name": "Narrative Voice and Setting"
+          "name": "Narrative Voice and Setting",
+          "subtopics": [
+            {
+              "slug": "point_of_view",
+              "name": "Point Of View"
+            },
+            {
+              "slug": "setting_of_the_story",
+              "name": "Setting Of The Story"
+            }
+          ]
         },
         {
           "slug": "figurative_language",
@@ -504,6 +636,10 @@
             {
               "slug": "personification_identification",
               "name": "Personification Identification"
+            },
+            {
+              "slug": "word_meaning_in_context",
+              "name": "Word Meaning In Context"
             }
           ]
         },
@@ -548,6 +684,14 @@
             {
               "slug": "word_meaning_in_context",
               "name": "Word Meaning In Context"
+            },
+            {
+              "slug": "repetition",
+              "name": "Repetition"
+            },
+            {
+              "slug": "addressee",
+              "name": "Addressee"
             }
           ]
         },
@@ -570,6 +714,14 @@
             {
               "slug": "season_imagery",
               "name": "Season Imagery"
+            },
+            {
+              "slug": "comparison_in_context",
+              "name": "Comparison In Context"
+            },
+            {
+              "slug": "natural_features",
+              "name": "Natural Features"
             }
           ]
         },
@@ -580,6 +732,10 @@
             {
               "slug": "couplet_function",
               "name": "Couplet Function"
+            },
+            {
+              "slug": "poem_form",
+              "name": "Poem Form"
             }
           ]
         },
@@ -603,7 +759,13 @@
         },
         {
           "slug": "figurative_language",
-          "name": "Figurative Language"
+          "name": "Figurative Language",
+          "subtopics": [
+            {
+              "slug": "word_meaning_in_context",
+              "name": "Word Meaning In Context"
+            }
+          ]
         }
       ]
     },
@@ -852,6 +1014,34 @@
     {
       "id": "english_fal_explain_effect_of_structure",
       "name": "Explain effect of structure"
+    },
+    {
+      "id": "english_fal_identify_setting",
+      "name": "Identify setting"
+    },
+    {
+      "id": "english_fal_order_events",
+      "name": "Order events"
+    },
+    {
+      "id": "english_fal_identify_genre_features",
+      "name": "Identify genre features"
+    },
+    {
+      "id": "english_fal_explain_symbol",
+      "name": "Explain symbol"
+    },
+    {
+      "id": "english_fal_identify_narrative_voice",
+      "name": "Identify narrative voice"
+    },
+    {
+      "id": "english_fal_identify_poem_structure",
+      "name": "Identify poem structure"
+    },
+    {
+      "id": "english_fal_identify_speaker_and_audience",
+      "name": "Identify speaker and audience"
     }
   ]
 }

@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 /**
  * DBE English FAL P2 — November 2025 — 'Eveline' — Extract J (Eveline at the North Wall, hesitating). 5.2.1–5.2.9, 18 marks.
- * Practice questions are fresh (DESIGN-UNI-01), mirror the sub-question types (LANG-EX-02) and carry text_key
- * "eveline" on lesson and every question (SETWORK-LES-01). aiExplanation: one entry per REAL exam
- * sub-question with its real marks, derived from the memo in own words (AIEXP-08). Every fitb declares
- * keyboard_type 'text' (LANG-KB-01).
+ * Practice questions follow the HL Paper 2 pattern: context_text null, FRESH targets from elsewhere in the text, never the
+ * exam's own statements or the memo's answers (DESIGN-UNI-01); they carry text_key "eveline" on lesson and every
+ * question (SETWORK-LES-01). aiExplanation: one entry per REAL exam sub-question with its real marks, derived from the
+ * memo in own words (AIEXP-08). Every fitb declares keyboard_type 'text' (LANG-KB-01).
+ *
+ * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
+ * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
+ *   Q1: BK: Eveline lives in Dublin; the story is from Joyce's Dubliners.
+ *   Q2: BK: 'Eveline' is from Dubliners (1914).
+ *   Q3: BK: Ernest is dead; Harry works away. Verify.
+ *   Q4: BK: paralysis and escape are the standard readings.
+ *   Q5: BK + P: closing sequence as in the story's ending (Extract J covers the call and the railing).
  *
  *   node tools/validate-questions.js --script scripts/add-english-fal-2025-nov-p2-q10.js --curriculum temp/curriculum-vocab-english-fal.json
  *   node scripts/add-english-fal-2025-nov-p2-q10.js --dry-run
@@ -72,33 +80,31 @@ const questions = [
     "name": "Question 1",
     "text_key": "eveline",
     "order": 1,
-    "context_text": "Eveline stared at the water and wondered whether her duty was to stay or to go.",
-    "question": "Select the TWO words that best describe Eveline's state of mind in the lines below.",
+    "context_text": null,
+    "question": "In which city does Eveline live? Write one word.",
     "metadata": [
-      "anxious",
-      "delighted",
-      "conflicted",
-      "bored",
-      "furious"
+      "City:",
+      "[ ]"
     ],
     "answer": [
-      "anxious",
-      "conflicted",
+      "Dublin",
+      "",
       "",
       "",
       ""
     ],
-    "presentation": "multi_select",
-    "type": "application",
+    "presentation": "fitb",
+    "type": "definition",
     "unit": "short_stories",
-    "topic": "character_analysis",
-    "subtopic": "state_of_mind",
+    "topic": "narrative_voice_and_setting",
+    "subtopic": "setting_of_the_story",
     "skills": [
-      "english_fal_infer_state_of_mind"
+      "english_fal_identify_setting"
     ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Look at what she asks herself about staying or going.\n- Think about whether she seems sure of her choice."
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- Joyce's collection of stories is named after the people of this city.\n- Write one word.",
+    "keyboard_type": "text"
   },
   {
     "xp": 10,
@@ -109,30 +115,30 @@ const questions = [
     "name": "Question 2",
     "text_key": "eveline",
     "order": 2,
-    "context_text": "The wind wept through the rigging of the ships.",
-    "question": "Name the figure of speech used in the line below. Write one word.",
+    "context_text": null,
+    "question": "'Eveline' is a story in which collection by James Joyce? Write one word.",
     "metadata": [
-      "Figure:",
+      "Collection:",
       "[ ]"
     ],
     "answer": [
-      "personification",
+      "Dubliners",
       "",
       "",
       "",
       ""
     ],
     "presentation": "fitb",
-    "type": "application",
+    "type": "definition",
     "unit": "short_stories",
-    "topic": "figurative_language",
-    "subtopic": "personification_identification",
+    "topic": "plot_structure",
+    "subtopic": "text_information",
     "skills": [
-      "english_fal_identify_figure_of_speech"
+      "english_fal_recall_key_events"
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Ask whether the wind is given a human feeling.\n- Look at the word 'wept'.",
+    "clues": "- The title is the name for people from a certain city.\n- Write one word.",
     "keyboard_type": "text"
   },
   {
@@ -144,17 +150,17 @@ const questions = [
     "name": "Question 3",
     "text_key": "eveline",
     "order": 3,
-    "context_text": "'Quick, they are boarding!' he said, pulling at her sleeve.",
-    "question": "What tone would Frank use when he says the word below?",
+    "context_text": null,
+    "question": "What has happened to Eveline's brother Ernest?",
     "metadata": [
-      "gentle and sleepy",
-      "cold and uncaring",
-      "persuasive and urgent",
-      "amused",
+      "He has become a sailor.",
+      "He has died.",
+      "He has moved to Buenos Ayres.",
+      "He has become a priest.",
       ""
     ],
     "answer": [
-      "persuasive and urgent",
+      "He has died.",
       "",
       "",
       "",
@@ -163,14 +169,14 @@ const questions = [
     "presentation": "multiple_choice",
     "type": "application",
     "unit": "short_stories",
-    "topic": "tone_and_mood",
-    "subtopic": "tone_identification",
+    "topic": "plot_structure",
+    "subtopic": "eveline_family",
     "skills": [
-      "english_fal_identify_tone"
+      "english_fal_recall_key_events"
     ],
-    "difficulty": 3,
+    "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about how someone sounds when he wants another person to follow him.\n- Frank sees that Eveline is hesitating."
+    "clues": "- Eveline remembers him when she thinks of her family.\n- One of her brothers is no longer alive."
   },
   {
     "xp": 10,
@@ -181,31 +187,33 @@ const questions = [
     "name": "Question 4",
     "text_key": "eveline",
     "order": 4,
-    "context_text": "Frank is affectionate towards Eveline and uses a pet name when he is with her.",
-    "question": "What nickname does Frank use for Eveline? Write one word.",
+    "context_text": null,
+    "question": "Select the TWO themes that are explored in the story.",
     "metadata": [
-      "Nickname:",
-      "[ ]"
+      "paralysis (being unable to act)",
+      "revenge",
+      "escape",
+      "ambition for wealth",
+      ""
     ],
     "answer": [
-      "Poppens|Evvy",
-      "",
+      "paralysis (being unable to act)",
+      "escape",
       "",
       "",
       ""
     ],
-    "presentation": "fitb",
+    "presentation": "multi_select",
     "type": "application",
     "unit": "short_stories",
-    "topic": "plot_structure",
-    "subtopic": "key_events",
+    "topic": "theme_identification",
+    "subtopic": "themes_of_the_story",
     "skills": [
-      "english_fal_recall_key_events"
+      "english_fal_identify_theme"
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about the affectionate name Frank uses for her.\n- Write one word.",
-    "keyboard_type": "text"
+    "clues": "- Think about what Eveline wants and what stops her from acting.\n- Reject themes that do not appear in the story."
   },
   {
     "xp": 10,
@@ -217,32 +225,32 @@ const questions = [
     "text_key": "eveline",
     "order": 5,
     "context_text": null,
-    "question": "Why is it 'impossible' for Eveline to leave with Frank?",
+    "question": "Arrange these events from the end of the story in the order in which they happen.",
     "metadata": [
-      "She has decided that she does not love Frank.",
-      "She remembers the promise she made to her dying mother to keep the home together.",
-      "She is afraid of the ship's captain.",
-      "She cannot leave because she has no money.",
+      "Eveline grips the railing",
+      "Eveline remembers her promise to her mother",
+      "Eveline lets Frank go on alone",
+      "Frank urges her to board",
       ""
     ],
     "answer": [
-      "She remembers the promise she made to her dying mother to keep the home together.",
-      "",
-      "",
-      "",
+      "Eveline remembers her promise to her mother",
+      "Frank urges her to board",
+      "Eveline grips the railing",
+      "Eveline lets Frank go on alone",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "ordering",
     "type": "application",
     "unit": "short_stories",
-    "topic": "theme_identification",
-    "subtopic": "reasons_for_events",
+    "topic": "plot_structure",
+    "subtopic": "sequence_of_events",
     "skills": [
-      "english_fal_explain_reason_in_context"
+      "english_fal_order_events"
     ],
     "difficulty": 3,
     "exam_weight": 3,
-    "clues": "- Think about a promise Eveline made earlier in her life.\n- Reject options that are not in the story."
+    "clues": "- Her memory comes before Frank's call.\n- The last event is what Frank does alone."
   }
 ];
 

@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 /**
  * DBE English FAL P2 — November 2025 — 'Inversnaid' by Gerard Manley Hopkins. 6.1.1–6.1.8, 18 marks.
- * Practice questions are fresh (DESIGN-UNI-01), mirror the sub-question types (LANG-EX-02) and carry text_key
- * "inversnaid" on lesson and every question (SETWORK-LES-01). aiExplanation: one entry per REAL exam
- * sub-question with its real marks, derived from the memo in own words (AIEXP-08). Every fitb declares
- * keyboard_type 'text' (LANG-KB-01).
+ * Practice questions follow the HL Paper 2 pattern: context_text null, FRESH targets from elsewhere in the text, never the
+ * exam's own statements or the memo's answers (DESIGN-UNI-01); they carry text_key "inversnaid" on lesson and every
+ * question (SETWORK-LES-01). aiExplanation: one entry per REAL exam sub-question with its real marks, derived from the
+ * memo in own words (AIEXP-08). Every fitb declares keyboard_type 'text' (LANG-KB-01).
+ *
+ * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
+ * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
+ *   Q1: P: the poem is printed with 16 numbered lines.
+ *   Q2: P + BK: 'burn' = stream (Scots); poem is about a stream.
+ *   Q3: P: line 5 of the poem (compound image).
+ *   Q4: P: stream and pool are printed in lines 1–8.
+ *   Q5: P: repetition printed in lines 14–15.
  *
  *   node tools/validate-questions.js --script scripts/add-english-fal-2025-nov-p2-q11.js --curriculum temp/curriculum-vocab-english-fal.json
  *   node scripts/add-english-fal-2025-nov-p2-q11.js --dry-run
@@ -73,32 +81,30 @@ const questions = [
     "text_key": "inversnaid",
     "order": 1,
     "context_text": null,
-    "question": "Which line from 'Inversnaid' repeats the same consonant sound at the start of its words?",
+    "question": "How many lines are there in the poem 'Inversnaid'? Write the number.",
     "metadata": [
-      "A windpuff-bonnet of fawn-froth",
-      "Of a pool so pitchblack, fell-frowning",
-      "Wiry heathpacks, flitches of fern",
-      "Degged with dew, dappled with dew",
-      ""
+      "Lines:",
+      "[ ]"
     ],
     "answer": [
-      "Degged with dew, dappled with dew",
+      "16",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
-    "type": "application",
+    "presentation": "fitb",
+    "type": "definition",
     "unit": "poetry",
-    "topic": "poetic_devices",
-    "subtopic": "alliteration_identification",
+    "topic": "structure_and_form",
+    "subtopic": "poem_form",
     "skills": [
-      "english_fal_identify_sound_devices"
+      "english_fal_identify_poem_structure"
     ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Read each line aloud and listen for the first sounds of the words.\n- Look for a repeated 'd' or 'f' at the start of several words."
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- Count the numbers printed in the margin of the poem.\n- Write digits only.",
+    "keyboard_type": "text"
   },
   {
     "xp": 10,
@@ -109,17 +115,17 @@ const questions = [
     "name": "Question 2",
     "text_key": "inversnaid",
     "order": 2,
-    "context_text": "Of a pool so pitchblack, féll-frówning, it rounds and rounds Despair to drowning.",
-    "question": "What does the word 'pitchblack' suggest about the pool?",
+    "context_text": null,
+    "question": "What is a 'burn' in the poem 'Inversnaid'?",
     "metadata": [
-      "It suggests that the pool is clean and shallow.",
-      "It suggests that the pool is warm and welcoming.",
-      "It suggests that the pool is very dark and dangerous.",
-      "It suggests that the pool is full of fish.",
+      "a mountain",
+      "a type of bird",
+      "a small stream",
+      "a rock formation",
       ""
     ],
     "answer": [
-      "It suggests that the pool is very dark and dangerous.",
+      "a small stream",
       "",
       "",
       "",
@@ -128,14 +134,14 @@ const questions = [
     "presentation": "multiple_choice",
     "type": "application",
     "unit": "poetry",
-    "topic": "imagery",
-    "subtopic": "colour_imagery",
+    "topic": "figurative_language",
+    "subtopic": "word_meaning_in_context",
     "skills": [
-      "english_fal_explain_imagery"
+      "english_fal_explain_word_in_context"
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about the colour of pitch and what darkness suggests.\n- Look at the word 'féll-frówning' beside it."
+    "clues": "- The poet uses it for the water he is describing.\n- It is a Scots word."
   },
   {
     "xp": 10,
@@ -146,31 +152,33 @@ const questions = [
     "name": "Question 3",
     "text_key": "inversnaid",
     "order": 3,
-    "context_text": "It rounds and rounds Despair to drowning.",
-    "question": "In the lines below, which word is given the actions of a person who can drown? Write one word.",
+    "context_text": null,
+    "question": "In the phrase 'a windpuff-bonnet of fáwn-fróth', what is the foam compared to?",
     "metadata": [
-      "Word:",
-      "[ ]"
+      "a mountain peak",
+      "a fisherman's net",
+      "a sleeping animal",
+      "a bonnet blown by the wind",
+      ""
     ],
     "answer": [
-      "Despair",
+      "a bonnet blown by the wind",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "fitb",
+    "presentation": "multiple_choice",
     "type": "application",
     "unit": "poetry",
-    "topic": "poetic_devices",
-    "subtopic": "personification_identification",
+    "topic": "imagery",
+    "subtopic": "comparison_in_context",
     "skills": [
-      "english_fal_identify_figure_of_speech"
+      "english_fal_explain_imagery"
     ],
     "difficulty": 3,
-    "exam_weight": 2,
-    "clues": "- Look for an abstract idea (a feeling) that is made to act like a person.\n- It starts with a capital letter in the middle of the line.",
-    "keyboard_type": "text"
+    "exam_weight": 3,
+    "clues": "- A bonnet is something worn on the head.\n- The first part of the compound tells you what moves it."
   },
   {
     "xp": 10,
@@ -182,17 +190,17 @@ const questions = [
     "text_key": "inversnaid",
     "order": 4,
     "context_text": null,
-    "question": "Select the TWO words from the poem that best show the wildness of the stream.",
+    "question": "Select the TWO natural features that are described in the poem.",
     "metadata": [
-      "rollrock",
-      "beadbonny",
-      "roaring",
-      "dappled",
-      "dew"
+      "a stream (burn)",
+      "a desert",
+      "a pool",
+      "a snow-capped mountain",
+      "a busy city street"
     ],
     "answer": [
-      "rollrock",
-      "roaring",
+      "a stream (burn)",
+      "a pool",
       "",
       "",
       ""
@@ -200,14 +208,14 @@ const questions = [
     "presentation": "multi_select",
     "type": "application",
     "unit": "poetry",
-    "topic": "theme_identification",
-    "subtopic": "theme_of_wildness",
+    "topic": "imagery",
+    "subtopic": "natural_features",
     "skills": [
-      "english_fal_identify_theme_evidence"
+      "english_fal_explain_imagery"
     ],
-    "difficulty": 3,
-    "exam_weight": 3,
-    "clues": "- Think about words that suggest noise and force.\n- Three of the options describe gentle or pretty things."
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- Read the first stanzas: what is the poet looking at?\n- Reject features that do not appear in the poem."
   },
   {
     "xp": 10,
@@ -219,16 +227,16 @@ const questions = [
     "text_key": "inversnaid",
     "order": 5,
     "context_text": null,
-    "question": "The speaker's use of descriptive words creates a peaceful atmosphere. Which ONE answer is best substantiated by the poem?",
+    "question": "What is the effect of the poet's repetition of 'let them be left' and 'wildness and wet' in the last stanza?",
     "metadata": [
-      "No: every word in the poem describes a calm and cheerful scene.",
-      "Yes: 'treads' and 'dew' suggest quiet movement, but 'pitchblack' and 'Despair' bring a threatening mood.",
-      "Yes: the poem has no descriptive words at all.",
-      "No: the poem describes a city street.",
+      "It shows that the poet cannot think of anything new to say.",
+      "It stresses the speaker's plea for wild places to be left as they are.",
+      "It makes the poem sound like a cheerful nursery rhyme.",
+      "It shows that the poet has forgotten the earlier lines.",
       ""
     ],
     "answer": [
-      "Yes: 'treads' and 'dew' suggest quiet movement, but 'pitchblack' and 'Despair' bring a threatening mood.",
+      "It stresses the speaker's plea for wild places to be left as they are.",
       "",
       "",
       "",
@@ -237,14 +245,14 @@ const questions = [
     "presentation": "multiple_choice",
     "type": "application",
     "unit": "poetry",
-    "topic": "theme_identification",
-    "subtopic": "discuss_view_with_evidence",
+    "topic": "poetic_devices",
+    "subtopic": "repetition",
     "skills": [
-      "english_fal_substantiate_a_view"
+      "english_fal_explain_effect_of_structure"
     ],
     "difficulty": 3,
     "exam_weight": 3,
-    "clues": "- Look for an option that refers to specific words in the poem.\n- Reject options that deny the poem's content."
+    "clues": "- Repeated words often show how strongly the speaker feels.\n- Think about what the speaker wants to happen to these places."
   }
 ];
 

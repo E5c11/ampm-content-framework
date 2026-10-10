@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 /**
  * DBE English FAL P2 — November 2025 — Macbeth — Extract E (Macbeth and Lady Macbeth before and after the murder, Act 2 Sc 1–2). 3.1.1–3.1.7, 18 marks.
- * Practice questions are fresh (DESIGN-UNI-01), mirror the sub-question types (LANG-EX-02) and carry text_key
- * "macbeth" on lesson and every question (SETWORK-LES-01). aiExplanation: one entry per REAL exam
- * sub-question with its real marks, derived from the memo in own words (AIEXP-08). Every fitb declares
- * keyboard_type 'text' (LANG-KB-01).
+ * Practice questions follow the HL Paper 2 pattern: context_text null, FRESH targets from elsewhere in the text, never the
+ * exam's own statements or the memo's answers (DESIGN-UNI-01); they carry text_key "macbeth" on lesson and every
+ * question (SETWORK-LES-01). aiExplanation: one entry per REAL exam sub-question with its real marks, derived from the
+ * memo in own words (AIEXP-08). Every fitb declares keyboard_type 'text' (LANG-KB-01).
+ *
+ * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
+ * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
+ *   Q1: BK: Act 1.3 → 2.2 → 2.4 (crowning at Scone) → 3.3.
+ *   Q2: BK: Banquo's ghost appears to Macbeth (Act 3, Scene 4).
+ *   Q3: BK: sleepwalking scene Act 5.1 ('Out, damned spot').
+ *   Q4: BK: core plot facts.
+ *   Q5: BK: ambition and guilt are standard themes.
  *
  *   node tools/validate-questions.js --script scripts/add-english-fal-2025-nov-p2-q5.js --curriculum temp/curriculum-vocab-english-fal.json
  *   node scripts/add-english-fal-2025-nov-p2-q5.js --dry-run
@@ -74,14 +82,123 @@ const questions = [
     "text_key": "macbeth",
     "order": 1,
     "context_text": null,
-    "question": "Match each character from Macbeth to the description that fits him.",
+    "question": "Arrange these events from Macbeth in the order in which they happen.",
     "metadata": [
-      "A - Macbeth",
-      "B - Banquo",
-      "C - Macduff",
-      "1 - is told his descendants will be kings",
-      "2 - leaves Scotland to join Malcolm in England",
-      "3 - murders the king and is crowned in his place"
+      "Banquo is murdered",
+      "Duncan is murdered",
+      "The witches greet Macbeth with their prophecies",
+      "Macbeth is crowned king",
+      ""
+    ],
+    "answer": [
+      "The witches greet Macbeth with their prophecies",
+      "Duncan is murdered",
+      "Macbeth is crowned king",
+      "Banquo is murdered",
+      ""
+    ],
+    "presentation": "ordering",
+    "type": "application",
+    "unit": "drama",
+    "topic": "plot_structure",
+    "subtopic": "sequence_of_events",
+    "skills": [
+      "english_fal_order_events"
+    ],
+    "difficulty": 2,
+    "exam_weight": 2,
+    "clues": "- The prophecies are what start Macbeth's ambition.\n- Macbeth must be king before he orders more killings."
+  },
+  {
+    "xp": 10,
+    "syllabus": "dbe",
+    "subject": "english_fal",
+    "year": 2025,
+    "paper": "nov_p2",
+    "name": "Question 2",
+    "text_key": "macbeth",
+    "order": 2,
+    "context_text": null,
+    "question": "To whom does the ghost of Banquo appear at the banquet? Write one word.",
+    "metadata": [
+      "Name:",
+      "[ ]"
+    ],
+    "answer": [
+      "Macbeth",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "presentation": "fitb",
+    "type": "definition",
+    "unit": "drama",
+    "topic": "plot_structure",
+    "subtopic": "key_events",
+    "skills": [
+      "english_fal_recall_key_events"
+    ],
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- Only one person at the banquet can see the ghost.\n- Write one word.",
+    "keyboard_type": "text"
+  },
+  {
+    "xp": 10,
+    "syllabus": "dbe",
+    "subject": "english_fal",
+    "year": 2025,
+    "paper": "nov_p2",
+    "name": "Question 3",
+    "text_key": "macbeth",
+    "order": 3,
+    "context_text": null,
+    "question": "What does Lady Macbeth do in the sleepwalking scene?",
+    "metadata": [
+      "She orders more soldiers to defend the castle.",
+      "She tries to wash imagined blood from her hands.",
+      "She laughs and dances with the doctor.",
+      "She reads a letter from Duncan.",
+      ""
+    ],
+    "answer": [
+      "She tries to wash imagined blood from her hands.",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "presentation": "multiple_choice",
+    "type": "application",
+    "unit": "drama",
+    "topic": "character_analysis",
+    "subtopic": "lady_macbeth",
+    "skills": [
+      "english_fal_recall_key_events"
+    ],
+    "difficulty": 2,
+    "exam_weight": 2,
+    "clues": "- Think about what she feels guilty about.\n- She is seen at night, in her nightgown."
+  },
+  {
+    "xp": 10,
+    "syllabus": "dbe",
+    "subject": "english_fal",
+    "year": 2025,
+    "paper": "nov_p2",
+    "name": "Question 4",
+    "text_key": "macbeth",
+    "order": 4,
+    "context_text": null,
+    "question": "Match each character from Macbeth to the description that fits.",
+    "metadata": [
+      "A - Lady Macbeth",
+      "B - Macduff",
+      "C - Duncan",
+      "1 - kills Macbeth at the end of the play",
+      "2 - the king who is murdered at Macbeth's castle",
+      "3 - urges her husband to kill the king"
     ],
     "answer": [
       "A-3",
@@ -100,116 +217,7 @@ const questions = [
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about who receives which prophecy and who flees to England.\n- Use the pair you are certain about first."
-  },
-  {
-    "xp": 10,
-    "syllabus": "dbe",
-    "subject": "english_fal",
-    "year": 2025,
-    "paper": "nov_p2",
-    "name": "Question 2",
-    "text_key": "macbeth",
-    "order": 2,
-    "context_text": "Is this a dagger which I see before me, the handle toward my hand? Come, let me clutch thee.",
-    "question": "What do the lines below tell us about the speaker's state of mind?",
-    "metadata": [
-      "calm",
-      "amused",
-      "bored",
-      "troubled",
-      ""
-    ],
-    "answer": [
-      "troubled",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "presentation": "multiple_choice",
-    "type": "application",
-    "unit": "drama",
-    "topic": "character_analysis",
-    "subtopic": "state_of_mind",
-    "skills": [
-      "english_fal_infer_state_of_mind"
-    ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Look at what the speaker fears the ground may reveal.\n- Think about how a person feels before committing a crime."
-  },
-  {
-    "xp": 10,
-    "syllabus": "dbe",
-    "subject": "english_fal",
-    "year": 2025,
-    "paper": "nov_p2",
-    "name": "Question 3",
-    "text_key": "macbeth",
-    "order": 3,
-    "context_text": "Stars, hide your fires; let not light see my black and deep desires.",
-    "question": "Which figure of speech is used in the lines below?",
-    "metadata": [
-      "simile",
-      "personification",
-      "oxymoron",
-      "onomatopoeia",
-      ""
-    ],
-    "answer": [
-      "personification",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "presentation": "multiple_choice",
-    "type": "application",
-    "unit": "drama",
-    "topic": "figurative_language",
-    "subtopic": "personification_identification",
-    "skills": [
-      "english_fal_identify_figure_of_speech"
-    ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Ask whether an object or animal is given human actions.\n- Look at what the stones are said to do."
-  },
-  {
-    "xp": 10,
-    "syllabus": "dbe",
-    "subject": "english_fal",
-    "year": 2025,
-    "paper": "nov_p2",
-    "name": "Question 4",
-    "text_key": "macbeth",
-    "order": 4,
-    "context_text": "Banquo is murdered on the road to the banquet, but his son manages to flee.",
-    "question": "Which character, Banquo's son, escapes when the murderers attack his father?",
-    "metadata": [
-      "Name:",
-      "[ ]"
-    ],
-    "answer": [
-      "Fleance",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "presentation": "fitb",
-    "type": "application",
-    "unit": "drama",
-    "topic": "plot_structure",
-    "subtopic": "key_events",
-    "skills": [
-      "english_fal_recall_key_events"
-    ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Think about the banquet scene and who is missing from it.\n- Write a single name.",
-    "keyboard_type": "text"
+    "clues": "- Think about who is married to Macbeth and who ends the play as Macbeth's enemy.\n- One character is already dead before the final act."
   },
   {
     "xp": 10,
@@ -221,32 +229,32 @@ const questions = [
     "text_key": "macbeth",
     "order": 5,
     "context_text": null,
-    "question": "The conflict between Macbeth and Macduff is necessary in the play. Which ONE answer is best substantiated by events in the play?",
+    "question": "Select the TWO themes that are explored in the play.",
     "metadata": [
-      "Macbeth and Macduff are in conflict because Macduff plots to kill Duncan himself.",
-      "Macbeth and Macduff are rivals only because they both love Lady Macbeth.",
-      "Macbeth and Macduff are in conflict because Macbeth murders Duncan and Macduff's family, so Macduff must challenge him.",
-      "Macbeth and Macduff never meet because Macduff is not in Scotland.",
+      "ambition",
+      "friendship and travel",
+      "guilt",
+      "wealth through trade",
       ""
     ],
     "answer": [
-      "Macbeth and Macduff are in conflict because Macbeth murders Duncan and Macduff's family, so Macduff must challenge him.",
-      "",
+      "ambition",
+      "guilt",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "multi_select",
     "type": "application",
     "unit": "drama",
     "topic": "theme_identification",
-    "subtopic": "discuss_view_with_evidence",
+    "subtopic": "themes_of_the_play",
     "skills": [
-      "english_fal_substantiate_a_view"
+      "english_fal_identify_theme"
     ],
-    "difficulty": 3,
-    "exam_weight": 3,
-    "clues": "- Think about what Macbeth does that Macduff must answer.\n- Reject options that are not in the play."
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- Think about what drives Macbeth and what haunts him afterwards.\n- The other options do not fit the play's story."
   }
 ];
 

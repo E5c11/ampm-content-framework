@@ -1,10 +1,17 @@
 #!/usr/bin/env node
 /**
  * DBE English FAL P2 — November 2025 — My Children! My Africa! — Extract H (Thami and Isabel in conversation, Act 2 Sc 1). 4.2.1–4.2.7, 17 marks.
- * Practice questions are fresh (DESIGN-UNI-01), mirror the sub-question types (LANG-EX-02) and carry text_key
- * "my_children_my_africa" on lesson and every question (SETWORK-LES-01). aiExplanation: one entry per REAL exam
- * sub-question with its real marks, derived from the memo in own words (AIEXP-08). Every fitb declares
- * keyboard_type 'text' (LANG-KB-01).
+ * Practice questions follow the HL Paper 2 pattern: context_text null, FRESH targets from elsewhere in the text, never the
+ * exam's own statements or the memo's answers (DESIGN-UNI-01); they carry text_key "my_children_my_africa" on lesson and every
+ * question (SETWORK-LES-01). aiExplanation: one entry per REAL exam sub-question with its real marks, derived from the
+ * memo in own words (AIEXP-08). Every fitb declares keyboard_type 'text' (LANG-KB-01).
+ *
+ * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
+ * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
+ *   Q1: BK: Mr M teaches English (the literature quiz and debates are in English). Verify.
+ *   Q2: M: memo 4.1.6 'refuses to stop ringing the bell even though the situation is volatile'.
+ *   Q3: M: memo 4.2.4(b) (pressure by the comrades) and 4.2.7 (commitment to the Struggle).
+ *   Q4: BK: education and friendship across racial lines are standard themes.
  *
  *   node tools/validate-questions.js --script scripts/add-english-fal-2025-nov-p2-q8.js --curriculum temp/curriculum-vocab-english-fal.json
  *   node scripts/add-english-fal-2025-nov-p2-q8.js --dry-run
@@ -72,33 +79,31 @@ const questions = [
     "name": "Question 1",
     "text_key": "my_children_my_africa",
     "order": 1,
-    "context_text": "Several novels were published under the nom-de-plume of the writer's sister.",
-    "question": "In the sentence below, what are 'noms-de-plume'?",
+    "context_text": null,
+    "question": "Which school subject does Mr M teach? Write one word.",
     "metadata": [
-      "last names",
-      "real names",
-      "assumed names",
-      "first names",
-      ""
+      "Subject:",
+      "[ ]"
     ],
     "answer": [
-      "assumed names",
+      "English",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
-    "type": "application",
+    "presentation": "fitb",
+    "type": "definition",
     "unit": "drama",
-    "topic": "figurative_language",
-    "subtopic": "vocabulary_in_context",
+    "topic": "character_analysis",
+    "subtopic": "mr_m",
     "skills": [
-      "english_fal_explain_word_in_context"
+      "english_fal_recall_key_events"
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about why an author might publish under another name.\n- The phrase comes from French and means 'pen name'."
+    "clues": "- The literature quiz is based on this subject.\n- Write one word.",
+    "keyboard_type": "text"
   },
   {
     "xp": 10,
@@ -109,33 +114,33 @@ const questions = [
     "name": "Question 2",
     "text_key": "my_children_my_africa",
     "order": 2,
-    "context_text": "THAMI: I must choose my words slowly, Isabel; I do not want to hurt you.",
-    "question": "Select the TWO things that make Thami hesitate when he speaks to Isabel in the lines below.",
+    "context_text": null,
+    "question": "What does the ringing of the school bell show about Mr M?",
     "metadata": [
-      "He is afraid of hurting Isabel",
-      "He is afraid of failing the literature quiz",
-      "He is afraid she will misunderstand why he is leaving",
-      "He is afraid that Mr M will find out",
-      "He is afraid of the headmaster"
+      "his wish to become the school's headmaster",
+      "his love of music",
+      "his stubborn commitment to education and to order in the school",
+      "his fear of the sea",
+      ""
     ],
     "answer": [
-      "He is afraid of hurting Isabel",
-      "He is afraid she will misunderstand why he is leaving",
+      "his stubborn commitment to education and to order in the school",
+      "",
       "",
       "",
       ""
     ],
-    "presentation": "multi_select",
+    "presentation": "multiple_choice",
     "type": "application",
     "unit": "drama",
-    "topic": "character_analysis",
-    "subtopic": "state_of_mind",
+    "topic": "dramatic_techniques",
+    "subtopic": "symbols_in_the_play",
     "skills": [
-      "english_fal_infer_state_of_mind"
+      "english_fal_explain_symbol"
     ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Look at the words 'carefully' and 'hurt'.\n- Think about what he does not want Isabel to believe."
+    "difficulty": 3,
+    "exam_weight": 3,
+    "clues": "- Think about what he keeps doing even when the situation is dangerous.\n- Look for the option about duty and education."
   },
   {
     "xp": 10,
@@ -146,33 +151,33 @@ const questions = [
     "name": "Question 3",
     "text_key": "my_children_my_africa",
     "order": 3,
-    "context_text": "ISABEL: Well, that is wonderful news, isn't it? Please, tell me more.",
-    "question": "What tone would the speaker use for the line below?",
+    "context_text": null,
+    "question": "Select the TWO reasons why Thami joins the boycott.",
     "metadata": [
-      "delighted",
-      "frightened",
-      "affectionate",
-      "sarcastic",
-      ""
+      "He feels loyalty to the struggle of his community",
+      "He has failed his school exams",
+      "He is pressured by the comrades",
+      "He wants to become a teacher like Mr M",
+      "He has moved to another town"
     ],
     "answer": [
-      "sarcastic",
-      "",
+      "He feels loyalty to the struggle of his community",
+      "He is pressured by the comrades",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "multi_select",
     "type": "application",
     "unit": "drama",
-    "topic": "tone_and_mood",
-    "subtopic": "tone_identification",
+    "topic": "character_analysis",
+    "subtopic": "thami_motives",
     "skills": [
-      "english_fal_identify_tone"
+      "english_fal_identify_stated_reasons"
     ],
     "difficulty": 3,
-    "exam_weight": 2,
-    "clues": "- Think about how someone sounds when she already knows the answer.\n- She is losing patience."
+    "exam_weight": 3,
+    "clues": "- Think about the pressure around him and what he feels for his community.\n- Reject reasons that contradict the play."
   },
   {
     "xp": 10,
@@ -183,68 +188,33 @@ const questions = [
     "name": "Question 4",
     "text_key": "my_children_my_africa",
     "order": 4,
-    "context_text": "Isabel prepares for the literature quiz and later tells her story to the world through her writing.",
-    "question": "Which career does Isabel hope to follow? Write one word.",
-    "metadata": [
-      "Career:",
-      "[ ]"
-    ],
-    "answer": [
-      "journalist",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "presentation": "fitb",
-    "type": "application",
-    "unit": "drama",
-    "topic": "plot_structure",
-    "subtopic": "key_events",
-    "skills": [
-      "english_fal_recall_key_events"
-    ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Think about what she says about writing and telling stories about people's lives.\n- Write a single word.",
-    "keyboard_type": "text"
-  },
-  {
-    "xp": 10,
-    "syllabus": "dbe",
-    "subject": "english_fal",
-    "year": 2025,
-    "paper": "nov_p2",
-    "name": "Question 5",
-    "text_key": "my_children_my_africa",
-    "order": 5,
     "context_text": null,
-    "question": "Thami represents hope for the future. Which ONE answer is best substantiated by events in the play?",
+    "question": "Select the TWO themes that are explored in the play.",
     "metadata": [
-      "Thami represents despair because he never studies.",
-      "Thami represents hope because he is gifted and gives up his own plans for his people, though his future is uncertain.",
-      "Thami represents hope because he joins the police.",
-      "Thami represents nothing because he leaves the story early.",
+      "education",
+      "magic and witchcraft",
+      "friendship across barriers",
+      "a long sea voyage",
       ""
     ],
     "answer": [
-      "Thami represents hope because he is gifted and gives up his own plans for his people, though his future is uncertain.",
-      "",
+      "education",
+      "friendship across barriers",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "multi_select",
     "type": "application",
     "unit": "drama",
     "topic": "theme_identification",
-    "subtopic": "discuss_view_with_evidence",
+    "subtopic": "themes_of_the_play",
     "skills": [
-      "english_fal_substantiate_a_view"
+      "english_fal_identify_theme"
     ],
-    "difficulty": 3,
-    "exam_weight": 3,
-    "clues": "- Look for an option that mentions both his talent and the cost of his choice.\n- Reject options that are not in the play."
+    "difficulty": 2,
+    "exam_weight": 2,
+    "clues": "- Think about what happens between Thami and Isabel and what Mr M cares about.\n- Reject themes that are not in the story."
   }
 ];
 

@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 /**
  * DBE English FAL P2 — November 2025 — Cry, the Beloved Country — Extract B (Absalom's letter, Book 3 Ch. 3). 1.2.1–1.2.9, 17 marks.
- * Practice questions are fresh (DESIGN-UNI-01), mirror the sub-question types (LANG-EX-02) and carry text_key
- * "cry_the_beloved_country" on lesson and every question (SETWORK-LES-01). aiExplanation: one entry per REAL exam
- * sub-question with its real marks, derived from the memo in own words (AIEXP-08). Every fitb declares
- * keyboard_type 'text' (LANG-KB-01).
+ * Practice questions follow the HL Paper 2 pattern: context_text null, FRESH targets from elsewhere in the text, never the
+ * exam's own statements or the memo's answers (DESIGN-UNI-01); they carry text_key "cry_the_beloved_country" on lesson and every
+ * question (SETWORK-LES-01). aiExplanation: one entry per REAL exam sub-question with its real marks, derived from the
+ * memo in own words (AIEXP-08). Every fitb declares keyboard_type 'text' (LANG-KB-01).
+ *
+ * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
+ * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
+ *   Q1: BK: Napoleon Letsitsi is the agricultural demonstrator who comes to Ndotsheni in Book 3. Verify the name spelling against the book.
+ *   Q2: BK: Msimangu (priest, Johannesburg), James Jarvis (farmer at Ndotsheni hills), Father Vincent (priest at the mission). Memo names Father Vincent.
+ *   Q3: BK: racial injustice and social/tribal breakdown are standard themes.
+ *   Q4: BK: Kumalo climbs the mountain and prays at dawn on the day of the hanging (closing chapter of the novel). Verify.
+ *   Q5: BK + M: Matthew is John Kumalo's son tried with Absalom (the paper's Q1.2.5 names Matthew and Johannes).
  *
  *   node tools/validate-questions.js --script scripts/add-english-fal-2025-nov-p2-q2.js --curriculum temp/curriculum-vocab-english-fal.json
  *   node scripts/add-english-fal-2025-nov-p2-q2.js --dry-run
@@ -72,17 +80,17 @@ const questions = [
     "name": "Question 1",
     "text_key": "cry_the_beloved_country",
     "order": 1,
-    "context_text": "A young man, locked in a prison cell, writes to his parents to tell them that he is in good health and that he does not expect to see his home again.",
-    "question": "What kind of text is described in the extract?",
+    "context_text": null,
+    "question": "Why does the agricultural demonstrator, Napoleon Letsitsi, come to Ndotsheni?",
     "metadata": [
-      "a report from a social worker",
-      "a letter written from prison",
-      "a telegram from the Bishop",
-      "a note from a priest",
+      "to start a school for girls",
+      "to teach the villagers better farming methods",
+      "to build a new church",
+      "to collect taxes from the farmers",
       ""
     ],
     "answer": [
-      "a letter written from prison",
+      "to teach the villagers better farming methods",
       "",
       "",
       "",
@@ -92,13 +100,13 @@ const questions = [
     "type": "application",
     "unit": "novel",
     "topic": "plot_structure",
-    "subtopic": "key_events",
+    "subtopic": "hope_for_ndotsheni",
     "skills": [
       "english_fal_recall_key_events"
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about who is writing, to whom, and from where.\n- Look at what the writer tells his family."
+    "clues": "- Think about the problem that has made the valley so poor.\n- His job title tells you what he does."
   },
   {
     "xp": 10,
@@ -109,52 +117,15 @@ const questions = [
     "name": "Question 2",
     "text_key": "cry_the_beloved_country",
     "order": 2,
-    "context_text": "This is a quiet place. I am locked in, but the men are not unkind to me, and I have made my peace with it.",
-    "question": "What does the sentence below tell us about the writer's state of mind?",
-    "metadata": [
-      "furious with the people who convicted him",
-      "hopeful that the sentence will be reduced",
-      "indifferent to his parents' feelings",
-      "accepting of what is going to happen to him",
-      ""
-    ],
-    "answer": [
-      "accepting of what is going to happen to him",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "presentation": "multiple_choice",
-    "type": "application",
-    "unit": "novel",
-    "topic": "character_analysis",
-    "subtopic": "state_of_mind",
-    "skills": [
-      "english_fal_infer_state_of_mind"
-    ],
-    "difficulty": 3,
-    "exam_weight": 2,
-    "clues": "- Look at how he describes his surroundings and how he is treated.\n- Ask whether the tone is angry, hopeful or calm."
-  },
-  {
-    "xp": 10,
-    "syllabus": "dbe",
-    "subject": "english_fal",
-    "year": 2025,
-    "paper": "nov_p2",
-    "name": "Question 3",
-    "text_key": "cry_the_beloved_country",
-    "order": 3,
     "context_text": null,
-    "question": "Match each person in the extract to what he does.",
+    "question": "Match each character from the novel to the description that fits him.",
     "metadata": [
-      "A - Absalom",
-      "B - The priest from Pretoria",
-      "C - Stephen Kumalo",
-      "1 - prepares Absalom for his death",
-      "2 - reads the letter at home in Ndotsheni",
-      "3 - writes a letter from prison to his parents"
+      "A - Msimangu",
+      "B - James Jarvis",
+      "C - Father Vincent",
+      "1 - a white farmer from the hills above Ndotsheni",
+      "2 - a priest at the Mission House in Johannesburg",
+      "3 - a priest who helps Kumalo in Johannesburg"
     ],
     "answer": [
       "A-3",
@@ -166,14 +137,51 @@ const questions = [
     "presentation": "match",
     "type": "application",
     "unit": "novel",
-    "topic": "plot_structure",
-    "subtopic": "key_events",
+    "topic": "character_analysis",
+    "subtopic": "match_characters_to_roles",
     "skills": [
       "english_fal_match_characters_to_roles"
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about who writes, who reads and who ministers to the prisoner.\n- Use the pair you are certain about first."
+    "clues": "- Think about who lives in the city and who lives near Ndotsheni.\n- Two of the three are priests; look at where each works."
+  },
+  {
+    "xp": 10,
+    "syllabus": "dbe",
+    "subject": "english_fal",
+    "year": 2025,
+    "paper": "nov_p2",
+    "name": "Question 3",
+    "text_key": "cry_the_beloved_country",
+    "order": 3,
+    "context_text": null,
+    "question": "Select the TWO themes that are explored in the novel.",
+    "metadata": [
+      "racial injustice",
+      "space exploration",
+      "the break-up of traditional community life",
+      "romantic rivalry between two chiefs",
+      "the power of magic"
+    ],
+    "answer": [
+      "racial injustice",
+      "the break-up of traditional community life",
+      "",
+      "",
+      ""
+    ],
+    "presentation": "multi_select",
+    "type": "application",
+    "unit": "novel",
+    "topic": "theme_identification",
+    "subtopic": "themes_of_the_novel",
+    "skills": [
+      "english_fal_identify_theme"
+    ],
+    "difficulty": 2,
+    "exam_weight": 2,
+    "clues": "- Think about what happens to families when people leave the villages.\n- Reject themes that do not fit the story's setting."
   },
   {
     "xp": 10,
@@ -185,32 +193,32 @@ const questions = [
     "text_key": "cry_the_beloved_country",
     "order": 4,
     "context_text": null,
-    "question": "Select the TWO events that best show the theme of hardship in the novel.",
+    "question": "What does Stephen Kumalo do at the time of Absalom's hanging?",
     "metadata": [
-      "Drought and poor farming conditions cause suffering in Ndotsheni",
-      "Arthur Jarvis is rewarded for his work",
-      "Stephen Kumalo searches for family members he has lost",
-      "John Kumalo grows rich through his political speeches",
-      "The Bishop retires from the church"
+      "He travels to the court to ask for a pardon.",
+      "He leaves the priesthood and moves to Pretoria.",
+      "He goes to the dam to meet James Jarvis.",
+      "He climbs a mountain to pray as the hour of Absalom's hanging comes.",
+      ""
     ],
     "answer": [
-      "Drought and poor farming conditions cause suffering in Ndotsheni",
-      "Stephen Kumalo searches for family members he has lost",
+      "He climbs a mountain to pray as the hour of Absalom's hanging comes.",
+      "",
       "",
       "",
       ""
     ],
-    "presentation": "multi_select",
+    "presentation": "multiple_choice",
     "type": "application",
     "unit": "novel",
-    "topic": "theme_identification",
-    "subtopic": "theme_of_hardship",
+    "topic": "plot_structure",
+    "subtopic": "closing_events",
     "skills": [
-      "english_fal_identify_theme_evidence"
+      "english_fal_recall_key_events"
     ],
-    "difficulty": 3,
-    "exam_weight": 3,
-    "clues": "- Look for events where characters suffer loss, poverty or fear.\n- Two options describe success or comfort; they do not show hardship."
+    "difficulty": 2,
+    "exam_weight": 2,
+    "clues": "- Think about how a priest would spend the last hours before an execution.\n- Look for the option that happens in the hills, close to nature."
   },
   {
     "xp": 10,
@@ -222,32 +230,30 @@ const questions = [
     "text_key": "cry_the_beloved_country",
     "order": 5,
     "context_text": null,
-    "question": "Stephen Kumalo's faith is what carries him through his sufferings. Which ONE answer is best substantiated by events in the novel?",
+    "question": "What is the first name of John Kumalo's son, who is tried together with Absalom? Write one word.",
     "metadata": [
-      "Stephen never prays because he believes the church has failed South Africa.",
-      "Stephen's faith is never tested because his family is safe.",
-      "Stephen turns to prayer when Gertrude and Absalom are in trouble, but he also doubts when he discovers Absalom's crime.",
-      "Stephen leaves the priesthood as soon as he arrives in Johannesburg.",
-      ""
+      "Name:",
+      "[ ]"
     ],
     "answer": [
-      "Stephen turns to prayer when Gertrude and Absalom are in trouble, but he also doubts when he discovers Absalom's crime.",
+      "Matthew",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
-    "type": "application",
+    "presentation": "fitb",
+    "type": "definition",
     "unit": "novel",
-    "topic": "theme_identification",
-    "subtopic": "discuss_view_with_evidence",
+    "topic": "plot_structure",
+    "subtopic": "key_characters",
     "skills": [
-      "english_fal_substantiate_a_view"
+      "english_fal_recall_key_events"
     ],
     "difficulty": 3,
-    "exam_weight": 3,
-    "clues": "- Look for an option that mentions both his faith and moments of doubt.\n- Rule out options that contradict the novel."
+    "exam_weight": 2,
+    "clues": "- He is Absalom's cousin.\n- Write his first name only.",
+    "keyboard_type": "text"
   }
 ];
 

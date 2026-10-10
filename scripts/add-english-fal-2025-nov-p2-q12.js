@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 /**
  * DBE English FAL P2 — November 2025 — 'Sonnet 73' by William Shakespeare. 6.2.1–6.2.8, 17 marks.
- * Practice questions are fresh (DESIGN-UNI-01), mirror the sub-question types (LANG-EX-02) and carry text_key
- * "sonnet_73" on lesson and every question (SETWORK-LES-01). aiExplanation: one entry per REAL exam
- * sub-question with its real marks, derived from the memo in own words (AIEXP-08). Every fitb declares
- * keyboard_type 'text' (LANG-KB-01).
+ * Practice questions follow the HL Paper 2 pattern: context_text null, FRESH targets from elsewhere in the text, never the
+ * exam's own statements or the memo's answers (DESIGN-UNI-01); they carry text_key "sonnet_73" on lesson and every
+ * question (SETWORK-LES-01). aiExplanation: one entry per REAL exam sub-question with its real marks, derived from the
+ * memo in own words (AIEXP-08). Every fitb declares keyboard_type 'text' (LANG-KB-01).
+ *
+ * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
+ * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
+ *   Q1: P + BK: the poem has 14 numbered lines; a sonnet is a 14-line form.
+ *   Q2: P: 12 lines in three groups of four, then two lines (printed layout).
+ *   Q3: P: 'thou' and 'thy love' are printed in the poem.
+ *   Q4: P: 'cold' and 'bare' are printed in lines 3–4.
+ *   Q5: PT: vocabulary meaning of 'ere long'.
  *
  *   node tools/validate-questions.js --script scripts/add-english-fal-2025-nov-p2-q12.js --curriculum temp/curriculum-vocab-english-fal.json
  *   node scripts/add-english-fal-2025-nov-p2-q12.js --dry-run
@@ -71,33 +79,31 @@ const questions = [
     "name": "Question 1",
     "text_key": "sonnet_73",
     "order": 1,
-    "context_text": "In me thou seest the twilight of such day as after sunset fadeth in the west; in me thou seest the glowing of such fire that on the ashes of his youth doth lie.",
-    "question": "Select the TWO things the speaker compares his old age to in the poem.",
+    "context_text": null,
+    "question": "How many lines does a sonnet have? Write the number.",
     "metadata": [
-      "the twilight after sunset",
-      "a river in flood",
-      "a fire dying down",
-      "a flower in full bloom",
-      "a ship at sea"
+      "Lines:",
+      "[ ]"
     ],
     "answer": [
-      "the twilight after sunset",
-      "a fire dying down",
+      "14",
+      "",
       "",
       "",
       ""
     ],
-    "presentation": "multi_select",
-    "type": "application",
+    "presentation": "fitb",
+    "type": "definition",
     "unit": "poetry",
-    "topic": "imagery",
-    "subtopic": "time_imagery",
+    "topic": "structure_and_form",
+    "subtopic": "poem_form",
     "skills": [
-      "english_fal_explain_imagery"
+      "english_fal_identify_poem_structure"
     ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- Look at the images in the second and third quatrains.\n- One image is about light at the end of the day and one is about something that burns."
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- Count the lines printed for 'Sonnet 73'.\n- Write digits only.",
+    "keyboard_type": "text"
   },
   {
     "xp": 10,
@@ -108,17 +114,17 @@ const questions = [
     "name": "Question 2",
     "text_key": "sonnet_73",
     "order": 2,
-    "context_text": "When yellow leaves, or none, or few, do hang upon those boughs which shake against the cold.",
-    "question": "What do the few yellow leaves on the branches suggest about the speaker?",
+    "context_text": null,
+    "question": "How is 'Sonnet 73' arranged?",
     "metadata": [
-      "that the speaker is a young man in love",
-      "that a great storm is coming",
-      "that the harvest was plentiful",
-      "that the speaker is old and near the end of his life",
+      "four stanzas of four lines each",
+      "two octaves",
+      "three quatrains followed by a couplet",
+      "six couplets",
       ""
     ],
     "answer": [
-      "that the speaker is old and near the end of his life",
+      "three quatrains followed by a couplet",
       "",
       "",
       "",
@@ -127,14 +133,14 @@ const questions = [
     "presentation": "multiple_choice",
     "type": "application",
     "unit": "poetry",
-    "topic": "imagery",
-    "subtopic": "season_imagery",
+    "topic": "structure_and_form",
+    "subtopic": "poem_form",
     "skills": [
-      "english_fal_explain_imagery"
+      "english_fal_identify_poem_structure"
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Think about what happens to leaves late in the year.\n- The speaker compares the season to himself."
+    "clues": "- Count the lines in each part and look at the last two lines.\n- A quatrain is a set of four lines."
   },
   {
     "xp": 10,
@@ -145,31 +151,33 @@ const questions = [
     "name": "Question 3",
     "text_key": "sonnet_73",
     "order": 3,
-    "context_text": "Which by and by black night doth take away, death's second self, that seals up all in rest.",
-    "question": "What does 'black night' stand for in the lines below? Write one word.",
+    "context_text": null,
+    "question": "Who is the speaker addressing in the poem?",
     "metadata": [
-      "Word:",
-      "[ ]"
+      "a king",
+      "the sea",
+      "a stranger in a crowd",
+      "a loved one",
+      ""
     ],
     "answer": [
-      "death",
+      "a loved one",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "fitb",
+    "presentation": "multiple_choice",
     "type": "application",
     "unit": "poetry",
     "topic": "poetic_devices",
-    "subtopic": "word_meaning_in_context",
+    "subtopic": "addressee",
     "skills": [
-      "english_fal_explain_word_in_context"
+      "english_fal_identify_speaker_and_audience"
     ],
-    "difficulty": 3,
+    "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Look at the words that follow: 'Death's second self'.\n- Night is compared to something final.",
-    "keyboard_type": "text"
+    "clues": "- The word 'thou' appears again and again.\n- Think about the last two lines, which talk about love."
   },
   {
     "xp": 10,
@@ -180,33 +188,33 @@ const questions = [
     "name": "Question 4",
     "text_key": "sonnet_73",
     "order": 4,
-    "context_text": "This thou perceiv'st, which makes thy love more strong, to love that well which thou must leave ere long.",
-    "question": "What is the effect of the final couplet of the sonnet?",
+    "context_text": null,
+    "question": "Select the TWO words from the first four lines that show the poem is about the end of a year.",
     "metadata": [
-      "It tells the listener to forget the speaker.",
-      "It urges the listener to love more strongly because their time together is short.",
-      "It describes a cheerful day at the sea.",
-      "It asks the listener to leave at once.",
-      ""
+      "cold",
+      "warm",
+      "bare",
+      "green",
+      "singing"
     ],
     "answer": [
-      "It urges the listener to love more strongly because their time together is short.",
-      "",
+      "cold",
+      "bare",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "multi_select",
     "type": "application",
     "unit": "poetry",
-    "topic": "structure_and_form",
-    "subtopic": "couplet_function",
+    "topic": "imagery",
+    "subtopic": "season_imagery",
     "skills": [
-      "english_fal_explain_effect_of_structure"
+      "english_fal_explain_imagery"
     ],
-    "difficulty": 3,
+    "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Read the last two lines as one idea: what does the speaker ask?\n- A couplet often draws the poem together."
+    "clues": "- Think about words that describe winter branches without leaves.\n- Reject words that describe spring or summer."
   },
   {
     "xp": 10,
@@ -218,16 +226,16 @@ const questions = [
     "text_key": "sonnet_73",
     "order": 5,
     "context_text": null,
-    "question": "The speaker in this poem can be pitied. Which ONE answer is best substantiated by the poem?",
+    "question": "What does 'ere long' mean in the last line of the poem?",
     "metadata": [
-      "No: the speaker is young and strong.",
-      "Yes: the speaker has just won a great victory.",
-      "Yes: the speaker's ageing is shown by few leaves and a fading sunset, and he is helpless as death is inevitable.",
-      "No: the poem is only about a garden.",
+      "slowly",
+      "soon",
+      "never",
+      "yesterday",
       ""
     ],
     "answer": [
-      "Yes: the speaker's ageing is shown by few leaves and a fading sunset, and he is helpless as death is inevitable.",
+      "soon",
       "",
       "",
       "",
@@ -236,14 +244,14 @@ const questions = [
     "presentation": "multiple_choice",
     "type": "application",
     "unit": "poetry",
-    "topic": "theme_identification",
-    "subtopic": "discuss_view_with_evidence",
+    "topic": "figurative_language",
+    "subtopic": "word_meaning_in_context",
     "skills": [
-      "english_fal_substantiate_a_view"
+      "english_fal_explain_word_in_context"
     ],
-    "difficulty": 3,
-    "exam_weight": 3,
-    "clues": "- Look for an option that refers to images in the poem.\n- Reject options that contradict the poem."
+    "difficulty": 2,
+    "exam_weight": 2,
+    "clues": "- 'Ere' is an old word for 'before'.\n- Think of what 'before a long time' would mean."
   }
 ];
 
