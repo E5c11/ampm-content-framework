@@ -388,7 +388,7 @@ one theme; reuse a node only where it is genuinely the same concept (e.g. *Domin
 
 ## Completed papers ledger
 
-**2024 `nov_p1` — authored, uploaded to dev and reviewed on emulator, 2026-10-10; prod push still open.**
+**2024 `nov_p1` — authored, uploaded to dev, reviewed on emulator and LIVE IN PROD, 2026-10-10** (pushed with 2024 `nov_p2`; see that entry).
 Review (build 2.3.5-dev01): 51/51 PASS, 0 AUTO_FIX, 0 FLAG; Phase 5 9/9 CORRECT on the custom number pad
 (`182.8` typed with the `.` key). Source tabs render in order on all three source-based lessons. Report:
 `AMPM/temp/review/history_nov_p1_2024/report.md`.
@@ -415,7 +415,7 @@ splits (a)/(b)/(c) parts) → **300/300**. 40 image URLs return 200, all distinc
   2025 errors (napalm a "gas", Vietnamisation = WHAM). Paper prints 2.4 after 2.5 on page 6 (layout only).
 - `aiExplanation` clue/approach bullets use `"- "`; the 2025 P1 scripts have a doubled `"- - "` prefix.
 
-**`nov_p2` 2024 — authored, uploaded to dev and reviewed on emulator, 2026-10-10; prod push open.**
+**`nov_p2` 2024 — authored, uploaded to dev, reviewed on emulator and LIVE IN PROD, 2026-10-10.**
 6 lessons, `order` 1–6, 51 practice questions (9/9/9/8/8/8), validated (`--curriculum`, 0 errors,
 0 warnings) and upserted, one commit per lesson (`f4d4c7b`…`87e3f97`, PDFs `6c86031`). Postgres check:
 all published, every question has unit/topic/subtopic + a skill, no `\n` in stems, every `fitb` is
@@ -433,6 +433,10 @@ items were written to avoid the 2025 set (no SASO-year, Mandela-release or Gorba
 - MC: index 0 in 2/21; correct option strictly longest in 4/21 (rebalanced before upload).
 - **Emulator review 2026-10-10 (build 2.3.5-dev01):** 51/51 PASS, 0 AUTO_FIX, 0 FLAG; Phase 5 9/9 fitb
   typed on the custom number pad and marked correct. Report: `ampm-kmp/temp/review/history_nov_p2_2024/report.md`.
+- **Prod 2026-10-10, together with 2024 `nov_p1`:** pushed unpublished (P1 with `--allow-partial-exam`, then P2),
+  prod diffed against dev across lessons, questions, sources, explanations, skills and tags (0 differences), all
+  81 prod image URLs return 200, `apply-exam-gate --env prod` confirmed the floor (no gate), then `--publish`:
+  12 lessons / 102 questions live.
 
 **`nov_p1` — authored, uploaded to dev and reviewed on emulator, 2026-10-07; prod push still open.**
 All 6 lessons (3 source-based, 3 essay), `order` 1–6, 51 practice questions, validated
