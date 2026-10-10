@@ -388,7 +388,10 @@ one theme; reuse a node only where it is genuinely the same concept (e.g. *Domin
 
 ## Completed papers ledger
 
-**2024 `nov_p1` — authored and uploaded to dev, 2026-10-10; emulator review and prod push still open.**
+**2024 `nov_p1` — authored, uploaded to dev and reviewed on emulator, 2026-10-10; prod push still open.**
+Review (build 2.3.5-dev01): 51/51 PASS, 0 AUTO_FIX, 0 FLAG; Phase 5 9/9 CORRECT on the custom number pad
+(`182.8` typed with the `.` key). Source tabs render in order on all three source-based lessons. Report:
+`AMPM/temp/review/history_nov_p1_2024/report.md`.
 Sources: `files/History P1 Nov 2024 {Eng,Addendum Eng,MG Eng}.pdf` (all three in hand before authoring).
 Same structure as 2025 P1: Q1 Berlin Wall 1961 (1A travel-guide article, 1B Fisher eyewitness accounts,
 1C *Independent* on Noffke, 1D Hook cartoon), Q2 Cuito Cuanavale → Tripartite Accord (2A Goldberg, 2B Castro
