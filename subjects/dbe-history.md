@@ -388,7 +388,10 @@ one theme; reuse a node only where it is genuinely the same concept (e.g. *Domin
 
 ## Completed papers ledger
 
-**2023 `nov_p2` — authored and uploaded to dev, 2026-10-10; reviewed on emulator 2026-10-11; prod push open.**
+**2023 `nov_p2` — authored and uploaded to dev, 2026-10-10; reviewed on emulator 2026-10-11; LIVE IN PROD 2026-10-11.**
+Prod 2026-10-11: P1 and P2 2023 pushed unpublished (P1 with `--allow-partial-exam`; P2 created the 2 topics and 8 tags),
+0 row diffs vs dev across lessons/questions/supplementary/AI sub-questions/skills/tags, 85/85 prod image URLs 200,
+floor (no gate, VER-07), then published (6 lessons / 51 questions + 6 lessons / 50 questions).
 Review (build 2.4.0-dev01): 49/50 PASS, 1 AUTO_FIX, 0 FLAG; Phase 5 8/8 CORRECT on the custom number pad. The fix:
 Q2 item 8 (ordering) had a plain space in "3 500 police officers"; now U+00A0 in metadata and answer so the number
 cannot wrap (dev patch + script). Report: `AMPM/temp/review/history_nov_p2_2023/report.md`.
@@ -423,7 +426,7 @@ distinct objects (Q5/Q6 reuse `q4/question_1.png`).
   Because the lesson shows the memo pages next to the AI explanation, each of these (except 3.3.1) is flagged in the
   explanation as a closing "Note" giving the memo's version and the correct one (1.4.2, 1.6, Q4, Q5, Q6; `bce265a`).
 
-**2023 `nov_p1` — authored, uploaded to dev and reviewed on emulator, 2026-10-10; prod push open.**
+**2023 `nov_p1` — authored, uploaded to dev and reviewed on emulator, 2026-10-10; LIVE IN PROD 2026-10-11 (with P2).**
 Review (build 2.4.0-dev01): 50/51 PASS, 1 AUTO_FIX, 0 FLAG; Phase 5 6/6 CORRECT on the custom number pad. The fix:
 Q5 item 1's correct MC option said the MPR was "founded in 1967", giving away item 2's `fitb` answer; reworded to
 "founded, which later became the only legal party" (dev patch + script). Report: `AMPM/temp/review/history_nov_p1_2023/report.md`.
