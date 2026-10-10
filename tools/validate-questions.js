@@ -22,6 +22,7 @@ const path = require('path');
 const fs   = require('fs');
 const fv   = require('./lib/feature-versions');
 const { legacyReason } = require('./lib/legacy-keyboard-allowlist');
+const { textKeyOf } = require('./lib/setwork-vocabulary');
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -460,8 +461,8 @@ if (scriptPath) {
   // SETWORK-LES-01 (shared/setwork.md): a setwork lesson and ALL its questions carry the same text_key.
   // Source-level so it sees the lesson's own `text_key` too; only fires when a text_key is present at all.
   {
-    const lessonKeys = [...scriptSrc.matchAll(/^\s*["']?text_key["']?:\s*(["'])([^"']*)\1/gm)].map(m => m[2]);
-    const qKeys = questions.map(q => q.text_key ?? null);
+    const lessonKeys = [...scriptSrc.matchAll(/^\s*["']?(?:text_key|prescribedTextId)["']?:\s*(["'])([^"']*)\1/gm)].map(m => m[2]);
+    const qKeys = questions.map(q => textKeyOf(q));
     const distinct = new Set([...lessonKeys, ...qKeys.filter(Boolean)]);
     if (distinct.size > 1) {
       setErrors.push(`SETWORK-LES-01: more than one text_key in the script (${[...distinct].join(', ')}) — one lesson, one text`);

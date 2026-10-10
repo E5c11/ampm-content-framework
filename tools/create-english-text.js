@@ -34,9 +34,7 @@
 const { getPool, closePool } = require('./lib/postgres');
 const { upsertRow } = require('./lib/upsert');
 
-const KNOWN_SECTIONS = ['novel', 'play', 'poetry', 'short_stories'];
-const LEGACY_SECTIONS = ['novel', 'play', 'poetry']; // the only values released app builds can decode (< 2.4.1)
-const SECTION_RE = /^[a-z][a-z0-9_]{0,31}$/;
+const { KNOWN_SECTIONS, LEGACY_SECTIONS, SECTION_RE } = require('./lib/setwork-vocabulary');
 
 const a = process.argv.slice(2).reduce((acc, x, i, arr) => {
   if (x.startsWith('--')) acc[x.slice(2)] = arr[i + 1] && !arr[i + 1].startsWith('--') ? arr[i + 1] : true;
