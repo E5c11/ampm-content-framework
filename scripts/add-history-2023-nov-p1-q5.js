@@ -62,12 +62,12 @@ const questions = [
     "metadata": [
       "The rebel movement that led Katanga's attempt to break away from the Congo",
       "Lumumba's nationalist party, which won the most seats in the 1960 elections",
-      "The ruling party Mobutu founded in 1967, which became the only legal party",
+      "The ruling party Mobutu founded, which later became the only legal party",
       "The Belgian colonial council that governed the Congo until independence in 1960",
       ""
     ],
     "answer": [
-      "The ruling party Mobutu founded in 1967, which became the only legal party",
+      "The ruling party Mobutu founded, which later became the only legal party",
       "",
       "",
       "",
