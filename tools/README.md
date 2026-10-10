@@ -28,7 +28,7 @@ touching Postgres / GCS / content data; Python for doc-graph upkeep only.
 | `lib/upsert.js` | `upsertRow()` — re-runnable `INSERT … ON CONFLICT DO UPDATE`. | Node |
 | `lib/uuid.js` | Deterministic authored-content UUIDs (namespace pinned; disjoint from Track A's). | Node |
 | `lib/content-rows.js` | Maps the authored logical shape → Postgres rows (`lessons`/`questions`/…). | Node |
-| `lib/curriculum.js` | `curriculum_nodes` ID conventions (flat for math_lit, namespaced for english_hl). | Node |
+| `lib/curriculum.js` | `curriculum_nodes` ID conventions (flat for math_lit, namespaced for english_hl; english_fal/afrikaans_fal namespaced + unit prefix). | Node |
 
 The validator's own rules are never ported/reworded (see `workflows/README.md`) — it added
 `"[]"` no-space blank-token rejection + the `steps` exact-`"[ ]"` check (Inventory #5,

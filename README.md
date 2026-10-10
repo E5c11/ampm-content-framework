@@ -28,6 +28,8 @@ profile-and-layers consumption pattern.
 INSTRUCTIONS.md    — how to consume this framework (profile → layers), mirrors esc-ai-framework
 core/              — subject-agnostic invariants: question schema, authoring principles,
                      persistence contract (Cloud SQL Postgres), shared pipeline phases
+shared/            — cross-subject rule sets reused by several profiles (language subjects,
+                     setwork/prescribed texts)
 presentations/     — one doc per presentation type (fitb, fraction, multiple_choice,
                      multi_select, ordering, match, equation, steps), each carrying its
                      renderer contract verified against the app code that consumes it

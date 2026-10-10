@@ -12,14 +12,18 @@
  * - maths: same `__` namespacing AND a `maths_` prefix on the unit, because a bare Maths
  *   unit slug (`probability`, `statistics`, …) collides with Math Lit's flat scheme —
  *   `maths_probability`, `maths_probability__basic_probability__independent_events`.
+ * - english_fal / afrikaans_fal: `__` namespacing AND a subject prefix on the unit
+ *   (`english_fal_comprehension`, `english_fal_comprehension__reading__inference`), because
+ *   `curriculum_nodes.id` is a global key and English HL already owns the bare
+ *   `comprehension__…` ids (decision 2026-10-10, same reason as Maths).
  *
  * Verified against live dev curriculum_nodes (english_hl: Phase 4; maths:
  * tools/backfill-maths-curriculum.js, 2026-09-03).
  */
 
-const NAMESPACED_SUBJECTS = new Set(['english_hl', 'maths']);
+const NAMESPACED_SUBJECTS = new Set(['english_hl', 'maths', 'english_fal', 'afrikaans_fal']);
 // Subjects whose bare unit slug isn't globally unique and needs a prefix.
-const UNIT_PREFIX = { maths: 'maths_' };
+const UNIT_PREFIX = { maths: 'maths_', english_fal: 'english_fal_', afrikaans_fal: 'afrikaans_fal_' };
 
 /** The `curriculum_nodes.id` of the unit node for `subject` / bare `unit` slug. */
 function unitId(subject, unit) {

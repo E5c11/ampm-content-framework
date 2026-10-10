@@ -16,6 +16,15 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `AMPM-CONTENT-PIPELINE` | `core/upload-pipeline.md` | SCHEMA, DESIGN, MATHTEXT, AI-EXP |
 | `AMPM-CONTENT-PERSISTENCE` | `core/persistence.md` | SCHEMA, PIPELINE |
 
+## shared/ (load when the profile lists them)
+
+Cross-subject rule sets reused by several profiles (added 2026-10-10).
+
+| ID | Doc | Load for | Related |
+|---|---|---|---|
+| `AMPM-CONTENT-LANG` | `shared/language-subjects.md` | any language subject (English HL/FAL, Afrikaans FAL, …) | DESIGN, SCHEMA, AI-EXP, KEYBOARD-INPUT, APP-VERSIONS, SETWORK |
+| `AMPM-CONTENT-SETWORK` | `shared/setwork.md` | any subject with prescribed texts (`setwork` capability) | LANG, DESIGN, PIPELINE, APP-VERSIONS, PERSISTENCE |
+
 ## presentations/ (load per type used)
 
 | ID | Doc |
@@ -35,7 +44,8 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 |---|---|---|
 | `AMPM-CONTENT-SUBJ-DBE-MATH-LIT` | `subjects/dbe-math-lit.md` | all 8 |
 | `AMPM-CONTENT-SUBJ-DBE-MATHS` | `subjects/dbe-maths.md` | all 8 |
-| `AMPM-CONTENT-SUBJ-DBE-ENGLISH-HL` | `subjects/dbe-english-hl.md` | mc, multi-select, fitb, ordering, match |
+| `AMPM-CONTENT-SUBJ-DBE-ENGLISH-HL` | `subjects/dbe-english-hl.md` | mc, multi-select, fitb, ordering, match — loads `shared/language-subjects.md` + `shared/setwork.md` |
+| `AMPM-CONTENT-SUBJ-DBE-ENGLISH-FAL` | `subjects/dbe-english-fal.md` | mc, multi-select, fitb, ordering, match — loads `shared/language-subjects.md` + `shared/setwork.md`; drafted 2026-10-10, nothing authored; every exam gated 2.4.1 (`VER-10`) |
 | `AMPM-CONTENT-SUBJ-DBE-GEOGRAPHY` | `subjects/dbe-geography.md` | mc, multi-select, fitb, match, steps |
 | `AMPM-CONTENT-SUBJ-DBE-PHYSICS` | `subjects/dbe-physics.md` | mc, fitb, multi-select, match, ordering, steps (confirmed against a full paper 2026-09-10); fraction, equation not yet exercised |
 | `AMPM-CONTENT-SUBJ-DBE-CHEMISTRY` | `subjects/dbe-chemistry.md` | Paper 2 of Physical Sciences (`subject_id = "physics"`, `nov_p2`) — authored and live in prod for 2023 and 2025 Nov; typed blanks bare-numeric per `DESIGN-CHEM-01` until the `chemistry` keyboard ships (see `core/keyboard-input.md`) |
@@ -48,7 +58,8 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 |---|---|
 | `workflows/generate/upload-math-lit.md` | this repo |
 | `workflows/generate/upload-maths.md` | this repo |
-| `workflows/generate/upload-english.md` | this repo |
+| `workflows/generate/upload-english-hl.md` | this repo (renamed from `upload-english.md`, 2026-10-10) |
+| `workflows/generate/upload-english-fal.md` | this repo |
 | `workflows/generate/upload-geography.md` | this repo |
 | `workflows/generate/upload-physics.md` | this repo |
 | `workflows/generate/upload-life-science.md` | this repo |
@@ -63,7 +74,7 @@ See `tools/README.md`. Validator = the pipeline's HARD STOP (`PIPE-10`).
 ## Rule-ID prefixes
 
 `SCHEMA-*` (question-schema; incl. `SCHEMA-KB-01`, `SCHEMA-EXAM-01`), `DESIGN-*` (authoring-principles), `MATHTEXT-*`,
-`AIEXP-*`, `PIPE-*` (upload-pipeline), `PERSIST-*` (persistence), `KEYBOARD-*` (keyboard-input),
+`AIEXP-*`, `LANG-*` (shared/language-subjects; absorbs the former `DESIGN-ENG-*`), `SETWORK-*` (shared/setwork), `PIPE-*` (upload-pipeline), `PERSIST-*` (persistence), `KEYBOARD-*` (keyboard-input),
 `VER-*` (app-feature-versions), and per-presentation
 `FITB-* / FRAC-* / MC-* / MS-* / ORD-* / MATCH-* / EQ-* / STEPS-*`. Every rule carries
 `enforced_by: validator | db-constraint | renderer | tooling | human-review`.

@@ -36,6 +36,29 @@ const LEGACY_UNDECLARED = {
   'add-life-science-2025-nov-p2-q3-2-hominid-brain-volume.js': 'live Life Sciences 2025 Nov P2',
 };
 
+// English HL papers authored before the shared language rules (2026-10-10, LANG-KB-01): the English exemption in KEYBOARD-04 ended,
+// so these undeclared scripts are allow-listed until the HL retrofit (subjects/dbe-english-hl.md § Retrofit owed). Delete each entry
+// when its paper is retrofitted (declare `text`, which derives 2.4.1 — VER-10). New HL scripts are NOT eligible.
+Object.assign(LEGACY_UNDECLARED, {
+  'add-english-hl-2025-nov-p1-q3.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p1-q5.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q10.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q11-1.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q12.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q13-1.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q13-2.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q14.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q15-1.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q15-2.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q2.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q3.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q4.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q5.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q7-1.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q8.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+  'add-english-hl-2025-nov-p2-q9-1.js': 'English HL, authored before 2026-10-10 — retrofit owed',
+});
+
 const legacyReason = (scriptPath) => LEGACY_UNDECLARED[require('path').basename(scriptPath || '')] || null;
 
 module.exports = { LEGACY_UNDECLARED, legacyReason };

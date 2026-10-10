@@ -196,7 +196,7 @@ flat "2–4 and done" silently under-covers the latter (a real Physics case: a 5
 lesson shipped with only 4 practice questions and no practice at all for its
 highest-mark sub-part).
 
-**English HL's `DESIGN-ENG-05` section caps are an instance of this rule, not a separate
+**The language subjects' section caps (`LANG-CAP-01`, formerly `DESIGN-ENG-05`) are an instance of this rule, not a separate
 one** — 2–4 for narrow sections (Summary, Advertising, Media/Cartoons) vs. up to 7 for
 content-dense ones (Comprehension, Language, Paper 3) is exactly "scale with bundled
 content," just expressed as a per-section table instead of a per-lesson computation.
@@ -362,54 +362,18 @@ same paper — even if two groups share a theme.
 
 ---
 
-## English HL — Additional Rules
+## Language subjects — moved to `shared/`
 
-### `DESIGN-ENG-01` — Theme rule
+The English HL rules (`DESIGN-ENG-01`–`05`) were generalised on 2026-10-10 into the shared
+language rules, so English FAL, Afrikaans and later languages reuse them. The old IDs stay
+valid as aliases; new references use the new IDs. Load `shared/language-subjects.md`
+(`AMPM-CONTENT-LANG`) for any language subject, and `shared/setwork.md`
+(`AMPM-CONTENT-SETWORK`) for prescribed-text papers.
 
-`enforced_by: human-review`
-
-Keep the same topic/theme as that year's exam text. Fresh stimulus is independently
-authored but stays in the same world — different sentences, different quotes, same theme.
-
-### `DESIGN-ENG-02` — Structure rule
-
-`enforced_by: human-review`
-
-Each practice question mirrors the *type* of the corresponding exam sub-question — same
-instruction style, same mark implication, same cognitive skill.
-
-### `DESIGN-ENG-03` — `context_text` usage
-
-`enforced_by: human-review`
-
-Use `context_text` for short inline stimulus (1–3 fresh sentences) when the question
-needs its own independent passage. Set to `null` when the question draws on
-`supplementary_materials` texts or stands alone.
-
-### `DESIGN-ENG-04` — `fitb` usage rule
-
-`enforced_by: human-review`
-
-Only use `fitb` when the answer is a specific, matchable string. Use `multiple_choice`
-for open-ended questions ("explain the effect", "discuss", "comment on") — valid phrasings
-are too varied to enumerate. When multiple valid answers exist, separate alternatives with
-`|` in the answer element (e.g. `"private|secret|discreet"`). Write FITB answers in
-standard sentence case — matching is case-insensitive.
-
-### `DESIGN-ENG-05` — Section caps
-
-`enforced_by: human-review`
-
-This is English HL's instance of the general `DESIGN-UNI-11` principle
-(practice-question count scales with bundled content) — a per-section table instead of
-a per-lesson computation, because English's sections have a fixed, known shape session
-to session.
-
-| Section | Max questions |
-|---------|--------------|
-| Q1 — Comprehension | 7 |
-| Q2 — Summary | 2–4 |
-| Q3 — Advertising | 2–4 |
-| Q4 — Media/Cartoons | 2–4 |
-| Q5 — Using Language Correctly | 7 |
-| Paper 3 — all sections | 7 per lesson |
+| Old ID | New ID | Rule |
+|---|---|---|
+| `DESIGN-ENG-01` | `LANG-EX-01` | Theme rule |
+| `DESIGN-ENG-02` | `LANG-EX-02` | Structure rule |
+| `DESIGN-ENG-03` | `LANG-CTX-01` | `context_text` usage |
+| `DESIGN-ENG-04` | `LANG-ANS-01` | `fitb` vs multiple choice |
+| `DESIGN-ENG-05` | `LANG-CAP-01` | Section caps |

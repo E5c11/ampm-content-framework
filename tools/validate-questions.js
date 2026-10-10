@@ -109,10 +109,8 @@ function validateQuestion(q, index, allQuestions) {
   // reference rows discovered months later.
   if (curriculumVocab) {
     const subject = curriculumVocab.subject || 'math_lit';
-    const curriculumCollection = subject === 'english_hl' ? 'english_lit_curriculum' : 'math_lit_curriculum';
-    const skillsSource = subject === 'english_hl'
-      ? 'existing english_questions skills[] usage (no separate skills collection for English)'
-      : 'math_lit_skills';
+    const curriculumCollection = `curriculum_nodes (subject_id = ${subject})`;
+    const skillsSource = `skills (subject_id = ${subject})`;
 
     if (q.unit && !curriculumVocab.units.includes(q.unit)) {
       warn(`"unit" value "${q.unit}" not found in ${curriculumCollection} — add it there first (query "type == 'unit'"), don't just use it inline`);
@@ -291,12 +289,11 @@ function validateQuestion(q, index, allQuestions) {
 
   // KEYBOARD-04: EVERY typed question declares its keyboard explicitly, never relying on subject inference or the
   // system keyboard (a bare-numeric fitb is 'standard_math', a bare-numeric steps/equation 'scientific_math').
-  // Blocking. Only exemption: english_hl, whose legacy English keyboard is subject-inferred and not declarable.
-  if (['fitb', 'steps', 'equation', 'fraction'].includes(q.presentation) && (q.keyboard_type === undefined || q.keyboard_type === null)
-      && String(q.subject || '').toLowerCase() !== 'english_hl') {
-    const msg = 'no "keyboard_type" declared on a typed question — declare `text` (prose answers in a subject with no keyboard of its own), `standard_math` / `scientific_math` (numeric), or `physics` / `chemistry` only where the answer needs them (core/keyboard-input.md KEYBOARD-04)';
+  // Blocking. No subject is exempt (English HL's exemption ended 2026-10-10, LANG-KB-01); live/pre-rules scripts: tools/lib/legacy-keyboard-allowlist.js.
+  if (['fitb', 'steps', 'equation', 'fraction'].includes(q.presentation) && (q.keyboard_type === undefined || q.keyboard_type === null)) {
+    const msg = 'no "keyboard_type" declared on a typed question — declare `text` (prose answers — every language subject, and subjects with no keyboard of their own), `standard_math` / `scientific_math` (numeric), or `physics` / `chemistry` only where the answer needs them (core/keyboard-input.md KEYBOARD-04)';
     const legacy = legacyReason(scriptPath);
-    if (legacy) caution(`LEGACY ALLOWANCE (${legacy}): ${msg} — live exam, not retrofitted (a prod data fix; declaring \`text\` would gate it at 2.4.0 — a bare-numeric row would be \`standard_math\`); the 2.4.0 app falls back to the Text keyboard (tools/lib/legacy-keyboard-allowlist.js)`);
+    if (legacy) caution(`LEGACY ALLOWANCE (${legacy}): ${msg} — exam not retrofitted (a data fix; declaring \`text\` would gate it — 2.4.0, or 2.4.1 for a language subject; a bare-numeric row would be \`standard_math\`); the 2.4.0 app falls back to the Text keyboard (tools/lib/legacy-keyboard-allowlist.js)`);
     else warn(msg);
   }
 
@@ -459,6 +456,23 @@ if (scriptPath) {
   }
 
   const { results, setErrors } = validateSet(questions);
+
+  // SETWORK-LES-01 (shared/setwork.md): a setwork lesson and ALL its questions carry the same text_key.
+  // Source-level so it sees the lesson's own `text_key` too; only fires when a text_key is present at all.
+  {
+    const lessonKeys = [...scriptSrc.matchAll(/^\s*text_key:\s*(["'])([^"']*)\1/gm)].map(m => m[2]);
+    const qKeys = questions.map(q => q.text_key ?? null);
+    const distinct = new Set([...lessonKeys, ...qKeys.filter(Boolean)]);
+    if (distinct.size > 1) {
+      setErrors.push(`SETWORK-LES-01: more than one text_key in the script (${[...distinct].join(', ')}) — one lesson, one text`);
+    }
+    if (distinct.size === 1 && qKeys.some(k => !k)) {
+      setErrors.push(`SETWORK-LES-01: ${qKeys.filter(k => !k).length} question(s) lack text_key while the lesson carries "${[...distinct][0]}"`);
+    }
+    if (distinct.size === 1 && lessonKeys.length === 0) {
+      setErrors.push(`SETWORK-LES-01: questions carry text_key "${[...distinct][0]}" but the lesson document has none`);
+    }
+  }
 
   for (const { label, errors, warnings } of results) {
     report(label, errors, warnings);

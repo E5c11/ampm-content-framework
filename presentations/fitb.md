@@ -88,7 +88,7 @@ presentation: "fitb",
   into two blanks: `metadata: ["HH", "[ ]", ":", "MM", "[ ]"]`.
 - **Fractions** (`SCHEMA-TYPE-05`): never simulate a fraction with `"/"` in fitb —
   use `fraction` presentation.
-- Only use fitb when the answer is a specific, matchable string (`DESIGN-ENG-04`);
+- Only use fitb when the answer is a specific, matchable string (`LANG-ANS-01`, formerly `DESIGN-ENG-04`);
   open-ended questions go to `multiple_choice`.
 - Write answers in standard sentence case — matching is case-insensitive, **except** when `case_sensitive: true` is set
   (Chemistry formulae and symbols, `Co` ≠ `CO`; needs a keyboard that can type both cases — `core/keyboard-input.md`).

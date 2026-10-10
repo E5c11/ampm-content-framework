@@ -16,8 +16,15 @@
  *   # bring one back
  *   node tools/create-english-text.js --reinstate the_crucible
  *
- * `--section` is `novel` | `play` | `poetry` (the native Postgres enum — the app translates
- * `play` <-> its own `drama` label). `--years` is optional and only a record: the app no
+ * `--section` is a free-form lowercase snake_case string (VARCHAR(32) since backend V83; the enum is
+ * gone). Known values: `novel`, `play` (the app labels it "Drama"), `poetry`, `short_stories`
+ * (English FAL). A value outside that list is accepted with a warning — see shared/setwork.md
+ * SETWORK-SEC-01. A text with a NEW section value (`short_stories`) must not reach prod before
+ * app 2.4.1 (SETWORK-GATE-01): older builds break syncing English texts. The tool refuses
+ * `--env prod` for a non-legacy section unless --i-know-this-is-prod-and-2.4.1-is-released is passed.
+ *
+ *   # inspect the registry first (SETWORK-TXT-02: reuse before create)
+ *   node tools/create-english-text.js --list [--section short_stories] `--years` is optional and only a record: the app no
  * longer filters the picker by year (see plan/active/english-text-picker-per-paper.md in the
  * AMPM repo). Upsert on id, written published. `is_active` = "in the current prescribed list".
  */
@@ -27,7 +34,9 @@
 const { getPool, closePool } = require('./lib/postgres');
 const { upsertRow } = require('./lib/upsert');
 
-const SECTIONS = ['novel', 'play', 'poetry'];
+const KNOWN_SECTIONS = ['novel', 'play', 'poetry', 'short_stories'];
+const LEGACY_SECTIONS = ['novel', 'play', 'poetry']; // the only values released app builds can decode (< 2.4.1)
+const SECTION_RE = /^[a-z][a-z0-9_]{0,31}$/;
 
 const a = process.argv.slice(2).reduce((acc, x, i, arr) => {
   if (x.startsWith('--')) acc[x.slice(2)] = arr[i + 1] && !arr[i + 1].startsWith('--') ? arr[i + 1] : true;
@@ -64,14 +73,36 @@ async function main() {
     return setActive(pool, reinstateId, true);
   }
 
+  if (a.list) {
+    const params = typeof a.section === 'string' ? [a.section] : [];
+    const { rows } = await pool.query(
+      `SELECT id, name, author, section, is_active FROM english_texts WHERE is_deleted = false${params.length ? ' AND section = $1' : ''} ORDER BY section, id`,
+      params,
+    );
+    for (const r of rows) console.log(`${r.section.padEnd(14)} ${r.id.padEnd(36)} ${r.is_active ? ' ' : 'x'} ${r.name} — ${r.author}`);
+    console.log(`${rows.length} texts (x = retired) in ${env}`);
+    return;
+  }
+
   // create / update
   const { id, name, author, section } = a;
   if (!id || !name || !author || !section) {
-    console.error('Usage: --id <text_key> --name "<title>" --author "<author>" --section novel|play|poetry [--years 2025,2026]');
+    console.error('Usage: --id <text_key> --name "<title>" --author "<author>" --section novel|play|poetry|short_stories [--years 2025,2026]');
     process.exit(1);
   }
-  if (!SECTIONS.includes(section)) {
-    console.error(`--section must be one of ${SECTIONS.join(' / ')} (not "drama" — the wire value is "play")`);
+  if (section === 'drama') {
+    console.error('--section "drama" is not a value — the wire value is "play" (the app labels it Drama)');
+    process.exit(1);
+  }
+  if (!SECTION_RE.test(section)) {
+    console.error(`--section must be lowercase snake_case, at most 32 characters (got "${section}")`);
+    process.exit(1);
+  }
+  if (!KNOWN_SECTIONS.includes(section)) {
+    console.warn(`⚠ "${section}" is not a known section (${KNOWN_SECTIONS.join(', ')}); record it in shared/setwork.md SETWORK-SEC-01 if it is intentional`);
+  }
+  if (env === 'prod' && !LEGACY_SECTIONS.includes(section) && !a['i-know-this-is-prod-and-2.4.1-is-released']) {
+    console.error(`❌ refusing to write a "${section}" text to prod: older app builds break syncing an unknown section (SETWORK-GATE-01). Wait for app 2.4.1.`);
     process.exit(1);
   }
   const years = typeof a.years === 'string' ? a.years.split(',').map((y) => y.trim()).filter(Boolean) : [];
