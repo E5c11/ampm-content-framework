@@ -388,6 +388,36 @@ one theme; reuse a node only where it is genuinely the same concept (e.g. *Domin
 
 ## Completed papers ledger
 
+**2023 `nov_p1` — authored and uploaded to dev, 2026-10-10; emulator review and prod push open.**
+Sources: `files/History P1 Nov 2023 {Eng,Addendum Eng,MG Eng}.pdf` (all three in hand before authoring).
+Same structure as 2024/2025 P1: Q1 Berlin as a Cold War focal point, 1948 (1A Epler book, 1B US State Department
+note of 6 July 1948, 1C Soviet reply of 14 July 1948, 1D SJ Ray *Kansas City Star* cartoon), Q2 the three movements
+in the Angolan Civil War, 1975 (2A blog on Neto, 2B *Guardian* photograph of MPLA soldiers, 2C Meredith, 2D Cooper),
+Q3 the Freedom Rides, 1961 (3A Arsenault, 3B *New York Amsterdam News* front page, 3C Zwerg interview, 3D Thomas
+interview in Raines); essays Q4 Vietnam ("critically discuss": Vietcong tactics made US strategies ineffective),
+Q5 Mobutu ("do you agree": policies positively transformed the Congo in the 1960s), Q6 Black Power ("to what extent"
+it depended on violent, radical and militant strategies). 6 lessons / 51 questions (9/9/9/8/8/8), one commit per
+lesson (`381b53f`…`bf5e69b`), validator 0 errors, exam derives the floor (2.0.0, no gate). Verified in Postgres: all
+published, no null unit/topic/subtopic, every question has a skill, no `\n` in stems, every `fitb` `standard_math`,
+`aiExplanation` 50 marks per lesson (17/17/17 entries for Q1–Q3, 1 per essay) → **300/300**. 42 image URLs return 200
+(Q5/Q6 reuse `q4/question_1.png`; sources uploaded as `annexure_<label>.png`).
+- New curriculum rows: topics `berlin_blockade_1948`, `angolan_civil_war_1975`, `freedom_rides_1961`; tags
+  `berlin_blockade`, `currency_reform`, `ethnic_nationalism`, `freedom_rides`, `segregation`. Subtopics and skills all
+  reused; Q4–Q6 reuse the existing essay topics, and their items were written to avoid the 2024/2025 practice sets.
+- `DESIGN-UNI-06`: 2 of 24 `multiple_choice` at index 0 (Q1 item 8, Q2 item 2). Correct option strictly longest in
+  0 of 24 (distractors lengthened before upload, including all three thesis items).
+- **Memo/paper cautions (2023 P1), not repeated in content:** 3.3.3 memo calls Jim Zwerg "the leader of the Nashville
+  Civil Rights Movement" (he was a white exchange student who volunteered). 3.6 memo says the KKK "were organised by
+  the Governor" to attack the riders; Source 3D only says Patterson solicited Klan support in his election campaign.
+  Source 2D expands UNITA as "Total *Liberation*" (it is Total *Independence*, as Source 2A has it). Source 3C intro
+  dates the Nashville departure 14 May 1961 (the Anniston burning was 14 May; the Nashville riders left days later),
+  so no practice item depends on it. 2.6 memo says the MPLA alone broke the agreement to rule together; the
+  explanation says the Alvor Agreement (January 1975) collapsed. Q5 memo repeats "president for life until his death
+  in 2007" (overthrown and died 1997) and "14 university graduates", and writes "abacos" for *abacost*; Q4 memo
+  repeats napalm "gas" and Vietnamisation = WHAM. Source 3A's footer reads *Freedom Fighters* for *Freedom Riders*.
+- Source 1D's three seated figures are personifications of France, the USA (Uncle Sam) and Britain (John Bull), which
+  the paper's 1.5.1 calls "leaders"; the explanation describes them as the three Western powers.
+
 **2024 `nov_p1` — authored, uploaded to dev, reviewed on emulator and LIVE IN PROD, 2026-10-10** (pushed with 2024 `nov_p2`; see that entry).
 Review (build 2.3.5-dev01): 51/51 PASS, 0 AUTO_FIX, 0 FLAG; Phase 5 9/9 CORRECT on the custom number pad
 (`182.8` typed with the `.` key). Source tabs render in order on all three source-based lessons. Report:
