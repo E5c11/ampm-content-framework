@@ -639,7 +639,7 @@ were left alone. `multiple_choice` options that wrap to different line counts (Q
 so the earlier row-sizing bug did not show. Report: `ampm-kmp/temp/review/business_studies_nov_p1_2024/report.md`.
 **Not done:** prod push.
 
-**`nov_p2` (2024) — authored to dev, 2026-10-08; not reviewed on the emulator, not in prod.** Source:
+**`nov_p2` (2024) — authored to dev 2026-10-08, reviewed on the emulator 2026-10-10 (1 fix, 0 flags); not in prod.** Source:
 `files/Business Studies P2 Nov 2024 Eng.pdf` (9pp) + `... MG Eng.pdf` (29pp), committed `6257b74`. 6 lessons / 61 practice
 questions / 230 marks, one commit per lesson (`bbda888` … `fb3f919`), images wired from the start (31 URLs, all 200; Q6 reuses
 Q5's question page, shared paper page 9; every memo boundary falls on a page break, so no crops). Verified against Postgres:
@@ -660,8 +660,16 @@ Q5's question page, shared paper page 9; every memo boundary falls on a page bre
 `keyboard_type: 'standard_math'`, a released keyboard, so the exam stays at the 2.0.0 floor (`derive-exam-min.js` over all 12 P1+P2
 2024 scripts). The compound-vs-simple interest difference (Lesson 5 Q7) stays an MCQ, matching the 2025 shape. New vocabulary on dev
 (must reach prod with the push): one skill, `calculate_insurance_compensation`. Topics and tags all reused (leadership theories
-under `leadership_styles` and health and safety under `human_rights_and_diversity`, as P2 2025 did). **Not done:**
-`review-paper.md` emulator run (Phase 5 applies to the one `fitb`); prod push.
+under `leadership_styles` and health and safety under `human_rights_and_diversity`, as P2 2025 did).
+
+**Emulator review, 2026-10-10** (`review-paper.md` Phases 1–5 on build 2.3.5-dev01). All 61 questions were captured
+(initial + scrolled) and read against their data; every answer was re-worked independently and is correct, including the
+average-clause sum (600/900 × R150 000 = R100 000) and the compound-vs-simple difference (R100). Data checks were clean.
+**Phase 5:** Lesson 2 Q4 opens the custom number pad (`maths_key_*`), `100000` typed key by key and submitted with `maths_key_done`
+shows `question_feedback_correct`. The pad has no space key, so the bare-number answer is required, not just preferred.
+**One AUTO_FIX:** Lesson 2 Q3 and Q4's stems ended lines on `R900 000,` and `R150 000.`, which could break mid-number on a
+narrower screen, so the spaces inside the amounts are now U+00A0 (dev patch + script; answers untouched). Report:
+`ampm-kmp/temp/review/business_studies_nov_p2_2024/report.md`. **Not done:** prod push.
 
 ## Still open
 
