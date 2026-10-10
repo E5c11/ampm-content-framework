@@ -123,7 +123,7 @@ const questions = [
   },
   {
     name: 'Question 4',
-    question: 'If sin x = p, which expression is equal to 3cos²(\\frac{x}{2} + 45°) − 3sin²(\\frac{x}{2} + 45°)?',
+    question: '3cos²(\\frac{x}{2} + 45°) − 3sin²(\\frac{x}{2} + 45°) can be written in terms of p, where sin x = p. Which expression is it?',
     metadata: ['−3p', '3p', '3\\sqrt{1 − p²}', '−3\\sqrt{1 − p²}', ''],
     answer: ['−3p', '', '', '', ''],
     presentation: 'multiple_choice',

@@ -52,7 +52,7 @@ const video = {
 const questions = [
   {
     name: 'Question 1',
-    question: 'TA is a tangent to a circle at A. Chord AB is drawn, and C is a point on the circle in the alternate segment. If ∠TAB = 58°, which angle is also 58°, and why?',
+    question: 'TA is a tangent to a circle at A. Chord AB is drawn, and C is a point on the circle in the alternate segment. If ∠TAB = 58°, which angle is also 58°, and why?',
     metadata: [
       '∠ABC (tan-chord theorem)',
       '∠ACB (tan-chord theorem)',
@@ -84,7 +84,7 @@ const questions = [
   },
   {
     name: 'Question 2',
-    question: 'From an external point E, two tangents EA and EC are drawn to a circle, touching it at A and C. If ∠AEC = 48°, calculate ∠EAC.',
+    question: 'From an external point E, two tangents EA and EC are drawn to a circle, touching it at A and C. If ∠AEC = 48°, calculate ∠EAC.',
     metadata: ['∠EAC = ', '[ ]', '°'],
     answer: ['66', '', '', '', ''],
     presentation: 'fitb',
@@ -146,7 +146,7 @@ const questions = [
   },
   {
     name: 'Question 4',
-    question: 'Chords PQ and RS of a circle intersect at T. It can be shown that △PTR ||| △STQ. If PT = 4, TQ = 9 and RT = 3, calculate TS.',
+    question: 'Chords PQ and RS of a circle intersect at T. It can be shown that △PTR ||| △STQ. If PT = 4, TQ = 9 and RT = 3, calculate TS.',
     metadata: ['TS = ', '[ ]'],
     answer: ['12', '', '', '', ''],
     presentation: 'fitb',

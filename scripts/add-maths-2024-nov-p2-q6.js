@@ -52,7 +52,7 @@ const video = {
 const questions = [
   {
     name: 'Question 1',
-    question: 'Arrange the steps that derive the expansion of sin(x − y) from the expansion of sin(x + y).',
+    question: 'Arrange the steps that derive the expansion of sin(x − y) from the expansion of sin(x + y).',
     metadata: [
       'Expand: sin x cos(−y) + cos x sin(−y)',
       'Simplify to sin x cos y − cos x sin y',
@@ -104,7 +104,7 @@ const questions = [
   },
   {
     name: 'Question 3',
-    question: 'Solve for x if 2sin²x + 5cos(90° − x) − 3 = 0 and x ∈ [0° ; 360°]. Give the smaller solution first.',
+    question: 'Solve for x if 2sin²x + 5cos(90° − x) − 3 = 0 and x ∈ [0° ; 360°]. Give the smaller solution first.',
     metadata: ['x = ', '[ ]', '° or x = ', '[ ]', '°'],
     answer: ['30', '150', '', '', ''],
     presentation: 'fitb',

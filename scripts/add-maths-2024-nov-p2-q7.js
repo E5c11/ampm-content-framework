@@ -74,7 +74,7 @@ const questions = [
   },
   {
     name: 'Question 2',
-    question: 'Which are the equations of the asymptotes of y = tan 2x for x ∈ [0° ; 180°]?',
+    question: 'Which are the equations of the asymptotes of y = tan 2x for x ∈ [0° ; 180°]?',
     metadata: ['x = 90° only', 'x = 0° and x = 90°', 'x = 90° and x = 180°', 'x = 45° and x = 135°', ''],
     answer: ['x = 45° and x = 135°', '', '', '', ''],
     presentation: 'multiple_choice',
@@ -117,7 +117,7 @@ const questions = [
   },
   {
     name: 'Question 4',
-    question: 'Complete the working to solve the equation for x ∈ [0° ; 360°].',
+    question: 'Complete the working to solve the equation for x ∈ [0° ; 360°].',
     metadata: [
       'sin x = cos x',
       'Divide both sides by cos x (cos x ≠ 0): tan x = 1',

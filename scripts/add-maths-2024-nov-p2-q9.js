@@ -142,7 +142,7 @@ const questions = [
   },
   {
     name: 'Question 4',
-    question: 'A, B, C and D lie on a circle, and the chords AC and BD are drawn. If ∠BAC = 2x + 5° and ∠BDC = 3x − 25°, calculate the value of x.',
+    question: 'A, B, C and D lie on a circle, and the chords AC and BD are drawn. If ∠BAC = 2x + 5° and ∠BDC = 3x − 25°, calculate the value of x.',
     metadata: ['x = ', '[ ]', '°'],
     answer: ['30', '', '', '', ''],
     presentation: 'fitb',
@@ -164,7 +164,7 @@ const questions = [
     supplementary_material: {
       type: 'diagram',
       label: 'Diagram',
-      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2024/nov_p2/q9_4/diagram_1.png'],
+      image_urls: ['https://media-dev.askmoreprepmore.app/question_supplementary/maths/2024/nov_p2/q9_4b/diagram_1.png'],
     },
   },
 ];

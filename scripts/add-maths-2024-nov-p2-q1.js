@@ -73,7 +73,7 @@ const questions = [
   },
   {
     name: 'Question 2',
-    question: 'The least squares regression line for the number of hours a learner spends on social media per week (x) and their test mark (y) is ŷ = 54.2 − 0.73x. Predict the test mark of a learner who spends 38 hours per week on social media. Give the answer correct to TWO decimal places.',
+    question: 'The least squares regression line for the number of hours a learner spends on social media per week (x) and their test mark (y) is ŷ = 54.2 − 0.73x. Predict the test mark of a learner who spends 38 hours per week on social media. Give the answer correct to TWO decimal places.',
     metadata: ['ŷ = ', '[ ]'],
     answer: ['26.46', '', '', '', ''],
     presentation: 'fitb',
@@ -122,7 +122,7 @@ const questions = [
   },
   {
     name: 'Question 4',
-    question: 'A teacher uses the least squares regression line ŷ = 31 − 0.5x as the minimum target for each learner. Four learners have the data points (10 ; 20), (16 ; 25), (22 ; 12) and (30 ; 16). What is the largest increase in y that any one of these learners needs to reach the target?',
+    question: 'A teacher uses the least squares regression line ŷ = 31 − 0.5x as the minimum target for each learner. Four learners have the data points (10 ; 20), (16 ; 25), (22 ; 12) and (30 ; 16). What is the largest increase in y that any one of these learners needs to reach the target?',
     metadata: ['Increase = ', '[ ]'],
     answer: ['8', '', '', '', ''],
     presentation: 'fitb',

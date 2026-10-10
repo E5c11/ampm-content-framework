@@ -52,7 +52,7 @@ const video = {
 const questions = [
   {
     name: 'Question 1',
-    question: 'In △PQR, S lies on PQ and T lies on PR with ST ∥ QR. Arrange the steps of the proof that \\frac{PS}{SQ} = \\frac{PT}{TR}.',
+    question: 'Arrange the steps that prove \\frac{PS}{SQ} = \\frac{PT}{TR} in △PQR, where S lies on PQ, T lies on PR and ST ∥ QR.',
     metadata: [
       'Therefore PS ÷ SQ = PT ÷ TR',
       'Area △PST ÷ area △SQT = PS ÷ SQ, and area △PST ÷ area △TRS = PT ÷ TR (equal heights)',
@@ -88,7 +88,7 @@ const questions = [
   },
   {
     name: 'Question 2',
-    question: 'In △KLM, N lies on KL and P lies on KM with NP ∥ LM. If KN = 8, NL = 6 and KP = 12, calculate PM.',
+    question: 'In △KLM, N lies on KL and P lies on KM with NP ∥ LM. If KN = 8, NL = 6 and KP = 12, calculate PM.',
     metadata: ['PM = ', '[ ]'],
     answer: ['9', '', '', '', ''],
     presentation: 'fitb',

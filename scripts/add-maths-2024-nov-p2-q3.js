@@ -122,7 +122,7 @@ const questions = [
       'A lies on the line y = −2x + 1, to the left of the y-axis, and AD = \\sqrt{45}, where D(2 ; −3)',
       'Let A be (x ; −2x + 1): (x − 2)² + (−2x + 1 + 3)² = 45',
       '(x − 2)² + 4(x − 2)² = 45, so (x − 2)² = 9',
-      'x = 5 or x = −1; A is to the left of the y-axis, so x = −1 and the y-coordinate of A is:',
+      'x = 5 or x = −1; A is to the left of the y-axis, so x = −1 and the y-coordinate of A is:',
       '[ ]',
     ],
     answer: ['3'],

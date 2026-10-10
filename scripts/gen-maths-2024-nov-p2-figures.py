@@ -2,7 +2,7 @@
 """Usage: OUT=temp/images/maths-2024-p2/supp python3 scripts/gen-maths-2024-nov-p2-figures.py
 Question-level diagrams for DBE Maths Nov 2024 P2, Q8-Q11 practice questions.
 Clean exam-style line art. Givens are labelled; the quantity a question asks for is never shown."""
-import math, os
+import math, sys, os
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -188,10 +188,11 @@ def q9_4():  # A, B, C, D on circle, chords AC and BD, angle BAC = 2x + 5, angle
     fig, ax = new()
     O = (0, 0)
     circle(ax, O, 1.0, dot=False)
-    A, D, B, C = (on_circle(O, 1, d) for d in (155, 25, 235, 305))
+    A, D, B, C = (on_circle(O, 1, d) for d in (150, 30, 215, 325))
     seg(ax, B, C); seg(ax, A, B); seg(ax, A, C); seg(ax, D, B); seg(ax, D, C)
-    arc(ax, A, B, C, 0.25, '2x + 5°', rt=0.6, fs=FS - 10)
-    arc(ax, D, B, C, 0.25, '3x − 25°', rt=0.6, fs=FS - 10)
+    # labels sit inside the (widened) angles, clear of both arms
+    arc(ax, A, B, C, 0.22, '2x + 5°', rt=0.62, fs=FS - 12)
+    arc(ax, D, B, C, 0.22, '3x − 25°', rt=0.66, fs=FS - 12)
     for p, n_, o in ((A, 'A', (-0.15, 0.08)), (B, 'B', (-0.12, -0.13)), (C, 'C', (0.12, -0.13)), (D, 'D', (0.15, 0.08))):
         lbl(ax, p, n_, o)
     lim(ax, [-1.3, 1.3], [-1.3, 1.3])
@@ -325,6 +326,8 @@ def q11_4():  # chords PQ and RS meet at T; PT = 4, TQ = 9, RT = 3
 
 
 if __name__ == '__main__':
+    only = sys.argv[1:]
     for f in (q8_1, q8_2, q8_4, q9_1, q9_3, q9_4, q10_1, q10_2, q10_3, q10_4, q11_1, q11_2, q11_3, q11_4):
-        f()
+        if not only or f.__name__ in only:
+            f()
     print('ok', sorted(os.listdir(OUT)))
