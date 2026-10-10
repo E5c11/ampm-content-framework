@@ -388,7 +388,10 @@ one theme; reuse a node only where it is genuinely the same concept (e.g. *Domin
 
 ## Completed papers ledger
 
-**2023 `nov_p2` — authored and uploaded to dev, 2026-10-10; emulator review and prod push open.**
+**2023 `nov_p2` — authored and uploaded to dev, 2026-10-10; reviewed on emulator 2026-10-11; prod push open.**
+Review (build 2.4.0-dev01): 49/50 PASS, 1 AUTO_FIX, 0 FLAG; Phase 5 8/8 CORRECT on the custom number pad. The fix:
+Q2 item 8 (ordering) had a plain space in "3 500 police officers"; now U+00A0 in metadata and answer so the number
+cannot wrap (dev patch + script). Report: `AMPM/temp/review/history_nov_p2_2023/report.md`.
 Sources: `files/History P2 Nov 2023 {Eng,Addendum Eng,MG Eng}.pdf` (all three in hand before authoring; PDFs `b901f26`).
 Same structure as 2024/2025 P2: Q1 COSATU's response to the labour reforms of the 1980s (1A *The Namibian*, 6 Dec 1985;
 1B COSATU special-congress poster; 1C *Washington Post*, 25 Feb 1988; 1D *Work in Progress* on the 14 May 1988 congress),
