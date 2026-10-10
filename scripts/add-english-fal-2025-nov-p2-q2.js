@@ -72,8 +72,8 @@ const questions = [
     "name": "Question 1",
     "text_key": "cry_the_beloved_country",
     "order": 1,
-    "context_text": "'My dear Father and Mother: I am hoping you are all in health as I am. ... Your son, ABSALOM.'",
-    "question": "Which of the following is the extract describing?",
+    "context_text": "A young man, locked in a prison cell, writes to his parents to tell them that he is in good health and that he does not expect to see his home again.",
+    "question": "What kind of text is described in the extract?",
     "metadata": [
       "a report from a social worker",
       "a letter written from prison",
@@ -98,7 +98,7 @@ const questions = [
     ],
     "difficulty": 2,
     "exam_weight": 2,
-    "clues": "- Look at how the passage opens and how it is signed.\n- Think about who is writing and to whom."
+    "clues": "- Think about who is writing, to whom, and from where.\n- Look at what the writer tells his family."
   },
   {
     "xp": 10,
