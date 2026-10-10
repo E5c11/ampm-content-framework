@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /**
- * Seeds unit + topic curriculum_nodes for a subject from a JSON file (a bulk create-curriculum-node.js).
+ * Seeds unit + topic (+ subtopic) curriculum_nodes and skills for a subject from a JSON file (a bulk create-curriculum-node.js).
  *
  *   node tools/seed-curriculum.js --file tools/seeds/english-fal-curriculum.json [--env dev] [--apply]
  *
  * Dry run unless --apply. Requires the subject row to exist (owner-gated reference data) — refuses otherwise.
- * Subtopics are NOT seeded: they come from the real sub-questions, lesson by lesson (create-curriculum-node.js).
+ * Also seeds `subtopics` (under topics) and `skills` when the JSON has them — the FAL file carries the ones the
+ * authored lessons use; add more per lesson (create-curriculum-node.js / create-skill.js).
  * Ids come from tools/lib/curriculum.js (english_fal: `english_fal_<unit>`, `english_fal_<unit>__<topic>`).
  * Upsert on id; safe to re-run. Re-dump the vocabulary afterwards.
  */
@@ -29,8 +30,12 @@ const COLUMNS = ['id', 'type', 'name', 'subject_id', 'description', 'unit_id', '
 const rows = [];
 for (const u of seed.units) {
   rows.push({ type: 'unit', name: u.name, parts: { unit: u.slug } });
-  for (const t of u.topics || []) rows.push({ type: 'topic', name: t.name, parts: { unit: u.slug, topic: t.slug } });
+  for (const t of u.topics || []) {
+    rows.push({ type: 'topic', name: t.name, parts: { unit: u.slug, topic: t.slug } });
+    for (const s of t.subtopics || []) rows.push({ type: 'subtopic', name: s.name, parts: { unit: u.slug, topic: t.slug, subtopic: s.slug } });
+  }
 }
+const skills = seed.skills || [];
 
 async function main() {
   const pool = getPool(env);
@@ -47,6 +52,14 @@ async function main() {
       created_at: now, updated_at: now, is_deleted: false, is_published: true, published_at: now,
     }, { env });
   }
-  console.log(`${rows.length} nodes (${seed.units.length} units) ${a.apply ? 'written' : 'planned — pass --apply'}`);
+  for (const k of skills) {
+    console.log(`${a.apply ? 'upsert' : 'would upsert'} skill ${k.id}`);
+    if (!a.apply) continue;
+    await upsertRow({ table: 'skills', columns: ['id', 'name', 'description', 'subject_id', 'created_at', 'updated_at', 'is_deleted', 'is_published', 'published_at'], conflictColumns: ['id'] }, {
+      id: k.id, name: k.name, description: k.description || null, subject_id: subject,
+      created_at: now, updated_at: now, is_deleted: false, is_published: true, published_at: now,
+    }, { env });
+  }
+  console.log(`${rows.length} nodes (${seed.units.length} units) + ${skills.length} skills ${a.apply ? 'written' : 'planned — pass --apply'}`);
 }
 main().catch((e) => { console.error('\n❌', e.message); process.exitCode = 1; }).finally(closePool);

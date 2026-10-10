@@ -66,8 +66,8 @@ Source status per paper is in the profile.
    P2 questions carry the lesson's `text_key` (`SETWORK-LES-01` — the validator checks it).
 5. **Vocab dump** — as Phase -1 step 3 (re-dump after creating nodes/skills).
 6. **Upload script** — copy `tools/upload-script-template.js` to `add-english-fal-<year>-<paper>-q<N>.js`
-   (`subject: "english_fal"`; P2: `q<N>-<part>`); `aiExplanation` one entry per practice question,
-   `marks: null`, solutions explain distractors (`LANG-ANS-02`). Validate with `--curriculum` (HARD STOP) →
+   (`subject: "english_fal"`; P2: `q<N>-<part>`); `aiExplanation` one entry per **real exam
+   sub-question** with its real marks (`AIEXP-08`; `LANG-ANS-02`). Validate with `--curriculum` (HARD STOP) →
    `--dry-run` → upsert to dev → **commit** (`[Data] Add english_fal <year> <paper> Q<N> lesson and questions`).
 7. **Verify** — pipeline Phase 5 plus: name format, image contents (no TEXT body/`AND`/extract headings),
    `supplementary_materials` shape per lesson type, `text_key` agreement, `context_text` only where needed,

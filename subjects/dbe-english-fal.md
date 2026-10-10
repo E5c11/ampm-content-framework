@@ -134,10 +134,10 @@ facts in explanations, never invented scoring.
 
 ## Lesson shape and conventions
 
-- Lessons have no video: `has_video: false`, `freemium_*: null`, `duration_seconds: null`, `marks: null`
-  in `aiExplanation` entries (`LANG-LES-01`).
-- One `aiExplanation` entry **per practice question**; solutions explain why distractors are wrong
-  (`LANG-ANS-02`).
+- Lessons have no video: `has_video: false`, `freemium_*: null`, `duration_seconds: null` (`LANG-LES-01`).
+- `aiExplanation`: one entry **per real exam sub-question** with its real marks and printed number
+  (`AIEXP-08`, `LANG-ANS-02`) — e.g. P1 Q1 has 17 entries (1.1.1 … 1.12), the summary has one (`"2"`, 10 marks).
+  Multi-part items with lettered parts (5.1.1(a)–(d)) get one entry per letter.
 - `context_text` per `LANG-CTX-01`; theme and structure per `LANG-EX-01`/`02`.
 - Naming: `"Question N: Description"` (the HL form), e.g. `"Question 1: Comprehension"`,
   `"Question 5: Language and Editing Skills"`; P2: `"Question 1.1: Cry, the Beloved Country"` /

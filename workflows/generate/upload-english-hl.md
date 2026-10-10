@@ -53,7 +53,8 @@ page(s), memo page(s), YouTube ID (usually null).
    english_hl` when nothing fits).
 6. **Upload script** (pipeline Phase 4): copy `tools/upload-script-template.js` to
    `add-<year>-<paper>-q<N>.js`; `subject: "english_hl"`; `aiExplanation` one entry **per
-   practice question**, `marks: null`, solutions explain why distractors are wrong.
+   real exam sub-question** with real marks (`AIEXP-08`; this replaces the old per-practice-question
+   `marks: null` convention for new papers).
    Validate with `--curriculum` (HARD STOP) → `--dry-run` → upsert to dev → **commit**
    (`[Data] Add english_hl <year> <paper> Q<N> lesson and questions`).
 7. **Verify** (pipeline Phase 5): plus the English items — name format, question images

@@ -87,8 +87,12 @@ paraphrase — if you need that, the question is open-ended.
 
 `enforced_by: validator, human-review` · was a profile note (`AIEXP-05`)
 
-Every `aiExplanation` solution gives the correct answer **and why each distractor is wrong**
-(`core/ai-explanation.md`). One entry per practice question; `marks: null`.
+`aiExplanation.sub_questions` follows `AIEXP-08`: **one entry per real exam sub-question**
+(`number` exactly as printed, `marks` the real memo allocation — never null), a guided walkthrough of the
+*real* question derived from the memo in your own words — not an entry per fresh practice question
+(the old HL convention, `marks: null`, is superseded; existing HL papers are retrofitted later). A
+multiple-choice sub-question's `solution` gives the correct answer **and why each distractor is wrong**
+(`AIEXP-05`).
 
 ### `LANG-ANS-03` — True/False ceiling
 
@@ -244,8 +248,7 @@ A skill phrase may be reused across subjects only by creating a differently-pref
 
 `enforced_by: human-review`
 
-`has_video: false`, `freemium_*: null`, `duration_seconds: null`, `marks: null` in
-`aiExplanation` entries.
+`has_video: false`, `freemium_*: null`, `duration_seconds: null`.
 
 ---
 

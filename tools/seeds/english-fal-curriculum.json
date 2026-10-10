@@ -7,7 +7,17 @@
       "topics": [
         {
           "slug": "literal_comprehension",
-          "name": "Literal Comprehension"
+          "name": "Literal Comprehension",
+          "subtopics": [
+            {
+              "slug": "identify_false_statement",
+              "name": "Identify False Statement"
+            },
+            {
+              "slug": "select_stated_reasons",
+              "name": "Select Stated Reasons"
+            }
+          ]
         },
         {
           "slug": "inferential_reading",
@@ -15,7 +25,17 @@
         },
         {
           "slug": "vocabulary_in_context",
-          "name": "Vocabulary in Context"
+          "name": "Vocabulary in Context",
+          "subtopics": [
+            {
+              "slug": "idioms_and_expressions",
+              "name": "Idioms And Expressions"
+            },
+            {
+              "slug": "synonym_in_context",
+              "name": "Synonym In Context"
+            }
+          ]
         },
         {
           "slug": "figurative_language",
@@ -23,15 +43,33 @@
         },
         {
           "slug": "author_purpose_and_attitude",
-          "name": "Author's Purpose and Attitude"
+          "name": "Author's Purpose and Attitude",
+          "subtopics": [
+            {
+              "slug": "purpose_of_source_reference",
+              "name": "Purpose Of Source Reference"
+            }
+          ]
         },
         {
           "slug": "evaluative_reading",
-          "name": "Evaluative Reading"
+          "name": "Evaluative Reading",
+          "subtopics": [
+            {
+              "slug": "title_suitability",
+              "name": "Title Suitability"
+            }
+          ]
         },
         {
           "slug": "text_features_and_visuals",
-          "name": "Text Features and Visuals"
+          "name": "Text Features and Visuals",
+          "subtopics": [
+            {
+              "slug": "italics_function",
+              "name": "Italics Function"
+            }
+          ]
         }
       ]
     },
@@ -41,15 +79,37 @@
       "topics": [
         {
           "slug": "main_vs_supporting_points",
-          "name": "Main and Supporting Points"
+          "name": "Main and Supporting Points",
+          "subtopics": [
+            {
+              "slug": "repeated_points",
+              "name": "Repeated Points"
+            },
+            {
+              "slug": "select_main_points",
+              "name": "Select Main Points"
+            }
+          ]
         },
         {
           "slug": "paraphrase_and_own_words",
-          "name": "Paraphrase and Own Words"
+          "name": "Paraphrase and Own Words",
+          "subtopics": [
+            {
+              "slug": "best_paraphrase",
+              "name": "Best Paraphrase"
+            }
+          ]
         },
         {
           "slug": "point_form_conventions",
-          "name": "Point-Form Conventions"
+          "name": "Point-Form Conventions",
+          "subtopics": [
+            {
+              "slug": "one_point_per_sentence",
+              "name": "One Point Per Sentence"
+            }
+          ]
         }
       ]
     },
@@ -59,11 +119,31 @@
       "topics": [
         {
           "slug": "advertising_language",
-          "name": "Advertising Language"
+          "name": "Advertising Language",
+          "subtopics": [
+            {
+              "slug": "appeal_to_need",
+              "name": "Appeal To Need"
+            },
+            {
+              "slug": "persuasive_devices",
+              "name": "Persuasive Devices"
+            }
+          ]
         },
         {
           "slug": "cartoon_analysis",
-          "name": "Cartoon Analysis"
+          "name": "Cartoon Analysis",
+          "subtopics": [
+            {
+              "slug": "creating_humour",
+              "name": "Creating Humour"
+            },
+            {
+              "slug": "speech_and_thought_bubbles",
+              "name": "Speech And Thought Bubbles"
+            }
+          ]
         },
         {
           "slug": "critical_language_awareness",
@@ -77,11 +157,31 @@
       "topics": [
         {
           "slug": "parts_of_speech",
-          "name": "Parts of Speech"
+          "name": "Parts of Speech",
+          "subtopics": [
+            {
+              "slug": "degrees_of_comparison",
+              "name": "Degrees Of Comparison"
+            },
+            {
+              "slug": "identify_part_of_speech",
+              "name": "Identify Part Of Speech"
+            }
+          ]
         },
         {
           "slug": "word_level_vocabulary",
-          "name": "Word-Level Vocabulary"
+          "name": "Word-Level Vocabulary",
+          "subtopics": [
+            {
+              "slug": "one_word_for_phrase",
+              "name": "One Word For Phrase"
+            },
+            {
+              "slug": "prefix_meaning",
+              "name": "Prefix Meaning"
+            }
+          ]
         },
         {
           "slug": "verb_tenses",
@@ -89,23 +189,61 @@
         },
         {
           "slug": "concord",
-          "name": "Concord"
+          "name": "Concord",
+          "subtopics": [
+            {
+              "slug": "subject_verb_concord",
+              "name": "Subject Verb Concord"
+            }
+          ]
         },
         {
           "slug": "modals_and_conditionals",
-          "name": "Modals and Conditionals"
+          "name": "Modals and Conditionals",
+          "subtopics": [
+            {
+              "slug": "first_conditional",
+              "name": "First Conditional"
+            }
+          ]
         },
         {
           "slug": "passive_and_reported_speech",
-          "name": "Passive Voice and Reported Speech"
+          "name": "Passive Voice and Reported Speech",
+          "subtopics": [
+            {
+              "slug": "passive_voice",
+              "name": "Passive Voice"
+            },
+            {
+              "slug": "reported_statements",
+              "name": "Reported Statements"
+            }
+          ]
         },
         {
           "slug": "sentence_construction",
-          "name": "Sentence Construction"
+          "name": "Sentence Construction",
+          "subtopics": [
+            {
+              "slug": "sentence_types",
+              "name": "Sentence Types"
+            },
+            {
+              "slug": "tag_questions",
+              "name": "Tag Questions"
+            }
+          ]
         },
         {
           "slug": "punctuation_and_spelling",
-          "name": "Punctuation and Spelling"
+          "name": "Punctuation and Spelling",
+          "subtopics": [
+            {
+              "slug": "apostrophe_of_possession",
+              "name": "Apostrophe Of Possession"
+            }
+          ]
         },
         {
           "slug": "editing",
@@ -304,6 +442,112 @@
           "name": "Report"
         }
       ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "english_fal_apply_point_form_rules",
+      "name": "Apply point form rules"
+    },
+    {
+      "id": "english_fal_change_to_passive_voice",
+      "name": "Change to passive voice"
+    },
+    {
+      "id": "english_fal_change_to_reported_speech",
+      "name": "Change to reported speech"
+    },
+    {
+      "id": "english_fal_complete_conditional_sentence",
+      "name": "Complete conditional sentence"
+    },
+    {
+      "id": "english_fal_complete_tag_question",
+      "name": "Complete tag question"
+    },
+    {
+      "id": "english_fal_correct_concord_error",
+      "name": "Correct concord error"
+    },
+    {
+      "id": "english_fal_evaluate_title_suitability",
+      "name": "Evaluate title suitability"
+    },
+    {
+      "id": "english_fal_explain_cartoon_conventions",
+      "name": "Explain cartoon conventions"
+    },
+    {
+      "id": "english_fal_explain_function_of_italics",
+      "name": "Explain function of italics"
+    },
+    {
+      "id": "english_fal_explain_how_humour_is_created",
+      "name": "Explain how humour is created"
+    },
+    {
+      "id": "english_fal_explain_idiom_meaning",
+      "name": "Explain idiom meaning"
+    },
+    {
+      "id": "english_fal_explain_prefix_meaning",
+      "name": "Explain prefix meaning"
+    },
+    {
+      "id": "english_fal_explain_purpose_of_reference",
+      "name": "Explain purpose of reference"
+    },
+    {
+      "id": "english_fal_find_synonym_in_text",
+      "name": "Find synonym in text"
+    },
+    {
+      "id": "english_fal_identify_apostrophe_function",
+      "name": "Identify apostrophe function"
+    },
+    {
+      "id": "english_fal_identify_false_statement",
+      "name": "Identify false statement"
+    },
+    {
+      "id": "english_fal_identify_need_appealed_to",
+      "name": "Identify need appealed to"
+    },
+    {
+      "id": "english_fal_identify_parts_of_speech",
+      "name": "Identify parts of speech"
+    },
+    {
+      "id": "english_fal_identify_persuasive_devices",
+      "name": "Identify persuasive devices"
+    },
+    {
+      "id": "english_fal_identify_repeated_point",
+      "name": "Identify repeated point"
+    },
+    {
+      "id": "english_fal_identify_sentence_type",
+      "name": "Identify sentence type"
+    },
+    {
+      "id": "english_fal_identify_stated_reasons",
+      "name": "Identify stated reasons"
+    },
+    {
+      "id": "english_fal_rewrite_in_own_words",
+      "name": "Rewrite in own words"
+    },
+    {
+      "id": "english_fal_select_relevant_points",
+      "name": "Select relevant points"
+    },
+    {
+      "id": "english_fal_use_degrees_of_comparison",
+      "name": "Use degrees of comparison"
+    },
+    {
+      "id": "english_fal_use_one_word_for_phrase",
+      "name": "Use one word for phrase"
     }
   ]
 }
