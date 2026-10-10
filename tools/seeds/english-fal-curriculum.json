@@ -775,19 +775,51 @@
       "topics": [
         {
           "slug": "essay_types",
-          "name": "Essay Types"
+          "name": "Essay Types",
+          "subtopics": [
+            {
+              "slug": "features_of_essay_types",
+              "name": "Features Of Essay Types"
+            }
+          ]
         },
         {
           "slug": "planning_and_structure",
-          "name": "Planning and Structure"
+          "name": "Planning and Structure",
+          "subtopics": [
+            {
+              "slug": "purpose_of_planning",
+              "name": "Purpose Of Planning"
+            },
+            {
+              "slug": "writing_process",
+              "name": "Writing Process"
+            }
+          ]
         },
         {
           "slug": "picture_prompts",
-          "name": "Picture Prompts"
+          "name": "Picture Prompts",
+          "subtopics": [
+            {
+              "slug": "responding_to_a_picture",
+              "name": "Responding To A Picture"
+            }
+          ]
         },
         {
           "slug": "language_style_and_editing",
-          "name": "Language, Style and Editing"
+          "name": "Language, Style and Editing",
+          "subtopics": [
+            {
+              "slug": "length_of_the_essay",
+              "name": "Length Of The Essay"
+            },
+            {
+              "slug": "how_the_essay_is_marked",
+              "name": "How The Essay Is Marked"
+            }
+          ]
         }
       ]
     },
@@ -797,7 +829,21 @@
       "topics": [
         {
           "slug": "email",
-          "name": "E-mail"
+          "name": "E-mail",
+          "subtopics": [
+            {
+              "slug": "format_of_an_email",
+              "name": "Format Of An Email"
+            },
+            {
+              "slug": "register_and_tone",
+              "name": "Register And Tone"
+            },
+            {
+              "slug": "subject_line",
+              "name": "Subject Line"
+            }
+          ]
         },
         {
           "slug": "formal_letter",
@@ -805,11 +851,39 @@
         },
         {
           "slug": "speech",
-          "name": "Speech"
+          "name": "Speech",
+          "subtopics": [
+            {
+              "slug": "salutation_and_tone",
+              "name": "Salutation And Tone"
+            },
+            {
+              "slug": "structure_of_a_speech",
+              "name": "Structure Of A Speech"
+            },
+            {
+              "slug": "introduction_that_captures_attention",
+              "name": "Introduction That Captures Attention"
+            },
+            {
+              "slug": "speech_techniques",
+              "name": "Speech Techniques"
+            }
+          ]
         },
         {
           "slug": "dialogue",
-          "name": "Dialogue"
+          "name": "Dialogue",
+          "subtopics": [
+            {
+              "slug": "layout_of_a_dialogue",
+              "name": "Layout Of A Dialogue"
+            },
+            {
+              "slug": "stage_directions",
+              "name": "Stage Directions"
+            }
+          ]
         },
         {
           "slug": "book_review",
@@ -821,15 +895,69 @@
         },
         {
           "slug": "flyer",
-          "name": "Flyer"
+          "name": "Flyer",
+          "subtopics": [
+            {
+              "slug": "content_of_a_flyer",
+              "name": "Content Of A Flyer"
+            },
+            {
+              "slug": "headline_or_slogan",
+              "name": "Headline Or Slogan"
+            },
+            {
+              "slug": "speaking_to_the_reader",
+              "name": "Speaking To The Reader"
+            },
+            {
+              "slug": "length_of_the_text",
+              "name": "Length Of The Text"
+            },
+            {
+              "slug": "what_is_marked",
+              "name": "What Is Marked"
+            }
+          ]
         },
         {
           "slug": "whatsapp_message",
-          "name": "WhatsApp Message"
+          "name": "WhatsApp Message",
+          "subtopics": [
+            {
+              "slug": "tone_of_a_message",
+              "name": "Tone Of A Message"
+            },
+            {
+              "slug": "features_of_a_message",
+              "name": "Features Of A Message"
+            },
+            {
+              "slug": "addressing_recipients",
+              "name": "Addressing Recipients"
+            }
+          ]
         },
         {
           "slug": "instructions",
-          "name": "Instructions"
+          "name": "Instructions",
+          "subtopics": [
+            {
+              "slug": "imperative_mood",
+              "name": "Imperative Mood"
+            },
+            {
+              "slug": "logical_order",
+              "name": "Logical Order"
+            },
+            {
+              "slug": "features_of_instructions",
+              "name": "Features Of Instructions"
+            },
+            {
+              "slug": "sequencing_words",
+              "name": "Sequencing Words"
+            }
+          ]
         },
         {
           "slug": "diary_entry",
@@ -846,6 +974,24 @@
         {
           "slug": "report",
           "name": "Report"
+        },
+        {
+          "slug": "review",
+          "name": "Review",
+          "subtopics": [
+            {
+              "slug": "features_of_a_review",
+              "name": "Features Of A Review"
+            },
+            {
+              "slug": "opening_of_a_review",
+              "name": "Opening Of A Review"
+            },
+            {
+              "slug": "tone_of_a_review",
+              "name": "Tone Of A Review"
+            }
+          ]
         }
       ]
     }
@@ -1042,6 +1188,58 @@
     {
       "id": "english_fal_identify_speaker_and_audience",
       "name": "Identify speaker and audience"
+    },
+    {
+      "id": "english_fal_apply_planning_steps",
+      "name": "Apply planning steps"
+    },
+    {
+      "id": "english_fal_match_essay_types_to_features",
+      "name": "Match essay types to features"
+    },
+    {
+      "id": "english_fal_respond_to_picture_prompt",
+      "name": "Respond to picture prompt"
+    },
+    {
+      "id": "english_fal_recall_task_requirements",
+      "name": "Recall task requirements"
+    },
+    {
+      "id": "english_fal_identify_format_features",
+      "name": "Identify format features"
+    },
+    {
+      "id": "english_fal_choose_appropriate_register",
+      "name": "Choose appropriate register"
+    },
+    {
+      "id": "english_fal_write_subject_line",
+      "name": "Write subject line"
+    },
+    {
+      "id": "english_fal_match_features_to_examples",
+      "name": "Match features to examples"
+    },
+    {
+      "id": "english_fal_write_an_opening",
+      "name": "Write an opening"
+    },
+    {
+      "id": "english_fal_format_stage_directions",
+      "name": "Format stage directions"
+    },
+    {
+      "id": "english_fal_write_headline",
+      "name": "Write headline"
+    },
+    {
+      "id": "english_fal_use_the_imperative",
+      "name": "Use the imperative"
+    },
+    {
+      "id": "english_fal_use_sequencing_words",
+      "name": "Use sequencing words"
     }
   ]
 }

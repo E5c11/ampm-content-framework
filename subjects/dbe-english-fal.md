@@ -13,8 +13,8 @@ provenance: drafted 2026-10-10 from the Nov 2025 P1/P2/P3 papers and memos, the 
 > `shared/setwork.md` (`AMPM-CONTENT-SETWORK`). They carry the rules; this file records only what is
 > specific to English FAL. Binding from the first FAL paper (the shared rules apply to all papers authored
 > from 2026-10-10 — there is nothing to retrofit here). **Status (2026-10-10):** Nov 2025 P1 (5 lessons / 26 questions)
-> and P2 (12 lessons / 60 questions) are authored, on dev, gated 2.4.1 and emulator-reviewed (render all; every typed
-> answer passes on the Text keyboard). P3 and the May–June papers are not authored. Nothing is in prod.
+> P2 (12 lessons / 59 questions) and P3 (8 lessons / 41 questions) are authored, on dev, gated 2.4.1 and emulator-reviewed
+> (render all; every typed answer passes on the Text keyboard). The May–June papers are not authored. Nothing is in prod.
 
 ## Identity
 
@@ -191,6 +191,7 @@ skill ids must be prefixed `english_fal_` (e.g. `english_fal_identify_figure_of_
 | Paper | Lessons | Questions | Notes |
 |---|---|---|---|
 | `nov_p1` | 5 (Q1–Q5) | 26 | aiExplanation per real sub-question (AIEXP-08); MC answer positions 1/4/4/3 |
+| `nov_p3` | 8 (Q1 essay; 2.1 E-mail, 2.2 Review, 2.3 Dialogue, 2.4 Speech; 3.1 Flyer, 3.2 WhatsApp Message, 3.3 Instructions) | 41 | Conventions-based fresh scenarios, `context_text` null, `supplementary_materials` null; aiExplanation one entry per real task (1.1–1.8 at 50, 2.x at 30, 3.x at 20); question images are the task text, memo images are the task's marking points plus the rubric page |
 | `nov_p2` | 12 (1.1, 1.2 … 6.1, 6.2) | 59 | Extracts A–J + two poems; `text_key` on lesson and questions; HL pattern: `context_text` null, fresh targets, factual basis (BK/P/M/PT) per question in each script header; 20 MCQs at positions 2/6/6/6 |
 
 - **Texts created on dev (`english_texts`, 2026-10-10, `prescribed_years` ["2025"]):** `cry_the_beloved_country`,
