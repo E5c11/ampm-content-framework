@@ -17,13 +17,12 @@
 1. Proxy running (`cloud-sql-proxy ampm-b9661:us-central1:ampm-backend --port 15432`).
 2. The `english_fal` `subjects` row exists on dev with `capabilities ⊇ {setwork}` and
    `min_app_version = 2.4.1`: `psql -c "SELECT id, capabilities, min_app_version FROM subjects WHERE id='english_fal'"`.
-   If missing or wrong, **stop and hand it to the owner** (reference-data write).
-3. Curriculum vocabulary dumped for the subject: `node tools/dump-curriculum-vocabulary.js --subject english_fal
-   --out temp/curriculum-vocab-english-fal.json`. Empty on the first session — create units/topics/subtopics with
-   `tools/create-curriculum-node.js --subject english_fal` (bare slugs; ids come out as
-   `english_fal_<unit>__<topic>__<subtopic>`). Units and topics are seeded once from
-   `tools/seeds/english-fal-curriculum.json` (`tools/seed-curriculum.js`). Skill ids are global, so prefix them
-   `english_fal_` (`tools/create-skill.js --subject english_fal --id english_fal_<slug>`).
+   It exists on dev since 2026-10-10. If missing or wrong, **stop and hand it to the owner** (reference-data write).
+3. Curriculum: units, topics, subtopics and skills are seeded from `tools/seeds/english-fal-curriculum.json`
+   (`node tools/seed-curriculum.js --file … --apply`; add new subtopics/skills to the file, re-run). Dump for the validator:
+   `node tools/dump-curriculum-vocabulary.js --subject english_fal --out temp/curriculum-vocab-english-fal.json`. Skill ids
+   are global — prefix them `english_fal_`; node ids are `english_fal_<unit>__<topic>__<subtopic>`.
+4. Devices: HL and FAL share `nov_p2` text picks in the app (BLA-62) — reset the picks when switching subjects.
 
 ## Phase 0 (Paper 2 only) — texts
 
@@ -64,6 +63,9 @@ Source status per paper is in the profile.
    (`DESIGN-UNI-01`), exam-mirrored (`LANG-EX-01`/`02`); `context_text` per `LANG-CTX-01`; typed answers one
    short word/phrase (`LANG-KB-03`). **Every `fitb` declares `keyboard_type: "text"`** (`LANG-KB-01`).
    P2 questions carry the lesson's `text_key` (`SETWORK-LES-01` — the validator checks it).
+   **P2 practice questions use fresh targets with `context_text` null** (`SETWORK-LES-05`) and a factual-basis note per
+   question in the script header. **P3** lessons test text-type conventions on fresh scenarios (`LANG-WR-03`); images are the
+   task, the marker instructions + that task's marking points, and the rubric page.
 5. **Vocab dump** — as Phase -1 step 3 (re-dump after creating nodes/skills).
 6. **Upload script** — copy `tools/upload-script-template.js` to `add-english-fal-<year>-<paper>-q<N>.js`
    (`subject: "english_fal"`; P2: `q<N>-<part>`); `aiExplanation` one entry per **real exam

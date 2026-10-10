@@ -129,6 +129,17 @@ are about the text's themes, characters, devices and structure and never reprodu
 extract (`DESIGN-UNI-01`). A `fitb` answer must be typeable on the subject's keyboard
 (`LANG-KB-01`/`02`); character names with apostrophes and diacritics are fine on `text`.
 
+**`SETWORK-LES-05`** — Practice questions use **fresh targets**, not the exam's items. `enforced_by: human-review`
+Added 2026-10-10 after the first FAL P2 set was found to reuse the exam's own statements and the memo's answers.
+Follow the English HL Paper 2 pattern: `context_text` is **null** (the extract or poem tab and the student's knowledge of
+the text carry the stimulus); targets come from elsewhere in the text — plot order (`ordering`), roles and relationships
+(`match`), settings and places, themes and genre (`multi_select`), vocabulary, a single typed name or term (`fitb`) —
+never the exam's "discuss your view" statement, its matching items, or the memo's marking points. 4–6 questions per
+lesson, ≥3 presentation types. Record a **factual basis** per question in the script header — `BK` book knowledge
+(verify against the text), `P` printed in the paper, `M` memo, `PT` vocabulary/title — so a subject expert can check the
+`BK` ones. Where no source exists beyond the extract, title and memo (an unfamiliar set text), restrict questions to
+those. The memo informs `aiExplanation`, not the practice set.
+
 ---
 
 ## Images and labels

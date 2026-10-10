@@ -69,6 +69,8 @@ Use `context_text` for a short inline stimulus (1–3 fresh sentences) when the 
 needs its own independent passage; it renders in a card above the question text. Set it to
 `null` when the question draws on `supplementary_materials` texts or stands alone. The
 stimulus is written in the subject's own language (Afrikaans FAL stimulus is Afrikaans).
+**Literature (setwork) lessons set it to `null`** — the extract/poem tab and knowledge of the text are the stimulus
+(`SETWORK-LES-05`). Writing-paper lessons use it sparingly (`LANG-WR-03`).
 A question must not refer to "the passage", "the text above" or line numbers — a student
 may meet it out of order, away from the exam page (`DESIGN-UNI-02`).
 
