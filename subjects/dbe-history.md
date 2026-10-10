@@ -388,6 +388,36 @@ one theme; reuse a node only where it is genuinely the same concept (e.g. *Domin
 
 ## Completed papers ledger
 
+**2023 `nov_p2` — authored and uploaded to dev, 2026-10-10; emulator review and prod push open.**
+Sources: `files/History P2 Nov 2023 {Eng,Addendum Eng,MG Eng}.pdf` (all three in hand before authoring; PDFs `b901f26`).
+Same structure as 2024/2025 P2: Q1 COSATU's response to the labour reforms of the 1980s (1A *The Namibian*, 6 Dec 1985;
+1B COSATU special-congress poster; 1C *Washington Post*, 25 Feb 1988; 1D *Work in Progress* on the 14 May 1988 congress),
+Q2 how the TRC exposed apartheid leaders (2A Cameron-Dow's De Klerk biography, 2B Meredith, 2C Zapiro "amnesty
+process" cartoon, 2D Erasmus's confessions), Q3 the IMF/World Bank and globalised economies (3A Falola, 3B Campbell &
+Loxley, 3C "Dependence Theory" cartoon, 3D Stiglitz); essays Q4 Black Consciousness ("do you agree": psychological
+liberation and self-reliance), Q5 the road to democracy ("critically discuss": violence failed to stop the 1994
+election), Q6 Gorbachev ("to what extent" his reforms influenced De Klerk). 6 lessons / 50 questions (9/9/8/8/8/8), one
+commit per lesson (`74f9133`…`98f6341`), validator 0 errors / 0 warnings, exam derives the floor (2.0.0, no gate; P1
+2023 was authored in parallel by another session). Verified in Postgres: all published, no null unit/topic/subtopic,
+every question has a skill, no `\n` in stems, every `fitb` `standard_math`, `aiExplanation` 50 marks per lesson
+(17/18/17 entries for Q1–Q3 — 2.1.5 splits (a)/(b) — and 1 per essay) → **300/300**. 43 image URLs return 200, all
+distinct objects (Q5/Q6 reuse `q4/question_1.png`).
+- New curriculum rows: topics `trc_exposing_apartheid_leaders`, `imf_world_bank_globalisation` (Q1 reuses 2025's
+  `cosatu_worker_mobilisation`; Q4–Q6 reuse the essay topics); tags `labour_relations_amendment_act`,
+  `sanctions_disinvestment`, `third_force`, `imf_world_bank`, `structural_adjustment`, `dependency_theory`, `fw_de_klerk`,
+  `first_democratic_election_1994`. Subtopics and skills all reused. Essay items avoid the 2024/2025 practice sets
+  (Q5 uses 1993–94 events — St James, Bophuthatswana, Shell House, the IFP's late entry — not Boipatong/Bisho/Hani
+  recall; Q6 is about the effect on South Africa, not Soviet internals).
+- `DESIGN-UNI-06`: 2 of 20 `multiple_choice` at index 0 (Q2 item 4, Q5 item 5). Correct option strictly longest in
+  0 of 20 (distractors lengthened before upload, including all three thesis items).
+- **Memo cautions (2023 P2), not repeated in content:** 1.6 dates COSATU's launch "5 December 1985"; Source 1A (dated
+  6 December, "last weekend") puts it at the start of December. 1.4.2 is marked "(any 1 x 3)" for THREE ways (3 x 1).
+  Q4 memo writes "Hector Petersen, a 13-year-old" (Hector Pieterson, usually given as 12; not used). Q5 memo dates
+  CODESA 2 "2 May 1992" (it met 15–16 May) and Slovo's sunset clause "2 April 1993" (proposed in 1992); the Groote
+  Schuur Minute is usually dated 4 May 1990. Q6 memo pairs "constructive engagement" with De Klerk — it was Reagan's
+  policy of the PW Botha years — and says SWAPO won elections in 1990 (held November 1989; independence March 1990).
+  Paper 3.3.1 misspells "approppriate" (layout only).
+
 **2023 `nov_p1` — authored and uploaded to dev, 2026-10-10; emulator review and prod push open.**
 Sources: `files/History P1 Nov 2023 {Eng,Addendum Eng,MG Eng}.pdf` (all three in hand before authoring).
 Same structure as 2024/2025 P1: Q1 Berlin as a Cold War focal point, 1948 (1A Epler book, 1B US State Department
