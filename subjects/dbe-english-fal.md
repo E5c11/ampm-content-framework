@@ -12,7 +12,9 @@ provenance: drafted 2026-10-10 from the Nov 2025 P1/P2/P3 papers and memos, the 
 > **Load with this profile:** `shared/language-subjects.md` (`AMPM-CONTENT-LANG`) and
 > `shared/setwork.md` (`AMPM-CONTENT-SETWORK`). They carry the rules; this file records only what is
 > specific to English FAL. Binding from the first FAL paper (the shared rules apply to all papers authored
-> from 2026-10-10 — there is nothing to retrofit here). **Nothing is authored yet** (status: drafted, 2026-10-10).
+> from 2026-10-10 — there is nothing to retrofit here). **Status (2026-10-10):** Nov 2025 P1 (5 lessons / 26 questions)
+> and P2 (12 lessons / 60 questions) are authored, on dev, gated 2.4.1 and emulator-reviewed (render all; every typed
+> answer passes on the Text keyboard). P3 and the May–June papers are not authored. Nothing is in prod.
 
 ## Identity
 
@@ -183,3 +185,22 @@ skill ids must be prefixed `english_fal_` (e.g. `english_fal_identify_figure_of_
    a new row except any HL later adds). Row template (copy HL's): `id english_fal`, `name "English FAL"`, `full_name "English First
    Additional Language"`, `code ENGLISH_FAL`, `category english_lessons`, `is_active`, `capabilities {setwork}`,
    `min_app_version 2.4.1`; colour/icon/sort_order are the owner's call.
+
+## Ledger — Nov 2025 (2026-10-10)
+
+| Paper | Lessons | Questions | Notes |
+|---|---|---|---|
+| `nov_p1` | 5 (Q1–Q5) | 26 | aiExplanation per real sub-question (AIEXP-08); MC answer positions 1/4/4/3 |
+| `nov_p2` | 12 (1.1, 1.2 … 6.1, 6.2) | 60 | Extracts A–J + two poems; `text_key` on lesson and questions; 35 MCQs at positions 3/11/11/10 |
+
+- **Texts created on dev (`english_texts`, 2026-10-10, `prescribed_years` ["2025"]):** `cry_the_beloved_country`,
+  `strange_case_of_dr_jekyll_and_mr_hyde` (novel); `macbeth`, `my_children_my_africa` (play);
+  `triumph_in_the_face_of_adversity`, `eveline` (short_stories); `inversnaid`, `sonnet_73` (poetry). Titles from the Nov 2025
+  paper; prod must **not** receive the `short_stories` rows before 2.4.1 (`create-english-text.js` refuses).
+- **Review (emulator 2.4.1-dev01):** P2 render check of all 60 questions, 9/9 typed answers PASS (one first-run miss was
+  the runner reading feedback too early — `question_feedback_*` can take ~1 s). Fixed: one P2 stimulus that quoted the exam
+  extract (Q1.2 Q1) was rewritten fresh.
+- **Authoring lessons:** (1) practice stimulus must not quote the exam extract — write fresh text, even for matching items;
+  (2) multi-part exam items with lettered parts are one `aiExplanation` entry per printed number with the item's total marks;
+  (3) every 4+ question set needs ≥3 presentation types (validator `Variety rule`); (4) extract/poem question images must stop
+  above the `AND` divider and the `TOTAL SECTION` line — check the last 200 px of each crop.
