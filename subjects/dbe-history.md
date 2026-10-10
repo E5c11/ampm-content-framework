@@ -420,7 +420,10 @@ distinct objects (Q5/Q6 reuse `q4/question_1.png`).
   Because the lesson shows the memo pages next to the AI explanation, each of these (except 3.3.1) is flagged in the
   explanation as a closing "Note" giving the memo's version and the correct one (1.4.2, 1.6, Q4, Q5, Q6; `bce265a`).
 
-**2023 `nov_p1` — authored and uploaded to dev, 2026-10-10; emulator review and prod push open.**
+**2023 `nov_p1` — authored, uploaded to dev and reviewed on emulator, 2026-10-10; prod push open.**
+Review (build 2.4.0-dev01): 50/51 PASS, 1 AUTO_FIX, 0 FLAG; Phase 5 6/6 CORRECT on the custom number pad. The fix:
+Q5 item 1's correct MC option said the MPR was "founded in 1967", giving away item 2's `fitb` answer; reworded to
+"founded, which later became the only legal party" (dev patch + script). Report: `AMPM/temp/review/history_nov_p1_2023/report.md`.
 Sources: `files/History P1 Nov 2023 {Eng,Addendum Eng,MG Eng}.pdf` (all three in hand before authoring).
 Same structure as 2024/2025 P1: Q1 Berlin as a Cold War focal point, 1948 (1A Epler book, 1B US State Department
 note of 6 July 1948, 1C Soviet reply of 14 July 1948, 1D SJ Ray *Kansas City Star* cartoon), Q2 the three movements
