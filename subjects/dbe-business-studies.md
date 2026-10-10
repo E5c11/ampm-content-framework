@@ -609,7 +609,7 @@ quote-three-challenges → `match` classification pair (three challenges, not th
 image is Q5's (shared page 10, same convention as P2). **Not done:** the `review-paper.md` emulator run; prod push (`push-paper-to-prod.js`
 for `nov_p1` — expect no gate, since no `text` rows).
 
-**`nov_p1` (2024) — authored to dev 2026-10-08, reviewed on the emulator 2026-10-09 (1 fix, 0 flags); not in prod.** Source:
+**`nov_p1` (2024) — authored to dev 2026-10-08, reviewed on the emulator 2026-10-09 (1 fix, 0 flags); live in prod 2026-10-10.** Source:
 `files/Business Studies P1 Nov 2024 Eng.pdf` (9pp) + `... MG Eng.pdf` (28pp), committed `c83212d`. 6 lessons / 62 practice
 questions / 230 marks, one commit per lesson (`b49c45c` … `5e93c1b`), images wired from the start (29 URLs, all 200; Q6 reuses
 Q5's question page, shared paper page 9). Verified against Postgres: 22 `multiple_choice` with **2 at index 0 (9.1%)**, correct
@@ -637,9 +637,9 @@ inside parentheses. **One AUTO_FIX:** Q5 Practice Q5's stem ended a line on `R2 
 narrower screen, so its spaces are now U+00A0 (dev patch + script). The Rand amounts in the options are too short to wrap and
 were left alone. `multiple_choice` options that wrap to different line counts (Q3 Practice Q10) sized and aligned correctly,
 so the earlier row-sizing bug did not show. Report: `ampm-kmp/temp/review/business_studies_nov_p1_2024/report.md`.
-**Not done:** prod push.
+Pushed to prod with `nov_p2` 2024 on 2026-10-10 (see the `nov_p2` entry below).
 
-**`nov_p2` (2024) — authored to dev 2026-10-08, reviewed on the emulator 2026-10-10 (1 fix, 0 flags); not in prod.** Source:
+**`nov_p2` (2024) — authored to dev 2026-10-08, reviewed on the emulator 2026-10-10 (1 fix, 0 flags); live in prod 2026-10-10.** Source:
 `files/Business Studies P2 Nov 2024 Eng.pdf` (9pp) + `... MG Eng.pdf` (29pp), committed `6257b74`. 6 lessons / 61 practice
 questions / 230 marks, one commit per lesson (`bbda888` … `fb3f919`), images wired from the start (31 URLs, all 200; Q6 reuses
 Q5's question page, shared paper page 9; every memo boundary falls on a page break, so no crops). Verified against Postgres:
@@ -669,7 +669,15 @@ average-clause sum (600/900 × R150 000 = R100 000) and the compound-vs-simple d
 shows `question_feedback_correct`. The pad has no space key, so the bare-number answer is required, not just preferred.
 **One AUTO_FIX:** Lesson 2 Q3 and Q4's stems ended lines on `R900 000,` and `R150 000.`, which could break mid-number on a
 narrower screen, so the spaces inside the amounts are now U+00A0 (dev patch + script; answers untouched). Report:
-`ampm-kmp/temp/review/business_studies_nov_p2_2024/report.md`. **Not done:** prod push.
+`ampm-kmp/temp/review/business_studies_nov_p2_2024/report.md`.
+
+**Prod (2026-10-10), both 2024 papers together:** `push-paper-to-prod.js` for `nov_p1` (with `--allow-partial-exam`, only because
+`nov_p2` was pushed straight after it), then `nov_p2` (no override; the tool saw `nov_p1` in prod). Prod gained 31 curriculum nodes,
+6 skills and 27 tags: most date from the 2025 `nov_p1` authoring, which has never been pushed. The `nov_p2` run lost its connection
+once when another session stopped the prod proxy; re-run on a fresh proxy, idempotent. Landed unpublished; prod diffed against dev
+(lessons, questions, AI sub-questions, lesson tags, question skills: 0 differences after the domain swap), 12 lessons / 123
+questions, all 59 prod image URLs 200; then `--publish` for both. No exam gate (2.0.0). **2025 `nov_p1` is still dev-only**, so prod's
+2025 exam is P2 only.
 
 ## Still open
 
