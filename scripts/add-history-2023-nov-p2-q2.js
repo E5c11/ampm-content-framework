@@ -339,13 +339,13 @@ const questions = [
       "The Promotion of National Unity and Reconciliation Act is passed",
       "Zapiro publishes the cartoon about the amnesty process",
       "Botha's government enters the 'realm of criminal misconduct'",
-      "De Klerk approves an indemnity list for 3 500 police officers",
+      "De Klerk approves an indemnity list for 3 500 police officers",
       "Khotso House, the headquarters of the SACC, is bombed"
     ],
     "answer": [
       "Botha's government enters the 'realm of criminal misconduct'",
       "Khotso House, the headquarters of the SACC, is bombed",
-      "De Klerk approves an indemnity list for 3 500 police officers",
+      "De Klerk approves an indemnity list for 3 500 police officers",
       "The Promotion of National Unity and Reconciliation Act is passed",
       "Zapiro publishes the cartoon about the amnesty process"
     ],
