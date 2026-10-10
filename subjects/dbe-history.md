@@ -417,6 +417,8 @@ distinct objects (Q5/Q6 reuse `q4/question_1.png`).
   Schuur Minute is usually dated 4 May 1990. Q6 memo pairs "constructive engagement" with De Klerk — it was Reagan's
   policy of the PW Botha years — and says SWAPO won elections in 1990 (held November 1989; independence March 1990).
   Paper 3.3.1 misspells "approppriate" (layout only).
+  Because the lesson shows the memo pages next to the AI explanation, each of these (except 3.3.1) is flagged in the
+  explanation as a closing "Note" giving the memo's version and the correct one (1.4.2, 1.6, Q4, Q5, Q6; `bce265a`).
 
 **2023 `nov_p1` — authored and uploaded to dev, 2026-10-10; emulator review and prod push open.**
 Sources: `files/History P1 Nov 2023 {Eng,Addendum Eng,MG Eng}.pdf` (all three in hand before authoring).
