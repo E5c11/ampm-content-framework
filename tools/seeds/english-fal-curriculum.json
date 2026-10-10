@@ -257,15 +257,65 @@
       "topics": [
         {
           "slug": "character_analysis",
-          "name": "Character Analysis"
+          "name": "Character Analysis",
+          "subtopics": [
+            {
+              "slug": "match_characters_to_roles",
+              "name": "Match Characters To Roles"
+            },
+            {
+              "slug": "character_from_words",
+              "name": "Character From Words"
+            },
+            {
+              "slug": "state_of_mind",
+              "name": "State Of Mind"
+            }
+          ]
         },
         {
           "slug": "plot_structure",
-          "name": "Plot Structure"
+          "name": "Plot Structure",
+          "subtopics": [
+            {
+              "slug": "reasons_for_journey",
+              "name": "Reasons For Journey"
+            },
+            {
+              "slug": "key_events",
+              "name": "Key Events"
+            },
+            {
+              "slug": "role_of_priest",
+              "name": "Role Of Priest"
+            },
+            {
+              "slug": "motives_in_context",
+              "name": "Motives In Context"
+            },
+            {
+              "slug": "clues_in_letter",
+              "name": "Clues In Letter"
+            }
+          ]
         },
         {
           "slug": "theme_identification",
-          "name": "Theme Identification"
+          "name": "Theme Identification",
+          "subtopics": [
+            {
+              "slug": "discuss_view_with_evidence",
+              "name": "Discuss View With Evidence"
+            },
+            {
+              "slug": "theme_of_hardship",
+              "name": "Theme Of Hardship"
+            },
+            {
+              "slug": "theme_identification",
+              "name": "Theme Identification"
+            }
+          ]
         },
         {
           "slug": "setting_and_atmosphere",
@@ -273,11 +323,37 @@
         },
         {
           "slug": "figurative_language",
-          "name": "Figurative Language"
+          "name": "Figurative Language",
+          "subtopics": [
+            {
+              "slug": "personification_identification",
+              "name": "Personification Identification"
+            },
+            {
+              "slug": "metaphor_identification",
+              "name": "Metaphor Identification"
+            }
+          ]
         },
         {
           "slug": "tone_and_mood",
-          "name": "Tone and Mood"
+          "name": "Tone and Mood",
+          "subtopics": [
+            {
+              "slug": "tone_identification",
+              "name": "Tone Identification"
+            }
+          ]
+        },
+        {
+          "slug": "dramatic_techniques",
+          "name": "Dramatic Techniques",
+          "subtopics": [
+            {
+              "slug": "irony_in_prose",
+              "name": "Irony In Prose"
+            }
+          ]
         }
       ]
     },
@@ -287,23 +363,83 @@
       "topics": [
         {
           "slug": "character_analysis",
-          "name": "Character Analysis"
+          "name": "Character Analysis",
+          "subtopics": [
+            {
+              "slug": "match_characters_to_roles",
+              "name": "Match Characters To Roles"
+            },
+            {
+              "slug": "state_of_mind",
+              "name": "State Of Mind"
+            },
+            {
+              "slug": "character_from_words",
+              "name": "Character From Words"
+            }
+          ]
         },
         {
           "slug": "plot_structure",
-          "name": "Plot Structure"
+          "name": "Plot Structure",
+          "subtopics": [
+            {
+              "slug": "key_events",
+              "name": "Key Events"
+            }
+          ]
         },
         {
           "slug": "theme_identification",
-          "name": "Theme Identification"
+          "name": "Theme Identification",
+          "subtopics": [
+            {
+              "slug": "discuss_view_with_evidence",
+              "name": "Discuss View With Evidence"
+            },
+            {
+              "slug": "theme_of_honour",
+              "name": "Theme Of Honour"
+            }
+          ]
         },
         {
           "slug": "dramatic_techniques",
-          "name": "Dramatic Techniques"
+          "name": "Dramatic Techniques",
+          "subtopics": [
+            {
+              "slug": "irony_in_drama",
+              "name": "Irony In Drama"
+            }
+          ]
         },
         {
           "slug": "tone_and_mood",
-          "name": "Tone and Mood"
+          "name": "Tone and Mood",
+          "subtopics": [
+            {
+              "slug": "tone_identification",
+              "name": "Tone Identification"
+            }
+          ]
+        },
+        {
+          "slug": "figurative_language",
+          "name": "Figurative Language",
+          "subtopics": [
+            {
+              "slug": "personification_identification",
+              "name": "Personification Identification"
+            },
+            {
+              "slug": "metaphor_identification",
+              "name": "Metaphor Identification"
+            },
+            {
+              "slug": "vocabulary_in_context",
+              "name": "Vocabulary In Context"
+            }
+          ]
         }
       ]
     },
@@ -313,15 +449,49 @@
       "topics": [
         {
           "slug": "character_analysis",
-          "name": "Character Analysis"
+          "name": "Character Analysis",
+          "subtopics": [
+            {
+              "slug": "match_characters_to_roles",
+              "name": "Match Characters To Roles"
+            },
+            {
+              "slug": "character_from_words",
+              "name": "Character From Words"
+            },
+            {
+              "slug": "state_of_mind",
+              "name": "State Of Mind"
+            }
+          ]
         },
         {
           "slug": "plot_structure",
-          "name": "Plot Structure"
+          "name": "Plot Structure",
+          "subtopics": [
+            {
+              "slug": "reasons_for_events",
+              "name": "Reasons For Events"
+            },
+            {
+              "slug": "key_events",
+              "name": "Key Events"
+            }
+          ]
         },
         {
           "slug": "theme_identification",
-          "name": "Theme Identification"
+          "name": "Theme Identification",
+          "subtopics": [
+            {
+              "slug": "discuss_view_with_evidence",
+              "name": "Discuss View With Evidence"
+            },
+            {
+              "slug": "reasons_for_events",
+              "name": "Reasons For Events"
+            }
+          ]
         },
         {
           "slug": "narrative_voice_and_setting",
@@ -329,7 +499,33 @@
         },
         {
           "slug": "figurative_language",
-          "name": "Figurative Language"
+          "name": "Figurative Language",
+          "subtopics": [
+            {
+              "slug": "personification_identification",
+              "name": "Personification Identification"
+            }
+          ]
+        },
+        {
+          "slug": "dramatic_techniques",
+          "name": "Dramatic Techniques",
+          "subtopics": [
+            {
+              "slug": "irony_in_prose",
+              "name": "Irony In Prose"
+            }
+          ]
+        },
+        {
+          "slug": "tone_and_mood",
+          "name": "Tone And Mood",
+          "subtopics": [
+            {
+              "slug": "tone_identification",
+              "name": "Tone Identification"
+            }
+          ]
         }
       ]
     },
@@ -339,15 +535,53 @@
       "topics": [
         {
           "slug": "poetic_devices",
-          "name": "Poetic Devices"
+          "name": "Poetic Devices",
+          "subtopics": [
+            {
+              "slug": "alliteration_identification",
+              "name": "Alliteration Identification"
+            },
+            {
+              "slug": "personification_identification",
+              "name": "Personification Identification"
+            },
+            {
+              "slug": "word_meaning_in_context",
+              "name": "Word Meaning In Context"
+            }
+          ]
         },
         {
           "slug": "imagery",
-          "name": "Imagery"
+          "name": "Imagery",
+          "subtopics": [
+            {
+              "slug": "colour_imagery",
+              "name": "Colour Imagery"
+            },
+            {
+              "slug": "time_imagery",
+              "name": "Time Imagery"
+            },
+            {
+              "slug": "fire_imagery",
+              "name": "Fire Imagery"
+            },
+            {
+              "slug": "season_imagery",
+              "name": "Season Imagery"
+            }
+          ]
         },
         {
           "slug": "structure_and_form",
-          "name": "Structure and Form"
+          "name": "Structure and Form",
+          "subtopics": [
+            {
+              "slug": "couplet_function",
+              "name": "Couplet Function"
+            }
+          ]
         },
         {
           "slug": "tone_and_mood",
@@ -355,7 +589,17 @@
         },
         {
           "slug": "theme_identification",
-          "name": "Theme Identification"
+          "name": "Theme Identification",
+          "subtopics": [
+            {
+              "slug": "theme_of_wildness",
+              "name": "Theme Of Wildness"
+            },
+            {
+              "slug": "discuss_view_with_evidence",
+              "name": "Discuss View With Evidence"
+            }
+          ]
         },
         {
           "slug": "figurative_language",
@@ -548,6 +792,66 @@
     {
       "id": "english_fal_use_one_word_for_phrase",
       "name": "Use one word for phrase"
+    },
+    {
+      "id": "english_fal_match_characters_to_roles",
+      "name": "Match characters to roles"
+    },
+    {
+      "id": "english_fal_identify_figure_of_speech",
+      "name": "Identify figure of speech"
+    },
+    {
+      "id": "english_fal_infer_character_from_words",
+      "name": "Infer character from words"
+    },
+    {
+      "id": "english_fal_substantiate_a_view",
+      "name": "Substantiate a view"
+    },
+    {
+      "id": "english_fal_recall_key_events",
+      "name": "Recall key events"
+    },
+    {
+      "id": "english_fal_infer_state_of_mind",
+      "name": "Infer state of mind"
+    },
+    {
+      "id": "english_fal_explain_reason_in_context",
+      "name": "Explain reason in context"
+    },
+    {
+      "id": "english_fal_identify_theme_evidence",
+      "name": "Identify theme evidence"
+    },
+    {
+      "id": "english_fal_identify_tone",
+      "name": "Identify tone"
+    },
+    {
+      "id": "english_fal_explain_irony",
+      "name": "Explain irony"
+    },
+    {
+      "id": "english_fal_identify_theme",
+      "name": "Identify theme"
+    },
+    {
+      "id": "english_fal_explain_word_in_context",
+      "name": "Explain word in context"
+    },
+    {
+      "id": "english_fal_identify_sound_devices",
+      "name": "Identify sound devices"
+    },
+    {
+      "id": "english_fal_explain_imagery",
+      "name": "Explain imagery"
+    },
+    {
+      "id": "english_fal_explain_effect_of_structure",
+      "name": "Explain effect of structure"
     }
   ]
 }
