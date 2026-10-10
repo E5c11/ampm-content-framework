@@ -132,7 +132,7 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "Nala Florists insured its building, worth R900 000, for only R600 000. A storm caused R150 000 of damage, and the insurer paid out less than the full loss. Which insurance clause did the insurer apply?",
+    "question": "Nala Florists insured its building, worth R900\u00a0000, for only R600\u00a0000. A storm caused R150\u00a0000 of damage, and the insurer paid out less than the full loss. Which insurance clause did the insurer apply?",
     "metadata": [
       "Excess clause",
       "Average clause",
@@ -167,7 +167,7 @@ const questions = [
   },
   {
     "name": "Question 4",
-    "question": "Nala Florists insured its building, worth R900 000, for R600 000. A storm caused damage of R150 000. Apply the average clause to calculate the compensation Nala Florists will receive from the insurer.",
+    "question": "Nala Florists insured its building, worth R900\u00a0000, for R600\u00a0000. A storm caused damage of R150\u00a0000. Apply the average clause to calculate the compensation Nala Florists will receive from the insurer.",
     "metadata": [
       "Compensation = R",
       "[ ]"
