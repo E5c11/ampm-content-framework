@@ -21,6 +21,7 @@ const {
   supplementaryMaterialUuid,
 } = require('./uuid');
 const { questionCurriculumIds } = require('./curriculum');
+const { textKeyOf } = require('./setwork-vocabulary');
 
 const CONTENT_TIERS = ['free', 'plus', 'pro'];
 
@@ -148,7 +149,7 @@ function buildContentRows(video, questions, aiExplanation, now = new Date()) {
       ai_output_tokens: aiExplanation.output_tokens ?? 0,
       ai_avg_rating: aiExplanation.avg_rating ?? null,
       ai_rating_count: aiExplanation.rating_count ?? 0,
-      english_text_id: video.text_key ?? null,
+      english_text_id: textKeyOf(video),
       geography_map_id: video.map_key ?? null,
       ...audit(now),
     },
@@ -232,7 +233,7 @@ function buildContentRows(video, questions, aiExplanation, now = new Date()) {
         difficulty: q.difficulty,
         exam_weight: q.exam_weight,
         clues: q.clues ?? null,
-        english_text_id: q.text_key ?? null,
+        english_text_id: textKeyOf(q),
         geography_map_id: q.map_key ?? null,
         supplementary_material_type: supp?.type ?? null,
         supplementary_material_label: supp?.label ?? null,
@@ -277,13 +278,13 @@ function referenceIdsUsed(video, questions) {
   ids.years.add(String(video.year));
   ids.papers.add(video.paper);
   if (video.series) ids.series.add(video.series);
-  if (video.text_key) ids.english_texts.add(video.text_key);
+  if (textKeyOf(video)) ids.english_texts.add(textKeyOf(video));
   if (video.map_key) ids.geography_maps.add(video.map_key);
   for (const t of video.tags ?? []) ids.tags.add(t);
   for (const q of questions) {
     ids.question_presentations.add(q.presentation);
     ids.question_types.add(q.type);
-    if (q.text_key) ids.english_texts.add(q.text_key);
+    if (textKeyOf(q)) ids.english_texts.add(textKeyOf(q));
     if (q.map_key) ids.geography_maps.add(q.map_key);
     const c = curriculumIds(q);
     for (const v of [c.unit_id, c.topic_id, c.subtopic_id]) if (v) ids.curriculum_nodes.add(v);

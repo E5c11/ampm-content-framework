@@ -30,7 +30,9 @@ already on dev was authored, the existing paper stands until its retrofit.
 
 `subjects.capabilities` is a `TEXT[]` (backend V83, contracts 0.41.0
 `SubjectResponse.capabilities`). The value **`setwork`** means "this subject has prescribed
-texts and uses the setwork screen". Clients ignore values they don't know. Before this,
+texts and uses the setwork screen". Clients ignore values they don't know; the framework does not — known values live in
+`tools/lib/setwork-vocabulary.js` (`setwork`, `accents_af` = text keyboard shows Afrikaans accent keys,
+`calculator_basic`, `calculator_scientific`; backend V84 seeds the last three). Before this,
 the screen was hardcoded to `english_hl`, `nov_p2` and sections `novel`/`drama`; none of
 that is true any more:
 
