@@ -144,6 +144,31 @@ facts in explanations, never invented scoring.
   `"…1.2…"` (Part 1/Part 2).
 - Image extraction: `LANG-IMG-01`/`02`, `SETWORK-IMG-01`.
 
+## Curriculum units (proposed 2026-10-10 from CAPS §3.2–3.4; approved, not yet in the DB)
+
+Source of truth for the seed: `tools/seeds/english-fal-curriculum.json` (10 units, 61 topics; ids
+`english_fal_<unit>` and `english_fal_<unit>__<topic>`). Seed with
+`node tools/seed-curriculum.js --file tools/seeds/english-fal-curriculum.json --apply` once the subject row exists
+(dry run by default). Subtopics are **not** seeded — create them per lesson from the real sub-questions
+(`create-curriculum-node.js --subject english_fal`).
+
+| Unit | Exam home | Topics |
+|---|---|---|
+| `comprehension` | P1 Q1 | literal_comprehension, inferential_reading, vocabulary_in_context, figurative_language, author_purpose_and_attitude, evaluative_reading, text_features_and_visuals |
+| `summary` | P1 Q2 | main_vs_supporting_points, paraphrase_and_own_words, point_form_conventions |
+| `visual_texts` | P1 Q3, Q4 | advertising_language, cartoon_analysis, critical_language_awareness |
+| `language` | P1 Q5 | parts_of_speech, word_level_vocabulary, verb_tenses, concord, modals_and_conditionals, passive_and_reported_speech, sentence_construction, punctuation_and_spelling, editing |
+| `novel` / `drama` / `short_stories` / `poetry` | P2 §A–§D | per-genre topics (character, plot, theme, devices, tone …); individual texts are identified by `text_key`, not by topic |
+| `essay_writing` | P3 §A | essay_types, planning_and_structure, picture_prompts, language_style_and_editing |
+| `transactional_writing` | P3 §B, §C | one topic per text type (email, formal_letter, speech, dialogue, book_review, magazine_article, flyer, whatsapp_message, instructions, diary_entry, minutes, agenda, report) |
+
+`visual_texts` is new relative to HL (the advert and cartoon test viewing/critical-language skills, not editing). The unit
+slug is `drama`, not `play` (`play` is only the `english_texts` section value). Language topics follow CAPS §3.4 at
+coarse grain; the detail goes in subtopics.
+
+**Skills:** `skills.id` is a **global primary key** (checked on dev 2026-10-10) — unlike HL's 253 existing skill ids, FAL
+skill ids must be prefixed `english_fal_` (e.g. `english_fal_identify_figure_of_speech`) or they will collide with HL.
+
 ## Open items before the first lesson
 
 1. Owner: `subjects` row for `english_fal` with `capabilities = {setwork}`, `min_app_version = 2.4.1`, 3 papers.
@@ -152,7 +177,9 @@ facts in explanations, never invented scoring.
    FAL units with an `english_fal_` prefix (the node id is a global key); the validator checks `SETWORK-LES-01`.
    Still open: nothing sets/checks `subjects.min_app_version`.
 3. Source files: a memo for May–June 2025 P2/P3; June-diet P1 (optional).
-4. Curriculum units: propose from the HL set (`comprehension`, `summary`, `language`, `poetry`, `drama`, `novel`,
-   `transactional_writing`, `essay_writing`) plus `short_stories`; confirm against CAPS Sections 2–3 before the first dump.
-5. Confirm with the owner whether FAL lessons should reuse HL curriculum node slugs where the skill is identical
-   (they are per-subject rows either way — `LANG-CUR-01`).
+4. ~~Curriculum units~~ — settled above; blocked only on the subject row (item 1).
+5. **Dev state checked 2026-10-10:** there is **no `english_fal` row** in `subjects` on dev (`afrikaans_fal` exists, `capabilities = {}`,
+   `min_app_version` null); no FAL curriculum nodes or skills; `english_texts` holds only HL texts (no *Macbeth*, so every FAL text is
+   a new row except any HL later adds). Row template (copy HL's): `id english_fal`, `name "English FAL"`, `full_name "English First
+   Additional Language"`, `code ENGLISH_FAL`, `category english_lessons`, `is_active`, `capabilities {setwork}`,
+   `min_app_version 2.4.1`; colour/icon/sort_order are the owner's call.

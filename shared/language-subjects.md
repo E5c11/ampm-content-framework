@@ -235,8 +235,10 @@ Each language subject has its own units; IDs are namespaced `unit__topic__subtop
 topic names recur across units — author bare slugs, `content-rows.js` namespaces them, and
 the name a question needs is the last `__` segment. Dump before authoring
 (`dump-curriculum-vocabulary.js --subject <id>`), reuse a `skills` row before creating one
-(`tools/create-skill.js --subject <id>`). Skills are subject-scoped; a skill phrase may be
-reused across language subjects only by creating the row for each.
+(`tools/create-skill.js --subject <id>`). Skills are subject-scoped rows but `skills.id` and
+`curriculum_nodes.id` are **global primary keys**: a second language subject prefixes both with its
+subject id (`english_fal_…` — units via `tools/lib/curriculum.js` `UNIT_PREFIX`; skill ids by hand).
+A skill phrase may be reused across subjects only by creating a differently-prefixed row for each.
 
 ### `LANG-LES-01` — Language lessons usually have no video
 

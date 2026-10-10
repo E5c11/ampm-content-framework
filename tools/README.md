@@ -21,6 +21,7 @@ touching Postgres / GCS / content data; Python for doc-graph upkeep only.
 | `upload-question-supplementary.js` | Uploads a single question's own newly-generated `supplementary_material` figure (recreated diagram/graph, never a real-exam extract) to `question_supplementary/{subject}/{year}/{paper}/q{order}/{type}_{index}.png`; prints the ready-to-paste value. Added 2026-09-09 — the path was documented in subject profiles but had no uploader until physics Q2 needed a free-body diagram. | Node |
 | `extract-exam-pages.py` | Extracts question/annexure/memo page images from exam PDFs; `--inspect` finds crop points. | Python |
 | `upload-script-template.js` | Template for per-question-group upload scripts (pipeline Phase 4). Copy, fill, validate, run against dev. | Node |
+| `seed-curriculum.js` | Bulk-seeds unit+topic `curriculum_nodes` for a subject from a JSON file (`tools/seeds/`); dry run unless `--apply`; refuses if the subject row is missing. Needs the Auth Proxy. | Node |
 | `pg-smoke.js` | Read-only check that the Postgres write layer reaches Cloud SQL through the Auth Proxy; prints the Flyway head. | Node |
 | `push-paper-to-prod.js` | `PIPE-11`'s manually-gated prod step: copies one paper's lessons/questions (plus skills/tags/lookup-table FK deps and every referenced image) from dev to prod, landing unpublished; `--publish` flips it live once spot-checked. Needs both Auth Proxies running (dev + prod) and the `PG_*_PROD` block in `.env`. | Node |
 | `lib/credentials.js` | Resolves the Cloud SQL `pgConfig(env)` from `.env` / env vars. | Node |

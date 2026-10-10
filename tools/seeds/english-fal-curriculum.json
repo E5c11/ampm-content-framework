@@ -1,0 +1,309 @@
+{
+  "subject": "english_fal",
+  "units": [
+    {
+      "slug": "comprehension",
+      "name": "Comprehension",
+      "topics": [
+        {
+          "slug": "literal_comprehension",
+          "name": "Literal Comprehension"
+        },
+        {
+          "slug": "inferential_reading",
+          "name": "Inferential Reading"
+        },
+        {
+          "slug": "vocabulary_in_context",
+          "name": "Vocabulary in Context"
+        },
+        {
+          "slug": "figurative_language",
+          "name": "Figurative Language"
+        },
+        {
+          "slug": "author_purpose_and_attitude",
+          "name": "Author's Purpose and Attitude"
+        },
+        {
+          "slug": "evaluative_reading",
+          "name": "Evaluative Reading"
+        },
+        {
+          "slug": "text_features_and_visuals",
+          "name": "Text Features and Visuals"
+        }
+      ]
+    },
+    {
+      "slug": "summary",
+      "name": "Summary",
+      "topics": [
+        {
+          "slug": "main_vs_supporting_points",
+          "name": "Main and Supporting Points"
+        },
+        {
+          "slug": "paraphrase_and_own_words",
+          "name": "Paraphrase and Own Words"
+        },
+        {
+          "slug": "point_form_conventions",
+          "name": "Point-Form Conventions"
+        }
+      ]
+    },
+    {
+      "slug": "visual_texts",
+      "name": "Visual Texts",
+      "topics": [
+        {
+          "slug": "advertising_language",
+          "name": "Advertising Language"
+        },
+        {
+          "slug": "cartoon_analysis",
+          "name": "Cartoon Analysis"
+        },
+        {
+          "slug": "critical_language_awareness",
+          "name": "Critical Language Awareness"
+        }
+      ]
+    },
+    {
+      "slug": "language",
+      "name": "Language Structures and Conventions",
+      "topics": [
+        {
+          "slug": "parts_of_speech",
+          "name": "Parts of Speech"
+        },
+        {
+          "slug": "word_level_vocabulary",
+          "name": "Word-Level Vocabulary"
+        },
+        {
+          "slug": "verb_tenses",
+          "name": "Verb Tenses"
+        },
+        {
+          "slug": "concord",
+          "name": "Concord"
+        },
+        {
+          "slug": "modals_and_conditionals",
+          "name": "Modals and Conditionals"
+        },
+        {
+          "slug": "passive_and_reported_speech",
+          "name": "Passive Voice and Reported Speech"
+        },
+        {
+          "slug": "sentence_construction",
+          "name": "Sentence Construction"
+        },
+        {
+          "slug": "punctuation_and_spelling",
+          "name": "Punctuation and Spelling"
+        },
+        {
+          "slug": "editing",
+          "name": "Editing"
+        }
+      ]
+    },
+    {
+      "slug": "novel",
+      "name": "Novel",
+      "topics": [
+        {
+          "slug": "character_analysis",
+          "name": "Character Analysis"
+        },
+        {
+          "slug": "plot_structure",
+          "name": "Plot Structure"
+        },
+        {
+          "slug": "theme_identification",
+          "name": "Theme Identification"
+        },
+        {
+          "slug": "setting_and_atmosphere",
+          "name": "Setting and Atmosphere"
+        },
+        {
+          "slug": "figurative_language",
+          "name": "Figurative Language"
+        },
+        {
+          "slug": "tone_and_mood",
+          "name": "Tone and Mood"
+        }
+      ]
+    },
+    {
+      "slug": "drama",
+      "name": "Drama",
+      "topics": [
+        {
+          "slug": "character_analysis",
+          "name": "Character Analysis"
+        },
+        {
+          "slug": "plot_structure",
+          "name": "Plot Structure"
+        },
+        {
+          "slug": "theme_identification",
+          "name": "Theme Identification"
+        },
+        {
+          "slug": "dramatic_techniques",
+          "name": "Dramatic Techniques"
+        },
+        {
+          "slug": "tone_and_mood",
+          "name": "Tone and Mood"
+        }
+      ]
+    },
+    {
+      "slug": "short_stories",
+      "name": "Short Stories",
+      "topics": [
+        {
+          "slug": "character_analysis",
+          "name": "Character Analysis"
+        },
+        {
+          "slug": "plot_structure",
+          "name": "Plot Structure"
+        },
+        {
+          "slug": "theme_identification",
+          "name": "Theme Identification"
+        },
+        {
+          "slug": "narrative_voice_and_setting",
+          "name": "Narrative Voice and Setting"
+        },
+        {
+          "slug": "figurative_language",
+          "name": "Figurative Language"
+        }
+      ]
+    },
+    {
+      "slug": "poetry",
+      "name": "Poetry",
+      "topics": [
+        {
+          "slug": "poetic_devices",
+          "name": "Poetic Devices"
+        },
+        {
+          "slug": "imagery",
+          "name": "Imagery"
+        },
+        {
+          "slug": "structure_and_form",
+          "name": "Structure and Form"
+        },
+        {
+          "slug": "tone_and_mood",
+          "name": "Tone and Mood"
+        },
+        {
+          "slug": "theme_identification",
+          "name": "Theme Identification"
+        },
+        {
+          "slug": "figurative_language",
+          "name": "Figurative Language"
+        }
+      ]
+    },
+    {
+      "slug": "essay_writing",
+      "name": "Essay Writing",
+      "topics": [
+        {
+          "slug": "essay_types",
+          "name": "Essay Types"
+        },
+        {
+          "slug": "planning_and_structure",
+          "name": "Planning and Structure"
+        },
+        {
+          "slug": "picture_prompts",
+          "name": "Picture Prompts"
+        },
+        {
+          "slug": "language_style_and_editing",
+          "name": "Language, Style and Editing"
+        }
+      ]
+    },
+    {
+      "slug": "transactional_writing",
+      "name": "Transactional Writing",
+      "topics": [
+        {
+          "slug": "email",
+          "name": "E-mail"
+        },
+        {
+          "slug": "formal_letter",
+          "name": "Formal Letter"
+        },
+        {
+          "slug": "speech",
+          "name": "Speech"
+        },
+        {
+          "slug": "dialogue",
+          "name": "Dialogue"
+        },
+        {
+          "slug": "book_review",
+          "name": "Book Review"
+        },
+        {
+          "slug": "magazine_article",
+          "name": "Magazine Article"
+        },
+        {
+          "slug": "flyer",
+          "name": "Flyer"
+        },
+        {
+          "slug": "whatsapp_message",
+          "name": "WhatsApp Message"
+        },
+        {
+          "slug": "instructions",
+          "name": "Instructions"
+        },
+        {
+          "slug": "diary_entry",
+          "name": "Diary Entry"
+        },
+        {
+          "slug": "minutes",
+          "name": "Minutes"
+        },
+        {
+          "slug": "agenda",
+          "name": "Agenda"
+        },
+        {
+          "slug": "report",
+          "name": "Report"
+        }
+      ]
+    }
+  ]
+}

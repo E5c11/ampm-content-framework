@@ -21,7 +21,9 @@
 3. Curriculum vocabulary dumped for the subject: `node tools/dump-curriculum-vocabulary.js --subject english_fal
    --out temp/curriculum-vocab-english-fal.json`. Empty on the first session — create units/topics/subtopics with
    `tools/create-curriculum-node.js --subject english_fal` (bare slugs; ids come out as
-   `english_fal_<unit>__<topic>__<subtopic>`) and skills with `tools/create-skill.js --subject english_fal`.
+   `english_fal_<unit>__<topic>__<subtopic>`). Units and topics are seeded once from
+   `tools/seeds/english-fal-curriculum.json` (`tools/seed-curriculum.js`). Skill ids are global, so prefix them
+   `english_fal_` (`tools/create-skill.js --subject english_fal --id english_fal_<slug>`).
 
 ## Phase 0 (Paper 2 only) — texts
 
