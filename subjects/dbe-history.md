@@ -388,6 +388,23 @@ one theme; reuse a node only where it is genuinely the same concept (e.g. *Domin
 
 ## Completed papers ledger
 
+**`nov_p2` 2024 — authored and uploaded to dev, 2026-10-10; emulator review and prod push open.**
+6 lessons, `order` 1–6, 51 practice questions (9/9/9/8/8/8), validated (`--curriculum`, 0 errors,
+0 warnings) and upserted, one commit per lesson (`f4d4c7b`…`87e3f97`, PDFs `6c86031`). Postgres check:
+all published, every question has unit/topic/subtopic + a skill, no `\n` in stems, every `fitb` is
+`standard_math`, `aiExplanation` sums to 50 per lesson (17/17/17 Section A entries, 1 per essay) —
+300/300. All 41 image URLs return 200. Exam derives the floor (2.0.0); P1 2024 was authored in parallel
+by another session. Topics: Q1 civic organisations / rent boycotts (Sources 1A–1D), Q2 the TRC and the
+Kondile case, Q3 resistance to Walmart (globalisation); Q4–Q6 essays (Biko/BC, negotiations 1990–94,
+Gorbachev) — **the same three essay topics as 2025 P2**, so they reuse its topic nodes and their practice
+items were written to avoid the 2025 set (no SASO-year, Mandela-release or Gorbachev-1985 repeats).
+- **Curriculum ids are flat for History** (`questionCurriculumIds` → bare slug), contrary to the
+  "per (unit, topic, subtopic)" note in the 2025 P1 entry below: dev holds 7 subtopic rows total. Only
+  the 3 new topics were created; subtopics and skills were all reused. 13 new tags.
+- **Memo slip:** 2.3.3/2.6 say the 2016 repatriation came "31 years" after Kondile's 1981 death; it is 35.
+  The practice calculation item uses 35, and the explanations avoid the memo's figure.
+- MC: index 0 in 2/21; correct option strictly longest in 4/21 (rebalanced before upload).
+
 **`nov_p1` — authored, uploaded to dev and reviewed on emulator, 2026-10-07; prod push still open.**
 All 6 lessons (3 source-based, 3 essay), `order` 1–6, 51 practice questions, validated
 (`--curriculum`, 0 errors, 0 warnings, derived minimum 2.0.0) and upserted to dev Cloud SQL, one
