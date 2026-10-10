@@ -497,7 +497,7 @@ const aiExplanation = {
     "marks": 3,
     "clues": "- Look at the paragraph beginning \"The bill will substantially limit\".\n- You need three separate effects.",
     "approach": "- Quote three things the bill would do to workers and unions.",
-    "solution": "1. '… limit workers' right to strike …'\n2. '… open trade unions to civil action for losses incurred by their members' actions …'\n3. '… outlaw solidarity action in industrial disputes'\n4. Each earns 1 mark."
+    "solution": "1. '… limit workers' right to strike …'\n2. '… open trade unions to civil action for losses incurred by their members' actions …'\n3. '… outlaw solidarity action in industrial disputes'\n4. Each earns 1 mark.\n5. Note: the marking guideline prints '(any 1 x 3)' here; the question paper's (1 x 3) is the allocation, three quotations at 1 mark each."
   },
   {
     "number": "1.4.3",
@@ -525,7 +525,7 @@ const aiExplanation = {
     "marks": 8,
     "clues": "- Plan: how did COSATU respond to the labour reforms?\n- Use every source and add your own knowledge.",
     "approach": "- Open with a clear statement answering the question.\n- Use evidence from each source, naming it.\n- Add own knowledge, e.g. strikes and stayaways.\n- End with a concluding sentence.",
-    "solution": "1. COSATU was launched at the start of December 1985 to challenge apartheid labour policies and committed itself to one-person one-vote (Source 1A).\n2. It used its large membership, including NUM, to build a strong force and called for a minimum wage (Source 1A).\n3. It used posters to mobilise workers to organise and resist the bill and restrictions (Source 1B).\n4. It filled the vacuum left by detained UDF leaders and called for sanctions and disinvestment (Source 1C).\n5. It held a special congress and refused to give in to the restrictions (Source 1D).\n6. It organised campaigns and strikes to pressure the government (own knowledge).\n7. The paragraph is marked on a 3-level rubric: 0–2, 3–5 or 6–8 marks."
+    "solution": "1. COSATU was launched at the start of December 1985 to challenge apartheid labour policies and committed itself to one-person one-vote (Source 1A).\n2. It used its large membership, including NUM, to build a strong force and called for a minimum wage (Source 1A).\n3. It used posters to mobilise workers to organise and resist the bill and restrictions (Source 1B).\n4. It filled the vacuum left by detained UDF leaders and called for sanctions and disinvestment (Source 1C).\n5. It held a special congress and refused to give in to the restrictions (Source 1D).\n6. It organised campaigns and strikes to pressure the government (own knowledge).\n7. The paragraph is marked on a 3-level rubric: 0–2, 3–5 or 6–8 marks.\n8. Note: the marking guideline dates COSATU's launch to 5 December 1985. Source 1A, published on 6 December, says the launch rally was \"last weekend\", so the launch was at the start of December (the weekend of 30 November–1 December)."
   }
 ],
   model: 'claude-opus-5-5',
