@@ -191,7 +191,7 @@ skill ids must be prefixed `english_fal_` (e.g. `english_fal_identify_figure_of_
 | Paper | Lessons | Questions | Notes |
 |---|---|---|---|
 | `nov_p1` | 5 (Q1–Q5) | 26 | aiExplanation per real sub-question (AIEXP-08); MC answer positions 1/4/4/3 |
-| `nov_p2` | 12 (1.1, 1.2 … 6.1, 6.2) | 60 | Extracts A–J + two poems; `text_key` on lesson and questions; 35 MCQs at positions 3/11/11/10 |
+| `nov_p2` | 12 (1.1, 1.2 … 6.1, 6.2) | 59 | Extracts A–J + two poems; `text_key` on lesson and questions; HL pattern: `context_text` null, fresh targets, factual basis (BK/P/M/PT) per question in each script header; 20 MCQs at positions 2/6/6/6 |
 
 - **Texts created on dev (`english_texts`, 2026-10-10, `prescribed_years` ["2025"]):** `cry_the_beloved_country`,
   `strange_case_of_dr_jekyll_and_mr_hyde` (novel); `macbeth`, `my_children_my_africa` (play);
@@ -204,3 +204,10 @@ skill ids must be prefixed `english_fal_` (e.g. `english_fal_identify_figure_of_
   (2) multi-part exam items with lettered parts are one `aiExplanation` entry per printed number with the item's total marks;
   (3) every 4+ question set needs ≥3 presentation types (validator `Variety rule`); (4) extract/poem question images must stop
   above the `AND` divider and the `TOTAL SECTION` line — check the last 200 px of each crop.
+
+- **P2 rework (2026-10-10):** the first P2 set reused the exam's own statements and memo answers and added `context_text`; it
+  was replaced with the HL pattern above. Items needing a subject-expert check against the book are the `BK`-led ones
+  (37 of 59) — chiefly Napoleon Letsitsi's role and Kumalo on the mountain (*Cry*), Hyde's rooms in Soho and the cabinet
+  door (*Jekyll*), Mr M teaches English (*My Children!*), Ernest's death (*Eveline*). Review sheet: `temp/review/english_fal_nov_p2_factual_basis.md`
+  (regenerate from the script headers; gitignored). "Triumph in the Face of Adversity" is limited to the extract, title and
+  memo — no outside plot knowledge.
