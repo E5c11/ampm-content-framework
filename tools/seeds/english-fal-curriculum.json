@@ -48,6 +48,14 @@
             {
               "slug": "purpose_of_source_reference",
               "name": "Purpose Of Source Reference"
+            },
+            {
+              "slug": "writers_main_point",
+              "name": "Writers Main Point"
+            },
+            {
+              "slug": "purpose_of_a_statistic",
+              "name": "Purpose Of A Statistic"
             }
           ]
         },
@@ -142,6 +150,10 @@
             {
               "slug": "speech_and_thought_bubbles",
               "name": "Speech And Thought Bubbles"
+            },
+            {
+              "slug": "cartoon_conventions",
+              "name": "Cartoon Conventions"
             }
           ]
         },
@@ -180,6 +192,14 @@
             {
               "slug": "prefix_meaning",
               "name": "Prefix Meaning"
+            },
+            {
+              "slug": "synonym_in_context",
+              "name": "Synonym In Context"
+            },
+            {
+              "slug": "word_formation",
+              "name": "Word Formation"
             }
           ]
         },
@@ -232,6 +252,10 @@
             {
               "slug": "tag_questions",
               "name": "Tag Questions"
+            },
+            {
+              "slug": "negative_form",
+              "name": "Negative Form"
             }
           ]
         },
@@ -242,6 +266,18 @@
             {
               "slug": "apostrophe_of_possession",
               "name": "Apostrophe Of Possession"
+            },
+            {
+              "slug": "end_punctuation",
+              "name": "End Punctuation"
+            },
+            {
+              "slug": "contractions_and_homophones",
+              "name": "Contractions And Homophones"
+            },
+            {
+              "slug": "spelling",
+              "name": "Spelling"
             }
           ]
         },
@@ -382,6 +418,10 @@
             {
               "slug": "metaphor_identification",
               "name": "Metaphor Identification"
+            },
+            {
+              "slug": "point_of_view",
+              "name": "Point Of View"
             }
           ]
         },
@@ -476,6 +516,10 @@
             {
               "slug": "central_conflict",
               "name": "Central Conflict"
+            },
+            {
+              "slug": "places_in_the_play",
+              "name": "Places In The Play"
             }
           ]
         },
@@ -564,6 +608,18 @@
             {
               "slug": "narrator",
               "name": "Narrator"
+            },
+            {
+              "slug": "characters_and_roles",
+              "name": "Characters And Roles"
+            },
+            {
+              "slug": "family_relationships",
+              "name": "Family Relationships"
+            },
+            {
+              "slug": "backstory_in_the_extract",
+              "name": "Backstory In The Extract"
             }
           ]
         },
@@ -590,6 +646,10 @@
             {
               "slug": "eveline_family",
               "name": "Eveline Family"
+            },
+            {
+              "slug": "closing_events",
+              "name": "Closing Events"
             }
           ]
         },
@@ -692,6 +752,14 @@
             {
               "slug": "addressee",
               "name": "Addressee"
+            },
+            {
+              "slug": "speaker_and_subject",
+              "name": "Speaker And Subject"
+            },
+            {
+              "slug": "text_information",
+              "name": "Text Information"
             }
           ]
         },
@@ -722,6 +790,14 @@
             {
               "slug": "natural_features",
               "name": "Natural Features"
+            },
+            {
+              "slug": "emotions_in_the_poem",
+              "name": "Emotions In The Poem"
+            },
+            {
+              "slug": "window_and_rain_imagery",
+              "name": "Window And Rain Imagery"
             }
           ]
         },
@@ -736,6 +812,14 @@
             {
               "slug": "poem_form",
               "name": "Poem Form"
+            },
+            {
+              "slug": "rhyme_scheme",
+              "name": "Rhyme Scheme"
+            },
+            {
+              "slug": "progression_of_ideas",
+              "name": "Progression Of Ideas"
             }
           ]
         },
@@ -794,6 +878,14 @@
             {
               "slug": "writing_process",
               "name": "Writing Process"
+            },
+            {
+              "slug": "thesis_statement",
+              "name": "Thesis Statement"
+            },
+            {
+              "slug": "narrative_structure",
+              "name": "Narrative Structure"
             }
           ]
         },
@@ -818,6 +910,10 @@
             {
               "slug": "how_the_essay_is_marked",
               "name": "How The Essay Is Marked"
+            },
+            {
+              "slug": "show_dont_tell",
+              "name": "Show Dont Tell"
             }
           ]
         }
@@ -847,7 +943,21 @@
         },
         {
           "slug": "formal_letter",
-          "name": "Formal Letter"
+          "name": "Formal Letter",
+          "subtopics": [
+            {
+              "slug": "format_of_a_letter",
+              "name": "Format Of A Letter"
+            },
+            {
+              "slug": "register_and_tone",
+              "name": "Register And Tone"
+            },
+            {
+              "slug": "subject_line",
+              "name": "Subject Line"
+            }
+          ]
         },
         {
           "slug": "speech",
@@ -882,6 +992,10 @@
             {
               "slug": "stage_directions",
               "name": "Stage Directions"
+            },
+            {
+              "slug": "tone_of_a_dialogue",
+              "name": "Tone Of A Dialogue"
             }
           ]
         },
@@ -891,7 +1005,29 @@
         },
         {
           "slug": "magazine_article",
-          "name": "Magazine Article"
+          "name": "Magazine Article",
+          "subtopics": [
+            {
+              "slug": "headline",
+              "name": "Headline"
+            },
+            {
+              "slug": "features_of_an_article",
+              "name": "Features Of An Article"
+            },
+            {
+              "slug": "opening_hook",
+              "name": "Opening Hook"
+            },
+            {
+              "slug": "style_of_an_article",
+              "name": "Style Of An Article"
+            },
+            {
+              "slug": "purpose_of_an_article",
+              "name": "Purpose Of An Article"
+            }
+          ]
         },
         {
           "slug": "flyer",
@@ -961,7 +1097,21 @@
         },
         {
           "slug": "diary_entry",
-          "name": "Diary Entry"
+          "name": "Diary Entry",
+          "subtopics": [
+            {
+              "slug": "features_of_a_diary",
+              "name": "Features Of A Diary"
+            },
+            {
+              "slug": "opening_of_a_diary_entry",
+              "name": "Opening Of A Diary Entry"
+            },
+            {
+              "slug": "person_and_tone",
+              "name": "Person And Tone"
+            }
+          ]
         },
         {
           "slug": "minutes",
@@ -990,6 +1140,50 @@
             {
               "slug": "tone_of_a_review",
               "name": "Tone Of A Review"
+            }
+          ]
+        },
+        {
+          "slug": "obituary",
+          "name": "Obituary",
+          "subtopics": [
+            {
+              "slug": "format_of_an_obituary",
+              "name": "Format Of An Obituary"
+            },
+            {
+              "slug": "tone_of_an_obituary",
+              "name": "Tone Of An Obituary"
+            },
+            {
+              "slug": "tribute",
+              "name": "Tribute"
+            }
+          ]
+        },
+        {
+          "slug": "poster",
+          "name": "Poster",
+          "subtopics": [
+            {
+              "slug": "headline",
+              "name": "Headline"
+            },
+            {
+              "slug": "content_of_a_poster",
+              "name": "Content Of A Poster"
+            },
+            {
+              "slug": "catchy_phrases",
+              "name": "Catchy Phrases"
+            },
+            {
+              "slug": "length_of_the_text",
+              "name": "Length Of The Text"
+            },
+            {
+              "slug": "what_is_marked",
+              "name": "What Is Marked"
             }
           ]
         }
@@ -1240,6 +1434,26 @@
     {
       "id": "english_fal_use_sequencing_words",
       "name": "Use sequencing words"
+    },
+    {
+      "id": "english_fal_identify_main_point",
+      "name": "Identify main point"
+    },
+    {
+      "id": "english_fal_identify_punctuation_function",
+      "name": "Identify punctuation function"
+    },
+    {
+      "id": "english_fal_correct_spelling_error",
+      "name": "Correct spelling error"
+    },
+    {
+      "id": "english_fal_rewrite_in_negative_form",
+      "name": "Rewrite in negative form"
+    },
+    {
+      "id": "english_fal_use_word_formation",
+      "name": "Use word formation"
     }
   ]
 }
