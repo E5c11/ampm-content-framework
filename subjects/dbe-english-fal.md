@@ -14,7 +14,7 @@ provenance: drafted 2026-10-10 from the Nov 2025 P1/P2/P3 papers and memos, the 
 > specific to English FAL. Binding from the first FAL paper (the shared rules apply to all papers authored
 > from 2026-10-10 — there is nothing to retrofit here). **Status (2026-10-10):** Nov 2025 is complete on dev: P1 (5 lessons /
 > 26 questions), P2 (12 / 59) and P3 (8 / 41) — 25 lessons, 126 questions — gated 2.4.1 and emulator-reviewed (every question
-> rendered; every typed answer passes on the Text keyboard). The May–June 2025 papers are not authored. Nothing is in prod.
+> rendered; every typed answer passes on the Text keyboard). Nov 2024 is also complete on dev (P1 5 lessons / 25 questions, P2 12 / 57, P3 8 / 41 — 25 lessons, 123 questions), gated 2.4.1 and emulator-reviewed (27/27 typed answers pass). The May–June 2025 papers are not authored. Nothing is in prod.
 
 ## Identity
 
@@ -236,3 +236,17 @@ skill ids must be prefixed `english_fal_` (e.g. `english_fal_identify_figure_of_
   mountain (*Cry*), Hyde's rooms in Soho and the cabinet door (*Jekyll*), Ernest's
   death (*Eveline*). A review sheet can be regenerated from the script headers into `temp/review/` (gitignored).
   Re-uploading a lesson with fewer questions leaves the old row published — soft-delete it (Q4.2 had a stale Q5).
+
+## Ledger — Nov 2024 (2026-10-11)
+
+| Paper | Lessons | Questions | Notes |
+|---|---|---|---|
+| `nov_p1` | 5 | 25 | TEXT A AI article, B reading infographic, C getting active, D Sinutab ad, E Dennis the Menace, F braai, G Google |
+| `nov_p2` | 12 | 57 | New texts: *The Wind and a Boy* (Bessie Head, `short_stories`), *The Slave Dealer* (Pringle) and *Hard to Find* (Jojo) (`poetry`); other texts reused with new lessons per year |
+| `nov_p3` | 8 | 41 | Essay (child on a swing, robot cooking, galloping horse); 2.1 Letter of Application, 2.2 Magazine Article, 2.3 Obituary, 2.4 Dialogue; 3.1 Poster, 3.2 Diary Entries, 3.3 Instructions |
+
+- Generators for both years live in `scripts/_gen/english-fal/` (2024: `gen_fal_2024_p{1,2,3}.py` + `fal2024_common.py`).
+- Authoring gotchas found: annexure files must have unique names across labels in one lesson (a P1 upload overwrote Text A with Text B until renamed);
+  a new tag (`diary_entry`) must exist before upload; MCQ index-0 share for 2024 is 7 of 51 (~14%, above the ~10% target);
+  review runners read answers from a DB-built manifest — rebuild it (proxy running) before every run or stale answers produce false failures.
+- A 2025 P2 question ("Mr M teaches English") was replaced 2026-10-11: the 2024 paper shows English is Isabel's favourite subject and nothing says Mr M teaches it.
