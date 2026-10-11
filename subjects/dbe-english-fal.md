@@ -233,6 +233,6 @@ skill ids must be prefixed `english_fal_` (e.g. `english_fal_identify_figure_of_
 
 - **P2 rework (2026-10-10):** the first P2 set reused the exam's own statements and memo answers and added `context_text`; it
   was replaced with the HL pattern (`SETWORK-LES-05`). Highest-risk `BK` claims: Napoleon Letsitsi's role and Kumalo on the
-  mountain (*Cry*), Hyde's rooms in Soho and the cabinet door (*Jekyll*), Mr M teaches English (*My Children!*), Ernest's
+  mountain (*Cry*), Hyde's rooms in Soho and the cabinet door (*Jekyll*), Ernest's
   death (*Eveline*). A review sheet can be regenerated from the script headers into `temp/review/` (gitignored).
   Re-uploading a lesson with fewer questions leaves the old row published — soft-delete it (Q4.2 had a stale Q5).

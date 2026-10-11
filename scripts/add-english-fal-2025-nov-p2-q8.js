@@ -8,7 +8,7 @@
  *
  * FACTUAL BASIS per practice question — BK = book knowledge (verify against the text), P = printed in the exam paper's
  * extract/poem, M = established by the memo, PT = vocabulary/title meaning:
- *   Q1: BK: Mr M teaches English (the literature quiz and debates are in English). Verify.
+ *   Q1: M: 2025 memo 4.1.6 — Mr M 'refuses to stop ringing the bell even though the situation is volatile'.
  *   Q2: M: memo 4.1.6 'refuses to stop ringing the bell even though the situation is volatile'.
  *   Q3: M: memo 4.2.4(b) (pressure by the comrades) and 4.2.7 (commitment to the Struggle).
  *   Q4: BK: education and friendship across racial lines are standard themes.
@@ -80,13 +80,13 @@ const questions = [
     "text_key": "my_children_my_africa",
     "order": 1,
     "context_text": null,
-    "question": "Which school subject does Mr M teach? Write one word.",
+    "question": "What does Mr M ring to call the pupils to school, even when it is dangerous? Write one word.",
     "metadata": [
-      "Subject:",
+      "Object:",
       "[ ]"
     ],
     "answer": [
-      "English",
+      "bell",
       "",
       "",
       "",
@@ -95,14 +95,14 @@ const questions = [
     "presentation": "fitb",
     "type": "definition",
     "unit": "drama",
-    "topic": "character_analysis",
-    "subtopic": "mr_m",
+    "topic": "dramatic_techniques",
+    "subtopic": "symbols_in_the_play",
     "skills": [
       "english_fal_recall_key_events"
     ],
-    "difficulty": 2,
-    "exam_weight": 2,
-    "clues": "- The literature quiz is based on this subject.\n- Write one word.",
+    "difficulty": 1,
+    "exam_weight": 1,
+    "clues": "- It is a small metal object rung by hand.\n- Write one word.",
     "keyboard_type": "text"
   },
   {

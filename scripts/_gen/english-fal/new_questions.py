@@ -286,11 +286,11 @@ NEWQ[7] = q
 
 # ───────────────────────── 4.2 My Children! My Africa! ─────────────────────────
 q = []
-o, a = fitb("Subject:", "English")
-q.append(Q(1, U, "character_analysis", "mr_m", ["recall_key_events"],
-           "Which school subject does Mr M teach? Write one word.", o, a, "fitb", 2, 2,
-           "- The literature quiz is based on this subject.\n- Write one word.",
-           "BK: Mr M teaches English (the literature quiz and debates are in English). Verify."))
+o, a = fitb("Object:", "bell")
+q.append(Q(1, U, "dramatic_techniques", "symbols_in_the_play", ["recall_key_events"],
+           "What does Mr M ring to call the pupils to school, even when it is dangerous? Write one word.", o, a, "fitb", 1, 1,
+           "- It is a small metal object rung by hand.\n- Write one word.",
+           "M: 2025 memo 4.1.6 — Mr M 'refuses to stop ringing the bell even though the situation is volatile'."))
 o, a = mc("his stubborn commitment to education and to order in the school",
           ["his wish to become the school's headmaster", "his love of music", "his fear of the sea"])
 q.append(Q(2, U, "dramatic_techniques", "symbols_in_the_play", ["explain_symbol"],
