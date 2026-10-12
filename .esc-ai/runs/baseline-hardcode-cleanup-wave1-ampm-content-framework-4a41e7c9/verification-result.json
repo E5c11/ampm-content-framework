@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "task_id": "hardcode-cleanup-wave1-ampm-content-framework",
+  "generated_at": "2026-10-10T20:41:18.838639Z",
+  "status": "failed",
+  "gates": [
+    {
+      "id": "focused",
+      "outcome": "skipped",
+      "checks": [
+        {
+          "id": "ampm-content-framework-focused-tests",
+          "command": [
+            "node",
+            "--test",
+            "--test-reporter=junit",
+            "--test-reporter-destination=build/test-results/test/results.xml",
+            "{test_filter}"
+          ],
+          "status": "skipped",
+          "exit_code": null,
+          "duration_ms": null,
+          "stdout_path": null,
+          "stderr_path": null,
+          "report_path": null,
+          "failure_category": null
+        }
+      ]
+    },
+    {
+      "id": "component",
+      "outcome": "completed",
+      "checks": [
+        {
+          "id": "ampm-content-framework-tests",
+          "command": [
+            "node",
+            "--test",
+            "--test-reporter=junit",
+            "--test-reporter-destination=build/test-results/test/results.xml",
+            "tools/**/*.test.js"
+          ],
+          "status": "failed",
+          "exit_code": 7,
+          "duration_ms": 213,
+          "stdout_path": ".esc-ai/runs/baseline-hardcode-cleanup-wave1-ampm-content-framework-4a41e7c9/logs/component-ampm-content-framework-tests.stdout.log",
+          "stderr_path": ".esc-ai/runs/baseline-hardcode-cleanup-wave1-ampm-content-framework-4a41e7c9/logs/component-ampm-content-framework-tests.stderr.log",
+          "report_path": null,
+          "failure_category": "other"
+        }
+      ]
+    },
+    {
+      "id": "impact",
+      "outcome": "skipped",
+      "checks": []
+    },
+    {
+      "id": "final",
+      "outcome": "not-run",
+      "checks": [
+        {
+          "id": "repository-tests",
+          "command": [
+            "node",
+            "--test",
+            "--test-reporter=junit",
+            "--test-reporter-destination=build/test-results/test/results.xml",
+            "tools/**/*.test.js"
+          ],
+          "status": "not-run",
+          "exit_code": null,
+          "duration_ms": null,
+          "stdout_path": null,
+          "stderr_path": null,
+          "report_path": null,
+          "failure_category": null
+        }
+      ]
+    }
+  ]
+}

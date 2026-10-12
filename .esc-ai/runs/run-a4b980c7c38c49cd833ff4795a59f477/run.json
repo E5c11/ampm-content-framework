@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "run": {
+    "id": "run-a4b980c7c38c49cd833ff4795a59f477",
+    "task_id": "hardcode-cleanup-wave2-ampm-content-framework",
+    "status": "succeeded",
+    "created_at": "2026-10-12T18:51:44.319073Z",
+    "started_at": "2026-10-12T18:51:44.319073Z",
+    "ended_at": "2026-10-12T18:52:40.338748Z"
+  },
+  "bindings": {
+    "adapter": "claude-code-claude",
+    "workspace": "workspace-ampm-content-framework-default",
+    "policy": "standard-autonomous",
+    "tool_grant": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Edit",
+      "Write",
+      "NotebookEdit",
+      "Bash",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "instruction_bundle": "instruction-bundle.json",
+    "worktree": {
+      "branch": "esc-ai-task-hardcode-cleanup-wave2-ampm-content-framework",
+      "kept": true
+    },
+    "consent": {
+      "granted_categories": [
+        "read",
+        "edit",
+        "execute",
+        "network"
+      ],
+      "granted_at": "2026-10-12T18:51:44.319073Z"
+    }
+  },
+  "events": "events.jsonl",
+  "artifacts": [
+    "artifact.json"
+  ],
+  "adapter_metadata": {
+    "provider": "claude-code",
+    "session_id": "d9b6832e-0ae2-4af3-8fb1-7068640fc3de",
+    "total_cost_usd": 0.48098709999999995,
+    "num_turns": 10
+  }
+}

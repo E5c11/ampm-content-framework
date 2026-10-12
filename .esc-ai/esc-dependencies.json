@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "generated_by": "esc-exec",
+  "input_digest": "sha256:b17d0e6b82e4741df8c7455d0ccb9457702b225ea518cfb9c6d507a9a48811fd",
+  "repository": "ampm-content-framework",
+  "nodes": [
+    {
+      "id": "ampm-content-framework",
+      "project": null,
+      "manifest": ".esc-ai/components/ampm-content-framework/esc-component.yaml"
+    }
+  ],
+  "edges": []
+}

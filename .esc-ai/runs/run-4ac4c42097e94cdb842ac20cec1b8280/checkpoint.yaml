@@ -1,0 +1,25 @@
+schema_version: 1
+checkpoint:
+  id: checkpoint-hardcode-cleanup-wave2-ampm-content-framework
+  task_id: hardcode-cleanup-wave2-ampm-content-framework
+  status: blocked
+  objective: 'Wave 2 keyboard-inference-removal: content framework requires keyboard_type
+    and extends the text backfill script (agent writes, HUMAN runs on dev then prod);
+    the app task must NOT run until the human has verified prod has 0 NULL typed-input
+    keyboard_type, then deletes subject-based keyboard/calculator inference. Read
+    /home/emmanuel/StudioProjects/AMPM/plan/active/hardcoded-subject-cleanup.md first
+    (settled decisions + your wave''s section). Do not stop to ask questions. Do not
+    push, merge, deploy or publish. Do not edit version.properties.'
+  updated_at: '2026-10-12T18:50:59.533052Z'
+  run_id: run-4ac4c42097e94cdb842ac20cec1b8280
+progress:
+  completed: []
+  decisions: []
+  remaining:
+  - Resolve the recorded blocker and resume the task.
+  blockers:
+  - the checkout has uncommitted changes (build/test-results/test/results.xml); the
+    agent starts from the last commit, so the baseline would not describe what it
+    starts from -- commit or stash them first
+  artifacts: []
+  last_event_sequence: 1

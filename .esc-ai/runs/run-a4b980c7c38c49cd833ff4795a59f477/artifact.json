@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "artifact": {
+    "id": "artifact-090f45259d6b41e1a8fd48aa60780a82",
+    "run_id": "run-a4b980c7c38c49cd833ff4795a59f477",
+    "kind": "report",
+    "path": "summary.json",
+    "media_type": "application/json",
+    "retention": "transient",
+    "created_at": "2026-10-12T18:52:40.296398Z"
+  }
+}

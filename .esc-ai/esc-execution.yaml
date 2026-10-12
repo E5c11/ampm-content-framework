@@ -1,0 +1,11 @@
+schema_version: 1
+repository:
+  id: ampm-content-framework
+  type: npm-package
+components:
+- id: ampm-content-framework
+  manifest: .esc-ai/components/ampm-content-framework/esc-component.yaml
+generation:
+  generator: esc-exec
+  sources:
+  - package.json

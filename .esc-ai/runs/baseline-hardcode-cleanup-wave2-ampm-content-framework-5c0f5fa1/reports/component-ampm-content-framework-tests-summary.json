@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "verification": {
+    "profile": "ampm-content-framework-report",
+    "source_format": "junit-xml",
+    "status": "passed",
+    "generated_at": "2026-10-12T18:51:44.145292Z"
+  },
+  "totals": {
+    "tests": 2,
+    "passed": 2,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_ms": 132
+  },
+  "failures": [],
+  "truncation": {
+    "failures_included": 0,
+    "failures_omitted": 0,
+    "max_failures": 10,
+    "max_message_chars": 500
+  },
+  "full_report": {
+    "path": "build/test-results/test/results.xml",
+    "media_type": "application/xml"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "levels": [
+    {
+      "level": "safety_and_operator_policy",
+      "sources": [
+        "policy:standard-autonomous"
+      ]
+    },
+    {
+      "level": "execution_framework_core",
+      "sources": [
+        "esc-ai-execution-framework"
+      ]
+    },
+    {
+      "level": "repository_instructions_and_workflow_policy",
+      "sources": [
+        ".esc-ai/workflows/README.md"
+      ]
+    },
+    {
+      "level": "component_manifests_and_profiles",
+      "sources": [
+        ".esc-ai/components/ampm-content-framework/esc-component.yaml"
+      ]
+    },
+    {
+      "level": "active_workflow_task_specification",
+      "sources": [
+        "hardcode-cleanup-wave1-ampm-content-framework"
+      ]
+    }
+  ]
+}
