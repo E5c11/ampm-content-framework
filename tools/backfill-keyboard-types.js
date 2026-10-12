@@ -56,10 +56,14 @@ const env = flag('--env') || 'dev';
 const apply = has('--apply');
 const verify = has('--verify');
 const bump = has('--bump-updated-at');
+const bumpDeclared = has('--bump-declared');
+const before = flag('--before');
 const outPath = flag('--out');
 
 if (!['dev', 'prod'].includes(env)) fail('--env must be dev or prod');
 if (apply && verify) fail('--apply and --verify are separate runs');
+if (bumpDeclared && (verify || bump)) fail('--bump-declared is its own run (not with --verify or --bump-updated-at)');
+if (bumpDeclared && (!before || Number.isNaN(Date.parse(before)))) fail('--bump-declared needs --before <ISO timestamp>, e.g. --before 2026-10-12T19:00:00Z');
 if (apply && env === 'prod' && !has('--i-know-this-is-prod')) fail('writing prod needs --i-know-this-is-prod (owner-gated)');
 
 function fail(msg) {
@@ -95,12 +99,49 @@ function gateKeyboardFor(q) {
 
 const examKey = (q) => [q.subject_id, q.syllabus_id, q.year_id, q.session].join('|');
 
+/**
+ * --bump-declared --before <ISO>: re-stamp updated_at ONCE on every live question that already declares a
+ * keyboard_type and has not been touched since <ISO>. Earlier backfills (maths / math_lit / physics, Oct 2026) left
+ * updated_at alone, so apps that cached those rows before then never re-download them and keep keyboard_type NULL —
+ * harmless while the app still infers the keyboard from the subject, wrong once that inference is removed. Rows the
+ * backfill bumped after <ISO> are skipped, so re-running with the same cutoff is safe. Dry run unless --apply;
+ * prod needs --i-know-this-is-prod (checked above).
+ */
+async function bumpDeclaredRows(pool, hasColumn) {
+  if (!hasColumn) fail(`--bump-declared: ${env} has no questions.keyboard_type column`);
+  const cutoff = new Date(before).toISOString();
+  const where = `NOT is_deleted AND keyboard_type IS NOT NULL AND updated_at < $1`;
+  const { rows } = await pool.query(
+    `SELECT subject_id, count(*)::int AS n FROM questions WHERE ${where} GROUP BY subject_id ORDER BY subject_id`, [cutoff]);
+  const total = rows.reduce((a, r) => a + r.n, 0);
+  console.log(`env: ${env}   bump-declared: questions with a declared keyboard_type last updated before ${cutoff}`);
+  for (const r of rows) console.log(`  ${r.subject_id.padEnd(18)} ${r.n}`);
+  console.log(`  TOTAL ${total}`);
+  if (!apply) {
+    console.log('\nDry run — nothing written. Re-run with --apply to set updated_at = now() on these rows.');
+    return;
+  }
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN');
+    const r = await client.query(`UPDATE questions SET updated_at = now() WHERE ${where}`, [cutoff]);
+    await client.query('COMMIT');
+    console.log(`\nApplied: updated_at bumped on ${r.rowCount} question(s).`);
+  } catch (e) {
+    await client.query('ROLLBACK');
+    throw e;
+  } finally {
+    client.release();
+  }
+}
+
 async function main() {
   const pool = getPool(env);
 
   const col = await pool.query(
     `SELECT 1 FROM information_schema.columns WHERE table_name='questions' AND column_name='keyboard_type'`);
   const hasColumn = col.rowCount > 0;
+  if (bumpDeclared) return bumpDeclaredRows(pool, hasColumn);
   const tbl = await pool.query(`SELECT to_regclass('public.exam_versions') AS t`);
   const hasExamVersions = tbl.rows[0].t !== null;
 
