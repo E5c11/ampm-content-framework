@@ -8,18 +8,23 @@
  *   node tools/backfill-keyboard-types.js --env dev --apply               # write keyboard_type
  *   node tools/backfill-keyboard-types.js --env prod --apply --i-know-this-is-prod
  *
+ *   node tools/backfill-keyboard-types.js --env prod --verify              # exit 1 unless 0 typed rows have NULL keyboard_type
+ *
  * Needs the Cloud SQL Auth Proxy (tools/README.md). Reading prod (dry run) is allowed; writing prod needs
  * --i-know-this-is-prod AND the backend migration V80 deployed there (the script checks the column).
  *
- * WHAT IT SETS. For each question that needs a typed keyboard (fitb / fraction / steps / equation) and
- * currently resolves — by the app's subject inference — to a RELEASED declarable keyboard
- * (`standard_math` or `scientific_math`), it stores that value, so the data says what the app already does.
+ * WHAT IT SETS. For each question that needs a typed keyboard (fitb / fraction / steps / equation) it stores
+ * the keyboard the app resolves today, so the data says what the app already does (AMPM plan
+ * `hardcoded-subject-cleanup.md`, Wave 2 — the app's subject inference is deleted once every typed row declares):
+ *   - maths / physics / math_lit        -> `standard_math` (fitb, fraction) or `scientific_math` (steps, equation);
+ *   - english_hl / afrikaans_fal and every other text subject (english_fal, life_science, geography, history,
+ *     business_studies, ...)           -> `text` for fitb / fraction, `scientific_math` for steps / equation
+ *                                        (the app's total fallback for a typed row with no keyboard of its own).
+ * It deliberately leaves `keyboard_type` NULL only for presentations that never need a keyboard
+ * (multiple_choice, multi_select, match, ordering).
  * Behaviour does not change: released builds that ignore the field infer the same keyboard, and builds that
- * read it get the same one. It deliberately leaves `keyboard_type` NULL for:
- *   - presentations that never need a keyboard (multiple_choice, multi_select, match, ordering);
- *   - `english_hl` — it resolves to the legacy English keyboard, which is not a declarable value;
- *     it becomes `text` when BLA-58 ships (re-run this tool then, extended);
- *   - `None`-routed subjects (life_science, geography, history, business_studies) — system IME; `text` later.
+ * read it get the same one. The gate report below ignores the newly written `text` values (they are not a
+ * reason to hide a live exam), see gateKeyboardFor.
  * It NEVER overwrites a non-null value (a conflicting one is reported, not changed), so it is idempotent
  * and safe to re-run. `physics` (Physical Sciences) is keyed on `paper_id` in the report: P1 = Physics,
  * P2 = Chemistry; both resolve the same today, and diverge only once the `physics`/`chemistry` keyboards
@@ -49,10 +54,12 @@ const has = (n) => args.includes(n);
 
 const env = flag('--env') || 'dev';
 const apply = has('--apply');
+const verify = has('--verify');
 const bump = has('--bump-updated-at');
 const outPath = flag('--out');
 
 if (!['dev', 'prod'].includes(env)) fail('--env must be dev or prod');
+if (apply && verify) fail('--apply and --verify are separate runs');
 if (apply && env === 'prod' && !has('--i-know-this-is-prod')) fail('writing prod needs --i-know-this-is-prod (owner-gated)');
 
 function fail(msg) {
@@ -64,15 +71,26 @@ const TYPED = new Set(['fitb', 'fraction', 'steps', 'equation']);
 const DECLARABLE_TODAY = new Set(['standard_math', 'scientific_math']);
 
 /**
- * The value to store for a question, and why not when it is null. Mirrors the app's current inference
- * (tools/lib/feature-versions.js resolveKeyboard) restricted to released declarable keyboards.
+ * The value to store for a question, and why not when it is null. Mirrors the app's keyboard resolution
+ * (tools/lib/feature-versions.js resolveKeyboard): a subject keyboard where one exists, else the total
+ * fallback — Text, or ScientificMath for steps / equation.
  */
 function desiredFor(q) {
   if (!TYPED.has(q.presentation_id)) return { value: null, why: 'presentation needs no keyboard' };
   const resolved = fv.resolveKeyboard(q.subject_id, q.presentation_id, null);
   if (DECLARABLE_TODAY.has(resolved)) return { value: resolved, why: null };
-  if (resolved === 'english') return { value: null, why: 'english keyboard is not declarable (becomes `text`, BLA-58)' };
-  return { value: null, why: 'no custom keyboard (system IME; becomes `text`, BLA-58)' };
+  if (q.presentation_id === 'steps' || q.presentation_id === 'equation') return { value: 'scientific_math', why: null };
+  return { value: 'text', why: null };
+}
+
+/**
+ * The keyboard the gate report should assume: what the row declares, else only the RELEASED declarable value.
+ * Writing `text` here is a data statement of existing behaviour, not a reason to gate a live exam (core/app-feature-versions.md).
+ */
+function gateKeyboardFor(q) {
+  if (q.keyboard_type !== null && q.keyboard_type !== undefined) return q.keyboard_type;
+  const { value } = desiredFor(q);
+  return DECLARABLE_TODAY.has(value) ? value : null;
 }
 
 const examKey = (q) => [q.subject_id, q.syllabus_id, q.year_id, q.session].join('|');
@@ -105,7 +123,7 @@ async function main() {
   }
 
   // ── plan ───────────────────────────────────────────────────────────────
-  const toSet = { standard_math: [], scientific_math: [] };
+  const toSet = { standard_math: [], scientific_math: [], text: [] };
   const conflicts = [];
   const byGroup = new Map(); // subject|paper|presentation -> {set, keep, skip, why}
   const skipReasons = new Map();
@@ -131,15 +149,18 @@ async function main() {
     byGroup.set(g, row);
   }
 
+  // Typed-input rows still without a declared keyboard (what the app-side inference removal needs to be 0).
+  const nullTyped = questions.filter((q) => TYPED.has(q.presentation_id) && (q.keyboard_type === null || q.keyboard_type === undefined));
+  const typedNull = nullTyped.length;
+
   // ── per-exam derived minimum ───────────────────────────────────────────
   const exams = new Map();
   for (const q of questions) {
     const k = examKey(q);
     const e = exams.get(k) || { subject: q.subject_id, syllabus: q.syllabus_id, year: q.year_id, session: q.session, requires: [], errors: [], questions: 0 };
     e.questions += 1;
-    const { value } = desiredFor(q);
     const a = fv.analyzeQuestion({
-      subject: q.subject_id, presentation: q.presentation_id, keyboard_type: q.keyboard_type ?? value,
+      subject: q.subject_id, presentation: q.presentation_id, keyboard_type: gateKeyboardFor(q),
       answer: q.answer, question: q.question, metadata: q.metadata,
     });
     e.requires.push(...a.requires);
@@ -162,6 +183,7 @@ async function main() {
   console.log('keyboard_type backfill\n');
   console.log(`  would set standard_math:   ${toSet.standard_math.length}`);
   console.log(`  would set scientific_math: ${toSet.scientific_math.length}`);
+  console.log(`  would set text:            ${toSet.text.length}`);
   console.log(`  already correct:           ${already}`);
   console.log(`  CONFLICTS (never changed): ${conflicts.length}`);
   for (const [why, n] of skipReasons) console.log(`  left NULL (${n}): ${why}`);
@@ -175,6 +197,8 @@ async function main() {
     console.log('\n  conflicts:');
     for (const c of conflicts.slice(0, 15)) console.log(`    ${c.subject}/${c.paper} ${c.name}: has "${c.current}", inference says "${c.desired}"`);
   }
+
+  console.log(`\n  typed-input rows with NULL keyboard_type: ${typedNull}`);
 
   console.log(`\n${line}\nexam gates (derived from the rows in ${env}; NOT applied by this tool)\n`);
   let needGate = 0;
@@ -201,10 +225,20 @@ async function main() {
     fs.mkdirSync(path.dirname(path.resolve(outPath)), { recursive: true });
     fs.writeFileSync(outPath, JSON.stringify({
       env, generatedAt: new Date().toISOString(), hasColumn, hasExamVersions,
-      counts: { setStandardMath: toSet.standard_math.length, setScientificMath: toSet.scientific_math.length, already, conflicts: conflicts.length },
+      counts: { setStandardMath: toSet.standard_math.length, setScientificMath: toSet.scientific_math.length, setText: toSet.text.length, typedNull, already, conflicts: conflicts.length },
       conflicts, exams: examRows.map((e) => ({ exam: e.key, questions: e.questions, derived: e.derived, existing: e.existing, subjectGate: e.subjectGate, raising: e.raising, errors: e.errors })),
     }, null, 2));
     console.log(`\n  report written: ${outPath}`);
+  }
+
+  if (verify) {
+    if (!hasColumn) fail(`--verify: ${env} has no questions.keyboard_type column`);
+    const bySubject = new Map();
+    for (const q of nullTyped) bySubject.set(q.subject_id, (bySubject.get(q.subject_id) || 0) + 1);
+    for (const [s, n] of bySubject) console.log(`  NULL: ${s} ${n}`);
+    console.log(`\nVERIFY ${env}: ${typedNull === 0 ? 'OK — 0 typed-input questions have NULL keyboard_type' : `FAILED — ${typedNull} typed-input question(s) have NULL keyboard_type`}`);
+    if (typedNull) process.exitCode = 1;
+    return;
   }
 
   if (!apply) {
