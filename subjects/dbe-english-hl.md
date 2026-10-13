@@ -2,11 +2,18 @@
 id: AMPM-CONTENT-SUBJ-DBE-ENGLISH-HL
 type: profile
 layer: subjects
-related: [AMPM-CONTENT-SCHEMA, AMPM-CONTENT-DESIGN, AMPM-CONTENT-AI-EXP, AMPM-CONTENT-PIPELINE]
+related: [AMPM-CONTENT-LANG, AMPM-CONTENT-SETWORK, AMPM-CONTENT-SCHEMA, AMPM-CONTENT-DESIGN, AMPM-CONTENT-AI-EXP, AMPM-CONTENT-PIPELINE]
 tags: [subject, english-hl, dbe, profile]
 ---
 
 # Subject Profile — DBE English Home Language
+
+> **Shared rules (2026-10-10).** The subject-agnostic English HL rules now live in
+> `shared/language-subjects.md` (`AMPM-CONTENT-LANG`: theme/structure, `context_text`, fitb-vs-MC,
+> section design, writing paper, image labels, keyboards) and `shared/setwork.md`
+> (`AMPM-CONTENT-SETWORK`: `text_key`, `english_texts`, sections, picker, gating). **Load both with
+> this profile.** This file keeps only what is specific to English HL. The shared rules bind papers
+> authored from 2026-10-10; papers already authored are **retrofitted later** — see § Retrofit owed.
 
 ## Identity
 
@@ -25,64 +32,49 @@ tags: [subject, english-hl, dbe, profile]
 `equation`, `steps` are not used. MathText does not apply. Question `type`:
 `definition` or `application` only.
 
-## Extra document fields
+## Capabilities
 
-- `context_text` on questions — short inline stimulus (1–3 fresh sentences) or null
-  (`DESIGN-ENG-03`). Rendered in a card above the question text.
-- `text_key` on Paper 2 lessons **and** their questions — a real `english_texts` id
-  (`"hamlet"`, `"felix_randal"`, …); null for Papers 1/3. Per-text, not per-year. The old
-  `"poetry"` marker is not a row — name the actual poem. FK-preflighted.
-- Lessons usually have no video: `has_video: false`, `freemium_*: null`,
-  `duration_seconds: null`, `marks: null` in `aiExplanation` entries.
+`subjects.capabilities = {setwork}` (V83, seeded). Its Paper 2 uses the setwork screen; the
+picker is derived from lessons' `text_key` (`SETWORK-CAP-01`). Sections in use: `novel`, `play`,
+`poetry`.
 
 ## Curriculum hierarchy quirks
 
 8 units (`comprehension`, `summary`, `language`, `poetry`, `drama`, `novel`,
-`transactional_writing`, `essay_writing` — illustrative, query per session).
-Topic/subtopic doc IDs are namespaced per unit (`${unit}__${topic}`,
-`${unit}__${topic}__${subtopic}`) because topic names legitimately recur across units;
-the bare name a question needs is the last `__` segment.
+`transactional_writing`, `essay_writing` — illustrative, query per session). Namespacing and
+vocabulary dumps: `LANG-CUR-01`.
 
-## Lesson structure per paper
+## Lesson structure per paper (HL's instance of `LANG-CAP-01` / `LANG-WR-01` / `SETWORK-LES-03`)
 
 - **Paper 1** — 5 lessons/year, one per exam question: Q1 Comprehension (≤7 questions),
-  Q2 Summary (2–4), Q3 Advertising (2–4), Q4 Media/Cartoons (2–4), Q5 Language (≤7).
-  Section-by-section design rules (fresh passage vs `context_text`, visual-dependent
-  sub-questions skipped) live in `workflows/generate/upload-english.md`.
-- **Paper 2** — 20 lessons/year for a 5-poetry + 5-prescribed-pair paper; contextual
-  questions split into Part 1/Part 2 lessons (one extract tab each). Prescribed-text
-  sets are authored **once per text** — check `english_texts` for the id first
-  (`psql -c "SELECT id, section, is_active FROM english_texts ORDER BY section, id"`). A new
-  prescribed text needs a row (`tools/create-english-text.js`); a retired one gets
-  `--retire` (`is_active = false`, never deleted). Phase 0 of `workflows/generate/upload-english.md`.
-  Poetry lessons use the actual poem's id, not a `poetry` marker.
-- **Paper 3** — 7 lessons/year: Q1 Essay + one lesson per transactional text type
-  (2.1–2.6, named exactly as that year's paper names them).
+  Q2 Summary (2–4), Q3 Advertising (2–4), Q4 Media/Cartoons (2–4), Q5 Language (≤7). Section design
+  rules: `LANG-SEC-01`–`05`.
+- **Paper 2** — 20 lessons/year for a 5-poetry + 5-prescribed-pair paper; contextual questions
+  (Q7, Q9, Q11, Q13, Q15) split into Part 1/Part 2 lessons (one extract tab each); essay questions
+  (Q1, Q6, Q8, Q10, Q12, Q14) have `supplementary_materials: null`. Texts, keys, sections, extract
+  crops: `shared/setwork.md`. Phase 0 of `workflows/generate/upload-english-hl.md`.
+- **Paper 3** — 7 lessons/year: Q1 Essay + one lesson per transactional text type (2.1–2.6, named
+  exactly as that year's paper names them) — `LANG-WR-01`.
 
-## Image extraction quirks
+## Image labels (HL specifics)
 
-Labels must match the exam's own naming exactly (`PIPE-03`): Paper 1 `"Text A"`–`"Text
-G"`; Paper 2 contextual `"Extract A"`… (alphabetical sequence continuous across the
-whole paper — verify against the actual paper); Paper 2 poetry `"Poem"`; essay lessons
-and Paper 3: `supplementary_materials: null`. `question_image_urls` contains only the
-numbered-question pages — never TEXT/extract body, `AND` dividers, or extract headings.
-Crop rules (citation boundaries, Part 1/2 splits) live in
-`workflows/generate/upload-english.md`.
+Paper 1 `"Text A"`–`"Text G"` (`LANG-IMG-01`); Paper 2 contextual `"Extract A"`… continuous across
+the paper, poetry `"Poem"` (`SETWORK-IMG-01`); essay lessons and Paper 3 `supplementary_materials: null`.
 
-## Answer conventions
+## Keyboard — new papers declare `text` (changed 2026-10-10)
 
-- FITB answers in sentence case; `|`-separated alternatives for multiple valid answers
-  (`DESIGN-ENG-04`).
-- `ai_explanation` solutions include the correct answer **and why distractors are
-  wrong** (`AIEXP-05`).
-- Theme + structure rules (`DESIGN-ENG-01`/`02`): same theme as the year's exam text,
-  same sub-question types, all-new content.
+The released English keyboard types `A`–`Z`, `'` and space only (`core/keyboard-input.md`) and cannot
+be declared. **From 2026-10-10 a new English HL paper declares `keyboard_type: "text"`**
+(`LANG-KB-01`), so the exam derives **2.4.1** and is gated per exam (`VER-09`/`VER-10`). English HL is
+no longer exempt from `KEYBOARD-04`: the validator errors on an undeclared typed row, except the 17
+pre-rules scripts on the legacy allowlist (delete each entry when its paper is retrofitted). Undeclared
+existing papers keep the legacy English keyboard; `KEYBOARD-01` still blocks punctuation/digits for them.
 
-## Keyboard — the English keyboard is letters-only (added 2026-10-04)
+## Retrofit owed
 
-The released English keyboard types `A`–`Z`, `'` and space only: **no digits and no punctuation**
-(`core/keyboard-input.md`). `validate-questions.js` now enforces this on `fitb` answers — an answer
-containing a comma, hyphen, full stop, digit, etc. is an error (`KEYBOARD-01`), because the student cannot
-type it. Case never matters (marking lower-cases both sides). The planned `text` keyboard (BLA-58) adds
-punctuation and digits on a second screen, and — for Afrikaans FAL — accented letters; marking will then
-ignore a trailing `. , ; ! ?` but keep accents significant.
+Existing HL papers (2021, 2022, 2024, 2025 Nov; all of P1/P2/P3 that are on dev or prod) predate the
+shared rules. Known gaps against them, to be retrofitted later (`KEYBOARD-06`; never touch a live
+prod paper without the owner): (1) `keyboard_type` undeclared, trailing-full-stop/digit answers
+(`core/app-feature-versions.md` § ledger); (2) `DESIGN-ENG-*` IDs → `LANG-*` in notes; (3) anything
+in P2 whose `text_key` is the old `"poetry"` marker or disagrees between lesson and questions
+(`SETWORK-LES-01`). Audit before retrofitting; do not assume these are all present.

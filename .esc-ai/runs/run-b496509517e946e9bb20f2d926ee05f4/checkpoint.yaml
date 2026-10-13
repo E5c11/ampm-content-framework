@@ -1,0 +1,24 @@
+schema_version: 1
+checkpoint:
+  id: checkpoint-hardcode-cleanup-wave1-ampm-content-framework
+  task_id: hardcode-cleanup-wave1-ampm-content-framework
+  status: blocked
+  objective: 'Wave 1 prescribed-texts-model: backend-driven prescribed-text sections
+    and capabilities, expand-only API rename (contracts 0.42.0, backend V84, app consumes
+    and renames English* to Setwork*), content framework validator updates. Contracts
+    first (human publishes between tasks), then backend and app in parallel; content
+    framework independent. Read /home/emmanuel/StudioProjects/AMPM/plan/active/hardcoded-subject-cleanup.md
+    first (settled decisions + your wave''s section). Do not stop to ask questions.
+    Do not push, merge, deploy or publish. Do not edit version.properties.'
+  updated_at: '2026-10-10T20:39:54.527249Z'
+  run_id: run-b496509517e946e9bb20f2d926ee05f4
+progress:
+  completed: []
+  decisions: []
+  remaining:
+  - Resolve the recorded blocker and resume the task.
+  blockers:
+  - 'component ampm-content-framework has no paths.verification_profile; run: esc-exec
+    verification profile generate ampm-content-framework ampm-content-framework'
+  artifacts: []
+  last_event_sequence: 1

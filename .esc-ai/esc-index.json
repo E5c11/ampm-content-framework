@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "generated_by": "esc-exec",
+  "input_digest": "sha256:eca9f16981f73b7280f38fddc1193c6a1afd2b366de05ccdbce26ee3f5cc6e47",
+  "repository": {
+    "id": "ampm-content-framework",
+    "purpose": "",
+    "manifest": ".esc-ai/esc-execution.yaml"
+  },
+  "components": [
+    {
+      "id": "ampm-content-framework",
+      "purpose": "Owns AMPM exam-content authoring: JSON schemas, validators (question presentation types, keyboard_type, version gating), derive/push tooling and the backfill scripts that publish content to the Spring backend.",
+      "path": ".",
+      "manifest": ".esc-ai/components/ampm-content-framework/esc-component.yaml",
+      "index": ".esc-ai/components/ampm-content-framework/esc-index.json",
+      "routing": {
+        "domains": [],
+        "concerns": [],
+        "aliases": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+schema_version: 1
+profile:
+  id: ampm-content-framework-verification
+  component: ampm-content-framework
+gates:
+  focused:
+  - id: ampm-content-framework-focused-tests
+    command:
+    - sh
+    - -c
+    - mkdir -p build/test-results/test && node --test --test-reporter=junit --test-reporter-destination=build/test-results/test/results.xml '{test_filter}'
+    requires:
+    - test_filter
+    report:
+      glob: ./build/test-results/test/*.xml
+      profile: .esc-ai/components/ampm-content-framework/esc-report-profile.yaml
+  component:
+  - id: ampm-content-framework-tests
+    command:
+    - sh
+    - -c
+    - mkdir -p build/test-results/test && node --test --test-reporter=junit --test-reporter-destination=build/test-results/test/results.xml 'tools/**/*.test.js'
+    report:
+      glob: ./build/test-results/test/*.xml
+      profile: .esc-ai/components/ampm-content-framework/esc-report-profile.yaml
+  impact: []
+  final:
+  - id: repository-tests
+    command:
+    - sh
+    - -c
+    - mkdir -p build/test-results/test && node --test --test-reporter=junit --test-reporter-destination=build/test-results/test/results.xml 'tools/**/*.test.js'
+    report:
+      glob: ./build/test-results/test/*.xml
+      profile: .esc-ai/components/ampm-content-framework/esc-report-profile.yaml

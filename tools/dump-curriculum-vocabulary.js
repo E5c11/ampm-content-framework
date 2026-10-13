@@ -12,7 +12,7 @@
  * checks against this snapshot, not a live query. Re-run it if you add a curriculum row
  * mid-session (tools/create-curriculum-node.js / create-skill.js).
  *
- *   node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl \
+ *   node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl|english_fal \
  *     --out temp/curriculum-vocab.json
  *
  * Subject allowlist below is deliberately explicit (not "any string") so a typo'd subject
@@ -42,8 +42,8 @@ const env = args.env || args.project || 'dev'; // --project kept as an alias for
 const subject = args.subject || 'math_lit';
 const outPath = args.out || 'temp/curriculum-vocab.json';
 
-if (!['math_lit', 'english_hl', 'maths', 'geography', 'physics', 'life_science', 'history', 'business_studies'].includes(subject)) {
-  console.error('Usage: node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl|maths|geography|physics|life_science|history|business_studies [--out path]');
+if (!['math_lit', 'english_hl', 'english_fal', 'afrikaans_fal', 'maths', 'geography', 'physics', 'life_science', 'history', 'business_studies'].includes(subject)) {
+  console.error('Usage: node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl|english_fal|afrikaans_fal|maths|geography|physics|life_science|history|business_studies [--out path]');
   process.exit(1);
 }
 

@@ -1,0 +1,8 @@
+schema_version: 1
+profile:
+  id: ampm-content-framework-architecture
+  component: ampm-content-framework
+limits:
+  max_violations_per_rule: 10
+  max_evidence_chars: 200
+rules: []

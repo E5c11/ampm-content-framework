@@ -6,7 +6,7 @@ touching Postgres / GCS / content data; Python for doc-graph upkeep only.
 | Tool | What | Language |
 |---|---|---|
 | `validate-questions.js` | Validates a `questions` array in an upload script (`--script`), optionally against a curriculum snapshot (`--curriculum`), and ai_explanation data (`--ai-exp`). Exit 0 = pass. The pipeline's HARD STOP (`PIPE-10`). | Node |
-| `backfill-keyboard-types.js` | Phase 4 backfill: sets `questions.keyboard_type` (`standard_math`/`scientific_math`) where subject inference already resolves to it, never overwrites, leaves `updated_at` alone unless `--bump-updated-at`; also reports each exam's derived minimum, the existing gate and any untypeable-answer defects, and prints the `set-exam-gate.js` commands (it never applies gates). Dry run by default; `--apply`; prod needs `--i-know-this-is-prod` and the V80 column. | Node |
+| `backfill-keyboard-types.js` | Phase 4 backfill: sets `questions.keyboard_type` on every typed row to what the app resolves today (`standard_math`/`scientific_math` for maths subjects, `text` for text subjects, `scientific_math` for steps/equation), never overwrites; `--verify` exits 1 unless 0 typed rows have NULL (the gate for app Wave 2), leaves `updated_at` alone unless `--bump-updated-at`; also reports each exam's derived minimum, the existing gate and any untypeable-answer defects, and prints the `set-exam-gate.js` commands (it never applies gates). Dry run by default; `--apply`; prod needs `--i-know-this-is-prod` and the V80 column. | Node |
 | `derive-exam-min.js` | Derives an **exam's** minimum app version from all its upload scripts (highest of each script's derived minimum); the number `set-exam-gate.js` takes. `VER-02`. | Node |
 | `apply-exam-gate.js` | Derives each exam's minimum app version from the rows in the database and writes it to `exam_versions` (and bumps `updated_at`), dry run by default; no-op at the floor; the gate is per exam. `VER-09`. | Node |
 | `lib/exam-gate.js` | Shared exam-gate derivation / planning / write, and the exam-level prod-push decision (`VER-08`); tests: `node tools/lib/exam-gate.test.js`. | Node |
@@ -21,6 +21,7 @@ touching Postgres / GCS / content data; Python for doc-graph upkeep only.
 | `upload-question-supplementary.js` | Uploads a single question's own newly-generated `supplementary_material` figure (recreated diagram/graph, never a real-exam extract) to `question_supplementary/{subject}/{year}/{paper}/q{order}/{type}_{index}.png`; prints the ready-to-paste value. Added 2026-09-09 — the path was documented in subject profiles but had no uploader until physics Q2 needed a free-body diagram. | Node |
 | `extract-exam-pages.py` | Extracts question/annexure/memo page images from exam PDFs; `--inspect` finds crop points. | Python |
 | `upload-script-template.js` | Template for per-question-group upload scripts (pipeline Phase 4). Copy, fill, validate, run against dev. | Node |
+| `seed-curriculum.js` | Bulk-seeds unit+topic `curriculum_nodes` for a subject from a JSON file (`tools/seeds/`); dry run unless `--apply`; refuses if the subject row is missing. Needs the Auth Proxy. | Node |
 | `pg-smoke.js` | Read-only check that the Postgres write layer reaches Cloud SQL through the Auth Proxy; prints the Flyway head. | Node |
 | `push-paper-to-prod.js` | `PIPE-11`'s manually-gated prod step: copies one paper's lessons/questions (plus skills/tags/lookup-table FK deps and every referenced image) from dev to prod, landing unpublished; `--publish` flips it live once spot-checked. Needs both Auth Proxies running (dev + prod) and the `PG_*_PROD` block in `.env`. | Node |
 | `lib/credentials.js` | Resolves the Cloud SQL `pgConfig(env)` from `.env` / env vars. | Node |
@@ -28,7 +29,7 @@ touching Postgres / GCS / content data; Python for doc-graph upkeep only.
 | `lib/upsert.js` | `upsertRow()` — re-runnable `INSERT … ON CONFLICT DO UPDATE`. | Node |
 | `lib/uuid.js` | Deterministic authored-content UUIDs (namespace pinned; disjoint from Track A's). | Node |
 | `lib/content-rows.js` | Maps the authored logical shape → Postgres rows (`lessons`/`questions`/…). | Node |
-| `lib/curriculum.js` | `curriculum_nodes` ID conventions (flat for math_lit, namespaced for english_hl). | Node |
+| `lib/curriculum.js` | `curriculum_nodes` ID conventions (flat for math_lit, namespaced for english_hl; english_fal/afrikaans_fal namespaced + unit prefix). | Node |
 
 The validator's own rules are never ported/reworded (see `workflows/README.md`) — it added
 `"[]"` no-space blank-token rejection + the `steps` exact-`"[ ]"` check (Inventory #5,

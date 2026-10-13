@@ -1,0 +1,19 @@
+schema_version: 1
+component:
+  id: ampm-content-framework
+  type: npm-package
+  path: .
+  purpose: 'Owns AMPM exam-content authoring: JSON schemas, validators (question presentation
+    types, keyboard_type, version gating), derive/push tooling and the backfill scripts
+    that publish content to the Spring backend.'
+build:
+  system: npm
+paths:
+  documentation: README.md
+  build: package.json
+  architecture_profile: esc-architecture-profile.yaml
+  verification_profile: esc-verification-profile.yaml
+generation:
+  generator: esc-exec
+  sources:
+  - package.json

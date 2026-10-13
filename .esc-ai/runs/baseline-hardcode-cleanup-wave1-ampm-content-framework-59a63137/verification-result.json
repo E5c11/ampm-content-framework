@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "task_id": "hardcode-cleanup-wave1-ampm-content-framework",
+  "generated_at": "2026-10-10T20:42:10.750782Z",
+  "status": "passed",
+  "gates": [
+    {
+      "id": "focused",
+      "outcome": "skipped",
+      "checks": [
+        {
+          "id": "ampm-content-framework-focused-tests",
+          "command": [
+            "sh",
+            "-c",
+            "mkdir -p build/test-results/test && node --test --test-reporter=junit --test-reporter-destination=build/test-results/test/results.xml '{test_filter}'"
+          ],
+          "status": "skipped",
+          "exit_code": null,
+          "duration_ms": null,
+          "stdout_path": null,
+          "stderr_path": null,
+          "report_path": null,
+          "failure_category": null
+        }
+      ]
+    },
+    {
+      "id": "component",
+      "outcome": "completed",
+      "checks": [
+        {
+          "id": "ampm-content-framework-tests",
+          "command": [
+            "sh",
+            "-c",
+            "mkdir -p build/test-results/test && node --test --test-reporter=junit --test-reporter-destination=build/test-results/test/results.xml 'tools/**/*.test.js'"
+          ],
+          "status": "passed",
+          "exit_code": 0,
+          "duration_ms": 139,
+          "stdout_path": ".esc-ai/runs/baseline-hardcode-cleanup-wave1-ampm-content-framework-59a63137/logs/component-ampm-content-framework-tests.stdout.log",
+          "stderr_path": ".esc-ai/runs/baseline-hardcode-cleanup-wave1-ampm-content-framework-59a63137/logs/component-ampm-content-framework-tests.stderr.log",
+          "report_path": ".esc-ai/runs/baseline-hardcode-cleanup-wave1-ampm-content-framework-59a63137/reports/component-ampm-content-framework-tests-summary.json",
+          "failure_category": null
+        }
+      ]
+    },
+    {
+      "id": "impact",
+      "outcome": "skipped",
+      "checks": []
+    },
+    {
+      "id": "final",
+      "outcome": "completed",
+      "checks": [
+        {
+          "id": "repository-tests",
+          "command": [
+            "sh",
+            "-c",
+            "mkdir -p build/test-results/test && node --test --test-reporter=junit --test-reporter-destination=build/test-results/test/results.xml 'tools/**/*.test.js'"
+          ],
+          "status": "passed",
+          "exit_code": 0,
+          "duration_ms": 117,
+          "stdout_path": ".esc-ai/runs/baseline-hardcode-cleanup-wave1-ampm-content-framework-59a63137/logs/final-repository-tests.stdout.log",
+          "stderr_path": ".esc-ai/runs/baseline-hardcode-cleanup-wave1-ampm-content-framework-59a63137/logs/final-repository-tests.stderr.log",
+          "report_path": ".esc-ai/runs/baseline-hardcode-cleanup-wave1-ampm-content-framework-59a63137/reports/final-repository-tests-summary.json",
+          "failure_category": null
+        }
+      ]
+    }
+  ]
+}

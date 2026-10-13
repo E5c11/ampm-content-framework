@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "task_id": "hardcode-cleanup-wave2-ampm-content-framework",
+  "profiles": [
+    ".esc-ai/components/ampm-content-framework/esc-verification-profile.yaml"
+  ],
+  "strategy": {
+    "order": [
+      "focused",
+      "component",
+      "impact",
+      "final"
+    ],
+    "stop_on_failure": true
+  },
+  "impact": {
+    "graph": "esc-dependencies.json",
+    "source_components": [
+      "ampm-content-framework"
+    ],
+    "consumer_components": []
+  },
+  "gates": [
+    {
+      "id": "focused",
+      "status": "input-required",
+      "checks": [
+        {
+          "id": "ampm-content-framework-focused-tests",
+          "command": [
+            "sh",
+            "-c",
+            "mkdir -p build/test-results/test && node --test --test-reporter=junit --test-reporter-destination=build/test-results/test/results.xml '{test_filter}'"
+          ],
+          "requires": [
+            "test_filter"
+          ],
+          "report": {
+            "glob": "./build/test-results/test/*.xml",
+            "profile": ".esc-ai/components/ampm-content-framework/esc-report-profile.yaml"
+          }
+        }
+      ]
+    },
+    {
+      "id": "component",
+      "status": "ready",
+      "checks": [
+        {
+          "id": "ampm-content-framework-tests",
+          "command": [
+            "sh",
+            "-c",
+            "mkdir -p build/test-results/test && node --test --test-reporter=junit --test-reporter-destination=build/test-results/test/results.xml 'tools/**/*.test.js'"
+          ],
+          "report": {
+            "glob": "./build/test-results/test/*.xml",
+            "profile": ".esc-ai/components/ampm-content-framework/esc-report-profile.yaml"
+          }
+        }
+      ]
+    },
+    {
+      "id": "impact",
+      "status": "not-applicable",
+      "checks": []
+    },
+    {
+      "id": "final",
+      "status": "ready",
+      "checks": [
+        {
+          "id": "repository-tests",
+          "command": [
+            "sh",
+            "-c",
+            "mkdir -p build/test-results/test && node --test --test-reporter=junit --test-reporter-destination=build/test-results/test/results.xml 'tools/**/*.test.js'"
+          ],
+          "report": {
+            "glob": "./build/test-results/test/*.xml",
+            "profile": ".esc-ai/components/ampm-content-framework/esc-report-profile.yaml"
+          }
+        }
+      ]
+    }
+  ]
+}

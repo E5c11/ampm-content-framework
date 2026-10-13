@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "run": {
+    "id": "run-2148071011a544f691ef704b3332a901",
+    "task_id": "hardcode-cleanup-wave1-ampm-content-framework",
+    "provider": "claude-code",
+    "status": "succeeded"
+  },
+  "context": {
+    "bytes": 2768,
+    "components": 1,
+    "paths": 0,
+    "references": 0
+  },
+  "execution": {
+    "elapsed_ms": 50610,
+    "tool_calls": 8,
+    "read_calls": 0,
+    "agent_messages": 1,
+    "rework_events": 0
+  },
+  "tokens": {
+    "status": "reported",
+    "input": 18,
+    "output": 5329,
+    "reasoning": 0,
+    "cache_read": 593189,
+    "cache_write": 52879,
+    "total": 5347
+  },
+  "generated_at": "2026-10-10T20:43:01.415867Z"
+}

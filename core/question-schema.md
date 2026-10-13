@@ -60,7 +60,7 @@ presence check); `human-review` for the remainder (`subtopic`, `skills`, `exam_w
 | `paper` | string | e.g. `"nov_p1"` |
 
 Optional: `clues`, `context_text` (English inline stimulus), `text_key` (English P2 — a real
-`english_texts` id), `supplementary_material` (`{type, label, image_urls}`), `keyboard_type`
+`english_texts` id; `prescribedTextId` is accepted as an alias, `text_key` wins if both are set), `supplementary_material` (`{type, label, image_urls}`), `keyboard_type`
 (below).
 
 **`SCHEMA-KB-01`** — `keyboard_type` (→ `questions.keyboard_type`) is one of

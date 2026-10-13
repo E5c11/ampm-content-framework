@@ -31,6 +31,13 @@ const NEXT = NEXT_RELEASE;
 // Shipped in tag v2.4.0 (2026-10-08): text/physics/chemistry keyboards, extended scientific keys, case_sensitive, MathText _{ } ^{ }.
 const RELEASE_2_4_0 = '2.4.0';
 
+// The release that carries the setwork capability, the free-form text section and the text-keyboard fixes for the new
+// languages (decision 2026-10-10). Every typed question a LANGUAGE subject declares `text` for needs it, so any new
+// language paper (English HL included) derives 2.4.1 — above LATEST_RELEASED, hence dev-only until it is tagged.
+// Existing undeclared English HL rows resolve to the legacy English keyboard and are unaffected. See VER-10.
+const LANGUAGE_RELEASE = '2.4.1';
+const LANGUAGE_SUBJECTS = new Set(['english_hl', 'english_fal', 'afrikaans_fal']);
+
 // The newest app version that has actually been RELEASED (tagged). THE ONE PLACE to bump when a release is tagged
 // (VER-06): content whose derived minimum is above this is dev-only — prod push and prod gates refuse it.
 const LATEST_RELEASED = '2.4.0';
@@ -263,6 +270,9 @@ function analyzeQuestion(q) {
     } else if (!SHIPPED_DECLARABLE.has(declared)) {
       need(RELEASE_2_4_0, `keyboard ${declared}`);
     }
+    if (declared === 'text' && LANGUAGE_SUBJECTS.has((q.subject || '').toLowerCase())) {
+      need(LANGUAGE_RELEASE, `language subject ${q.subject} declaring text (VER-10)`);
+    }
   }
 
   const typed = p === 'fitb' || p === 'fraction' || p === 'steps' || p === 'equation';
@@ -345,6 +355,8 @@ const dependsOnNext = (requires) => requires.some((r) => isUnreleased(r.version)
 
 module.exports = {
   FLOOR,
+  LANGUAGE_RELEASE,
+  LANGUAGE_SUBJECTS,
   NEXT,
   NEXT_RELEASE,
   RELEASE_2_4_0,
