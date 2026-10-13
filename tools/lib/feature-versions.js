@@ -40,6 +40,10 @@ const LANGUAGE_SUBJECTS = new Set(['english_hl', 'english_fal', 'afrikaans_fal']
 
 // The newest app version that has actually been RELEASED (tagged). THE ONE PLACE to bump when a release is tagged
 // (VER-06): content whose derived minimum is above this is dev-only — prod push and prod gates refuse it.
+// NOTE 2026-10-13: English FAL (derived 2.4.1, above this) was pushed to prod once, with the owner's approval, by temporarily
+// setting this to 2.4.1 and then restoring it. It is safe in prod only because the subject row has min_app_version 2.4.1 and
+// both English FAL exams have exam_versions rows of 2.4.1 (builds below get no FAL lessons/questions). Pushing more
+// 2.4.1-derived content needs the real tag here (VER-06) or the same deliberate, owner-approved override.
 const LATEST_RELEASED = '2.4.0';
 
 // ---------------------------------------------------------------------------
