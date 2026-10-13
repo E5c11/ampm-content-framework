@@ -22,3 +22,6 @@ temp/
 
 # esc-ai live git worktrees (separate checkouts, never committed)
 .esc-ai/worktrees/
+
+# Test output written by the escape-ai verification profile (node --test junit report)
+build/
