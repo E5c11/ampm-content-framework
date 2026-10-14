@@ -266,6 +266,29 @@ Lessons follow the paper's subsections (`"Question N.M: Description"`):
 
 *(Built from a scratchpad generator that composes the scripts from compact specs; the committed scripts are the source of truth. The 28 per-lesson commit subjects end in a stray colon because the lesson name was not substituted — harmless, not rewritten.)*
 
+### 2025 Nov P2 (`nov_p2`) — authored to dev 2026-10-14, emulator-reviewed, **not in prod**
+
+**32 lessons, 106 questions (3–4 each)**, one commit per lesson (`scripts/add-economics-2025-nov-p2-l01..l32.js`), `DESIGN-UNI-14`-compliant from the start. Same
+2025 exam gate (2.4.0, set by the P1 rows already on dev; derived from `text` + `scientific_math`).
+
+| Real question | Lessons (order) |
+|---|---|
+| Q1 (30) | 1.1.1–1.1.4 · 1.1.5–1.1.8 · 1.2 · 1.3 (1–4) |
+| Q2 (40) | 2.1 · 2.2 · 2.2.5 · 2.3 · 2.3.5+2.4 · 2.5 (5–10) |
+| Q3 (40) | 3.1 · 3.2.1–3 · 3.2.4–5 · 3.3.1–3 · 3.3.4–5 · 3.4 · 3.5 (11–17) |
+| Q4 (40) | 4.1 · 4.2.1–3 · 4.2.4–5 · 4.3.1–3 · 4.3.4–5 · 4.4 · 4.5 (18–24) |
+| Q5 essay (monopoly) | characteristics (22) · the graph (4) · preventing abuse (10) · essay structure (4) (25–28) |
+| Q6 essay (inflation) | monetary (14) · fiscal and other (12) · trading partners (10) · essay structure (4) (29–32) |
+
+- **First drawn-graph conversions (`DESIGN-ECON-03`)**: lesson 23 (4.4, loss of a perfectly competitive firm) and lesson 26 (the monopoly's long-run profit graph) never ask for a drawing. Each is a 4-question set on a fresh supplied diagram: read the profit-maximising quantity (MC), judge statements about the curves (multi-select), compute the loss/profit from the labelled values (numeric `fitb`: 450 and 1200), and order the steps of the explanation (ordering). The 4-mark drawing scheme and the 4-mark explanation sit in the real-question AI explanation.
+- **Fresh stimuli (`DESIGN-ECON-05`)**: two cost-and-revenue schedules (profit maximisation at 40 units; marginal cost A = 10 — the common slip is subtracting totals), a tax-on-producers graph, a loss-making firm graph and a monopoly graph, all labelled "illustrative" and drawn with matplotlib. Real exam figures appear only as the lesson's exam-page images.
+- **Marks per real question add up** (1.x → 30; each Section B question → 40; Q5 22+4+10+4 and Q6 14+12+10+4 = 40).
+- **MC index-0 tally: 3 of 46 = 6.5%** (correct-answer positions 3 / 11 / 14 / 18 for A–D); no True/False. Typed: `barrier to entry`, `demerit good`, `marginal revenue` (`text`, with `|` variants), `44000`, `450`, `1200` (`standard_math`) and the marginal-cost `steps` (`scientific_math`).
+- **Curriculum added (dev):** 7 units (`perfect_markets`, `imperfect_markets`, `market_failures`, `economics_inflation` — plain `inflation` was already another subject's node —, `tourism`, `environmental_sustainability`, `redress_and_inequality`), 18 topics, 34 lesson tags; the 7 `econ_*` subtopics and 7 skills are reused.
+- **Review:** all 106 questions captured on a cache-cleared app with no warnings; paper and memo tabs spot-checked (lessons 7, 18, 30 memo; every paper tile via a mosaic); both new-graph lessons show the supplementary figure fully; typed answers **10/10 attempts PASS**, including every `|` alternative.
+- **Content flags for a subject-expert check:** the Q1.1.1–4 "distributive inefficiency" definition (the paper names allocative, productive and market inefficiency as options, so this is outside the P2 memo — confirm it is in the textbook); "managed float" style facts were not used here. The "NERSA" acronym appears in an option; it is spelled in full alongside.
+- **Not yet done:** prod push (2025 exam is now P1 + P2 on dev — ready for an owner go-ahead once the 2.5.0 release bump and the prod `subjects` row are done), the 2024 papers.
+
 ## Still open
 
 - Verify the subject tile renders with icon `trending-up` (not checked against the app's icon set).
@@ -273,7 +296,7 @@ Lessons follow the paper's subsections (`"Question N.M: Description"`):
   owner confirmed 2.5.0 is latest on 2026-10-14; what 2.5.0 added is not yet recorded in this repo. Check whether it changes
   any rule above (keyboards, presentations, image handling).
 - Remove the duplicate `Economics P1 Nov 2024 Eng-1.pdf`.
-- Next: 2025 P2 (first drawn-graph conversion is P2 Q4.4 — `DESIGN-ECON-03`), then the 2024 papers. Prod push of 2025 P1 waits for P2 (the exam is gated as one) and an owner go-ahead.
+- Next: the 2024 papers (P1 has the multiplier calculation, P2 two more drawn graphs). Prod push of the 2025 exam (P1+P2) needs an owner go-ahead, the prod `subjects` row and curriculum vocabulary.
 - Read the Q5/Q6 essay memos in full (all four papers) before writing the first essay lesson; only the rubric box and the
   topic lists were reviewed for this profile.
 - Verify 2025 P2 Q1.3 answers and the 2024 stimulus figures during Phase 1 of each lesson.
