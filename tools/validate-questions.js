@@ -341,7 +341,18 @@ function validateSet(questions) {
     setErrors.push(`True/False cap: ${tfCount}/${questions.length} questions are True/False — exceeds 20% limit`);
   }
 
-  return { results, setErrors };
+  // ── Lesson size (DESIGN-UNI-14): target 3-4 practice questions, 5 only to cover a missing concept, never more ──
+  // No allowlist and no per-subject exceptions for new papers; the one pre-existing exception is the language caps (LANG-CAP-01, 7).
+  const subj = ((questions[0] && questions[0].subject) || '').toLowerCase();
+  const ceiling = fv.LANGUAGE_SUBJECTS.has(subj) ? 7 : 5;
+  const setWarnings = [];
+  if (questions.length > ceiling) {
+    setErrors.push(`DESIGN-UNI-14: ${questions.length} practice questions exceeds the ${ceiling}-question ceiling — split the lesson along the exam's own subsections/themes (target 3-4)`);
+  } else if (questions.length === 5 && ceiling === 5) {
+    setWarnings.push('DESIGN-UNI-14: 5 questions is the ceiling — justify it only if a concept would otherwise be missing; otherwise split the lesson (target 3-4)');
+  }
+
+  return { results, setErrors, setWarnings };
 }
 
 // ---------------------------------------------------------------------------
@@ -456,7 +467,7 @@ if (scriptPath) {
     totalErrors++;
   }
 
-  const { results, setErrors } = validateSet(questions);
+  const { results, setErrors, setWarnings } = validateSet(questions);
 
   // SETWORK-LES-01 (shared/setwork.md): a setwork lesson and ALL its questions carry the same text_key.
   // Source-level so it sees the lesson's own `text_key` too; only fires when a text_key is present at all.
@@ -499,6 +510,8 @@ if (scriptPath) {
       console.log(`    Gate the exam: node tools/apply-exam-gate.js --env dev --subject <id> --year <YYYY> --session <june|november> (derives and writes it; core/app-feature-versions.md)`);
     }
   }
+
+  for (const msg of setWarnings) console.log(`\n  ⚠  ${msg}`);
 
   if (setErrors.length > 0) {
     console.log('\n  Set-level issues:');

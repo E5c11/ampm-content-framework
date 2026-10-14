@@ -196,6 +196,8 @@ flat "2–4 and done" silently under-covers the latter (a real Physics case: a 5
 lesson shipped with only 4 practice questions and no practice at all for its
 highest-mark sub-part).
 
+**Superseded in part by `DESIGN-UNI-14` (2026-10-14):** a lesson never exceeds 5 practice questions, so scale by splitting into more lessons rather than growing the set.
+
 **The language subjects' section caps (`LANG-CAP-01`, formerly `DESIGN-ENG-05`) are an instance of this rule, not a separate
 one** — 2–4 for narrow sections (Summary, Advertising, Media/Cartoons) vs. up to 7 for
 content-dense ones (Comprehension, Language, Paper 3) is exactly "scale with bundled
@@ -205,6 +207,26 @@ practice question per real exam sub-part (more for a heavily-weighted or multi-s
 sub-part), checked against the sub-part breakdown before deciding the set is complete —
 not assumed from a flat default. A lesson covering only one real sub-part (rule 2's
 single-item clusters) stays at the subject's normal narrow-case count.
+
+### `DESIGN-UNI-14` — Lesson size: 3–4 practice questions, 5 at most
+
+`enforced_by: validator` (`tools/validate-questions.js`: **error above 5, warning at 5**)
+
+Added 2026-10-14 (owner decision). The app gates the next exam question behind finishing a lesson's practice set, so a lesson is a
+short, finishable unit — not a chapter. **A lesson has 3–4 practice questions. Five is allowed only when a concept would otherwise go
+uncovered; more than five is never allowed.** If a real exam question needs more practice than that, the answer is *more lessons*,
+not a bigger set: split along the exam's own subsections and themes (`DESIGN-UNI-10`, Geography's one-lesson-per-subsection is the
+model), and let each lesson carry only its slice of the real sub-questions in its AI explanation (`AIEXP-08`, numbering stays the real exam's).
+
+- **No new exceptions.** There is no allowlist and no per-subject carve-out for new papers. Every new paper follows this rule.
+- **The one pre-existing exception is the language caps (`LANG-CAP-01`, up to 7)**, kept only because it predates this rule; the
+  validator uses 7 as the ceiling for `english_hl`, `english_fal` and `afrikaans_fal`. It is not a precedent.
+- **Supersedes the "one practice question per real sub-part" rule of thumb in `DESIGN-UNI-11`.** One fresh question can cover a concept
+  the real paper spreads over several 1-mark items; the practice set covers *concepts*, not a 1:1 copy of the sub-parts.
+- **Older content is non-compliant and must be redone** (decision 2026-10-14): Business Studies, History, Life Sciences, Physics and
+  Geography lessons above the ceiling, and the first Economics paper. Re-running an old script now fails validation by design.
+  Redoing *live* lessons needs a migration plan first — lesson ids are derived from the lesson's name/order, so re-splitting changes
+  ids and strands user progress.
 
 ### `DESIGN-UNI-12` — Typed-answer values must match what the keyboard can actually type
 

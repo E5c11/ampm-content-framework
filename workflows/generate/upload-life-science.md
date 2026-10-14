@@ -1,5 +1,7 @@
 # Upload — DBE Life Science (one lesson / real exam question or knowledge-area cluster)
 
+> **Superseded in part, 2026-10-14 — `DESIGN-UNI-14` (core/authoring-principles.md): a lesson has 3–4 practice questions, 5 at most, enforced by the validator. Any lesson size or "one lesson per real question" guidance below that exceeds this is out of date; papers authored before this rule are to be redone.**
+
 **Profile:** `subjects/dbe-life-sciences.md` · **Skeleton:** `core/upload-pipeline.md`
 (`AMPM-CONTENT-PIPELINE`) · **Rules:** `AMPM-CONTENT-SCHEMA`, `AMPM-CONTENT-DESIGN`,
 `AMPM-CONTENT-AI-EXP`, `presentations/{type}.md` per type used (Life Science subset only

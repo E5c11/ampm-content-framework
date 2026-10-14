@@ -188,13 +188,16 @@ any `text` or `scientific_math` row exists, and note it hides the exam from buil
 use `steps`); revisit only if a paper evidences a stacked fraction answer. Max 4 `match` pairs per question
 (`presentations/match.md`).
 
-## Lesson granularity
+## Lesson granularity — `DESIGN-UNI-14` (revised 2026-10-14)
 
-One lesson per real question — Q1, Q2, Q3, Q4, Q5, Q6 of a paper, `"Question N"` (`PIPE-07`) — never split further, same
-as Business Studies; Section B/C "answer any N" is a `DESIGN-UNI-10` independence signal, so no lesson may assume another
-optional question's content. Q1 is the biggest (22 items, three types, drawn from every topic in the paper's scope);
-Q2–Q4 are ~10–14 closed-form questions each; Q5/Q6 are essay lessons (`DESIGN-ECON-06`). Expect roughly 6 lessons and 55–70
-questions per paper, 24 lessons across the four papers. `DESIGN-UNI-11` scales the count with the bundled content.
+**A lesson has 3–4 practice questions (5 only to cover a missing concept; never more).** Lessons follow the exam's own subsections, not
+whole real questions — Geography's model, named `"Question N.M: Description"`, with each lesson's AI explanation carrying only the real
+sub-questions it covers (`AIEXP-08`). Rough shape per paper: Q1 → 3–4 lessons (the MC block clustered by topic, the match, the typed
+terms); each Section B question → 3 lessons (e.g. data-response A, data-response B, the 8-mark discussion items); each essay → 2 lessons
+(main part; additional part plus essay strategy). That is ~20 lessons and ~70 questions per paper. Section B/C "answer any N" remains a
+`DESIGN-UNI-10` independence signal: no lesson may assume another optional question's content.
+
+**The first authored paper (2025 Nov P1, 6 lessons / 84 questions of 12–15 each) predates this rule and must be redone** — see the ledger.
 
 ## Curriculum units (Grade 12, CAPS Section 3.2.6 annual teaching plan)
 
@@ -236,7 +239,7 @@ Studies):** `econ_classification`, `econ_calculation`, `econ_term_definition`, `
 
 ## Completed papers ledger
 
-### 2025 Nov P1 (`nov_p1`) — authored to dev 2026-10-14, emulator-reviewed, **not in prod**
+### 2025 Nov P1 (`nov_p1`) — authored to dev 2026-10-14, emulator-reviewed, **not in prod — NON-COMPLIANT with `DESIGN-UNI-14`, to be re-split**
 
 6 lessons, **84 questions**, one commit per lesson (`scripts/add-economics-2025-nov-p1-q1..q6.js`). Exam gated **2.4.0** on dev
 (`text` + `scientific_math`; the 2025 exam has no P2 yet). Dev build used for review: 2.4.1-dev01.

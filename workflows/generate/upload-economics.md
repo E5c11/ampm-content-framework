@@ -5,8 +5,8 @@
 `AMPM-CONTENT-AI-EXP`, `AMPM-CONTENT-KEYBOARD-INPUT`, `AMPM-CONTENT-APP-VERSIONS`,
 `presentations/{multiple-choice,multi-select,match,ordering,fitb,steps}.md` (Economics subset — profile).
 
-> Do NOT enter plan mode. Run once per lesson (one real exam question — Q1, Q2, Q3, Q4, Q5 or Q6 of a
-> paper — never split further; profile § Lesson granularity). **Commit after Phase 4, per lesson** — never batch
+> **`DESIGN-UNI-14`: 3–4 practice questions per lesson, 5 at most (validator-enforced).** Do NOT enter plan mode. Run once per lesson —
+> a lesson is a subsection/theme of a real exam question (profile § Lesson granularity), named `"Question N.M: Description"`. **Commit after Phase 4, per lesson** — never batch
 > lessons into one commit or one uninterrupted run. **Dev only**: nothing in this workflow touches prod.
 
 ## Phase 0 — one-time subject setup, then per-lesson curriculum vocabulary
