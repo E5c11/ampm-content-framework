@@ -28,7 +28,7 @@ for **student-drawn graphs** that the app cannot take.
 | Papers | `nov_p1`, `nov_p2` for **2024** and **2025**. Each year's two Nov papers are **one exam for gating** (`VER-01`/`VER-09`). `june_*` presumed once sourced; Economics has no supplementary exam sessions in the files |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/CAPS FET _ ECONOMICS _ GR 10-12 _ WEB_BD13.pdf` — four-group weighting table (physical p. 8), Grade 12 Annual Teaching Plan 3.2.5 / 3.2.6 (pp. 32–42), NSC examination guideline (pp. 45–46). Required in-session before authoring |
 | **Source files** | `files/Economics P1 Nov {2024,2025} Eng.pdf` + `... MG Eng.pdf`; `files/Economics P2 Nov {2024,2025} Eng.pdf` + `... MG Eng.pdf`. **`files/Economics P1 Nov 2024 Eng-1.pdf` is a byte-identical duplicate** of `Economics P1 Nov 2024 Eng.pdf` — delete one before committing |
-| `subjects` reference row | **Created on dev 2026-10-14** (direct insert, at the owner's request to upload 2025 P1): `id economics`, `name`/`full_name` Economics, `code ECONOMICS`, `category economics_lessons`, `sort_order 11`, `color #7048E8`, `icon trending-up` (**not verified against the app's icon set — check the subject tile renders**), `is_active`/`is_published` true, `min_app_version` null, `capabilities {}`. **No prod row yet** — created with the prod push. No subject-level gate (`VER-10` does not apply) |
+| `subjects` reference row | **Created on prod 2026-10-14** (same values as dev; created `is_active=false`, `min_app_version 2.4.0`, then set `is_active=true` once the 2025 exam was published — Economics is **live in prod**). **Created on dev 2026-10-14** (direct insert, at the owner's request to upload 2025 P1): `id economics`, `name`/`full_name` Economics, `code ECONOMICS`, `category economics_lessons`, `sort_order 11`, `color #7048E8`, `icon trending-up` (**not verified against the app's icon set — check the subject tile renders**), `is_active`/`is_published` true, `min_app_version` null, `capabilities {}`. **No prod row yet** — created with the prod push. No subject-level gate (`VER-10` does not apply) |
 
 ## The documents disagree — the papers win
 
@@ -290,14 +290,18 @@ Lessons follow the paper's subsections (`"Question N.M: Description"`):
 - **Content flags for a subject-expert check:** the Q1.1.1–4 "distributive inefficiency" definition (the paper names allocative, productive and market inefficiency as options, so this is outside the P2 memo — confirm it is in the textbook); "managed float" style facts were not used here. The "NERSA" acronym appears in an option; it is spelled in full alongside.
 - **Not yet done:** prod push (2025 exam is now P1 + P2 on dev — ready for an owner go-ahead once the 2.5.0 release bump and the prod `subjects` row are done), the 2024 papers.
 
+### Prod push — 2025 Nov P1 + P2, 2026-10-14 (owner-approved)
+
+Order followed (`VER-03`): prod `subjects` row (inactive, gated 2.4.0) → `push-paper-to-prod.js` P1 with `--allow-partial-exam` (P2 was pushed immediately after; the tool refuses a lone paper of a two-paper exam by default) → P2 → prod exam gate `apply-exam-gate.js --env prod --apply` (2.4.0, 60 lessons / 191 questions bumped) → `--publish` both papers → subject `is_active=true`. Prod now holds 28 + 32 lessons, 85 + 106 questions, all published, 152 images mirrored to the prod bucket (all HTTP 200), curriculum/skills/tags copied by the tool. The prod proxy for this tool listens on 15433 (`PG_PORT_PROD`); a separate prod proxy on 5433 may already be running — they do not conflict. `LATEST_RELEASED` was 2.4.0, equal to the derived minimum, so no override or bump was needed.
+
 ## Still open
 
-- Verify the subject tile renders with icon `trending-up` (not checked against the app's icon set).
+- Verify the subject tile renders with icon `trending-up` in prod (not checked against the app's icon set; the owner is verifying in prod).
 - Bump `LATEST_RELEASED` to 2.5.0 and refresh the version tables in `core/app-feature-versions.md` (`VER-06`) — separate change,
   owner confirmed 2.5.0 is latest on 2026-10-14; what 2.5.0 added is not yet recorded in this repo. Check whether it changes
   any rule above (keyboards, presentations, image handling).
 - Remove the duplicate `Economics P1 Nov 2024 Eng-1.pdf`.
-- Next: the 2024 papers (P1 has the multiplier calculation, P2 two more drawn graphs). Prod push of the 2025 exam (P1+P2) needs an owner go-ahead, the prod `subjects` row and curriculum vocabulary.
+- Next: the 2024 papers (P1 has the multiplier calculation, P2 two more drawn graphs). (The 2025 exam is already in prod; 2024 will need the same push.)
 - Read the Q5/Q6 essay memos in full (all four papers) before writing the first essay lesson; only the rubric box and the
   topic lists were reviewed for this profile.
 - Verify 2025 P2 Q1.3 answers and the 2024 stimulus figures during Phase 1 of each lesson.
