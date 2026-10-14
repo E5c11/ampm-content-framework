@@ -8,7 +8,7 @@ tags: [subject, economics, dbe, profile]
 
 # Subject Profile — DBE Economics (Papers 1 and 2)
 
-**Status: analysed 2026-10-14, nothing authored.** Drafted from the Nov 2024 and Nov 2025 papers and memos for both
+**Status: analysed 2026-10-14; `nov_p1` (2025) authored to dev the same day (6 lessons / 84 questions, ledger below); nothing else authored.** Drafted from the Nov 2024 and Nov 2025 papers and memos for both
 papers (all four in `files/`) and the CAPS Grade 12 plan. Every table below was checked against those eight documents;
 anything not yet evidenced is labelled *illustrative*.
 
@@ -28,7 +28,7 @@ for **student-drawn graphs** that the app cannot take.
 | Papers | `nov_p1`, `nov_p2` for **2024** and **2025**. Each year's two Nov papers are **one exam for gating** (`VER-01`/`VER-09`). `june_*` presumed once sourced; Economics has no supplementary exam sessions in the files |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/CAPS FET _ ECONOMICS _ GR 10-12 _ WEB_BD13.pdf` — four-group weighting table (physical p. 8), Grade 12 Annual Teaching Plan 3.2.5 / 3.2.6 (pp. 32–42), NSC examination guideline (pp. 45–46). Required in-session before authoring |
 | **Source files** | `files/Economics P1 Nov {2024,2025} Eng.pdf` + `... MG Eng.pdf`; `files/Economics P2 Nov {2024,2025} Eng.pdf` + `... MG Eng.pdf`. **`files/Economics P1 Nov 2024 Eng-1.pdf` is a byte-identical duplicate** of `Economics P1 Nov 2024 Eng.pdf` — delete one before committing |
-| `subjects` reference row | **Not created.** Data-only insert (no tooling), same as Business Studies. Pick the next free `sort_order` (`SELECT id, sort_order FROM subjects`; Business Studies is 8, English FAL 10), a `color` and an `icon`. Create on **dev only**; prod row waits for the prod push (`is_active` / `min_app_version` to be decided then). No subject-level app gate is needed (not a setwork subject, `VER-10` does not apply) |
+| `subjects` reference row | **Created on dev 2026-10-14** (direct insert, at the owner's request to upload 2025 P1): `id economics`, `name`/`full_name` Economics, `code ECONOMICS`, `category economics_lessons`, `sort_order 11`, `color #7048E8`, `icon trending-up` (**not verified against the app's icon set — check the subject tile renders**), `is_active`/`is_published` true, `min_app_version` null, `capabilities {}`. **No prod row yet** — created with the prod push. No subject-level gate (`VER-10` does not apply) |
 
 ## The documents disagree — the papers win
 
@@ -196,22 +196,34 @@ optional question's content. Q1 is the biggest (22 items, three types, drawn fro
 Q2–Q4 are ~10–14 closed-form questions each; Q5/Q6 are essay lessons (`DESIGN-ECON-06`). Expect roughly 6 lessons and 55–70
 questions per paper, 24 lessons across the four papers. `DESIGN-UNI-11` scales the count with the bundled content.
 
-## Curriculum units (Grade 12, CAPS Section 2.1 / 3.2.6)
+## Curriculum units (Grade 12, CAPS Section 3.2.6 annual teaching plan)
 
-Units = the 20 CAPS topics (a unit per topic; slugs are global unless the subject is added to `NAMESPACED_SUBJECTS` in
-`tools/lib/curriculum.js` — check, see upload doc Phase 0):
+**Decision 2026-10-14 (while authoring 2025 P1): units follow the Grade 12 *annual teaching plan* topics, not the 20-row overview table** —
+the ATP is the Grade 12 content document, and the overview table's groups (macro / micro / pursuits / contemporary) cut across how the
+papers actually test (e.g. P1 2025 Q4 tests the public sector, which the overview table files under Microeconomics). Slugs are global
+(`economics` is not in `NAMESPACED_SUBJECTS`; one collision found and avoided: the topic slug `exchange_rates` already existed, so the
+Economics topic is `currency_exchange_rates`). Created on dev:
 
-| Paper | CAPS group | Topics |
-|---|---|---|
-| P1 | Macroeconomics | 1 basic concepts · 2 basic economic problem · 3 circular flow · 4 quantitative elements · 5 economic systems · 6 business cycles |
-| P1 | Economic pursuits | 9 economic growth and development · 10 money and banking · 11 population and labour force · 12 labour market · 13 redress since 1994 |
-| P2 | Microeconomics | 7 dynamics of markets (perfect, imperfect, market failure) · 8 public sector intervention and composition of the RSA economy |
-| P2 | Contemporary issues | 14 unemployment · 15 labour relations · 16 globalisation · 17 inflation · 18 tourism · 19 poverty · 20 other economic issues (environmental sustainability, climate change, indigenous knowledge) and quantitative elements |
+| Unit (7) | Topics created for P1 (36) |
+|---|---|
+| `business_cycles` | `business_cycle_explanations`, `cycle_indicators`, `phillips_curve`, `business_cycle_policy` |
+| `circular_flow` | `multiplier`, `circular_flow_markets`, `financial_markets`, `business_sector_contribution` |
+| `public_sector` | `public_sector_failure`, `public_goods_and_free_riders`, `taxation_systems`, `fiscal_and_monetary_policy`, `market_efficiency_measures`, `macroeconomic_objectives`, `privatisation` |
+| `foreign_exchange_and_bop` | `balance_of_payments`, `currency_exchange_rates`, `terms_of_trade`, `reasons_for_international_trade` |
+| `protection_and_free_trade` | `comparative_advantage`, `tariffs_and_trade_barriers`, `export_promotion`, `trade_agreements`, `free_trade_arguments` |
+| `growth_and_development` | `industrial_policy`, `redress_and_skills_policies`, `public_works_and_development_policy`, `infrastructure_and_growth`, `regional_development`, `industrial_incentives` |
+| `economic_and_social_indicators` | `labour_force_and_unemployment`, `income_inequality_measures`, `international_comparisons`, `social_indicators`, `population_and_labour_force`, `economic_performance_indicators` |
 
-Topic placement is by what the *question* tests (2025 P1 Q4 mixes public-sector failure, the EPWP, free-trade arguments and fiscal policy). Topics
-and subtopics: create per concept as they appear; keep **subtopics coarse and reused** (skill-shaped, as in Business
-Studies/History): e.g. `term_definition_recall`, `data_interpretation`, `classification_and_criteria`,
-`calculation_and_method`, `graph_interpretation`, `essay_structure`, `cause_and_effect`.
+P2 will need further units from the ATP (dynamics of markets — perfect, imperfect, market failure; inflation; tourism; environmental
+sustainability) — create them when P2 is authored.
+
+**Subtopics (7, skill-shaped, `econ_` prefix because subtopic ids are also global and `term_definition_recall` etc. already belong to Business
+Studies):** `econ_classification`, `econ_calculation`, `econ_term_definition`, `econ_cause_and_effect`, `econ_data_interpretation`,
+`econ_policy_evaluation`, `econ_essay_structure`. As with Business Studies, each hangs off one arbitrary parent topic
+(`business_cycles/business_cycle_explanations`); nothing checks that a question's topic matches its subtopic's parent.
+**Skills (7):** `classify_economic_concept`, `apply_economic_formula`, `define_economic_term`, `explain_economic_impact`,
+`interpret_economic_data`, `evaluate_economic_policy`, `structure_economics_essay`. Four lesson tags already existed (`tariffs`,
+`exchange_rates`, `vat`, `essay_structure`) and were reused.
 
 ## App-side status
 
@@ -224,17 +236,50 @@ Studies/History): e.g. `term_definition_recall`, `data_interpretation`, `classif
 
 ## Completed papers ledger
 
-*Nothing authored yet.* Record each lesson here as it lands (script, questions, marks, MC index-0 tally, review status).
+### 2025 Nov P1 (`nov_p1`) — authored to dev 2026-10-14, emulator-reviewed, **not in prod**
+
+6 lessons, **84 questions**, one commit per lesson (`scripts/add-economics-2025-nov-p1-q1..q6.js`). Exam gated **2.4.0** on dev
+(`text` + `scientific_math`; the 2025 exam has no P2 yet). Dev build used for review: 2.4.1-dev01.
+
+| Lesson | Real marks | Qs | Mix | AI sub-questions (real numbering) |
+|---|---|---|---|---|
+| Q1 Section A | 30 | 14 | 7 MC, 1 match, 6 `fitb` (2 numeric `standard_math`, 4 `text` terms) | 22 (1.1.1–1.3.6) |
+| Q2 Macroeconomics | 40 | 15 | 10 MC, 3 multi-select, 1 ordering, 1 `steps` (reserve assets, `scientific_math`); fresh Phillips graph on 3 questions | 14 |
+| Q3 Economic pursuits | 40 | 15 | 6 MC, 6 multi-select, 1 match, 2 numeric `fitb`; fresh bar graph on 2 questions | 14 |
+| Q4 Macro + pursuits | 40 | 15 | 8 MC, 5 multi-select, 1 match, 1 numeric `fitb` (VAT) | 14 |
+| Q5 essay (circular flow) | 40 | 12 | 6 MC, 3 multi-select, 2 match, 1 ordering | 1 (`"5"`, 40) |
+| Q6 essay (regional development) | 40 | 13 | 9 MC, 2 multi-select, 1 match, 1 ordering | 1 (`"6"`, 40) |
+
+(Presentation totals in the DB: 46 MC, 19 multi-select, 6 match, 3 ordering, 9 `fitb`, 1 `steps`.)
+
+- **MC index-0 tally: 4 of 46 = 8.7%** (≤ ~10%, `DESIGN-UNI-06`); no True/False questions.
+- **Images:** exam pages for every lesson (33 URLs, all HTTP 200) plus two fresh question figures, labelled "illustrative" on the
+  chart (`question_supplementary/economics/2025/nov_p1/q2` Phillips curve, `.../q3` bar graph).
+- **Review (`review-paper.md`), 2026-10-14:** Phase 2/3 render pass on all 84 questions — **84 PASS, 0 AUTO_FIX**; no cropped
+  options, no wrapped-blank problems; both figure sheets render fully. **Phase 5 answerability: 10 typed questions, 14 attempts
+  (every `|` alternative typed through the real keyboards), 14 PASS** — including the negative `-4800` on `scientific_math` and
+  the hyphenated `gini-coefficient` (second screen of the Text keyboard). Runner: ad-hoc scratch script (Text keys are
+  `text_key_<LETTER>`, `text_key_space`, `text_key_switch`, `text_key_done`, punctuation `text_key_-` on the second screen;
+  steps blank `question_step_input_<n>`); `review-capture-answers.js` only knows `maths_key_*`.
+- **Flags for a subject-expert check (not changed):** (a) Q2 leading indicators — CPI and unemployment rate are used as the
+  non-leading distractors; confirm against the teacher's list (the memo lists leading examples only); (b) Q1 IPAP described as
+  "rolling three-year plan"; (c) Q4 "Prosperity (the peak of the upswing)" phase naming; (d) Q1 "managed float" is textbook
+  rather than named in CAPS; (e) the "PC" label in the Phillips figure sits on the curve — cosmetic, and fixing it means a
+  new object path (the media bucket caches for a year).
+- **Not yet done:** prod push, P2 2025, 2024 papers; full essay memos for the P2 essays.
+
+*(How it was built, for repeatability: a scratchpad generator emitted the six scripts from compact specs, because the validator
+evals the `questions` array in isolation and needs plain literals. The generator is not committed; the committed scripts are
+the source of truth.)*
 
 ## Still open
 
-- Create the `subjects` row on dev (sort order, colour, icon) — see Identity.
+- Verify the subject tile renders with icon `trending-up` (not checked against the app's icon set).
 - Bump `LATEST_RELEASED` to 2.5.0 and refresh the version tables in `core/app-feature-versions.md` (`VER-06`) — separate change,
   owner confirmed 2.5.0 is latest on 2026-10-14; what 2.5.0 added is not yet recorded in this repo. Check whether it changes
   any rule above (keyboards, presentations, image handling).
 - Remove the duplicate `Economics P1 Nov 2024 Eng-1.pdf`.
-- First lesson to author: 2025 P1 Q2 (macroeconomics: BoP calculation, Phillips curve, two discussion items) — it exercises
-  every Economics-specific rule except the drawn graph (first met in 2025 P2 Q4).
+- Next: 2025 P2 (first drawn-graph conversion is P2 Q4.4 — `DESIGN-ECON-03`), then the 2024 papers. Prod push of 2025 P1 waits for P2 (the exam is gated as one) and an owner go-ahead.
 - Read the Q5/Q6 essay memos in full (all four papers) before writing the first essay lesson; only the rubric box and the
   topic lists were reviewed for this profile.
 - Verify 2025 P2 Q1.3 answers and the 2024 stimulus figures during Phase 1 of each lesson.

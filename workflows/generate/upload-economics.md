@@ -151,3 +151,17 @@ derived exam minimum is above `LATEST_RELEASED`. Economics derives at most 2.4.0
 (2.4.0 in the tooling today, 2.5.0 once the owed bump lands), so the gate does not block it. Do not touch the constant to
 get around anything else (cf. the one-time English FAL override recorded in `tools/lib/feature-versions.js`). The prod
 `subjects` row and the prod curriculum vocabulary (mirrored by the push tool) are part of that step.
+
+## Lessons from the first paper (2025 Nov P1, 2026-10-14)
+
+- `dump-curriculum-vocabulary.js` had a subject allowlist; `economics` was added to it. Dump with `--out temp/curriculum-vocab-economics.json`.
+- Fresh figures are generated (matplotlib is available) and uploaded with `upload-question-supplementary.js --type graph --order <lesson>`; the
+  tool prints `label: null` — set the label (`"Graph"`) in the script, and write the literal URL into each question (the validator evals the
+  `questions` array alone, so no outer `const`). Label the chart itself "illustrative" (`DESIGN-ECON-05`). The bucket caches objects for a year,
+  so never overwrite a published figure — use a new path.
+- A taller question stem can push the last option below the fold on the first view; the capture's `_scroll` shot shows it. Not a defect.
+- Phase 5 needs a runner that knows the Text keyboard: `text_key_<LETTER>`, `text_key_space`, `text_key_switch` (digits/punctuation screen,
+  `text_key_-` etc.), `text_key_done`; numeric `standard_math` uses `maths_key_<char>`; a `steps` blank is `question_step_input_<n>` and submits via
+  the keyboard's Done / "Submit answer". Type **every** `|` alternative, relaunching the lesson between attempts.
+- Run the emulator review on a build at or above the exam's derived minimum (here 2.4.0; the dev build was 2.4.1-dev01).
+
