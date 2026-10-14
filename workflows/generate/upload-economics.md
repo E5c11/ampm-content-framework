@@ -164,4 +164,7 @@ get around anything else (cf. the one-time English FAL override recorded in `too
   `text_key_-` etc.), `text_key_done`; numeric `standard_math` uses `maths_key_<char>`; a `steps` blank is `question_step_input_<n>` and submits via
   the keyboard's Done / "Submit answer". Type **every** `|` alternative, relaunching the lesson between attempts.
 - Run the emulator review on a build at or above the exam's derived minimum (here 2.4.0; the dev build was 2.4.1-dev01).
+- **Never re-upload different content under an existing object key.** Objects are served with a one-year cache and Google's edge keeps the old bytes even after delete + re-upload (found 2026-10-14 when re-cut crops for lessons 2–6 still showed the old pages). For re-cut or corrected images use new file names (`question_11.png`, `memo_11.png`, …) — the uploader keys on the filename — and re-generate the lesson script so the URLs change. The same applies to question figures.
+- A re-split changes lesson contents but lesson/question ids are derived from the lesson `order`, so the app caches the old rows: `adb shell pm clear com.esma.ampm.dev` before re-capturing (the app returns to its subject chooser; pick any subject, deep links still open Economics).
+- Lessons are **subsection-sized** (`DESIGN-UNI-14`): the validator also enforces the variety rule (3-question sets ≥ 2 presentation types, 4+ ≥ 3), so a set of all-`fitb` terms or all-MC must be mixed.
 

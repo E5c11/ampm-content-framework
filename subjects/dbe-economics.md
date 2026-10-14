@@ -197,7 +197,7 @@ terms); each Section B question → 3 lessons (e.g. data-response A, data-respon
 (main part; additional part plus essay strategy). That is ~20 lessons and ~70 questions per paper. Section B/C "answer any N" remains a
 `DESIGN-UNI-10` independence signal: no lesson may assume another optional question's content.
 
-**The first authored paper (2025 Nov P1, 6 lessons / 84 questions of 12–15 each) predates this rule and must be redone** — see the ledger.
+**The first authored paper (2025 Nov P1) was redone to this rule on 2026-10-14** — see the ledger.
 
 ## Curriculum units (Grade 12, CAPS Section 3.2.6 annual teaching plan)
 
@@ -239,41 +239,32 @@ Studies):** `econ_classification`, `econ_calculation`, `econ_term_definition`, `
 
 ## Completed papers ledger
 
-### 2025 Nov P1 (`nov_p1`) — authored to dev 2026-10-14, emulator-reviewed, **not in prod — NON-COMPLIANT with `DESIGN-UNI-14`, to be re-split**
+### 2025 Nov P1 (`nov_p1`) — authored to dev 2026-10-14, repaired to `DESIGN-UNI-14` the same day, emulator-reviewed twice, **not in prod**
 
-6 lessons, **84 questions**, one commit per lesson (`scripts/add-economics-2025-nov-p1-q1..q6.js`). Exam gated **2.4.0** on dev
-(`text` + `scientific_math`; the 2025 exam has no P2 yet). Dev build used for review: 2.4.1-dev01.
+**28 lessons, 85 questions (2–4 per lesson, none above 4)**, one commit per lesson (`scripts/add-economics-2025-nov-p1-l01..l28.js`). Exam gated
+**2.4.0** on dev (`text` + `scientific_math`). The first authoring (6 lessons of 12–15 questions) broke the lesson-size rule and was replaced;
+its dev rows, 14 test-account answers and old bucket objects were deleted.
 
-| Lesson | Real marks | Qs | Mix | AI sub-questions (real numbering) |
-|---|---|---|---|---|
-| Q1 Section A | 30 | 14 | 7 MC, 1 match, 6 `fitb` (2 numeric `standard_math`, 4 `text` terms) | 22 (1.1.1–1.3.6) |
-| Q2 Macroeconomics | 40 | 15 | 10 MC, 3 multi-select, 1 ordering, 1 `steps` (reserve assets, `scientific_math`); fresh Phillips graph on 3 questions | 14 |
-| Q3 Economic pursuits | 40 | 15 | 6 MC, 6 multi-select, 1 match, 2 numeric `fitb`; fresh bar graph on 2 questions | 14 |
-| Q4 Macro + pursuits | 40 | 15 | 8 MC, 5 multi-select, 1 match, 1 numeric `fitb` (VAT) | 14 |
-| Q5 essay (circular flow) | 40 | 12 | 6 MC, 3 multi-select, 2 match, 1 ordering | 1 (`"5"`, 40) |
-| Q6 essay (regional development) | 40 | 13 | 9 MC, 2 multi-select, 1 match, 1 ordering | 1 (`"6"`, 40) |
+Lessons follow the paper's subsections (`"Question N.M: Description"`):
 
-(Presentation totals in the DB: 46 MC, 19 multi-select, 6 match, 3 ordering, 9 `fitb`, 1 `steps`.)
+| Real question | Lessons (order) | Questions per lesson |
+|---|---|---|
+| Q1 (30) | 1.1.1–1.1.4 · 1.1.5–1.1.8 · 1.2 · 1.3 (1–4) | 3 · 3 · 3 · 3 |
+| Q2 (40) | 2.1 · 2.2 · 2.2.5 · 2.3 · 2.3.5+2.4 · 2.5 (5–10) | 3 · 3 · 2 · 3 · 4 · 3 |
+| Q3 (40) | 3.1 · 3.2 · 3.2.4 · 3.3 · 3.4 · 3.5 (11–16) | 3 each |
+| Q4 (40) | 4.1 · 4.2 · 4.2.4 · 4.3 · 4.3.4 · 4.4 (17–22) | 3 · 3 · 3 · 3 · 2 · 3 |
+| Q5 essay | main part · business sector · essay structure (23–25) | 3 · 3 · 4 |
+| Q6 essay | regional development · incentives · essay structure (26–28) | 4 · 3 · 3 |
 
-- **MC index-0 tally: 4 of 46 = 8.7%** (≤ ~10%, `DESIGN-UNI-06`); no True/False questions.
-- **Images:** exam pages for every lesson (33 URLs, all HTTP 200) plus two fresh question figures, labelled "illustrative" on the
-  chart (`question_supplementary/economics/2025/nov_p1/q2` Phillips curve, `.../q3` bar graph).
-- **Review (`review-paper.md`), 2026-10-14:** Phase 2/3 render pass on all 84 questions — **84 PASS, 0 AUTO_FIX**; no cropped
-  options, no wrapped-blank problems; both figure sheets render fully. **Phase 5 answerability: 10 typed questions, 14 attempts
-  (every `|` alternative typed through the real keyboards), 14 PASS** — including the negative `-4800` on `scientific_math` and
-  the hyphenated `gini-coefficient` (second screen of the Text keyboard). Runner: ad-hoc scratch script (Text keys are
-  `text_key_<LETTER>`, `text_key_space`, `text_key_switch`, `text_key_done`, punctuation `text_key_-` on the second screen;
-  steps blank `question_step_input_<n>`); `review-capture-answers.js` only knows `maths_key_*`.
-- **Flags for a subject-expert check (not changed):** (a) Q2 leading indicators — CPI and unemployment rate are used as the
-  non-leading distractors; confirm against the teacher's list (the memo lists leading examples only); (b) Q1 IPAP described as
-  "rolling three-year plan"; (c) Q4 "Prosperity (the peak of the upswing)" phase naming; (d) Q1 "managed float" is textbook
-  rather than named in CAPS; (e) the "PC" label in the Phillips figure sits on the curve — cosmetic, and fixing it means a
-  new object path (the media bucket caches for a year).
-- **Not yet done:** prod push, P2 2025, 2024 papers; full essay memos for the P2 essays.
+- **Variety rule:** every 3-question set has ≥ 2 presentation types and every 4-question set ≥ 3, which is why some questions were converted (a typed-term set became fitb + fitb + mc; several mc-only sets gained a multi-select or match). Typed terms now: quota, Gini coefficient (`text`), plus numeric blanks (`standard_math`) and the reserve-assets `steps` (`scientific_math`).
+- **MC index-0 tally: 4 of 45 = 8.9%**; no True/False.
+- **Each lesson's AI explanation carries only the real sub-questions it covers** (marks add up to the real question's 30 / 40; essays are split 26 main / 10 additional / 4 intro+conclusion across their three lessons). Image crops are per subsection (exam pages and memo pages cut at the real heading positions; 72 image URLs, all HTTP 200). Two fresh figures: Phillips curve (lesson 8) and bar graph (lesson 12), labelled illustrative.
+- **Review #2 (2026-10-14, app cache cleared):** all 85 questions captured, lesson counts "0 / 2–4" correct, no warnings; paper and memo images checked per lesson (lessons 2–6, 23 and 24 were wrong at first — see the cache trap below, fixed and re-checked); typed answers **11/11 attempts PASS**, including every `|` alternative (`quota`, `import quota`, `gini coefficient`, `gini-coefficient`, `gini index`).
+- **The image-cache trap (cost one fix pass):** the media bucket serves objects for a year and Google's edge keeps serving the old bytes even after an object is deleted and re-uploaded. Re-cut crops uploaded under the old keys (`q1`–`q6`) kept showing the superseded whole-question pages. **Never reuse an object key for different content** — give re-cut images new file names (here `question_11.png`, `memo_11.png`, …).
+- **Open flags for a subject-expert check (unchanged):** CPI and unemployment rate as the non-leading distractors in lesson 5; IPAP described as a "rolling three-year plan" (lesson 2); the "Prosperity (the peak of the upswing)" phase name (lesson 22); "managed float" (lesson 3). Cosmetic: the "PC" label on the Phillips figure sits on the curve.
+- **Not yet done:** prod push (waits for P2 and an owner go-ahead), P2 2025, the 2024 papers.
 
-*(How it was built, for repeatability: a scratchpad generator emitted the six scripts from compact specs, because the validator
-evals the `questions` array in isolation and needs plain literals. The generator is not committed; the committed scripts are
-the source of truth.)*
+*(Built from a scratchpad generator that composes the scripts from compact specs; the committed scripts are the source of truth. The 28 per-lesson commit subjects end in a stray colon because the lesson name was not substituted — harmless, not rewritten.)*
 
 ## Still open
 
