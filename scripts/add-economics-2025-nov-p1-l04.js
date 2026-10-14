@@ -38,10 +38,10 @@ const video = {
     "international_trade"
   ],
   "question_image_urls": [
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q4/question_1.png"
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q4/question_11.png"
   ],
   "memo_image_urls": [
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q4/memo_1.png"
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q4/memo_11.png"
   ],
   "exam_question_marks": 6,
   "supplementary_materials": []

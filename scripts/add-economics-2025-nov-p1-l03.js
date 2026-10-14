@@ -38,10 +38,10 @@ const video = {
     "trade_policy"
   ],
   "question_image_urls": [
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q3/question_1.png"
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q3/question_11.png"
   ],
   "memo_image_urls": [
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q3/memo_1.png"
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q3/memo_11.png"
   ],
   "exam_question_marks": 8,
   "supplementary_materials": []

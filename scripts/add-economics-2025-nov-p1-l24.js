@@ -37,10 +37,10 @@ const video = {
     "essay_structure"
   ],
   "question_image_urls": [
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q24/question_1.png"
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q24/question_11.png"
   ],
   "memo_image_urls": [
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q24/memo_1.png"
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q24/memo_11.png"
   ],
   "exam_question_marks": 10,
   "supplementary_materials": []

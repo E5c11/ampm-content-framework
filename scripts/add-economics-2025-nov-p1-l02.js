@@ -38,11 +38,11 @@ const video = {
     "economic_indicators"
   ],
   "question_image_urls": [
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q2/question_1.png",
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q2/question_2.png"
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q2/question_11.png",
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q2/question_12.png"
   ],
   "memo_image_urls": [
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q2/memo_1.png"
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/economics/2025/nov_p1/q2/memo_11.png"
   ],
   "exam_question_marks": 8,
   "supplementary_materials": []
