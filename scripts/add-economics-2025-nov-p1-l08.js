@@ -96,10 +96,10 @@ const questions = [
     "name": "Question 2",
     "question": "Study the Phillips curve. At point V, inflation is zero and unemployment is 16%. What is this level of unemployment called?",
     "metadata": [
-      "Cyclical unemployment",
-      "Frictional unemployment",
+      "The cyclical rate of unemployment",
+      "The frictional rate of unemployment",
       "The natural rate of unemployment",
-      "The full-employment level",
+      "The full-employment level of output",
       ""
     ],
     "answer": [
@@ -138,11 +138,11 @@ const questions = [
     "name": "Question 3",
     "question": "Study the Phillips curve. Select ALL the statements that are true.",
     "metadata": [
-      "When unemployment rises from 4% to 8%, inflation falls",
-      "Moving from point T to point S lowers unemployment but raises inflation",
       "At point V inflation is zero",
+      "Moving from point T to point S lowers unemployment but raises inflation",
+      "The curve slopes upward from left to right",
       "Moving from T to S makes unemployment and inflation both fall",
-      "The curve slopes upward from left to right"
+      "When unemployment rises from 4% to 8%, inflation falls"
     ],
     "answer": [
       "When unemployment rises from 4% to 8%, inflation falls",

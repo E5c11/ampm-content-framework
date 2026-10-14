@@ -88,16 +88,16 @@ const questions = [
     "name": "Question 2",
     "question": "Arrange the parts of this essay in the order in which they should be written.",
     "metadata": [
-      "Additional part: evaluating the business sector’s contribution",
-      "Conclusion with a summary and value judgement",
-      "Introduction that defines the main concept",
-      "Main part: the four markets, each under its own heading"
+      "A value judgement that adds to the discussion without repeating facts",
+      "Explained points on each of the four markets",
+      "A definition of the main concept of the topic",
+      "An evaluation of the business sector’s contribution"
     ],
     "answer": [
-      "Introduction that defines the main concept",
-      "Main part: the four markets, each under its own heading",
-      "Additional part: evaluating the business sector’s contribution",
-      "Conclusion with a summary and value judgement"
+      "A definition of the main concept of the topic",
+      "Explained points on each of the four markets",
+      "An evaluation of the business sector’s contribution",
+      "A value judgement that adds to the discussion without repeating facts"
     ],
     "presentation": "ordering",
     "type": "ordering",
@@ -121,10 +121,10 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the features of a higher-order conclusion.",
     "metadata": [
-      "A brief summary that does not repeat facts already given",
-      "An opinion or value judgement on what was discussed",
-      "A recommendation",
       "The introduction copied word for word",
+      "A recommendation",
+      "An opinion or value judgement on what was discussed",
+      "A brief summary that does not repeat facts already given",
       "Every fact from the body listed again"
     ],
     "answer": [

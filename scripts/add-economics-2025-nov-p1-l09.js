@@ -54,14 +54,14 @@ const questions = [
     "name": "Question 1",
     "question": "Which statement best describes the new economic paradigm in relation to business cycles?",
     "metadata": [
-      "Business cycles are left entirely to market forces and never need smoothing",
-      "Demand-side and supply-side policies are combined to smooth the cycle and allow growth without inflation",
-      "Only monetary policy is used to prevent every recession",
-      "Cycles are caused only by shocks from outside the economy",
+      "Business cycles are left to market forces and need no smoothing",
+      "Demand-side and supply-side policies together smooth the cycle",
+      "Only monetary policy is used to prevent each and every recession",
+      "Cycles are caused only by shocks that originate outside the economy",
       ""
     ],
     "answer": [
-      "Demand-side and supply-side policies are combined to smooth the cycle and allow growth without inflation",
+      "Demand-side and supply-side policies together smooth the cycle",
       "",
       "",
       "",
@@ -91,9 +91,9 @@ const questions = [
     "metadata": [
       "Remove unnecessary regulations that make markets inflexible",
       "Encourage competition by welcoming new firms and foreign investment",
-      "Level the playing field so that no business is unfairly disadvantaged",
-      "Give one firm exclusive rights to dominate a market",
-      "Fix minimum prices on all goods"
+      "Fix minimum prices on all goods sold in the economy",
+      "Give a single large firm the exclusive right to dominate a market",
+      "Level the playing field so that no business is unfairly disadvantaged"
     ],
     "answer": [
       "Remove unnecessary regulations that make markets inflexible",

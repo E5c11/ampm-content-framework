@@ -123,11 +123,11 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the production methods that are labour-intensive.",
     "metadata": [
-      "A road crew using spades and wheelbarrows and employing many workers",
+      "A robotic car assembly line",
       "Fruit pickers harvesting an orchard by hand",
-      "A tailor shop where staff sew each garment by hand",
       "A fully automated bottling plant with a handful of technicians",
-      "A robotic car assembly line"
+      "A road crew using spades and wheelbarrows and employing many workers",
+      "A tailor shop where staff sew each garment by hand"
     ],
     "answer": [
       "A road crew using spades and wheelbarrows and employing many workers",

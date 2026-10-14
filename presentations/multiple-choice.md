@@ -68,3 +68,6 @@ presentation: "multiple_choice",
 - Use for open-ended language questions instead of fitb (`LANG-ANS-01`, formerly `DESIGN-ENG-04`) and for
   expression answers in Maths **only where a typed answer cannot fix one canonical form** (`DESIGN-MATH-05`).
 - True/False: exactly `["True", "False", "", "", ""]`; single rule/fact only.
+- **Do not let the correct option stand out (`DESIGN-UNI-16`).** The app does not shuffle options, and students notice that the correct option is the
+  longest. Keep all options at similar length and shape (the validator errors when the correct one is ≥ 25% / ≥ 25 characters longer than the longest
+  distractor); paper-level, the correct option may be the longest in at most 30% of questions (`tools/audit-answer-cues.js`).

@@ -128,11 +128,11 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the features of collusion between firms.",
     "metadata": [
-      "Firms in the same industry agree to act together",
-      "They fix prices or limit output",
-      "It reduces competition",
       "Competition policy encourages it",
-      "It lowers prices for consumers"
+      "Firms in the same industry agree to act together",
+      "It reduces competition",
+      "It lowers prices for consumers",
+      "They fix prices or limit output"
     ],
     "answer": [
       "Firms in the same industry agree to act together",

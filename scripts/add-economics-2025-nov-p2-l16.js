@@ -88,16 +88,16 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the ways in which tourism can help to reduce poverty.",
     "metadata": [
+      "It always lowers the cost of living for the poor",
+      "It offers on-the-job training in rural areas",
+      "Households can start small tourism businesses",
       "It diversifies the income sources of poor people",
-      "Households can start small businesses serving tourists",
-      "It offers on-the-job training in rural communities",
-      "It forces people to move to big cities",
-      "It always lowers the cost of living"
+      "It forces poor people to move to the big cities"
     ],
     "answer": [
       "It diversifies the income sources of poor people",
-      "Households can start small businesses serving tourists",
-      "It offers on-the-job training in rural communities",
+      "Households can start small tourism businesses",
+      "It offers on-the-job training in rural areas",
       "",
       ""
     ],
@@ -123,14 +123,14 @@ const questions = [
     "name": "Question 3",
     "question": "Why is tourism described as an alternative to urbanisation?",
     "metadata": [
-      "It forces rural families to move to cities",
-      "It closes rural businesses",
-      "It lets people earn an income while continuing a rural family lifestyle",
-      "It raises rural food prices",
+      "It forces rural families to move to the larger cities",
+      "It closes down most small businesses in rural villages",
+      "It lets people earn an income while staying in rural areas",
+      "It raises the price of food in rural areas and towns",
       ""
     ],
     "answer": [
-      "It lets people earn an income while continuing a rural family lifestyle",
+      "It lets people earn an income while staying in rural areas",
       "",
       "",
       "",

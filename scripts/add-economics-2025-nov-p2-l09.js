@@ -55,11 +55,11 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the ways in which producer subsidies can benefit the economy.",
     "metadata": [
+      "Fewer jobs are created because output falls overall",
       "Lower production costs may ease inflation",
       "Producers may be encouraged to produce more",
       "More jobs may be created as output grows",
-      "Consumers may pay lower prices",
-      "Producers must raise their prices"
+      "Producers are forced to raise the prices of goods"
     ],
     "answer": [
       "Lower production costs may ease inflation",
@@ -90,10 +90,10 @@ const questions = [
     "name": "Question 2",
     "question": "A clothing factory closes in one town while a new one opens in another, but most of the laid-off workers cannot move because of relocation costs and family ties. Which cause of misallocation of resources does this show?",
     "metadata": [
-      "Lack of information",
+      "Lack of information about prices",
       "Immobility of factors of production",
-      "Perfect competition",
-      "Excess demand for labour",
+      "Perfect competition in the labour market",
+      "Excess demand for skilled labour",
       ""
     ],
     "answer": [
@@ -125,16 +125,16 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the examples that show a lack of information in markets.",
     "metadata": [
-      "Consumers do not know about a cheaper alternative product",
+      "Consumers do not know about a cheaper alternative",
+      "A shop clearly publishes its prices for all customers",
+      "All buyers and sellers know the price of every good",
       "Workers are unaware of better-paying jobs elsewhere",
-      "Entrepreneurs lack information about the cost of inputs",
-      "All buyers and sellers know every price",
-      "A shop publishes its prices clearly"
+      "Entrepreneurs lack information about input costs"
     ],
     "answer": [
-      "Consumers do not know about a cheaper alternative product",
+      "Consumers do not know about a cheaper alternative",
       "Workers are unaware of better-paying jobs elsewhere",
-      "Entrepreneurs lack information about the cost of inputs",
+      "Entrepreneurs lack information about input costs",
       "",
       ""
     ],

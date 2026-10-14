@@ -175,6 +175,7 @@ any `text` or `scientific_math` row exists, and note it hides the exam from buil
   (`Broad-Based Black Economic Empowerment (B-BBEE)`). Acronym-heavy content (SARB, IMF, WTO, AGOA, SACU, SADC, EPWP, NSDS,
   IPAP, BoP, CPI, PPI, GDE) is fine in option text; a typed answer is always the full term (the paper forbids acronyms in 1.3).
   The isolated-slash-in-parentheses rule applies (`(A/B)` alone renders as a stacked fraction — Business Studies review).
+- **Answer cues — `DESIGN-UNI-15` / `DESIGN-UNI-16` apply with force here.** Economics options are sentence-length, which is exactly where the "longest option is right" cue appears; the essay-plan `ordering` items describe content ("A definition of the main concept"), never position. Run `tools/audit-answer-cues.js` before and after review.
 - **MC distribution.** Section A alone has 16 `multiple_choice` per exam; run the paper-level index-0 tally (`DESIGN-UNI-06`,
   ≤ ~10%) and the True/False cap (`DESIGN-UNI-05`) across all Economics lessons of a paper, not per lesson.
 - **Clues must not leak the answer** (known recurring bug, see `feedback-clues-never-leak-answer`). Economics definitions

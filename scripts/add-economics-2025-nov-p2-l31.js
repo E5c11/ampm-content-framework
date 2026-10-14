@@ -53,16 +53,16 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the ways in which trading partners can push domestic inflation up.",
     "metadata": [
+      "Strong demand for exports adds to demand-pull inflation",
+      "Cheaper imported production inputs for local firms",
+      "Higher oil and commodity prices raise costs",
       "Rising prices abroad lead to imported inflation",
-      "Higher oil and commodity import prices raise production costs",
-      "Strong demand for exports may add to demand-pull inflation",
-      "Cheaper imported production inputs",
       "Imports that increase competition on local markets"
     ],
     "answer": [
       "Rising prices abroad lead to imported inflation",
-      "Higher oil and commodity import prices raise production costs",
-      "Strong demand for exports may add to demand-pull inflation",
+      "Higher oil and commodity prices raise costs",
+      "Strong demand for exports adds to demand-pull inflation",
       "",
       ""
     ],
@@ -88,16 +88,16 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the ways in which trading partners can help to hold domestic inflation down.",
     "metadata": [
-      "Imports increase competition on local markets",
-      "Cheaper imported production inputs lower costs",
-      "Import tariffs imposed abroad reduce demand for exports and so ease demand-pull inflation",
-      "Higher import prices raise costs",
-      "Higher export demand adds to inflation"
+      "Cheaper imported inputs lower production costs",
+      "Higher export demand adds to demand-pull inflation",
+      "Tariffs abroad reduce export demand and ease inflation",
+      "Higher import prices raise production costs",
+      "Imports increase competition on local markets"
     ],
     "answer": [
       "Imports increase competition on local markets",
-      "Cheaper imported production inputs lower costs",
-      "Import tariffs imposed abroad reduce demand for exports and so ease demand-pull inflation",
+      "Cheaper imported inputs lower production costs",
+      "Tariffs abroad reduce export demand and ease inflation",
       "",
       ""
     ],

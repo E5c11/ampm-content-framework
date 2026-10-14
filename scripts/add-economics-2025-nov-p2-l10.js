@@ -86,14 +86,14 @@ const questions = [
     "name": "Question 2",
     "question": "What happens in a perfectly competitive market when existing firms are making economic profit?",
     "metadata": [
-      "Existing firms raise their prices together",
-      "Firms leave the market",
-      "The government sets a maximum profit",
-      "New firms enter the market because there are no barriers to entry",
+      "Existing firms agree to raise their prices together",
+      "The government sets a limit on the profit they earn",
+      "Firms leave the market because profit is too high",
+      "New firms enter the market because entry is free",
       ""
     ],
     "answer": [
-      "New firms enter the market because there are no barriers to entry",
+      "New firms enter the market because entry is free",
       "",
       "",
       "",
@@ -121,11 +121,11 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the statements that describe a perfectly competitive firm in long-run equilibrium.",
     "metadata": [
-      "Average revenue equals average cost",
-      "Total revenue equals total cost",
       "The firm earns normal profit only",
+      "The firm earns large economic profit",
+      "Total revenue equals total cost",
       "There is an incentive to enter the market",
-      "The firm earns large economic profit"
+      "Average revenue equals average cost"
     ],
     "answer": [
       "Average revenue equals average cost",

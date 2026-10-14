@@ -52,16 +52,16 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the likely effects of a stronger (appreciating) rand on the South African economy.",
     "metadata": [
+      "South African goods become cheaper for buyers abroad",
+      "Exports become more expensive for foreign buyers",
+      "Fewer foreign tourists visit because the rand is dearer",
       "Imported inputs such as crude oil become cheaper",
-      "South African exports become more expensive for foreign buyers",
-      "Fewer foreign tourists visit because their currency buys less rand",
-      "The price of imported goods rises",
-      "South African goods become cheaper abroad"
+      "Imported goods become more expensive for local buyers"
     ],
     "answer": [
       "Imported inputs such as crude oil become cheaper",
-      "South African exports become more expensive for foreign buyers",
-      "Fewer foreign tourists visit because their currency buys less rand",
+      "Exports become more expensive for foreign buyers",
+      "Fewer foreign tourists visit because the rand is dearer",
       "",
       ""
     ],
@@ -87,14 +87,14 @@ const questions = [
     "name": "Question 2",
     "question": "Why can a stronger rand help to reduce cost-push inflation?",
     "metadata": [
-      "Exports earn more foreign currency per unit",
-      "Imported inputs such as fuel and machinery become cheaper for producers",
-      "Consumers decide to save more",
-      "The central bank is forced to raise the repo rate",
+      "Exports earn more foreign currency for every unit sold",
+      "Imported inputs such as fuel become cheaper for producers",
+      "Consumers decide to save a larger share of their income",
+      "The central bank is forced to raise the repo rate again",
       ""
     ],
     "answer": [
-      "Imported inputs such as fuel and machinery become cheaper for producers",
+      "Imported inputs such as fuel become cheaper for producers",
       "",
       "",
       "",
@@ -122,14 +122,14 @@ const questions = [
     "name": "Question 3",
     "question": "A weaker rand is most likely to help which group?",
     "metadata": [
-      "Importers of crude oil",
-      "South Africans travelling overseas",
-      "South African exporters, because their goods become cheaper for foreign buyers",
-      "Borrowers with debts in foreign currency",
+      "Importers of crude oil who pay for it in dollars",
+      "South Africans who plan to travel and holiday overseas",
+      "South African exporters, whose goods become cheaper abroad",
+      "Borrowers who have debts that are owed in foreign currency",
       ""
     ],
     "answer": [
-      "South African exporters, because their goods become cheaper for foreign buyers",
+      "South African exporters, whose goods become cheaper abroad",
       "",
       "",
       "",

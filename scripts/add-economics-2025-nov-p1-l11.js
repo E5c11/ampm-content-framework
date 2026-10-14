@@ -53,11 +53,11 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the international organisations that expect their member countries to standardise their economic and social indicators.",
     "metadata": [
-      "International Monetary Fund (IMF)",
       "World Bank",
-      "United Nations (UN)",
       "South African Revenue Service (SARS)",
-      "Johannesburg Securities Exchange (JSE)"
+      "United Nations (UN)",
+      "Johannesburg Securities Exchange (JSE)",
+      "International Monetary Fund (IMF)"
     ],
     "answer": [
       "International Monetary Fund (IMF)",

@@ -89,14 +89,14 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the reasons why markets fail to ensure environmental sustainability.",
     "metadata": [
-      "Many parts of the environment, such as air and seas, are not privately owned",
-      "Many environmental resources have no price",
       "Firms do not pay the external costs of pollution",
-      "Markets always price the environment fully",
-      "Firms never overproduce"
+      "Markets always price the environment in full",
+      "Firms never produce more than society needs",
+      "Air and seas are not privately owned by anyone",
+      "Many environmental resources have no price"
     ],
     "answer": [
-      "Many parts of the environment, such as air and seas, are not privately owned",
+      "Air and seas are not privately owned by anyone",
       "Many environmental resources have no price",
       "Firms do not pay the external costs of pollution",
       "",

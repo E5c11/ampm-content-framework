@@ -87,10 +87,10 @@ const questions = [
     "name": "Question 2",
     "question": "A municipal park is open to everyone free of charge and is paid for through taxes and rates. Which type of public good is it?",
     "metadata": [
-      "Quasi-public good",
-      "Private good",
+      "Quasi-public (mixed) good",
+      "Private (individual) good",
       "Community (collective) good",
-      "Demerit good",
+      "Demerit (harmful) good",
       ""
     ],
     "answer": [
@@ -123,10 +123,10 @@ const questions = [
     "question": "Select ALL the signs of public sector failure.",
     "metadata": [
       "Public goods are supplied in too small a quantity",
-      "The quality of the services delivered is poor",
-      "Resources under government control are wasted",
+      "Citizens report high satisfaction with delivery",
       "Services are delivered on time and within budget",
-      "Citizens report high satisfaction with delivery"
+      "Resources under government control are wasted",
+      "The quality of the services delivered is poor"
     ],
     "answer": [
       "Public goods are supplied in too small a quantity",

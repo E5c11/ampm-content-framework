@@ -88,14 +88,14 @@ const questions = [
     "name": "Question 2",
     "question": "Which of the following is a monetary policy action?",
     "metadata": [
-      "Treasury raises the VAT rate",
-      "Government cuts its spending on road projects",
-      "Government increases social grants",
-      "The Reserve Bank raises the repo rate to slow credit growth",
+      "Treasury raises the rate of value-added tax on goods",
+      "Government cuts its spending on new road projects",
+      "Government raises the value of social grants paid",
+      "The Reserve Bank raises the repo rate to slow lending",
       ""
     ],
     "answer": [
-      "The Reserve Bank raises the repo rate to slow credit growth",
+      "The Reserve Bank raises the repo rate to slow lending",
       "",
       "",
       "",

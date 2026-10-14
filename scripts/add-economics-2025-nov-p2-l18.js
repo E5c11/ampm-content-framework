@@ -53,10 +53,10 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the private costs of building a school.",
     "metadata": [
-      "Building materials",
-      "Labour costs",
-      "The cost of the land",
       "Noise and dust that disturb the neighbours",
+      "Building materials",
+      "The cost of the land",
+      "Labour costs",
       "Loss of green space for the community"
     ],
     "answer": [
@@ -88,16 +88,16 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the ways in which soil erosion can affect agricultural production.",
     "metadata": [
+      "It raises soil fertility and so output grows",
+      "It may push farmers to adopt terracing",
       "It reduces soil fertility and output",
       "It can damage the landscape and close water sources",
-      "It may push farmers to adopt soil conservation such as terracing",
-      "It raises soil fertility",
-      "It increases yields without any cost"
+      "It increases yields without any extra cost"
     ],
     "answer": [
       "It reduces soil fertility and output",
       "It can damage the landscape and close water sources",
-      "It may push farmers to adopt soil conservation such as terracing",
+      "It may push farmers to adopt terracing",
       "",
       ""
     ],

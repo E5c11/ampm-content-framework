@@ -88,14 +88,14 @@ const questions = [
     "name": "Question 2",
     "question": "Which of the following transactions would be recorded in the capital transfer account of the balance of payments?",
     "metadata": [
-      "A South African firm exports wine to Europe",
-      "A foreign investor buys shares on the JSE",
-      "A foreign government cancels part of South Africa’s debt to it",
-      "South Africa pays interest on a foreign loan",
+      "A South African winery exports a consignment of wine to Europe",
+      "A foreign investor buys shares of a company listed on the JSE",
+      "A foreign government writes off part of South Africa’s debt",
+      "South Africa pays interest to a foreign lender on a loan",
       ""
     ],
     "answer": [
-      "A foreign government cancels part of South Africa’s debt to it",
+      "A foreign government writes off part of South Africa’s debt",
       "",
       "",
       "",
@@ -123,11 +123,11 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the statements that are true of the unrecorded transactions item in the balance of payments.",
     "metadata": [
-      "It absorbs errors and omissions in the timing of the data",
-      "It absorbs differences in the coverage of the data",
+      "It stores transactions that are planned for next year",
       "It absorbs differences in the valuation of items",
-      "It records only illegal trade",
-      "It stores transactions planned for next year"
+      "It absorbs errors and omissions in the timing of the data",
+      "It records only trade in illegal goods and services",
+      "It absorbs differences in the coverage of the data"
     ],
     "answer": [
       "It absorbs errors and omissions in the timing of the data",

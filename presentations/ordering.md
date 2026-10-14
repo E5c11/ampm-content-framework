@@ -67,3 +67,5 @@ presentation: "ordering",
 - Keep item texts short — they render as chips.
 - Each step must have exactly one defensible position (no interchangeable steps).
 - Good fit for Euclidean-geometry proof steps (`DESIGN-MATH-04`).
+- **No positional labels in the items (`DESIGN-UNI-15`).** An item such as "Introduction …" or "Conclusion …" gives its place away. Describe the content of
+  each part ("A definition of the main concept"), never its position; the validator rejects labelled items.

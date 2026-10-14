@@ -54,14 +54,14 @@ const questions = [
     "name": "Question 1",
     "question": "Which opening sentence would earn the introduction mark for an essay on regional development?",
     "metadata": [
-      "Discuss in detail South African initiatives in regional development",
-      "I will discuss SDIs, IDZs, SEZs and corridors in my essay",
-      "South Africa is a beautiful country with many regions",
-      "Regional development is the use of policies to improve the economic livelihood of less developed areas of a country",
+      "Discuss South African initiatives in regional development",
+      "I will discuss SDIs, IDZs, SEZs and corridors in this essay",
+      "South Africa has many beautiful regions with different cultures",
+      "Regional development is policy aimed at less developed areas",
       ""
     ],
     "answer": [
-      "Regional development is the use of policies to improve the economic livelihood of less developed areas of a country",
+      "Regional development is policy aimed at less developed areas",
       "",
       "",
       "",
@@ -89,16 +89,16 @@ const questions = [
     "name": "Question 2",
     "question": "Arrange the parts of this essay in the order in which they should be written.",
     "metadata": [
-      "Conclusion with a judgement and a recommendation",
-      "Main part: SDIs, IDZs, SEZs and corridors, each under its own heading",
-      "Introduction that defines regional development",
-      "Additional part: how incentives promote industrial development"
+      "Explained incentives that promote industrial development",
+      "A definition of regional development",
+      "A judgement and a recommendation that add something new",
+      "Explained points on SDIs, IDZs, SEZs and corridors"
     ],
     "answer": [
-      "Introduction that defines regional development",
-      "Main part: SDIs, IDZs, SEZs and corridors, each under its own heading",
-      "Additional part: how incentives promote industrial development",
-      "Conclusion with a judgement and a recommendation"
+      "A definition of regional development",
+      "Explained points on SDIs, IDZs, SEZs and corridors",
+      "Explained incentives that promote industrial development",
+      "A judgement and a recommendation that add something new"
     ],
     "presentation": "ordering",
     "type": "ordering",
@@ -122,14 +122,14 @@ const questions = [
     "name": "Question 3",
     "question": "Which conclusion is higher-order?",
     "metadata": [
-      "In conclusion, I discussed SDIs, IDZs, SEZs and corridors",
-      "Regional zones can ease unemployment where it is highest, yet their success depends on skills and infrastructure, so incentives should be linked to training",
-      "Regional development is a very interesting topic",
-      "That is all I know about the topic",
+      "In conclusion, I have discussed SDIs, IDZs, SEZs and corridors in detail",
+      "Zones can ease unemployment, but success depends on skills and roads",
+      "Regional development is a very interesting topic to study and discuss",
+      "That is everything I know about the topic of regional development",
       ""
     ],
     "answer": [
-      "Regional zones can ease unemployment where it is highest, yet their success depends on skills and infrastructure, so incentives should be linked to training",
+      "Zones can ease unemployment, but success depends on skills and roads",
       "",
       "",
       "",

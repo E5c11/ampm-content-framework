@@ -91,16 +91,16 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the features of a natural monopoly.",
     "metadata": [
-      "High development costs, such as building power stations and networks",
-      "One business can serve the whole market at a lower cost than several",
-      "It is often regulated by government",
-      "Entry is blocked mainly by a patent",
-      "Many competing firms share the market"
+      "High development costs, such as power stations",
+      "It is usually regulated by the government",
+      "Many competing firms share the market equally",
+      "Entry is blocked mainly by a patent held by the firm",
+      "One firm can serve the market at a lower cost"
     ],
     "answer": [
-      "High development costs, such as building power stations and networks",
-      "One business can serve the whole market at a lower cost than several",
-      "It is often regulated by government",
+      "High development costs, such as power stations",
+      "One firm can serve the market at a lower cost",
+      "It is usually regulated by the government",
       "",
       ""
     ],
@@ -161,11 +161,11 @@ const questions = [
     "name": "Question 4",
     "question": "Select ALL the true statements about the efficiency of a monopoly.",
     "metadata": [
+      "It produces where price equals marginal cost",
       "It does not produce at the lowest possible average cost",
-      "The quantity it produces does not match what consumers demand",
-      "Its price is above marginal cost",
       "It achieves allocative efficiency",
-      "It produces where price equals marginal cost"
+      "The quantity it produces does not match what consumers demand",
+      "Its price is above marginal cost"
     ],
     "answer": [
       "It does not produce at the lowest possible average cost",

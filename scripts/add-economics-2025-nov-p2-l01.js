@@ -124,11 +124,11 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the statements that are true of a minimum price set by government.",
     "metadata": [
-      "It is set above the equilibrium price",
       "It is meant to give producers a fair income",
-      "It can create a surplus of the product",
+      "It is set above the equilibrium price",
+      "It prevents any surplus from forming",
       "It is set below the equilibrium price",
-      "It prevents any surplus from forming"
+      "It can create a surplus of the product"
     ],
     "answer": [
       "It is set above the equilibrium price",

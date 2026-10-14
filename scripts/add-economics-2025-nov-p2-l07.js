@@ -92,9 +92,9 @@ const questions = [
     "question": "A student finds marginal cost for a rise in output from 20 to 25 units by simply subtracting total costs, R245 − R195, and gets R50. What did the student forget to do?",
     "metadata": [
       "Divide the change in total cost by the change in quantity",
-      "Add fixed costs to the answer",
-      "Use total revenue instead of total cost",
-      "Multiply by the change in quantity",
+      "Add the fixed costs of production to the R50 answer",
+      "Use total revenue instead of total cost in the formula",
+      "Multiply the change in cost by the change in quantity",
       ""
     ],
     "answer": [

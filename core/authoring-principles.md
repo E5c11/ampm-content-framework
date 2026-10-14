@@ -228,6 +228,47 @@ model), and let each lesson carry only its slice of the real sub-questions in it
   Redoing *live* lessons needs a migration plan first — lesson ids are derived from the lesson's name/order, so re-splitting changes
   ids and strands user progress.
 
+### `DESIGN-UNI-15` — Ordering items must not give their own position away
+
+`enforced_by: validator` (`tools/validate-questions.js`, error), `human-review` (the subtler cases), `tooling` (`tools/audit-answer-cues.js`)
+
+Added 2026-10-14 after the Economics essay lessons shipped `ordering` questions whose items were labelled "Introduction …", "Main part: …",
+"Additional part: …" and "Conclusion …". The label *is* the answer: the student sorts by the word, not by what they know. An `ordering` item
+describes **what the part contains or does**, never **where it goes**.
+
+- **No positional or structural labels in an item**: `Introduction`, `Conclusion`, `Body`, `Main part`, `Additional part`, `Opening`, `Closing`,
+  `First`, `Finally`, `Lastly`, `Start with`, `End with`, `Step 1`, `1.`. (`ORDERING_LABEL` in `tools/lib/answer-cues.js`.)
+- **Essay-plan ordering** (`DESIGN-BUS-03`, `DESIGN-HIST-02`, `DESIGN-ECON-06`): write the items as the *content* of each part —
+  "A definition of the main concept", "Explained points on each market", "An evaluation with positives and negatives",
+  "A judgement that adds something new" — so the student must know the essay structure to place them.
+- **Also avoid** items that only differ by an obvious sequence word ("then", "afterwards", "next") — the same giveaway in prose.
+- Every other ordering rule still applies (`ORD-01`: store the items scrambled).
+
+### `DESIGN-UNI-16` — The correct option must not stand out by length or position
+
+`enforced_by: validator` (per question, error) + `tooling` (paper level, `tools/audit-answer-cues.js`) + review (`review-paper.md` Phase 3)
+
+Added 2026-10-14. Students learn quickly that "the long answer is the right one" and, for `multi_select`, that "the first few are right" — and the
+app does **not** shuffle `multiple_choice` or `multi_select` options (stored order is shown). An audit of the two Economics papers found the
+correct option was the **longest in ~50% of the multiple_choice questions** (chance is 25%) and the correct options were **always the first N** in
+every `multi_select`. Both are authoring defects, not style.
+
+1. **Length (multiple_choice).** Write the correct option and the distractors at **similar length (within about ±20%) and the same grammatical
+   shape**. The correct option must not be longer than the longest distractor by ≥ 25% **or** ≥ 25 characters (validator error). Across a paper the
+   correct option may be the strictly longest in **at most 30%** of its multiple_choice questions (`LONGEST_RATE_CAP`; chance is 25% — a paper where
+   it is *never* the longest is also a cue, aim for ~20–30%). Fix by *lengthening/enriching the distractors* so they are equally specific and
+   plausible, not only by trimming the correct answer. Numbers, years and one-word options carry no length cue and are exempt.
+2. **Length (multi_select).** The correct options must not average ≥ 1.3× the length of the wrong ones (validator error).
+3. **Position (multi_select).** The correct options must not be the first N, or the last N, options in the stored order — shuffle them. For
+   `multiple_choice` keep the existing `DESIGN-UNI-06` position rule.
+4. **Distractors must be plausible**, not absurd. "Always…/never…/no effect" or an option that contradicts the stem in plain words is a second
+   giveaway; write the wrong options as things a half-prepared student might really believe.
+5. **Stem leaks.** Do not repeat a distinctive word from the correct option in the stem when the distractors do not share it.
+
+**Review check.** `node tools/audit-answer-cues.js --subject <id> [--year YYYY] [--paper nov_p1]` reads dev and reports the longest-correct rate, every
+multiple_choice with a clear length margin, every multi_select with long correct options, and every ordering with labelled items. A review
+(`workflows/generate/review-paper.md` Phase 3) must run it and treat any finding as a defect to fix, not a flag.
+
 ### `DESIGN-UNI-12` — Typed-answer values must match what the keyboard can actually type
 
 `enforced_by: human-review`

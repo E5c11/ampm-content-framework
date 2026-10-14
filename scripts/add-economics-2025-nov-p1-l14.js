@@ -126,16 +126,16 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the ways in which dumping can harm producers in an importing country.",
     "metadata": [
-      "They face unfair competition from very low-priced foreign goods",
-      "They may be forced to shut down because demand for their goods collapses",
-      "They may have to cut prices, which squeezes profit margins",
-      "They can charge higher prices than before",
-      "Demand for their goods rises sharply"
+      "They may cut prices, which squeezes profit margins",
+      "Demand for their goods rises sharply as imports arrive",
+      "They can raise prices because competition has fallen",
+      "They may be forced to shut down as demand collapses",
+      "They face unfair competition from very cheap imports"
     ],
     "answer": [
-      "They face unfair competition from very low-priced foreign goods",
-      "They may be forced to shut down because demand for their goods collapses",
-      "They may have to cut prices, which squeezes profit margins",
+      "They face unfair competition from very cheap imports",
+      "They may be forced to shut down as demand collapses",
+      "They may cut prices, which squeezes profit margins",
       "",
       ""
     ],

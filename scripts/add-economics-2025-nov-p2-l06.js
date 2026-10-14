@@ -137,11 +137,11 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the reasons why marginal revenue stays the same in this schedule.",
     "metadata": [
-      "The firm is a price-taker",
       "Every extra unit is sold at the same market price",
       "The firm’s demand curve is horizontal",
       "The firm sets its own price",
-      "The firm faces a downward-sloping demand curve"
+      "The firm faces a downward-sloping demand curve",
+      "The firm is a price-taker"
     ],
     "answer": [
       "The firm is a price-taker",

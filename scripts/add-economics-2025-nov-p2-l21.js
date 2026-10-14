@@ -88,10 +88,10 @@ const questions = [
     "name": "Question 2",
     "question": "A government runs school programmes and media campaigns that teach households to sort their waste. Which method of environmental management is this?",
     "metadata": [
-      "Marketable permits",
+      "Marketable permits sold to polluting firms",
       "Education to create environmental awareness",
-      "Quantity standards",
-      "Subsidies to polluters",
+      "Quantity standards for factory emissions",
+      "Subsidies paid to the biggest polluters",
       ""
     ],
     "answer": [
@@ -123,16 +123,16 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the examples of land pollution.",
     "metadata": [
-      "Illegal dumping of household waste",
       "Industrial waste left on open ground",
-      "Leaking landfill sites",
-      "Smog over a city",
-      "Noise from a factory"
+      "Landfill sites that leak into the soil",
+      "Smog hanging over a city on cold mornings",
+      "Illegal dumping of household waste",
+      "Noise from a factory next to a suburb"
     ],
     "answer": [
       "Illegal dumping of household waste",
       "Industrial waste left on open ground",
-      "Leaking landfill sites",
+      "Landfill sites that leak into the soil",
       "",
       ""
     ],

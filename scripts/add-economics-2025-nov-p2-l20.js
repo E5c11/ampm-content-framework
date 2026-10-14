@@ -54,14 +54,14 @@ const questions = [
     "name": "Question 1",
     "question": "Why do markets tend to undersupply goods such as education that generate positive externalities?",
     "metadata": [
-      "Education has no benefits",
-      "Firms receive a subsidy for it",
-      "Firms cannot capture the full benefit to society, so supplying them is not profitable enough",
-      "Consumers value education too little to use it",
+      "Consumers value education too little to buy enough of it",
+      "Government bans private firms from supplying education",
+      "Firms cannot charge for the full benefit that society gets",
+      "Education is a demerit good so firms avoid supplying it",
       ""
     ],
     "answer": [
-      "Firms cannot capture the full benefit to society, so supplying them is not profitable enough",
+      "Firms cannot charge for the full benefit that society gets",
       "",
       "",
       "",
@@ -89,11 +89,11 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the redress methods the government can use to redistribute wealth.",
     "metadata": [
-      "The Employment Equity Act and affirmative action",
       "Broad-Based Black Economic Empowerment",
-      "Land restitution",
+      "Increasing import tariffs",
       "Land redistribution",
-      "Increasing import tariffs"
+      "Land restitution",
+      "The Employment Equity Act and affirmative action"
     ],
     "answer": [
       "The Employment Equity Act and affirmative action",

@@ -53,9 +53,9 @@ const questions = [
     "name": "Question 1",
     "question": "An extract explains that a fund set up by a government department gives grants, loans and equity to entrepreneurs who invest in tourism. What does the fund provide?",
     "metadata": [
-      "Free transport for tourists",
-      "Compulsory insurance for visitors",
-      "Price controls on hotels",
+      "Free transport for tourists around the country",
+      "Price controls on hotel accommodation rates",
+      "Compulsory insurance for all foreign visitors",
       "Financial assistance for capital investment",
       ""
     ],
@@ -123,11 +123,11 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the activities that are examples of cultural tourism.",
     "metadata": [
-      "Visiting a museum to learn about local history",
       "Touring a heritage village to see traditional crafts",
-      "Attending an exhibition at an art gallery",
-      "Bungee jumping from a bridge",
-      "Watching birds in a nature reserve"
+      "Bungee jumping from a bridge above a river gorge",
+      "Visiting a museum to learn about local history",
+      "Watching birds in a nature reserve at sunrise",
+      "Attending an exhibition at an art gallery"
     ],
     "answer": [
       "Visiting a museum to learn about local history",

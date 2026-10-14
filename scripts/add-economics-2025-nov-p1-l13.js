@@ -53,10 +53,10 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the possible effects of a rapidly growing working-age population on a country’s labour force.",
     "metadata": [
-      "More people are available to work",
-      "A bigger supply of labour can push wages down",
       "Unemployment may rise if too few jobs are created",
+      "A bigger supply of labour can push wages down",
       "The labour force automatically shrinks",
+      "More people are available to work",
       "The variety of skills in the labour market disappears"
     ],
     "answer": [
@@ -88,16 +88,16 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the ways in which access to clean water can improve a country’s economic performance.",
     "metadata": [
-      "Fewer water-borne illnesses keep workers healthy and productive",
-      "Learners attend school more regularly, which builds a better-educated workforce",
-      "Reliable water supply makes a country more attractive to investors",
-      "Workers need more sick days",
-      "Businesses face higher production costs"
+      "A reliable water supply attracts investors to the country",
+      "Clean water reduces the productivity of the labour force",
+      "More regular school attendance builds a skilled workforce",
+      "Fewer water-borne illnesses keep workers productive",
+      "Clean water raises the number of water-borne diseases"
     ],
     "answer": [
-      "Fewer water-borne illnesses keep workers healthy and productive",
-      "Learners attend school more regularly, which builds a better-educated workforce",
-      "Reliable water supply makes a country more attractive to investors",
+      "Fewer water-borne illnesses keep workers productive",
+      "More regular school attendance builds a skilled workforce",
+      "A reliable water supply attracts investors to the country",
       "",
       ""
     ],
@@ -123,10 +123,10 @@ const questions = [
     "name": "Question 3",
     "question": "Which of the following is an example of sanitation provision?",
     "metadata": [
-      "A bus service for commuters",
+      "A regular bus service that carries commuters to work",
       "A sewerage system that safely disposes of household waste",
-      "A street-lighting network",
-      "A school feeding scheme",
+      "A network of street lights along the main roads of towns",
+      "A feeding scheme that provides meals at public schools",
       ""
     ],
     "answer": [

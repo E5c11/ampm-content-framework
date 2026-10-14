@@ -88,9 +88,9 @@ const questions = [
     "metadata": [
       "Raising the repo rate",
       "Open market operations",
-      "Raising cash reserve requirements",
       "Moral suasion",
-      "Raising the VAT rate"
+      "Raising the VAT rate",
+      "Raising cash reserve requirements"
     ],
     "answer": [
       "Raising the repo rate",

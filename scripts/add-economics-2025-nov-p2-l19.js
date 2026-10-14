@@ -122,14 +122,14 @@ const questions = [
     "name": "Question 3",
     "question": "Why does government set a statutory minimum wage?",
     "metadata": [
-      "To raise the profits of employers",
-      "To lower the unemployment rate directly",
-      "To protect low-paid workers from being paid too little",
-      "To keep prices from rising",
+      "To bring down the rate of unemployment directly",
+      "To raise the profits that employers can earn",
+      "To protect low-paid workers from being underpaid",
+      "To stop the general price level from rising",
       ""
     ],
     "answer": [
-      "To protect low-paid workers from being paid too little",
+      "To protect low-paid workers from being underpaid",
       "",
       "",
       "",

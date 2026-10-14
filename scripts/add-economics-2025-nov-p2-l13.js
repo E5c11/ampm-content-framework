@@ -54,16 +54,16 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the reasons why public-private partnerships (PPPs) matter in developing tourist destinations.",
     "metadata": [
-      "Government and business share resources and costs",
-      "Government can fund infrastructure while business funds tourism ventures",
-      "The public sector can give incentives for tourism investment",
-      "Government does all the work alone",
-      "Private firms receive no support"
+      "Government does all the work in a destination alone",
+      "Government funds infrastructure while business funds ventures",
+      "The public sector can offer incentives for investment",
+      "Private firms receive no help from the public sector",
+      "Government and business share resources and costs"
     ],
     "answer": [
       "Government and business share resources and costs",
-      "Government can fund infrastructure while business funds tourism ventures",
-      "The public sector can give incentives for tourism investment",
+      "Government funds infrastructure while business funds ventures",
+      "The public sector can offer incentives for investment",
       "",
       ""
     ],
@@ -89,15 +89,15 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the ways in which natural disasters can harm the tourism industry.",
     "metadata": [
-      "Floods and cyclones create unfavourable conditions for activities",
-      "Damaged infrastructure discourages visitors",
+      "Damaged sites attract more visitors than before",
       "Wildlife, beaches and cultural sites may be lost",
-      "More tourists are attracted by damaged sites",
-      "Tourism income rises as a result"
+      "Floods and cyclones create poor conditions for activities",
+      "Tourism income rises as a result of the damage",
+      "Damaged infrastructure discourages tourists from visiting"
     ],
     "answer": [
-      "Floods and cyclones create unfavourable conditions for activities",
-      "Damaged infrastructure discourages visitors",
+      "Floods and cyclones create poor conditions for activities",
+      "Damaged infrastructure discourages tourists from visiting",
       "Wildlife, beaches and cultural sites may be lost",
       "",
       ""
@@ -124,10 +124,10 @@ const questions = [
     "name": "Question 3",
     "question": "A municipality builds access roads and water supply to a new lagoon resort, and a private company builds and runs the hotel. What is this arrangement called?",
     "metadata": [
-      "A cartel",
-      "Nationalisation",
+      "A cartel of resort owners",
+      "Nationalisation of the resort",
       "A public-private partnership",
-      "A subsidy-only scheme",
+      "A scheme funded only by subsidies",
       ""
     ],
     "answer": [

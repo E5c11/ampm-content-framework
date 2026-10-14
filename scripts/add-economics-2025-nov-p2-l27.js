@@ -54,10 +54,10 @@ const questions = [
     "question": "Select ALL the measures government can use to prevent dominant businesses from abusing market power.",
     "metadata": [
       "Regulating the prices of monopolies",
-      "Reducing barriers to entry such as patents and licences",
       "Prohibiting mergers that create monopolies",
-      "Penalising dominant firms that abuse their power",
-      "Granting new monopolies to private firms"
+      "Granting new monopolies to private firms",
+      "Reducing barriers to entry such as patents and licences",
+      "Penalising dominant firms that abuse their power"
     ],
     "answer": [
       "Regulating the prices of monopolies",
@@ -88,14 +88,14 @@ const questions = [
     "name": "Question 2",
     "question": "Which body regulates the price of electricity supplied by Eskom?",
     "metadata": [
-      "The Competition Tribunal",
-      "The Competition Appeal Court",
-      "The Reserve Bank",
-      "The National Energy Regulator (NERSA)",
+      "The Competition Tribunal of South Africa",
+      "The South African Reserve Bank (SARB)",
+      "The Competition Appeal Court of South Africa",
+      "The National Energy Regulator of South Africa",
       ""
     ],
     "answer": [
-      "The National Energy Regulator (NERSA)",
+      "The National Energy Regulator of South Africa",
       "",
       "",
       "",

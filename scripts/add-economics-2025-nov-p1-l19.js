@@ -88,11 +88,11 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the ways in which privatising a state-owned enterprise can benefit the government.",
     "metadata": [
+      "It can help to achieve empowerment goals through wider ownership of businesses",
+      "The government must increase its subsidies to the enterprise",
       "The sale of public assets raises revenue",
       "It reduces the fiscal burden and state borrowing",
-      "It can help to achieve empowerment goals through wider ownership of businesses",
-      "The government keeps all future profits of the enterprise",
-      "The government must increase its subsidies to the enterprise"
+      "The government keeps all future profits of the enterprise"
     ],
     "answer": [
       "The sale of public assets raises revenue",

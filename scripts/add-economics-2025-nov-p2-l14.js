@@ -125,9 +125,9 @@ const questions = [
     "name": "Question 3",
     "question": "Government sells a limited number of licences that allow factories to release a set amount of a pollutant, and firms may trade unused licences. Which instrument is this?",
     "metadata": [
-      "A subsidy",
-      "A quality standard",
-      "A carbon tax",
+      "A carbon tax on the pollutant",
+      "A subsidy for cleaner machinery",
+      "A quality standard for the river",
       "Marketable (tradable) permits",
       ""
     ],

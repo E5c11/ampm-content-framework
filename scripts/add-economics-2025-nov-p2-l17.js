@@ -84,9 +84,9 @@ const questions = [
     "name": "Question 2",
     "question": "Why did the United Nations Framework Convention on Climate Change fail to cut emissions enough?",
     "metadata": [
-      "It banned all industrial production",
-      "It had no goals at all",
-      "It only applied to developing countries",
+      "It banned all industrial production in rich countries",
+      "It applied only to countries that were developing",
+      "It set no goals for cutting emissions at all",
       "Taking part was voluntary for individual countries",
       ""
     ],
@@ -120,10 +120,10 @@ const questions = [
     "question": "Select ALL the shortcomings of the Kyoto Protocol.",
     "metadata": [
       "It set binding targets only for developed countries",
-      "Countries that missed targets were not penalised",
       "Some major polluters pulled out or missed their targets",
       "It forced developing countries to cut emissions first",
-      "It was voluntary for every country"
+      "It was voluntary for every country",
+      "Countries that missed targets were not penalised"
     ],
     "answer": [
       "It set binding targets only for developed countries",
@@ -154,14 +154,14 @@ const questions = [
     "name": "Question 4",
     "question": "Which statement best describes the main goal of the Paris Agreement?",
     "metadata": [
-      "To make only developing countries cut emissions",
-      "To ban the use of all fossil fuels immediately",
-      "To tax every country equally",
-      "To limit global warming to well below 2 °C above pre-industrial levels",
+      "To tax every country at the same carbon rate",
+      "To make only poor countries cut their emissions",
+      "To ban all fossil fuels in every country",
+      "To limit global warming to well below 2 °C",
       ""
     ],
     "answer": [
-      "To limit global warming to well below 2 °C above pre-industrial levels",
+      "To limit global warming to well below 2 °C",
       "",
       "",
       "",

@@ -53,16 +53,16 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the ways in which poor infrastructure can slow down economic growth.",
     "metadata": [
-      "Ageing roads disrupt the distribution of inputs and final goods",
-      "High operating costs discourage domestic and foreign investment",
-      "Unreliable energy supply forces businesses to produce less",
-      "It lowers the cost of doing business",
-      "It attracts more investors to the area"
+      "An unreliable energy supply forces firms to produce less",
+      "It lowers the cost of doing business for local firms",
+      "It makes the distribution of goods quicker and cheaper",
+      "High operating costs discourage local and foreign investment",
+      "Ageing roads disrupt the distribution of inputs and goods"
     ],
     "answer": [
-      "Ageing roads disrupt the distribution of inputs and final goods",
-      "High operating costs discourage domestic and foreign investment",
-      "Unreliable energy supply forces businesses to produce less",
+      "Ageing roads disrupt the distribution of inputs and goods",
+      "High operating costs discourage local and foreign investment",
+      "An unreliable energy supply forces firms to produce less",
       "",
       ""
     ],

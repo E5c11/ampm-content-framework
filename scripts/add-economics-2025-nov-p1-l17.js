@@ -53,11 +53,11 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the demand-side reasons why countries trade with each other.",
     "metadata": [
-      "Differences in the preferences and tastes of consumers",
-      "Differences in income levels between countries",
+      "Production costs are lower in another country",
       "Differences in the size of populations",
+      "Differences in the preferences and tastes of consumers",
       "A country has a surplus of a natural resource",
-      "Production costs are lower in another country"
+      "Differences in income levels between countries"
     ],
     "answer": [
       "Differences in the preferences and tastes of consumers",
@@ -123,10 +123,10 @@ const questions = [
     "name": "Question 3",
     "question": "Which of the following is a supply-side reason for international trade rather than a demand reason?",
     "metadata": [
-      "Consumers want a greater variety of goods",
+      "Consumers want a greater variety of goods to choose from",
       "Some countries have natural resources that others lack",
-      "Incomes differ between countries",
-      "Tastes differ between countries",
+      "Incomes are much higher in some countries than in others",
+      "Tastes and preferences differ between the countries",
       ""
     ],
     "answer": [

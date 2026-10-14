@@ -91,16 +91,16 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the trips that count as business tourism.",
     "metadata": [
+      "Hiking and camping in a nature reserve with friends",
       "Attending an industry conference in another province",
-      "Visiting a trade exhibition abroad to meet suppliers",
-      "Travelling to a company meeting at head office in another city",
-      "A family holiday at the coast",
-      "Hiking in a nature reserve"
+      "Travelling to a head-office meeting in another city",
+      "Visiting a trade fair abroad to meet suppliers",
+      "A week-long family holiday at the coast with friends"
     ],
     "answer": [
       "Attending an industry conference in another province",
-      "Visiting a trade exhibition abroad to meet suppliers",
-      "Travelling to a company meeting at head office in another city",
+      "Visiting a trade fair abroad to meet suppliers",
+      "Travelling to a head-office meeting in another city",
       "",
       ""
     ],

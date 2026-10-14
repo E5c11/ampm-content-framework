@@ -52,10 +52,10 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the incentives government can use to promote industrial development.",
     "metadata": [
-      "Tax holidays or reduced corporate taxes",
-      "Subsidies on capital investment",
-      "Cash grants or low-interest loans for expansion and new technology",
       "Higher corporate taxes for new industries",
+      "Cash grants or low-interest loans for expansion and new technology",
+      "Subsidies on capital investment",
+      "Tax holidays or reduced corporate taxes",
       "Cutting infrastructure spending for industrial parks"
     ],
     "answer": [
@@ -87,14 +87,14 @@ const questions = [
     "name": "Question 2",
     "question": "How can simplifying business registration help industrial development?",
     "metadata": [
-      "It raises the cost of starting a business",
-      "It removes bureaucratic hurdles so industries can start and grow more efficiently",
-      "It reduces the number of firms in each industry",
-      "It makes licences harder to obtain",
+      "It adds extra costs for anyone starting a business",
+      "It removes bureaucratic hurdles so industries can start up",
+      "It reduces the number of firms in every industry",
+      "It makes licences harder and slower to obtain",
       ""
     ],
     "answer": [
-      "It removes bureaucratic hurdles so industries can start and grow more efficiently",
+      "It removes bureaucratic hurdles so industries can start up",
       "",
       "",
       "",
@@ -122,14 +122,14 @@ const questions = [
     "name": "Question 3",
     "question": "Which of the following is an export incentive?",
     "metadata": [
-      "A tariff on imported inputs",
-      "A ban on foreign competitors",
-      "Information on export markets and concessions on transport charges",
-      "A higher VAT rate on locally sold goods",
+      "A higher tariff placed on imported production inputs",
+      "A ban on foreign competitors in the local market",
+      "Information on export markets and transport concessions",
+      "A higher rate of VAT on all locally sold goods",
       ""
     ],
     "answer": [
-      "Information on export markets and concessions on transport charges",
+      "Information on export markets and transport concessions",
       "",
       "",
       "",

@@ -54,11 +54,11 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the characteristics of an oligopoly market.",
     "metadata": [
+      "There is one supplier only",
       "A few large firms dominate the market",
       "Firms’ decisions depend on what their rivals do",
-      "There are barriers to entry",
       "Many small firms are price-takers",
-      "There is one supplier only"
+      "There are barriers to entry"
     ],
     "answer": [
       "A few large firms dominate the market",
@@ -89,14 +89,14 @@ const questions = [
     "name": "Question 2",
     "question": "A perfectly competitive firm sells at R6 per unit but its average variable cost is R9. What should it consider doing?",
     "metadata": [
-      "Raising its price above R6",
-      "Continuing because fixed costs are R0",
-      "Expanding output to sell more units",
-      "Shutting down, because revenue cannot cover its variable costs",
+      "Raise its price above R6 to cover the variable costs",
+      "Expand output to sell many more units at R6 each",
+      "Continue because its fixed costs have already been paid",
+      "Shut down, because revenue cannot cover variable costs",
       ""
     ],
     "answer": [
-      "Shutting down, because revenue cannot cover its variable costs",
+      "Shut down, because revenue cannot cover variable costs",
       "",
       "",
       "",

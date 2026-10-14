@@ -55,13 +55,13 @@ const questions = [
     "question": "Which opening sentence would earn the introduction mark for an essay on combating inflation?",
     "metadata": [
       "Discuss in detail the measures to combat inflation",
-      "Inflation is a sustained increase in the general price level of goods and services over a period of time",
+      "Inflation is a sustained rise in the general price level",
       "In this essay I will discuss monetary and fiscal measures",
       "Prices are going up everywhere and people are unhappy",
       ""
     ],
     "answer": [
-      "Inflation is a sustained increase in the general price level of goods and services over a period of time",
+      "Inflation is a sustained rise in the general price level",
       "",
       "",
       "",
@@ -89,16 +89,16 @@ const questions = [
     "name": "Question 2",
     "question": "Arrange the parts of this essay in the order in which they should be written.",
     "metadata": [
-      "Main part: monetary, fiscal and other measures under headings",
-      "Conclusion with a judgement on purchasing power",
-      "Introduction that defines inflation",
-      "Additional part: how trading partners influence domestic inflation"
+      "Explained monetary, fiscal and other anti-inflation measures",
+      "A judgement on purchasing power and living standards",
+      "A definition of inflation",
+      "Explained ways in which trading partners influence inflation"
     ],
     "answer": [
-      "Introduction that defines inflation",
-      "Main part: monetary, fiscal and other measures under headings",
-      "Additional part: how trading partners influence domestic inflation",
-      "Conclusion with a judgement on purchasing power"
+      "A definition of inflation",
+      "Explained monetary, fiscal and other anti-inflation measures",
+      "Explained ways in which trading partners influence inflation",
+      "A judgement on purchasing power and living standards"
     ],
     "presentation": "ordering",
     "type": "ordering",

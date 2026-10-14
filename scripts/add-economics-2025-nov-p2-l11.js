@@ -53,11 +53,11 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the approaches used in command-and-control systems to ensure environmental sustainability.",
     "metadata": [
+      "Marketable permits",
       "Quality standards",
       "Quantity standards",
-      "Social impact standards",
-      "Marketable permits",
-      "Carbon taxes"
+      "Carbon taxes",
+      "Social impact standards"
     ],
     "answer": [
       "Quality standards",
@@ -88,14 +88,14 @@ const questions = [
     "name": "Question 2",
     "question": "Why is the tourism industry regarded as labour-intensive?",
     "metadata": [
-      "It uses mostly automated machines",
-      "It relies on human interaction and personal service, so it needs a large workforce",
-      "It requires very expensive capital equipment",
-      "It employs only skilled professionals",
+      "It uses mostly automated machines to serve guests",
+      "It relies on human interaction and personal service",
+      "It requires very expensive capital equipment everywhere",
+      "It employs only highly skilled and trained professionals",
       ""
     ],
     "answer": [
-      "It relies on human interaction and personal service, so it needs a large workforce",
+      "It relies on human interaction and personal service",
       "",
       "",
       "",
@@ -123,10 +123,10 @@ const questions = [
     "name": "Question 3",
     "question": "A government sets a maximum amount of a pollutant that any factory may release into a river. Which type of instrument is this?",
     "metadata": [
-      "A carbon tax",
-      "A marketable permit",
+      "A marketable permit traded between factories",
+      "A carbon tax on every unit of emissions",
       "A quantity standard under command and control",
-      "A subsidy",
+      "A subsidy paid to the cleanest factory",
       ""
     ],
     "answer": [

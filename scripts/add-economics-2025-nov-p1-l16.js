@@ -52,11 +52,11 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the changes in economic indicators that would show an improvement in the performance of an economy.",
     "metadata": [
-      "A fall in the consumer price index (CPI) inflation rate",
       "An improvement in the terms of trade",
       "A rise in labour productivity",
       "A rise in the unemployment rate",
-      "A widening current account deficit"
+      "A widening current account deficit",
+      "A fall in the consumer price index (CPI) inflation rate"
     ],
     "answer": [
       "A fall in the consumer price index (CPI) inflation rate",
@@ -120,14 +120,14 @@ const questions = [
     "name": "Question 3",
     "question": "A fall in the producer price index (PPI) is most likely to encourage producers to do what?",
     "metadata": [
-      "Produce less, because their profits fall",
-      "Raise their export prices",
-      "Produce more, because their production costs are lower",
-      "Cut employment",
+      "Produce less, because their profits will certainly fall",
+      "Raise their export prices to protect their profit margins",
+      "Produce more, because their costs of production are lower",
+      "Cut employment to protect the profits that they earn",
       ""
     ],
     "answer": [
-      "Produce more, because their production costs are lower",
+      "Produce more, because their costs of production are lower",
       "",
       "",
       "",

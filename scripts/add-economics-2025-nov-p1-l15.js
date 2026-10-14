@@ -86,10 +86,10 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the ways in which B-BBEE promotes growth and development.",
     "metadata": [
-      "Preferential procurement",
-      "Enterprise development",
-      "Skills development",
       "Export subsidies for all firms",
+      "Preferential procurement",
+      "Skills development",
+      "Enterprise development",
       "Fixed minimum prices"
     ],
     "answer": [
@@ -121,14 +121,14 @@ const questions = [
     "name": "Question 3",
     "question": "Which of the following best describes the main aim of the National Skills Development Strategy (NSDS)?",
     "metadata": [
-      "To set the interest rate for commercial banks",
-      "To control the prices of imported goods",
-      "To collect taxes from large firms",
-      "To improve the skills of the labour force so that unemployment falls and equity improves",
+      "To set the interest rate charged by commercial banks",
+      "To control the prices of many goods that are imported",
+      "To collect more tax revenue from the largest companies",
+      "To raise the skills of workers so unemployment falls",
       ""
     ],
     "answer": [
-      "To improve the skills of the labour force so that unemployment falls and equity improves",
+      "To raise the skills of workers so unemployment falls",
       "",
       "",
       "",

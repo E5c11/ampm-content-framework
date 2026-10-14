@@ -95,16 +95,16 @@ const questions = [
     "name": "Question 2",
     "question": "Study the graph. Select ALL the statements that are true.",
     "metadata": [
-      "The price is read from the demand curve at the profit-maximising quantity",
-      "Average cost at that quantity is lower than the price",
-      "The monopolist earns economic profit",
+      "Average cost at that output is below the price",
       "Marginal revenue lies below the demand curve",
-      "The firm earns normal profit only"
+      "The firm earns only a normal profit at this output",
+      "The price is read from the demand curve at that output",
+      "The monopolist earns an economic profit"
     ],
     "answer": [
-      "The price is read from the demand curve at the profit-maximising quantity",
-      "Average cost at that quantity is lower than the price",
-      "The monopolist earns economic profit",
+      "The price is read from the demand curve at that output",
+      "Average cost at that output is below the price",
+      "The monopolist earns an economic profit",
       "Marginal revenue lies below the demand curve",
       ""
     ],

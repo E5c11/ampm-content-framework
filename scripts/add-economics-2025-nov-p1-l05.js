@@ -53,10 +53,10 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the leading indicators of the business cycle.",
     "metadata": [
-      "Number of building plans approved",
-      "Business Confidence Index",
       "New companies registered",
+      "Number of building plans approved",
       "Consumer price index (CPI)",
+      "Business Confidence Index",
       "Unemployment rate"
     ],
     "answer": [
@@ -123,14 +123,14 @@ const questions = [
     "name": "Question 3",
     "question": "Why is it difficult for government to stop people from using a public good such as street lighting?",
     "metadata": [
-      "Only wealthy citizens benefit from it",
-      "Private firms own all the street lights",
-      "Once it is provided, no one can easily be prevented from benefiting from it",
-      "Street lights are very scarce",
+      "Only wealthy citizens are able to benefit from the lights",
+      "Private firms own most of the street lights in cities",
+      "Once it is supplied, nobody can easily be excluded from it",
+      "Street lights are far too scarce for everyone to share",
       ""
     ],
     "answer": [
-      "Once it is provided, no one can easily be prevented from benefiting from it",
+      "Once it is supplied, nobody can easily be excluded from it",
       "",
       "",
       "",

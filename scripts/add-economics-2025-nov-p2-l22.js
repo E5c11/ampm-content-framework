@@ -53,16 +53,16 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the ways in which chemical waste can harm the environment.",
     "metadata": [
-      "Insecticides and pesticides can kill animals and plants quickly",
-      "Chemicals can soak into the ground and contaminate drinking water",
-      "Animals may become infertile",
-      "Chemical waste improves soil quality",
-      "It has no effect on water"
+      "Chemical waste improves the quality of the soil",
+      "Animals exposed to chemicals may become infertile",
+      "Chemicals can soak in and contaminate drinking water",
+      "Pesticides can quickly kill plants and animals",
+      "Chemicals have no effect on underground water"
     ],
     "answer": [
-      "Insecticides and pesticides can kill animals and plants quickly",
-      "Chemicals can soak into the ground and contaminate drinking water",
-      "Animals may become infertile",
+      "Pesticides can quickly kill plants and animals",
+      "Chemicals can soak in and contaminate drinking water",
+      "Animals exposed to chemicals may become infertile",
       "",
       ""
     ],
@@ -88,16 +88,16 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the ways in which the Basel Convention helps to manage hazardous waste.",
     "metadata": [
-      "Parties may export hazardous waste only to parties that have not banned its import",
+      "It allows hazardous waste to be dumped in any country",
       "Parties may not trade hazardous waste with non-parties",
-      "Parties must prevent exports if the waste will not be treated safely at its destination",
-      "It allows dumping in any country",
-      "It bans all waste production"
+      "Waste may be exported only to parties that allow its import",
+      "Exports must be stopped if disposal would be unsafe",
+      "It bans every country from producing hazardous waste"
     ],
     "answer": [
-      "Parties may export hazardous waste only to parties that have not banned its import",
+      "Waste may be exported only to parties that allow its import",
       "Parties may not trade hazardous waste with non-parties",
-      "Parties must prevent exports if the waste will not be treated safely at its destination",
+      "Exports must be stopped if disposal would be unsafe",
       "",
       ""
     ],

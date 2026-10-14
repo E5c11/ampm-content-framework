@@ -203,6 +203,20 @@ Read each question's data alongside its screenshot; classify PASS / AUTO_FIX / F
 
 ---
 
+### Answer-giveaway checks (DESIGN-UNI-15 / DESIGN-UNI-16) — run for every paper, they are defects not flags
+
+Run `node tools/audit-answer-cues.js --subject <id> --year <YYYY> --paper <paper>` (reads dev) and, while reading each screenshot, check:
+
+- [ ] **Ordering items carry no positional/structural label** ("Introduction …", "Conclusion …", "First …") — the order must follow from the content.
+- [ ] **The correct multiple_choice option is not visibly the longest or most detailed** — and across the paper it is the longest in ≤ 30% of questions.
+- [ ] **multi_select correct options are not the first (or last) N**, and are not clearly longer than the wrong ones.
+- [ ] **Distractors are plausible** (no "always/never/no effect", nothing that contradicts the stem in plain words).
+- [ ] **No stem leak** — a distinctive word repeated in the correct option only.
+
+Any finding is an **AUTO_FIX** (rewrite the options in the upload script and re-upload; never patch around it in the review) — see `DESIGN-UNI-16`.
+
+---
+
 ## Phase 4 — Classify and Act
 
 | Classification | Condition | Action |
@@ -404,6 +418,7 @@ reason, screenshot path, and suggested action.
 - [ ] All lessons present in the manifest; counts plausible
 - [ ] Screenshot captured for every question (no black frames)
 - [ ] Every question reviewed against all logic, render, and crop criteria
+- [ ] `tools/audit-answer-cues.js` run for the paper and clean (`DESIGN-UNI-15`/`16`)
 - [ ] Auto-fixes applied to **dev only**, confident cases only
 - [ ] `pm clear com.esma.ampm.dev` before re-capturing any lesson you just patched
 - [ ] Answerability verified for every `fitb`/`equation`/`steps` question (Phase 5, once

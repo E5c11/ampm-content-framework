@@ -54,14 +54,14 @@ const questions = [
     "name": "Question 1",
     "question": "Which opening sentence would earn the introduction mark for an essay on the monopoly market structure?",
     "metadata": [
-      "Discuss in detail the characteristics of a monopoly",
-      "I will discuss number of firms, entry and price in my essay",
-      "Market structure describes how buyers and sellers are organised and interact in a market",
-      "A monopoly is when one firm is very big and powerful and that is bad",
+      "Discuss the characteristics of a monopoly in detail",
+      "I will discuss the number of firms, entry and price",
+      "Market structure describes how buyers and sellers interact",
+      "A monopoly is one very big and powerful firm in a market",
       ""
     ],
     "answer": [
-      "Market structure describes how buyers and sellers are organised and interact in a market",
+      "Market structure describes how buyers and sellers interact",
       "",
       "",
       "",
@@ -89,16 +89,16 @@ const questions = [
     "name": "Question 2",
     "question": "Arrange the parts of this essay in the order in which they should be written.",
     "metadata": [
-      "Conclusion with a judgement",
-      "Main part: the features of a monopoly, with the long-run profit graph",
-      "Introduction that defines market structure",
-      "Additional part: how government can prevent abuse of market power"
+      "A judgement on the effects of monopolies on living standards",
+      "Explained features of a monopoly, with the long-run profit graph",
+      "A definition of market structure",
+      "Explained measures that prevent abuse of market power"
     ],
     "answer": [
-      "Introduction that defines market structure",
-      "Main part: the features of a monopoly, with the long-run profit graph",
-      "Additional part: how government can prevent abuse of market power",
-      "Conclusion with a judgement"
+      "A definition of market structure",
+      "Explained features of a monopoly, with the long-run profit graph",
+      "Explained measures that prevent abuse of market power",
+      "A judgement on the effects of monopolies on living standards"
     ],
     "presentation": "ordering",
     "type": "ordering",

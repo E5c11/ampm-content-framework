@@ -97,14 +97,14 @@ const questions = [
     "name": "Question 2",
     "question": "Study the graph. Select ALL the statements that are true.",
     "metadata": [
-      "The firm makes an economic loss because average revenue is less than average cost",
-      "The firm’s demand curve is horizontal",
+      "The firm makes a loss because AR is below AC",
+      "The firm sets the price at P1 for its product",
+      "The firm earns an economic profit at this output",
       "The firm minimises its loss where MR = MC",
-      "The firm earns economic profit",
-      "The firm sets the price at P1"
+      "The firm’s demand curve is horizontal"
     ],
     "answer": [
-      "The firm makes an economic loss because average revenue is less than average cost",
+      "The firm makes a loss because AR is below AC",
       "The firm’s demand curve is horizontal",
       "The firm minimises its loss where MR = MC",
       "",

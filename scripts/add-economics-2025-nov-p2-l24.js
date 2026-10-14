@@ -53,16 +53,16 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the strategies that can promote tourism in South Africa.",
     "metadata": [
-      "Marketing and advertising campaigns for tourist destinations",
-      "Improving transport and communication infrastructure at tourist sites",
-      "Rewarding businesses that improve the quality of tourism services",
-      "Raising taxes sharply on foreign visitors",
-      "Closing heritage sites to the public"
+      "Marketing and advertising campaigns for destinations",
+      "Raising taxes sharply on all foreign visitors",
+      "Rewards for businesses that improve service quality",
+      "Better transport and communication at tourist sites",
+      "Closing heritage sites to the public for most of the year"
     ],
     "answer": [
-      "Marketing and advertising campaigns for tourist destinations",
-      "Improving transport and communication infrastructure at tourist sites",
-      "Rewarding businesses that improve the quality of tourism services",
+      "Marketing and advertising campaigns for destinations",
+      "Better transport and communication at tourist sites",
+      "Rewards for businesses that improve service quality",
       "",
       ""
     ],
@@ -88,9 +88,9 @@ const questions = [
     "name": "Question 2",
     "question": "Which action best promotes local culture to attract international visitors?",
     "metadata": [
-      "Closing museums on weekends",
-      "Raising entry fees for locals only",
-      "Banning craft markets",
+      "Closing all museums and galleries over the weekends",
+      "Banning traditional craft markets in tourist areas",
+      "Raising the entry fees for local residents sharply",
       "Offering an authentic experience at a cultural village",
       ""
     ],

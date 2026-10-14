@@ -23,6 +23,7 @@ const fs   = require('fs');
 const fv   = require('./lib/feature-versions');
 const { legacyReason } = require('./lib/legacy-keyboard-allowlist');
 const { textKeyOf } = require('./lib/setwork-vocabulary');
+const cues = require('./lib/answer-cues');
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -101,6 +102,23 @@ function validateQuestion(q, index, allQuestions) {
     if (q[field] === undefined || q[field] === null || q[field] === '') {
       warn(`Missing required field: ${field}`);
     }
+  }
+
+  // ── Answer-giveaway cues (DESIGN-UNI-15 / DESIGN-UNI-16) ─────────────────────────────────────────────
+  if (q.presentation === 'ordering' && Array.isArray(q.metadata)) {
+    const labelled = cues.orderingLabelFinding(q.metadata);
+    if (labelled.length) warn(`DESIGN-UNI-15: ordering item(s) carry a positional/structural label that gives the order away: ${labelled.map((m) => JSON.stringify(m)).join(', ')} — describe the content, not its position`);
+  }
+  if (q.presentation === 'multiple_choice' && Array.isArray(q.metadata) && Array.isArray(q.answer)) {
+    const f = cues.optionLengthFinding(q.metadata, q.answer[0]);
+    if (f && f.margin) warn(`DESIGN-UNI-16: the correct option (${f.correctLen} chars) is clearly the longest (longest distractor ${f.maxOther}) — balance the option lengths`);
+  }
+  if (q.presentation === 'multi_select' && Array.isArray(q.metadata) && Array.isArray(q.answer)) {
+    const opts = q.metadata.filter(Boolean); const correct = q.answer.filter(Boolean);
+    if (opts.length >= 4 && correct.length < opts.length && opts.slice(0, correct.length).every((o) => correct.includes(o))) warn('DESIGN-UNI-16: the correct options are the first ones in the stored order (options are not shuffled by the app) — mix the order');
+    if (opts.length >= 4 && correct.length < opts.length && opts.slice(-correct.length).every((o) => correct.includes(o))) warn('DESIGN-UNI-16: the correct options are the last ones in the stored order — mix the order');
+    const f = cues.multiSelectLengthFinding(q.metadata, q.answer);
+    if (f && f.flag) warn(`DESIGN-UNI-16: the correct options average ${f.ratio.toFixed(2)}x the length of the wrong ones — balance the option lengths`);
   }
 
   // ── Curriculum vocabulary existence (only when --curriculum was supplied) ─

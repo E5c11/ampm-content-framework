@@ -53,11 +53,11 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the ways in which the business sector contributes positively to the development of the South African economy.",
     "metadata": [
-      "It creates jobs directly and indirectly",
-      "It pays corporate tax that funds public services and infrastructure",
       "It invests in research and development, which encourages innovation",
+      "It never causes any harm to the environment",
       "It always pays wages that close the income gap",
-      "It never causes any harm to the environment"
+      "It creates jobs directly and indirectly",
+      "It pays corporate tax that funds public services and infrastructure"
     ],
     "answer": [
       "It creates jobs directly and indirectly",
@@ -88,14 +88,14 @@ const questions = [
     "name": "Question 2",
     "question": "Which of the following is a negative effect of profit-driven business activity on the economy?",
     "metadata": [
-      "Firms pay corporate tax",
-      "Firms create job opportunities",
-      "Firms invest in skills development",
-      "Some firms ignore the pollution that their activities cause",
+      "Firms pay corporate tax to the national government",
+      "Firms create job opportunities for local residents",
+      "Firms invest in skills development for their staff",
+      "Some firms ignore the pollution their activities cause",
       ""
     ],
     "answer": [
-      "Some firms ignore the pollution that their activities cause",
+      "Some firms ignore the pollution their activities cause",
       "",
       "",
       "",

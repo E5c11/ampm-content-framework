@@ -54,16 +54,16 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the arguments that support free trade.",
     "metadata": [
-      "Countries specialise in goods with a lower opportunity cost, which raises world output",
+      "It reduces imports in order to save local jobs and industries",
       "Competition pushes firms to adopt new technology and cut costs",
-      "Resources are not wasted on goods that other countries produce more efficiently",
-      "It protects young industries from foreign competition",
-      "It reduces imports in order to save local jobs"
+      "It protects young industries from foreign competition for years",
+      "Specialising where opportunity cost is lower raises world output",
+      "Resources are not wasted on goods others make more efficiently"
     ],
     "answer": [
-      "Countries specialise in goods with a lower opportunity cost, which raises world output",
+      "Specialising where opportunity cost is lower raises world output",
       "Competition pushes firms to adopt new technology and cut costs",
-      "Resources are not wasted on goods that other countries produce more efficiently",
+      "Resources are not wasted on goods others make more efficiently",
       "",
       ""
     ],
@@ -90,14 +90,14 @@ const questions = [
     "question": "Select ALL the fiscal policy measures that would help to dampen an overheating economy.",
     "metadata": [
       "Cutting government spending on infrastructure projects",
-      "Raising personal income tax",
+      "Cutting the rate of company tax paid by businesses",
+      "Raising subsidies paid to businesses in key industries",
       "Raising indirect taxes such as VAT and excise duties",
-      "Cutting company tax",
-      "Raising subsidies to businesses"
+      "Raising personal income tax rates for most households"
     ],
     "answer": [
       "Cutting government spending on infrastructure projects",
-      "Raising personal income tax",
+      "Raising personal income tax rates for most households",
       "Raising indirect taxes such as VAT and excise duties",
       "",
       ""
@@ -124,10 +124,10 @@ const questions = [
     "name": "Question 3",
     "question": "In which phase of the business cycle would government normally use restrictive fiscal policy?",
     "metadata": [
-      "Depression",
+      "Depression (the trough of the downswing)",
       "Prosperity (the peak of the upswing)",
-      "Recovery",
-      "Recession",
+      "Recovery (the early part of the upswing)",
+      "Recession (the start of the downswing)",
       ""
     ],
     "answer": [

@@ -97,11 +97,11 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the reasons why government imposes excise duties on demerit goods.",
     "metadata": [
-      "To recover the external costs of their consumption",
-      "To discourage consumption by making them more expensive",
       "To raise revenue from goods that harm users",
-      "To encourage people to consume more of them",
-      "To lower the price of these goods"
+      "To recover the external costs of their consumption",
+      "To lower the price of these goods",
+      "To discourage consumption by making them more expensive",
+      "To encourage people to consume more of them"
     ],
     "answer": [
       "To recover the external costs of their consumption",
@@ -132,14 +132,14 @@ const questions = [
     "name": "Question 3",
     "question": "Which situation is Pareto efficient?",
     "metadata": [
-      "Everybody receives exactly the same income",
-      "Output is at its highest possible level regardless of cost",
-      "Government sets all prices",
-      "Resources are allocated so that no one can be made better off without making someone else worse off",
+      "Everyone receives exactly the same amount of income",
+      "Output is at its highest possible level whatever the cost",
+      "Government sets the prices of all goods and services",
+      "No one can be made better off without harming someone else",
       ""
     ],
     "answer": [
-      "Resources are allocated so that no one can be made better off without making someone else worse off",
+      "No one can be made better off without harming someone else",
       "",
       "",
       "",

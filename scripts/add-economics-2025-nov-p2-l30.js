@@ -53,15 +53,15 @@ const questions = [
     "name": "Question 1",
     "question": "Select ALL the fiscal policy measures that can reduce demand-pull inflation.",
     "metadata": [
-      "Postponing government construction projects",
-      "Raising personal income tax",
       "Raising indirect taxes such as VAT",
+      "Postponing government construction projects",
+      "Cutting the rate of tax paid by companies",
       "Introducing tax-free savings accounts",
-      "Cutting company tax"
+      "Raising the rate of personal income tax"
     ],
     "answer": [
       "Postponing government construction projects",
-      "Raising personal income tax",
+      "Raising the rate of personal income tax",
       "Raising indirect taxes such as VAT",
       "Introducing tax-free savings accounts",
       ""
@@ -88,17 +88,17 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the other measures that can help to combat inflation.",
     "metadata": [
-      "Improving education and training to raise productivity",
-      "Promoting competition at home and from abroad",
       "Imposing maximum prices on essential goods",
-      "Implementing a wage policy to break the wage-price spiral",
-      "Removing all taxes"
+      "A wage policy to break the wage-price spiral",
+      "Removing every tax paid by households and firms",
+      "Education and training to raise productivity",
+      "Promoting competition at home and from abroad"
     ],
     "answer": [
-      "Improving education and training to raise productivity",
+      "Education and training to raise productivity",
       "Promoting competition at home and from abroad",
       "Imposing maximum prices on essential goods",
-      "Implementing a wage policy to break the wage-price spiral",
+      "A wage policy to break the wage-price spiral",
       ""
     ],
     "presentation": "multi_select",

@@ -52,3 +52,5 @@ presentation: "multi_select",
 - All 5 metadata slots may be real options (no `""` padding needed when there are 5).
 - Distractors still count against the student (partial-credit penalty) — keep them
   plausible but clearly wrong on reflection.
+- **Do not let the correct options stand out (`DESIGN-UNI-16`).** Options are shown in stored order — never store the correct ones first (or last); shuffle
+  them. Keep the correct options no longer than ~1.3× the wrong ones on average. The validator errors on both.

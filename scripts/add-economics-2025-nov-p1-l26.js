@@ -126,14 +126,14 @@ const questions = [
     "name": "Question 3",
     "question": "Which statement describes how Spatial Development Initiatives typically use public-private partnerships?",
     "metadata": [
-      "Government builds the factories and private firms build the roads",
-      "Private firms provide all infrastructure and government provides labour",
-      "Private firms provide capital for factories and labour, while government provides infrastructure such as roads and water supply",
-      "Foreign governments fund both factories and roads",
+      "Government builds the factories and private firms build the roads and pipelines",
+      "Private firms supply all infrastructure while government supplies the labour",
+      "Private firms fund factories and labour; government funds roads and water",
+      "Foreign governments provide the money for both factories and roads",
       ""
     ],
     "answer": [
-      "Private firms provide capital for factories and labour, while government provides infrastructure such as roads and water supply",
+      "Private firms fund factories and labour; government funds roads and water",
       "",
       "",
       "",
@@ -162,15 +162,15 @@ const questions = [
     "question": "Select ALL the benefits that businesses located in an Industrial Development Zone (IDZ) enjoy.",
     "metadata": [
       "Duty-free importation of production-related inputs",
-      "Dedicated customs services that speed up inspection and clearing",
-      "World-class infrastructure and a zero rate of VAT on supplies from South African sources",
-      "Exemption from all labour laws",
-      "Guaranteed sales to government"
+      "Guaranteed sales of their output to government departments",
+      "Exemption from all labour laws and wage regulations",
+      "Dedicated customs services for faster clearing",
+      "World-class infrastructure and zero-rated VAT on local supplies"
     ],
     "answer": [
       "Duty-free importation of production-related inputs",
-      "Dedicated customs services that speed up inspection and clearing",
-      "World-class infrastructure and a zero rate of VAT on supplies from South African sources",
+      "Dedicated customs services for faster clearing",
+      "World-class infrastructure and zero-rated VAT on local supplies",
       "",
       ""
     ],
