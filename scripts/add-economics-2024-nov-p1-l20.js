@@ -57,10 +57,10 @@ const questions = [
     "name": "Question 1",
     "question": "Why is the trend line important in the forecasting of business cycles?",
     "metadata": [
-      "It shows the general direction of the economy",
+      "It shows how much each household earns",
       "It records the exact length of every past upswing",
       "It fixes the interest rate for each year ahead",
-      "It shows how much each household earns",
+      "It shows the general direction of the economy",
       ""
     ],
     "answer": [
