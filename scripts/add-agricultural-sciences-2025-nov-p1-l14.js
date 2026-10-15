@@ -161,8 +161,8 @@ const questions = [
     "name": "Question 4",
     "question": "Which part of a sperm cell releases enzymes that help it to penetrate the ovum?",
     "metadata": [
-      "The acrosome at the tip of the head",
       "The midpiece with its mitochondria",
+      "The acrosome at the tip of the head",
       "The tail (flagellum)",
       "The nucleus in the head",
       ""
