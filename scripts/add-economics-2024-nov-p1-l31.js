@@ -56,14 +56,14 @@ const questions = [
     "name": "Question 1",
     "question": "How can promoting small businesses reduce unemployment?",
     "metadata": [
-      "They create jobs for people who are structurally unemployed",
+      "They reduce production so that fewer workers are needed",
       "They close large firms so that workers must look for jobs",
       "They remove the need for any skilled workers",
-      "They reduce production so that fewer workers are needed",
+      "They create jobs for the structurally unemployed",
       ""
     ],
     "answer": [
-      "They create jobs for people who are structurally unemployed",
+      "They create jobs for the structurally unemployed",
       "",
       "",
       "",
