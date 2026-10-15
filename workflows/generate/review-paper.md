@@ -403,7 +403,7 @@ for an equivalent valid phrasing).
 
 `AMPM/scripts/review-capture-answers.js` types **one blank, via `maths_key_<char>` or the system field** only. It cannot answer a `text`-keyboard
 row (Tourism, Life Sciences, History …) or a two-blank row (`HH : MM`), and it tries only the first `|` alternative. Until the script is extended, a
-session needs a runner that does the following (Tourism used a scratchpad copy; none is committed):
+session needs a runner that does the following — **`AMPM/scripts/review-capture-answers-text.js` does (added 2026-10-15, fitb only, no system-keyboard fallback):**
 
 - **Detect the keyboard per blank:** any `text_key_*` tag → text keyboard; any `maths_key_*` → number/scientific; neither → no custom keyboard
   (a `KEYBOARD-04` violation for a declared row — FLAG).
