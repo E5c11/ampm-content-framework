@@ -8,7 +8,7 @@ tags: [subject, accounting, dbe, profile, statements, ledgers]
 
 # Subject Profile — DBE Accounting (Papers 1 and 2)
 
-**Status (2026-10-15): `nov_p1` (2025) authored on dev (19 lessons / 73 q), emulator-reviewed and typed-answer checked. Profiled from the Nov 2025 papers + memos, the Nov 2024 papers (structure only) and the CAPS document. P2 and 2024 not authored; nothing in prod.**
+**Status (2026-10-15): `nov_p1` (2025) authored on dev (19 lessons / 73 q), emulator-reviewed and typed-answer checked; `nov_p2` (2025) authored on dev (17 lessons / 68 q), validated, **emulator review pending**. Profiled from the Nov 2025 papers + memos, the Nov 2024 papers (structure only) and the CAPS document. 2024 not authored; nothing in prod.**
 **Load with this profile:** `shared/closed-form-subjects.md` (`AMPM-CONTENT-CLOSED-FORM`) for discursive items, generated figures, calculations, typed answers and
 formatting. This file records only what is specific to Accounting. Accounting is a **hybrid**: ~70% of the marks are worked numeric statements and
 ledgers (procedural, like Maths/Math Lit calculations), ~30% is interpretation, concepts and governance (closed-form, like Business Studies).
@@ -129,3 +129,11 @@ The general rules — generated figure with lettered blanks, at most three indep
 - **Known gap:** the app shows `supplementary_material` behind the "view diagram" button, so the statement is not on the question screen. Closing it needs an inline table presentation (app work) — owner decision before any prod push.
 - **Owed:** prod push (owner-approved, `push-paper-to-prod.js`); expert check of the `aiExplanation` text; P2; 2024; the pilot-era `table_N.png` objects are orphaned in the bucket (never overwritten, harmless).
 - **Lessons learned:** (1) judge the figure on the question screen, not inside the pop-up sheet — the first pilot looked fine in the sheet and the question was a bare `A = [ ]` row. (2) `review-capture-answers.js` types one blank only; use `review-capture-answers-multi.js` (AMPM, uncommitted) for ≤3-blank figure questions. (3) Figures are cached for a year, so a re-render needs a new object path. (4) `cash_flow_statement` was already an Agri tag id; Accounting uses `company_cash_flow_statement`.
+
+### 2025 Nov P2 — authored to dev 2026-10-15 (17 lessons / 68 questions), emulator review pending
+
+- **Lessons:** Q1 → L1 (1.1.1 cash journals), L2 (1.1.2 bank reconciliation), L3 (1.1.3 cash management), L4 (1.2.1 creditors' reconciliation), L5 (1.2.2 purchasing control); Q2 → L6 (2.1 FIFO), L7 (2.2.1–2 specific identification, stockholding period), L8 (2.2.3 new model), L9 (2.3 inventories); Q3 → L10 (3.1 factory overhead note), L11 (3.2.1–2 break-even), L12 (3.2.3–4 cost control); Q4 → L13 (4.1.1 debtors' schedule), L14 (4.1.2 projected income statement), L15 (4.1.3–4 purchases, creditors, fixed deposit), L16 (4.2.1–2 budget variance), L17 (4.2.3–4 suppliers, remuneration). Generator: `scripts/_gen/accounting-p2/`.
+- **Checks done:** validator clean (7 option-length cues rebalanced), `audit-answer-cues` clean, MC index-0 1/20, derived minimum 2.0.0 (no gate), all 16 figures rendered and inspected (INFORMATION block + STATEMENT with lettered blanks, ≤3 per question). Every figure's numbers are computed and asserted in the lesson data.
+- **Owed:** emulator capture and typed-answer check (`review-capture-answers-multi.js`); expert check of the AI explanations; prod push.
+- **Why the review is pending:** the dev emulator app showed "Video ID not available" for every Accounting lesson (P1 as well as P2) after a data clear, and the capture's `uiautomator dump` was killed (137). Backend reachable; likely the cold-cache prerequisite in `workflows/generate/review-paper.md` — open the app once, navigate Library → Accounting → a lesson, then rerun. Also: a "Stay Updated" notification dialog and an exam-date sheet reappear on each launch after `pm clear`; `adb shell pm grant com.esma.ampm.dev android.permission.POST_NOTIFICATIONS` removes the first.
+- **Content note:** P2 also carries one L10 image upload that failed transiently (oauth) and was retried; both objects verified 200.
