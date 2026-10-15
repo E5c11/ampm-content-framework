@@ -8,7 +8,7 @@ tags: [subject, economics, dbe, profile]
 
 # Subject Profile — DBE Economics (Papers 1 and 2)
 
-**Status: analysed 2026-10-14; 2025 P1+P2 authored and in prod; 2024 P1 and P2 authored to dev 2026-10-15 (32 + 33 lessons, ledger below); both emulator-reviewed clean; the prod push of the 2024 exam is owed.** Drafted from the Nov 2024 and Nov 2025 papers and memos for both
+**Status: analysed 2026-10-14; 2025 P1+P2 authored and in prod; 2024 P1 and P2 authored to dev 2026-10-15 (32 + 33 lessons, ledger below); both emulator-reviewed clean; the 2024 exam was pushed to prod 2026-10-15 (unpublished first, then published).** Drafted from the Nov 2024 and Nov 2025 papers and memos for both
 papers (all four in `files/`) and the CAPS Grade 12 plan. Every table below was checked against those eight documents;
 anything not yet evidenced is labelled *illustrative*.
 
@@ -294,7 +294,7 @@ Lessons follow the paper's subsections (`"Question N.M: Description"`):
 
 Order followed (`VER-03`): prod `subjects` row (inactive, gated 2.4.0) → `push-paper-to-prod.js` P1 with `--allow-partial-exam` (P2 was pushed immediately after; the tool refuses a lone paper of a two-paper exam by default) → P2 → prod exam gate `apply-exam-gate.js --env prod --apply` (2.4.0, 60 lessons / 191 questions bumped) → `--publish` both papers → subject `is_active=true`. Prod now holds 28 + 32 lessons, 85 + 106 questions, all published, 152 images mirrored to the prod bucket (all HTTP 200), curriculum/skills/tags copied by the tool. The prod proxy for this tool listens on 15433 (`PG_PORT_PROD`); a separate prod proxy on 5433 may already be running — they do not conflict. `LATEST_RELEASED` was 2.4.0, equal to the derived minimum, so no override or bump was needed.
 
-### 2024 Nov P1 (`nov_p1`) — authored to dev 2026-10-15, emulator-reviewed the same day, **not in prod**
+### 2024 Nov P1 (`nov_p1`) — authored to dev 2026-10-15, emulator-reviewed the same day, **in prod (published 2026-10-15)**
 
 **32 lessons, 109 questions (3–4 each)**, one commit per lesson (`scripts/add-economics-2024-nov-p1-l01..l32.js`; the 17 "rebalance" commits carry a literal `${VERB:-Add}` in the subject — harmless). `DESIGN-UNI-14`-compliant. Exam gate for 2024 is 2.4.0 (`text` + `scientific_math`).
 
@@ -314,7 +314,11 @@ Order followed (`VER-03`): prod `subjects` row (inactive, gated 2.4.0) → `push
 - **Emulator review (2026-10-15, build 2.4.1-dev01, cache cleared):** all 109 questions captured with no warnings; 0 auto-fixes, 0 flags; typed answers **12/12 PASS** (every `|` alternative; the ΔY `steps` needs the keyboard's Next key — `maths_key_next` — between blanks). Cosmetic: lesson 20's exam image has white space below 4.2.5.
 - **Not done:** prod push (the 2024 exam is not in prod; the prod `subjects` row already exists), 2024 P2. Content flags for a subject-expert check: CPI as a non-leading distractor (lesson 1), "Remuneration per worker" as the productivity indicator (lesson 14), the 30% land-redistribution figure (lesson 30).
 
-### 2024 Nov P2 (`nov_p2`) — authored to dev 2026-10-15, emulator-reviewed the same day, **not in prod**
+### 2024 Nov P2 (`nov_p2`) — authored to dev 2026-10-15, emulator-reviewed the same day, **in prod (published 2026-10-15)**
+
+### Prod push — 2024 Nov P1 + P2, 2026-10-15 (owner-approved)
+
+Unpublished pass first (`push-paper-to-prod.js --allow-partial-exam`, P1 then P2: 65 lessons, 223 questions, 173 images; every checked URL 200) → prod exam gate `apply-exam-gate.js --env prod --apply --i-know-this-is-prod` (2.4.0) → second pass with `--publish` (32 + 33 lessons, 109 + 114 questions). Prod now holds the 2024 and 2025 exams. Still owed: the subject-expert check of the flagged items.
 
 **33 lessons, 114 questions (3–4 each)**, one commit per lesson (`scripts/add-economics-2024-nov-p2-l01..l33.js`). Exam gate for 2024 stays 2.4.0 (P1 + P2 on dev, `text` + `scientific_math`).
 
