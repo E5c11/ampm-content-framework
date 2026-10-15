@@ -55,14 +55,14 @@ const questions = [
     "name": "Question 1",
     "question": "How does price stability protect the purchasing power of households?",
     "metadata": [
-      "Prices stay steady, so incomes buy much the same over time",
-      "Wages rise faster than prices in every single year",
       "Households spend all their income immediately on arrival",
+      "Wages rise faster than prices in every single year",
+      "Prices stay steady, so incomes buy the same over time",
       "Imports become cheaper for every household in the country",
       ""
     ],
     "answer": [
-      "Prices stay steady, so incomes buy much the same over time",
+      "Prices stay steady, so incomes buy the same over time",
       "",
       "",
       "",
