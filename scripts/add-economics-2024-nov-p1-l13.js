@@ -56,10 +56,10 @@ const questions = [
     "name": "Question 1",
     "question": "How do development corridors promote regional development?",
     "metadata": [
-      "They link resource-rich areas to markets and attract investment",
+      "They make a region less attractive to investors from abroad",
       "They keep businesses inside a single town and block new roads",
       "They stop mining, farming and factories from using the same routes",
-      "They make a region less attractive to investors from abroad",
+      "They link resource-rich areas to markets and attract investment",
       ""
     ],
     "answer": [
