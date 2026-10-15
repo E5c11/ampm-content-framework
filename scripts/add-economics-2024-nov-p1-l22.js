@@ -57,10 +57,10 @@ const questions = [
     "name": "Question 1",
     "question": "Why is it important to protect infant industries from foreign competition?",
     "metadata": [
-      "So that new industries can grow and become competitive",
-      "So that old industries can close without notice",
       "So that prices of all imports are higher for ever",
-      "So that no new industries are started in the country",
+      "So that old industries can close without notice",
+      "So that new industries can grow and become competitive",
+      "So that no new industries are ever started in the country",
       ""
     ],
     "answer": [
