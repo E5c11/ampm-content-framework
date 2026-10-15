@@ -696,7 +696,7 @@ History's. **Lesson for future lessons: never restate the full question sentence
 `fitb` metadata — always author it as a short label, from the start.**
 
 **Phase 5 (answerability) run, with a caveat: the tool itself can't drive the system
-keyboard yet.** (Update 2026-10-07: this is a property of the old system-keyboard path — see the Keyboard section; it should not recur once `fitb` declares `standard_math`.) `scripts/review-capture-answers.js` only types via Compose
+keyboard yet.** (Update 2026-10-07: this is a property of the old system-keyboard path — see the Keyboard section; it should not recur once `fitb` declares `standard_math`.) `scripts/review/review-capture-answers.js` only types via Compose
 `maths_key_$label` tags, which don't exist for a `None`-keyboard subject (Geography,
 History) — the system IME is a real Android keyboard outside the app's Compose tree.
 All 7 `fitb` questions came back `MISSING_KEY` on every character, which looked like a

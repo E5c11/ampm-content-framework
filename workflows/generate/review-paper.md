@@ -1,17 +1,17 @@
 # Review Uploaded Paper — Claude Code Session Runner
 
 > **Runs from the AMPM repo root.** The capture harness and its scripts
-> (`scripts/review-build-manifest.js`, `scripts/review-capture.js`,
-> `scripts/patch-question.js`) live in `AMPM/scripts/` and drive the emulator / the app.
+> (`scripts/review/review-build-manifest.js`, `scripts/review/review-capture.js`,
+> `scripts/review/patch-question.js`) live in `AMPM/scripts/` and drive the emulator / the app.
 > Presentation contracts for the review criteria: this repo's `presentations/{type}.md`.
 
 ## Status — harness fully repointed
 
 All three scripts are done, dev-verified, and (render-only) run clean end-to-end.
 
-- `scripts/review-build-manifest.js` / `scripts/patch-question.js` — repointed to Cloud SQL
+- `scripts/review/review-build-manifest.js` / `scripts/review/patch-question.js` — repointed to Cloud SQL
   (2026-09-03). See their headers in `AMPM/scripts/`.
-- `scripts/review-capture.js` — rewired 2026-09-03 to navigate by `testTag`/`resource-id`
+- `scripts/review/review-capture.js` — rewired 2026-09-03 to navigate by `testTag`/`resource-id`
   (`AMPM` commit `06685d9b7` shipped the tags) instead of coordinate swipes + `content-desc`
   string matching. **It uses exactly 3 tags, all from `AMPM/wiki/lesson/questions-pane.md`
   § Automation selectors** — `lesson_questions_pane` (pager root — gates readiness),
@@ -32,7 +32,7 @@ answers. The per-presentation-type input tags exist for a future render+answer-f
 if you want it; not wired in here.
 
 **Phase 5 (Verify Answerability) is IN PROGRESS**, built and first-used 2026-09-12
-(see that phase below for the why and the full detail). `scripts/review-capture-answers.js`
+(see that phase below for the why and the full detail). `scripts/review/review-capture-answers.js`
 exists and covers `fitb`; `equation`/`steps` still need a `MathInputState`-aware typing
 path (fraction mode etc.), not yet built — those two presentation types still only get
 the Phase 1–4 data/render checks for now. **Two hard-won prerequisites before trusting a
@@ -95,7 +95,7 @@ The run, end to end:
 ## Phase 1 — Fetch Paper Data
 
 ```bash
-node scripts/review-build-manifest.js <subject> <syllabus> <year> <paper>
+node scripts/review/review-build-manifest.js <subject> <syllabus> <year> <paper>
 # → temp/review/<paper>_<year>/manifest.json
 ```
 
@@ -113,7 +113,7 @@ supplementaryImageUrls }] }] }`. Carries everything Phase 3 needs — no second 
 ## Phase 2 — Capture Screenshots
 
 ```bash
-node scripts/review-capture.js temp/review/<paper>_<year>/manifest.json [--lessons 1,2,3]
+node scripts/review/review-capture.js temp/review/<paper>_<year>/manifest.json [--lessons 1,2,3]
 ```
 
 Per lesson it deep-links to each lesson (`/video/<videoId>?subject=&syllabus=`), then per
@@ -259,7 +259,7 @@ alignment, crop uncertain without the source PDF, equation itself possibly wrong
 # exam_weight, unit, topic, subtopic (patch the *_id FK columns — Postgres rejects an id
 # that isn't a real curriculum_nodes row), skills (replaces the question_skills junction,
 # not a column — pass the full new skill-id list, not a diff).
-node scripts/patch-question.js \
+node scripts/review/patch-question.js \
   --id <question_uuid> \
   --field answer \
   --value '["correct answer", "", "", "", ""]' \
@@ -306,7 +306,7 @@ reflect the real per-subject keyboard, not this unrelated bug. (The app bug itse
 tracked separately — accepted risk for now, scheduled before the next release; not a
 Phase 5 problem to route around every time once it's fixed.)
 
-**Built:** `scripts/review-capture-answers.js` (`fitb` only so far — `equation`/`steps`
+**Built:** `scripts/review/review-capture-answers.js` (`fitb` only so far — `equation`/`steps`
 need `MathInputState`-aware typing, e.g. fraction-mode entry, not just key-by-key text;
 not yet extended). **System-keyboard subjects — found broken 2026-09-12 (History nov_p2
 review), fixed same day (Life Science nov_p2 review):** the script's typing step
@@ -396,14 +396,14 @@ for an equivalent valid phrasing).
   (e.g. `sinxcos` for `4√5`) the runner mistyped; the first Phase 5 pass of this paper marked all 23 answers incorrect for exactly that
   reason and all 23 passed once fixed.
 - **Shell traps while driving this:** `until ! pgrep -f "<pattern>"` and `pkill -f "<pattern>"` match their own command line — the
-  wait never ends or the shell kills itself (exit 144). Use a bracket pattern (`pgrep -f "[n]ode scripts/review-capture.js"`) or kill
+  wait never ends or the shell kills itself (exit 144). Use a bracket pattern (`pgrep -f "[n]ode scripts/review/review-capture.js"`) or kill
   by PID. A background capture is done when its log stops growing and the last lesson's screenshots exist.
 
 ## Phase 5 addendum — `text` keyboard, multi-blank and alternatives (learned on Tourism 2025 Nov P1, 2026-10-15)
 
-`AMPM/scripts/review-capture-answers.js` types **one blank, via `maths_key_<char>` or the system field** only. It cannot answer a `text`-keyboard
+`AMPM/scripts/review/review-capture-answers.js` types **one blank, via `maths_key_<char>` or the system field** only. It cannot answer a `text`-keyboard
 row (Tourism, Life Sciences, History …) or a two-blank row (`HH : MM`), and it tries only the first `|` alternative. Until the script is extended, a
-session needs a runner that does the following — **`AMPM/scripts/review-capture-answers-text.js` does (added 2026-10-15, fitb only, no system-keyboard fallback):**
+session needs a runner that does the following — **`AMPM/scripts/review/review-capture-answers-text.js` does (added 2026-10-15, fitb only, no system-keyboard fallback):**
 
 - **Detect the keyboard per blank:** any `text_key_*` tag → text keyboard; any `maths_key_*` → number/scientific; neither → no custom keyboard
   (a `KEYBOARD-04` violation for a declared row — FLAG).
