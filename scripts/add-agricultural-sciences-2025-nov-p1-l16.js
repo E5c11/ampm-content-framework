@@ -53,7 +53,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "Which graph is the best way to show the semen volume (mℓ) and the sperm cell concentration (billion/mℓ) of five farm animals side by side?",
+    "question": "Which graph is the best way to show the semen volume and the sperm cell concentration of five farm animals side by side?",
     "metadata": [
       "A line graph that joins the animals in order",
       "A pie chart with a slice for each animal",
