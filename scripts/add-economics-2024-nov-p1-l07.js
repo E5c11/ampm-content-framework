@@ -56,14 +56,14 @@ const questions = [
     "name": "Question 1",
     "question": "Why does a government place a high tax on cigarettes?",
     "metadata": [
-      "To make them cheaper for low-income smokers",
-      "To make them dearer so that fewer people buy them",
+      "To make them cheaper for all low-income smokers",
+      "To make them dearer so fewer people buy them",
       "To increase the quantity that is produced",
       "To remove the need for health services",
       ""
     ],
     "answer": [
-      "To make them dearer so that fewer people buy them",
+      "To make them dearer so fewer people buy them",
       "",
       "",
       "",
