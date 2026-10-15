@@ -8,7 +8,7 @@ tags: [subject, economics, dbe, profile]
 
 # Subject Profile — DBE Economics (Papers 1 and 2)
 
-**Status: analysed 2026-10-14; `nov_p1` (2025) authored to dev the same day (6 lessons / 84 questions, ledger below); nothing else authored.** Drafted from the Nov 2024 and Nov 2025 papers and memos for both
+**Status: analysed 2026-10-14; 2025 P1+P2 authored and in prod; 2024 P1 authored to dev 2026-10-15 (32 lessons / 109 questions, ledger below); 2024 P2 not yet authored.** Drafted from the Nov 2024 and Nov 2025 papers and memos for both
 papers (all four in `files/`) and the CAPS Grade 12 plan. Every table below was checked against those eight documents;
 anything not yet evidenced is labelled *illustrative*.
 
@@ -294,6 +294,25 @@ Lessons follow the paper's subsections (`"Question N.M: Description"`):
 
 Order followed (`VER-03`): prod `subjects` row (inactive, gated 2.4.0) → `push-paper-to-prod.js` P1 with `--allow-partial-exam` (P2 was pushed immediately after; the tool refuses a lone paper of a two-paper exam by default) → P2 → prod exam gate `apply-exam-gate.js --env prod --apply` (2.4.0, 60 lessons / 191 questions bumped) → `--publish` both papers → subject `is_active=true`. Prod now holds 28 + 32 lessons, 85 + 106 questions, all published, 152 images mirrored to the prod bucket (all HTTP 200), curriculum/skills/tags copied by the tool. The prod proxy for this tool listens on 15433 (`PG_PORT_PROD`); a separate prod proxy on 5433 may already be running — they do not conflict. `LATEST_RELEASED` was 2.4.0, equal to the derived minimum, so no override or bump was needed.
 
+### 2024 Nov P1 (`nov_p1`) — authored to dev 2026-10-15, **not emulator-reviewed, not in prod**
+
+**32 lessons, 109 questions (3–4 each)**, one commit per lesson (`scripts/add-economics-2024-nov-p1-l01..l32.js`; the 17 "rebalance" commits carry a literal `${VERB:-Add}` in the subject — harmless). `DESIGN-UNI-14`-compliant. Exam gate for 2024 is 2.4.0 (`text` + `scientific_math`).
+
+| Real question | Lessons (order) |
+|---|---|
+| Q1 (30) | 1.1.1–1.1.4 · 1.1.5–1.1.8 · 1.2 · 1.3 (1–4) |
+| Q2 (40) | 2.1 · 2.2.1–4 · 2.2.5 · 2.3 (with the ΔY `steps`) · 2.4 · 2.5 (5–10) |
+| Q3 (40) | 3.1 · 3.2.1–3 · 3.2.4–5 · 3.3.1–3 · 3.3.4–5 · 3.4 · 3.5 (11–17) |
+| Q4 (40) | 4.1 · 4.2.1–3 · 4.2.4–5 · 4.3.1–3 · 4.3.4–5 · 4.4 · 4.5 (18–24) |
+| Q5 essay | demand reasons (13) · supply reasons (13) · weaker rand (10) · essay structure (4) (25–28) |
+| Q6 essay | monetary policy (13) · fiscal policy (13) · small businesses (10) · essay structure (4) (29–32) |
+
+- Images cut with a PyMuPDF label-locator (question and memo cut at the real sub-question positions; 78 URLs, all HTTP 200). Two fresh figures, both labelled illustrative: the multiplier graph (E = 12 + 0,75Y → 20 + 0,75Y, lesson 8, `diagram_1.png` — an earlier `graph_1.png` with an overlapping label is orphaned in the bucket) and the labour-productivity bar graph (lesson 14). Tables, extracts and the cartoon are described in the question text (`question` may not contain a newline — validator).
+- **MC index-0 tally 0 of 44**; correct-longest 0 of 44 after a rebalance pass (first authoring had 11 at index 0 and 14 longest — the generator now moves a correct index-0 option to 2/3). Typed: `privatisation|privatization` (`text`), numeric `standard_math` blanks (150, 30000, 46, 10, 0.75, -4.5, 32, 30) and the ΔY `steps` (4, 8, 32; `scientific_math`).
+- Q5/Q6 essay lessons each carry **one** AI-explanation entry (`number` "5"/"6", marks 13/13/10/4) split from the 26 + 10 + 2 + 2 budget.
+- New tags created on dev (economics): 27 slugs, e.g. `privatisation`, `labour_productivity`, `import_substitution`, `weaker_rand`, `demand_side_policy`. No new units/topics/subtopics.
+- **Not done:** emulator review (`review-paper.md`), prod push (the 2024 exam is not in prod; the prod `subjects` row already exists), 2024 P2. Content flags for a subject-expert check: CPI as a non-leading distractor (lesson 1), "Remuneration per worker" as the productivity indicator (lesson 14), the 30% land-redistribution figure (lesson 30).
+
 ## Still open
 
 - Verify the subject tile renders with icon `trending-up` in prod (not checked against the app's icon set; the owner is verifying in prod).
@@ -301,7 +320,7 @@ Order followed (`VER-03`): prod `subjects` row (inactive, gated 2.4.0) → `push
   owner confirmed 2.5.0 is latest on 2026-10-14; what 2.5.0 added is not yet recorded in this repo. Check whether it changes
   any rule above (keyboards, presentations, image handling).
 - Remove the duplicate `Economics P1 Nov 2024 Eng-1.pdf`.
-- Next: the 2024 papers (P1 has the multiplier calculation, P2 two more drawn graphs). (The 2025 exam is already in prod; 2024 will need the same push.)
+- Next: 2024 P2 (two more drawn graphs), then review + push of the 2024 exam (the 2025 exam is already in prod).
 - Read the Q5/Q6 essay memos in full (all four papers) before writing the first essay lesson; only the rubric box and the
   topic lists were reviewed for this profile.
 - Verify 2025 P2 Q1.3 answers and the 2024 stimulus figures during Phase 1 of each lesson.
