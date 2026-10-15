@@ -8,7 +8,7 @@ tags: [subject, economics, dbe, profile]
 
 # Subject Profile — DBE Economics (Papers 1 and 2)
 
-**Status: analysed 2026-10-14; 2025 P1+P2 authored and in prod; 2024 P1 and P2 authored to dev 2026-10-15 (32 + 33 lessons, ledger below); 2024 review of P2 and the prod push owed.** Drafted from the Nov 2024 and Nov 2025 papers and memos for both
+**Status: analysed 2026-10-14; 2025 P1+P2 authored and in prod; 2024 P1 and P2 authored to dev 2026-10-15 (32 + 33 lessons, ledger below); both emulator-reviewed clean; the prod push of the 2024 exam is owed.** Drafted from the Nov 2024 and Nov 2025 papers and memos for both
 papers (all four in `files/`) and the CAPS Grade 12 plan. Every table below was checked against those eight documents;
 anything not yet evidenced is labelled *illustrative*.
 
@@ -314,7 +314,7 @@ Order followed (`VER-03`): prod `subjects` row (inactive, gated 2.4.0) → `push
 - **Emulator review (2026-10-15, build 2.4.1-dev01, cache cleared):** all 109 questions captured with no warnings; 0 auto-fixes, 0 flags; typed answers **12/12 PASS** (every `|` alternative; the ΔY `steps` needs the keyboard's Next key — `maths_key_next` — between blanks). Cosmetic: lesson 20's exam image has white space below 4.2.5.
 - **Not done:** prod push (the 2024 exam is not in prod; the prod `subjects` row already exists), 2024 P2. Content flags for a subject-expert check: CPI as a non-leading distractor (lesson 1), "Remuneration per worker" as the productivity indicator (lesson 14), the 30% land-redistribution figure (lesson 30).
 
-### 2024 Nov P2 (`nov_p2`) — authored to dev 2026-10-15, **not emulator-reviewed, not in prod**
+### 2024 Nov P2 (`nov_p2`) — authored to dev 2026-10-15, emulator-reviewed the same day, **not in prod**
 
 **33 lessons, 114 questions (3–4 each)**, one commit per lesson (`scripts/add-economics-2024-nov-p2-l01..l33.js`). Exam gate for 2024 stays 2.4.0 (P1 + P2 on dev, `text` + `scientific_math`).
 
@@ -332,7 +332,8 @@ Order followed (`VER-03`): prod `subjects` row (inactive, gated 2.4.0) → `push
 - **MC index-0 tally 0 of 47**; correct-longest 13 of 47 (28%, under the 30% cap); typed: `explicit cost|explicit costs`, `cost-push inflation|cost push inflation`, `stagflation` (`text`), numeric blanks (-4, 120, 1.8, 20, 80, 3.38) and the maximum-price `steps`.
 - Curriculum added (dev): topics `monopolistic_competition`, `price_controls`, `cost_benefit_analysis`, `tourism_impacts`; 24 more tags. Units and `econ_*` subtopics/skills reused.
 - Essay lessons carry one AI-explanation entry each (marks 13/13/10/4 per essay).
-- **Not done:** emulator review, prod push of the whole 2024 exam (P1 + P2), subject-expert check (e.g. the Q4.2.4–4.2.5 ordering, "administered price inflation" as a consumer-inflation type, the CITES/Rotterdam match items).
+- **Emulator review (2026-10-15, build 2.4.1-dev01, cache cleared):** all 114 questions captured with no warnings, 14 figure sheets open; 0 auto-fixes, 0 flags; typed answers **12/12 PASS** (every `|` alternative). Cosmetic: white space under several exam-page images; the two-panel market/firm figure is small at phone width.
+- **Not done:** prod push of the whole 2024 exam (P1 + P2), subject-expert check ("administered price inflation" as a consumer-inflation type, the CITES/Rotterdam match items).
 
 ## Still open
 
@@ -341,7 +342,7 @@ Order followed (`VER-03`): prod `subjects` row (inactive, gated 2.4.0) → `push
   owner confirmed 2.5.0 is latest on 2026-10-14; what 2.5.0 added is not yet recorded in this repo. Check whether it changes
   any rule above (keyboards, presentations, image handling).
 - Remove the duplicate `Economics P1 Nov 2024 Eng-1.pdf`.
-- Next: emulator review of 2024 P2, then an owner-approved push of the whole 2024 exam (the 2025 exam is already in prod).
+- Next: an owner-approved push of the whole 2024 exam, P1 + P2 (the 2025 exam is already in prod).
 - Read the Q5/Q6 essay memos in full (all four papers) before writing the first essay lesson; only the rubric box and the
   topic lists were reviewed for this profile.
 - Verify 2025 P2 Q1.3 answers and the 2024 stimulus figures during Phase 1 of each lesson.
