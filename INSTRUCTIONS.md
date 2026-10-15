@@ -51,7 +51,7 @@ paper structure, and every genuinely subject-specific rule.
 | # | Layer | Load when |
 |---|-------|-----------|
 | 1 | `core/` | Always |
-| 2 | `shared/{doc}.md` | Each shared rule set the profile lists (`language-subjects.md` for a language subject; `setwork.md` for prescribed texts) |
+| 2 | `shared/{doc}.md` | Each shared rule set the profile lists (`language-subjects.md` for a language subject; `setwork.md` for prescribed texts; `closed-form-subjects.md` for a content-based subject marked on point lists/graphs/essays/calculations) |
 | 3 | `presentations/{type}.md` | For each presentation type the session authors (profile declares which are allowed) |
 | 4 | `subjects/{profile}.md` | The subject being authored (from Step 1) |
 
@@ -96,7 +96,7 @@ Record each resolution inline in the winning doc with a one-line
 | Path | What | Status |
 |------|------|--------|
 | `core/` | Always-loaded rules: question schema, authoring principles, MathText markup, AI explanations, upload pipeline skeleton, persistence contract | live |
-| `shared/` | Cross-subject rule sets loaded when a profile lists them: `language-subjects.md`, `setwork.md` | live |
+| `shared/` | Cross-subject rule sets loaded when a profile lists them: `language-subjects.md`, `setwork.md`, `closed-form-subjects.md` | live |
 | `presentations/` | One doc per presentation type: metadata/answer contracts, renderer contract (cites app code), validator coverage, worked examples | live |
 | `subjects/` | Subject×syllabus profiles — the subject-specific residue only | live |
 | `workflows/generate/` | Thin upload/review orchestrators (`review-paper.md` runs from the AMPM repo root) | live |
@@ -118,6 +118,7 @@ Record each resolution inline in the winning doc with a one-line
 | `AMPM-CONTENT-KEYBOARD-INPUT` | `core/keyboard-input.md` | new 2026-09-10; rewritten 2026-10-04 around per-question `keyboard_type` |
 | `AMPM-CONTENT-LANG` | `shared/language-subjects.md` | new 2026-10-10 — extracted from the English HL profile / `DESIGN-ENG-*` / upload-english appendix |
 | `AMPM-CONTENT-SETWORK` | `shared/setwork.md` | new 2026-10-10 — setwork capability, `english_texts`, text_key, picker, gating |
+| `AMPM-CONTENT-CLOSED-FORM` | `shared/closed-form-subjects.md` | new 2026-10-15 — extracted from the Economics/Business Studies/Life Sciences/History/Physics profiles while profiling Agricultural Sciences |
 | `AMPM-CONTENT-APP-VERSIONS` | `core/app-feature-versions.md` | new 2026-10-04 — per-exam app-version gating, derived minimum, feature→version table |
 
 AMPM keeps pointer stubs at the old paths under the same IDs, so pre-extraction
