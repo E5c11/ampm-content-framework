@@ -65,7 +65,7 @@ def draw(spec, out):
     xs = [right - (n_amt - 1 - i) * (amt_w + 0.08) for i in range(n_amt)]
 
     y = 0.12
-    ax.text(W / 2, y + 0.18, spec["title"], ha="center", va="center", fontsize=FS + 1, fontweight="bold", color=INK)
+    ax.text(W / 2, y + 0.18, spec["title"], ha="center", va="center", fontsize=min(FS + 1, (FS + 1) * 38 / max(len(spec["title"]), 1)), fontweight="bold", color=INK)
     y += 0.42
     if spec.get("subtitle"):
         ax.text(W / 2, y + 0.04, spec["subtitle"], ha="center", va="center", fontsize=FS - 2, color=INK)
