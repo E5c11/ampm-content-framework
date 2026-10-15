@@ -168,9 +168,9 @@ const questions = [
     "name": "Question 4",
     "question": "Urea is mixed into the feed of ruminants because rumen microbes can use it to make protein. What kind of feed ingredient is urea?",
     "metadata": [
+      "A fat-soluble vitamin supplement",
       "A non-protein nitrogen source",
       "A source of calcium for bone growth",
-      "A fat-soluble vitamin supplement",
       "A source of crude fibre and bulk",
       ""
     ],
