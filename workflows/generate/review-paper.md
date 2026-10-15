@@ -399,6 +399,37 @@ for an equivalent valid phrasing).
   wait never ends or the shell kills itself (exit 144). Use a bracket pattern (`pgrep -f "[n]ode scripts/review-capture.js"`) or kill
   by PID. A background capture is done when its log stops growing and the last lesson's screenshots exist.
 
+## Phase 5 addendum — `text` keyboard, multi-blank and alternatives (learned on Tourism 2025 Nov P1, 2026-10-15)
+
+`AMPM/scripts/review-capture-answers.js` types **one blank, via `maths_key_<char>` or the system field** only. It cannot answer a `text`-keyboard
+row (Tourism, Life Sciences, History …) or a two-blank row (`HH : MM`), and it tries only the first `|` alternative. Until the script is extended, a
+session needs a runner that does the following (Tourism used a scratchpad copy; none is committed):
+
+- **Detect the keyboard per blank:** any `text_key_*` tag → text keyboard; any `maths_key_*` → number/scientific; neither → no custom keyboard
+  (a `KEYBOARD-04` violation for a declared row — FLAG).
+- **Text keyboard keys:** `text_key_<UPPERCASE LETTER>`, `text_key_space`, `text_key_switch` (ABC ↔ 123 screen), `text_key_done` (submit). Digits and
+  punctuation need the `123` screen first. Marking lower-cases, so type uppercase freely.
+- **Multi-blank rows:** loop `question_fitb_input_0 … N-1`, tap each input, then type — the keyboard reopens per blank. Count blanks as the
+  `"[ ]"` elements of `metadata`.
+- **Every `|` alternative:** one run per alternative index, relaunching the lesson (`am force-stop` + deep link) and tapping `question_next_button` back
+  to the question each time, because a submitted question cannot be retyped.
+- **Submit:** `text_key_done` / `maths_key_done`, else `content-desc="Submit answer"`, else `question_submit_button`.
+- Verify the numbers by hand as well (time zones, forex): a PASS only proves the stored answer matches itself.
+
+**Selection types (`multiple_choice`, `multi_select`, `match`, `ordering`) are checked by data, not by tapping (decision 2026-10-15).** Confirm
+every `answer` value is verbatim in `metadata` (`SCHEMA-TYPE-02`, `MS-02`, `ORD-02`), each `match` pair resolves from the prefixes with unique right
+labels, and `ordering` metadata is stored scrambled. Driving the UI for these costs more review time than the defects it would find, because no
+keyboard or symbol is involved.
+
+**Rendering is always checked visually, in addition to any on-screen text dump.** An automated text dump (compare the manifest text with what the
+app shows — truncation, raw `_`/`^` markup, `[]` left as `[]`, stacked-fraction misrendering of `(a/b)`) is welcome and faster, but it does not
+replace reading the screenshots: layout, wrapping, overflow and image crops are only visible there, and past rendering bugs (Maths, Physics,
+Chemistry) were found only that way. Do not assume earlier renderer fixes cover a new subject or content shape.
+
+**Known app limitations noted, not review defects:** multi-select/match/ordering lists extend below the first view (use the `_scroll` shot); the
+capture does not record the installed build version — note `versionName` in the report yourself; a transient `null root node returned by
+UiTestAutomationBridge` can appear mid-capture (re-run that lesson only if its screenshots are wrong).
+
 ## Phase 6 — Write Report + Hand Off
 
 `temp/review/<paper>_<year>/report.md`: summary counts (reviewed / passed / auto-fixed /
@@ -424,4 +455,5 @@ reason, screenshot path, and suggested action.
 - [ ] Answerability verified for every `fitb`/`equation`/`steps` question (Phase 5, once
       built) — until then, note in the report that this paper's typed-answer questions
       have not had keyboard-level verification
-- [ ] Report written; flagged items handed to the human before any prod update
+- [ ] Typed rows on a `text` keyboard / with several blanks / with `|` alternatives answered per the Phase 5 addendum
+- [ ] Report written (with the dev build `versionName`); flagged items handed to the human before any prod update
