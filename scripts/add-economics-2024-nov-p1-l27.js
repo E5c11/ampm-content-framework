@@ -90,14 +90,14 @@ const questions = [
     "name": "Question 2",
     "question": "Why can a weaker rand lead to cost-push inflation?",
     "metadata": [
-      "Imported inputs such as crude oil cost more in rand",
+      "Foreign investors earn more on their investments",
       "Exports become cheaper for foreign buyers",
       "Tourists spend more in the country",
-      "Foreign investors earn more on their investments",
+      "Imported inputs such as oil cost more in rand",
       ""
     ],
     "answer": [
-      "Imported inputs such as crude oil cost more in rand",
+      "Imported inputs such as oil cost more in rand",
       "",
       "",
       "",
