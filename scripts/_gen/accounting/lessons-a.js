@@ -1,11 +1,19 @@
 'use strict';
 // Accounting 2025 Nov P1 — Question 1 (Company Financial Statements) lessons 1–6.
 const { mc, ms, mt, ord, fb, ex, fmt, blank } = require('./lib');
+const assert = require('assert');
+
+// statement row helpers (figures are rendered by render_statement.py)
+const H = (t, i = 0) => ({ k: 'head', c: [t], i });
+const LN = (t, a, i = 1) => ({ k: 'line', c: [t, a], i });
+const SUBT = (t, a, i = 0) => ({ k: 'sub', c: [t, a], i });
+const TOT = (t, a, i = 0) => ({ k: 'total', c: [t, a], i });
+const GAP = { k: 'gap' };
 
 const U_CFS = 'company_financial_statements';
 const SK = {
   stmt: 'complete_financial_statement', calc: 'calculate_accounting_amount', term: 'recall_accounting_term',
-  cls: 'classify_accounting_concept', app: 'apply_accounting_concept_to_scenario',
+  cls: 'classify_accounting_concept', app: 'apply_accounting_concept_to_scenario', int: 'interpret_financial_indicators',
 };
 
 module.exports = [
