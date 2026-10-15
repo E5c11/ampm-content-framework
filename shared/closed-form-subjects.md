@@ -6,7 +6,7 @@ related: [AMPM-CONTENT-DESIGN, AMPM-CONTENT-SCHEMA, AMPM-CONTENT-KEYBOARD-INPUT,
 tags: [content-based, closed-form, discursive, essay, graph, calculation, distractors, linked, keyboard]
 provenance: created 2026-10-15 by extracting the subject-agnostic rules that recur across `subjects/dbe-economics.md` (`DESIGN-ECON-02`–`08`),
   `dbe-business-studies.md` (`DESIGN-BUS-02`–`05`), `dbe-life-sciences.md` (`DESIGN-LIFE-02`–`04`), `dbe-history.md` (`DESIGN-HIST-02`),
-  `dbe-physics.md` / `dbe-chemistry.md` (`DESIGN-PHYS-03`) and `core/authoring-principles.md` (`DESIGN-MATH-02`/`04`), while profiling Agricultural Sciences
+  `dbe-physics.md` / `dbe-chemistry.md` (`DESIGN-PHYS-03`) and `core/authoring-principles.md` (`DESIGN-MATH-02`/`04`), while profiling Agricultural Sciences; `CLOSED-FIG-03` added 2026-10-15 while profiling Accounting
   (its profile would otherwise have been a sixth copy). Wording is the existing rules' wording, merged — the originals stay valid as aliases.
 ---
 
@@ -22,7 +22,7 @@ curriculum units, the subject's own formulas, its own confusable pairs).
 
 Load with `core/` and, for the relevant types, `presentations/`. Relational framing (`DESIGN-UNI-08`), the curriculum document (`DESIGN-UNI-09`),
 linked vs. independent lessons (`DESIGN-UNI-13`), answer-cue rules (`DESIGN-UNI-15`/`16`) and the index-0 / True-False tallies (`DESIGN-UNI-05`/`06`)
-stay in `core/` and apply on top. Procedural subjects (Maths, Math Lit, Physics, Chemistry) keep their own profiles; the **figure** and
+stay in `core/` and apply on top. Procedural subjects (Maths, Math Lit, Physics, Chemistry) and Accounting keep their own profiles; the **figure** and
 **calculation** rules below apply to them too.
 
 ### Applicability
@@ -161,6 +161,33 @@ same way: gametes of each parent (`multiple_choice`), offspring genotypes (`mult
   silently changes the memo answer.
 - `supplementary_material.type` is free-form — the client only renders the image. Reuse `"graph"`, `"diagram"`, `"table"`, `"structure"`,
   `"pedigree"`, `"gel"`; pick a name once and keep it.
+
+### `CLOSED-FIG-03` — A statement, table or ledger with lettered blanks: one figure, one `fitb`, at most three independent blanks
+
+`enforced_by: human-review` · was `DESIGN-ACC-01`–`03` (Accounting, 2026-10-15; owner pattern)
+
+The app has no table-entry presentation and does not need one. Where the paper asks the student to *complete* a grid (financial statement, ledger,
+reconciliation, results table, budget, itinerary costing), show the grid as a **generated figure** (`CLOSED-FIG-02`) with the cells to be found
+**highlighted and lettered A, B, C**, and answer them with one numeric `fitb`:
+
+```js
+question: "Calculate the three missing amounts (A, B and C) in the statement shown.",
+supplementary_material: { type: "table", label: "<the exam's own heading>", image_urls: ["<literal URL>"] },
+metadata: ["A = ", "[ ]", " B = ", "[ ]", " C = ", "[ ]"],
+answer: ["84740", "250000", "774500", "", ""],
+presentation: "fitb", keyboard_type: "standard_math"
+```
+
+- **Letters, not "block"/"box".** The highlight carries the letter inside it (readable without colour; single high-contrast fill, palette checked
+  with `validate_palette.js`), and the `metadata` labels repeat the letters.
+- **At most three blanks per `fitb`.** The schema allows five (`FITB-02`), but marking is all-or-nothing and does not say which blank failed, so more
+  blanks make a miss uninformative. One blank is fine and often best. `enforced_by: human-review`.
+- **Blanks are independent.** B is never computed from A (a slip in A would fail both with no signal). A figure that feeds the next goes in a later
+  question of a **linked** lesson (`DESIGN-UNI-13`). A balancing figure may be a blank only if everything it balances against is given.
+- **Anchor every blank**: show the surrounding figures so each blank has one defensible value (the same defect as consecutive `steps` blanks).
+- **Large grids are split by section**, one linked lesson per section, with the whole grid legible; if text is unreadable at phone width on the
+  emulator, crop the figure to the section. One generated grid may serve several questions, each lettering a different part.
+- Typed values are bare numbers (`CLOSED-FMT-01`, `CLOSED-KB-01`): no thousands space, `R`, `%`; negatives as `-`; units in the label.
 
 ## Calculations
 
