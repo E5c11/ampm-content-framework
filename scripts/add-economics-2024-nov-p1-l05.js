@@ -91,13 +91,13 @@ const questions = [
     "question": "How can strong competition between firms stimulate aggregate supply?",
     "metadata": [
       "Firms raise prices and produce less to protect profits",
-      "Firms become more efficient and innovative, so more is produced",
+      "Firms become more efficient and innovative",
       "Firms stop investing because rivals copy their ideas",
       "Fewer firms enter the market, so output stays the same",
       ""
     ],
     "answer": [
-      "Firms become more efficient and innovative, so more is produced",
+      "Firms become more efficient and innovative",
       "",
       "",
       "",
