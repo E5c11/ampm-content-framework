@@ -16,7 +16,7 @@ provenance: created 2026-10-15 by extracting the subject-agnostic rules that rec
 
 The app has **no free-text grading and no drawing input**. A DBE paper, however, is marked mostly against point lists, drawn graphs, essays and
 worked calculations. For any **content-based subject whose paper looks like that** — Economics, Business Studies, Life Sciences, History,
-Geography, Agricultural Sciences, and any later one of the same shape — the practice lessons convert each of those into questions the app can
+Geography, Agricultural Sciences, Tourism, and any later one of the same shape — the practice lessons convert each of those into questions the app can
 present and mark. These rules are the common core; a subject profile (`subjects/{profile}.md`) states only what differs (paper structure,
 curriculum units, the subject's own formulas, its own confusable pairs).
 
@@ -84,6 +84,25 @@ belong in the same lesson.
 
 Where the exam says "answer ANY N of M questions" they are graded as alternatives, not a cumulative set. A lesson must not assume, or refer to,
 another optional question's content (`DESIGN-UNI-10`).
+
+## Section A short-question formats
+
+### `CLOSED-A-01` — DBE Section A item formats → presentation
+
+`enforced_by: human-review` · extracted 2026-10-15 from Agricultural Sciences, Life Sciences, Economics and Tourism, which all print the same five formats
+
+| Section A format | Present as |
+|---|---|
+| A–D multiple choice (incl. "(i)–(iv) choose the CORRECT combination") | `multiple_choice`; prefer `multi_select` when the learning is "which of these apply" rather than the lettered-combo trick |
+| A only / B only / both / none | `multiple_choice` with those four fixed options (counts toward the index-0 tally — `DESIGN-UNI-06`) |
+| "Give ONE word/term" **from a printed list** | `multiple_choice` — the list (or a same-family subset) is the option set; typing it adds nothing |
+| "Give ONE word/term" with **no** list | `multiple_choice`/`multi_select`, or a single-term `fitb` only under `CLOSED-KB-01` |
+| "Choose the correct word(s) from those in brackets" | `multiple_choice` with the two bracket words as the options |
+| "Change the UNDERLINED word" | `multiple_choice` on the replacement (`CLOSED-KB-01` item 5) |
+| Column A ↔ lettered Column B (≤ 5 pairs) | `match`; if Column B is pictures, supply fresh images or text-described items — never the exam's own pictures |
+
+Never copy the exam's answer-lettering instruction ("write only the letter", "e.g. 1.1.21 D") into the stem. Section A mixes the later topics: cluster by
+topic to feed the Section B–E lessons (`DESIGN-UNI-10`).
 
 ## Essays and unmarked long answers
 
