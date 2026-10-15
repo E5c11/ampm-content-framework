@@ -15,6 +15,7 @@ are added. Entry point for consumption: `INSTRUCTIONS.md`.
 | `AMPM-CONTENT-AI-EXP` | `core/ai-explanation.md` | SCHEMA, DESIGN, PIPELINE, MATHTEXT |
 | `AMPM-CONTENT-PIPELINE` | `core/upload-pipeline.md` | SCHEMA, DESIGN, MATHTEXT, AI-EXP |
 | `AMPM-CONTENT-PERSISTENCE` | `core/persistence.md` | SCHEMA, PIPELINE |
+| `AMPM-CONTENT-SUBJECT-CATALOGUE` | `core/subject-catalogue.md` | PERSISTENCE, PIPELINE, APP-VERSIONS |
 
 ## shared/ (load when the profile lists them)
 

@@ -284,6 +284,7 @@ profile's additional checklist items. `enforced_by: human-review`
 - [ ] `sort_order` is correct and unique within the paper
 - [ ] `questions_count` matches the number of `questions` rows written
 - [ ] `is_published = true` on the lesson and every question (`PERSIST-05`)
+- [ ] The subject is in `GET /v1/content/subjects` (`hosted` is derived from published content, `CATALOGUE-01`); if not, walk the table in `core/subject-catalogue.md`
 - [ ] `lesson_tags` rows present, tag slugs name concepts (`PIPE-06`)
 - [ ] All `questions` rows exist with the correct `lesson_id`
 - [ ] Each question has non-null `unit_id`, `topic_id`, `subtopic_id`, and ≥1 `question_skills` row (`PIPE-08`)

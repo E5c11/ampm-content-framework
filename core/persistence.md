@@ -61,6 +61,9 @@ make the content permanently invisible. If a review/staging gate is ever wanted 
 separate `tools/publish-lesson.js` + a backend decision. `enforced_by: db-constraint`
 (NOT NULL default) + `human-review`.
 
+What publishing a lesson or question does to the *subject* (`subjects.hosted`, which decides
+whether `/subjects` returns it) is in `CATALOGUE-01` (`core/subject-catalogue.md`).
+
 ## Nullability rules (the contract this repo owns)
 
 **`PERSIST-01` — `metadata` is non-null, always.** The empty array is the legitimate
