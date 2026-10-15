@@ -57,13 +57,13 @@ const questions = [
     "question": "Which opening sentence would earn the introduction mark for an essay on the reasons for international trade?",
     "metadata": [
       "In this essay I will discuss demand and supply reasons for trade",
-      "International trade is the exchange of goods and services between countries",
+      "International trade is the exchange of goods and services",
       "Discuss in detail the reasons for international trade",
       "Trade is very important and everybody does it every day",
       ""
     ],
     "answer": [
-      "International trade is the exchange of goods and services between countries",
+      "International trade is the exchange of goods and services",
       "",
       "",
       "",
