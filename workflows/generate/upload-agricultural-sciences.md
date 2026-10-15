@@ -184,3 +184,7 @@ tool) are part of that step. Update the profile ledger and write a memory entry 
 - Rebalance MC positions with a deterministic pattern in the generator, then check the paper-level tally with the SQL query (it ended 0/30).
 - An isolated `(unit/unit)` in a stem renders as a stacked fraction — drop the unit from the stem (found in review, L16 Q1).
 - Review runner: `review-capture-answers.js` types digits only; for `text` rows use a copy that taps `text_key_<LETTER>` / `text_key_space` and submits with `text_key_done`.
+- **`match` columns must have unique labels (found 2026-10-15, P2 L6 Q3).** Two identical right-column labels (`Quantitative` twice) make the pairing ambiguous; check with a query
+  over `questions` where `presentation_id = 'match'`. Use `multi_select` for a two-category sort.
+- Check topic/tag ids against other subjects before creating them (global ids: `genetics_terminology`, `mutations` and `labour_productivity` already belonged to Life Sciences/Economics).
+- A calculation that must read values off a figure should not state them in the stem, and the figure's gridlines should land on the values (200-step axis for 1 000 / 1 800).

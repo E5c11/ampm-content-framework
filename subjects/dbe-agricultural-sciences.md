@@ -8,7 +8,7 @@ tags: [subject, agricultural-sciences, dbe, profile]
 
 # Subject Profile — DBE Agricultural Sciences (Papers 1 and 2)
 
-**Status (2026-10-15): `nov_p1` (2025) authored on dev and emulator-reviewed (ledger). Profiled from the Nov 2025 papers + memos, the Nov 2024 papers (structure only) and the CAPS document. P2 and 2024 not authored; nothing in prod.** **Load with this profile:** `shared/closed-form-subjects.md` (`AMPM-CONTENT-CLOSED-FORM`) — it carries the rules for discursive items, drawn
+**Status (2026-10-15): `nov_p1` and `nov_p2` (2025) authored on dev and emulator-reviewed (ledger). Profiled from the Nov 2025 papers + memos, the Nov 2024 papers (structure only) and the CAPS document. The 2024 papers are not authored; nothing in prod.** **Load with this profile:** `shared/closed-form-subjects.md` (`AMPM-CONTENT-CLOSED-FORM`) — it carries the rules for discursive items, drawn
 graphs/Punnett squares, generated figures, calculations, typed answers and formatting; this file records only what is specific to Agri.
 Closest existing profile: **Life Sciences** (same 150-mark A/B shell, same question-type mix, diagram-led, genetics identical in
 kind to Life Sciences P2). **Paper 2 Q2–Q3 additionally borrows from Business Studies** (marketing/management selection, "give TWO"
@@ -163,3 +163,19 @@ Vocabulary created on dev only (3 units, 28 topics, 7 `agri_*` subtopics, 8 skil
 - **Open:** floating "view diagram" button overlaps the last option on figure questions (known app bug, L2 Q1, L15, L16). Anything above 80% of the marks of
   a real sub-question that is only *partly* covered by practice (e.g. P1 4.4.1's six drawing marks) is taught through the decomposed items, not reproduced.
   **Not in prod** — push waits for 2.4.0 (`VER-08`); 2025 P2 is not authored, and the exam gate is per exam.
+
+**`nov_p2` (2025) — authored on dev and emulator-reviewed, 2026-10-15.** 21 lessons, 81 practice questions, 150/150 marks, scripts
+`scripts/add-agricultural-sciences-2025-nov-p2-l01…l21.js`, one commit per lesson. Section A clustered by topic (L1–3 marketing and planning, L4–5
+production factors/risk/labour law, L6–7 genetics terms), then Q2 (L8–11), Q3 (L12–16), Q4 (L17–21). 21 image sets under
+`exam_papers/dbe/agricultural_sciences/2025/nov_p2/`; 3 generated figures under `question_supplementary/…/q10|q13|q15/` (price and demand graph, contract
+extract, cash flow record — fresh data, a single shared axis, palette validated).
+- **Mix:** 33 `multiple_choice`, 18 `multi_select`, 16 `match`, 12 `fitb`, 2 `ordering`. MC index-0: 0/33. `audit-answer-cues.js`: no findings.
+- **Keyboards:** 8 `standard_math` (cash flow, income, net worth, appreciation, expected offspring) + 4 `text` (`price fluctuation|price fluctuations`, `genetics`,
+  `aneuploidy`, `locus`). Gate shared with P1: the 2025 exam is 2.4.0 on dev.
+- **Decomposed:** the two drawn items (2.5.1 graph → criteria `multi_select`, income calculation, factor, channels; 4.2.1 Punnett square → gametes,
+  genotypes, fraction and expected count), every "give TWO"/explain item, Section A 1.4 (`multiple_choice`/`text`), and the exam's mixed-pair items.
+- **Emulator review (Phases 1–5):** all 81 captured and read. One defect fixed: L6 Q3 was a `match` with duplicate right-column labels (Quantitative ×2, Qualitative ×2) —
+  ambiguous pairing, so it became a `multi_select`. A programmatic check of all 28 matches in both papers found no other duplicates. Phase 5: 12/12 typed answers PASS (both
+  alternatives for the "price fluctuation" row). A rule is added to the upload doc: never put two identical labels in one `match` column.
+- **Open:** floating "view diagram" button overlap (L10, L13, L15); nothing in prod; prod push waits for 2.4.0 and covers P1 + P2 together (`VER-08`); the prod `subjects` row
+  and vocabulary are still dev-only.
