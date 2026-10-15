@@ -88,10 +88,10 @@ const questions = [
     "paper": "nov_p1",
     "type": "interpretation",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Share information for 2026",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q16/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q16/statement_1.png"
       ]
     }
   },
@@ -128,10 +128,10 @@ const questions = [
     "paper": "nov_p1",
     "type": "reading",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Share information for 2026",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q16/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q16/statement_1.png"
       ]
     }
   },

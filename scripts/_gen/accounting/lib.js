@@ -81,7 +81,7 @@ function urls(order, nq, nm) {
 }
 
 function figUrl(order, idx) {
-  return `https://media-dev.askmoreprepmore.app/question_supplementary/${SUBJECT}/${YEAR}/${PAPER}/q${order}/table_${idx + 1}.png`;
+  return `https://media-dev.askmoreprepmore.app/question_supplementary/${SUBJECT}/${YEAR}/${PAPER}/q${order}/statement_${idx + 1}.png`;
 }
 
 // ── statement figure helpers (CLOSED-FIG-03) ─────────────────────────────────
@@ -95,7 +95,12 @@ function writeSpecs(L, root) {
   fs.mkdirSync(dir, { recursive: true });
   (L.figs || []).forEach((spec, i) => {
     if (!spec.title || !spec.rows || !spec.cols) throw new Error(`Lesson ${L.order} figure ${i}: needs title, cols, rows`);
-    fs.writeFileSync(path.join(dir, `q${String(L.order).padStart(2, '0')}_table_${i + 1}.json`), JSON.stringify(spec, null, 1));
+    let out = spec;
+    if (i === 0 && L.info) {
+      const rows = [{ k: 'band', c: ['INFORMATION'] }, ...L.info.map((t, j) => ({ k: 'text', c: [`${j + 1}. ${t}`] })), { k: 'gap' }, { k: 'band', c: ['STATEMENT'] }, ...spec.rows];
+      out = { ...spec, rows };
+    }
+    fs.writeFileSync(path.join(dir, `q${String(L.order).padStart(2, '0')}_table_${i + 1}.json`), JSON.stringify(out, null, 1));
   });
 }
 
@@ -106,7 +111,7 @@ function emit(L) {
     if (q._fig !== undefined) {
       const spec = L.figs[q._fig];
       if (!spec) throw new Error(`Lesson ${L.order}: question references missing figure ${q._fig}`);
-      q.supplementary_material = { type: 'table', label: spec.title, image_urls: [figUrl(L.order, q._fig)] };
+      q.supplementary_material = { type: 'statement', label: spec.title, image_urls: [figUrl(L.order, q._fig)] };
       delete q._fig;
     }
   }

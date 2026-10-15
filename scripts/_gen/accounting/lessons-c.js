@@ -76,6 +76,7 @@ module.exports = [
   // ── L14 ── 3.2.3 share repurchase by the CFO ────────────────────────────────
   {
     order: 14, name: 'Question 3.2.3: Share repurchase and shareholding', marks: 10, qpages: 4, mpages: 1,
+    info: ['The CFO persuaded the board to repurchase 600 000 shares at R4,20 each.', 'The market price of a share on the JSE was R3,80.', 'A is the CFO\'s % shareholding (no % sign); B is the extra amount in rand.'],
     covers: 'Question 3.2.3 — the effect of a share repurchase on a shareholder\'s % holding, the concerns of the internal auditor, and the extra amount paid compared with the JSE price.',
     tags: ['share_repurchase_effect', 'percentage_shareholding', 'corporate_ethics'],
     figs: [{
@@ -89,7 +90,7 @@ module.exports = [
       ],
     }],
     qs: [
-      fb('The CFO of Marlin Ltd persuaded the board to repurchase 600 000 shares from a shareholder at R4,20 each. The market price on the JSE was R3,80. Calculate A (the CFO\'s % shareholding after the repurchase, without the % sign) and B (the extra amount paid compared with the JSE price).',
+      fb('Use the information in the figure to calculate the missing amounts A and B in the statement.',
         ['A = ', '[ ]', '   B = ', '[ ]'], ['50', '240000'], 'standard_math',
         { fig: 0, unit: U, topic: 'share_repurchase_and_ethics', subtopic: 'acc_calculation', skill: SK.calc, diff: 4, w: 3, type: 'calc',
           clues: '- The CFO\'s number of shares does not change.\n- The extra amount is paid on every share repurchased.' }),

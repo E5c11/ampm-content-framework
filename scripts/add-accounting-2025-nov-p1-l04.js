@@ -56,7 +56,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "Closing stock was recorded as R1 130 000, but stock costing R8 200 was damaged and must be written off. Debtors' control is R520 000 and includes a debtor who overpaid by R6 000; this credit balance must be transferred to the creditors ledger. The provision for bad debts must be 5% of the outstanding debtors. Commission of R4 200 is still owed to the company and SARS owes it a refund of R18 000. Calculate A and B.",
+    "question": "Use the information in the figure to calculate the missing amounts A and B in the statement.",
     "metadata": [
       "A = ",
       "[ ]",
@@ -89,10 +89,10 @@ const questions = [
     "type": "calc",
     "clues": "- Take the overpaid debtor out before calculating the provision.\n- Add every amount owed to the company and deduct the provision.",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Statement of Financial Position (extract): Roan Ltd",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q4/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q4/statement_1.png"
       ]
     }
   },

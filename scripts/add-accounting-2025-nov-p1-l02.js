@@ -56,7 +56,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "The Ordinary Share Capital note of Kestrel Ltd is shown. The shares in issue at the end of the year and the amounts for the repurchase are correct. A is a number of shares and B is an amount in rand. Calculate the missing amounts.",
+    "question": "Use the information in the figure to calculate the missing amounts A and B in the statement.",
     "metadata": [
       "A = ",
       "[ ]",
@@ -89,10 +89,10 @@ const questions = [
     "type": "calc",
     "clues": "- Work backwards from the closing balances.\n- Add back what was repurchased and subtract what was issued.",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Ordinary Share Capital Note: Kestrel Ltd",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q2/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q2/statement_1.png"
       ]
     }
   },

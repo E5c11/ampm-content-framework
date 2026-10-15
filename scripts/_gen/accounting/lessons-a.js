@@ -20,6 +20,7 @@ module.exports = [
   // ── L02 ── 1.2 Ordinary share capital note (pilot) ──────────────────────────
   {
     order: 2, name: 'Question 1.2: Ordinary share capital note', marks: 8, qpages: 3, mpages: 2,
+    info: ['400 000 new shares were issued during the year.', '100 000 shares were repurchased at the average share price (ASP) of R5,80.', 'The closing balances in the note are correct.', 'A is a number of shares; B is an amount in rand.'],
     covers: 'Question 1.2 — the Ordinary Share Capital note: shares in issue at the beginning, shares issued, shares repurchased at the average share price (ASP), and shares in issue at the end.',
     tags: ['ordinary_share_capital_note', 'share_repurchase', 'average_share_price'],
     figs: [
@@ -36,7 +37,7 @@ module.exports = [
       },
     ],
     qs: [
-      fb('The Ordinary Share Capital note of Kestrel Ltd is shown. The shares in issue at the end of the year and the amounts for the repurchase are correct. A is a number of shares and B is an amount in rand. Calculate the missing amounts.',
+      fb('Use the information in the figure to calculate the missing amounts A and B in the statement.',
         ['A = ', '[ ]', '   B = ', '[ ]'], ['1600000', '2800000'], 'standard_math',
         { fig: 0, unit: U_CFS, topic: 'share_capital_note', subtopic: 'acc_statement_completion', skill: SK.stmt, diff: 3, w: 3, type: 'calc',
           clues: '- Work backwards from the closing balances.\n- Add back what was repurchased and subtract what was issued.' }),

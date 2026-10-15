@@ -56,7 +56,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "3 000 shares were repurchased at 25% more than the average share price of R8 per share. The loan was R1 900 000 at the beginning of the year and R1 640 000 at the end. Calculate A and B as negative numbers.",
+    "question": "Use the information in the figure to calculate the missing amounts A and B in the statement.",
     "metadata": [
       "A = ",
       "[ ]",
@@ -89,10 +89,10 @@ const questions = [
     "type": "calc",
     "clues": "- The price paid is above the average share price.\n- A smaller loan means cash was repaid.",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Cash Flow Statement (extract): Pike Ltd",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q10/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q10/statement_1.png"
       ]
     }
   },

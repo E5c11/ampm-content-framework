@@ -43,12 +43,14 @@ def draw(spec, out):
             wrapped.append([]); total_rows += 0.5; continue
         text = r["c"][0] if r.get("c") else ""
         indent = 0.2 * r.get("i", 0)
-        width_chars = max(8, int((label_w - indent) / (CHAR_W * FS)))
+        full = r.get("k") in ("text", "band")
+        width_chars = max(8, int((W - 0.4 - indent) / (0.0064 * FS)) if full else int((label_w - indent) / (CHAR_W * FS)))
         lines = textwrap.wrap(text, width_chars) or [""]
         wrapped.append(lines)
-        total_rows += 1 + 0.62 * (len(lines) - 1)
+        total_rows += (0.19 * len(lines) + 0.1) / ROW_H if r.get('k') == 'text' else 1 + 0.62 * (len(lines) - 1)
     title_h = 0.55 + (0.3 if spec.get("subtitle") else 0)
-    h = title_h + ROW_H * (total_rows + 1) + 0.25
+    has_hdr = not (rows and rows[0].get('k') == 'band')
+    h = title_h + ROW_H * (total_rows + (1 if has_hdr else 0)) + 0.25
     fig = plt.figure(figsize=(W, h), dpi=220)
     ax = fig.add_axes([0, 0, 1, 1])
     ax.set_xlim(0, W)
@@ -68,12 +70,13 @@ def draw(spec, out):
     if spec.get("subtitle"):
         ax.text(W / 2, y + 0.04, spec["subtitle"], ha="center", va="center", fontsize=FS - 2, color=INK)
         y += 0.3
-    # header band
-    ax.add_patch(plt.Rectangle((0.06, y), W - 0.12, ROW_H, color=HEAD_BG, lw=0))
-    ax.text(label_x, y + ROW_H / 2, cols[0], ha="left", va="center", fontsize=FS - 1, fontweight="bold", color=INK)
-    for xi, name in zip(xs, cols[1:]):
-        ax.text(xi, y + ROW_H / 2, name, ha="right", va="center", fontsize=FS - 1, fontweight="bold", color=INK)
-    y += ROW_H
+    # header band (skipped when the figure opens with an INFORMATION band)
+    if has_hdr:
+        ax.add_patch(plt.Rectangle((0.06, y), W - 0.12, ROW_H, color=HEAD_BG, lw=0))
+        ax.text(label_x, y + ROW_H / 2, cols[0], ha="left", va="center", fontsize=FS - 1, fontweight="bold", color=INK)
+        for xi, name in zip(xs, cols[1:]):
+            ax.text(xi, y + ROW_H / 2, name, ha="right", va="center", fontsize=FS - 1, fontweight="bold", color=INK)
+        y += ROW_H
 
     for r, lines in zip(rows, wrapped):
         k = r.get("k", "line")
@@ -82,7 +85,16 @@ def draw(spec, out):
         if k == "gap":
             y += ROW_H * 0.5
             continue
-        row_h = ROW_H * (1 + 0.62 * (len(lines) - 1))
+        row_h = (0.19 * len(lines) + 0.1) if k == "text" else ROW_H * (1 + 0.62 * (len(lines) - 1))
+        if k == "band":
+            ax.add_patch(plt.Rectangle((0.06, y), W - 0.12, ROW_H, color=HEAD_BG, lw=0))
+            ax.text(label_x, y + ROW_H / 2, cells[0], ha="left", va="center", fontsize=FS - 1, fontweight="bold", color=INK)
+            y += ROW_H
+            continue
+        if k == "text":
+            ax.text(label_x + indent, y + row_h / 2, "\n".join(lines), ha="left", va="center", fontsize=FS - 1, color=INK, linespacing=1.2)
+            y += row_h
+            continue
         weight = "bold" if k in ("sub", "total", "head") else "normal"
         ax.text(label_x + indent, y + row_h / 2, "\n".join(lines), ha="left", va="center", fontsize=FS, fontweight=weight, color=INK,
                 linespacing=1.15)

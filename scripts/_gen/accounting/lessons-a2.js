@@ -71,6 +71,7 @@ module.exports = [
   // ── L03 ── 1.3 SOFP: non-current assets and the fixed deposit ───────────────
   {
     order: 3, name: 'Question 1.3: Statement of Financial Position — assets', marks: 4, qpages: 3, mpages: 2,
+    info: ['25% of the fixed deposit with Eden Bank matures within the next financial year; this current portion is shown.', 'The rest of the deposit matures in 2029.'],
     covers: 'Question 1.3 (assets) — the fixed deposit split into current and non-current portions and the total of current assets.',
     tags: ['statement_of_financial_position', 'fixed_deposit', 'current_and_non_current_assets'],
     figs: [{
@@ -89,7 +90,7 @@ module.exports = [
       ],
     }],
     qs: [
-      fb('Eden Ltd has a fixed deposit with Eden Bank. 25% of the deposit matures within the next financial year and the rest matures in 2029. The current portion is shown. Calculate the missing amounts A and B.',
+      fb('Use the information in the figure to calculate the missing amounts A and B in the statement.',
         ['A = ', '[ ]', '   B = ', '[ ]'], [String(ncFD), String(curTot)], 'standard_math',
         { fig: 0, unit: U, topic: 'statement_of_financial_position', subtopic: 'acc_statement_completion', skill: SK.stmt, diff: 3, w: 3, type: 'calc',
           clues: '- The current portion is 25% of the whole deposit.\n- Only the part maturing after 12 months is non-current.' }),
@@ -115,6 +116,7 @@ module.exports = [
   // ── L04 ── 1.3 SOFP: inventories and trade and other receivables ────────────
   {
     order: 4, name: 'Question 1.3: Statement of Financial Position — current assets', marks: 8, qpages: 3, mpages: 2,
+    info: ['Closing stock was recorded as R1 130 000, but stock costing R8 200 was damaged and must be written off.', 'Debtors\' control is R520 000 and includes a debtor who overpaid by R6 000. Transfer this credit balance to the creditors ledger.', 'The provision for bad debts must be 5% of the outstanding debtors.', 'Commission of R4 200 is still owed to the company.', 'SARS owes the company a refund of R18 000.'],
     covers: 'Question 1.3 (current assets) — inventories after the stock correction, and trade and other receivables with the debtor transfer, the provision for bad debts, accrued income and the SARS refund.',
     tags: ['trade_and_other_receivables', 'provision_for_bad_debts', 'statement_of_financial_position'],
     figs: [{
@@ -127,7 +129,7 @@ module.exports = [
       ],
     }],
     qs: [
-      fb('Closing stock was recorded as R1 130 000, but stock costing R8 200 was damaged and must be written off. Debtors\' control is R520 000 and includes a debtor who overpaid by R6 000; this credit balance must be transferred to the creditors ledger. The provision for bad debts must be 5% of the outstanding debtors. Commission of R4 200 is still owed to the company and SARS owes it a refund of R18 000. Calculate A and B.',
+      fb('Use the information in the figure to calculate the missing amounts A and B in the statement.',
         ['A = ', '[ ]', '   B = ', '[ ]'], [String(invCorr), String(recv)], 'standard_math',
         { fig: 0, unit: U, topic: 'statement_of_financial_position', subtopic: 'acc_statement_completion', skill: SK.stmt, diff: 4, w: 3, type: 'calc',
           clues: '- Take the overpaid debtor out before calculating the provision.\n- Add every amount owed to the company and deduct the provision.' }),
@@ -154,6 +156,7 @@ module.exports = [
   // ── L05 ── 1.3 SOFP: shareholders' equity ───────────────────────────────────
   {
     order: 5, name: 'Question 1.3: Statement of Financial Position — equity', marks: 10, qpages: 3, mpages: 2,
+    info: ['Net profit after tax was R3 360 000.', 'The % return on average shareholders\' equity was 28%.', 'Shareholders\' equity at the beginning of the year was R10 500 000.'],
     covers: 'Question 1.3 (equity) — closing shareholders\' equity found from the % return on average shareholders\' equity, and the retained income.',
     tags: ['shareholders_equity', 'return_on_average_equity', 'retained_income'],
     figs: [{
@@ -170,7 +173,7 @@ module.exports = [
         ['Closing equity = R ', '[ ]'], [String(closeShe)], 'standard_math',
         { unit: U, topic: 'shareholders_equity', subtopic: 'acc_calculation', skill: SK.calc, diff: 4, w: 3, type: 'calc',
           clues: '- Use the return on AVERAGE equity first, then work out the closing figure.' }),
-      fb('The Statement of Financial Position of Tern Ltd is shown. Calculate the missing retained income, A.',
+      fb('Use the information in the figure to calculate the missing amounts A in the statement.',
         ['A = ', '[ ]'], [String(ri)], 'standard_math',
         { fig: 0, unit: U, topic: 'shareholders_equity', subtopic: 'acc_statement_completion', skill: SK.stmt, diff: 2, w: 2, type: 'calc' }),
       mc('Which formula is used to calculate the % return on average shareholders\' equity?',
@@ -192,6 +195,7 @@ module.exports = [
   // ── L06 ── 1.3 SOFP: liabilities ────────────────────────────────────────────
   {
     order: 6, name: 'Question 1.3: Statement of Financial Position — liabilities', marks: 14, qpages: 3, mpages: 2,
+    info: ['The mortgage loan balance is R2 400 000.', 'Fixed monthly repayments of R30 000, including interest, continue next year.', 'Interest for the next financial year is expected to be R180 000.'],
     covers: 'Question 1.3 (liabilities) — the mortgage loan split into current and non-current portions, trade and other payables, shareholders for dividends and the bank overdraft.',
     tags: ['mortgage_loan', 'current_portion_of_loan', 'shareholders_for_dividends'],
     figs: [{
@@ -207,7 +211,7 @@ module.exports = [
       ],
     }],
     qs: [
-      fb('The mortgage loan balance is R2 400 000. Fixed monthly repayments of R30 000, including interest, continue for the next year. Interest for the next financial year is expected to be R180 000. Calculate the missing amounts A and B.',
+      fb('Use the information in the figure to calculate the missing amounts A and B in the statement.',
         ['A = ', '[ ]', '   B = ', '[ ]'], [String(ncLoan), String(curLoan)], 'standard_math',
         { fig: 0, unit: U, topic: 'statement_of_financial_position', subtopic: 'acc_statement_completion', skill: SK.stmt, diff: 4, w: 3, type: 'calc',
           clues: '- The current portion is the capital repaid within the next year.\n- Repayments include interest.' }),

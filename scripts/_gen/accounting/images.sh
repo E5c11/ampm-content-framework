@@ -14,5 +14,5 @@ FIGS=$(ls temp/images/accounting/2025/nov_p1/specs/q${NN}_table_*.json 2>/dev/nu
 if [ -n "$FIGS" ]; then
   python3 scripts/_gen/accounting/render_statement.py temp/images/accounting/2025/nov_p1/specs temp/images/accounting/2025/nov_p1/figs >/dev/null
   FILES=$(for f in $FIGS; do echo "temp/images/accounting/2025/nov_p1/figs/$(basename $f).png"; done | paste -sd, -)
-  node tools/upload-question-supplementary.js --subject accounting --year 2025 --paper nov_p1 --order "$O" --type table --files "$FILES" | grep "✓" | sed 's/^/figure: /'
+  node tools/upload-question-supplementary.js --subject accounting --year 2025 --paper nov_p1 --order "$O" --type statement --files "$FILES" | grep "✓" | sed 's/^/figure: /'
 fi

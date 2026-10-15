@@ -40,6 +40,7 @@ module.exports = [
   // ── L07 ── 2.1 change in receivables / payables ─────────────────────────────
   {
     order: 7, name: 'Question 2.1: Change in receivables and payables', marks: 7, qpages: 3, mpages: 2,
+    info: ['Debtors\' control: R840 000 (2026) and R560 000 (2025).', 'Creditors\' control: R410 000 and R355 000.', 'Accrued expenses: R22 000 and nil.', 'Shareholders for dividends: R90 000 and R81 000.', 'Show an outflow of cash as a negative number.'],
     covers: 'Question 2.1 — the changes in receivables and payables in the Reconciliation of Profit before Taxation and Cash Generated from Operations note, with inflow or outflow.',
     tags: ['cash_generated_from_operations', 'change_in_receivables', 'change_in_payables'],
     figs: [{
@@ -55,7 +56,7 @@ module.exports = [
       ],
     }],
     qs: [
-      fb('Debtors\' control was R840 000 (2026) and R560 000 (2025). Creditors\' control was R410 000 and R355 000. Accrued expenses were R22 000 and nil. Shareholders for dividends were R90 000 and R81 000. Calculate A and B, showing an outflow of cash as a negative number.',
+      fb('Use the information in the figure to calculate the missing amounts A and B in the statement.',
         ['A = ', '[ ]', '   B = ', '[ ]'], [String(dChg), String(pChg)], 'standard_math',
         { fig: 0, unit: U_CF, topic: 'cash_generated_from_operations', subtopic: 'acc_statement_completion', skill: SK.stmt, diff: 4, w: 3, type: 'calc',
           clues: '- Compare this year\'s balances with last year\'s.\n- Payables here are creditors and accrued expenses only.' }),
@@ -82,6 +83,7 @@ module.exports = [
   // ── L08 ── 2.2 CFS operating activities ─────────────────────────────────────
   {
     order: 8, name: 'Question 2.2: Cash flow statement — operating activities', marks: 8, qpages: 3, mpages: 2,
+    info: ['The tax expense was R120 000.', 'SARS: income tax was a receivable of R8 000 at the beginning and a payable of R14 000 at the end.', 'An interim dividend of R120 000 was paid.', 'Shareholders for dividends: R81 000 at the beginning and R90 000 at the end.', 'Show an outflow of cash as a negative number.'],
     covers: 'Question 2.2 (operating) — taxation paid and dividends paid in the Cash Flow Statement.',
     tags: ['company_cash_flow_statement', 'taxation_paid', 'dividends_paid'],
     figs: [{
@@ -95,7 +97,7 @@ module.exports = [
       ],
     }],
     qs: [
-      fb('The tax expense was R120 000. SARS: income tax was a receivable of R8 000 at the beginning and a payable of R14 000 at the end. An interim dividend of R120 000 was paid. Shareholders for dividends were R81 000 at the beginning and R90 000 at the end. Calculate A and B as negative numbers.',
+      fb('Use the information in the figure to calculate the missing amounts A and B in the statement.',
         ['A = ', '[ ]', '   B = ', '[ ]'], [String(-taxPaid), String(-divPaid)], 'standard_math',
         { fig: 0, unit: U_CF, topic: 'cash_flow_operating_activities', subtopic: 'acc_statement_completion', skill: SK.stmt, diff: 4, w: 3, type: 'calc',
           clues: '- Last year\'s final dividend is paid this year.\n- A receivable and a payable at SARS work in opposite directions.' }),
@@ -121,6 +123,7 @@ module.exports = [
   // ── L09 ── 2.2 CFS investing activities ─────────────────────────────────────
   {
     order: 9, name: 'Question 2.2: Cash flow statement — investing activities', marks: 8, qpages: 3, mpages: 2,
+    info: ['Vehicles at cost: R1 800 000 (2026) and R1 500 000 (2025). No vehicles were sold.', 'A machine with a cost of R80 000 and a carrying value of R31 000 on 1 March 2025 was sold for cash at carrying value on 31 July 2025.', 'Equipment is depreciated at 12% p.a. on cost.', 'Show an outflow of cash as a negative number.'],
     covers: 'Question 2.2 (investing) — fixed assets purchased and the sale of a fixed asset at carrying value.',
     tags: ['company_cash_flow_statement', 'fixed_assets_purchased', 'sale_of_fixed_assets'],
     figs: [{
@@ -132,7 +135,7 @@ module.exports = [
       ],
     }],
     qs: [
-      fb('Vehicles at cost were R1 800 000 (2026) and R1 500 000 (2025) and none were sold. An old machine with a cost of R80 000 and a carrying value of R31 000 on 1 March 2025 was sold for cash at carrying value on 31 July 2025. Equipment is depreciated at 12% p.a. on cost. Calculate A (an outflow is negative) and B.',
+      fb('Use the information in the figure to calculate the missing amounts A and B in the statement.',
         ['A = ', '[ ]', '   B = ', '[ ]'], [String(-veh), String(cvSale)], 'standard_math',
         { fig: 0, unit: U_CF, topic: 'cash_flow_investing_activities', subtopic: 'acc_statement_completion', skill: SK.stmt, diff: 4, w: 3, type: 'calc',
           clues: '- Depreciate the machine up to the date it was sold.\n- It was sold at its carrying value.' }),
@@ -159,6 +162,7 @@ module.exports = [
   // ── L10 ── 2.2 CFS financing activities and cash at end ─────────────────────
   {
     order: 10, name: 'Question 2.2: Cash flow statement — financing and closing cash', marks: 7, qpages: 3, mpages: 2,
+    info: ['3 000 shares were repurchased at 25% more than the average share price of R8 per share.', 'The loan was R1 900 000 at the beginning and R1 640 000 at the end of the year.', 'Show an outflow of cash as a negative number.'],
     covers: 'Question 2.2 (financing) — shares repurchased, the change in the loan, the net change in cash and the closing cash and cash equivalents.',
     tags: ['company_cash_flow_statement', 'financing_activities', 'cash_and_cash_equivalents'],
     figs: [{
@@ -171,7 +175,7 @@ module.exports = [
       ],
     }],
     qs: [
-      fb('3 000 shares were repurchased at 25% more than the average share price of R8 per share. The loan was R1 900 000 at the beginning of the year and R1 640 000 at the end. Calculate A and B as negative numbers.',
+      fb('Use the information in the figure to calculate the missing amounts A and B in the statement.',
         ['A = ', '[ ]', '   B = ', '[ ]'], [String(-repo), String(loanChg)], 'standard_math',
         { fig: 0, unit: U_CF, topic: 'cash_flow_financing_activities', subtopic: 'acc_statement_completion', skill: SK.stmt, diff: 4, w: 3, type: 'calc',
           clues: '- The price paid is above the average share price.\n- A smaller loan means cash was repaid.' }),

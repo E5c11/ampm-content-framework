@@ -56,7 +56,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "The mortgage loan balance is R2 400 000. Fixed monthly repayments of R30 000, including interest, continue for the next year. Interest for the next financial year is expected to be R180 000. Calculate the missing amounts A and B.",
+    "question": "Use the information in the figure to calculate the missing amounts A and B in the statement.",
     "metadata": [
       "A = ",
       "[ ]",
@@ -89,10 +89,10 @@ const questions = [
     "type": "calc",
     "clues": "- The current portion is the capital repaid within the next year.\n- Repayments include interest.",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Statement of Financial Position (extract): Wren Ltd",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q6/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q6/statement_1.png"
       ]
     }
   },

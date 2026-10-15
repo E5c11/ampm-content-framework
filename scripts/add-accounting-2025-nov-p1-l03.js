@@ -56,7 +56,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "Eden Ltd has a fixed deposit with Eden Bank. 25% of the deposit matures within the next financial year and the rest matures in 2029. The current portion is shown. Calculate the missing amounts A and B.",
+    "question": "Use the information in the figure to calculate the missing amounts A and B in the statement.",
     "metadata": [
       "A = ",
       "[ ]",
@@ -89,10 +89,10 @@ const questions = [
     "type": "calc",
     "clues": "- The current portion is 25% of the whole deposit.\n- Only the part maturing after 12 months is non-current.",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Statement of Financial Position (extract): Eden Ltd",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q3/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q3/statement_1.png"
       ]
     }
   },

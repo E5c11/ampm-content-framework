@@ -56,7 +56,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "Debtors' control was R840 000 (2026) and R560 000 (2025). Creditors' control was R410 000 and R355 000. Accrued expenses were R22 000 and nil. Shareholders for dividends were R90 000 and R81 000. Calculate A and B, showing an outflow of cash as a negative number.",
+    "question": "Use the information in the figure to calculate the missing amounts A and B in the statement.",
     "metadata": [
       "A = ",
       "[ ]",
@@ -89,10 +89,10 @@ const questions = [
     "type": "calc",
     "clues": "- Compare this year's balances with last year's.\n- Payables here are creditors and accrued expenses only.",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Cash generated from operations (extract): Pike Ltd",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q7/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q7/statement_1.png"
       ]
     }
   },

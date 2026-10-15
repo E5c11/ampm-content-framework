@@ -56,7 +56,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "The tax expense was R120 000. SARS: income tax was a receivable of R8 000 at the beginning and a payable of R14 000 at the end. An interim dividend of R120 000 was paid. Shareholders for dividends were R81 000 at the beginning and R90 000 at the end. Calculate A and B as negative numbers.",
+    "question": "Use the information in the figure to calculate the missing amounts A and B in the statement.",
     "metadata": [
       "A = ",
       "[ ]",
@@ -89,10 +89,10 @@ const questions = [
     "type": "calc",
     "clues": "- Last year's final dividend is paid this year.\n- A receivable and a payable at SARS work in opposite directions.",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Cash Flow Statement (extract): Pike Ltd",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q8/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q8/statement_1.png"
       ]
     }
   },

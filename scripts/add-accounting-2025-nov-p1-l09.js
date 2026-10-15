@@ -56,7 +56,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "Vehicles at cost were R1 800 000 (2026) and R1 500 000 (2025) and none were sold. An old machine with a cost of R80 000 and a carrying value of R31 000 on 1 March 2025 was sold for cash at carrying value on 31 July 2025. Equipment is depreciated at 12% p.a. on cost. Calculate A (an outflow is negative) and B.",
+    "question": "Use the information in the figure to calculate the missing amounts A and B in the statement.",
     "metadata": [
       "A = ",
       "[ ]",
@@ -89,10 +89,10 @@ const questions = [
     "type": "calc",
     "clues": "- Depreciate the machine up to the date it was sold.\n- It was sold at its carrying value.",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Cash Flow Statement (extract): Pike Ltd",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q9/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q9/statement_1.png"
       ]
     }
   },

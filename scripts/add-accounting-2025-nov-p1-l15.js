@@ -87,10 +87,10 @@ const questions = [
     "paper": "nov_p1",
     "type": "interpretation",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Financial indicators for 2026",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q15/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q15/statement_1.png"
       ]
     }
   },
@@ -128,10 +128,10 @@ const questions = [
     "paper": "nov_p1",
     "type": "interpretation",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Financial indicators for 2026",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q15/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q15/statement_1.png"
       ]
     }
   },
@@ -168,10 +168,10 @@ const questions = [
     "paper": "nov_p1",
     "type": "calc",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Financial indicators for 2026",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q15/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q15/statement_1.png"
       ]
     }
   }

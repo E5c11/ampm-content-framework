@@ -89,7 +89,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "The Statement of Financial Position of Tern Ltd is shown. Calculate the missing retained income, A.",
+    "question": "Use the information in the figure to calculate the missing amounts A in the statement.",
     "metadata": [
       "A = ",
       "[ ]"
@@ -119,10 +119,10 @@ const questions = [
     "paper": "nov_p1",
     "type": "calc",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Statement of Financial Position (extract): Tern Ltd",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q5/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q5/statement_1.png"
       ]
     }
   },

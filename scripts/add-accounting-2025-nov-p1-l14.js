@@ -56,7 +56,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "The CFO of Marlin Ltd persuaded the board to repurchase 600 000 shares from a shareholder at R4,20 each. The market price on the JSE was R3,80. Calculate A (the CFO's % shareholding after the repurchase, without the % sign) and B (the extra amount paid compared with the JSE price).",
+    "question": "Use the information in the figure to calculate the missing amounts A and B in the statement.",
     "metadata": [
       "A = ",
       "[ ]",
@@ -89,10 +89,10 @@ const questions = [
     "type": "calc",
     "clues": "- The CFO's number of shares does not change.\n- The extra amount is paid on every share repurchased.",
     "supplementary_material": {
-      "type": "table",
+      "type": "statement",
       "label": "Share capital (extract): Marlin Ltd",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q14/table_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2025/nov_p1/q14/statement_1.png"
       ]
     }
   },
