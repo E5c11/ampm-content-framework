@@ -173,3 +173,14 @@ tool) are part of that step. Update the profile ledger and write a memory entry 
 - A taller stem can push the last option below the first view; the capture's `_scroll` shot shows it. Not a defect.
 - `match` ≤ 4 pairs (8 metadata elements); split longer matches across two questions.
 - Isolated `(A/B)` in option text renders as a stacked fraction — avoid it.
+
+## Lessons from the first paper (2025 Nov P1, 2026-10-15)
+
+- No `subjects` row existed: inserted on dev (`capabilities` is `text[]`, pass `'{}'`, not JSON). `dump-curriculum-vocabulary.js` allowlist needed the id.
+- Cropping: `extract-exam-pages.py` page specs are easiest computed from `fitz` word positions (labels such as `2.3`, `3.6`) — cut ~6pt above a
+  label and end 5pt above the next; page-end crops need an explicit `end=778` or the footer shows. Rows of a table (1.2.x) need a 2pt margin.
+- The validator caught `DESIGN-UNI-16` length cues, the 5-question warning and `exam_weight` 1–3; plan option lengths up front. Multi-select
+  options must not start (or end) with the correct ones.
+- Rebalance MC positions with a deterministic pattern in the generator, then check the paper-level tally with the SQL query (it ended 0/30).
+- An isolated `(unit/unit)` in a stem renders as a stacked fraction — drop the unit from the stem (found in review, L16 Q1).
+- Review runner: `review-capture-answers.js` types digits only; for `text` rows use a copy that taps `text_key_<LETTER>` / `text_key_space` and submits with `text_key_done`.

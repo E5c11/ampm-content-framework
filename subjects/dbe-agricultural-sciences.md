@@ -8,8 +8,7 @@ tags: [subject, agricultural-sciences, dbe, profile]
 
 # Subject Profile — DBE Agricultural Sciences (Papers 1 and 2)
 
-**Status (2026-10-15): profiled from the Nov 2025 papers + memos, the Nov 2024 papers (structure only) and the CAPS document. Nothing is
-authored.** **Load with this profile:** `shared/closed-form-subjects.md` (`AMPM-CONTENT-CLOSED-FORM`) — it carries the rules for discursive items, drawn
+**Status (2026-10-15): `nov_p1` (2025) authored on dev and emulator-reviewed (ledger). Profiled from the Nov 2025 papers + memos, the Nov 2024 papers (structure only) and the CAPS document. P2 and 2024 not authored; nothing in prod.** **Load with this profile:** `shared/closed-form-subjects.md` (`AMPM-CONTENT-CLOSED-FORM`) — it carries the rules for discursive items, drawn
 graphs/Punnett squares, generated figures, calculations, typed answers and formatting; this file records only what is specific to Agri.
 Closest existing profile: **Life Sciences** (same 150-mark A/B shell, same question-type mix, diagram-led, genetics identical in
 kind to Life Sciences P2). **Paper 2 Q2–Q3 additionally borrows from Business Studies** (marketing/management selection, "give TWO"
@@ -20,7 +19,7 @@ independent lessons, shared-diagram reuse, `DESIGN-LIFE-02` explain→selection)
 
 | Field | Value |
 |---|---|
-| `syllabus` / `subject` | `"dbe"` / `"agricultural_sciences"` — **UNVERIFIED.** Check dev Postgres `subjects` (and the app's `SubjectMapper.kt` fallback: `displayName.lowercase().replace(" ", "_")`) before the first script; Life Sciences' profile records the singular/plural mistake that cost a rework. The `subjects` row may be pre-staged — query it, don't assume either way. |
+| `syllabus` / `subject` | `"dbe"` / `"agricultural_sciences"` — **`subjects` row created on dev 2026-10-15** (no row existed): `sort_order` 12, `color #2F9E44`, `icon leaf`, `category agricultural_sciences_lessons`, `is_active`/`is_published` true, `min_app_version` null. **Not in prod.** The app does not hard-code subjects (grep of `~/StudioProjects/AMPM` found none), so no `SubjectMapper.kt` change is expected — confirm on the first prod review. |
 | Papers | `nov_p1`, `nov_p2` for 2025 and 2024 (papers + memos on disk). `june_p1`/`june_p2` presumed if June papers are sourced. |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/agricultural_sciences/caps/CAPS FET _ AGRICULTURAL SCIENCE _ WEB_1CC4.pdf`. Grade 12 content: Section 3.9–3.12 (term plans); exam structure: Section 4.4.3. **CAPS gives no per-topic percentage weighting table for Agri** (unlike Life Sciences §4.5.3) — only the paper→topic split below and the cognitive-level guide (Knowledge 40 / Comprehension & Application 40 / Analysis, evaluation & synthesis 20). |
 | **Source files** | `files/agricultural_sciences/nov_2025/` and `nov_2024/` — `Agricultural Sciences P{1,2} Nov {YYYY} Eng.pdf` + `... MG Eng.pdf`. All staged in git, uncommitted at time of writing. |
@@ -149,4 +148,18 @@ and expect to create the unit/topic/subtopic tree for both papers.
 
 ## Completed papers ledger
 
-*(empty — nothing authored)*
+**`nov_p1` (2025) — authored on dev and emulator-reviewed, 2026-10-15.** 18 lessons, 75 practice questions, 150/150 marks, scripts
+`scripts/add-agricultural-sciences-2025-nov-p1-l01…l18.js`, one commit per lesson. Section A clustered by topic (L1–5: 4+4+4+4+4, 16+ marks each
+cluster), then Q2 (L6–9), Q3 (L10–13), Q4 (L14–18). 18 image sets under `exam_papers/dbe/agricultural_sciences/2025/nov_p1/q{lesson}/`; 3 generated
+figures under `question_supplementary/…/q2|q15|q16/` (Pearson square, hormone curves, combined bar graph; palette validated with `validate_palette.js`).
+Vocabulary created on dev only (3 units, 28 topics, 7 `agri_*` subtopics, 8 skills, 52 tags); not mirrored to prod yet.
+- **Mix:** 30 `multiple_choice`, 17 `multi_select`, 12 `match`, 10 `fitb`, 6 `ordering`. MC index-0: 0/30 after a rebalance (the first pass had 4/30).
+- **Keyboards:** 7 `standard_math` + 3 `text` (`rumination`, `corpus luteum`, `external|ecto`). The 2025 exam is gated **2.4.0 on dev** (`exam_versions`).
+- **Decomposed:** both drawn-graph items (4.4.1 → graph type, criteria, reading, calculation on a supplied figure), every "give TWO"/explain item
+  (`multi_select`/`ordering`/`match`), Section A 1.4 "change the underlined word" (`multiple_choice`/`text`).
+- **Emulator review (Phases 1–5):** all 75 captured and read. One defect fixed: L16 Q1 `(billion/mℓ)` rendered as a stacked fraction → unit removed from the
+  stem. Phase 5: 10/10 typed answers PASS through the real keyboards (digits via `maths_key_*`, letters via `text_key_*`, both `|` alternatives for the
+  parasite question). `audit-answer-cues.js`: no findings.
+- **Open:** floating "view diagram" button overlaps the last option on figure questions (known app bug, L2 Q1, L15, L16). Anything above 80% of the marks of
+  a real sub-question that is only *partly* covered by practice (e.g. P1 4.4.1's six drawing marks) is taught through the decomposed items, not reproduced.
+  **Not in prod** — push waits for 2.4.0 (`VER-08`); 2025 P2 is not authored, and the exam gate is per exam.
