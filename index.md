@@ -71,6 +71,7 @@ Cross-subject rule sets reused by several profiles (added 2026-10-10).
 | `workflows/generate/upload-history.md` | this repo |
 | `workflows/generate/upload-business-studies.md` | this repo |
 | `workflows/generate/upload-economics.md` | this repo |
+| `workflows/generate/upload-accounting.md` | this repo |
 | `workflows/generate/upload-agricultural-sciences.md` | this repo |
 | `workflows/generate/upload-tourism.md` | this repo |
 | `workflows/generate/review-paper.md` | **AMPM repo root** (capture harness lives there) |
