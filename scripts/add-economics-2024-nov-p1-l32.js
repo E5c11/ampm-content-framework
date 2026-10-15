@@ -56,14 +56,14 @@ const questions = [
     "name": "Question 1",
     "question": "Which opening sentence would earn the introduction mark for an essay on the demand-side approach?",
     "metadata": [
-      "The demand-side approach uses changes in monetary and fiscal policy to change aggregate demand",
-      "In this essay I will cover monetary policy, fiscal policy and small businesses",
       "Discuss in detail the demand-side approach in promoting growth",
+      "In this essay I will cover monetary policy, fiscal policy and small businesses",
+      "The demand-side approach changes monetary and fiscal policy to change demand",
       "The economy is very important to every person in our country",
       ""
     ],
     "answer": [
-      "The demand-side approach uses changes in monetary and fiscal policy to change aggregate demand",
+      "The demand-side approach changes monetary and fiscal policy to change demand",
       "",
       "",
       "",
