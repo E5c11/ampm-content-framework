@@ -90,9 +90,9 @@ const questions = [
     "name": "Question 2",
     "question": "How can the government promote the macroeconomic objective of economic equity?",
     "metadata": [
-      "By taxing higher earners at higher rates",
-      "By charging one flat tax on every household",
       "By cutting social grants for low-income households",
+      "By charging one flat tax on every household",
+      "By taxing higher earners at higher rates",
       "By lowering taxes for the highest earners only",
       ""
     ],
