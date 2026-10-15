@@ -8,7 +8,7 @@ tags: [subject, accounting, dbe, profile, statements, ledgers]
 
 # Subject Profile — DBE Accounting (Papers 1 and 2)
 
-**Status (2026-10-15): `nov_p1` (2025) authored on dev (19 lessons / 73 q), emulator-reviewed and typed-answer checked; `nov_p2` (2025) authored on dev (17 lessons / 68 q), emulator-reviewed and typed-answer checked. Profiled from the Nov 2025 papers + memos, the Nov 2024 papers (structure only) and the CAPS document. 2024 not authored; nothing in prod.**
+**Status (2026-10-15): `nov_p1` (2025) authored on dev (19 lessons / 73 q), emulator-reviewed and typed-answer checked; `nov_p2` (2025) authored on dev (17 lessons / 68 q), emulator-reviewed and typed-answer checked. Profiled from the Nov 2025 papers + memos, the Nov 2024 papers (structure only) and the CAPS document. 2024 not authored. **Both 2025 papers LIVE in prod 2026-10-15** (pushed unpublished, then published; prod subject row created hidden then switched on).**
 **Load with this profile:** `shared/closed-form-subjects.md` (`AMPM-CONTENT-CLOSED-FORM`) for discursive items, generated figures, calculations, typed answers and
 formatting. This file records only what is specific to Accounting. Accounting is a **hybrid**: ~70% of the marks are worked numeric statements and
 ledgers (procedural, like Maths/Math Lit calculations), ~30% is interpretation, concepts and governance (closed-form, like Business Studies).
@@ -138,3 +138,7 @@ The general rules — generated figure with lettered blanks, at most three indep
 - **Owed:** expert check of the AI explanations; prod push (both papers, owner-approved); the inline-table decision.
 - **Review-environment notes:** after a data clear the app showed "Video ID not available" until the newer dev build (2.4.1-dev01) was installed; a "Stay Updated" notification dialog and the exam-date sheet reappear on each launch (`adb shell pm grant com.esma.ampm.dev android.permission.POST_NOTIFICATIONS` removes the first); the answer harness overwrites `answer-results.json` per run, so record per-batch counts.
 - **Content note:** P2 also carries one L10 image upload that failed transiently (oauth) and was retried; both objects verified 200.
+
+### Prod (2026-10-15)
+
+`nov_p1` + `nov_p2` pushed with `push-paper-to-prod.js` (P1 with `--allow-partial-exam`, then P2), then `--publish`. No exam gate (floor 2.0.0). The prod `subjects` row did not exist and the tool does not create it: it was copied from dev hidden (`is_active`/`is_published` false) and switched on at publish. Same was done for `tourism` and `agricultural_sciences`, whose exams carry a 2.4.0 gate (`set-exam-gate.js --env prod --i-know-this-is-prod ... --apply`, written before publishing).
