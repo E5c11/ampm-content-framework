@@ -8,7 +8,7 @@ tags: [subject, accounting, dbe, profile, statements, ledgers]
 
 # Subject Profile — DBE Accounting (Papers 1 and 2)
 
-**Status (2026-10-15): profiled from the Nov 2025 papers + memos, the Nov 2024 papers (structure only) and the CAPS document. Nothing authored; nothing on dev or prod.**
+**Status (2026-10-15): `nov_p1` (2025) authored on dev (19 lessons / 73 q), emulator-reviewed and typed-answer checked. Profiled from the Nov 2025 papers + memos, the Nov 2024 papers (structure only) and the CAPS document. P2 and 2024 not authored; nothing in prod.**
 **Load with this profile:** `shared/closed-form-subjects.md` (`AMPM-CONTENT-CLOSED-FORM`) for discursive items, generated figures, calculations, typed answers and
 formatting. This file records only what is specific to Accounting. Accounting is a **hybrid**: ~70% of the marks are worked numeric statements and
 ledgers (procedural, like Maths/Math Lit calculations), ~30% is interpretation, concepts and governance (closed-form, like Business Studies).
@@ -121,4 +121,11 @@ The general rules — generated figure with lettered blanks, at most three indep
 
 ## Completed papers ledger
 
-*(none yet)*
+### 2025 Nov P1 — authored to dev 2026-10-15 (19 lessons / 73 questions)
+
+- **Lessons:** Q1 → L1 (1.1 weighted-average closing stock), L2 (1.2 share capital note), L3–L6 (1.3 SOFP: assets, current assets, equity, liabilities); Q2 → L7 (2.1), L8–L10 (2.2 cash flow: operating, investing, financing), L11 (NAV, acid-test), L12 (pay-out rate, 2.4); Q3 → L13–L17; Q4 → L18–L19. Generator: `scripts/_gen/accounting/` (`gen.js`, `lessons-*.js`, `render_statement.py`, `images.sh`).
+- **Figures:** 13 generated statement/indicator figures under `question_supplementary/accounting/2025/nov_p1/q{N}/statement_1.png` (type `statement`). L2–L10 and L14 carry an INFORMATION block plus the statement with lettered blanks; the stem is one line. Every figure's numbers come from one data set and are asserted to tie in the generator.
+- **Checks:** validator clean, `audit-answer-cues` clean, MC index-0 1/20, derived minimum 2.0.0 (no gate), 29/29 `fitb` typed through the real keyboard and marked correct (incl. negatives).
+- **Known gap:** the app shows `supplementary_material` behind the "view diagram" button, so the statement is not on the question screen. Closing it needs an inline table presentation (app work) — owner decision before any prod push.
+- **Owed:** prod push (owner-approved, `push-paper-to-prod.js`); expert check of the `aiExplanation` text; P2; 2024; the pilot-era `table_N.png` objects are orphaned in the bucket (never overwritten, harmless).
+- **Lessons learned:** (1) judge the figure on the question screen, not inside the pop-up sheet — the first pilot looked fine in the sheet and the question was a bare `A = [ ]` row. (2) `review-capture-answers.js` types one blank only; use `review-capture-answers-multi.js` (AMPM, uncommitted) for ≤3-blank figure questions. (3) Figures are cached for a year, so a re-render needs a new object path. (4) `cash_flow_statement` was already an Agri tag id; Accounting uses `company_cash_flow_statement`.
