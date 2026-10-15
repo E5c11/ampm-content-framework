@@ -55,7 +55,7 @@ const questions = [
     "name": "Question 1",
     "question": "Which group contains only injections into the circular flow?",
     "metadata": [
-      "Household savings, taxes and imports",
+      "Household savings, taxes and spending on imports",
       "Government spending, investment, exports",
       "Imports, household savings and exports",
       "Taxes, exports and business investment",
