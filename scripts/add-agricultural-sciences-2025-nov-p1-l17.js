@@ -125,8 +125,8 @@ const questions = [
     "name": "Question 3",
     "question": "A farmer sees a cow standing on heat at 07:00. When should she be artificially inseminated?",
     "metadata": [
-      "The same evening, about 12 hours later",
       "At once, while she is still standing",
+      "The same evening, about 12 hours later",
       "Three days later",
       "During her next heat, 21 days later",
       ""
