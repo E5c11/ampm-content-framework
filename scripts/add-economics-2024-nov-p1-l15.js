@@ -55,14 +55,14 @@ const questions = [
     "name": "Question 1",
     "question": "Why is access to healthcare services important to the labour force?",
     "metadata": [
-      "Healthy workers are able to work longer and more productively",
-      "It lowers the number of people who are able to work",
       "It makes workers earn less over their lifetime",
+      "It lowers the number of people who are able to work",
+      "Healthy workers are more productive at work",
       "It means firms need fewer skilled workers in general",
       ""
     ],
     "answer": [
-      "Healthy workers are able to work longer and more productively",
+      "Healthy workers are more productive at work",
       "",
       "",
       "",
