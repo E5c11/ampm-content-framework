@@ -125,24 +125,22 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "Match each characteristic of farm animals to the type of trait it is.",
+    "question": "Select ALL the characteristics of farm animals that are quantitative traits.",
     "metadata": [
-      "A - Milk yield",
-      "B - Coat colour (black or red)",
-      "C - Body mass at weaning",
-      "D - Presence or absence of horns",
-      "1 - Quantitative",
-      "2 - Qualitative",
-      "3 - Quantitative",
-      "4 - Qualitative"
+      "Presence or absence of horns",
+      "Length of the wool per year",
+      "Milk yield per lactation",
+      "Body mass at weaning",
+      "Coat colour (black or red)"
     ],
     "answer": [
-      "A-1",
-      "B-2",
-      "C-3",
-      "D-4"
+      "Milk yield per lactation",
+      "Body mass at weaning",
+      "Length of the wool per year",
+      "",
+      ""
     ],
-    "presentation": "match",
+    "presentation": "multi_select",
     "type": "application",
     "unit": "basic_agricultural_genetics",
     "topic": "qualitative_and_quantitative_traits",
@@ -157,7 +155,8 @@ const questions = [
     "syllabus": "dbe",
     "subject": "agricultural_sciences",
     "year": 2025,
-    "paper": "nov_p2"
+    "paper": "nov_p2",
+    "clues": "- A quantitative trait takes a whole range of values without clear boundaries between classes."
   },
   {
     "name": "Question 4",
