@@ -163,9 +163,9 @@ const questions = [
     "name": "Question 4",
     "question": "The SARB lowers the cash reserve requirement. What is the most likely effect?",
     "metadata": [
-      "Banks can extend more credit",
-      "Banks must reduce lending",
       "Interest rates rise in every case",
+      "Banks must reduce lending",
+      "Banks can extend more credit",
       "Consumers spend less",
       ""
     ],
