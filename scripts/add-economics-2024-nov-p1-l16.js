@@ -55,14 +55,14 @@ const questions = [
     "name": "Question 1",
     "question": "Which description matches import substitution?",
     "metadata": [
-      "Using tariffs and quotas so local firms make goods once imported",
+      "Giving subsidies only to foreign firms that sell abroad",
       "Removing all trade barriers so that more goods are imported",
       "Selling more raw materials and minerals to other countries",
-      "Giving subsidies only to foreign firms that sell abroad",
+      "Using tariffs and quotas so local firms replace imports",
       ""
     ],
     "answer": [
-      "Using tariffs and quotas so local firms make goods once imported",
+      "Using tariffs and quotas so local firms replace imports",
       "",
       "",
       "",
