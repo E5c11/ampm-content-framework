@@ -123,10 +123,10 @@ const questions = [
     "name": "Question 3",
     "question": "A calf suckles and, within a minute, milk starts to flow from the dam’s udder. Which hormone causes this milk ejection (milk let-down)?",
     "metadata": [
-      "Oxytocin",
-      "Progesterone",
-      "Oestrogen",
       "Prolactin",
+      "Oxytocin",
+      "Oestrogen",
+      "Progesterone",
       ""
     ],
     "answer": [
