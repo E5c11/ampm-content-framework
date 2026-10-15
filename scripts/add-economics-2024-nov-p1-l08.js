@@ -97,13 +97,13 @@ const questions = [
     "question": "Study the graph. The value of 12 on the original expenditure line is the point where the line meets the vertical axis. What does it represent?",
     "metadata": [
       "The marginal propensity to save",
-      "Spending that does not depend on income",
+      "Spending unrelated to income",
       "The size of the multiplier",
       "Spending that rises as income rises",
       ""
     ],
     "answer": [
-      "Spending that does not depend on income",
+      "Spending unrelated to income",
       "",
       "",
       "",
