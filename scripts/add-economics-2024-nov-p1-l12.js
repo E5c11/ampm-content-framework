@@ -57,7 +57,7 @@ const questions = [
     "metadata": [
       "Reconstruction and Development Programme (RDP)",
       "National Research and Development Strategy (NRDS)",
-      "Growth, Employment and Redistribution (GEAR)",
+      "Growth, Employment and Redistribution strategy (GEAR)",
       "National Housing Strategy (NHS)",
       ""
     ],
@@ -125,13 +125,13 @@ const questions = [
     "question": "Which example is a duty-free incentive?",
     "metadata": [
       "A clothing maker is charged extra customs duty on its imported sewing machines",
-      "A clothing maker imports sewing machines without paying customs duties under a government scheme",
+      "A clothing maker imports sewing machines without paying customs duties",
       "A clothing maker receives a ban on exporting its clothes to other countries",
       "A clothing maker pays a higher company tax rate because it has expanded",
       ""
     ],
     "answer": [
-      "A clothing maker imports sewing machines without paying customs duties under a government scheme",
+      "A clothing maker imports sewing machines without paying customs duties",
       "",
       "",
       "",
