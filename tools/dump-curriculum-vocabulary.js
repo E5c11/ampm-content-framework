@@ -42,8 +42,8 @@ const env = args.env || args.project || 'dev'; // --project kept as an alias for
 const subject = args.subject || 'math_lit';
 const outPath = args.out || 'temp/curriculum-vocab.json';
 
-if (!['math_lit', 'english_hl', 'english_fal', 'afrikaans_fal', 'maths', 'geography', 'physics', 'life_science', 'history', 'business_studies', 'economics', 'agricultural_sciences', 'tourism'].includes(subject)) {
-  console.error('Usage: node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl|english_fal|afrikaans_fal|maths|geography|physics|life_science|history|business_studies|economics|agricultural_sciences|tourism [--out path]');
+if (!['math_lit', 'english_hl', 'english_fal', 'afrikaans_fal', 'maths', 'geography', 'physics', 'life_science', 'history', 'business_studies', 'economics', 'agricultural_sciences', 'tourism', 'accounting'].includes(subject)) {
+  console.error('Usage: node tools/dump-curriculum-vocabulary.js [--env dev|prod] --subject math_lit|english_hl|english_fal|afrikaans_fal|maths|geography|physics|life_science|history|business_studies|economics|agricultural_sciences|tourism|accounting [--out path]');
   process.exit(1);
 }
 

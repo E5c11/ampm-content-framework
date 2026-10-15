@@ -17,7 +17,7 @@ ledgers (procedural, like Maths/Math Lit calculations), ~30% is interpretation, 
 
 | Field | Value |
 |---|---|
-| `syllabus` / `subject` | `"dbe"` / `"accounting"` — **no `subjects` row yet**: create on dev before authoring (`sort_order`, colour, icon, `category accounting_lessons`, `is_active`/`is_published`, `min_app_version` null). Check `is_active` (Life Sciences' `false` hid it from onboarding). |
+| `syllabus` / `subject` | `"dbe"` / `"accounting"` — **`subjects` row already exists on dev** (`sort_order` 172, `color #4C6EF5`, `category commerce_lessons`, `is_active`/`is_published` true, `min_app_version` null; verified 2026-10-15, no lessons before the pilot). Not checked on prod. |
 | Papers | `nov_p1`, `nov_p2` for 2025 and 2024 (papers, answer books and memos on disk). June papers presumed if sourced. |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/accounting/caps/CAPS FET _ ACCOUNTING GR 10-12 _ Web_CAB3.pdf`. Topic list: §2.1; Grade 12 teaching plan: §3.2.6; cognitive levels: §4 Table 1 (Knowledge/Comprehension 30 / Application/Analysis 40 / Synthesis/Evaluation 30). |
 | **Source files** | `files/accounting/nov_2025/` and `nov_2024/` — `Accounting P{1,2} Nov {YYYY} Eng.pdf`, `... MG Eng.pdf`, `... Answer Book Eng.pdf`. |
@@ -110,7 +110,7 @@ The general rules — generated figure with lettered blanks, at most three indep
 
 ## Authoring plan
 
-1. Verify identity (create the `subjects` row on dev, vocabulary dump).
+1. Verify identity (the `subjects` row exists on dev; vocabulary dump).
 2. **Pilot**: one lesson end to end — a generated Ordinary Share Capital note and an SOFP section (A/B/C) — through `validate-questions.js` and the
    emulator, to settle image legibility and the highlight style. Do not author further until the pilot passes.
 3. P2 first (reconciliations, stock valuation, cost accounting, budgeting are smaller, self-contained statements) **or** P1 first if the prelims timetable
