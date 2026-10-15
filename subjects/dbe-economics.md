@@ -294,7 +294,7 @@ Lessons follow the paper's subsections (`"Question N.M: Description"`):
 
 Order followed (`VER-03`): prod `subjects` row (inactive, gated 2.4.0) → `push-paper-to-prod.js` P1 with `--allow-partial-exam` (P2 was pushed immediately after; the tool refuses a lone paper of a two-paper exam by default) → P2 → prod exam gate `apply-exam-gate.js --env prod --apply` (2.4.0, 60 lessons / 191 questions bumped) → `--publish` both papers → subject `is_active=true`. Prod now holds 28 + 32 lessons, 85 + 106 questions, all published, 152 images mirrored to the prod bucket (all HTTP 200), curriculum/skills/tags copied by the tool. The prod proxy for this tool listens on 15433 (`PG_PORT_PROD`); a separate prod proxy on 5433 may already be running — they do not conflict. `LATEST_RELEASED` was 2.4.0, equal to the derived minimum, so no override or bump was needed.
 
-### 2024 Nov P1 (`nov_p1`) — authored to dev 2026-10-15, **not emulator-reviewed, not in prod**
+### 2024 Nov P1 (`nov_p1`) — authored to dev 2026-10-15, emulator-reviewed the same day, **not in prod**
 
 **32 lessons, 109 questions (3–4 each)**, one commit per lesson (`scripts/add-economics-2024-nov-p1-l01..l32.js`; the 17 "rebalance" commits carry a literal `${VERB:-Add}` in the subject — harmless). `DESIGN-UNI-14`-compliant. Exam gate for 2024 is 2.4.0 (`text` + `scientific_math`).
 
@@ -311,7 +311,8 @@ Order followed (`VER-03`): prod `subjects` row (inactive, gated 2.4.0) → `push
 - **MC index-0 tally 0 of 44**; correct-longest 0 of 44 after a rebalance pass (first authoring had 11 at index 0 and 14 longest — the generator now moves a correct index-0 option to 2/3). Typed: `privatisation|privatization` (`text`), numeric `standard_math` blanks (150, 30000, 46, 10, 0.75, -4.5, 32, 30) and the ΔY `steps` (4, 8, 32; `scientific_math`).
 - Q5/Q6 essay lessons each carry **one** AI-explanation entry (`number` "5"/"6", marks 13/13/10/4) split from the 26 + 10 + 2 + 2 budget.
 - New tags created on dev (economics): 27 slugs, e.g. `privatisation`, `labour_productivity`, `import_substitution`, `weaker_rand`, `demand_side_policy`. No new units/topics/subtopics.
-- **Not done:** emulator review (`review-paper.md`), prod push (the 2024 exam is not in prod; the prod `subjects` row already exists), 2024 P2. Content flags for a subject-expert check: CPI as a non-leading distractor (lesson 1), "Remuneration per worker" as the productivity indicator (lesson 14), the 30% land-redistribution figure (lesson 30).
+- **Emulator review (2026-10-15, build 2.4.1-dev01, cache cleared):** all 109 questions captured with no warnings; 0 auto-fixes, 0 flags; typed answers **12/12 PASS** (every `|` alternative; the ΔY `steps` needs the keyboard's Next key — `maths_key_next` — between blanks). Cosmetic: lesson 20's exam image has white space below 4.2.5.
+- **Not done:** prod push (the 2024 exam is not in prod; the prod `subjects` row already exists), 2024 P2. Content flags for a subject-expert check: CPI as a non-leading distractor (lesson 1), "Remuneration per worker" as the productivity indicator (lesson 14), the 30% land-redistribution figure (lesson 30).
 
 ## Still open
 
