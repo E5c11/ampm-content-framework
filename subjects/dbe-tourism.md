@@ -8,7 +8,7 @@ tags: [subject, tourism, dbe, profile]
 
 # Subject Profile — DBE Tourism (one paper, 200 marks)
 
-**Status (2026-10-15): 2025 Nov authored on dev (24 lessons / 96 q) and emulator-reviewed; 2024 not authored; nothing in prod.** Built from the Nov 2025 and Nov 2024 papers + memos and the CAPS
+**Status (2026-10-16): 2025 Nov authored on dev (24 lessons / 96 q) and emulator-reviewed; 2024 Nov authored on dev (24 lessons / 94 q), emulator review owed; nothing in prod.** Built from the Nov 2025 and Nov 2024 papers + memos and the CAPS
 document (`files/tourism/`). Both years share one layout, so the structure below is the subject's, not a year's quirk.
 
 Loads `shared/closed-form-subjects.md` (`AMPM-CONTENT-CLOSED-FORM`) — the discursive→selection, figure, calculation, typed-answer and formatting rules
@@ -149,15 +149,15 @@ One unit per memo topic code. Names are CAPS's; slugs are flat per the vocabular
 | Paper | Lessons / questions | Status |
 |---|---|---|
 | 2025 Nov (`nov_p1`) | 24 lessons / 96 q (200 marks): L1–7 Section A by topic code, L8–13 Q2–Q3, L14–17 Q4–Q6, L18–21 Q7–Q8, L22–24 Q9–Q10. 36 mc / 29 ms / 20 match / 5 ordering / 6 fitb | on dev 2026-10-15, gated 2.4.0 (`text` row in L12), validator + `audit-answer-cues` clean, MC index-0 2.8%. Emulator review on 2.4.1-dev01: no defects; 6 typed answers (8 attempts incl. `\|` alternatives) all PASS. Lessons 15, 17–22, 24 screenshots not individually viewed. **Subject-expert check and prod push owed.** |
-| 2024 Nov | — | not authored |
+| 2024 Nov (`nov_p1`) | 24 lessons / 94 q (200 marks): L1–6 Section A by topic code (L6 = 1.5 hotel staff), L7–12 Q2–Q3, L13–16 Q4–Q6, L17–20 Q7–Q8, L21–24 Q9–Q10. 39 mc / 27 ms / 17 match / 5 ordering / 6 fitb | on dev 2026-10-16, **no gate** (all 6 typed rows `standard_math`, derived 2.0.0), validator (`--curriculum` + `--ai-exp`) + `audit-answer-cues` clean, MC index-0 2.6%, correct-longest 10%. L7 has 5 questions (clock time + date pair). 57 page images, all resolve. **Emulator review (`review-paper.md`), subject-expert check and prod push owed.** |
 
-Authoring lives in `scripts/_gen/tourism/` (`lessons-{a,b,c}.js` data, `lib.js` helpers, `gen.js` emits the `scripts/add-tourism-2025-nov-p1-lNN.js` files, `taxonomy.js` creates vocabulary). Reuse for 2024.
+Authoring lives in `scripts/_gen/tourism/` (`lessons-{a,b,c}.js` data, `lib.js` helpers, `gen.js` emits the `scripts/add-tourism-<YEAR>-nov-p1-lNN.js` files, `taxonomy.js` creates vocabulary). The `YEAR` env var selects the paper: 2025 data sits beside `lib.js`, 2024 in `2024/` (`YEAR=2024 node scripts/_gen/tourism/gen.js`). Lesson objects carry `qspec`/`mspec` (the `extract-exam-pages.py` page specs) — 2024 used full pages per lesson, like 2025, with no `supplementary_materials`.
 
 **Lessons learned (2025):** `subjects` row `tourism` already existed on dev (seeded, `services_lessons`, sort 179). Global ids clashed with other subjects (`exchange_rates`, `currency_conversion`, `employment_contract`) — renamed `tourism_exchange_rates`, `rand_exchange_rates`, `forex_conversion`, `tourism_employment_contract`; `taxonomy.js` reports clashes. Practice time-zone/forex items use invented, labelled-illustrative data; the exam's world map is only lesson reference. The validator's `DESIGN-UNI-16` length rule fired on ~25 MC/multi-select sets — write distractors the same length up front. Text-keyboard review needs `text_key_<LETTER>`/`text_key_done` and two-blank answers need per-blank typing (a Tourism copy of `review-capture-answers.js` was used from the scratchpad, not committed to AMPM).
 
 ## Still open
 
 - Prod: subjects row state, expert check, `push-paper-to-prod.js` (owner-approved).
-- Author 2024 Nov.
+- 2024 Nov: emulator review (`review-paper.md`) — no `text` rows, so only `standard_math` typing (incl. the two-blank clock time in L7 and the `\|` alternatives `09\|9`, `00\|0`, `2240.90\|2240.9`).
 - Decide fresh-stimulus sourcing for the Column B picture matches (1.4) — text-described items, or generated simple icons.
 - Mark the time-zone offset table as the standard stem aid so lessons stay consistent.
