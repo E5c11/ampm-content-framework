@@ -8,7 +8,7 @@ tags: [subject, accounting, dbe, profile, statements, ledgers]
 
 # Subject Profile — DBE Accounting (Papers 1 and 2)
 
-**Status (2026-10-15): `nov_p1` (2025) authored on dev (19 lessons / 73 q), emulator-reviewed and typed-answer checked; `nov_p2` (2025) authored on dev (17 lessons / 68 q), emulator-reviewed and typed-answer checked. Profiled from the Nov 2025 papers + memos, the Nov 2024 papers (structure only) and the CAPS document. 2024 not authored. **Both 2025 papers LIVE in prod 2026-10-15** (pushed unpublished, then published; prod subject row created hidden then switched on).**
+**Status (2026-10-15): `nov_p1` (2025) authored on dev (19 lessons / 73 q), emulator-reviewed and typed-answer checked; `nov_p2` (2025) authored on dev (17 lessons / 68 q), emulator-reviewed and typed-answer checked. Profiled from the Nov 2025 papers + memos, the Nov 2024 papers (structure only) and the CAPS document. 2024 `nov_p1` authored on dev 2026-10-16 (18 lessons / 72 q), emulator review pending; 2024 `nov_p2` not authored. **Both 2025 papers LIVE in prod 2026-10-15** (pushed unpublished, then published; prod subject row created hidden then switched on).**
 **Load with this profile:** `shared/closed-form-subjects.md` (`AMPM-CONTENT-CLOSED-FORM`) for discursive items, generated figures, calculations, typed answers and
 formatting. This file records only what is specific to Accounting. Accounting is a **hybrid**: ~70% of the marks are worked numeric statements and
 ledgers (procedural, like Maths/Math Lit calculations), ~30% is interpretation, concepts and governance (closed-form, like Business Studies).
@@ -138,6 +138,14 @@ The general rules — generated figure with lettered blanks, at most three indep
 - **Owed:** expert check of the AI explanations; prod push (both papers, owner-approved); the inline-table decision.
 - **Review-environment notes:** after a data clear the app showed "Video ID not available" until the newer dev build (2.4.1-dev01) was installed; a "Stay Updated" notification dialog and the exam-date sheet reappear on each launch (`adb shell pm grant com.esma.ampm.dev android.permission.POST_NOTIFICATIONS` removes the first); the answer harness overwrites `answer-results.json` per run, so record per-batch counts.
 - **Content note:** P2 also carries one L10 image upload that failed transiently (oauth) and was retried; both objects verified 200.
+
+### 2024 Nov P1 — authored to dev 2026-10-16 (18 lessons / 72 questions), emulator review pending
+
+- **Lessons:** Q1 → L1 (1.1.1–2 equipment depreciation, vehicle cost), L2 (1.1.3–4 vehicle depreciation, trade-in), L3–L7 (1.2 Statement of Comprehensive Income: sales/GP, other income, stock/packing/insurance, salaries/directors' fees, interest and tax); Q2 → L8 (2.1 retained income note), L9–L10 (2.2 cash flow: tax/dividends paid, financing and cash), L11 (2.3 indicators); Q3 → L12 (3.1–3.2), L13 (3.3), L14 (3.4), L15 (3.5 rights issue), L16 (3.5 repurchase proposal + 3.6 CEO); Q4 → L17 (4.1–4.3), L18 (4.4–4.5). Generator: `scripts/_gen/accounting-2024-p1/`.
+- **Figures:** 16 generated figures at `question_supplementary/accounting/2024/nov_p1/q{N}/statement_1.png`, every amount asserted in the lesson data. Renderer changes in this copy (not back-ported to the 2025 generators): numbers like `R612 000` never wrap mid-number, narrower wrap for INFORMATION text (lines were clipped at the right edge), and column headings (years, Depreciation/Accumulated) drawn on the STATEMENT band when an INFORMATION block is present (they were dropped before).
+- **Checks:** validator clean with `--curriculum`; derived minimum 2.0.0 (no gate); MC index-0 1/22; `audit-answer-cues` clean after rebalancing 4 distractors (longest-correct 7/22 → 3/22); 74/74 image URLs return 200; no `fitb` without a keyboard. 25 new vocabulary rows (topics `fixed_asset_depreciation`, `statement_of_comprehensive_income`, `retained_income_note` + tags).
+- **Answer conventions:** cash-flow outflows are stored negative only; brackets the memo says to ignore (repurchase in the RI note, income tax on the statement) accept both signs; indicator rounding stores the memo's alternatives (`17.9|18`).
+- **Owed:** emulator review (`review-paper.md`), expert check of the AI explanations, prod push (with P2 once authored).
 
 ### Prod (2026-10-15)
 
