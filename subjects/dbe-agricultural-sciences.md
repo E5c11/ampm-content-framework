@@ -179,3 +179,16 @@ extract, cash flow record — fresh data, a single shared axis, palette validate
   alternatives for the "price fluctuation" row). A rule is added to the upload doc: never put two identical labels in one `match` column.
 - **Open:** floating "view diagram" button overlap (L10, L13, L15); nothing in prod; prod push waits for 2.4.0 and covers P1 + P2 together (`VER-08`); the prod `subjects` row
   and vocabulary are still dev-only.
+
+**`nov_p1` (2024) — authored on dev, 2026-10-16; emulator review not yet run.** 18 lessons, 74 practice questions, 150/150 marks, scripts
+`scripts/add-agricultural-sciences-2024-nov-p1-l01…l18.js`, one commit per lesson (generated from compact specs by a session-local generator in
+`temp/agri-p1-2024/`, not committed). Section A clustered by topic (L1–2 nutrition, L3–4 production and protection, L5–6 reproduction), then Q2 (L7–10),
+Q3 (L11–14), Q4 (L15–18). 18 image sets under `exam_papers/dbe/agricultural_sciences/2024/nov_p1/q{lesson}/` (Section A 1.2 rows cropped on the table's own
+rules); 1 generated figure under `question_supplementary/…/2024/nov_p1/q12/graph_1.png` (breathing and heart rate, fresh illustrative data, black/hatched bars).
+New vocabulary on dev: topic `vital_signs_of_farm_animals`; tags `pathogens`, `embryo_transfer`, `artificial_insemination`.
+- **Mix:** 24 `multiple_choice`, 18 `multi_select`, 14 `match`, 10 `fitb`, 8 `ordering`. MC index-0: 0/24. `audit-answer-cues.js`: no findings (correct option longest in 1/24).
+- **Keyboards:** 6 `standard_math` + 4 `text` (`atp|adenosine triphosphate`, `bedding|litter`, `oogenesis|ovogenesis`, `colostrum|beestings`). The 2024 exam is gated
+  **2.4.0 on dev** (`exam_versions`), which also covers 2024 P2.
+- **Decomposed:** the 3.4 combined bar graph (graph type, criteria, a reading, lowest value on a supplied figure), 3.6 table completion (pathogen ↔ disease ↔ symptom),
+  every "give TWO" item, Section A 1.4 (`multiple_choice`). Label items on the reproductive-tract and alimentary-canal diagrams are asked by function, with no figure.
+- **Open:** run `review-paper.md` (all 4 `text` rows and every `|` alternative), then the prod push with 2024 P2 (`VER-08`; 2.4.0 is released).
