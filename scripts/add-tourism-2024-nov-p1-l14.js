@@ -61,7 +61,7 @@ const questions = [
       "1 - Tilts because of soft, unstable soil",
       "2 - City on wooden poles, linked by canals",
       "3 - Iron tower built for a world fair",
-      "4 - Amphitheatre for up to 80 000 spectators"
+      "4 - Amphitheatre for up to 80 000 spectators"
     ],
     "answer": [
       "A-4",

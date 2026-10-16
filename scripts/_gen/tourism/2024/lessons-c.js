@@ -42,7 +42,7 @@ module.exports = [
     tags: ['tourist_icons', 'icon_design'],
     qs: [
       mt('Match each icon to a fact about how it was designed or built.',
-        [['Colosseum', 'Amphitheatre for up to 80 000 spectators'], ['Leaning Tower of Pisa', 'Tilts because of soft, unstable soil'], ['Venice', 'City on wooden poles, linked by canals'], ['Eiffel Tower', 'Iron tower built for a world fair']],
+        [['Colosseum', 'Amphitheatre for up to 80 000 spectators'], ['Leaning Tower of Pisa', 'Tilts because of soft, unstable soil'], ['Venice', 'City on wooden poles, linked by canals'], ['Eiffel Tower', 'Iron tower built for a world fair']],
         { unit: U_TA, topic: 'world_icons', subtopic: 'tour_classification', skill: 'classify_tourism_concept', diff: 3, w: 2, type: 'application' }),
       mc('Why does the Leaning Tower of Pisa lean?',
         'It was built on soft, unstable soil', ['An earthquake damaged its foundations', 'It was designed to tilt on purpose', 'Strong sea winds pushed it over time'],

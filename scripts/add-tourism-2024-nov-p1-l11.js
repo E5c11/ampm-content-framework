@@ -89,16 +89,16 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "Illustrative rates: US dollar BBR R17,60, BSR R17,85. A tourist converts R40 000 into US dollars at a South African bank. Which calculation is correct?",
+    "question": "Illustrative rates: US dollar BBR R17,60, BSR R17,85. A tourist converts R40 000 into US dollars at a South African bank. Which calculation is correct?",
     "metadata": [
-      "R40 000 × 17,85",
-      "R40 000 ÷ 17,60",
-      "R40 000 × 17,60",
-      "R40 000 ÷ 17,85",
+      "R40 000 × 17,85",
+      "R40 000 ÷ 17,60",
+      "R40 000 × 17,60",
+      "R40 000 ÷ 17,85",
       ""
     ],
     "answer": [
-      "R40 000 ÷ 17,85",
+      "R40 000 ÷ 17,85",
       "",
       "",
       "",
@@ -123,7 +123,7 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "Illustrative rates: US dollar BBR R17,60, BSR R17,85. How many US dollars does a tourist receive for R40 000? Round off to TWO decimal places. []",
+    "question": "Illustrative rates: US dollar BBR R17,60, BSR R17,85. How many US dollars does a tourist receive for R40 000? Round off to TWO decimal places. []",
     "metadata": [
       "USD ",
       "[ ]"
