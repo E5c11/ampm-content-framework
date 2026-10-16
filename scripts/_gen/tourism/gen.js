@@ -1,10 +1,11 @@
 'use strict';
-// node scripts/_gen/tourism/gen.js [lessonOrder ...]   — writes scripts/add-tourism-2025-nov-p1-lNN.js and prints the taxonomy used
+// [YEAR=2024] node scripts/_gen/tourism/gen.js [lessonOrder ...]   — writes scripts/add-tourism-<YEAR>-nov-p1-lNN.js and prints the taxonomy used
 const fs = require('fs');
 const path = require('path');
 const { emit } = require('./lib');
 const lessons = [];
-for (const f of fs.readdirSync(__dirname).filter((x) => /^lessons-.*\.js$/.test(x)).sort()) lessons.push(...require('./' + f));
+const { lessonDir } = require('./lib');
+for (const f of fs.readdirSync(lessonDir()).filter((x) => /^lessons-.*\.js$/.test(x)).sort()) lessons.push(...require(path.join(lessonDir(), f)));
 const only = process.argv.slice(2).map(Number);
 const tax = { units: new Set(), topics: new Set(), subtopics: new Set(), skills: new Set(), tags: new Set() };
 for (const L of lessons.sort((a, b) => a.order - b.order)) {

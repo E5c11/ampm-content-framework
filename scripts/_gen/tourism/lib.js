@@ -1,9 +1,9 @@
 'use strict';
-// Authoring helpers for Tourism 2025 Nov P1. Emits the standard add-*.js upload script per lesson (core/upload-pipeline.md Phase 4).
+// Authoring helpers for Tourism Nov P1 (YEAR env selects the paper; default 2025). Emits the standard add-*.js upload script per lesson (core/upload-pipeline.md Phase 4).
 // Deterministic placement keeps the paper-level MC index-0 tally low (DESIGN-UNI-06) and multi-select correct options off the ends (DESIGN-UNI-16).
 
 const SUBJECT = 'tourism';
-const YEAR = 2025;
+const YEAR = Number(process.env.YEAR || 2025);
 const PAPER = 'nov_p1';
 const MC_POS = [2, 1, 3, 2, 3, 1, 3, 2, 1, 2, 3, 1, 2, 3, 1, 3, 2, 1, 3, 0];
 let mcCounter = 0;
@@ -92,11 +92,11 @@ function emit(L) {
     input_tokens: 0, output_tokens: 0, avg_rating: null, rating_count: null,
   };
   const nn = String(L.order).padStart(2, '0');
-  const file = `scripts/add-tourism-2025-nov-p1-l${nn}.js`;
+  const file = `scripts/add-tourism-${YEAR}-nov-p1-l${nn}.js`;
   const j = (x) => JSON.stringify(x, null, 2).replace('"__NOW__"', 'Date.now()');
   const src = `#!/usr/bin/env node
 /**
- * DBE Tourism — November 2025 — ${L.name} (order ${L.order})
+ * DBE Tourism — November ${YEAR} — ${L.name} (order ${L.order})
  * ${L.covers}
  * Practice questions are fresh (DESIGN-UNI-01); the AI explanation carries only the real sub-questions this lesson covers (AIEXP-08).
  *
@@ -188,4 +188,7 @@ function ex(number, marks, clues, approach, solution) {
   return { number, marks, clues: clues.map((c) => `- ${c}`).join('\n'), approach: approach.map((c) => `- ${c}`).join('\n'), solution: solution.map((c, i) => `${i + 1}. ${c.replace(/^\d+\.\s*/, '')}`).join('\n') };
 }
 
-module.exports = { mc, ms, mt, ord, fb, lesson, emit, ex };
+// Lesson data directory for the selected year: 2025 lives beside this file, later years in a YEAR subfolder.
+const lessonDir = () => (YEAR === 2025 ? __dirname : require('path').join(__dirname, String(YEAR)));
+
+module.exports = { mc, ms, mt, ord, fb, lesson, emit, ex, lessonDir, YEAR };
