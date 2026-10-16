@@ -54,15 +54,14 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "Use the information in the figure to calculate the missing amounts A, B and C.",
+    "question": "Use the information in the figure to calculate A as a percentage, B in times and C in cents.",
     "metadata": [
       "A = ",
       "[ ]",
-      " %   B = ",
+      "   B = ",
       "[ ]",
-      " times   C = ",
-      "[ ]",
-      " cents"
+      "   C = ",
+      "[ ]"
     ],
     "answer": [
       "17|17.0",
@@ -133,7 +132,7 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "A company paid an interim dividend of R190 000 when 950 000 shares were in issue. Later that year 50 000 shares were repurchased. Calculate the interim dividend per share.",
+    "question": "A company paid an interim dividend of R190 000 when 950 000 shares were in issue. Later that year 50 000 shares were repurchased. Calculate the interim dividend per share.",
     "metadata": [
       "Interim DPS = ",
       "[ ]",

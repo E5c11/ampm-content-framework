@@ -138,7 +138,7 @@ module.exports = [
     }],
     qs: [
       fb('Use the figure. Calculate the increase in the loan and the amount raised from new shares issued.',
-        ['Loan increase = R ', '[ ]', '   Shares issued = R ', '[ ]'], [String(loanInc), String(sharesRaised)], 'standard_math',
+        ['Loan = R ', '[ ]', '   Shares = R ', '[ ]'], [String(loanInc), String(sharesRaised)], 'standard_math',
         { fig: 0, unit: U, topic: 'interpreting_gearing', subtopic: 'acc_calculation', skill: SK.calc, diff: 2, w: 2, type: 'calc' }),
       ms('Select the TWO main sources (over R1 m) used to finance the new fixed assets of Baobab Ltd.',
         ['Issuing new shares', 'Increasing the loan'],

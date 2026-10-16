@@ -134,16 +134,16 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "Net profit after tax is R720 000 and income tax is 28% of net profit before tax. Which calculation gives the income tax?",
+    "question": "Net profit after tax is R720 000 and income tax is 28% of net profit before tax. Which calculation gives the income tax?",
     "metadata": [
-      "R720 000 × 28 ÷ 100",
-      "R720 000 × 72 ÷ 28",
-      "R720 000 × 100 ÷ 128",
-      "R720 000 × 28 ÷ 72",
+      "R720 000 × 28 ÷ 100",
+      "R720 000 × 72 ÷ 28",
+      "R720 000 × 100 ÷ 128",
+      "R720 000 × 28 ÷ 72",
       ""
     ],
     "answer": [
-      "R720 000 × 28 ÷ 72",
+      "R720 000 × 28 ÷ 72",
       "",
       "",
       "",

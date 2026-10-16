@@ -96,7 +96,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "An employee's net salary is R14 400 after deductions of 25% (pension and PAYE) and R1 350 for medical aid. Calculate the gross salary.",
+    "question": "An employee's net salary is R14 400 after deductions of 25% (pension and PAYE) and R1 350 for medical aid. Calculate the gross salary.",
     "metadata": [
       "Gross salary = R ",
       "[ ]"

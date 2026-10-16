@@ -94,16 +94,16 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "The vehicle in the figure was traded in for R104 000. What is the result on disposal?",
+    "question": "The vehicle in the figure was traded in for R104 000. What is the result on disposal?",
     "metadata": [
-      "A profit of R6 160",
-      "A loss of R6 160",
-      "A loss of R18 400",
-      "A profit of R6 080",
+      "A profit of R6 160",
+      "A loss of R6 160",
+      "A loss of R18 400",
+      "A profit of R6 080",
       ""
     ],
     "answer": [
-      "A loss of R6 160",
+      "A loss of R6 160",
       "",
       "",
       "",
@@ -135,7 +135,7 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "Kudu Ltd bought a new vehicle for R350 000 on 1 September 2024. Depreciation on the vehicle traded in was R12 240 and on the remaining old vehicles R118 400. Depreciation is 20% p.a. on the diminishing-balance method. Calculate the total depreciation on vehicles for the year ended 28 February 2025.",
+    "question": "Kudu Ltd bought a new vehicle for R350 000 on 1 September 2024. Depreciation on the vehicle traded in was R12 240 and on the remaining old vehicles R118 400. Depreciation is 20% p.a. on the diminishing-balance method. Calculate the total depreciation on vehicles for the year ended 28 February 2025.",
     "metadata": [
       "Depreciation = R ",
       "[ ]"

@@ -95,7 +95,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "Machinery costs R500 000 and its accumulated depreciation at the start of the year is R180 000. It is depreciated at 15% p.a. on the diminishing-balance method. Nothing was bought or sold. Calculate the depreciation for the year.",
+    "question": "Machinery costs R500 000 and its accumulated depreciation at the start of the year is R180 000. It is depreciated at 15% p.a. on the diminishing-balance method. Nothing was bought or sold. Calculate the depreciation for the year.",
     "metadata": [
       "Depreciation = R ",
       "[ ]"

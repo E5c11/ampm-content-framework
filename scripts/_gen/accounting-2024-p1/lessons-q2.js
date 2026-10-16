@@ -192,8 +192,8 @@ module.exports = [
       ],
     }],
     qs: [
-      fb('Use the information in the figure to calculate the missing amounts A, B and C.',
-        ['A = ', '[ ]', ' %   B = ', '[ ]', ' times   C = ', '[ ]', ' cents'], ['17|17.0', '17.9|18', '14'], 'standard_math',
+      fb('Use the information in the figure to calculate A as a percentage, B in times and C in cents.',
+        ['A = ', '[ ]', '   B = ', '[ ]', '   C = ', '[ ]'], ['17|17.0', '17.9|18', '14'], 'standard_math',
         { fig: 0, unit: U_FI, topic: 'financial_indicator_calculations', subtopic: 'acc_calculation', skill: SK.calc, diff: 3, w: 3, type: 'ratio',
           clues: '- Use AVERAGE trading stock for the stock turnover rate.\n- Use the shares in issue when the interim dividend was paid.' }),
       mc('Which formula gives the stock turnover rate?',

@@ -130,7 +130,7 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "A company had 900 000 shares in issue when it declared a final dividend of 15 cents per share at the end of last year. This year it paid an interim dividend of R160 000 and declared a final dividend of R210 000. Calculate the dividends paid this year (enter as a negative number).",
+    "question": "A company had 900 000 shares in issue when it declared a final dividend of 15 cents per share at the end of last year. This year it paid an interim dividend of R160 000 and declared a final dividend of R210 000. Calculate the dividends paid this year (enter as a negative number).",
     "metadata": [
       "Dividends paid = R ",
       "[ ]"

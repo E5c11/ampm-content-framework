@@ -93,7 +93,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "A shop's cost of sales was R1 800 000. All goods were sold at a mark-up of 60% on cost. Calculate the gross profit.",
+    "question": "A shop's cost of sales was R1 800 000. All goods were sold at a mark-up of 60% on cost. Calculate the gross profit.",
     "metadata": [
       "Gross profit = R ",
       "[ ]"
@@ -125,16 +125,16 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "Goods costing R10 000, normally sold at a 50% mark-up, were sold to staff at a 30% mark-up. By how much are sales lower than normal?",
+    "question": "Goods costing R10 000, normally sold at a 50% mark-up, were sold to staff at a 30% mark-up. By how much are sales lower than normal?",
     "metadata": [
-      "R3 000",
-      "R5 000",
-      "R1 300",
-      "R2 000",
+      "R3 000",
+      "R5 000",
+      "R1 300",
+      "R2 000",
       ""
     ],
     "answer": [
-      "R2 000",
+      "R2 000",
       "",
       "",
       "",

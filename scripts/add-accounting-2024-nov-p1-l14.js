@@ -56,9 +56,9 @@ const questions = [
     "name": "Question 1",
     "question": "Use the figure. Calculate the increase in the loan and the amount raised from new shares issued.",
     "metadata": [
-      "Loan increase = R ",
+      "Loan = R ",
       "[ ]",
-      "   Shares issued = R ",
+      "   Shares = R ",
       "[ ]"
     ],
     "answer": [

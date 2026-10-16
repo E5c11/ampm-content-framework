@@ -166,7 +166,7 @@ const questions = [
   },
   {
     "name": "Question 4",
-    "question": "Stationery in the books is R18 600. Stationery on hand at the end of the year is R2 450. Calculate the stationery expense for the year.",
+    "question": "Stationery in the books is R18 600. Stationery on hand at the end of the year is R2 450. Calculate the stationery expense for the year.",
     "metadata": [
       "Stationery = R ",
       "[ ]"

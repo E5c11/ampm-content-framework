@@ -169,7 +169,7 @@ const questions = [
   },
   {
     "name": "Question 4",
-    "question": "Net income after tax was R2 160 000. Shareholders' equity was R11 200 000 at the start and R12 800 000 at the end of the year. Calculate the % return on average shareholders' equity.",
+    "question": "Net income after tax was R2 160 000. Shareholders' equity was R11 200 000 at the start and R12 800 000 at the end of the year. Calculate the % return on average shareholders' equity.",
     "metadata": [
       "ROSHE = ",
       "[ ]",

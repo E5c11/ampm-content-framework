@@ -96,7 +96,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "A business receives rent of R9 500 per month. Rent has been received up to 30 April 2025. Its financial year ended on 28 February 2025. Calculate the rent received in advance.",
+    "question": "A business receives rent of R9 500 per month. Rent has been received up to 30 April 2025. Its financial year ended on 28 February 2025. Calculate the rent received in advance.",
     "metadata": [
       "Received in advance = R ",
       "[ ]"
