@@ -188,3 +188,14 @@ tool) are part of that step. Update the profile ledger and write a memory entry 
   over `questions` where `presentation_id = 'match'`. Use `multi_select` for a two-category sort.
 - Check topic/tag ids against other subjects before creating them (global ids: `genetics_terminology`, `mutations` and `labour_productivity` already belonged to Life Sciences/Economics).
 - A calculation that must read values off a figure should not state them in the stem, and the figure's gridlines should land on the values (200-step axis for 1 000 / 1 800).
+
+## Lessons from 2024 Nov P2 (review, 2026-10-16)
+
+- **Multi-select options are shown in stored order.** A generator that keeps correct options off the ends makes "the first and last are always wrong" a
+  paper-level cue the validator does not catch (it only checks all-first-N / all-last-N). Rotate correct options through every position, ends included.
+- **A typed answer must not appear anywhere else in its lesson** — not in a sibling stem, option or clue (four leaks in this paper, one in P1). Grep each
+  `fitb` answer against the other questions of its lesson before upload.
+- **Re-uploading a row as a different presentation leaves stale columns.** The upsert does not null columns the new row omits: a `fitb` turned `match`
+  kept `keyboard_type = text` (and would hold the exam gate). Clear it on dev and re-run `apply-exam-gate.js`.
+- A figure beside a "which criteria must the graph have" question shows the answer — ask that one without the figure.
+
