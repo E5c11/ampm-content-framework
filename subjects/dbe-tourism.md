@@ -8,7 +8,7 @@ tags: [subject, tourism, dbe, profile]
 
 # Subject Profile — DBE Tourism (one paper, 200 marks)
 
-**Status (2026-10-16): 2025 Nov authored on dev (24 lessons / 96 q) and emulator-reviewed; 2024 Nov authored on dev (24 lessons / 94 q) and emulator-reviewed; nothing in prod.** Built from the Nov 2025 and Nov 2024 papers + memos and the CAPS
+**Status (2026-10-16): 2025 Nov authored on dev (24 lessons / 96 q) and emulator-reviewed; 2024 Nov authored on dev (24 lessons / 94 q) and emulator-reviewed. Both are live in prod (2025 gated 2.4.0, pushed 2026-10-15; 2024 no gate, pushed 2026-10-16).** Built from the Nov 2025 and Nov 2024 papers + memos and the CAPS
 document (`files/tourism/`). Both years share one layout, so the structure below is the subject's, not a year's quirk.
 
 Loads `shared/closed-form-subjects.md` (`AMPM-CONTENT-CLOSED-FORM`) — the discursive→selection, figure, calculation, typed-answer and formatting rules
@@ -148,8 +148,8 @@ One unit per memo topic code. Names are CAPS's; slugs are flat per the vocabular
 
 | Paper | Lessons / questions | Status |
 |---|---|---|
-| 2025 Nov (`nov_p1`) | 24 lessons / 96 q (200 marks): L1–7 Section A by topic code, L8–13 Q2–Q3, L14–17 Q4–Q6, L18–21 Q7–Q8, L22–24 Q9–Q10. 36 mc / 29 ms / 20 match / 5 ordering / 6 fitb | on dev 2026-10-15, gated 2.4.0 (`text` row in L12), validator + `audit-answer-cues` clean, MC index-0 2.8%. Emulator review on 2.4.1-dev01: no defects; 6 typed answers (8 attempts incl. `\|` alternatives) all PASS. Lessons 15, 17–22, 24 screenshots not individually viewed. **Subject-expert check and prod push owed.** |
-| 2024 Nov (`nov_p1`) | 24 lessons / 94 q (200 marks): L1–6 Section A by topic code (L6 = 1.5 hotel staff), L7–12 Q2–Q3, L13–16 Q4–Q6, L17–20 Q7–Q8, L21–24 Q9–Q10. 39 mc / 27 ms / 17 match / 5 ordering / 6 fitb | on dev 2026-10-16, **no gate** (all 6 typed rows `standard_math`, derived 2.0.0), validator (`--curriculum` + `--ai-exp`) + `audit-answer-cues` clean, MC index-0 2.6%, correct-longest 10%. L7 has 5 questions (clock time + date pair). 57 page images, all resolve. Emulator review 2026-10-16 on 2.4.0-dev01: 2 render fixes (U+00A0 in `R40 000` L11 Q2–3 and `80 000` L14 Q1 — numbers wrapped mid-group), 0 flags; Phase 5 11/11 (6 typed rows, every `\|` alternative, incl. the two-blank L7 clock time). **Subject-expert check and prod push owed.** |
+| 2025 Nov (`nov_p1`) | 24 lessons / 96 q (200 marks): L1–7 Section A by topic code, L8–13 Q2–Q3, L14–17 Q4–Q6, L18–21 Q7–Q8, L22–24 Q9–Q10. 36 mc / 29 ms / 20 match / 5 ordering / 6 fitb | on dev 2026-10-15, gated 2.4.0 (`text` row in L12), validator + `audit-answer-cues` clean, MC index-0 2.8%. Emulator review on 2.4.1-dev01: no defects; 6 typed answers (8 attempts incl. `\|` alternatives) all PASS. Lessons 15, 17–22, 24 screenshots not individually viewed. **Live in prod** (pushed 2026-10-15, prod gate 2.4.0). Subject-expert check owed. |
+| 2024 Nov (`nov_p1`) | 24 lessons / 94 q (200 marks): L1–6 Section A by topic code (L6 = 1.5 hotel staff), L7–12 Q2–Q3, L13–16 Q4–Q6, L17–20 Q7–Q8, L21–24 Q9–Q10. 39 mc / 27 ms / 17 match / 5 ordering / 6 fitb | on dev 2026-10-16, **no gate** (all 6 typed rows `standard_math`, derived 2.0.0), validator (`--curriculum` + `--ai-exp`) + `audit-answer-cues` clean, MC index-0 2.6%, correct-longest 10%. L7 has 5 questions (clock time + date pair). 57 page images, all resolve. Emulator review 2026-10-16 on 2.4.0-dev01: 2 render fixes (U+00A0 in `R40 000` L11 Q2–3 and `80 000` L14 Q1 — numbers wrapped mid-group), 0 flags; Phase 5 11/11 (6 typed rows, every `\|` alternative, incl. the two-blank L7 clock time). **Live in prod 2026-10-16** (pushed unpublished, prod = dev field by field incl. 89 explanation / 58 tag / 94 skill rows, 57 prod image URLs 200, no gate, then published). Subject-expert check owed. |
 
 Authoring lives in `scripts/_gen/tourism/` (`lessons-{a,b,c}.js` data, `lib.js` helpers, `gen.js` emits the `scripts/add-tourism-<YEAR>-nov-p1-lNN.js` files, `taxonomy.js` creates vocabulary). The `YEAR` env var selects the paper: 2025 data sits beside `lib.js`, 2024 in `2024/` (`YEAR=2024 node scripts/_gen/tourism/gen.js`). Lesson objects carry `qspec`/`mspec` (the `extract-exam-pages.py` page specs) — 2024 used full pages per lesson, like 2025, with no `supplementary_materials`.
 
@@ -157,6 +157,6 @@ Authoring lives in `scripts/_gen/tourism/` (`lessons-{a,b,c}.js` data, `lib.js` 
 
 ## Still open
 
-- Prod: subjects row state, expert check, `push-paper-to-prod.js` (owner-approved).
+- Subject-expert check of both papers (both already live in prod).
 - Decide fresh-stimulus sourcing for the Column B picture matches (1.4) — text-described items, or generated simple icons.
 - Mark the time-zone offset table as the standard stem aid so lessons stay consistent.
