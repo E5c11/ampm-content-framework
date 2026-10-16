@@ -80,8 +80,10 @@ function urls(order, nq, nm) {
   return { q: Array.from({ length: nq }, (_, i) => `${b}/question_${i + 1}.png`), m: Array.from({ length: nm }, (_, i) => `${b}/memo_${i + 1}.png`) };
 }
 
-function figUrl(order, idx) {
-  return `https://media-dev.askmoreprepmore.app/question_supplementary/${SUBJECT}/${YEAR}/${PAPER}/q${order}/statement_${idx + 1}.png`;
+// figVer: a re-rendered figure gets a new object key (statement-v2_1.png …) — published paths are edge-cached for a year, never overwritten.
+function figUrl(order, idx, figVer) {
+  const stem = figVer ? `statement-v${figVer}` : 'statement';
+  return `https://media-dev.askmoreprepmore.app/question_supplementary/${SUBJECT}/${YEAR}/${PAPER}/q${order}/${stem}_${idx + 1}.png`;
 }
 
 // ── statement figure helpers (CLOSED-FIG-03) ─────────────────────────────────
@@ -111,7 +113,7 @@ function emit(L) {
     if (q._fig !== undefined) {
       const spec = L.figs[q._fig];
       if (!spec) throw new Error(`Lesson ${L.order}: question references missing figure ${q._fig}`);
-      q.supplementary_material = { type: 'statement', label: spec.title, image_urls: [figUrl(L.order, q._fig)] };
+      q.supplementary_material = { type: 'statement', label: spec.title, image_urls: [figUrl(L.order, q._fig, L.figVer)] };
       delete q._fig;
     }
   }

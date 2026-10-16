@@ -32,7 +32,7 @@ assert.strictEqual(Math.round(150 / 1200 * 365 * 10) / 10, 45.6);
 module.exports = [
   // ── L06 ── 2.1.1–2.1.2 weighted average and stolen stock ────────────────────
   {
-    order: 6, name: 'Question 2.1.1–2.1.2: Weighted-average cost and stolen stock', marks: 11, qp: '6', mp: '4', qpages: 1, mpages: 1,
+    order: 6, figVer: 2, name: 'Question 2.1.1–2.1.2: Weighted-average cost and stolen stock', marks: 11, qp: '6', mp: '4', qpages: 1, mpages: 1,
     covers: 'Questions 2.1.1 and 2.1.2 — the weighted-average cost of one unit, the number of units stolen and their value.',
     tags: ['weighted_average_stock_valuation', 'stock_theft'],
     info: [

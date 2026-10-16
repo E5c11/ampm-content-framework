@@ -10,6 +10,7 @@ Palette: amber #FFC107 box + near-black letter (contrast ~12:1), dark-ink text o
 """
 import json
 import os
+import re
 import sys
 import textwrap
 
@@ -42,6 +43,7 @@ def draw(spec, out):
         if r.get("k") == "gap":
             wrapped.append([]); total_rows += 0.5; continue
         text = r["c"][0] if r.get("c") else ""
+        text = re.sub(r"(?<=\d) (?=\d{3}\b)", "\u00a0", text)  # keep "R1 344 000" on one line
         indent = 0.2 * r.get("i", 0)
         full = r.get("k") in ("text", "band")
         width_chars = max(8, int((W - 0.4 - indent) / (0.0071 * FS)) if full else int((label_w - indent) / (CHAR_W * FS)))

@@ -86,7 +86,7 @@ const questions = [
       "type": "statement",
       "label": "Purchases: Sole Sneakers",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2024/nov_p2/q6/statement_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2024/nov_p2/q6/statement-v2_1.png"
       ]
     }
   },
@@ -126,7 +126,7 @@ const questions = [
       "type": "statement",
       "label": "Purchases: Sole Sneakers",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2024/nov_p2/q6/statement_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2024/nov_p2/q6/statement-v2_1.png"
       ]
     }
   },
