@@ -160,11 +160,11 @@ const questions = [
     "name": "Question 4",
     "question": "Select ALL the methods of creating capital.",
     "metadata": [
-      "Depreciation",
       "Savings",
-      "Inheritance",
+      "Depreciation",
       "Loans",
-      "Overcapitalisation"
+      "Inheritance",
+      "Paying dividends"
     ],
     "answer": [
       "Savings",

@@ -205,11 +205,11 @@ const questions = [
     "name": "Question 5",
     "question": "Select ALL the factors that make the demand for a product more price-elastic.",
     "metadata": [
-      "The product is a basic need",
       "Many substitutes are available",
-      "It takes a large share of income",
       "The product is a luxury item",
-      "No substitutes are available"
+      "The product is a basic need",
+      "No substitutes are available",
+      "It takes a large share of income"
     ],
     "answer": [
       "Many substitutes are available",

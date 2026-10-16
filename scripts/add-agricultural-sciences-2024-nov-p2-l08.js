@@ -90,11 +90,11 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the advantages of a free marketing system for the BUYER.",
     "metadata": [
-      "A board fixes all prices",
-      "Buyers choose where to buy",
       "Buyers can bargain on price",
+      "A board fixes all prices",
       "Lower prices without agents",
-      "Only one buyer per product"
+      "Only one buyer per product",
+      "Buyers choose where to buy"
     ],
     "answer": [
       "Buyers can bargain on price",
@@ -158,9 +158,9 @@ const questions = [
     "name": "Question 4",
     "question": "Select ALL the principles of an agricultural cooperative.",
     "metadata": [
-      "Profits go to one owner only",
       "Voluntary and open membership",
       "Democratic control by members",
+      "Profits go to one owner only",
       "Concern for the community",
       "Votes depend on shares held"
     ],

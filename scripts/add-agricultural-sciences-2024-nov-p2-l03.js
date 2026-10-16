@@ -57,13 +57,13 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "Select ALL the practices that improve the productivity of land.",
+    "question": "Select ALL the practices that help land produce more over time.",
     "metadata": [
       "Planting maize every year",
-      "Restoring degraded land",
       "Intercropping",
+      "Overgrazing the veld",
       "Crop rotation",
-      "Overgrazing the veld"
+      "Restoring degraded land"
     ],
     "answer": [
       "Intercropping",
@@ -127,10 +127,10 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "Select ALL the measures that would increase labour productivity on a farm.",
+    "question": "Select ALL the measures that would help farm workers produce more per hour worked.",
     "metadata": [
-      "Setting goals workers cannot reach",
       "Training workers in new skills",
+      "Setting goals workers cannot reach",
       "Involving workers in decisions",
       "Improving workers' welfare",
       "Hiring more workers than needed"

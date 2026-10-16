@@ -123,10 +123,10 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the ways to increase labour productivity in agriculture.",
     "metadata": [
-      "Longer unpaid working hours",
-      "Improved working conditions",
       "Efficient mechanisation",
       "Better supervision",
+      "Longer unpaid working hours",
+      "Improved working conditions",
       "Fewer training opportunities"
     ],
     "answer": [
@@ -194,10 +194,10 @@ const questions = [
     "question": "Select ALL the ways in which migration of farm workers to cities lowers production on farms.",
     "metadata": [
       "Lower wage costs",
-      "Labour shortages",
       "More workers available",
-      "Loss of skills",
-      "Higher crop yields"
+      "Labour shortages",
+      "Higher crop yields",
+      "Loss of skills"
     ],
     "answer": [
       "Labour shortages",

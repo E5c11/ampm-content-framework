@@ -53,45 +53,48 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "Before applying for a loan to start a piggery, a farmer writes a document that describes the business idea, its goals and its financial needs. What is this document called? (two words) []",
+    "question": "Match each farm document to what it contains.",
     "metadata": [
-      "Document: ",
-      "[ ]"
+      "A - Business plan",
+      "B - Income statement",
+      "C - Cash flow budget",
+      "D - Contract of employment",
+      "1 - Income and expenses showing profit or loss",
+      "2 - Expected money in and out each month",
+      "3 - The terms agreed between farmer and worker",
+      "4 - The business idea, goals and financial needs"
     ],
     "answer": [
-      "business plan",
-      "",
-      "",
-      "",
-      ""
+      "A-4",
+      "B-1",
+      "C-2",
+      "D-3"
     ],
-    "presentation": "fitb",
-    "keyboard_type": "text",
-    "type": "definition",
+    "presentation": "match",
+    "type": "application",
     "unit": "agricultural_management_and_marketing",
     "topic": "business_planning",
-    "subtopic": "agri_term_recall",
+    "subtopic": "agri_classification",
     "skills": [
-      "recall_agricultural_term"
+      "classify_farm_concept"
     ],
     "difficulty": 1,
-    "exam_weight": 1,
+    "exam_weight": 2,
     "xp": 10,
     "order": 1,
     "syllabus": "dbe",
     "subject": "agricultural_sciences",
     "year": 2024,
-    "paper": "nov_p2",
-    "clues": "- It is a written plan for the whole business."
+    "paper": "nov_p2"
   },
   {
     "name": "Question 2",
     "question": "Select ALL the reasons for drawing up a business plan.",
     "metadata": [
       "To hide the farm's weaknesses",
-      "To guide daily decisions",
       "To test if the idea is viable",
       "To help secure funding",
+      "To guide daily decisions",
       "To avoid market research"
     ],
     "answer": [
@@ -122,11 +125,11 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the problems that weaken a business plan.",
     "metadata": [
-      "Clear goals and timelines",
       "Unrealistic sales projections",
       "No cash flow forecast",
-      "Too little market research",
-      "Realistic cost estimates"
+      "Clear goals and timelines",
+      "Realistic cost estimates",
+      "Too little market research"
     ],
     "answer": [
       "Unrealistic sales projections",

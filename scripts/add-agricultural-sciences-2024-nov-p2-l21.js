@@ -123,11 +123,11 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the advantages that crossbred calves usually have over their purebred parents.",
     "metadata": [
-      "Slower growth rates",
       "Hybrid vigour (heterosis)",
+      "Slower growth rates",
       "Better disease resistance",
-      "Higher fertility",
-      "Poorer adaptability"
+      "Poorer adaptability",
+      "Higher fertility"
     ],
     "answer": [
       "Hybrid vigour (heterosis)",

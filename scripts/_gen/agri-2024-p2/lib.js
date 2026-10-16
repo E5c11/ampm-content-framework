@@ -8,7 +8,9 @@ const YEAR = 2024;
 const PAPER = 'nov_p2';
 const MC_POS = [2, 1, 3, 2, 3, 1, 3, 2, 1, 2, 3, 1, 2, 3, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 0];
 let mcCounter = 0;
-const MS_POS = { 2: [[1, 3], [2, 3], [1, 2]], 3: [[1, 2, 3], [1, 3, 2], [2, 3, 1]] };
+// Correct options rotate through every position (ends included) so 'the first and last are always wrong' is not a paper-level cue (review 2026-10-16);
+// the all-first-N and all-last-N sets are excluded (DESIGN-UNI-16).
+const MS_POS = { 2: [[0, 2], [1, 3], [2, 4], [0, 3], [1, 4], [1, 2], [0, 4], [2, 3]], 3: [[0, 2, 4], [0, 1, 3], [1, 3, 4], [0, 2, 3], [1, 2, 4], [0, 3, 4], [1, 2, 3], [0, 1, 4]] };
 let msCounter = 0;
 
 const U = { AMM: 'agricultural_management_and_marketing', PF: 'production_factors', GEN: 'basic_agricultural_genetics' };

@@ -92,8 +92,8 @@ const questions = [
       "Theft of crops",
       "Busy taxi rank",
       "Persistence",
-      "Creativity",
-      "Broken pump"
+      "Broken pump",
+      "Creativity"
     ],
     "answer": [
       "Persistence",

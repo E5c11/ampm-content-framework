@@ -92,11 +92,11 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the factors that make the marketing of agricultural products difficult.",
     "metadata": [
-      "Small, high-value products",
       "Perishability of products",
+      "Small, high-value products",
       "Poor road infrastructure",
-      "Bulky, low-value products",
-      "Buyers in one central place"
+      "Buyers in one central place",
+      "Bulky, low-value products"
     ],
     "answer": [
       "Perishability of products",

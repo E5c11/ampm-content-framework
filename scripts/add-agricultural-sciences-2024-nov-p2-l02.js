@@ -60,8 +60,8 @@ const questions = [
     "question": "The demand curve for oranges slopes downwards to the right. Select ALL the statements that this curve shows.",
     "metadata": [
       "Supply stays the same when price rises",
-      "Buyers want more when the price rises",
       "Buyers want more when the price falls",
+      "Buyers want more when the price rises",
       "Price and quantity demanded move oppositely",
       "Price and quantity demanded rise together"
     ],

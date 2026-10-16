@@ -120,9 +120,12 @@ module.exports = [
     covers: 'Question 2.7 — identifying a business plan, reasons for developing one and problems when drawing it up.',
     tags: ['business_plan', 'business_plan_content'],
     qs: [
-      fb('Before applying for a loan to start a piggery, a farmer writes a document that describes the business idea, its goals and its financial needs. What is this document called? (two words) []',
-        'Document: ', 'business plan', 'text',
-        { unit: 'AMM', topic: 'business_planning', subtopic: 'agri_term_recall', skill: 'recall_agricultural_term', diff: 1, type: 'definition', w: 1, clues: ['It is a written plan for the whole business.'] }),
+      mt('Match each farm document to what it contains.', [
+        ['Business plan', 'The business idea, goals and financial needs'],
+        ['Income statement', 'Income and expenses showing profit or loss'],
+        ['Cash flow budget', 'Expected money in and out each month'],
+        ['Contract of employment', 'The terms agreed between farmer and worker'],
+      ], { unit: 'AMM', topic: 'business_planning', subtopic: 'agri_classification', skill: 'classify_farm_concept', diff: 1 }),
       ms('Select ALL the reasons for drawing up a business plan.',
         ['To test if the idea is viable', 'To help secure funding', 'To guide daily decisions'], ["To hide the farm's weaknesses", 'To avoid market research'],
         { unit: 'AMM', topic: 'business_planning', subtopic: 'agri_classification', skill: 'apply_management_concept', diff: 2 }),

@@ -128,11 +128,11 @@ const questions = [
     "name": "Question 3",
     "question": "Select ALL the correct statements about the sex chromosomes of cattle.",
     "metadata": [
-      "Cows carry an X and a Y",
-      "The bull decides the calf's sex",
       "Cows carry two X chromosomes",
+      "Cows carry an X and a Y",
+      "Bulls carry two Y chromosomes",
       "Bulls carry an X and a Y",
-      "Bulls carry two Y chromosomes"
+      "The bull decides the calf's sex"
     ],
     "answer": [
       "Cows carry two X chromosomes",

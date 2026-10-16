@@ -53,7 +53,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "In maize, purple kernels (P) are dominant over yellow kernels (p). Two heterozygous plants (Pp × Pp) are crossed. What fraction of the offspring will have yellow kernels?",
+    "question": "In maize, purple kernels (P) are dominant over yellow kernels (p). Two heterozygous plants (Pp × Pp) are crossed. What fraction of the offspring will have yellow kernels?",
     "metadata": [
       "One half",
       "Three quarters",
@@ -88,7 +88,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "In maize, purple kernels (P) are dominant over yellow kernels (p). Two heterozygous plants (Pp × Pp) are crossed. What percentage of the offspring will be heterozygous (Pp)? []",
+    "question": "In maize, purple kernels (P) are dominant over yellow kernels (p). Two heterozygous plants (Pp × Pp) are crossed. What percentage of the offspring will be heterozygous (Pp)? []",
     "metadata": [
       "Heterozygous (%): ",
       "[ ]"
@@ -121,7 +121,7 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "In maize, purple kernels (P) are dominant over yellow kernels (p). Two heterozygous plants (Pp × Pp) are crossed. What is the phenotypic ratio of the offspring?",
+    "question": "In maize, purple kernels (P) are dominant over yellow kernels (p). Two heterozygous plants (Pp × Pp) are crossed. What is the phenotypic ratio of the offspring?",
     "metadata": [
       "1 purple : 1 yellow",
       "3 purple : 1 yellow",
@@ -188,7 +188,7 @@ const questions = [
   },
   {
     "name": "Question 5",
-    "question": "In maize, purple kernels (P) are dominant over yellow kernels (p). Two heterozygous plants (Pp × Pp) are crossed. The cross produces 400 seeds. How many seeds are expected to have purple kernels? []",
+    "question": "In maize, purple kernels (P) are dominant over yellow kernels (p). Two heterozygous plants (Pp × Pp) are crossed. The cross produces 400 seeds. How many seeds are expected to have purple kernels? []",
     "metadata": [
       "Purple seeds: ",
       "[ ]"

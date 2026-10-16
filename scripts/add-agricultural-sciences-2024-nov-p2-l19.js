@@ -120,12 +120,12 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "Select ALL the GENETIC causes of variation among offspring.",
+    "question": "Select ALL the GENETIC causes of differences among offspring of the same parents.",
     "metadata": [
       "Quality of the feed",
       "Crossing over in meiosis",
-      "Mutation",
       "Random fertilisation",
+      "Mutation",
       "Climate of the farm"
     ],
     "answer": [
@@ -154,7 +154,7 @@ const questions = [
   },
   {
     "name": "Question 4",
-    "question": "Why is variation important in a breeding programme?",
+    "question": "Why are differences between individual animals important in a breeding programme?",
     "metadata": [
       "It makes all offspring identical to their parents",
       "It removes the need to keep breeding records",

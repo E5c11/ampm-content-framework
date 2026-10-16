@@ -55,9 +55,9 @@ const questions = [
     "question": "A farmer crosses tomato cultivar X (TTRR) with cultivar Y (ttrr). T is tall and t is short; R is red fruit and r is yellow fruit. Select ALL the characteristics of cultivar Y that the farmer is trying to improve.",
     "metadata": [
       "Leaf shape",
+      "Seed number",
       "Plant height",
       "Fruit colour",
-      "Seed number",
       "Root depth"
     ],
     "answer": [

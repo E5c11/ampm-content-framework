@@ -64,9 +64,9 @@ const questions = [
     "metadata": [
       "The state of farm machinery",
       "New labour legislation",
-      "A drought in the region",
       "A rise in interest rates",
-      "The farmer's own debt level"
+      "The farmer's own debt level",
+      "A drought in the region"
     ],
     "answer": [
       "New labour legislation",

@@ -88,10 +88,10 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the features of an agricultural DEMAND chain.",
     "metadata": [
-      "Short-term orientated",
-      "Driven by consumer demand",
       "Long-term orientated",
+      "Short-term orientated",
       "Focuses on effectiveness",
+      "Driven by consumer demand",
       "Focuses on cost control"
     ],
     "answer": [
@@ -160,8 +160,8 @@ const questions = [
       "Selling ungraded produce",
       "Refrigerated transport",
       "Grading of products",
-      "Marketing collectively",
-      "Ignoring market prices"
+      "Ignoring market prices",
+      "Marketing collectively"
     ],
     "answer": [
       "Refrigerated transport",
@@ -193,9 +193,9 @@ const questions = [
     "question": "Select ALL the roles of legislation in the effective marketing of agricultural products.",
     "metadata": [
       "Guaranteeing every farmer a profit",
-      "Banning all agricultural imports",
       "Preventing unfair marketing practices",
       "Making sure products meet safety standards",
+      "Banning all agricultural imports",
       "Setting one price for every product"
     ],
     "answer": [

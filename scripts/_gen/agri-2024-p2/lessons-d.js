@@ -2,7 +2,7 @@
 // Section B Question 4: Basic agricultural genetics (35 marks) — L17–L22.
 const { mc, ms, mt, fb, ex } = require('./lib');
 
-const MAIZE = 'In maize, purple kernels (P) are dominant over yellow kernels (p). Two heterozygous plants (Pp × Pp) are crossed.';
+const MAIZE = 'In maize, purple kernels (P) are dominant over yellow kernels (p). Two heterozygous plants (Pp\u00a0×\u00a0Pp) are crossed.';
 const TOM = 'A farmer crosses tomato cultivar X (TTRR) with cultivar Y (ttrr). T is tall and t is short; R is red fruit and r is yellow fruit.';
 
 module.exports = [
@@ -50,7 +50,7 @@ module.exports = [
       mc('Why is a pink snapdragon from a red × white cross an example of incomplete dominance?',
         'The offspring shows a blend between the parents', ['The offspring shows both parent colours side by side', 'The offspring looks exactly like one of the parents', 'The offspring has a colour that neither allele codes for'],
         { unit: 'GEN', topic: 'patterns_of_inheritance', subtopic: 'agri_cause_and_effect', skill: 'explain_agricultural_cause_and_effect', diff: 3 }),
-      fb('In snapdragons, red (RR) × white (WW) gives pink (RW). Two pink snapdragons (RW × RW) are crossed. What percentage of the offspring will be pink? []',
+      fb('In snapdragons, red (RR) × white (WW) gives pink (RW). Two pink snapdragons (RW\u00a0×\u00a0RW) are crossed. What percentage of the offspring will be pink? []',
         'Pink (%): ', '50', 'standard_math',
         { unit: 'GEN', topic: 'patterns_of_inheritance', subtopic: 'agri_genetic_cross', skill: 'predict_genetic_outcome', diff: 3, type: 'calc', clues: ['Draw a Punnett square with R and W gametes from each parent.'] }),
       ms('Select ALL the QUANTITATIVE characteristics.',
@@ -77,10 +77,10 @@ module.exports = [
       mc('Two calves are genetically identical clones. One is raised on poor veld and grows much smaller than the other. What causes the difference in size?',
         'The environment', ['Their genes', 'Crossing over', 'A mutation'],
         { unit: 'GEN', topic: 'variation', subtopic: 'agri_cause_and_effect', skill: 'explain_agricultural_cause_and_effect', diff: 2, clues: ['The calves have exactly the same genes.'] }),
-      ms('Select ALL the GENETIC causes of variation among offspring.',
+      ms('Select ALL the GENETIC causes of differences among offspring of the same parents.',
         ['Crossing over in meiosis', 'Random fertilisation', 'Mutation'], ['Quality of the feed', 'Climate of the farm'],
         { unit: 'GEN', topic: 'variation', subtopic: 'agri_classification', skill: 'classify_farm_concept', diff: 2 }),
-      mc('Why is variation important in a breeding programme?',
+      mc('Why are differences between individual animals important in a breeding programme?',
         'It provides the differences breeders select from', ['It makes all offspring identical to their parents', 'It removes the need to keep breeding records', 'It stops traits from being passed on to offspring'],
         { unit: 'GEN', topic: 'variation', subtopic: 'agri_cause_and_effect', skill: 'explain_agricultural_cause_and_effect', diff: 2 }),
     ],
@@ -158,7 +158,7 @@ module.exports = [
         { unit: 'GEN', topic: 'genetic_modification', subtopic: 'agri_classification', skill: 'classify_farm_concept', diff: 2, clues: ['Two options are risks of GM crops, not benefits.'] }),
       ms('A learner must draw a line graph of GM and non-GM yields per region on the same axes. Select ALL the features the graph must have.',
         ['A heading naming both variables', 'Yield in kg/ha on the y-axis', 'A key for the two lines'], ['Bars of different colours', 'No scale on the y-axis'],
-        { unit: 'GEN', topic: 'genetic_modification', subtopic: 'agri_data_interpretation', skill: 'interpret_agricultural_data', diff: 3, fig: 0, clues: ['Look at the graph supplied: what makes it readable?'] }),
+        { unit: 'GEN', topic: 'genetic_modification', subtopic: 'agri_data_interpretation', skill: 'interpret_agricultural_data', diff: 3, clues: ['Think about what a reader needs to tell the two lines apart and read their values.'] }),
       fb('Study the graph. What was the yield of GM soybean in Region R? []',
         'GM yield (kg/ha): ', '4000', 'standard_math',
         { unit: 'GEN', topic: 'genetic_modification', subtopic: 'agri_data_interpretation', skill: 'interpret_agricultural_data', diff: 2, type: 'interpretation', fig: 0, clues: ['Use the key to find the GM line, then read across to the y-axis.'] }),

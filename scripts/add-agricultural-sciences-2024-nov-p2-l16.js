@@ -159,10 +159,10 @@ const questions = [
     "question": "Select ALL the management principles that help a farmer to manage risk.",
     "metadata": [
       "Specialisation",
-      "Control",
       "Planning",
       "Decision making",
-      "Overcapitalisation"
+      "Overcapitalisation",
+      "Control"
     ],
     "answer": [
       "Planning",

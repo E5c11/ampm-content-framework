@@ -88,10 +88,10 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the potential ENVIRONMENTAL benefits of GM crops.",
     "metadata": [
-      "Spread of super weeds",
       "Less chemical spraying",
-      "Allows no-till farming",
       "Drought-tolerant crops",
+      "Spread of super weeds",
+      "Allows no-till farming",
       "Loss of crop diversity"
     ],
     "answer": [
@@ -124,10 +124,10 @@ const questions = [
     "question": "A learner must draw a line graph of GM and non-GM yields per region on the same axes. Select ALL the features the graph must have.",
     "metadata": [
       "Bars of different colours",
-      "A key for the two lines",
       "A heading naming both variables",
+      "No scale on the y-axis",
       "Yield in kg/ha on the y-axis",
-      "No scale on the y-axis"
+      "A key for the two lines"
     ],
     "answer": [
       "A heading naming both variables",
@@ -152,14 +152,7 @@ const questions = [
     "subject": "agricultural_sciences",
     "year": 2024,
     "paper": "nov_p2",
-    "clues": "- Look at the graph supplied: what makes it readable?",
-    "supplementary_material": {
-      "type": "graph",
-      "label": "Yield of GM and non-GM soybean in five regions (illustrative)",
-      "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/agricultural_sciences/2024/nov_p2/q22/graph_1.png"
-      ]
-    }
+    "clues": "- Think about what a reader needs to tell the two lines apart and read their values."
   },
   {
     "name": "Question 4",

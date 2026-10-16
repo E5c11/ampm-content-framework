@@ -83,7 +83,7 @@ module.exports = [
         'Short-term credit', ['Long-term credit', 'Medium-term credit', 'Mortgage credit'],
         { unit: 'PF', topic: 'capital_and_credit', subtopic: 'agri_scenario_application', skill: 'interpret_farm_finance', diff: 2 }),
       ms('Select ALL the methods of creating capital.',
-        ['Savings', 'Loans', 'Inheritance'], ['Depreciation', 'Overcapitalisation'],
+        ['Savings', 'Loans', 'Inheritance'], ['Depreciation', 'Paying dividends'],
         { unit: 'PF', topic: 'capital_and_credit', subtopic: 'agri_classification', skill: 'classify_farm_concept', diff: 2, clues: ['A method of creating capital brings money into the business.'] }),
       fb('A farmer has invested so much capital in machinery that it is far more than the available land and labour can use. What is this problem called? (one word) []',
         'Problem: ', 'overcapitalisation|overcapitalization', 'text',

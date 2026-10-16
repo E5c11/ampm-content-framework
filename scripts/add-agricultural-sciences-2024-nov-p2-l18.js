@@ -157,7 +157,7 @@ const questions = [
   },
   {
     "name": "Question 4",
-    "question": "In snapdragons, red (RR) × white (WW) gives pink (RW). Two pink snapdragons (RW × RW) are crossed. What percentage of the offspring will be pink? []",
+    "question": "In snapdragons, red (RR) × white (WW) gives pink (RW). Two pink snapdragons (RW × RW) are crossed. What percentage of the offspring will be pink? []",
     "metadata": [
       "Pink (%): ",
       "[ ]"
@@ -192,11 +192,11 @@ const questions = [
     "name": "Question 5",
     "question": "Select ALL the QUANTITATIVE characteristics.",
     "metadata": [
-      "Coat colour of cattle",
       "Body mass of pigs",
+      "Coat colour of cattle",
+      "Presence of horns",
       "Wool yield of sheep",
-      "Daily milk yield",
-      "Presence of horns"
+      "Daily milk yield"
     ],
     "answer": [
       "Body mass of pigs",

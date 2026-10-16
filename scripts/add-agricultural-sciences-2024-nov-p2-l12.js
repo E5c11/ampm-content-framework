@@ -89,11 +89,11 @@ const questions = [
     "name": "Question 2",
     "question": "Select ALL the economic functions of land.",
     "metadata": [
-      "Pays wages to workers",
       "Provides space for production",
-      "Serves as collateral",
+      "Pays wages to workers",
       "Provides raw materials",
-      "Supplies management skills"
+      "Supplies management skills",
+      "Serves as collateral"
     ],
     "answer": [
       "Provides space for production",
