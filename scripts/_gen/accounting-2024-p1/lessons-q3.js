@@ -104,7 +104,7 @@ module.exports = [
         ['Increase = ', '[ ]', ' %'], ['26.5'], 'standard_math',
         { fig: 0, unit: U, topic: 'interpreting_returns_and_dividends', subtopic: 'acc_calculation', skill: SK.calc, diff: 3, w: 2, type: 'calc' }),
       mc('Why do shareholders compare the ROSHE with the interest rate on fixed deposits?',
-        'To see if the return beats a low-risk alternative investment', ['To see if the company can repay its loans on time', 'To see if the company has enough cash to pay dividends', 'To see if the share price is above the net asset value'],
+        'To see if the return beats a low-risk alternative investment', ['To see if the company can repay all of its loans on time each year', 'To see if the company has enough cash to pay dividends', 'To see if the share price is above the net asset value'],
         { unit: U, topic: 'interpreting_returns_and_dividends', subtopic: 'acc_term_recall', skill: SK.term, diff: 2, w: 2, type: 'interpretation' }),
       fb('Net income after tax was R2 160 000. Shareholders\' equity was R11 200 000 at the start and R12 800 000 at the end of the year. Calculate the % return on average shareholders\' equity.',
         ['ROSHE = ', '[ ]', ' %'], ['18|18.0'], 'standard_math',

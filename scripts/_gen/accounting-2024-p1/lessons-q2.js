@@ -162,7 +162,7 @@ module.exports = [
         ['Closing cash = R ', '[ ]'], [String(cashClose)], 'standard_math',
         { fig: 0, unit: U_CF, topic: 'cash_flow_financing_activities', subtopic: 'acc_calculation', skill: SK.calc, diff: 2, w: 2, type: 'calc' }),
       mc('Loan instalments include interest. Why is the capitalised interest subtracted from the instalments to find the loan repaid?',
-        'The interest part of each payment does not reduce the loan', ['The interest was already shown as an investing outflow', 'The interest is paid by shareholders, not by the company', 'The interest is only payable once the loan is settled'],
+        'The interest part of each payment does not reduce the loan', ['The interest was already shown as an investing outflow', 'The interest is paid by shareholders, not by the company', 'The interest is only payable once the whole loan has been settled'],
         { unit: U_CF, topic: 'cash_flow_financing_activities', subtopic: 'acc_classification', skill: SK.cls, diff: 4, w: 2, type: 'application' }),
       ms('Select ALL the items shown under cash flow from financing activities.',
         ['Proceeds of shares issued', 'Shares repurchased', 'Loan repaid'],

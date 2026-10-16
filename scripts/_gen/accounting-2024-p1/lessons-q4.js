@@ -15,7 +15,7 @@ module.exports = [
     tags: ['audit_report', 'external_auditor_role'],
     qs: [
       mc('What is the main role of an independent external auditor?',
-        'To give an opinion on whether the statements are fairly presented', ['To prepare the financial statements for the directors each year', 'To approve the budget and the spending of the company', 'To decide on the dividends paid to the shareholders'],
+        'To give an opinion on whether the statements are fairly presented', ['To prepare the financial statements for the directors each year', 'To approve the annual budget and all of the spending of the company', 'To decide on the dividends paid to the shareholders'],
         { unit: U, topic: 'audit_reports', subtopic: 'acc_term_recall', skill: SK.term, diff: 2, w: 2, type: 'definition' }),
       mc('An audit report states: "In our opinion the financial statements present fairly, in all material respects, the financial position of the company." Which type of audit report is this?',
         'Unqualified', ['Qualified', 'Disclaimer of opinion', 'Adverse opinion'],

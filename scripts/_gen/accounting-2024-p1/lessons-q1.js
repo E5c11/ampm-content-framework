@@ -269,7 +269,7 @@ module.exports = [
         { fig: 0, unit: U, topic: T_SCI, subtopic: 'acc_statement_completion', skill: SK.stmt, diff: 3, w: 3, type: 'calc',
           clues: '- Only what was used is an expense.\n- Count how many months the insurance payment covers.' }),
       mc('Trading stock in the books is higher than the physical stock count. How is the difference shown?',
-        'As a trading stock deficit under operating expenses', ['As a trading stock surplus under other income', 'As a current liability on the financial position', 'As a deduction from sales above gross profit'],
+        'As a trading stock deficit under operating expenses', ['As a trading stock surplus under other operating income', 'As a current liability on the financial position', 'As a deduction from sales above gross profit'],
         { unit: U, topic: T_SCI, subtopic: 'acc_classification', skill: SK.cls, diff: 2, w: 2, type: 'application' }),
       ms('Insurance was paid up to three months after the year end. Select ALL the correct statements.',
         ['The amount paid covers 15 months', 'Three months are an expense prepaid'],

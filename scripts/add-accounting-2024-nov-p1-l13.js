@@ -137,7 +137,7 @@ const questions = [
     "name": "Question 3",
     "question": "Why do shareholders compare the ROSHE with the interest rate on fixed deposits?",
     "metadata": [
-      "To see if the company can repay its loans on time",
+      "To see if the company can repay all of its loans on time each year",
       "To see if the company has enough cash to pay dividends",
       "To see if the share price is above the net asset value",
       "To see if the return beats a low-risk alternative investment",

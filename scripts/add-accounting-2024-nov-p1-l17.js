@@ -55,7 +55,7 @@ const questions = [
     "question": "What is the main role of an independent external auditor?",
     "metadata": [
       "To prepare the financial statements for the directors each year",
-      "To approve the budget and the spending of the company",
+      "To approve the annual budget and all of the spending of the company",
       "To decide on the dividends paid to the shareholders",
       "To give an opinion on whether the statements are fairly presented",
       ""

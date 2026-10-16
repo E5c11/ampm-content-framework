@@ -100,7 +100,7 @@ const questions = [
     "name": "Question 2",
     "question": "Trading stock in the books is higher than the physical stock count. How is the difference shown?",
     "metadata": [
-      "As a trading stock surplus under other income",
+      "As a trading stock surplus under other operating income",
       "As a current liability on the financial position",
       "As a deduction from sales above gross profit",
       "As a trading stock deficit under operating expenses",

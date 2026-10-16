@@ -142,7 +142,7 @@ const questions = [
       "The interest was already shown as an investing outflow",
       "The interest is paid by shareholders, not by the company",
       "The interest part of each payment does not reduce the loan",
-      "The interest is only payable once the loan is settled",
+      "The interest is only payable once the whole loan has been settled",
       ""
     ],
     "answer": [
