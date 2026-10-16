@@ -208,4 +208,5 @@ Q3 (L12–16), Q4 (L17–22). 22 image sets under `exam_papers/dbe/agricultural_
 - **Emulator review (2.4.0-dev01):** all 98 captured and read; fixes in `81dd7ee` (multi-select correct options never at the ends → rotated through every
   position; four in-lesson leaks of a typed answer in L3/L11/L14/L19; L22 Q3's figure showed the criteria it asked for; NBSP in crosses). L11 Q1 became a `match`,
   leaving 5 `text` rows. Phase 5: 15/15 PASS, every `|` alternative typed. Report: `ampm-kmp/temp/review/agricultural_sciences_nov_p2_2024/report.md`.
-- **Open:** prod push with P1 (owner's call); "view diagram" button overlap (known app bug).
+- **LIVE IN PROD 2026-10-16** together with 2024 P1 (pushed unpublished → prod = dev on every field, 163 image URLs 200 → prod gate 2.4.0 → published).
+  Open: "view diagram" button overlap (known app bug).
