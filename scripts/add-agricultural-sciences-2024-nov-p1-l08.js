@@ -55,13 +55,13 @@ const questions = [
     "question": "Glucose is still absorbed into the blood when the blood already holds more glucose than the small intestine. Which statement explains this?",
     "metadata": [
       "It diffuses from a low to a high concentration without energy",
-      "It is moved against the gradient by active absorption using ATP",
+      "It is moved against the gradient by active absorption with energy",
       "It moves by osmosis together with the water in the small intestine",
       "It passes through the gut wall by passive absorption only",
       ""
     ],
     "answer": [
-      "It is moved against the gradient by active absorption using ATP",
+      "It is moved against the gradient by active absorption with energy",
       "",
       "",
       "",

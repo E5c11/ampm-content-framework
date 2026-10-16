@@ -168,7 +168,7 @@ const questions = [
     "question": "Read the statement: \"The bont tick transmits redwater (babesiosis) in cattle.\" Which word must replace \"bont\" to make the statement TRUE?",
     "metadata": [
       "brown ear",
-      "paralysis",
+      "Karoo paralysis",
       "sand tampan",
       "blue",
       ""

@@ -121,7 +121,7 @@ const questions = [
     "name": "Question 3",
     "question": "How does oxytocin cause milk to be let down in a dairy cow?",
     "metadata": [
-      "It makes the alveolus cells produce more milk",
+      "It makes the alveolar cells produce more milk",
       "It relaxes the teat sphincter so milk can drip",
       "It widens the blood vessels that supply the udder",
       "It makes the cells around the alveoli contract",
