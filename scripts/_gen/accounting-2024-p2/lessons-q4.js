@@ -159,9 +159,9 @@ module.exports = [
         ['Production rose from 4 300 to 5 200 units', 'The BEP improved from 8 000 to 6 400 units'],
         ['Production fell from 5 200 to 4 300 units', 'The BEP worsened from 6 400 to 8 000 units', 'Production beat the BEP, so a profit was made'],
         { fig: 0, unit: U, topic: 'break_even_analysis', subtopic: 'acc_interpretation', skill: SK.int, diff: 3, w: 2, type: 'interpretation' }),
-      mc('Use the figure. Did customers find the 2026 selling price reasonable?',
+      mc('The selling price rose from R620 to R640, and units sold rose from 4 300 to 5 200. Did customers find the 2026 selling price reasonable?',
         'Yes: the price rose only 3,2% and 900 more units sold', ['No: the price rose 3,2% and 900 fewer units were sold', 'No: the price rose 20%, so customers went elsewhere', 'Yes: the price fell by R20, so 900 more units sold'],
-        { fig: 0, unit: U, topic: 'cost_control_interpretation', subtopic: 'acc_interpretation', skill: SK.int, diff: 3, w: 2, type: 'interpretation' }),
+        { unit: U, topic: 'cost_control_interpretation', subtopic: 'acc_interpretation', skill: SK.int, diff: 3, w: 2, type: 'interpretation' }),
     ],
     subs: [
       ex('4.2.1', 4, ['Units produced and sold must be compared with the break-even point.', 'Compare the shortfall with the previous year.'],

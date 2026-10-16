@@ -165,7 +165,7 @@ const questions = [
   },
   {
     "name": "Question 4",
-    "question": "Use the figure. Did customers find the 2026 selling price reasonable?",
+    "question": "The selling price rose from R620 to R640, and units sold rose from 4 300 to 5 200. Did customers find the 2026 selling price reasonable?",
     "metadata": [
       "No: the price rose 3,2% and 900 fewer units were sold",
       "No: the price rose 20%, so customers went elsewhere",
@@ -195,14 +195,7 @@ const questions = [
     "subject": "accounting",
     "year": 2024,
     "paper": "nov_p2",
-    "type": "interpretation",
-    "supplementary_material": {
-      "type": "statement",
-      "label": "Production information: Glow Lamps",
-      "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2024/nov_p2/q18/statement_1.png"
-      ]
-    }
+    "type": "interpretation"
   }
 ];
 

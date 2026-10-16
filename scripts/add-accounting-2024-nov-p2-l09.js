@@ -127,7 +127,7 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "The jackets in the figure have a high mark-up and a stockholding period of 172 days. What is the most likely effect on the business?",
+    "question": "Jackets cost R600 and sell for R1 080 (a high mark-up), and their stockholding period is 172 days. What is the most likely effect on the business?",
     "metadata": [
       "Customers buy more jackets because the price shows quality",
       "The business sells its jackets faster than its T-shirts",
@@ -157,14 +157,7 @@ const questions = [
     "subject": "accounting",
     "year": 2024,
     "paper": "nov_p2",
-    "type": "interpretation",
-    "supplementary_material": {
-      "type": "statement",
-      "label": "Product information: Fit-Wear Boutique",
-      "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2024/nov_p2/q9/statement_1.png"
-      ]
-    }
+    "type": "interpretation"
   },
   {
     "name": "Question 4",
