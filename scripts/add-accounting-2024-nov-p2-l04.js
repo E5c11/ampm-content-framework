@@ -93,7 +93,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "A business allows 60 days' credit. Its age analysis shows: total R250 000; current R120 000; 30 days R50 000; 60 days R35 000; 90 days R25 000; more than 90 days R20 000. Calculate the percentage of balances that are NOT within the terms.",
+    "question": "A business allows 60 days' credit. Its age analysis shows: total R250 000; current R120 000; 30 days R50 000; 60 days R35 000; 90 days R25 000; more than 90 days R20 000. Calculate the percentage of balances that are NOT within the terms.",
     "metadata": [
       "Outside terms = ",
       "[ ]",

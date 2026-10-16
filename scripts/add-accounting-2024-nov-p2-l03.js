@@ -96,7 +96,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "A debtor's account shows a balance of R12 400. Goods returned of R1 150 were debited to the account instead of credited. Calculate the correct balance.",
+    "question": "A debtor's account shows a balance of R12 400. Goods returned of R1 150 were debited to the account instead of credited. Calculate the correct balance.",
     "metadata": [
       "Correct balance = R ",
       "[ ]"
@@ -138,7 +138,7 @@ const questions = [
       "1 - Increase by R500",
       "2 - Decrease by R450",
       "3 - Increase by R300",
-      "4 - Decrease by R1 000"
+      "4 - Decrease by R1 000"
     ],
     "answer": [
       "A-4",
@@ -165,16 +165,16 @@ const questions = [
   },
   {
     "name": "Question 4",
-    "question": "A credit sale of R9 000 to debtor J was posted to the account of debtor K. How is the Debtors' List corrected?",
+    "question": "A credit sale of R9 000 to debtor J was posted to the account of debtor K. How is the Debtors' List corrected?",
     "metadata": [
-      "Add R9 000 to K and deduct R9 000 from J",
-      "Add R18 000 to J and deduct R9 000 from K",
-      "Add R9 000 to J and deduct R9 000 from K",
-      "Add R9 000 to J and leave K's balance as it is",
+      "Add R9 000 to K and deduct R9 000 from J",
+      "Add R18 000 to J and deduct R9 000 from K",
+      "Add R9 000 to J and deduct R9 000 from K",
+      "Add R9 000 to J and leave K's balance as it is",
       ""
     ],
     "answer": [
-      "Add R9 000 to J and deduct R9 000 from K",
+      "Add R9 000 to J and deduct R9 000 from K",
       "",
       "",
       "",

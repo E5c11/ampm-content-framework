@@ -53,7 +53,7 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "Use the figure. The owner wants to increase profit by R240 000 by making 600 extra units, with costs per unit unchanged. Calculate the selling price per extra unit.",
+    "question": "Use the figure. The owner wants to increase profit by R240 000 by making 600 extra units, with costs per unit unchanged. Calculate the selling price per extra unit.",
     "metadata": [
       "Selling price = R ",
       "[ ]"
@@ -93,7 +93,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "A business wants an extra profit of R150 000 from 500 extra units. Variable cost per unit is R420 and fixed costs do not change. Calculate the price per extra unit.",
+    "question": "A business wants an extra profit of R150 000 from 500 extra units. Variable cost per unit is R420 and fixed costs do not change. Calculate the price per extra unit.",
     "metadata": [
       "Price = R ",
       "[ ]"

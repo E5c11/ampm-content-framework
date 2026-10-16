@@ -92,7 +92,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "A product sold 1 200 units during a 365-day year. Closing stock is 150 units. Calculate the stockholding period in days, to ONE decimal place.",
+    "question": "A product sold 1 200 units during a 365-day year. Closing stock is 150 units. Calculate the stockholding period in days, to ONE decimal place.",
     "metadata": [
       "Stockholding period = ",
       "[ ]",

@@ -98,7 +98,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "Six employees earn the same monthly salary. In December, four of them receive a bonus of 50% of a monthly salary. December salaries total R115 200. Calculate one employee's normal monthly salary.",
+    "question": "Six employees earn the same monthly salary. In December, four of them receive a bonus of 50% of a monthly salary. December salaries total R115 200. Calculate one employee's normal monthly salary.",
     "metadata": [
       "Monthly salary = R ",
       "[ ]"
@@ -130,16 +130,16 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "Equipment is bought with a 20% deposit and the balance in 36 equal instalments of R5 000. What is the deposit?",
+    "question": "Equipment is bought with a 20% deposit and the balance in 36 equal instalments of R5 000. What is the deposit?",
     "metadata": [
-      "R36 000",
-      "R180 000",
-      "R225 000",
-      "R45 000",
+      "R36 000",
+      "R180 000",
+      "R225 000",
+      "R45 000",
       ""
     ],
     "answer": [
-      "R45 000",
+      "R45 000",
       "",
       "",
       "",

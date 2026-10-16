@@ -97,7 +97,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "Rent of R84 000 is shared by floor area. The factory uses 350 m² of the 600 m² building. Calculate the factory rent.",
+    "question": "Rent of R84 000 is shared by floor area. The factory uses 350 m² of the 600 m² building. Calculate the factory rent.",
     "metadata": [
       "Factory rent = R ",
       "[ ]"

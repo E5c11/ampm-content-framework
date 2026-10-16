@@ -96,7 +96,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "The Debtors' Control balance is R150 000. The Debtors' Journal was undercast by R2 400, and a credit note of R900 was never recorded. Calculate the correct balance.",
+    "question": "The Debtors' Control balance is R150 000. The Debtors' Journal was undercast by R2 400, and a credit note of R900 was never recorded. Calculate the correct balance.",
     "metadata": [
       "Correct balance = R ",
       "[ ]"

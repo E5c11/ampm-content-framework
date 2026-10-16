@@ -164,7 +164,7 @@ const questions = [
   },
   {
     "name": "Question 4",
-    "question": "A fixed deposit of R150 000 matures and R162 000, including interest, is paid into the bank. Calculate the interest income shown in the Projected Statement of Comprehensive Income.",
+    "question": "A fixed deposit of R150 000 matures and R162 000, including interest, is paid into the bank. Calculate the interest income shown in the Projected Statement of Comprehensive Income.",
     "metadata": [
       "Interest income = R ",
       "[ ]"

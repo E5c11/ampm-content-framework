@@ -91,7 +91,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "Fixed costs are R900 000. The selling price is R350 per unit and variable costs are R200 per unit. Calculate the break-even point.",
+    "question": "Fixed costs are R900 000. The selling price is R350 per unit and variable costs are R200 per unit. Calculate the break-even point.",
     "metadata": [
       "Break-even point = ",
       "[ ]",
@@ -126,15 +126,15 @@ const questions = [
     "name": "Question 3",
     "question": "Use the figure. Select the TWO correct comments, with figures, on production and the break-even point.",
     "metadata": [
-      "Production fell from 5 200 to 4 300 units",
-      "Production rose from 4 300 to 5 200 units",
-      "The BEP improved from 8 000 to 6 400 units",
-      "The BEP worsened from 6 400 to 8 000 units",
+      "Production fell from 5 200 to 4 300 units",
+      "Production rose from 4 300 to 5 200 units",
+      "The BEP improved from 8 000 to 6 400 units",
+      "The BEP worsened from 6 400 to 8 000 units",
       "Production beat the BEP, so a profit was made"
     ],
     "answer": [
-      "Production rose from 4 300 to 5 200 units",
-      "The BEP improved from 8 000 to 6 400 units",
+      "Production rose from 4 300 to 5 200 units",
+      "The BEP improved from 8 000 to 6 400 units",
       "",
       "",
       ""

@@ -120,7 +120,7 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "A debtor who owes R4 600 (including 15% VAT) is written off as irrecoverable. Calculate the amount by which the VAT payable to SARS decreases.",
+    "question": "A debtor who owes R4 600 (including 15% VAT) is written off as irrecoverable. Calculate the amount by which the VAT payable to SARS decreases.",
     "metadata": [
       "Decrease = R ",
       "[ ]"

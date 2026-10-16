@@ -97,7 +97,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "Cash sales are 25% of total sales and goods are sold at a mark-up of 60% on cost. Budgeted cash sales are R50 000. Stock is replaced monthly. Calculate the credit purchases.",
+    "question": "Cash sales are 25% of total sales and goods are sold at a mark-up of 60% on cost. Budgeted cash sales are R50 000. Stock is replaced monthly. Calculate the credit purchases.",
     "metadata": [
       "Credit purchases = R ",
       "[ ]"
@@ -129,16 +129,16 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "Creditors are paid 75% in the month after purchase to earn a 3% discount. March purchases are R80 000. How much is paid in April for March purchases?",
+    "question": "Creditors are paid 75% in the month after purchase to earn a 3% discount. March purchases are R80 000. How much is paid in April for March purchases?",
     "metadata": [
-      "R60 000",
-      "R61 800",
-      "R20 000",
-      "R58 200",
+      "R60 000",
+      "R61 800",
+      "R20 000",
+      "R58 200",
       ""
     ],
     "answer": [
-      "R58 200",
+      "R58 200",
       "",
       "",
       "",

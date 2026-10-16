@@ -96,7 +96,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "Each bench needs 2,5 bags of concrete mix, and 8% extra is allowed for wastage. A bag costs R90. Calculate the direct material cost for 3 600 benches.",
+    "question": "Each bench needs 2,5 bags of concrete mix, and 8% extra is allowed for wastage. A bag costs R90. Calculate the direct material cost for 3 600 benches.",
     "metadata": [
       "Direct material cost = R ",
       "[ ]"
@@ -128,16 +128,16 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "Each unit needs 2 kg of material, and 5% wastage is allowed. How much material is needed for 1 000 units?",
+    "question": "Each unit needs 2 kg of material, and 5% wastage is allowed. How much material is needed for 1 000 units?",
     "metadata": [
-      "2 000 kg",
-      "1 050 kg",
-      "2 500 kg",
-      "2 100 kg",
+      "2 000 kg",
+      "1 050 kg",
+      "2 500 kg",
+      "2 100 kg",
       ""
     ],
     "answer": [
-      "2 100 kg",
+      "2 100 kg",
       "",
       "",
       "",

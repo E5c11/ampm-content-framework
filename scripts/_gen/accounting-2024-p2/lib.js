@@ -12,6 +12,10 @@ let msCounter = 0;
 
 const pad = (arr, n) => { const a = arr.slice(); while (a.length < n) a.push(''); return a; };
 
+// U+00A0 between thousands groups (R40 000, 2 400 000) so a number never wraps mid-group on screen (2024 P1 review, 2026-10-16).
+const nbs = (t) => (typeof t === 'string' ? t.replace(/(\d) (?=\d{3}(?!\d))/g, '$1\u00a0') : t);
+const nbq = (r) => ({ ...r, question: nbs(r.question), metadata: r.metadata.map(nbs), answer: r.presentation === 'fitb' ? r.answer : r.answer.map(nbs) });
+
 // Section defaults per question
 function base(o, order) {
   return {
@@ -27,7 +31,7 @@ function mc(q, correct, wrongs, o = {}) {
   let pos = o.pos !== undefined ? o.pos : MC_POS[mcCounter++ % MC_POS.length];
   if (pos >= n) pos = n - 1 - (pos % 2 === 0 ? 0 : 0);
   const opts = wrongs.slice(); opts.splice(pos, 0, correct);
-  return { q, o, make: (order) => ({ name: `Question ${order}`, question: q, metadata: pad(opts, 5), answer: pad([correct], 5), presentation: 'multiple_choice', ...base(o, order), ...(o.clues ? { clues: o.clues } : {}) }) };
+  return { q, o, make: (order) => nbq({ name: `Question ${order}`, question: q, metadata: pad(opts, 5), answer: pad([correct], 5), presentation: 'multiple_choice', ...base(o, order), ...(o.clues ? { clues: o.clues } : {}) }) };
 }
 
 // multi select: correct[] and wrong[] interleaved so no correct option is first or last
@@ -45,7 +49,7 @@ function ms(q, correct, wrong, o = {}) {
     const p = [[1, 2], [1, 2]][0]; opts = new Array(4).fill(null); p.forEach((x, i) => { opts[x] = correct[i]; });
     let wi = 0; for (let i = 0; i < 4; i++) if (opts[i] === null) opts[i] = wrong[wi++];
   } else throw new Error('ms: unsupported shape ' + q);
-  return { q, o, make: (order) => ({ name: `Question ${order}`, question: q, metadata: pad(opts, 5), answer: pad(correct, 5), presentation: 'multi_select', ...base(o, order), ...(o.clues ? { clues: o.clues } : {}) }) };
+  return { q, o, make: (order) => nbq({ name: `Question ${order}`, question: q, metadata: pad(opts, 5), answer: pad(correct, 5), presentation: 'multi_select', ...base(o, order), ...(o.clues ? { clues: o.clues } : {}) }) };
 }
 
 // match: pairs [[left,right],...] (≤4). left prefixes A.., right prefixes 1.. (right column is shuffled by the app; stored order is varied)
@@ -56,7 +60,7 @@ function mt(q, pairs, o = {}) {
   const rot = rightOrder.slice(1).concat(rightOrder[0]);
   const R = rot.map((idx, j) => `${j + 1} - ${pairs[idx][1]}`);
   const answer = pairs.map((_, i) => `${'ABCD'[i]}-${rot.indexOf(i) + 1}`);
-  return { q, o, make: (order) => ({ name: `Question ${order}`, question: q, metadata: [...L, ...R], answer, presentation: 'match', ...base(o, order), ...(o.clues ? { clues: o.clues } : {}) }) };
+  return { q, o, make: (order) => nbq({ name: `Question ${order}`, question: q, metadata: [...L, ...R], answer, presentation: 'match', ...base(o, order), ...(o.clues ? { clues: o.clues } : {}) }) };
 }
 
 // ordering: items given in correct order; stored in a deterministic scramble
@@ -64,12 +68,12 @@ function ord(q, items, o = {}) {
   const n = items.length;
   const perm = n === 3 ? [2, 0, 1] : n === 4 ? [2, 0, 3, 1] : n === 5 ? [3, 1, 4, 0, 2] : [4, 1, 5, 2, 0, 3];
   const meta = perm.map((i) => items[i]);
-  return { q, o, make: (order) => ({ name: `Question ${order}`, question: q, metadata: meta, answer: items.slice(), presentation: 'ordering', ...base(o, order), ...(o.clues ? { clues: o.clues } : {}) }) };
+  return { q, o, make: (order) => nbq({ name: `Question ${order}`, question: q, metadata: meta, answer: items.slice(), presentation: 'ordering', ...base(o, order), ...(o.clues ? { clues: o.clues } : {}) }) };
 }
 
 // fill in the blank: tokens is the metadata array with '[ ]' markers; answers aligned to blanks; keyboard declared (KEYBOARD-04)
 function fb(q, tokens, answers, keyboard, o = {}) {
-  return { q, o, make: (order) => ({ name: `Question ${order}`, question: q, metadata: tokens, answer: pad(answers, 5), presentation: 'fitb', keyboard_type: keyboard, ...base(o, order), ...(o.clues ? { clues: o.clues } : {}), ...(o.case_sensitive ? { case_sensitive: true } : {}) }) };
+  return { q, o, make: (order) => nbq({ name: `Question ${order}`, question: q, metadata: tokens, answer: pad(answers, 5), presentation: 'fitb', keyboard_type: keyboard, ...base(o, order), ...(o.clues ? { clues: o.clues } : {}), ...(o.case_sensitive ? { case_sensitive: true } : {}) }) };
 }
 
 // lesson: { order, name, marks, tags[], qpages, mpages, subs:[{number,marks,clues,approach,solution}], qs:[...] }

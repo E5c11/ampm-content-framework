@@ -97,15 +97,15 @@ const questions = [
     "name": "Question 2",
     "question": "Use the figure. Actual credit sales in October were far above budget. Select the TWO reasons, with figures, why the owner should NOT be concerned.",
     "metadata": [
-      "Credit sales were R87 000 above budget",
+      "Credit sales were R87 000 above budget",
       "Customers rose from 500 to 700 (by 40%)",
-      "Gross profit rose from R50 000 to R70 000",
-      "Cash sales were R27 000 below budget",
+      "Gross profit rose from R50 000 to R70 000",
+      "Cash sales were R27 000 below budget",
       "October sales beat September's budget"
     ],
     "answer": [
       "Customers rose from 500 to 700 (by 40%)",
-      "Gross profit rose from R50 000 to R70 000",
+      "Gross profit rose from R50 000 to R70 000",
       "",
       "",
       ""

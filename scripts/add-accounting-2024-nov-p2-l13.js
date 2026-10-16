@@ -96,7 +96,7 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "Monthly rent of R18 500 will increase by 6% from January. Calculate the rent for January.",
+    "question": "Monthly rent of R18 500 will increase by 6% from January. Calculate the rent for January.",
     "metadata": [
       "Rent = R ",
       "[ ]"
@@ -128,16 +128,16 @@ const questions = [
   },
   {
     "name": "Question 3",
-    "question": "November interest on a loan at 15% p.a. was R5 000. R80 000 of the loan is repaid on 1 December. What is the interest for December?",
+    "question": "November interest on a loan at 15% p.a. was R5 000. R80 000 of the loan is repaid on 1 December. What is the interest for December?",
     "metadata": [
-      "R5 000",
-      "R4 000",
-      "R1 000",
-      "R4 800",
+      "R5 000",
+      "R4 000",
+      "R1 000",
+      "R4 800",
       ""
     ],
     "answer": [
-      "R4 000",
+      "R4 000",
       "",
       "",
       "",

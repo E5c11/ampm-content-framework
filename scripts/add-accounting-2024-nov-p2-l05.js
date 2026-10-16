@@ -164,7 +164,7 @@ const questions = [
   },
   {
     "name": "Question 4",
-    "question": "Credit sales of R46 000 (excluding VAT) include zero-rated goods of R12 000. Calculate the output VAT on these sales.",
+    "question": "Credit sales of R46 000 (excluding VAT) include zero-rated goods of R12 000. Calculate the output VAT on these sales.",
     "metadata": [
       "Output VAT = R ",
       "[ ]"
