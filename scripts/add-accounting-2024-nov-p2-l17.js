@@ -91,7 +91,7 @@ const questions = [
       "type": "statement",
       "label": "Factory Overhead Cost Note: Clayworks",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2024/nov_p2/q17/statement_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2024/nov_p2/q17/statement-v2_1.png"
       ]
     }
   },

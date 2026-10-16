@@ -124,7 +124,7 @@ module.exports = [
 
   // ── L03 ── 1.2.2 Debtors' List ─────────────────────────────────────────────
   {
-    order: 3, name: 'Question 1.2.2: Correcting the Debtors\' List', marks: 14, qp: '4', mp: '2', qpages: 1, mpages: 1,
+    order: 3, figVer: 2, name: 'Question 1.2.2: Correcting the Debtors\' List', marks: 14, qp: '4', mp: '2', qpages: 1, mpages: 1,
     covers: 'Question 1.2.2 — correcting each debtor\'s balance in the Debtors\' List so that its total agrees with the Debtors\' Control account.',
     tags: ['debtors_list', 'debtors_reconciliation'],
     info: [
@@ -219,7 +219,7 @@ module.exports = [
 
   // ── L05 ── 1.4 VAT ─────────────────────────────────────────────────────────
   {
-    order: 5, name: 'Question 1.4: VAT amounts and their effect on VAT payable', marks: 10, qp: '5', mp: '3', qpages: 1, mpages: 1,
+    order: 5, figVer: 2, name: 'Question 1.4: VAT amounts and their effect on VAT payable', marks: 10, qp: '5', mp: '3', qpages: 1, mpages: 1,
     covers: 'Question 1.4 — calculating the VAT amount on a discount received, credit sales with zero-rated items and an incorrect supplier invoice, and the effect on the amount payable to SARS.',
     tags: ['vat_payable', 'vat_calculation'],
     info: [

@@ -100,7 +100,7 @@ module.exports = [
 
   // ── L17 ── 4.1.3 factory overhead cost note ─────────────────────────────────
   {
-    order: 17, name: 'Question 4.1.3: Correcting the factory overhead cost', marks: 8, qp: '12-13', mp: '10', qpages: 2, mpages: 1,
+    order: 17, figVer: 2, name: 'Question 4.1.3: Correcting the factory overhead cost', marks: 8, qp: '12-13', mp: '10', qpages: 2, mpages: 1,
     covers: 'Question 4.1.3 — correcting the factory overhead cost for a factory salary recorded as administration, and for rent re-allocated on a new floor area.',
     tags: ['factory_overhead_cost_note', 'cost_allocation'],
     info: [

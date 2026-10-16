@@ -90,7 +90,7 @@ const questions = [
       "type": "statement",
       "label": "Debtors' List: Lindiwe Traders",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2024/nov_p2/q3/statement_1.png"
+        "https://media-dev.askmoreprepmore.app/question_supplementary/accounting/2024/nov_p2/q3/statement-v2_1.png"
       ]
     }
   },

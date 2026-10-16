@@ -44,6 +44,7 @@ def draw(spec, out):
             wrapped.append([]); total_rows += 0.5; continue
         text = r["c"][0] if r.get("c") else ""
         text = re.sub(r"(?<=\d) (?=\d{3}\b)", "\u00a0", text)  # keep "R1 344 000" on one line
+        text = text.replace(" m²", "\u00a0m²")
         indent = 0.2 * r.get("i", 0)
         full = r.get("k") in ("text", "band")
         width_chars = max(8, int((W - 0.4 - indent) / (0.0071 * FS)) if full else int((label_w - indent) / (CHAR_W * FS)))
