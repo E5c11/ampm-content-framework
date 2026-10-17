@@ -162,8 +162,7 @@ a number from a word). Supersedes the 2026-09-12 version, which was written for 
 3. **Gating — owner decision 2026-10-07: accepted.** A `text` row derives **2.4.0**; the gate is **per exam** (`VER-01`/`VER-09`) and
    2025 Nov P1 + P2 are one exam, so P1 gates P2 too on dev (done: `exam_versions` `life_science / dbe / 2025 / november = 2.4.0`).
    Consequences to keep in mind: when this exam reaches prod, builds below 2.4.0 stop receiving it on their next sync (the live P2
-   included, rows already on a device stay); `push-paper-to-prod.js` refuses P1 until 2.4.0 is tagged and `LATEST_RELEASED`
-   (currently `2.3.2`) is bumped (`VER-06`/`VER-08`) — so **do not push P1 to prod before the release**. Use `text` only where a
+   included, rows already on a device stay); `push-paper-to-prod.js` refused P1 until 2.4.0 was tagged (it now is; `LATEST_RELEASED` is 2.5.0), so P1 is pushable subject to review. Use `text` only where a
    canonical term genuinely beats a choice item (P1 uses it five times, one per cluster at most).
 4. Genotype/allele answers that need a superscript can't be typed on any keyboard → `multiple_choice`/`multi_select`
    (unchanged from P2; mostly irrelevant to P1).
@@ -189,7 +188,7 @@ rows are ever retrofitted.
 ### Pre-2.4.0 analysis — history, kept because the ledger below refers to it
 
 *Everything from here to "Allowed presentation types" describes the `None`-routed behaviour that applied until 2.4.0. It is
-correct for released builds (latest tag 2.3.2) and explains why the P2 content is shaped as it is; it is no longer the rule for
+correct for builds below 2.4.0 (superseded; latest release is now 2.5.0) and explains why the P2 content is shaped as it is; it is no longer the rule for
 new content.*
 
 `life_science` isn't in `KeyboardResolver.resolve`'s routing table (`AMPM/feature/watch/
@@ -424,7 +423,7 @@ needs its own app-side check before it can be more than partially typed content:
 - **`KeyboardResolver.kt`** (re-read 2026-10-07, AMPM `dev` 1ca3581ef): still no subject route for `life_science`,
   but resolution is now total — declared type → subject → fallback (`Text`; `ScientificMath` for `steps`/`equation`), so the
   old "blocks `steps`/`equation` and free-text `fitb`" gap is closed **on 2.4.0+**. No app change is needed for P1; on builds before
-  2.4.0 the old behaviour stands (decimal-only system keyboard). 2.4.0 is **not yet tagged** (`LATEST_RELEASED = 2.3.2`).
+  2.4.0 the old behaviour stands (decimal-only system keyboard). 2.4.0 has since been tagged and 2.5.0 is the latest release (2026-10-17).
 - **`subjects` row `is_active`/`min_app_version`**: the row itself was already pre-staged
   (`is_published: true`) but `is_active` was `false` — the actual reason it wasn't
   showing as an onboarding option, not a missing row. Fixed 2026-09-12: `is_active` set

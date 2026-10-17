@@ -178,7 +178,7 @@ those. The memo informs `aiExplanation`, not the practice set.
   but not on prod.
 - A new setwork *paper* for a subject already live (English HL) adds no subject gate; only
   its content-derived exam gate (`VER-09`), which is 2.4.1 once it declares `text` (`VER-10`) —
-  and no new section value until 2.4.1.
+  and no new section value below 2.4.1 (released with 2.5.0).
 
 ---
 
@@ -195,7 +195,7 @@ those. The memo informs `aiExplanation`, not the practice set.
 ## Open items
 
 - ~~`create-english-text.js` limited sections~~ — done 2026-10-10: any snake_case value, `--list`,
-  and it refuses a non-legacy section (`short_stories`) on prod until 2.4.1.
+  and it refuses a non-legacy section (`short_stories`) on prod below 2.4.1 (now released).
 - ~~Validator `SETWORK-LES-01`~~ — done 2026-10-10 (one text_key per script, on lesson and every question).
   It does not cross-check the section value of the referenced text.
 - `english_texts` is English-named but is meant to be the registry for Afrikaans setworks too;

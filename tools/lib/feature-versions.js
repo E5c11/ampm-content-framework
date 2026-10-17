@@ -13,7 +13,7 @@
  * PLANNED capabilities (the physics / chemistry / text keyboards, the extra Maths keys, MathText
  * sub/superscript markup — everything in AMPM `plan/active/question-keyboards-and-exam-version-
  * gating.md`) are treated as AVAILABLE for authoring: they validate. Their `since` is `NEXT_RELEASE`
- * ('2.4.0', the version the next release will carry). Content that depends on any of them is DEV-ONLY
+ * (the version the next release will carry). Content that depends on any of them is DEV-ONLY
  * while its derived minimum is above `LATEST_RELEASED`: `push-paper-to-prod.js` refuses to copy it to
  * prod and `set-exam-gate.js` only writes it to prod once it is <= `LATEST_RELEASED`. When a release is
  * tagged, bump `LATEST_RELEASED` (the single place) — see `core/app-feature-versions.md` `VER-06`.
@@ -25,7 +25,7 @@ const FLOOR = '2.0.0';
 
 // The version the next release will carry. Planned (unshipped) capabilities have `since = NEXT_RELEASE`. `NEXT` is kept as an
 // alias for older call sites. Capabilities that shipped in a tagged release name that release (RELEASE_2_4_0 below).
-const NEXT_RELEASE = '2.5.0';
+const NEXT_RELEASE = '2.6.0';
 const NEXT = NEXT_RELEASE;
 
 // Shipped in tag v2.4.0 (2026-10-08): text/physics/chemistry keyboards, extended scientific keys, case_sensitive, MathText _{ } ^{ }.
@@ -33,18 +33,17 @@ const RELEASE_2_4_0 = '2.4.0';
 
 // The release that carries the setwork capability, the free-form text section and the text-keyboard fixes for the new
 // languages (decision 2026-10-10). Every typed question a LANGUAGE subject declares `text` for needs it, so any new
-// language paper (English HL included) derives 2.4.1 — above LATEST_RELEASED, hence dev-only until it is tagged.
+// language paper (English HL included) derives 2.4.1 (released: 2.5.0 carries it, so it is no longer dev-only).
 // Existing undeclared English HL rows resolve to the legacy English keyboard and are unaffected. See VER-10.
 const LANGUAGE_RELEASE = '2.4.1';
 const LANGUAGE_SUBJECTS = new Set(['english_hl', 'english_fal', 'afrikaans_fal']);
 
 // The newest app version that has actually been RELEASED (tagged). THE ONE PLACE to bump when a release is tagged
 // (VER-06): content whose derived minimum is above this is dev-only — prod push and prod gates refuse it.
-// NOTE 2026-10-13: English FAL (derived 2.4.1, above this) was pushed to prod once, with the owner's approval, by temporarily
-// setting this to 2.4.1 and then restoring it. It is safe in prod only because the subject row has min_app_version 2.4.1 and
-// both English FAL exams have exam_versions rows of 2.4.1 (builds below get no FAL lessons/questions). Pushing more
-// 2.4.1-derived content needs the real tag here (VER-06) or the same deliberate, owner-approved override.
-const LATEST_RELEASED = '2.4.0';
+// 2026-10-17: 2.5.0 is released (no keyboard or presentation changes over 2.4.x), so everything derived up to 2.5.0 — including
+// the 2.4.1 language content (English FAL was pushed to prod earlier under a one-time owner-approved override, 2026-10-13) —
+// is now an ordinary releasable minimum. NEXT_RELEASE is a nominal placeholder: nothing is planned against it today.
+const LATEST_RELEASED = '2.5.0';
 
 // ---------------------------------------------------------------------------
 // Version helpers (same major*1_000_000 + minor*1_000 + patch code the backend stores)

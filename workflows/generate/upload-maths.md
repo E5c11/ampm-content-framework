@@ -71,5 +71,5 @@ Last step of every upload **and** retrofit; the minimum is derived, never typed:
 2. `node tools/apply-exam-gate.js --env dev --subject maths --year <YYYY> --session <june|november>` — dry run: the exam's derived
    minimum, each paper's, the gate it would write, and how many published questions it would hide from older builds; re-run with `--apply`.
    (Scripts built from the current template do this automatically after a real dev upload.)
-3. The gate is per **exam**: one paper that needs 2.4.0 gates its sibling paper too, and no paper of it goes to prod until 2.4.0 is tagged
-   (`push-paper-to-prod.js` refuses the whole exam, `VER-08`). At the floor nothing is written.
+3. The gate is per **exam**: one paper that needs 2.4.0 gates its sibling paper too, and the exam is pushed to prod as a whole
+   (`push-paper-to-prod.js` refuses a partial exam or one above `LATEST_RELEASED`, `VER-08`; 2.4.0 is released). At the floor nothing is written.

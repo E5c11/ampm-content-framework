@@ -65,8 +65,8 @@ Optional: `clues`, `context_text` (English inline stimulus), `text_key` (English
 
 **`SCHEMA-KB-01`** — `keyboard_type` (→ `questions.keyboard_type`) is one of
 `standard_math`, `scientific_math`, `physics`, `chemistry`, `text`; `none` is **not a value** (the app ignores it; the validator errors). **Omitted/`null`** means "the app resolves it: subject →
-fallback" — **not** allowed for a typed question in new content (`KEYBOARD-04`). Only the first two are released; a
-planned value is valid to author but makes the exam dev-only until its release is tagged (`VER-05`). Full semantics, inventories and the
+fallback" — **not** allowed for a typed question in new content (`KEYBOARD-04`). All five are released (the last three in 2.4.0); a value
+newer than `LATEST_RELEASED` would be dev-only until its release is tagged (`VER-05`). Full semantics, inventories and the
 `KEYBOARD-0x` rules: `core/keyboard-input.md`. On re-upload an **omitted** `keyboard_type` leaves the database value unchanged (it never nulls a
 backfilled value); write an explicit `null` to clear it. Declare it whenever subject inference would pick the
 wrong keyboard — notably Physical Sciences, where `subject = "physics"` covers Paper 1 (Physics) and

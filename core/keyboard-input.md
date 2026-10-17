@@ -59,17 +59,14 @@ CHECK on purpose, so adding a keyboard needs no migration):
 | `none` | **not a value** | Not a keyboard: from 2.4.0 the app ignores it (an unrecognised value is skipped), and the validator **errors** on it. Omit `keyboard_type` or declare a real one. |
 | `standard_math` | **released** | Numeric pad (`StandardMath`). |
 | `scientific_math` | **released** | Two-tab symbolic keyboard (`ScientificMath`). |
-| `physics` | **built, dev-only until the next release** (initiative 4d) | The Physics variant of `ScientificKeyboard`. Numbers = Maths. Symbols: `Δ θ µ ε Ω / ° ± · × ÷ / < > √ α β / x₂ xⁿ λ ρ σ`. ABC = Maths (a–z, one-shot shift, `sin cos tan log`). `x₂` / `xⁿ` open a **flat** `_{…}` / `^{…}` group, left with the exit arrow; the output is MathText markup, so author answers as `F_{net}`, `10^{-19}`, `kg·m·s^{-1}`. `µ` is U+00B5 (micro sign), **not** Greek mu U+03BC; `·` is U+00B7. Reached **only** by declaring it. |
-| `chemistry` | **built, dev-only until the next release** (initiative 4e) | The Chemistry variant of `ScientificKeyboard`. Numbers and ABC = Maths (`+` `-` are the charge keys; one-shot shift gives `Co` vs `CO`). Middle tab `Formula`: `x₂ xⁿ → ⇌ Δ / (aq) (s) (l) (g) ℓ / [ ] · ° ,`. Author answers as stored markup: `H_{2}O`, `Fe^{3+}`, `SO_{4}^{2-}`, `NaCl(aq)` (**no spaces** — there is no space key). `ℓ` is U+2113 (the memo's `HCℓ`). Set `case_sensitive: true` on formula answers. Reached **only** by declaring it. On a released build a plain `fitb` box shows the markup raw (`H_{2}O`); from the next release it renders it. |
-| `text` | **planned** (BLA-58) | Free-text QWERTY with a second screen for punctuation, digits and (Afrikaans only) accented letters. |
+| `physics` | **released, 2.4.0** (initiative 4d) | The Physics variant of `ScientificKeyboard`. Numbers = Maths. Symbols: `Δ θ µ ε Ω / ° ± · × ÷ / < > √ α β / x₂ xⁿ λ ρ σ`. ABC = Maths (a–z, one-shot shift, `sin cos tan log`). `x₂` / `xⁿ` open a **flat** `_{…}` / `^{…}` group, left with the exit arrow; the output is MathText markup, so author answers as `F_{net}`, `10^{-19}`, `kg·m·s^{-1}`. `µ` is U+00B5 (micro sign), **not** Greek mu U+03BC; `·` is U+00B7. Reached **only** by declaring it. |
+| `chemistry` | **released, 2.4.0** (initiative 4e) | The Chemistry variant of `ScientificKeyboard`. Numbers and ABC = Maths (`+` `-` are the charge keys; one-shot shift gives `Co` vs `CO`). Middle tab `Formula`: `x₂ xⁿ → ⇌ Δ / (aq) (s) (l) (g) ℓ / [ ] · ° ,`. Author answers as stored markup: `H_{2}O`, `Fe^{3+}`, `SO_{4}^{2-}`, `NaCl(aq)` (**no spaces** — there is no space key). `ℓ` is U+2113 (the memo's `HCℓ`). Set `case_sensitive: true` on formula answers. Reached **only** by declaring it. On a build below 2.4.0 a plain `fitb` box shows the markup raw (`H_{2}O`); from 2.4.0 it renders it. |
+| `text` | **released, 2.4.0** (BLA-58) | Free-text QWERTY with a second screen for punctuation, digits and (Afrikaans only) accented letters. |
 
-Released clients honour only the first three; any other value (or one added later) makes them fall
-back to subject inference. **Planned values are valid to author and store now** — the validator accepts
-them and models their key sets (the `text`, `physics`, `chemistry` and extended `scientific_math` inventories in
-`tools/lib/feature-versions.js`; `KEYBOARD-01` rejects an answer that needs a key they lack). Content that depends on
-one is marked `2.4.0` and is **dev-only** until that release is tagged (`VER-05`,
-`core/app-feature-versions.md`): the prod push is refused (until `LATEST_RELEASED` reaches 2.4.0), and until the keyboard exists in a build the
-question falls back to subject inference and may not be answerable on a device.
+Builds below 2.4.0 honour only `standard_math` and `scientific_math`; any other value makes them fall back to subject inference. **All five values are released
+(2.4.0; 2.5.0 added no keyboard or presentation changes)** and the validator models their key sets (the `text`, `physics`, `chemistry` and extended `scientific_math`
+inventories in `tools/lib/feature-versions.js`; `KEYBOARD-01` rejects an answer that needs a key they lack). Content that depends on one derives `2.4.0` and is gated
+automatically (`VER-09`); 2.4.0 is the authoring baseline (`VER-11`). Only a capability above `LATEST_RELEASED` (today 2.5.0) would be dev-only (`VER-05`).
 
 ## Routing — what a question resolves to
 
@@ -121,7 +118,7 @@ Unicode superscript cannot be typed, so a typed expected value spells exponents 
 *given/display* text in the same question uses real superscripts (`10¹⁴`) — those are different
 things (rendered label vs typed value) and needn't match glyph-for-glyph. This tab is **full**.
 
-### `ScientificMath` — the Maths variant coming in the next release (planned; AMPM `dev`, unreleased)
+### `ScientificMath` — the extended Maths variant (released, 2.4.0)
 
 Decisions D13/D14, built as initiative 4a on the evidence in AMPM `plan/active/scientific-keyboard-survey.md`
 (five Maths memos including both Paper 2s). Three tabs — **Numbers · Symbols · ABC**:
@@ -135,7 +132,7 @@ Decisions D13/D14, built as initiative 4a on the evidence in AMPM `plan/active/s
   (`R S A B M O D …`), and `steps`/`equation` marking is case-sensitive.
 
 The validator's `scientific_math` inventory (`tools/lib/feature-versions.js`) now matches this exactly; every new key needs **2.4.0**
-(dev-only until the release is tagged).
+(released; the exam is gated automatically, `VER-09`).
 
 **What this keyboard does *not* have (checked against the validator, `KEYBOARD-01`):** there is **no literal `/` key** — the only division is the structural `a/b` fraction input, so a typed
 answer can never contain `/` (`x^(-1/2)`, `1/2` are untypeable: use a decimal exponent or the `fraction` presentation); there is **no space key** (every stored `fitb`/`steps` answer must be
@@ -165,10 +162,10 @@ subscript (`Tₙ`, `log₂`). Tracked as BLA-21 (plan item 5c0): configurable ta
 Grade 12 Maths P1/P2 papers before designing it.**
 
 **Physics** and **Chemistry**: the released keyboards cannot type the letters `r v m E F n t`, `Δ Ω μ ε`, a comma, sub/superscripts
-(`H₂O`, `Fe³⁺`), `→`, `⇌` or `(aq)(s)(l)(g)`. The `physics` / `chemistry` keyboards (next release) can — see § Declaring a keyboard.
-Until that release is tagged, a typed answer needing them is dev-only.
+(`H₂O`, `Fe³⁺`), `→`, `⇌` or `(aq)(s)(l)(g)`. The `physics` / `chemistry` keyboards (2.4.0) can — see § Declaring a keyboard.
+A typed answer needing them derives 2.4.0 and is gated.
 
-**Text / Afrikaans** (`text`, BLA-58) is specified, not built: QWERTY plus a second screen for
+**Text / Afrikaans** (`text`, BLA-58, released 2.4.0): QWERTY plus a second screen for
 punctuation, digits and — shown only for Afrikaans questions — `ê ë é è ô ö û ü î ï ä ŉ`. No
 long-press, no shift key. Until it ships, free-text answers for `english_hl` are limited to letters,
 apostrophe and space. For the subjects with no keyboard of their own (life_science, geography, history,
@@ -182,8 +179,8 @@ From `QuestionsValidator.kt` (App wins if this drifts):
   (`540` = `540.00`); stored `|` separates accepted alternatives (**`fitb` only**); U+2212 `−` → `-` inside a number (**from 2.2.0**);
   `^`/`_` scripts canonicalised (below). `steps` is the same **except** it is case-sensitive and has **no `|` alternatives**;
   `fraction` only maps `,` → `.` (no alternatives); `equation` compares canonicalised strings (case-sensitive, no alternatives, no numeric normalisation).
-- **Trailing punctuation.** In the current AMPM `dev` code (next release) a `fitb` answer's trailing `. , ; ! ?` and whitespace are stripped on **both** sides
-  (BLA-58), so `leë.` matches `leë`; accents stay significant (`leë` ≠ `lee`). On *released* builds punctuation is not stripped (a typed trailing `.` was marked wrong).
+- **Trailing punctuation.** From 2.4.0 a `fitb` answer's trailing `. , ; ! ?` and whitespace are stripped on **both** sides
+  (BLA-58), so `leë.` matches `leë`; accents stay significant (`leë` ≠ `lee`). On builds below 2.4.0 punctuation is not stripped (a typed trailing `.` was marked wrong).
 - Case never matters for `fitb` **unless the question sets `case_sensitive: true`** (`SCHEMA-CS-01`, D15), which makes `fitb`
   compare exactly — Chemistry formulae (`Co` ≠ `CO`) are the intended use. It is only valid on a keyboard that can type both
   cases (the scientific variants' ABC tab has a one-shot shift); the Text keyboard still has no shift, so its answers stay
@@ -220,7 +217,7 @@ the marking code does not settle; test it on the emulator before relying on it.
   and without state symbols (`Zn+2HCℓ→ZnCℓ_{2}+H_{2}` and `Zn(s)+2HCℓ(aq)→ZnCℓ_{2}(aq)+H_{2}(g)`) and, if you want both, `ℓ`/`l`. Do **not** list `=` or `->` as an arrow substitute unless you want
   `=` accepted (`=` is on the Numbers tab; `->` cannot be typed). *Which variants a student actually types is unverified on device.*
 - **Numbers** stay bare (`KEYBOARD-02`): a bare-numeric answer stays `standard_math` / `scientific_math`; the unit goes in the label.
-- Trailing `. , ; ! ?` on a text answer is ignored on `dev`/next release but **not** on released builds — never rely on a student's trailing punctuation.
+- Trailing `. , ; ! ?` on a text answer is ignored from 2.4.0 but **not** on older builds — never rely on a student's trailing punctuation.
 
 ## Retrofitting `keyboard_type` onto already-uploaded content
 
@@ -251,7 +248,7 @@ the marking code does not settle; test it on the emulator before relying on it.
    **bump `updated_at`** (`VER-04` — clients delta-sync on it). Do not re-run the whole upload script for this: it rewrites the lesson and
    explanation rows too.
 3. Run `validate-questions.js` per script and `derive-exam-min.js` on the exam; then `node tools/apply-exam-gate.js --env dev --subject <id> --year <YYYY> --session <session>` (dry run, then `--apply`) writes the derived gate — the gate is per exam, so it also gates the sibling paper (`VER-01`/`VER-09`); a `physics`/`chemistry` keyboard or `_{…}` markup makes it `2.4.0`.
-4. **Never push content that needs an unreleased version (2.4.0 today) to prod** (`push-paper-to-prod.js` refuses it — the whole exam, `VER-08`), and **do not retrofit an exam that is already live in prod**
+4. **Never push content that needs an unreleased version (above `LATEST_RELEASED`, 2.5.0 today) to prod** (`push-paper-to-prod.js` refuses it — the whole exam, `VER-08`), and **do not retrofit an exam that is already live in prod**
    with a not-yet-released feature until the release is tagged — the prod devices that already synced it would receive markup / a keyboard they cannot render.
 5. TODO (follow-up, not built): a generic `tools/set-question-keyboard-type.js` (exam + question filter → keyboard, dry-run, `updated_at` bump) would replace the
    per-retrofit fix scripts.
@@ -299,12 +296,10 @@ subject-inferred and cannot be declared — **that exemption ended 2026-10-10** 
 lack it (≈60: english-hl aside, geography/history/life-science P2 and physics 2023/2025) fail the validator if re-run — fix them with a `KEYBOARD-06`-style
 retrofit, don't loosen the rule. `enforced_by: validator`
 
-**`KEYBOARD-05`** — Planned keyboards and keys (`physics`, `chemistry`, `text`, the extended
-`scientific_math` letters/symbols) are **valid to author** but content that uses them is **dev-only until the
-release carrying them is tagged**: its derived minimum is `2.4.0`, `push-paper-to-prod.js` refuses it
-(the whole exam, `VER-08`), and `set-exam-gate.js` writes it to prod only once it is `<= LATEST_RELEASED`. On dev the exam gate is
-derived and written for you (`tools/apply-exam-gate.js`, `VER-09`). When the release is tagged, bump `LATEST_RELEASED` in
-`tools/lib/feature-versions.js` (`VER-06`). `enforced_by: tooling`
+**`KEYBOARD-05`** — The 2.4.0 keyboards and keys (`physics`, `chemistry`, `text`, the extended
+`scientific_math` letters/symbols) are **released** (2.4.0; 2.5.0 added no keyboard or presentation changes). Content that uses them derives `2.4.0` and the exam gate is
+derived and written for you (`tools/apply-exam-gate.js`, `VER-09`); it is pushable to prod (`<= LATEST_RELEASED`). Only a keyboard or key added in a
+release newer than `LATEST_RELEASED` is dev-only until that release is tagged and `LATEST_RELEASED` is bumped (`VER-06`). `enforced_by: tooling`
 
 ## Gotcha: the two custom keyboards used different minus-sign glyphs
 

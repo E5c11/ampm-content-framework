@@ -92,8 +92,8 @@ presentation: "fitb",
   open-ended questions go to `multiple_choice`.
 - Write answers in standard sentence case — matching is case-insensitive, **except** when `case_sensitive: true` is set
   (Chemistry formulae and symbols, `Co` ≠ `CO`; needs a keyboard that can type both cases — `core/keyboard-input.md`).
-- **Label tokens and MathText.** From the next release (AMPM `dev`, e3e3fac0d) the static label tokens render `_{…}` /
-  `^{…}` markup (`"λ_{L} = "`), and — with a custom keyboard — so does the answer box. On a released build both show the
+- **Label tokens and MathText.** From 2.4.0 the static label tokens render `_{…}` /
+  `^{…}` markup (`"λ_{L} = "`), and — with a custom keyboard — so does the answer box. On a build below 2.4.0 both show the
   raw characters. Keep the *answer* itself bare numeric where it is a number (`KEYBOARD-02`).
 - **`metadata` label tokens must stay short — never restate the full `question`
   sentence.** Found live 2026-09-12 (History nov_p2 review): `FillInTheBlank.kt` renders

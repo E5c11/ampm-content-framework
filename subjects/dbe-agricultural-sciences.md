@@ -177,7 +177,7 @@ extract, cash flow record — fresh data, a single shared axis, palette validate
 - **Emulator review (Phases 1–5):** all 81 captured and read. One defect fixed: L6 Q3 was a `match` with duplicate right-column labels (Quantitative ×2, Qualitative ×2) —
   ambiguous pairing, so it became a `multi_select`. A programmatic check of all 28 matches in both papers found no other duplicates. Phase 5: 12/12 typed answers PASS (both
   alternatives for the "price fluctuation" row). A rule is added to the upload doc: never put two identical labels in one `match` column.
-- **Open:** floating "view diagram" button overlap (L10, L13, L15); nothing in prod; prod push waits for 2.4.0 and covers P1 + P2 together (`VER-08`); the prod `subjects` row
+- **Open:** floating "view diagram" button overlap (L10, L13, L15); nothing in prod; the prod push covers P1 + P2 together (`VER-08`); 2.4.0 is released, so no version block; the prod `subjects` row
   and vocabulary are still dev-only.
 
 **`nov_p1` (2024) — authored on dev and emulator-reviewed, 2026-10-16.** 18 lessons, 74 practice questions, 150/150 marks, scripts

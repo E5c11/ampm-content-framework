@@ -207,15 +207,16 @@ presentation: "fitb", keyboard_type: "standard_math"
 
 ## Typed answers
 
-### `CLOSED-KB-01` — Prefer selection; type only a bare number or one unambiguous term
+### `CLOSED-KB-01` — Type a bare number or one unambiguous term; use selection for anything paraphrasable
 
 `enforced_by: validator` (declaration) + `human-review` (judgement) · was `DESIGN-LIFE-01`, `DESIGN-HIST-03`, `DESIGN-BUS` keyboard notes
 
 Marking is exact string after trim, lower-case, `,`→`.`, trailing `. , ; ! ?` stripped; `|` separates accepted alternatives; no stemming and no
 synonym credit (`core/keyboard-input.md` § Marking). Therefore:
 
-1. Every typed `fitb` declares `keyboard_type` (`KEYBOARD-04`): a bare number → `standard_math` (released, **no gate**); a single canonical term →
-   `text` (2.4.0, **gates the exam** — `VER-01`/`VER-09`; check the subject profile for the owner's accepted gating decision).
+1. Every typed `fitb` declares `keyboard_type` (`KEYBOARD-04`): a bare number → `standard_math`; a single canonical term → `text`. 2.4.0 is the authoring
+   baseline (`VER-11`), so the derived gate is never a reason to avoid `text`; run `apply-exam-gate.js` after upload as usual (`VER-09`). Whether to type or
+   select is decided by rules 2–3 below (marking merit), not by the gate.
 2. Use `text` only where the answer is **one unambiguous word**. If the memo marks "any 1 of N" or gives slash alternatives (`Snout/lips/teeth`),
    convert to `multiple_choice`/`multi_select`, or list **every** memo-accepted form with `|`, **including the US/UK spelling variant** (`oestrogen`
    | `estrogen`). Options display exactly as the exam writes them (SA/UK spelling).

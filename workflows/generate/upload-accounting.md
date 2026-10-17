@@ -12,7 +12,7 @@
 Nothing is authored yet (profile ledger empty). **Run the pilot lesson first** (profile § Authoring plan): P1 Q1.2 (Ordinary Share Capital note) plus one SOFP
 section as lettered A/B/C blanks. Do not author further lessons until the pilot has passed `validate-questions.js` **and** an emulator look at the statement
 image (legibility on a phone, highlight style, "view diagram" button overlap). The owner then chooses P1 or P2 first. 2025 P1 and P2 are **one exam for
-gating** (`VER-01`), as are 2024's — but an Accounting exam is expected to derive the floor version (no `text` rows), so there is nothing to gate.
+gating** (`VER-01`), as are 2024's — and an Accounting exam derives the floor version only when it has no `text` rows (an outcome of the merits, not a goal — `VER-11`); gate it with `apply-exam-gate.js` if it does.
 
 ## Phase 0 — one-time subject setup, then per-lesson curriculum vocabulary
 

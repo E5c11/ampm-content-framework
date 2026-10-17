@@ -121,8 +121,8 @@ not built** (BLA-21). `DESIGN-CHEM-01` therefore still holds in full: typed blan
 Once the keyboard ships, Chemistry questions declare `keyboard_type: "chemistry"` (`KEYBOARD-04`) and this
 rule can be relaxed for formulae/equations.
 
-**Update 2026-10-05.** The `chemistry` keyboard is now **built on AMPM `dev`** (initiative 4e; `x₂ xⁿ → ⇌ Δ`, state symbols, `ℓ`, `[ ] · ° ,`, one-shot
-shift) but unreleased, so content that uses it derives 2.4.0 and is dev-only until that release is tagged (`VER-05`). The 2024 Nov P2 typed blanks are all bare-numeric and stay on
+**Update 2026-10-05.** The `chemistry` keyboard was **built on AMPM `dev`** (initiative 4e; `x₂ xⁿ → ⇌ Δ`, state symbols, `ℓ`, `[ ] · ° ,`, one-shot
+shift) and has since shipped in 2.4.0, so content that uses it derives 2.4.0 and is gated automatically (`VER-09`); it is pushable to prod. The 2024 Nov P2 typed blanks are all bare-numeric and stay on
 `standard_math` (`KEYBOARD-04`).
 
 **Decision 2026-10-06 — one authoring track.** There is no longer a "release-bound" track. All new Chemistry papers are authored for the `chemistry` keyboard; the exam's derived minimum (2.4.0 if it

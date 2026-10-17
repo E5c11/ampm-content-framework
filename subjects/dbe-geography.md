@@ -65,8 +65,8 @@ cause/effect, evaluate impact).
   values; `-` and `.` only, no `,` `:` or spaces typed — a ratio's `":"` is a literal
   *metadata* token, and a decimal-comma answer is stored with `.`). **Words are never typed**:
   name/state/identify/list items become `multiple_choice` / `multi_select`. The declarable
-  free-text keyboard (`text`) is unbuilt (2.4.0, dev-only) and the `English` keyboard is
-  `english_hl`-only, so neither is an option today; revisit if `text` ships. `steps` is
+  free-text keyboard (`text`) shipped in 2.4.0 and is now an option (2.4.0 is the authoring baseline, `VER-11`); the `English` keyboard is
+  `english_hl`-only. Use `text` for a single unambiguous term where it beats a choice item (`CLOSED-KB-01`); the older "words are never typed" line above predates it. `steps` is
   available only with `scientific_math` declared (use it solely for a genuine multi-row
   derivation of bare-numeric blanks). Any existing Geography `fitb`/`steps` with no declaration
   (P2: `q1-2` and `q3-1`, 2 scripts flagged by the validator 2026-10-07) is to be retrofitted

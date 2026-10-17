@@ -62,9 +62,10 @@ The general rules — generated figure with lettered blanks, at most three indep
 - **Numeric blanks (almost everything): `standard_math`, released, no gate**, with the typed-value rules of `CLOSED-KB-01`/`CLOSED-FMT-01`. Accounting
   specifics: memo brackets `(150 000)` are stored `-150000` and the stem says "enter a decrease as a negative number"; ratios and percentages ask for
   one number (`CLOSED-KB-01` rule 4); store the paper's "ONE decimal point" rounding **and** the memo's alternatives (`1.3|1.30`), and state the rounding in the stem.
-- **Typed account names are not authored.** "Retained income", "Bank", "Debtors' control" are `multiple_choice`/`match`, never `text` — the exam rarely
-  marks a typed name and `text` would gate the exam to 2.4.0 for no gain. **An Accounting paper therefore derives the floor version, needs no gate and can go
-  to prod as soon as it is reviewed.** This differs from Agri/Tourism/Life Sciences, which accepted a 2.4.0 gate.
+- **Typed account names are rarely worth authoring.** "Retained income", "Bank", "Debtors' control" are usually `multiple_choice`/`match`: the exam rarely marks a typed
+  name, and account names have competing wordings. That is a judgement on the merits only. **2.4.0 is the authoring baseline (`VER-11`, 2026-10-17):** where a
+  single canonical term is genuinely better typed, use `text` and accept the derived gate like Agri/Tourism/Life Sciences. Papers authored so far happen to derive
+  the floor because they have no `text` rows; that is an outcome, not a rule.
 - Units in the `metadata` label (`R`, `%`, `days`), not the value (`KEYBOARD-02`).
 
 ## Allowed presentation types

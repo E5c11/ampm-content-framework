@@ -79,16 +79,14 @@ exam's rows, so a client that synced past them never receives an exam that just 
 to it. Removing the temporary gate on dev did **not** bring the exam back until `updated_at` was
 bumped. `enforced_by: tooling`
 
-**`VER-05`** — **Planned capabilities are valid to author, and dev-only until tagged.** There is **one authoring track** (decision 2026-10-06): papers are authored for the new
+**`VER-05`** — **Planned (unreleased) capabilities are valid to author, and dev-only until tagged.** *(Status 2026-10-17: nothing is planned — 2.4.0 and 2.5.0 are released and 2.5.0 added no keyboard or presentation changes — so this rule currently binds nothing.)* There is **one authoring track** (decision 2026-10-06): papers are authored for the new
 infrastructure wherever it makes a better question, and the only variable is the *derived* minimum — a paper using none of it derives the floor and needs no gate, one using any of it derives 2.4.0
-and is gated automatically (`VER-09`). There is no "releasable" vs "next-release" choice to make while authoring. Their version is concrete: **`NEXT_RELEASE = '2.4.0'`**
-(`tools/lib/feature-versions.js`; `version.properties` is 2.3.3 and the release is a `minor` bump). `LATEST_RELEASED` (today **2.3.2**) is the newest
-tagged version; anything whose derived minimum is above it is dev-only. Everything on the
-keyboard/exam-gating plan (the `physics` / `chemistry` / `text` keyboards, the extended `scientific_math`
-keys and letters, MathText `_{…}` / `^{…}`) validates now. Content that depends on one has the derived minimum
-**2.4.0**. Such content may live on **dev only**: `push-paper-to-prod.js` refuses to copy it to prod, `set-exam-gate.js`
-writes a gate to prod only when it is `<= LATEST_RELEASED`, and a build below 2.4.0 never receives the exam once it is gated (`VER-09`).
-Nothing here blocks authoring; it blocks *publishing*.
+and is gated automatically (`VER-09`). There is no "releasable" vs "next-release" choice to make while authoring. Their version is `NEXT_RELEASE`
+(`tools/lib/feature-versions.js`; a nominal 2.6.0 placeholder today, since nothing is planned). `LATEST_RELEASED` (today **2.5.0**) is the newest
+tagged version; anything whose derived minimum is above it is dev-only. The keyboard/exam-gating plan (the `physics` / `chemistry` / `text` keyboards, the extended `scientific_math`
+keys and letters, MathText `_{…}` / `^{…}`) shipped in **2.4.0** (derived minimum 2.4.0, gated automatically, pushable to prod). For a capability above `LATEST_RELEASED`:
+`push-paper-to-prod.js` refuses to copy it to prod, `set-exam-gate.js` writes a gate to prod only when it is `<= LATEST_RELEASED`, and a build below the gate never receives
+the exam (`VER-09`). Nothing here blocks authoring; it blocks *publishing*.
 `enforced_by: tooling`
 
 **`VER-06`** — When a release is **tagged**, in the **same change**: bump `LATEST_RELEASED` in `tools/lib/feature-versions.js` (the single place; if the tag
@@ -98,6 +96,12 @@ differs from the planned `NEXT_RELEASE`, also fix `NEXT_RELEASE` and re-run the 
 **`VER-07`** — Don't gate unless the derived minimum is above the floor (`apply-exam-gate.js` does nothing at the floor). An exam whose derived
 minimum is `2.0.0` needs no `exam_versions` row (a missing row means no gate).
 `enforced_by: human-review`
+
+**`VER-11`** — **2.4.0 is the authoring baseline (owner decision 2026-10-17).** Authoring never avoids a feature (`fitb` with the `text` keyboard, `physics` / `chemistry`
+keyboards, `_{…}` markup, extended `scientific_math`) in order to keep an exam at the floor or dodge a gate. Choose the presentation that makes the best question; every
+subject may use `text` `fitb` wherever it beats a choice item. The gate is still derived and written by the tooling (`VER-09`), so nothing about it changes for the author. A
+choice *against* a typed answer must rest on the merits (exact-string marking cannot credit paraphrase, `CLOSED-KB-01` rules 2–3), never on "this would gate the exam". Older
+text in subject profiles and workflows that justifies a selection-only design by the floor or the gate is superseded by this rule. `enforced_by: human-review`
 
 **`VER-08`** — **The prod push is exam-level.** `push-paper-to-prod.js` derives the minimum over **all papers of the exam** (subject + syllabus + year + session) from the
 dev rows and **refuses** when that exam-level minimum is above `LATEST_RELEASED` — even when the paper being pushed is itself at or below `LATEST_RELEASED` (with 2024 P1 needing 2.4.0,
@@ -114,7 +118,7 @@ automatically after a real dev upload. (Device-verified 2026-10-06: a 2.4.0 buil
 dry-run says how many published questions are affected, so read it before `--apply`. Prod: only a gate `<= LATEST_RELEASED` is written, with
 `--i-know-this-is-prod`. `enforced_by: tooling`
 
-**`VER-10`** — **Subject-level gate for new language subjects: 2.4.1** (decision 2026-10-10). A *new* setwork language subject (English FAL, Afrikaans FAL, anything after) is gated by `subjects.min_app_version = 2.4.1`, not only by the exam gates `VER-09` derives. The two stack; the higher wins. Until 2.4.1 is tagged the subject, its `english_texts` rows with new section values, and all its lessons stay on dev. **Language papers derive 2.4.1 (tooling, 2026-10-10):** `tools/lib/feature-versions.js` `LANGUAGE_RELEASE = '2.4.1'` — any typed question in a language subject (`english_hl`, `english_fal`, `afrikaans_fal`) that declares `text` requires 2.4.1, so **every new language paper, English HL included, is gated at 2.4.1** and dev-only until tagged. Existing undeclared HL rows (legacy English keyboard) are unaffected. **Still open:** the *subject* gate (`subjects.min_app_version`) is set by hand on the row; no tool writes or checks it, and the prod-push refusal is exam-level only. Bump `LATEST_RELEASED` to 2.4.1 when tagged (`VER-06`).
+**`VER-10`** — **Subject-level gate for new language subjects: 2.4.1** (decision 2026-10-10). A *new* setwork language subject (English FAL, Afrikaans FAL, anything after) is gated by `subjects.min_app_version = 2.4.1`, not only by the exam gates `VER-09` derives. The two stack; the higher wins. (Historical: until 2.4.1 was tagged the subject, its `english_texts` rows with new section values, and all its lessons stayed on dev.) **Language papers derive 2.4.1 (tooling, 2026-10-10):** `tools/lib/feature-versions.js` `LANGUAGE_RELEASE = '2.4.1'` — any typed question in a language subject (`english_hl`, `english_fal`, `afrikaans_fal`) that declares `text` requires 2.4.1, so **every new language paper, English HL included, is gated at 2.4.1** (now releasable, 2.5.0 > 2.4.1). Existing undeclared HL rows (legacy English keyboard) are unaffected. **Still open:** the *subject* gate (`subjects.min_app_version`) is set by hand on the row; no tool writes or checks it, and the prod-push refusal is exam-level only. 2.4.1 is now below `LATEST_RELEASED` (2.5.0), so language content is releasable; the subject-level `min_app_version` still stays.
 
 Worked cases (2026-10-05): **2024 Nov** — P1 has `_{…}` markup (2.4.0), P2 is bare numeric (floor): the exam derives 2.4.0, both papers are gated, neither can be
 pushed to prod. **2023 Nov** — all bare numeric: floor, no gate, pushable (2023 P2 is already live in prod; P1 may follow). A build below 2.4.0 (including the normal
@@ -133,7 +137,7 @@ dev build 2.3.3) does not see 2024 Nov on dev; a build reporting 2.4.0 does.
 6. Prod: same commands with `--env prod --i-know-this-is-prod` after the dev check, and only once
    prod has the backend migrations and an app release that sends the header (see Status above).
 
-If the result is above `LATEST_RELEASED` (2.4.0 today) the exam depends on a planned capability: it is gated on dev, and not
+If the result is above `LATEST_RELEASED` (2.5.0 today) the exam depends on an unreleased capability: it is gated on dev, and not
 pushed to prod until that release is tagged and `LATEST_RELEASED` is bumped (`VER-06`/`VER-08`).
 
 ## Feature → first app version
@@ -151,18 +155,18 @@ the commit that added the capability.
 | ScientificMath: ASCII `-` typeable (minus key previously emitted U+2212) | **2.2.0** | Commit b3e7a8ed0. Before it a typed negative number never matched a stored `-47`. |
 | ScientificMath: `x y ^ %` keys | **2.2.0** | Same commit. Before it no variable letter or power could be typed. |
 | Stored U+2212 normalised to `-` when marking `fitb`/`steps` (not `fraction`) | **2.2.0** | `QuestionsValidator.normalizeNumericString`, same commit. |
-| `questions.keyboard_type` honoured by the client (`standard_math`, `scientific_math`; `none` was never a keyboard and is now ignored) | **2.4.0 (planned; next release after 2.3.2, not yet tagged)** | Older builds ignore the field and infer by subject, so declaring a keyboard older builds already infer anyway needs no gate. |
-| `subjects.capabilities` (`setwork`) drives the setwork screen; Paper 2 picker derived from lessons' `text_key`; free-form `english_texts.section` (`short_stories`); `text`-keyboard fixes for the new languages | **2.4.1 (planned; not yet tagged)** — `LANGUAGE_RELEASE` in the tooling | ampm-contracts 0.41.0, backend V83 (dev only), app change merged to dev. Gates every new setwork language subject (English FAL, Afrikaans FAL) via `subjects.min_app_version` — `VER-10`, `shared/setwork.md` `SETWORK-GATE-01`. |
-| `X-App-Version` header; full resync on app-version change | **2.4.0 (planned; next release after 2.3.2, not yet tagged)** | Prerequisite for any prod exam gate to take effect. |
-| `physics`, `chemistry`, `text` keyboards | **2.4.0** (tag `v2.4.0`, 2026-10-08) | BLA-21 / BLA-58. Valid to author; `NEXT_RELEASE` (2.4.0) in the tooling until `LATEST_RELEASED` reaches it. `physics` (4d) and `chemistry` (4e) are both built on AMPM `dev` and emulator-verified, as is the `fitb` answer box / row label rendering of `^`/`_` markup. |
+| `questions.keyboard_type` honoured by the client (`standard_math`, `scientific_math`; `none` was never a keyboard and is now ignored) | **2.4.0** (tag `v2.4.0`, 2026-10-08) | Older builds ignore the field and infer by subject, so declaring a keyboard older builds already infer anyway needs no gate. |
+| `subjects.capabilities` (`setwork`) drives the setwork screen; Paper 2 picker derived from lessons' `text_key`; free-form `english_texts.section` (`short_stories`); `text`-keyboard fixes for the new languages | **2.4.1** (carried by 2.5.0) — `LANGUAGE_RELEASE` in the tooling | ampm-contracts 0.41.0, backend V83 (dev only), app change merged to dev. Gates every new setwork language subject (English FAL, Afrikaans FAL) via `subjects.min_app_version` — `VER-10`, `shared/setwork.md` `SETWORK-GATE-01`. |
+| `X-App-Version` header; full resync on app-version change | **2.4.0** (tag `v2.4.0`, 2026-10-08) | Prerequisite for any prod exam gate to take effect. |
+| `physics`, `chemistry`, `text` keyboards | **2.4.0** (tag `v2.4.0`, 2026-10-08) | BLA-21 / BLA-58. Released; the validator models their key sets. `physics` (4d) and `chemistry` (4e) are both built on AMPM `dev` and emulator-verified, as is the `fitb` answer box / row label rendering of `^`/`_` markup. |
 | Total keyboard fallback (every typed input gets a custom keyboard; undeclared content in a subject with no keyboard → `Text`, `steps`/`equation` → `ScientificMath`) | **2.4.0** | AMPM `dev` 1ca3581ef. A safety net for undeclared content, **not a capability content depends on — it needs no exam gate**; declaring `text` is what gates. |
-| Extended `scientific_math` keys: all letters, `< > ; , [ ] ° ' ± ∞ ∩ ∪ !`, `Σ σ Δ Ω μ ε α β`, `ln lim nCr nPr`, sub/super mode keys | **2.4.0** (tag `v2.4.0`, 2026-10-08) | BLA-21 item 5c0 (final layout still to be designed from real Grade 12 papers). `NEXT` until tagged. |
-| `case_sensitive` flag (fitb marking skips lower-casing) | **2.4.0** (tag `v2.4.0`, 2026-10-08) | D15 / initiative 4c. Needs contracts 0.40.0 (published), backend V82 (deployed to dev, and to **prod since 2026-10-06**, Flyway head 82 — all rows `case_sensitive = false`), the app change (merged to `dev`, verified on the emulator). 2.4.0 until `LATEST_RELEASED` reaches it. |
-| MathText `_{…}` / `^{…}` markup | **2.4.0** (tag `v2.4.0`, 2026-10-08) | Decision D4, BLA-21 item 5d. Recorded as `NEXT_RELEASE` (2.4.0) in the tooling until `LATEST_RELEASED` is bumped (`VER-06`). |
+| Extended `scientific_math` keys: all letters, `< > ; , [ ] ° ' ± ∞ ∩ ∪ !`, `Σ σ Δ Ω μ ε α β`, `ln lim nCr nPr`, sub/super mode keys | **2.4.0** (tag `v2.4.0`, 2026-10-08) | BLA-21 item 5c0 (final layout still to be designed from real Grade 12 papers). Released. |
+| `case_sensitive` flag (fitb marking skips lower-casing) | **2.4.0** (tag `v2.4.0`, 2026-10-08) | D15 / initiative 4c. Needs contracts 0.40.0 (published), backend V82 (deployed to dev, and to **prod since 2026-10-06**, Flyway head 82 — all rows `case_sensitive = false`), the app change (merged to `dev`, verified on the emulator). Released. |
+| MathText `_{…}` / `^{…}` markup | **2.4.0** (tag `v2.4.0`, 2026-10-08) | Decision D4, BLA-21 item 5d. Released. |
+| **2.5.0** | **2.5.0** (2026-10-17) | No keyboard or presentation changes (owner, 2026-10-17); `LATEST_RELEASED` is 2.5.0. |
 
-A capability row marked "next release after 2.3.2" must be replaced with the real tag as soon as it
-ships (`VER-06`) — until then content depending on it cannot be given an honest number, which is
-why the tooling marks everything planned as `NEXT_RELEASE` (2.4.0, dev-only until tagged).
+A capability row marked "planned" must be replaced with the real tag as soon as it ships (`VER-06`) — until then content depending on it cannot be given an honest
+number, which is why the tooling marks anything planned as `NEXT_RELEASE` (dev-only until tagged).
 
 ## Known findings from the first run (2026-10-04, existing scripts)
 

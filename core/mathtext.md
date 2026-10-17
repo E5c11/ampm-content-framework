@@ -151,9 +151,9 @@ treatment: `Eₖ(max)`.
 
 ---
 
-## Planned for the next release: sub/superscripts — plain forms and `_{…}` / `^{…}`
+## Sub/superscripts — plain forms and `_{…}` / `^{…}` (released, 2.4.0)
 
-**`MATHTEXT-07`** — `enforced_by: validator` (valid to author; marks the exam `2.4.0` = dev-only)
+**`MATHTEXT-07`** — `enforced_by: validator` (released; marks the exam `2.4.0`, gated automatically)
 
 Decision D4 + D16 (2026-10-03/04): MathText renders raised and lowered text, in question text, option text, feedback
 and given steps, **and live in the equation/steps answer input**. Built in AMPM initiative 4b, merged to `dev`,
@@ -175,16 +175,15 @@ none using an underscore.
 by two or more letters in `maths` / `math_lit` / `physics` text.
 
 **Typed answers.** The answer input renders the same forms while typing in the equation/steps input, **and in a `fitb` box when a
-custom keyboard is active** (AMPM `dev`, unreleased: `5^x`, `H_{2}O`, `Fe^{3+}` are drawn raised/lowered; answers with no `^`/`_`
-look exactly as before). On a released build a `fitb` box is a plain text field and shows the raw characters. Marking compares a
+custom keyboard is active** (2.4.0+: `5^x`, `H_{2}O`, `Fe^{3+}` are drawn raised/lowered; answers with no `^`/`_`
+look exactly as before). On a build below 2.4.0 a `fitb` box is a plain text field and shows the raw characters. Marking compares a
 **canonical** spelling of both sides: `^{x}` and `^x` become `^x`; `^{n-1}`, `^(n-1)` and `^(n−1)` become `^{n-1}`; the same
 for `_`; U+2212 becomes `-` inside scripts (`canonicalizeScripts`). So `5^x` equals `5^{x}` and `x^(n-1)` equals `x^{n-1}`.
 
-**Status and what it means for authors.** No *released* build parses `_` or `^{…}`, so a plain `_` or a brace form shows
+**Status and what it means for authors.** Builds below 2.4.0 do not parse `_` or `^{…}`, so a plain `_` or a brace form shows
 literally there — the 2026-09-10 failure below. Plain `^` already reads fine unrendered, so it does **not** raise an
-exam's minimum. The brace forms and plain `_` need **2.4.0** (the next release; dev-only until it is tagged, `VER-05`); `MATHTEXT-06`
-stays in force for anything published. When the release is tagged, bump `LATEST_RELEASED` in
-`tools/lib/feature-versions.js` (`VER-06`) and rewrite `MATHTEXT-06`.
+exam's minimum. The brace forms and plain `_` need **2.4.0** (released; the exam is gated automatically, `VER-09`); `MATHTEXT-06`
+stays in force for content that must work on builds below 2.4.0 (e.g. already-live exams).
 
 ---
 
@@ -197,7 +196,7 @@ From the Physical Sciences 2024 retrofit (verified on the emulator, AMPM `dev`).
 `fitb` answer box (custom keyboard only). **Fields that do NOT:** `clues` and the AI explanation (`approach`, `solution` — the AI-explanation
 sheet is a plain `Text`). Never author markup in those two; a subscript there is a Unicode glyph or the `Variable(subscript)` parenthetical
 (`MATHTEXT-06`). Consequence: a given step may read `p_{f}` while the matching solution reads `p(f)` — that is expected, not a defect.
-A `fitb` row label only renders markup from the next release (AMPM `dev` e3e3fac0d; before it a label such as `λ_{L} =` showed raw `_{L}`).
+A `fitb` row label only renders markup from 2.4.0 (before it a label such as `λ_{L} =` showed raw `_{L}`).
 
 **Primes (device observation 2026-10-06):** typographic primes `′` / `″` (U+2032/U+2033) render with the font's quote glyphs (`'`, `"`) on screen. Harmless; prefer plain `f'(x)` in new content.
 
@@ -205,10 +204,10 @@ A `fitb` row label only renders markup from the next release (AMPM `dev` e3e3fac
 arguments; `\frac{v}{λ_{L}}` and `\frac{V_{R1}}{I}` verified on a device).
 
 **`MATHTEXT-11`** — `enforced_by: human-review` — **Which subscript rule applies (precedence of `MATHTEXT-06` vs `-07`):**
-- **New content** for an exam that will be dev-only / `2.4.0` anyway (it declares a `physics`/`chemistry` keyboard or uses any other `NEXT` feature):
+- **New content** (2.4.0 is the baseline, `VER-11`; it declares a `physics`/`chemistry` keyboard or uses any other `NEXT` feature):
   write **every subscript in typed-question given text as `_{…}`** — one rule, renders consistently, and covers multi-letter subscripts
   (`net`, `R1`) that Unicode cannot (`Fₙₑₜ` works but `p_f` / `V_R1` do not exist as glyphs).
-- **Content that must work on a released build** keeps `MATHTEXT-06` (Unicode glyph, else `Variable(subscript)`): a released build prints `_{…}` literally.
+- **Content that must work on builds below 2.4.0** (e.g. an already-live exam being edited) keeps `MATHTEXT-06` (Unicode glyph, else `Variable(subscript)`): those builds print `_{…}` literally.
 - **Unicode subscripts stay valid** in any question that needs no markup, and **are not mass-converted**: published prod content cannot render markup and
   conversion is churn. Only convert a Unicode subscript when it sits on the **same line** (same `metadata` element / same string) as a `_{…}` you add, so no
   line mixes `pᵢ` with `p_{f}`.

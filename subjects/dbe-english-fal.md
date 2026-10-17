@@ -127,7 +127,7 @@ arose in 2025). Ids: snake_case of the title. Authors are the printed ones. **Th
 National Literature Catalogue, which is not supplied — until it is, only titles printed in a supplied paper or memo may
 be added** (owner decision 2026-10-10); a text FAL students might choose that is not in these papers is simply not
 covered yet. Rows were written with `prescribed_years ["2025"]` (a record only). `create-english-text.js` accepts
-`short_stories` and refuses to write it to prod until 2.4.1.
+`short_stories` and refuses to write it to prod until the release carrying 2.4.1 (now 2.5.0) is `LATEST_RELEASED` (it is).
 
 ## Paper 3 — Writing (lessons per task; 100 marks)
 
@@ -201,7 +201,7 @@ skill ids must be prefixed `english_fal_` (e.g. `english_fal_identify_figure_of_
    header (`SETWORK-LES-05`).
 2. **Subject-level gate tooling:** nothing sets or checks `subjects.min_app_version`; the prod-push refusal is exam-level only
    (`VER-10`). The row's 2.4.1 was set by hand.
-3. **Prod:** blocked until app 2.4.1 is tagged and backend V83 is on prod; then the owner creates the `subjects` row
+3. **Prod:** app 2.4.1 is covered by the 2.5.0 release (2026-10-17); still needs backend V83 on prod (verify); then the owner creates the `subjects` row
    there, followed by `push-paper-to-prod.js` per paper. Create the `short_stories` texts on prod only after 2.4.1.
 4. **App bugs affecting FAL review and use:** BLA-62 (picks not subject-scoped; poetry lessons hidden after a pick). Cosmetic: the
    Subjects header shows "English Fal" (title-cased id) while the row says "English FAL".

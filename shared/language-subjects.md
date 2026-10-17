@@ -298,8 +298,8 @@ free-form text section and the text-keyboard fixes for the new languages. This i
 higher of the two wins. A new paper in a language subject that already ships to older
 builds (English HL) is gated by the **exam** gate only — and since it declares `text`, that
 derives **2.4.1** too (`VER-10`). Net effect: every new language paper needs 2.4.1.
-Do not push the subject, its texts, or its lessons to prod until 2.4.1 is tagged and
-`ampm-backend` V83 is on prod (`SETWORK-GATE-01`).
+2.4.1 is covered by the 2.5.0 release (2026-10-17), so the remaining prod precondition is that
+`ampm-backend` V83 is on prod (`SETWORK-GATE-01`) — verify before pushing the subject, its texts or its lessons.
 
 ---
 
