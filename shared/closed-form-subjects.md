@@ -58,7 +58,12 @@ Convert by what the mark is *for*:
 
 The memo lists more valid answers than N and accepts any. Correct options are a **subset** of the memo's list; distractors are plausible-but-wrong
 items from the **same family** (for defensive strategies, an intensive or integration strategy; for "direct tax", an indirect tax; for plant
-poisoning treatment, a measure that belongs to a parasite). A distractor must not be correct under another line of the memo. Do not require the
+poisoning treatment, a measure that belongs to a parasite). A distractor must not be correct under another line of the memo.
+**Open-ended memos ("accept any valid / relevant answer") need a stricter audit** (Computer Applications Technology, Tourism, Business Studies): the marker accepts
+anything defensible, so before keeping a distractor ask "would a marker give this the mark?" If a reasonable marker might (a student's own valid example, a
+synonym, the neighbouring grade's content), rewrite it until it is plainly wrong *in the subject's terms* — never rely on "the memo doesn't list it". Do not use
+vague comparatives ("cheaper", "faster", "better") as distractors when the paper's instructions disqualify them as answers: they are not wrong in everyday terms, so
+they teach nothing. Do not require the
 student to find every valid answer when the exam wants N ("mark the first TWO").
 
 ### `CLOSED-DISC-03` — Near-twin distractors come from the paper's own confusable pairs
@@ -89,7 +94,7 @@ another optional question's content (`DESIGN-UNI-10`).
 
 ### `CLOSED-A-01` — DBE Section A item formats → presentation
 
-`enforced_by: human-review` · extracted 2026-10-15 from Agricultural Sciences, Life Sciences, Economics and Tourism, which all print the same five formats
+`enforced_by: human-review` · extracted 2026-10-15 from Agricultural Sciences, Life Sciences, Economics and Tourism, which all print the same five formats; "modified true/false" added 2026-10-17 from Computer Applications Technology
 
 | Section A format | Present as |
 |---|---|
@@ -99,6 +104,7 @@ another optional question's content (`DESIGN-UNI-10`).
 | "Give ONE word/term" with **no** list | `multiple_choice`/`multi_select`, or a single-term `fitb` only under `CLOSED-KB-01` |
 | "Choose the correct word(s) from those in brackets" | `multiple_choice` with the two bracket words as the options |
 | "Change the UNDERLINED word" | `multiple_choice` on the replacement (`CLOSED-KB-01` item 5) |
+| Modified true/false ("write true or false; if FALSE, correct the underlined word(s)"; no mark for FALSE alone) | `multiple_choice`, four options: `True as written` plus three candidate replacements for the underlined term, **one** correct (the memo's term when the statement is false, `True as written` when it is true). Mix true and false statements across the set and vary the position of `True as written` (index-0 tally, `DESIGN-UNI-06`). A bare two-option `["True","False"]` item is the separate True/False form and counts toward the 20% cap (`DESIGN-UNI-05`); use it only for a single plain fact, never for a modified item (it would drop the correction that carries the mark). The underline is lost in text, so name the term to judge in the stem ("the statement's key term is …") or bold it. |
 | Column A ↔ lettered Column B (≤ 5 pairs) | `match`; if Column B is pictures, supply fresh images or text-described items — never the exam's own pictures |
 
 Never copy the exam's answer-lettering instruction ("write only the letter", "e.g. 1.1.21 D") into the stem. Section A mixes the later topics: cluster by
@@ -188,6 +194,26 @@ presentation: "fitb", keyboard_type: "standard_math"
 - **Large grids are split by section**, one linked lesson per section, with the whole grid legible; if text is unreadable at phone width on the
   emulator, crop the figure to the section. One generated grid may serve several questions, each lettering a different part.
 - Typed values are bare numbers (`CLOSED-FMT-01`, `CLOSED-KB-01`): no thousands space, `R`, `%`; negatives as `-`; units in the label.
+
+### `CLOSED-FIG-04` — Screenshot-type stimuli (spreadsheet cells, e-mail header, dialog, diagram of a layout)
+
+`enforced_by: human-review` · extracted 2026-10-17 from Computer Applications Technology; applies to any subject whose paper shows software or a layout and asks about it
+
+Papers that test software or systems knowledge print small screenshots (a spreadsheet fragment, an e-mail client header, a database report, a settings dialog,
+a network layout) and ask what the picture shows or which feature produced it. They are exam reference only (`DESIGN-UNI-01`, `CLOSED-FIG-02`). Never crop one
+into a practice question: it carries a brand's UI, its own wording and, often, the answer.
+
+- **Data-shaped screenshots** (cells, report rows, a list, a header block) → regenerate as a **plain table figure** with fresh values and the same structure
+  (`CLOSED-FIG-03` mechanics: one generated figure, stems that stand alone, labels that never name the answer). Keep the structure the question tests (which
+  column derives from which; a soft line break inside a list item) and change the data.
+- **Dialogs, menus and tool windows** → do not draw them. Describe the *situation or function* in words ("files on the drive are stored in scattered pieces and
+  opening them has become slow") and ask the relational question (`DESIGN-UNI-08`), or ask which utility fits. A dialog's title is a giveaway and its look
+  drifts between software versions.
+- **Layout diagrams** (a network, a track with sensors) → regenerate a simple schematic only when it is clearly correct on inspection; otherwise describe the
+  arrangement in text and drop the figure (`CLOSED-FIG-02`: a figure that is not clearly correct is dropped). If the memo accepts several answers because the
+  picture is ambiguous, write the practice figure unambiguous.
+- A question that depends on any of these still carries `supplementary_material` (`CLOSED-FIG-02`). Version-specific click paths ("Home › Styles") never appear;
+  ask for the feature name the memo uses.
 
 ## Calculations
 

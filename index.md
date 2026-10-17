@@ -25,7 +25,7 @@ Cross-subject rule sets reused by several profiles (added 2026-10-10).
 |---|---|---|---|
 | `AMPM-CONTENT-LANG` | `shared/language-subjects.md` | any language subject (English HL/FAL, Afrikaans FAL, …) | DESIGN, SCHEMA, AI-EXP, KEYBOARD-INPUT, APP-VERSIONS, SETWORK |
 | `AMPM-CONTENT-SETWORK` | `shared/setwork.md` | any subject with prescribed texts (`setwork` capability) | LANG, DESIGN, PIPELINE, APP-VERSIONS, PERSISTENCE |
-| `AMPM-CONTENT-CLOSED-FORM` | `shared/closed-form-subjects.md` | any content-based subject whose paper is marked on point lists, drawn graphs, essays or worked calculations (Economics, Business Studies, Life Sciences, History, Geography, Agricultural Sciences …); figure (incl. lettered-blank statements, `CLOSED-FIG-03`) + calculation rules also serve Maths/Physics/Chemistry/Accounting | DESIGN, SCHEMA, KEYBOARD-INPUT, AI-EXP, PIPELINE, APP-VERSIONS |
+| `AMPM-CONTENT-CLOSED-FORM` | `shared/closed-form-subjects.md` | any content-based subject whose paper is marked on point lists, drawn graphs, essays or worked calculations (Economics, Business Studies, Life Sciences, History, Geography, Agricultural Sciences, Tourism, Computer Applications Technology …); figure (incl. lettered-blank statements, `CLOSED-FIG-03`) + calculation rules also serve Maths/Physics/Chemistry/Accounting | DESIGN, SCHEMA, KEYBOARD-INPUT, AI-EXP, PIPELINE, APP-VERSIONS |
 
 ## presentations/ (load per type used)
 
@@ -57,6 +57,7 @@ Cross-subject rule sets reused by several profiles (added 2026-10-10).
 | `AMPM-CONTENT-SUBJ-DBE-BUSINESS-STUDIES` | `subjects/dbe-business-studies.md` | mc, multi-select, match, ordering (confirmed against a full paper 2026-09-13 — Paper 2 only, 6 lessons/55 questions/230 marks); fitb/fraction/equation/steps not used; Section C essays get English HL/History-style objective essay-strategy lessons grounded in the memo's own LASO rubric (`DESIGN-BUS-03`) |
 | `AMPM-CONTENT-SUBJ-DBE-ECONOMICS` | `subjects/dbe-economics.md` | mc, multi-select, match, ordering, plus `fitb` (Q1.3 terms `text`, numerics `standard_math`) and `steps` (`scientific_math`) for calculations — analysed 2026-10-14 from Nov 2024 + 2025 P1/P2; **2025 Nov P1 (28 lessons / 85 q) and P2 (32 lessons / 106 q) authored to dev 2026-10-14, `DESIGN-UNI-14`-compliant, emulator-reviewed**; Business Studies shell + Geography-style fresh stimuli; drawn-graph items converted to closed-form (`DESIGN-ECON-03`) |
 | `AMPM-CONTENT-SUBJ-DBE-TOURISM` | `subjects/dbe-tourism.md` | mc, multi-select, match, fitb (numeric `standard_math`; `text` sparingly), ordering for itineraries — loads `shared/closed-form-subjects.md`; one 200-mark paper, profiled 2026-10-15 from Nov 2025 + 2024; **2025 Nov authored to dev (24 lessons / 96 q), reviewed, gated 2.4.0; 2024 Nov authored (24 lessons / 94 q), no gate, reviewed (2 fixes, 0 flags); both papers live in prod**; closest to Business Studies, with Geography-style time-zone/forex calculations |
+| `AMPM-CONTENT-SUBJ-DBE-CAT` | `subjects/dbe-cat.md` | Paper 2 (Theory) only, 150 marks, `subject_id = "cat"`, `nov_p2` — mc, multi-select, match (≤ 4 pairs), ordering (real sequences), `fitb` (`text`, single canonical term; no `= < > # @ +`) — loads `shared/closed-form-subjects.md`; profiled 2026-10-17 from Nov 2024 P2 (Paper 1, the practical paper, deliberately skipped); introduced modified true/false (`CLOSED-A-01`) and screenshot stimuli (`CLOSED-FIG-04`); nothing authored; real exam 2026-11-27 |
 
 ## workflows/generate/ (thin orchestrators)
 
@@ -75,6 +76,8 @@ Cross-subject rule sets reused by several profiles (added 2026-10-10).
 | `workflows/generate/upload-accounting.md` | this repo |
 | `workflows/generate/upload-agricultural-sciences.md` | this repo |
 | `workflows/generate/upload-tourism.md` | this repo |
+| `workflows/generate/upload-cat.md` | this repo |
+| `workflows/generate/closed-form-upload-common.md` | this repo — shared procedure for closed-form subjects (CAT references it; older subject workflows not yet repointed) |
 | `workflows/generate/review-paper.md` | **AMPM repo root** (capture harness lives there) |
 
 ## tools/
