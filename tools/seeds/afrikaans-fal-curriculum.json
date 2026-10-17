@@ -1,0 +1,437 @@
+{
+  "subject": "afrikaans_fal",
+  "units": [
+    {
+      "slug": "leesbegrip",
+      "name": "Leesbegrip",
+      "topics": [
+        {
+          "slug": "letterlike_begrip",
+          "name": "Letterlike begrip",
+          "subtopics": [
+            {
+              "slug": "voltooi_sin_uit_teks",
+              "name": "Voltooi sin uit teks"
+            },
+            {
+              "slug": "pas_inligting_by_omskrywing",
+              "name": "Pas inligting by omskrywing"
+            }
+          ]
+        },
+        {
+          "slug": "afleidende_begrip",
+          "name": "Afleidende begrip",
+          "subtopics": [
+            {
+              "slug": "motiveer_afleiding",
+              "name": "Motiveer afleiding"
+            }
+          ]
+        },
+        {
+          "slug": "woordeskat_in_konteks",
+          "name": "Woordeskat in konteks",
+          "subtopics": [
+            {
+              "slug": "idioom_in_konteks",
+              "name": "Idioom in konteks"
+            }
+          ]
+        },
+        {
+          "slug": "figuurlike_taal",
+          "name": "Figuurlike taal",
+          "subtopics": [
+            {
+              "slug": "vergelyking",
+              "name": "Vergelyking"
+            }
+          ]
+        },
+        {
+          "slug": "evaluerende_lees",
+          "name": "Evaluerende lees",
+          "subtopics": [
+            {
+              "slug": "geloofwaardigheid",
+              "name": "Geloofwaardigheid"
+            }
+          ]
+        },
+        {
+          "slug": "grafiese_tekste",
+          "name": "Grafiese tekste",
+          "subtopics": [
+            {
+              "slug": "lees_syfer_uit_data",
+              "name": "Lees syfer uit data"
+            },
+            {
+              "slug": "vergelyk_data",
+              "name": "Vergelyk data"
+            },
+            {
+              "slug": "ware_stellings_oor_data",
+              "name": "Ware stellings oor data"
+            },
+            {
+              "slug": "betroubaarheid_van_inligting",
+              "name": "Betroubaarheid van inligting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "opsomming",
+      "name": "Opsomming",
+      "topics": [
+        {
+          "slug": "hoofgedagtes_en_wenke",
+          "name": "Hoofgedagtes en wenke",
+          "subtopics": [
+            {
+              "slug": "kies_wenke_uit_teks",
+              "name": "Kies wenke uit teks"
+            },
+            {
+              "slug": "herken_oortollige_inligting",
+              "name": "Herken oortollige inligting"
+            }
+          ]
+        },
+        {
+          "slug": "eie_woorde",
+          "name": "Eie woorde",
+          "subtopics": [
+            {
+              "slug": "herformuleer_in_eie_woorde",
+              "name": "Herformuleer in eie woorde"
+            }
+          ]
+        },
+        {
+          "slug": "puntvorm_en_volgorde",
+          "name": "Puntvorm en volgorde",
+          "subtopics": [
+            {
+              "slug": "rangskik_wenke_volgens_teks",
+              "name": "Rangskik wenke volgens teks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "visuele_tekste",
+      "name": "Visuele tekste",
+      "topics": [
+        {
+          "slug": "advertensie",
+          "name": "Advertensie"
+        },
+        {
+          "slug": "strokiesprent",
+          "name": "Strokiesprent",
+          "subtopics": [
+            {
+              "slug": "klanknabootsing",
+              "name": "Klanknabootsing"
+            },
+            {
+              "slug": "volgorde_van_gebeure",
+              "name": "Volgorde van gebeure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "woordeskat",
+      "name": "Woordeskat en taalgebruik",
+      "topics": [
+        {
+          "slug": "betekenisleer",
+          "name": "Betekenisleer",
+          "subtopics": [
+            {
+              "slug": "homonieme",
+              "name": "Homonieme"
+            },
+            {
+              "slug": "regte_afrikaanse_woord",
+              "name": "Regte afrikaanse woord"
+            }
+          ]
+        },
+        {
+          "slug": "woordvorming",
+          "name": "Woordvorming"
+        },
+        {
+          "slug": "klankleer_en_spelling",
+          "name": "Klankleer en spelling",
+          "subtopics": [
+            {
+              "slug": "verbeter_spelfout",
+              "name": "Verbeter spelfout"
+            },
+            {
+              "slug": "skryf_getal_in_woorde",
+              "name": "Skryf getal in woorde"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "sinstrukture",
+      "name": "Sinstrukture",
+      "topics": [
+        {
+          "slug": "selfstandige_naamwoorde",
+          "name": "Selfstandige naamwoorde",
+          "subtopics": [
+            {
+              "slug": "selfstandige_naamwoord_van_werkwoord",
+              "name": "Selfstandige naamwoord van werkwoord"
+            },
+            {
+              "slug": "meervoud",
+              "name": "Meervoud"
+            },
+            {
+              "slug": "verkleinwoord",
+              "name": "Verkleinwoord"
+            }
+          ]
+        },
+        {
+          "slug": "byvoeglike_naamwoorde",
+          "name": "Byvoeglike naamwoorde",
+          "subtopics": [
+            {
+              "slug": "trappe_van_vergelyking",
+              "name": "Trappe van vergelyking"
+            },
+            {
+              "slug": "intensiewe_vorm",
+              "name": "Intensiewe vorm"
+            }
+          ]
+        },
+        {
+          "slug": "werkwoorde",
+          "name": "Werkwoorde",
+          "subtopics": [
+            {
+              "slug": "infinitief",
+              "name": "Infinitief"
+            }
+          ]
+        },
+        {
+          "slug": "ontkenning",
+          "name": "Ontkenning",
+          "subtopics": [
+            {
+              "slug": "dubbele_ontkenning",
+              "name": "Dubbele ontkenning"
+            }
+          ]
+        },
+        {
+          "slug": "aktief_en_passief",
+          "name": "Bedrywende en lydende vorm",
+          "subtopics": [
+            {
+              "slug": "lydende_na_bedrywende_vorm",
+              "name": "Lydende na bedrywende vorm"
+            }
+          ]
+        },
+        {
+          "slug": "direkte_en_indirekte_rede",
+          "name": "Direkte en indirekte rede",
+          "subtopics": [
+            {
+              "slug": "stelsin_in_indirekte_rede",
+              "name": "Stelsin in indirekte rede"
+            }
+          ]
+        },
+        {
+          "slug": "woordorde",
+          "name": "Woordorde",
+          "subtopics": [
+            {
+              "slug": "tyd_wyse_plek",
+              "name": "Tyd wyse plek"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "kritiese_taalbewustheid",
+      "name": "Kritiese taalbewustheid",
+      "topics": [
+        {
+          "slug": "feit_en_mening",
+          "name": "Feit en mening",
+          "subtopics": [
+            {
+              "slug": "onderskei_feit_van_mening",
+              "name": "Onderskei feit van mening"
+            }
+          ]
+        },
+        {
+          "slug": "doel_van_taalgebruik",
+          "name": "Doel van taalgebruik",
+          "subtopics": [
+            {
+              "slug": "doel_van_retoriese_vrae",
+              "name": "Doel van retoriese vrae"
+            }
+          ]
+        },
+        {
+          "slug": "seleksie_en_weglating",
+          "name": "Seleksie en weglating"
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "afrikaans_fal_voltooi_sin_met_woord_uit_teks",
+      "name": "Voltooi sin met woord uit teks"
+    },
+    {
+      "id": "afrikaans_fal_verklaar_idioom_in_konteks",
+      "name": "Verklaar idioom in konteks"
+    },
+    {
+      "id": "afrikaans_fal_verklaar_vergelyking",
+      "name": "Verklaar vergelyking"
+    },
+    {
+      "id": "afrikaans_fal_pas_plek_by_omskrywing",
+      "name": "Pas plek by omskrywing"
+    },
+    {
+      "id": "afrikaans_fal_motiveer_afleiding",
+      "name": "Motiveer afleiding"
+    },
+    {
+      "id": "afrikaans_fal_lees_syfer_uit_data",
+      "name": "Lees syfer uit data"
+    },
+    {
+      "id": "afrikaans_fal_identifiseer_hoogste_waarde",
+      "name": "Identifiseer hoogste waarde"
+    },
+    {
+      "id": "afrikaans_fal_kies_ware_stellings_oor_data",
+      "name": "Kies ware stellings oor data"
+    },
+    {
+      "id": "afrikaans_fal_beoordeel_betroubaarheid_van_bron",
+      "name": "Beoordeel betroubaarheid van bron"
+    },
+    {
+      "id": "afrikaans_fal_kies_wenke_uit_teks",
+      "name": "Kies wenke uit teks"
+    },
+    {
+      "id": "afrikaans_fal_herformuleer_wenk_in_eie_woorde",
+      "name": "Herformuleer wenk in eie woorde"
+    },
+    {
+      "id": "afrikaans_fal_herken_oortollige_inligting",
+      "name": "Herken oortollige inligting"
+    },
+    {
+      "id": "afrikaans_fal_rangskik_wenke_in_teksvolgorde",
+      "name": "Rangskik wenke in teksvolgorde"
+    },
+    {
+      "id": "afrikaans_fal_verbeter_spelfout",
+      "name": "Verbeter spelfout"
+    },
+    {
+      "id": "afrikaans_fal_verklaar_doel_van_retoriese_vraag",
+      "name": "Verklaar doel van retoriese vraag"
+    },
+    {
+      "id": "afrikaans_fal_skryf_getal_in_woorde",
+      "name": "Skryf getal in woorde"
+    },
+    {
+      "id": "afrikaans_fal_onderskei_feit_van_mening",
+      "name": "Onderskei feit van mening"
+    },
+    {
+      "id": "afrikaans_fal_skryf_in_indirekte_rede",
+      "name": "Skryf in indirekte rede"
+    },
+    {
+      "id": "afrikaans_fal_vorm_infinitief",
+      "name": "Vorm infinitief"
+    },
+    {
+      "id": "afrikaans_fal_identifiseer_klanknabootsing",
+      "name": "Identifiseer klanknabootsing"
+    },
+    {
+      "id": "afrikaans_fal_verklaar_geloofwaardigheid",
+      "name": "Verklaar geloofwaardigheid"
+    },
+    {
+      "id": "afrikaans_fal_rangskik_gebeure_in_strokiesprent",
+      "name": "Rangskik gebeure in strokiesprent"
+    },
+    {
+      "id": "afrikaans_fal_vorm_selfstandige_naamwoord",
+      "name": "Vorm selfstandige naamwoord"
+    },
+    {
+      "id": "afrikaans_fal_vorm_meervoud",
+      "name": "Vorm meervoud"
+    },
+    {
+      "id": "afrikaans_fal_vorm_oortreffende_trap",
+      "name": "Vorm oortreffende trap"
+    },
+    {
+      "id": "afrikaans_fal_skryf_in_bedrywende_vorm",
+      "name": "Skryf in bedrywende vorm"
+    },
+    {
+      "id": "afrikaans_fal_rangskik_bepalings_in_woordorde",
+      "name": "Rangskik bepalings in woordorde"
+    },
+    {
+      "id": "afrikaans_fal_gebruik_homoniem_in_sin",
+      "name": "Gebruik homoniem in sin"
+    },
+    {
+      "id": "afrikaans_fal_vorm_verkleinwoord",
+      "name": "Vorm verkleinwoord"
+    },
+    {
+      "id": "afrikaans_fal_vorm_intensiewe_vorm",
+      "name": "Vorm intensiewe vorm"
+    },
+    {
+      "id": "afrikaans_fal_gee_korrekte_afrikaans",
+      "name": "Gee korrekte afrikaans"
+    },
+    {
+      "id": "afrikaans_fal_kies_korrekte_ontkenning",
+      "name": "Kies korrekte ontkenning"
+    }
+  ]
+}
