@@ -99,7 +99,7 @@ def emit(year, paper, lessons):
                                  for a_ in les["ai"]],
                   model="claude-sonnet-5-5", generated_at="__NOW__", version=2, reviewed=False, input_tokens=0, output_tokens=0,
                   avg_rating=None, rating_count=None)
-        assert sum(a_[1] for a_ in les["ai"]) == les["marks"], (fname, "aiExplanation marks != exam_question_marks")
+        assert les.get("ai_choice") or sum(a_[1] for a_ in les["ai"]) == les["marks"], (fname, "aiExplanation marks != exam_question_marks")
         basis_block = "\n".join(f" *   Q{i+1}: {b}" for i, b in enumerate(basis))
         body = f"""#!/usr/bin/env node
 /**

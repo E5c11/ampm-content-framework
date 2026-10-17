@@ -688,6 +688,270 @@
           "name": "Vorm en klank"
         }
       ]
+    },
+    {
+      "slug": "opstel",
+      "name": "Opstel",
+      "topics": [
+        {
+          "slug": "opsteltipes",
+          "name": "Opsteltipes",
+          "subtopics": [
+            {
+              "slug": "beskrywing_van_opsteltipes",
+              "name": "Beskrywing van opsteltipes"
+            },
+            {
+              "slug": "opsteltipe_by_onderwerp",
+              "name": "Opsteltipe by onderwerp"
+            },
+            {
+              "slug": "kombinasie_van_opsteltipes",
+              "name": "Kombinasie van opsteltipes"
+            }
+          ]
+        },
+        {
+          "slug": "beplanning",
+          "name": "Beplanning",
+          "subtopics": [
+            {
+              "slug": "volgorde_van_die_skryfproses",
+              "name": "Volgorde van die skryfproses"
+            }
+          ]
+        },
+        {
+          "slug": "struktuur",
+          "name": "Struktuur",
+          "subtopics": [
+            {
+              "slug": "woordelengte_van_die_opstel",
+              "name": "Woordelengte van die opstel"
+            },
+            {
+              "slug": "dele_van_die_opstel",
+              "name": "Dele van die opstel"
+            }
+          ]
+        },
+        {
+          "slug": "prikkels_en_titel",
+          "name": "Prikkels en titel",
+          "subtopics": [
+            {
+              "slug": "titel_en_prikkel",
+              "name": "Titel en prikkel"
+            },
+            {
+              "slug": "prent_letterlik_en_figuurlik",
+              "name": "Prent letterlik en figuurlik"
+            }
+          ]
+        },
+        {
+          "slug": "taal_en_beoordeling",
+          "name": "Taal en beoordeling",
+          "subtopics": [
+            {
+              "slug": "puntetoekenning",
+              "name": "Puntetoekenning"
+            },
+            {
+              "slug": "opstel_in_engels",
+              "name": "Opstel in engels"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "transaksionele_tekste",
+      "name": "Transaksionele tekste",
+      "topics": [
+        {
+          "slug": "vriendskaplike_brief",
+          "name": "Vriendskaplike brief",
+          "subtopics": [
+            {
+              "slug": "formaat_van_die_brief",
+              "name": "Formaat van die brief"
+            },
+            {
+              "slug": "leestekens_in_die_brief",
+              "name": "Leestekens in die brief"
+            },
+            {
+              "slug": "aanhef_en_register",
+              "name": "Aanhef en register"
+            },
+            {
+              "slug": "kenmerke_van_die_brief",
+              "name": "Kenmerke van die brief"
+            },
+            {
+              "slug": "woordelengte",
+              "name": "Woordelengte"
+            }
+          ]
+        },
+        {
+          "slug": "formele_brief",
+          "name": "Formele brief",
+          "subtopics": [
+            {
+              "slug": "formaat_van_die_brief",
+              "name": "Formaat van die brief"
+            },
+            {
+              "slug": "formele_afsluiting",
+              "name": "Formele afsluiting"
+            },
+            {
+              "slug": "aanspreekvorm",
+              "name": "Aanspreekvorm"
+            },
+            {
+              "slug": "kenmerke_van_die_brief",
+              "name": "Kenmerke van die brief"
+            },
+            {
+              "slug": "doel_van_die_dekbrief",
+              "name": "Doel van die dekbrief"
+            }
+          ]
+        },
+        {
+          "slug": "huldeblyk",
+          "name": "Huldeblyk",
+          "subtopics": [
+            {
+              "slug": "struktuur_van_die_huldeblyk",
+              "name": "Struktuur van die huldeblyk"
+            },
+            {
+              "slug": "tyd_in_die_huldeblyk",
+              "name": "Tyd in die huldeblyk"
+            },
+            {
+              "slug": "toon_van_die_huldeblyk",
+              "name": "Toon van die huldeblyk"
+            },
+            {
+              "slug": "kenmerke_van_die_huldeblyk",
+              "name": "Kenmerke van die huldeblyk"
+            },
+            {
+              "slug": "doel_van_die_huldeblyk",
+              "name": "Doel van die huldeblyk"
+            }
+          ]
+        },
+        {
+          "slug": "toespraak",
+          "name": "Toespraak",
+          "subtopics": [
+            {
+              "slug": "struktuur_van_die_toespraak",
+              "name": "Struktuur van die toespraak"
+            },
+            {
+              "slug": "begin_van_die_toespraak",
+              "name": "Begin van die toespraak"
+            },
+            {
+              "slug": "aanspreekvorm_en_styl",
+              "name": "Aanspreekvorm en styl"
+            },
+            {
+              "slug": "kenmerke_van_die_toespraak",
+              "name": "Kenmerke van die toespraak"
+            },
+            {
+              "slug": "taal_wat_vermy_moet_word",
+              "name": "Taal wat vermy moet word"
+            }
+          ]
+        },
+        {
+          "slug": "uitnodiging",
+          "name": "Uitnodiging",
+          "subtopics": [
+            {
+              "slug": "inhoud_van_die_uitnodiging",
+              "name": "Inhoud van die uitnodiging"
+            },
+            {
+              "slug": "woordelengte",
+              "name": "Woordelengte"
+            },
+            {
+              "slug": "toon_van_die_uitnodiging",
+              "name": "Toon van die uitnodiging"
+            },
+            {
+              "slug": "formaat_van_die_uitnodiging",
+              "name": "Formaat van die uitnodiging"
+            },
+            {
+              "slug": "uitleg_van_die_uitnodiging",
+              "name": "Uitleg van die uitnodiging"
+            }
+          ]
+        },
+        {
+          "slug": "dagboekinskrywing",
+          "name": "Dagboekinskrywing",
+          "subtopics": [
+            {
+              "slug": "formaat_van_die_inskrywing",
+              "name": "Formaat van die inskrywing"
+            },
+            {
+              "slug": "aanspreekvorm",
+              "name": "Aanspreekvorm"
+            },
+            {
+              "slug": "woordkeuse_vir_gevoelens",
+              "name": "Woordkeuse vir gevoelens"
+            },
+            {
+              "slug": "aantal_inskrywings",
+              "name": "Aantal inskrywings"
+            },
+            {
+              "slug": "aanhef_in_die_dagboek",
+              "name": "Aanhef in die dagboek"
+            }
+          ]
+        },
+        {
+          "slug": "rigtingaanwysings",
+          "name": "Rigtingaanwysings",
+          "subtopics": [
+            {
+              "slug": "chronologiese_volgorde",
+              "name": "Chronologiese volgorde"
+            },
+            {
+              "slug": "sinstruktuur",
+              "name": "Sinstruktuur"
+            },
+            {
+              "slug": "tyd_in_rigtingaanwysings",
+              "name": "Tyd in rigtingaanwysings"
+            },
+            {
+              "slug": "inhoud_van_rigtingaanwysings",
+              "name": "Inhoud van rigtingaanwysings"
+            },
+            {
+              "slug": "uitleg_van_rigtingaanwysings",
+              "name": "Uitleg van rigtingaanwysings"
+            }
+          ]
+        }
+      ]
     }
   ],
   "skills": [
@@ -906,6 +1170,38 @@
     {
       "id": "afrikaans_fal_identifiseer_eienskappe",
       "name": "Identifiseer eienskappe"
+    },
+    {
+      "id": "afrikaans_fal_pas_opsteltipe_by_beskrywing",
+      "name": "Pas opsteltipe by beskrywing"
+    },
+    {
+      "id": "afrikaans_fal_rangskik_skryfproses",
+      "name": "Rangskik skryfproses"
+    },
+    {
+      "id": "afrikaans_fal_kies_opsteltipe_by_onderwerp",
+      "name": "Kies opsteltipe by onderwerp"
+    },
+    {
+      "id": "afrikaans_fal_interpreteer_visuele_prikkel",
+      "name": "Interpreteer visuele prikkel"
+    },
+    {
+      "id": "afrikaans_fal_rangskik_dele_van_teksvorm",
+      "name": "Rangskik dele van teksvorm"
+    },
+    {
+      "id": "afrikaans_fal_kies_gepaste_register",
+      "name": "Kies gepaste register"
+    },
+    {
+      "id": "afrikaans_fal_identifiseer_kenmerke_van_teksvorm",
+      "name": "Identifiseer kenmerke van teksvorm"
+    },
+    {
+      "id": "afrikaans_fal_identifiseer_doel_van_teksvorm",
+      "name": "Identifiseer doel van teksvorm"
     }
   ]
 }
