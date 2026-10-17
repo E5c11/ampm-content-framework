@@ -212,3 +212,11 @@ marks (`AIEXP-08`) — for P1 Q1 that is 22 entries for Teks A + B, and for Q5 t
 - Overall Nov 2025 on dev: **40 lessons / 194 questions** (P1 9/41, P2 22/108, P3 9/45).
 
 - **P3 crop fix (2026-10-17):** the first cut of `Vraag 1: Opstel (1.1–1.5)` included the "Kies EEN van die volgende prente…" instruction that belongs to 1.6–1.8, so 1.6–1.8 showed pictures with no instructions. The instruction block starts at y=321 on page 3; lessons 1–2 were re-cut at y=318 and re-uploaded as `…_v2_…` files (immutable image keys). Check each lesson's image at a section boundary, not just the lesson's own content.
+
+### Prod push — Nov 2025 (2026-10-17, owner-authorised)
+
+- **Prod reference data:** `subjects` row `afrikaans_fal` created (`capabilities {accents_af, setwork}`, `min_app_version 2.4.1`, copied from dev minus the dev-only `hosted`/`syllabus_ids` columns that prod lacks, backend V84); the 11 `english_texts` rows created with `--subject afrikaans_fal` (the `short_stories` guard passed because 2.5.0 carries 2.4.1).
+- **Papers:** `push-paper-to-prod.js` for `nov_p1`, `nov_p2`, `nov_p3` with `--allow-partial-exam` (the partial-exam guard fires when pushing one paper at a time; all three were pushed back to back). Lessons/questions landed **unpublished**: 40 lessons, 194 questions, 215+62+15 AI sub-questions, 208 image URLs all 200 on `media.askmoreprepmore.app`.
+- **Exam gate:** applied on prod (`apply-exam-gate.js --env prod --apply`): `exam_versions` afrikaans_fal / dbe / 2025 / november = **2.4.1**; `updated_at` bumped on 40 lessons and 194 questions.
+- **Pre-push check found a dev bug:** P1 lesson 5 listed `memo_3.png`, which does not exist (the memo has two pages). Fixed in the generator (`m=2`) and the dev row, then P1 was re-pushed. Run a HEAD check over every referenced image URL before a push.
+- **Not yet done:** `--publish` (flip live) for each paper — held for the owner's go-ahead after the team and first-language Afrikaans review.

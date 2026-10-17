@@ -6,7 +6,7 @@
  * Every fitb declares keyboard_type 'text' (LANG-KB-01). Typed answers avoid á í ó ú à â (not on the keyboard); required
  * diacritics (ê ë é è ô ö û ü î ï ä) are fine and significant (LANG-KB-02).
  *
- * BASIS per practice question — P1 language-paper skill / theme, C CAPS:
+ * BASIS per practice question — P printed in the extract/poem tab, M printed in the memo, X taken from the other half of the same exam question (fresh angle), L language-paper skill, C CAPS:
  *   Q1: P1: indirect speech (mirror 4.5)
  *   Q2: P1: infinitive (mirror 4.6)
  *   Q3: P1: sound words / technique (mirror 4.2.1)
@@ -53,8 +53,7 @@ const video = {
   ],
   "memo_image_urls": [
     "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q5/memo_1.png",
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q5/memo_2.png",
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q5/memo_3.png"
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q5/memo_2.png"
   ],
   "exam_question_marks": 10,
   "supplementary_materials": [

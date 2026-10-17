@@ -244,7 +244,7 @@ AI = [
  ("4.6", 1, ["Gebruik \"om ... te\" en skryf die hele sin."], ["Maak die infinitief", "Skryf die hele sin"], ["1. Dis nie nodig om met haar te raas nie."]),
  ("4.7", 1, ["Dink aan jou eie huis of aan hoe susters en broers is."], ["Dink aan die gewone lewe", "Gee EEN rede"], ["1. Dit gebeur gereeld tussen susters of broers dat hulle baklei oor goed."]),
 ]
-LS.append(dict(order=5, name="Vraag 4: Strokiesprent", header="Vraag 4: Strokiesprent — Teks E", marks=10, q=3, m=3,
+LS.append(dict(order=5, name="Vraag 4: Strokiesprent", header="Vraag 4: Strokiesprent — Teks E", marks=10, q=3, m=2,
                supp=[("Teks E", 1, "annexure_teks_e")], tags=["cartoons", "direct_and_indirect_speech", "grammar"], questions=q, ai=AI))
 
 # ═══════════ Vraag 5.1: Artikel — gesplit in drie lesse (14 punte; DESIGN-UNI-14) ═══════════

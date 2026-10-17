@@ -6,7 +6,7 @@
  * Every fitb declares keyboard_type 'text' (LANG-KB-01). Typed answers avoid á í ó ú à â (not on the keyboard); required
  * diacritics (ê ë é è ô ö û ü î ï ä) are fine and significant (LANG-KB-02).
  *
- * BASIS per practice question — P1 language-paper skill / theme, C CAPS:
+ * BASIS per practice question — P printed in the extract/poem tab, M printed in the memo, X taken from the other half of the same exam question (fresh angle), L language-paper skill, C CAPS:
  *   Q1: P1: noun from verb (mirror 5.1.1)
  *   Q2: P1: one word for a phrase (mirror 5.1.2)
  *   Q3: P1: past tense (mirror 5.1.3)
