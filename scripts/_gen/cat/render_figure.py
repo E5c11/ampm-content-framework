@@ -33,10 +33,14 @@ CHAR_W = 0.0079  # inches per char per pt (DejaVu Sans, approx)
 MONO_W = 0.0092
 
 
+def esc(t):
+    return str(t).replace("$", "\\$")
+
+
 def cell_of(c):
     if isinstance(c, dict):
-        return c.get("t", ""), c.get("bg"), bool(c.get("b")), c.get("a", "l")
-    return str(c), None, False, "l"
+        return esc(c.get("t", "")), c.get("bg"), bool(c.get("b")), c.get("a", "l")
+    return esc(c), None, False, "l"
 
 
 def col_letters(n):
@@ -86,7 +90,7 @@ def draw_table(spec, out):
     ax.axis("off")
     y = 0.12
     if title:
-        ax.text(W / 2, y + 0.2, title, ha="center", va="center", fontsize=FS, fontweight="bold", color=INK)
+        ax.text(W / 2, y + 0.2, esc(title), ha="center", va="center", fontsize=FS, fontweight="bold", color=INK)
         y += 0.42
     x0 = 0.1 + gutter
     if sheet:
@@ -118,7 +122,7 @@ def draw_table(spec, out):
             x += widths[ci]
         y += h
     if caption:
-        ax.text(W / 2, y + 0.25, caption, ha="center", va="center", fontsize=FS - 2, style="italic", color=INK)
+        ax.text(W / 2, y + 0.25, esc(caption), ha="center", va="center", fontsize=FS - 2, style="italic", color=INK)
     fig.savefig(out, facecolor="white")
     plt.close(fig)
 
@@ -130,6 +134,7 @@ def draw_code(spec, out):
     wrapped = []
     for ln in lines:
         wrapped.extend(textwrap.wrap(ln, n, subsequent_indent="  ") or [""])
+    wrapped = [esc(w) for w in wrapped]
     title = spec.get("title")
     height = 0.3 + (0.4 if title else 0) + len(wrapped) * 0.25 + 0.25
     fig = plt.figure(figsize=(W, height), dpi=200)
@@ -139,7 +144,7 @@ def draw_code(spec, out):
     ax.axis("off")
     y = 0.12
     if title:
-        ax.text(W / 2, y + 0.18, title, ha="center", va="center", fontsize=FS, fontweight="bold", color=INK)
+        ax.text(W / 2, y + 0.18, esc(title), ha="center", va="center", fontsize=FS, fontweight="bold", color=INK)
         y += 0.4
     ax.add_patch(Rectangle((0.1, y), W - 0.2, len(wrapped) * 0.25 + 0.2, facecolor="#F3F4F6", edgecolor=INK, linewidth=1.2))
     ty = y + 0.2
