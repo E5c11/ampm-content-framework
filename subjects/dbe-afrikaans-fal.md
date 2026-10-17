@@ -24,7 +24,7 @@ provenance: drafted 2026-10-17 from the Nov 2025 P1/P2/P3 papers and memos (P2 h
 | Papers | `nov_p1` Taal in konteks (80, 2 h), `nov_p2` Letterkunde (70, **2½ h in 2025** though CAPS says 2 h), `nov_p3` Skryf (100, 2½ h). P4 (oral, 50 of the 300) is school-assessed — **not authored** |
 | Curriculum document (`DESIGN-UNI-09`) | `files/afrikaans_fal/caps/CAPS FET _ FAL _ AFRIKAANS GR 10-12 _ WEB_9455.pdf` (KABV) |
 | Source files | Nov 2025 P1, P2, P3: paper + memo, in `files/afrikaans_fal/` (P2 paper is the `(R)` reissue). No other year or diet supplied |
-| Workflow | none yet — reuse `workflows/generate/upload-english-fal.md` with the deltas below; a dedicated `upload-afrikaans-fal.md` once the first lesson proves them |
+| Workflow | `workflows/generate/upload-afrikaans-fal.md` (drafted 2026-10-17, unproven until the first lesson) |
 | `subjects` row | **Exists on dev** (seeded by backend V84): `id afrikaans_fal`, `name "Afrikaans FAL"`, `code AFRIKAANS_FAL`, `category afrikaans_lessons`, `sort_order 9`, **`capabilities {accents_af}`**, `min_app_version` **null**. **Updated on dev 2026-10-17 at the owner's request: `capabilities {accents_af, setwork}`, `min_app_version 2.4.1`, `updated_at` bumped.** Prod not checked (proxy down 2026-10-17); prod row is owner-gated |
 | Curriculum / skills | None yet (0 nodes on dev). Seed file to create: `tools/seeds/afrikaans-fal-curriculum.json`. Namespacing and the `afrikaans_fal_` unit prefix are already in `tools/lib/curriculum.js`; **skill ids must be prefixed `afrikaans_fal_`** (global PK) |
 
@@ -171,4 +171,4 @@ marks (`AIEXP-08`) — for P1 Q1 that is 22 entries for Teks A + B, and for Q5 t
 6. **Subject-expert review** — Afrikaans spelling (AWS), the BK-led P2 questions and every multiple-choice distractor set need a first-language-level check; this
    author's Afrikaans is not a substitute for it.
 7. **English `aiExplanation` (idea, 2026-10-17, not scheduled):** for non-HL (FAL) subjects, offer an English version of the AI explanations the student can switch to. Needs an app update (language toggle) and a contract/schema field for the second language; until then explanations are Afrikaans only. Applies equally to English FAL's counterpart concerns and other FAL subjects.
-8. **Workflow doc** — write `workflows/generate/upload-afrikaans-fal.md` after the first lesson.
+8. **Workflow doc** — `upload-afrikaans-fal.md` drafted; correct it after the pilot lesson.
