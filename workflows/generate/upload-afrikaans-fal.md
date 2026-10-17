@@ -54,7 +54,7 @@ text/extract labels and pages, question pages, memo pages, YouTube ID (usually n
      lettergrepe, afkorting, intensiewe vorm, homoniem …) across the lesson, not each item.
    - **P2** (22 lessons/year): per extract (`Teks A/B` of each of Q1–Q7 = 14), and each story (8.1, 8.2) and poem (9.1, 9.2) split in two at its sub-question midpoint (8). Use `extract_p2.py` for the crop plan. Note the 1.1 "voltooi die paragraaf"
      fill-in, device items and the short substantiated opinion. The memo marks only substantiation, never JA/NEE or WAAR/ONWAAR.
-   - **P3** (8 lessons): Q1 Opstel; one lesson per Q2 type (2.1–2.4) and Q3 type (3.1–3.3), named as the paper names them (`LANG-WR-01`).
+   - **P3** (9 lessons): Q1 Opstel split in two (1.1–1.5, 1.6–1.8) under `DESIGN-UNI-17`; one lesson per Q2 type (2.1–2.4) and Q3 type (3.1–3.3), named as the paper names them (`LANG-WR-01`). `extract_p3.py` has the crop plan.
 2. **Images** — `LANG-IMG-01`/`02`, `SETWORK-IMG-01`. Labels `Teks A` … (continuous across P2: `Teks A`–`Teks N` for Q1–Q7, then stories and poems); poems `"Poem"`.
    Essay and P3 lessons: `supplementary_materials: null`. Rename annexure files uniquely per label. **Check every crop for PDF-extraction damage and stray
    margin line numbers; crops stop above `EN` dividers and `TOTAAL AFDELING` lines.**

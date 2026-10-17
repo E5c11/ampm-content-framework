@@ -130,7 +130,7 @@ Q2, Q3, Q4, **Q5.1 (split in three) and Q5.2** → **7 lessons per year as first
 | B Lang transaksionele teks | Q2 — one of 4 | 30 | 120–150 | 2.1 Vriendskaplike brief, 2.2 Dekbrief (formele brief + CV), 2.3 Huldeblyk, 2.4 Informele toespraak |
 | C Kort transaksionele teks | Q3 — one of 3 | 20 | 80–100 | 3.1 Uitnodigingskaartjie, 3.2 Dagboekinskrywings, 3.3 Rigtingaanwysings |
 
-Same structure as English FAL P3 → **8 lessons/year**, named as the paper names them (`"Vraag 2.2: Dekbrief"`). Rubric weights (memo): opstel
+Same structure as English FAL P3, with the essay split in two under `DESIGN-UNI-17` (1.1–1.5 title topics, 1.6–1.8 picture topics) → **9 lessons/year**, named as the paper names them (`"Vraag 2.2: Dekbrief"`). Rubric weights (memo): opstel
 Inhoud en beplanning 30 / Taal, styl en redigering 15 / Struktuur 5; long text 18 + 12; short text 12 + 8 — state as plain facts, never invent scoring.
 Afrikaans conventions to teach (`LANG-WR-03`, CAPS §3.3 text-type table): formal vs informal register (`u`/`jy`), aanhef and afsluiting for letters,
 huldeblyk (formal, volle name, date of birth/death, family), toespraak (openings/closings), diary (date, first person), directions (imperative, bullet points
@@ -198,3 +198,15 @@ marks (`AIEXP-08`) — for P1 Q1 that is 22 entries for Teks A + B, and for Q5 t
 - **Review (emulator 2.4.1-dev01):** all 108 questions rendered with the right question pages and extract tab; **14/14 typed answers pass** on the Text keyboard (including `kusvoëls` on the accent screen, `57` on the digits screen, `weird maria`, and the three `|` alternatives of `klowe|afgrond|moeras`). MCQ/multi-select/match/ordering submissions were not exercised.
 - Generators: `scripts/_gen/afrikaans-fal/gen_afr_2025_p2_{novels,plays,stories_poems}.py`, crop plan `extract_p2.py`. Orders 15–18 reuse earlier image keys and carry a `v2_` file-name suffix (immutable image keys).
 - **Known weaknesses to check with the team:** fresh targets lean on the extract and the exam's other half rather than the whole book (no BK), so deep-book coverage per text is thin; ordering/theme items re-use facts the exam asks in another format.
+
+### Ledger — Nov 2025 Paper 3 (2026-10-17)
+
+| Lessons | Questions | Notes |
+|---|---|---|
+| 9: `Vraag 1: Opstel (1.1–1.5)`, `Vraag 1: Opstel (1.6–1.8)`, 2.1 Vriendskaplike brief, 2.2 Dekbrief, 2.3 Huldeblyk, 2.4 Informele toespraak, 3.1 Uitnodigingskaartjie, 3.2 Dagboekinskrywings, 3.3 Rigtingaanwysings | 45 (5 each) | conventions-based (`LANG-WR-03`): order the parts, typed term, register/tone, features, purpose; every fact printed in the paper's instructions or the memo's marking guidelines (no invented scoring); `context_text` null, `supplementary_materials` null |
+
+- **Images:** question image = the section instructions plus the task; memo images = the task's marking points plus the matching rubric page(s) (essay rubric pp. 19–20, long text p. 21, short text p. 22).
+- `aiExplanation`: one entry per real task with its marks (essay lessons: one 50-mark entry per topic, `ai_choice` — the candidate answers one); text types one 30/20-mark entry each.
+- **Review (emulator 2.4.1-dev01):** all 45 questions rendered (no annexure tab by design); **12/12 typed attempts pass** (`250`, `30`, `80`, `leestekens`, `uwe`, `verlede|verlede tyd`, `groet`, `datum|dag`, `bevelsin|bevelsinne`).
+- Generator `scripts/_gen/afrikaans-fal/gen_afr_2025_p3.py`, crop plan `extract_p3.py`.
+- Overall Nov 2025 on dev: **40 lessons / 194 questions** (P1 9/41, P2 22/108, P3 9/45).
