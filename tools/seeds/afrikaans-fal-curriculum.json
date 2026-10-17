@@ -509,19 +509,91 @@
       "topics": [
         {
           "slug": "karakter_en_verhoudings",
-          "name": "Karakter en verhoudings"
+          "name": "Karakter en verhoudings",
+          "subtopics": [
+            {
+              "slug": "motief_van_karakter",
+              "name": "Motief van karakter"
+            },
+            {
+              "slug": "innerlike_konflik",
+              "name": "Innerlike konflik"
+            },
+            {
+              "slug": "wie_doen_wat",
+              "name": "Wie doen wat"
+            },
+            {
+              "slug": "eienskappe_van_karakter",
+              "name": "Eienskappe van karakter"
+            },
+            {
+              "slug": "identifiseer_met_karakter",
+              "name": "Identifiseer met karakter"
+            },
+            {
+              "slug": "gevoelens_van_karakter",
+              "name": "Gevoelens van karakter"
+            }
+          ]
         },
         {
           "slug": "intrige_en_gebeure",
-          "name": "Intrige en gebeure"
+          "name": "Intrige en gebeure",
+          "subtopics": [
+            {
+              "slug": "feit_uit_die_teks",
+              "name": "Feit uit die teks"
+            },
+            {
+              "slug": "voorstelle_in_die_uittreksel",
+              "name": "Voorstelle in die uittreksel"
+            },
+            {
+              "slug": "volgorde_in_die_uittreksel",
+              "name": "Volgorde in die uittreksel"
+            },
+            {
+              "slug": "onwaar_stelling",
+              "name": "Onwaar stelling"
+            }
+          ]
         },
         {
           "slug": "tema_en_boodskap",
-          "name": "Tema en boodskap"
+          "name": "Tema en boodskap",
+          "subtopics": [
+            {
+              "slug": "tema_van_die_kortverhaal",
+              "name": "Tema van die kortverhaal"
+            },
+            {
+              "slug": "doel_van_die_aanbeveling",
+              "name": "Doel van die aanbeveling"
+            },
+            {
+              "slug": "lewensles",
+              "name": "Lewensles"
+            }
+          ]
         },
         {
           "slug": "toon_en_stylmiddele",
-          "name": "Toon en stylmiddele"
+          "name": "Toon en stylmiddele",
+          "subtopics": [
+            {
+              "slug": "toon_van_'n_aanhaling",
+              "name": "Toon van 'n aanhaling"
+            },
+            {
+              "slug": "betekenis_van_'n_aanhaling",
+              "name": "Betekenis van 'n aanhaling"
+            },
+            {
+              "slug": "identifiseer_stylfiguur",
+              "name": "Identifiseer stylfiguur"
+            }
+          ]
         },
         {
           "slug": "ruimte_en_konteks",
@@ -535,15 +607,81 @@
       "topics": [
         {
           "slug": "spreker_en_inhoud",
-          "name": "Spreker en inhoud"
+          "name": "Spreker en inhoud",
+          "subtopics": [
+            {
+              "slug": "aangesprokene",
+              "name": "Aangesprokene"
+            },
+            {
+              "slug": "rolle_in_die_gedig",
+              "name": "Rolle in die gedig"
+            },
+            {
+              "slug": "feit_uit_die_gedig",
+              "name": "Feit uit die gedig"
+            },
+            {
+              "slug": "volgorde_in_die_gedig",
+              "name": "Volgorde in die gedig"
+            },
+            {
+              "slug": "tema_van_die_gedig",
+              "name": "Tema van die gedig"
+            },
+            {
+              "slug": "refrein",
+              "name": "Refrein"
+            },
+            {
+              "slug": "aangesprokene_in_die_gedig",
+              "name": "Aangesprokene in die gedig"
+            },
+            {
+              "slug": "gevare_van_die_see",
+              "name": "Gevare van die see"
+            },
+            {
+              "slug": "karakter_in_die_gedig",
+              "name": "Karakter in die gedig"
+            }
+          ]
         },
         {
           "slug": "beeldspraak_en_stylmiddele",
-          "name": "Beeldspraak en stylmiddele"
+          "name": "Beeldspraak en stylmiddele",
+          "subtopics": [
+            {
+              "slug": "figuurlike_betekenis",
+              "name": "Figuurlike betekenis"
+            },
+            {
+              "slug": "betekenis_van_'n_woord",
+              "name": "Betekenis van 'n woord"
+            },
+            {
+              "slug": "identifiseer_stylfiguur",
+              "name": "Identifiseer stylfiguur"
+            },
+            {
+              "slug": "effek_van_die_verkleinwoord",
+              "name": "Effek van die verkleinwoord"
+            }
+          ]
         },
         {
           "slug": "toon_en_stemming",
-          "name": "Toon en stemming"
+          "name": "Toon en stemming",
+          "subtopics": [
+            {
+              "slug": "toon_van_'n_reel",
+              "name": "Toon van 'n reel"
+            },
+            {
+              "slug": "effek_van_die_slot",
+              "name": "Effek van die slot"
+            }
+          ]
         },
         {
           "slug": "vorm_en_klank",
@@ -760,6 +898,14 @@
     {
       "id": "afrikaans_fal_identifiseer_dramatiese_tegniek",
       "name": "Identifiseer dramatiese tegniek"
+    },
+    {
+      "id": "afrikaans_fal_verklaar_karakter_se_keuse",
+      "name": "Verklaar karakter se keuse"
+    },
+    {
+      "id": "afrikaans_fal_identifiseer_eienskappe",
+      "name": "Identifiseer eienskappe"
     }
   ]
 }

@@ -33,9 +33,7 @@ node tools/create-english-text.js --list                      # registry — reu
 node tools/create-english-text.js --id kringe_in_n_bos --name "Kringe in 'n Bos" --author "Dalene Matthee" --section novel
 ```
 
-- **Known gap:** the tool has no `--subject` option, yet `english_texts.subject_id` is populated (`english_hl`, `english_fal`). Before the first
-  Afrikaans text, find out how the others were set or extend the tool; the Afrikaans rows should carry `subject_id = 'afrikaans_fal'`. Verify with
-  `SELECT id, subject_id FROM english_texts`.
+- Pass `--subject afrikaans_fal` so the row carries `english_texts.subject_id` (the tool supports it since 2026-10-17). Verify with `SELECT id, subject_id FROM english_texts`.
 - Only titles printed in a supplied paper/memo may be added (`SETWORK-TXT-03`); put the source paper in the commit message. The Nov 2025 P2 set:
   novels *Kringe in 'n Bos*, *Die Ongelooflike Avonture van Hanna Hoekom*, *Meeulanders*, *Lien se Lankstaanskoene*; plays (`--section play`)
   *Poppie – Die Drama*, *Paljas*, *Fiela se Kind – Die Drama*; stories "Kom ons stuur vir Tasu", "Opdrag"; poems "Krisis", "Ken jy die see …".
@@ -54,7 +52,7 @@ text/extract labels and pages, question pages, memo pages, YouTube ID (usually n
      sub-question text-extractable or visual-dependent (`LANG-EX-03`) and record the skipped ones. 3–4 practice questions per lesson, 5 only if a concept
      would go uncovered (2026-10-14 rule); Q5 items are mostly one-word skills — cover the **skills** (plural, verkleining, trappe, samestelling, voorsetsel,
      lettergrepe, afkorting, intensiewe vorm, homoniem …) across the lesson, not each item.
-   - **P2** (18 lessons/year): per extract (`Teks A/B` of each of Q1–Q7), per story (8.1, 8.2), per poem (9.1, 9.2). Note the 1.1 "voltooi die paragraaf"
+   - **P2** (22 lessons/year): per extract (`Teks A/B` of each of Q1–Q7 = 14), and each story (8.1, 8.2) and poem (9.1, 9.2) split in two at its sub-question midpoint (8). Use `extract_p2.py` for the crop plan. Note the 1.1 "voltooi die paragraaf"
      fill-in, device items and the short substantiated opinion. The memo marks only substantiation, never JA/NEE or WAAR/ONWAAR.
    - **P3** (8 lessons): Q1 Opstel; one lesson per Q2 type (2.1–2.4) and Q3 type (3.1–3.3), named as the paper names them (`LANG-WR-01`).
 2. **Images** — `LANG-IMG-01`/`02`, `SETWORK-IMG-01`. Labels `Teks A` … (continuous across P2: `Teks A`–`Teks N` for Q1–Q7, then stories and poems); poems `"Poem"`.
@@ -97,6 +95,12 @@ the build's subjects list is stale or the capability is absent.
 - **Image keys are immutable (CDN cache, 1 year).** When a split reused lesson orders 6 and 7, the overwritten images still showed the old pages; new file names (`…_v2_N.png`, the generator's `sfx`) fixed it. `core/upload-pipeline.md` Phase 1.5 now says so.
 - Re-splitting reuses lesson ids (derived from `order`): clean the old lessons' child rows first (`DESIGN-UNI-17` point 6).
 - Gate (`apply-exam-gate.js`) is exam-level; it stays 2.4.1 when lessons are added.
+
+## Lessons from the P2 run (2026-10-17)
+
+- Two-lesson template per exam question (Part 1 / Part 2 skill split) in `gen_afr_2025_p2_*.py`; facts only from the extract tab, paper and memo (no book knowledge) — see the profile ledger.
+- Image crops came from `fitz` word positions (question numbers at x<135, `TEKS X`, `EN` dividers, `[35]`, memo row numbers) rather than visual guesses; verify a contact sheet per batch.
+- The cloud-sql proxy drops during long sessions; if an upload prints `ECONNREFUSED 127.0.0.1:15432`, restart it and re-run (scripts are idempotent).
 
 ## Notes
 

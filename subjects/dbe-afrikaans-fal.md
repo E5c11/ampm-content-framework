@@ -109,7 +109,7 @@ Q2, Q3, Q4, **Q5.1 (split in three) and Q5.2** → **7 lessons per year as first
 | C Kortverhale | `short_stories` | Q8.1 "Kom ons stuur vir Tasu" (Maretha Maartens, 18); Q8.2 "Opdrag" (Rike Olivier, 17) | **both** |
 | D Gedigte | `poetry` | Q9.1 "Krisis" (Elizabeth Eybers, 17); Q9.2 "Ken jy die see …" (Uys Krige, 18) | **both** |
 
-- **Slots per year: 7 questions × 2 extracts (Teks A/B …) + 2 stories + 2 poems = 18 lessons** (`SETWORK-LES-03`), none of them essay lessons. Extract
+- **Slots per year: 7 questions × 2 extracts (Teks A/B …) + 2 stories × 2 + 2 poems × 2 = 22 lessons** (`SETWORK-LES-03`; the stories and poems are split in two along their sub-question ranges under `DESIGN-UNI-17`, each has about nine distinct skills), none of them essay lessons. Extract
   labels run continuously (`Teks A` … `Teks N` for Q1–Q7, then the story and poem texts); poems `"Poem"` as English FAL.
 - **Choice is much wider than English FAL** (4 novels, 3 plays vs 2 + 2). A student studies one novel and one play, so a given text only serves the
   students who chose it, yet every text needs coverage (`SETWORK-LES-02`). Scope decision owed — see Open items.
@@ -161,8 +161,7 @@ marks (`AIEXP-08`) — for P1 Q1 that is 22 entries for Teks A + B, and for Q5 t
 ## Open items
 
 1. **Subject row** — dev done (2026-10-17). Prod: owner creates/updates it after V83/V84 are verified there, with `accents_af` and `setwork`.
-2. **Tooling gap — registering Afrikaans texts:** `tools/create-english-text.js` takes no `--subject`; existing `english_texts.subject_id` values
-   (`english_hl` 20, `english_fal` 8, 3 null) were set outside it. Confirm how, or extend the tool, before the first Afrikaans text.
+2. **Texts tool — resolved 2026-10-17:** `tools/create-english-text.js --subject afrikaans_fal` now records `english_texts.subject_id`; the 11 Nov 2025 titles are registered on dev with `prescribed_years ["2025"]`.
 3. **Tooling gap — accent capability check:** no tool verifies that a subject whose typed answers contain `ê ë …` has `accents_af`; nor does the
    `text` inventory distinguish subjects. A preflight (subject capabilities include `accents_af` when an answer needs an accent) would prevent
    an unanswerable question on a build with a stale subjects cache. Note the app reads capabilities from the **cached** subjects list; `hasCapability` is `false` until loaded.
@@ -184,3 +183,18 @@ marks (`AIEXP-08`) — for P1 Q1 that is 22 entries for Teks A + B, and for Q5 t
 - **Validator rules hit on first run:** `exam_weight` must be 1–3; the correct MC option may not be clearly the longest (DESIGN-UNI-16) — Afrikaans distractors must be padded to similar length. Question names are `Vraag N`.
 - **Q5.1 split (2026-10-17, `DESIGN-UNI-17`):** the first upload put all 14 one-skill items in one 5-question lesson and left nine skills unpractised; it was split into three lessons (orders 6–8, Q5.2 moved to order 9), every one of the 14 skills now has a practice question. The old lessons 6 and 7 were cleaned on dev (child rows soft-deleted / join rows removed) before the re-upload.
 - Prod: nothing pushed. The prod `afrikaans_fal` row still needs `setwork` and 2.4.1 (owner).
+
+### Ledger — Nov 2025 Paper 2 (2026-10-17)
+
+| Part | Lessons | Questions | Notes |
+|---|---|---|---|
+| Novels Q1–Q4 | 8 (two extracts each: Teks A–H) | 40 | Part 1 = fill-in · tone · inner conflict · match · identify; Part 2 = device · meaning · order · false statement · themes |
+| Dramas Q5–Q7 | 6 (Teks I–N) | 30 | same pattern; toneelaanwysings replace "device" in Teks N |
+| Short stories 8.1, 8.2 | 4 (Teks O ×2, Teks P ×2) | 19 | each story split at its sub-question midpoint |
+| Poems 9.1, 9.2 | 4 (Krisis ×2, Ken jy die see ×2) | 19 | annexure label `"Poem"` |
+
+- **Total 22 lessons / 108 questions**; `aiExplanation` one entry per printed sub-question with the memo's marks (35 per question; 8.1 = 18, 8.2 = 17, 9.1 = 17, 9.2 = 18).
+- **Facts policy:** no book knowledge was used. Every fact (names, events, quotes) is printed in the extract/poem tab, the exam paper or the memo (basis `P`/`M`/`X` in each script header; `X` = taken from the other half of the same exam question, asked as a different item). The BK expert check listed for English FAL is therefore not needed here, but the Afrikaans language check is.
+- **Review (emulator 2.4.1-dev01):** all 108 questions rendered with the right question pages and extract tab; **14/14 typed answers pass** on the Text keyboard (including `kusvoëls` on the accent screen, `57` on the digits screen, `weird maria`, and the three `|` alternatives of `klowe|afgrond|moeras`). MCQ/multi-select/match/ordering submissions were not exercised.
+- Generators: `scripts/_gen/afrikaans-fal/gen_afr_2025_p2_{novels,plays,stories_poems}.py`, crop plan `extract_p2.py`. Orders 15–18 reuse earlier image keys and carry a `v2_` file-name suffix (immutable image keys).
+- **Known weaknesses to check with the team:** fresh targets lean on the extract and the exam's other half rather than the whole book (no BK), so deep-book coverage per text is thin; ordering/theme items re-use facts the exam asks in another format.
