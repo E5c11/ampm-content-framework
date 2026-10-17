@@ -37,7 +37,7 @@ list of accepted answers, a Section A of MC / matching / true-false, and a Secti
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/cat/CAPS FET _ COMPUTER APPLICATIONS TECHNOLOGY _ GR 10-12 _ Web_6AC6.pdf`. Grade 12 term plans pp. 39–46; **assessment § 4.4 pp. 51–52 gives the Paper 2 structure**. Required in-session before authoring. |
 | **Source files** | `files/cat/Computer Applications Technology P2 Nov 2024 {Eng,MG Eng}.pdf` (17 + 21 pp). The P1 files in the same folder are not used. **Only one year is on disk**: frequency evidence is thin — add other years' P2 as they are sourced and extend § Paper structure. |
 | Instructions page | 150 marks, 3 h. "Generally one mark per fact"; answer ONLY what is asked (extra answers unmarked); "Do NOT use brand names unless specifically required"; vague comparatives ("cheaper", "faster") are **not accepted**. |
-| CAPS vs paper | CAPS § 4.4 says content and skills of **Grades 10–12** are assessed (Grade 10–11 content such as LAN/WLAN, AUP, intranet, network adapter, RFID, biometrics appears in the 2024 paper); a list of **emerging technologies is issued to schools each year** (not on disk — ask the owner for it before authoring the "new technology" lessons). |
+| CAPS vs paper | CAPS § 4.4 says content and skills of **Grades 10–12** are assessed (Grade 10–11 content such as LAN/WLAN, AUP, intranet, network adapter, RFID, biometrics appears in the 2024 paper); a list of **emerging technologies is issued to schools each year** — **not publicly available (owner, 2026-10-17), so it is not a source**: "new technology" items cover only technologies the CAPS names or the paper evidences (4IR, VR, autonomous vehicles, RFID, NFC, QR codes, biometrics, cloud/grid computing, geotagging), taught at the memo's level of detail. |
 
 ## Paper structure (Nov 2024, matches CAPS § 4.4 apart from numbering)
 
@@ -116,8 +116,8 @@ lesson at most unless the lesson is about terminology: exact-string marking give
    "web browser", "cloud storage service"), never a product. Brands appear only where the memo itself lists them (10.3.2: Kickstarter, GoFundMe …; 9.7.2 PayPal) — and then as
    options for that exact question. CAPS also names dated products (MySpace, Second Life, Encarta): teach the **concept**, never the product.
 3. **Technology facts age.** Phrase facts at the level CAPS and the memo state them (NFC = contactless tap-to-pay; RFID = radio waves; 4IR = integration of technologies across
-   the physical, digital and biological worlds). Do not invent "latest" specifications, version numbers, prices, speeds or statistics. Emerging-technology items need the
-   year's official list (not on disk) before they are authored.
+   the physical, digital and biological worlds). Do not invent "latest" specifications, version numbers, prices, speeds or statistics. The official emerging-technologies list is not
+   publicly available, so emerging-technology items stay within what the CAPS names or a paper evidences (§ Identity); never guess at what a future list contains.
 4. **Open-ended memos make distractor validity the main risk.** "Accept any valid answer" is the norm (4.8, 7.4.2, 9.3.2, 10.3.2). `CLOSED-DISC-02`'s open-ended audit is mandatory
    here: e.g. for "energy saving" a distractor like "use an SSD" is **correct** per the memo (7.3.2 (5)), "increase screen brightness" is plainly wrong. Check every distractor against
    the full memo list, then against "would a marker accept it?".
@@ -174,6 +174,6 @@ One lesson per real sub-theme, Section A clustered by topic into the lesson it f
 
 ## Still open
 
-- **Owner**: the year's official **emerging-technologies list** (CAPS § 4.4), the argument-separator convention for formulas (hazard 6), and whether 2025 / earlier P2 papers can be sourced (only 2024 is on disk).
+- **Owner**: the argument-separator convention for formulas (hazard 6), and whether 2025 / earlier P2 papers can be sourced (only 2024 is on disk).
 - **Tooling**: confirm P2-only subjects work end-to-end (picker, push partial-exam check); the stimulus renderer for table figures (Accounting's `render_statement.py` is statement-shaped — record the choice before the pilot, `CLOSED-FIG-02`/`04`).
 - **Reconcile** the older subject upload workflows with `closed-form-upload-common.md` when next edited (extracted, not yet repointed).
