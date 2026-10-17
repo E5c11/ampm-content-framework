@@ -61,7 +61,7 @@ const questions = [
     "name": "Question 1",
     "question": "Which action is an example of poor netiquette in a work e-mail?",
     "metadata": [
-      "Checking the spelling before sending",
+      "Checking the spelling and grammar before sending",
       "Using a clear subject line",
       "Typing the whole message in capital letters",
       "Replying politely to a complaint",

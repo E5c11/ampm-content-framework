@@ -54,22 +54,20 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "A user with an injury can press only one key at a time. Which accessibility feature lets them use shortcuts such as Ctrl+C by pressing the keys one after another?",
+    "question": "A user with an injury can press only one key at a time. Name the accessibility feature that lets them use shortcuts such as Ctrl+C by pressing the keys one after another. []",
     "metadata": [
-      "High contrast mode",
-      "Sticky keys",
-      "Screen magnifier",
-      "Screen reader",
-      ""
+      "Feature: ",
+      "[ ]"
     ],
     "answer": [
-      "Sticky keys",
+      "sticky keys|sticky key|stickykeys",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "fitb",
+    "keyboard_type": "text",
     "unit": "systems_technologies",
     "topic": "accessibility",
     "subtopic": "cat_scenario_application",
@@ -92,9 +90,9 @@ const questions = [
     "question": "What does it mean when a keyboard is described as ergonomically designed?",
     "metadata": [
       "It is designed to be as cheap as possible to make",
-      "It is designed to work with only one make of computer",
-      "It is designed to be comfortable and to prevent health problems",
+      "It is designed to work only with computers that are made by one company",
       "It is designed to use very little electricity",
+      "It is designed to be comfortable and to prevent health problems",
       ""
     ],
     "answer": [

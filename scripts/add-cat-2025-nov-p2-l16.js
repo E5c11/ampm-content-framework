@@ -98,8 +98,8 @@ const questions = [
     "metadata": [
       "The alt attribute is missing from the tag",
       "The width and height values are too small",
-      "The anchor tag below it was not closed",
       "The src file name has no file extension",
+      "The anchor tag below it was not closed",
       ""
     ],
     "answer": [

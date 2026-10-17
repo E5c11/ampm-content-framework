@@ -56,8 +56,8 @@ const questions = [
     "question": "A learner typed =SUMM(B2:B5) in cell B6 and the cell shows #NAME?. What does this error mean?",
     "metadata": [
       "The range contains text instead of numbers",
-      "The formula is dividing a number by zero",
       "The function name was spelled incorrectly",
+      "The formula is dividing a number by zero",
       "The cell reference is no longer valid",
       ""
     ],
@@ -168,7 +168,7 @@ const questions = [
     "question": "What is the purpose of the body tag in HTML?",
     "metadata": [
       "It holds the title shown on the browser tab",
-      "It defines the style rules for the whole page",
+      "It defines the style rules for the whole web page",
       "It links the page to another website",
       "It holds the content shown in the browser window",
       ""

@@ -89,9 +89,9 @@ const questions = [
     "name": "Question 2",
     "question": "Which action must be done BEFORE an automatic index can be created?",
     "metadata": [
-      "Mark the words that must appear in the index",
       "Insert a caption below every word",
-      "Apply heading styles to every paragraph",
+      "Apply heading styles to every paragraph in the document",
+      "Mark the words that must appear in the index",
       "Insert a bookmark at each page break",
       ""
     ],

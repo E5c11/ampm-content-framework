@@ -132,9 +132,9 @@ const questions = [
     "name": "Question 3",
     "question": "What is the result of this conditional formatting rule on cells B2:B6?",
     "metadata": [
-      "Cells with a value above the average are shaded amber",
-      "Cells equal to the average are deleted from the range",
       "Cells with a value below the average of the range are shaded amber",
+      "Cells with a value above the average of the range are shaded in amber",
+      "Cells equal to the average are deleted from the range",
       "Every cell in the range is shaded amber",
       ""
     ],

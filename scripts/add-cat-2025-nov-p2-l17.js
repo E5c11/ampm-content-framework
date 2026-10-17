@@ -134,7 +134,7 @@ const questions = [
     "name": "Question 3",
     "question": "What is the purpose of the 802.11 specification listed for both laptops?",
     "metadata": [
-      "It sets the screen resolution of the laptop",
+      "It sets the screen resolution of the laptop display",
       "It states the processor speed of the laptop",
       "It gives the battery capacity of the laptop",
       "It lets the laptop connect to a wireless network",

@@ -8,7 +8,7 @@ tags: [subject, cat, computer-applications-technology, dbe, profile, theory-pape
 
 # Subject Profile — DBE Computer Applications Technology (Paper 2 only, 150 marks)
 
-**Status (2026-10-17): profiled from Nov 2024 P2 + memo and the CAPS document (`files/cat/`); nothing authored.** **Paper 1 is deliberately out of scope** (owner,
+**Status (2026-10-17): 2025 Nov P2 authored to dev (24 lessons / 96 q, gated 2.4.0), emulator review and prod push owed; 2024 Nov P2 not authored.** Profiled from Nov 2024 and Nov 2025 P2 + memos and the CAPS document (`files/cat/`). **Paper 1 is deliberately out of scope** (owner,
 2026-10-17): it is the 3-hour *practical* paper sat on a computer (word processing, spreadsheet, database, HTML on supplied data files) and cannot be taught or
 marked in the app; the little theory it carries is covered by Paper 2. The exam is therefore authored as **Paper 2 only**, like Physical Sciences' Chemistry (`nov_p2`).
 **The real exam is Paper 2 (Theory), 2026-11-27 09:00, 180 min** (backend `V92`, DBE and IEB timetables; Paper 1 was 2026-10-16) — 41 days after profiling, so the aim is to
@@ -35,7 +35,7 @@ list of accepted answers, a Section A of MC / matching / true-false, and a Secti
 | Papers | **`nov_p2` only** (Theory). `june_p2` presumed if sourced. Confirm the validator, template, `push-paper-to-prod.js` and the app's paper picker cope with a subject whose only authored paper is P2 (same check Tourism made for `nov_p1`). |
 | `subjects` row | **Dev** (verified 2026-10-17): seeded, `is_active` true, `is_published` true, `hosted` false, colour `#7048E8`, category `technology_lessons`. `hosted` flips to true by itself on the first published lesson (`V95` triggers are present on dev, `CATALOGUE-01`) — **confirm after the first upload and flip by hand with an `updated_at` bump if it did not** (common workflow Phase 0a). **Prod** (verified 2026-10-17): Flyway V84, **no `hosted` column and no `cat` row** — the row is an owner-approved step at push time, and `hosted` comes with the `V85`–`V95` backend deploy (`V95` sweeps subjects that already have published content). |
 | **Curriculum document (`DESIGN-UNI-09`)** | `files/cat/CAPS FET _ COMPUTER APPLICATIONS TECHNOLOGY _ GR 10-12 _ Web_6AC6.pdf`. Grade 12 term plans pp. 39–46; **assessment § 4.4 pp. 51–52 gives the Paper 2 structure**. Required in-session before authoring. |
-| **Source files** | `files/cat/Computer Applications Technology P2 Nov 2024 {Eng,MG Eng}.pdf` (17 + 21 pp). The P1 files in the same folder are not used. **Only one year is on disk**: frequency evidence is thin — add other years' P2 as they are sourced and extend § Paper structure. |
+| **Source files** | `files/cat/Computer Applications Technology P2 Nov 2024 {Eng,MG Eng}.pdf` (17 + 21 pp). The P1 files in the same folder are not used. Nov 2024 and Nov 2025 P2 are on disk: two years of frequency evidence; add others as they are sourced. |
 | Instructions page | 150 marks, 3 h. "Generally one mark per fact"; answer ONLY what is asked (extra answers unmarked); "Do NOT use brand names unless specifically required"; vague comparatives ("cheaper", "faster") are **not accepted**. |
 | CAPS vs paper | CAPS § 4.4 says content and skills of **Grades 10–12** are assessed (Grade 10–11 content such as LAN/WLAN, AUP, intranet, network adapter, RFID, biometrics appears in the 2024 paper); a list of **emerging technologies is issued to schools each year** — **not publicly available (owner, 2026-10-17), so it is not a source**: "new technology" items cover only technologies the CAPS names or the paper evidences (4IR, VR, autonomous vehicles, RFID, NFC, QR codes, biometrics, cloud/grid computing, geotagging), taught at the memo's level of detail. |
 
@@ -170,7 +170,11 @@ One lesson per real sub-theme, Section A clustered by topic into the lesson it f
 
 | Paper | Lessons / questions | Status |
 |---|---|---|
-| — | — | Nothing authored. Run the **pilot lesson** first (`upload-cat.md`): one Section A cluster lesson (Systems, with a 4-pair `match` and a modified true/false) and one `text` `fitb` question, through the validator and an emulator look. |
+| 2025 Nov (`nov_p2`) | 24 lessons / 96 q (150 marks): L1–4 Section A by topic (Systems, Internet+Network, Social, Solution Development), L5–7 Q4, L8–9 Q5, L10 Q6, L11–12 Q7, L13–16 Q8, L17–20 Q9, L21–24 Q10. 32 mc / 37 ms / 21 match / 5 fitb / 1 ordering | on dev 2026-10-17, **gated 2.4.0** (5 `text` rows: storage, sticky keys, click-jacking, autofill, mail merge), validator (`--curriculum`) + `audit-answer-cues` clean, MC index-0 1/32. 5 generated figures (questionnaire chart, marks sheet, field table, conditional-format rule, HTML code) + L17 quotation table and L19 error sheet = 7, each inspected. `hosted` flipped to true by the V95 trigger on the first upload (verified). **Emulator review not yet run; prod push not yet done** (prod has no `cat` row, Flyway V84). 2024 Nov P2 not authored. |
+
+Authoring lives in `scripts/_gen/cat/` (`lessons-{a..e}.js` data, `kit.js` option helpers, `lib.js` emit, `render_figure.py` table/code/chart renderer, `images.sh` page extract + upload + figures, `gen.js` emits `scripts/add-cat-2025-nov-p2-lNN.js`, `taxonomy.js` creates vocabulary). `node scripts/_gen/cat/gen.js [n …]`.
+
+**Lessons learned (2025):** `source_reliability` was already a history tag (renamed `online_source_reliability`); matplotlib reads `$…$` as math, so the renderer escapes `$` (a cell reference `$B$2` came out in italics); the `DESIGN-UNI-16` / audit length cues fired often because correct options came out longest — draft one distractor the longest in about a third of MCs up front; the first drafts had no `fitb`, five single-term items were then converted under `VER-11`.
 
 ## Still open
 

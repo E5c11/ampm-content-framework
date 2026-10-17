@@ -91,7 +91,7 @@ const questions = [
     "metadata": [
       "Software becomes cheaper for every buyer for ever after",
       "Companies lose income, so prices may rise for honest buyers",
-      "Developers earn more money from every copy that is made",
+      "Developers earn much more money from every copy that is made",
       "Pirated copies receive free technical support for life",
       ""
     ],

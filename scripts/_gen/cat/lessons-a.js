@@ -25,7 +25,7 @@ module.exports = [
         ['It can only register one touch at a time', 'It cannot be used on mobile devices', 'It needs a separate keyboard and mouse before it works'],
         cls(U.SYS, 'input_and_output_devices', { d: 3, w: 2 })),
       mc('A statement says: "A snipping tool is used to defragment a hard drive." If the statement is false, which replacement for "defragment a hard drive" makes it true?',
-        'capture a portion of the screen as an image', ['True as written', 'compress files into a smaller folder', 'remove a virus from the computer'],
+        'capture a portion of the screen as an image', ['True as written', 'compress several files into one smaller folder', 'remove a virus from the computer'],
         rec(U.SYS, 'operating_system_utilities', { d: 3, w: 2, type: 'definition' })),
       mc('Text on a projected slide looks washed out: the dark grey text and light grey background hardly differ. Which projector setting should be increased to separate dark from light areas?',
         'Contrast ratio', ['Resolution', 'Aspect ratio', 'Refresh rate'],
@@ -50,7 +50,7 @@ module.exports = [
     tags: ['netiquette', 'personal_area_network', 'iot_and_nfc', 'mobile_data_cap', 'crowdfunding'],
     qs: [
       mc('Which action is an example of poor netiquette in a work e-mail?',
-        'Typing the whole message in capital letters', ['Checking the spelling before sending', 'Using a clear subject line', 'Replying politely to a complaint'],
+        'Typing the whole message in capital letters', ['Checking the spelling and grammar before sending', 'Using a clear subject line', 'Replying politely to a complaint'],
         cls(U.INT, 'email_and_netiquette', { d: 2, w: 1, clues: '- Netiquette means polite behaviour online.\n- Capital letters are read as shouting.' })),
       mt('Match each term to the description that fits it.',
         [['PAN', 'Devices around one person linked over a few metres, such as a phone and earphones using Bluetooth'],

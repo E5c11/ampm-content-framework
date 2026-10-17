@@ -90,8 +90,8 @@ const questions = [
     "question": "Why is cybersecurity important while learners use online social networks?",
     "metadata": [
       "It makes the posts load faster on every device",
-      "It protects devices and data from malware and hacking",
       "It increases the number of followers each learner has",
+      "It protects devices and data from malware and hacking",
       "It removes the need to use passwords on any account",
       ""
     ],
@@ -124,9 +124,9 @@ const questions = [
     "question": "Which situation is plagiarism?",
     "metadata": [
       "Quoting a sentence and listing the source in the bibliography",
-      "Summarising a chapter in your own words and referencing it",
       "Copying a paragraph from a website into an assignment without crediting the source",
-      "Using a picture under a Creative Commons licence and crediting its creator",
+      "Summarising a chapter in your own words and referencing it",
+      "Using a picture under a Creative Commons licence and crediting its original creator",
       ""
     ],
     "answer": [

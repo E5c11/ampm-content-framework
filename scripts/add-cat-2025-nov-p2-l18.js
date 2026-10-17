@@ -97,9 +97,9 @@ const questions = [
     "question": "A lab has ten computers in a room with a lot of electrical interference. Which connection medium is best and why?",
     "metadata": [
       "Wi-Fi, because it is not affected by electrical interference",
-      "Fibre optic cable, because electrical interference does not affect it",
-      "Radio waves, because they never lose their signal strength",
+      "Radio waves, because they never lose their signal strength over distance",
       "Copper cable, because it cannot be affected by any interference",
+      "Fibre optic cable, because electrical interference does not affect it",
       ""
     ],
     "answer": [

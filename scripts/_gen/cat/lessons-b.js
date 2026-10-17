@@ -1,6 +1,6 @@
 'use strict';
 // CAT 2025 Nov P2 — Section B, Q4 Systems Technologies (lessons 5–7) and Q5 Internet and Network Technologies (lessons 8–9).
-const { mc, ms, mt, ord, ex } = require('./lib');
+const { mc, ms, mt, ord, fb, ex } = require('./lib');
 const { U, rec, cls, cau, app, dat, seq } = require('./kit');
 
 module.exports = [
@@ -16,8 +16,8 @@ module.exports = [
          ['Recycle bin', 'Temporary holding place from which deleted files can be restored'],
          ['Flash drive', 'Small portable storage device that connects through a USB port']],
         rec(U.SYS, 'hardware_and_system_components', { d: 2, w: 2 })),
-      mc('A learner saves a finished essay onto a memory card so it can be kept for later. Which stage of the information processing cycle is this?',
-        'Storage', ['Input', 'Processing', 'Output'],
+      fb('A learner saves a finished essay onto a memory card so that it can be kept for later. Name this stage of the information processing cycle. []',
+        ['Stage: ', '[ ]'], ['storage'], 'text',
         cls(U.SYS, 'information_processing_cycle', { d: 2, w: 1, clues: '- The essay is already finished.\n- The data is being kept for later use.' })),
       ms('Which TWO are reasons why a flash drive is not suitable for archiving files for many years?',
         ['Its storage capacity is small for archiving', 'It is small and easily lost or stolen'],
@@ -55,7 +55,7 @@ module.exports = [
         ['Keep the only backup on the computer\'s own hard drive', 'Let each user choose any medium they like', 'Store backup media next to the computer they protect'],
         app(U.SYS, 'data_loss_and_backup', { d: 3, w: 2 })),
       mc('What does a Creative Commons (CC) licence allow?',
-        'Others may use and share it under the owner\'s conditions', ['Anyone may claim the work as their own after copying it', 'The owner gives up all copyright in the work for ever', 'Only people who pay a licence fee may use the work'],
+        'Others may use and share it under the owner\'s conditions', ['Anyone may claim the work as their own once it has been copied', 'The owner gives up all copyright in the work for ever', 'Only people who pay a licence fee may use the work'],
         rec(U.SOC, 'copyright_and_licences', { d: 3, w: 2, type: 'definition' })),
       ms('Which TWO ways can help find a video file when the date it was saved is not known?',
         ['Search by part of the file name', 'Search by the file type (extension)'],
@@ -77,11 +77,11 @@ module.exports = [
     covers: 'Question 4.8, 4.9, 4.10 and 4.11 — an accessibility feature, ergonomic design, an unresponsive monitor and how a 3D printer works.',
     tags: ['accessibility_features', 'ergonomics', 'troubleshooting', '3d_printing'],
     qs: [
-      mc('A user with an injury can press only one key at a time. Which accessibility feature lets them use shortcuts such as Ctrl+C by pressing the keys one after another?',
-        'Sticky keys', ['High contrast mode', 'Screen magnifier', 'Screen reader'],
+      fb('A user with an injury can press only one key at a time. Name the accessibility feature that lets them use shortcuts such as Ctrl+C by pressing the keys one after another. []',
+        ['Feature: ', '[ ]'], ['sticky keys|sticky key|stickykeys'], 'text',
         app(U.SYS, 'accessibility', { d: 3, w: 1, clues: '- The problem is pressing several keys together.\n- The fix lets the keys be pressed in turn.' })),
       mc('What does it mean when a keyboard is described as ergonomically designed?',
-        'It is designed to be comfortable and to prevent health problems', ['It is designed to be as cheap as possible to make', 'It is designed to work with only one make of computer', 'It is designed to use very little electricity'],
+        'It is designed to be comfortable and to prevent health problems', ['It is designed to be as cheap as possible to make', 'It is designed to work only with computers that are made by one company', 'It is designed to use very little electricity'],
         rec(U.SOC, 'health_and_ergonomics', { d: 2, w: 1, type: 'definition' })),
       ms('A monitor\'s power light is on, but the screen stays blank. Which TWO checks should be done first?',
         ['Check that the display cable is connected', 'Check the brightness and contrast settings'],
@@ -116,7 +116,7 @@ module.exports = [
         ['Printing the customer\'s documents on request', 'Repairing the customer\'s laptop screen', 'Installing an operating system on the customer\'s laptop'],
         cls(U.INT, 'internet_service_providers', { d: 3, w: 2 })),
       mc('A school has an acceptable use policy (AUP). What effect does it have on a learner who streams video at school?',
-        'It limits excessive streaming to protect network performance', ['It gives every learner unlimited free streaming', 'It allows any content to be streamed on any device', 'It encrypts every video the learner watches'],
+        'It limits excessive streaming to protect network performance', ['It gives every learner unlimited free streaming at any time of day', 'It allows any content to be streamed on any device', 'It encrypts every video the learner watches'],
         cau(U.NET, 'network_policies', { d: 3, w: 2 })),
       ms('Which TWO statements about cloud computing are correct, one benefit and one limitation?',
         ['Files can be reached on any device online', 'Uploading files uses up mobile data'],

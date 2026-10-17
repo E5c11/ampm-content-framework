@@ -162,10 +162,10 @@ const questions = [
     "name": "Question 4",
     "question": "What does a Creative Commons (CC) licence allow?",
     "metadata": [
-      "Anyone may claim the work as their own after copying it",
+      "Anyone may claim the work as their own once it has been copied",
       "The owner gives up all copyright in the work for ever",
-      "Only people who pay a licence fee may use the work",
       "Others may use and share it under the owner's conditions",
+      "Only people who pay a licence fee may use the work",
       ""
     ],
     "answer": [

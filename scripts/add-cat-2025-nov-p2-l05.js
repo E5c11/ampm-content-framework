@@ -91,22 +91,20 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "A learner saves a finished essay onto a memory card so it can be kept for later. Which stage of the information processing cycle is this?",
+    "question": "A learner saves a finished essay onto a memory card so that it can be kept for later. Name this stage of the information processing cycle. []",
     "metadata": [
-      "Input",
-      "Processing",
-      "Storage",
-      "Output",
-      ""
+      "Stage: ",
+      "[ ]"
     ],
     "answer": [
-      "Storage",
+      "storage",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "fitb",
+    "keyboard_type": "text",
     "unit": "systems_technologies",
     "topic": "information_processing_cycle",
     "subtopic": "cat_classification",

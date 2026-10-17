@@ -53,22 +53,20 @@ const video = {
 const questions = [
   {
     "name": "Question 1",
-    "question": "A learner clicks a \"Play\" button on a web page, but a hidden link under the button is clicked instead. What is this threat called?",
+    "question": "A learner clicks a \"Play\" button on a web page, but a hidden link under the button is clicked instead. Name this threat. []",
     "metadata": [
-      "Spoofing",
-      "Spamming",
-      "Click-jacking",
-      "Keylogging",
-      ""
+      "Threat: ",
+      "[ ]"
     ],
     "answer": [
-      "Click-jacking",
+      "click-jacking|clickjacking|click jacking",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "fitb",
+    "keyboard_type": "text",
     "unit": "social_implications",
     "topic": "internet_threats",
     "subtopic": "cat_term_recall",

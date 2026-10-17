@@ -128,7 +128,7 @@ const questions = [
     "question": "Which item is an element that belongs in a final report?",
     "metadata": [
       "A list of the learner's passwords",
-      "The teacher's mark sheet for the whole class",
+      "The teacher's mark sheet for the whole class and grade",
       "A blank page kept for the next project",
       "A bibliography listing the sources that were used",
       ""

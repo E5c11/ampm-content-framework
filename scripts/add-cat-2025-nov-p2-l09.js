@@ -161,8 +161,8 @@ const questions = [
     "question": "Which statement about incognito (private) browsing is true?",
     "metadata": [
       "The internet service provider cannot see the sites visited",
-      "The browsing history is not saved on that device",
       "Websites can no longer identify the user's IP address",
+      "The browsing history is not saved on that device",
       "Downloaded files are deleted automatically",
       ""
     ],

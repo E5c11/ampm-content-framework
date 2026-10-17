@@ -1,7 +1,7 @@
 'use strict';
 // CAT 2025 Nov P2 — Section B, Q6 Information Management (lesson 10), Q7 Social Implications (11–12), Q8 Solution Development (13–16).
 // Practice figures (CLOSED-FIG-04) are regenerated with fresh data; the real screenshots only attach as exam reference pages.
-const { mc, ms, mt, ord, ex } = require('./lib');
+const { mc, ms, mt, ord, fb, ex } = require('./lib');
 const { U, rec, cls, cau, app, dat, seq } = require('./kit');
 
 module.exports = [
@@ -27,7 +27,7 @@ module.exports = [
          ['Objectivity', 'Is the information presented without bias?']],
         cls(U.IM, 'sources_and_information', { d: 3, w: 2 })),
       mc('Which item is an element that belongs in a final report?',
-        'A bibliography listing the sources that were used', ['A list of the learner\'s passwords', 'The teacher\'s mark sheet for the whole class', 'A blank page kept for the next project'],
+        'A bibliography listing the sources that were used', ['A list of the learner\'s passwords', 'The teacher\'s mark sheet for the whole class and grade', 'A blank page kept for the next project'],
         rec(U.IM, 'presenting_information', { d: 2, w: 1 })),
       ms('Which TWO factors should be considered when planning a folder structure for a project?',
         ['Give folders and files meaningful names', 'Create a separate subfolder for each phase of the project'],
@@ -53,8 +53,8 @@ module.exports = [
     covers: 'Question 7.1, 7.2 and 7.3 — click-jacking, types of e-mail threat and protection against online harassment.',
     tags: ['click_jacking', 'email_threats', 'online_harassment'],
     qs: [
-      mc('A learner clicks a "Play" button on a web page, but a hidden link under the button is clicked instead. What is this threat called?',
-        'Click-jacking', ['Spoofing', 'Spamming', 'Keylogging'],
+      fb('A learner clicks a "Play" button on a web page, but a hidden link under the button is clicked instead. Name this threat. []',
+        ['Threat: ', '[ ]'], ['click-jacking|clickjacking|click jacking'], 'text',
         rec(U.SOC, 'internet_threats', { d: 3, w: 2, type: 'definition', clues: '- The learner was tricked into clicking.\n- A hidden link is involved.' })),
       mt('Match each e-mail threat to its description.',
         [['Phishing', 'A deceptive e-mail that tricks users into giving personal details'],
@@ -85,7 +85,7 @@ module.exports = [
         ['Data is stored in a secure database', 'Data is analysed by a computer program', 'Data is displayed in charts and graphs'],
         cau(U.SOC, 'privacy_and_data', { d: 3, w: 2 })),
       mc('Which is a long-term impact of software piracy on the global software industry?',
-        'Companies lose income, so prices may rise for honest buyers', ['Software becomes cheaper for every buyer for ever after', 'Developers earn more money from every copy that is made', 'Pirated copies receive free technical support for life'],
+        'Companies lose income, so prices may rise for honest buyers', ['Software becomes cheaper for every buyer for ever after', 'Developers earn much more money from every copy that is made', 'Pirated copies receive free technical support for life'],
         cau(U.SOC, 'legal_and_ethical_issues', { d: 3, w: 2, clues: '- Think about who pays when copies are made illegally.\n- Honest buyers are affected too.' })),
       mt('Match each term to the description that fits it.',
         [['Big data', 'Very large sets of data analysed to find patterns'],
@@ -110,7 +110,7 @@ module.exports = [
         'Insert captions for the images and diagrams', ['Mark the entries for each figure in an index', 'Apply a theme to the whole document', 'Insert page numbers in the footer'],
         app(U.SD, 'word_processing_features', { d: 3, w: 2 })),
       mc('Which action must be done BEFORE an automatic index can be created?',
-        'Mark the words that must appear in the index', ['Insert a caption below every word', 'Apply heading styles to every paragraph', 'Insert a bookmark at each page break'],
+        'Mark the words that must appear in the index', ['Insert a caption below every word', 'Apply heading styles to every paragraph in the document', 'Insert a bookmark at each page break'],
         app(U.SD, 'word_processing_features', { d: 3, w: 2, clues: '- The index lists words, not headings or figures.\n- The program needs to know which words to list.' })),
       mt('Match each term to the description that fits it.',
         [['Embedded object', 'A separate copy; changes to the source file do not affect it'],
@@ -147,8 +147,8 @@ module.exports = [
         ['A nested IF statement', 'A LOOKUP using a table of symbols'],
         ['The SUM function on the marks', 'AutoFill used on its own', 'Protecting the cells with a password'],
         dat(U.SD, 'spreadsheet_functions', { d: 4, w: 3, fig: 0, clues: '- The symbol depends on which range the mark falls in.\n- More than one condition must be tested.' })),
-      mc('Which spreadsheet feature was most likely used to fill column A quickly with the numbers 1 to 7?',
-        'AutoFill (fill series)', ['Sorting the list in order', 'Merging cells together', 'Freezing the top row'],
+      fb('Name the spreadsheet feature that was most likely used to fill column A quickly with the numbers 1 to 7. []',
+        ['Feature: ', '[ ]'], ['autofill|auto fill|auto-fill|fill series'], 'text',
         app(U.SD, 'spreadsheet_features', { d: 2, w: 1, fig: 0 })),
       mc('A worksheet from a friend lets you type in a few cells only. A message appears when you try to edit any other cell. What is the reason?',
         'The other cells are protected', ['The file is too large to edit', 'The cells are formatted as text', 'The formulas contain errors'],
@@ -185,7 +185,7 @@ module.exports = [
         ['The database enlarges the field by itself', 'The extra characters move to the next field', 'Nothing changes until the database is closed'],
         cau(U.SD, 'database_design', { d: 4, w: 2 })),
       mc('What is the result of this conditional formatting rule on cells B2:B6?',
-        'Cells with a value below the average of the range are shaded amber', ['Cells with a value above the average are shaded amber', 'Cells equal to the average are deleted from the range', 'Every cell in the range is shaded amber'],
+        'Cells with a value below the average of the range are shaded amber', ['Cells with a value above the average of the range are shaded in amber', 'Cells equal to the average are deleted from the range', 'Every cell in the range is shaded amber'],
         dat(U.SD, 'spreadsheet_features', { d: 4, w: 3, fig: 1, clues: '- Read the comparison symbol carefully.\n- The range is compared with its own average.' })),
       mt('Match each data type to the kind of data it holds.',
         [['Short Text', 'Letters, digits and symbols such as a surname'],

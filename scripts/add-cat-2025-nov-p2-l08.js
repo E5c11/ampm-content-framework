@@ -126,10 +126,10 @@ const questions = [
     "name": "Question 3",
     "question": "A school has an acceptable use policy (AUP). What effect does it have on a learner who streams video at school?",
     "metadata": [
-      "It gives every learner unlimited free streaming",
+      "It gives every learner unlimited free streaming at any time of day",
+      "It limits excessive streaming to protect network performance",
       "It allows any content to be streamed on any device",
       "It encrypts every video the learner watches",
-      "It limits excessive streaming to protect network performance",
       ""
     ],
     "answer": [

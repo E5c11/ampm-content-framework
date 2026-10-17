@@ -168,7 +168,7 @@ const questions = [
     "metadata": [
       "True as written",
       "capture a portion of the screen as an image",
-      "compress files into a smaller folder",
+      "compress several files into one smaller folder",
       "remove a virus from the computer",
       ""
     ],

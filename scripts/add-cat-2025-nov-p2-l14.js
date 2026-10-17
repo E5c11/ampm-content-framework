@@ -95,22 +95,20 @@ const questions = [
   },
   {
     "name": "Question 2",
-    "question": "Which spreadsheet feature was most likely used to fill column A quickly with the numbers 1 to 7?",
+    "question": "Name the spreadsheet feature that was most likely used to fill column A quickly with the numbers 1 to 7. []",
     "metadata": [
-      "Sorting the list in order",
-      "Merging cells together",
-      "AutoFill (fill series)",
-      "Freezing the top row",
-      ""
+      "Feature: ",
+      "[ ]"
     ],
     "answer": [
-      "AutoFill (fill series)",
+      "autofill|auto fill|auto-fill|fill series",
       "",
       "",
       "",
       ""
     ],
-    "presentation": "multiple_choice",
+    "presentation": "fitb",
+    "keyboard_type": "text",
     "unit": "solution_development",
     "topic": "spreadsheet_features",
     "subtopic": "cat_scenario_application",
