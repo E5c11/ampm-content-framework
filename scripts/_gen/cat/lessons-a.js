@@ -1,0 +1,143 @@
+'use strict';
+// CAT 2025 Nov P2 — Section A (Q1 multiple choice, Q2 matching, Q3 modified true/false), clustered by topic (DESIGN-UNI-10, CLOSED-A-01): lessons 1–4.
+// The items carry no printed topic; the cluster assignment is the author's (profile § Section A topic clusters).
+const { mc, ms, mt, ex } = require('./lib');
+const { U, rec, cls, cau, app, dat } = require('./kit');
+
+module.exports = [
+  // ── L01 ── Systems Technologies: 1.1, 1.4, 1.6, 1.7, 2.1, 2.6, 2.7, 3.1 ─────────────────────────────
+  {
+    order: 1, name: 'Question 1–3: Systems Technologies (Section A)', marks: 8, qpages: 4, mpages: 2,
+    covers: 'Section A items on systems technologies — Questions 1.1, 1.4, 1.6, 1.7, 2.1, 2.6, 2.7 and 3.1.',
+    tags: ['file_compression', 'touch_screen', 'projector_settings', 'ups_and_rom', 'software_updates'],
+    qs: [
+      mc('A learner must e-mail 30 files, but the attachment limit is small. Which action packs the files into one smaller file?',
+        'Compress the files into a ZIP archive', ['Convert the files to RTF format', 'Save each file as a bitmap image', 'Rename each file with a .wav extension'],
+        cls(U.SYS, 'file_types_and_compression', { d: 2, w: 1, clues: '- The files must be packed together AND made smaller.\n- Think about the file type used for an archive.' })),
+      mt('Match each term to the description that fits it.',
+        [['UPS', 'Keeps a computer running for a few minutes after mains power fails'],
+         ['ROM', 'Holds start-up instructions even when the computer is switched off'],
+         ['Service pack', 'Bundles many earlier fixes and updates into one download'],
+         ['GPU', 'Takes over the heavy work of drawing images and video from the CPU']],
+        rec(U.SYS, 'hardware_and_system_components', { d: 2, w: 2 })),
+      ms('Which TWO statements about a touch screen are true?',
+        ['It works as both an input and an output device', 'It accepts gestures such as swiping and pinching'],
+        ['It can only register one touch at a time', 'It cannot be used on mobile devices', 'It needs a separate keyboard and mouse before it works'],
+        cls(U.SYS, 'input_and_output_devices', { d: 3, w: 2 })),
+      mc('A statement says: "A snipping tool is used to defragment a hard drive." If the statement is false, which replacement for "defragment a hard drive" makes it true?',
+        'capture a portion of the screen as an image', ['True as written', 'compress files into a smaller folder', 'remove a virus from the computer'],
+        rec(U.SYS, 'operating_system_utilities', { d: 3, w: 2, type: 'definition' })),
+      mc('Text on a projected slide looks washed out: the dark grey text and light grey background hardly differ. Which projector setting should be increased to separate dark from light areas?',
+        'Contrast ratio', ['Resolution', 'Aspect ratio', 'Refresh rate'],
+        app(U.SYS, 'output_devices', { d: 3, w: 2, clues: '- The problem is the difference between dark and light areas.\n- Resolution changes sharpness, not tone.' })),
+    ],
+    subs: [
+      ex('1.1', 1, ['The question is about file extensions.', 'Look for the format used to compress files.'], ['Match each extension to its file type: audio, text, image, compressed.', 'Pick the compressed one.'], ['.zip is a compressed (archive) file, so the answer is D.']),
+      ex('1.4', 1, ['The question asks for the FALSE statement.', 'Think about what a touch screen can and cannot do.'], ['Check each statement against what a touch screen does.', 'A touch screen supports gestures, replaces the mouse and keyboard and is standard on mobile devices.', 'Only a limited number of touches can be registered at once.'], ['Option C is false: a touch screen cannot register an unlimited number of simultaneous touches.']),
+      ex('1.6', 1, ['The text is too light or too dark.', 'Think about which display setting sets the difference between light and dark.'], ['Compare the settings: brightness, contrast ratio, resolution and aspect ratio.', 'The memo accepts the contrast ratio.'], ['Adjusting the contrast ratio improves how the text stands out, so the answer is B.']),
+      ex('1.7', 1, ['The device is dedicated to graphics.', 'It executes the instructions for animations and videos.'], ['Think about which processor handles graphics.', 'A CPU is general purpose; a GPU is dedicated to graphics.'], ['The GPU (graphics processing unit) is the answer, option B.']),
+      ex('2.1', 1, ['The device supplies power for a short time.', 'It prevents data loss.'], ['Think about a device that keeps the computer running during a power failure.'], ['A UPS (uninterruptible power supply) gives battery backup for a short time, so the answer is R.']),
+      ex('2.6', 1, ['The memory stores data and instructions permanently.', 'It keeps its contents when the power is off.'], ['Compare ROM and RAM: one is volatile, one is not.'], ['ROM (read-only memory) stores data and instructions permanently, so the answer is D.']),
+      ex('2.7', 1, ['Several software updates are installed at once.', 'The term describes a bundle of updates.'], ['Compare a patch with a service pack.', 'A patch fixes one problem; a bundle contains many.'], ['A service pack bundles multiple updates, so the answer is P.']),
+      ex('3.1', 1, ['The statement is about a utility that captures part of the screen.', 'Decide whether it is correct as written.'], ['Recall what a snipping tool does.'], ['True: a snipping tool captures a portion of the screen.']),
+    ],
+  },
+
+  // ── L02 ── Internet and Network Technologies: 1.2, 1.3, 1.9, 2.3, 2.4, 2.5, 2.8 ──────────────────
+  {
+    order: 2, name: 'Question 1–3: Internet and Network Technologies (Section A)', marks: 7, qpages: 4, mpages: 2,
+    covers: 'Section A items on internet and network technologies — Questions 1.2, 1.3, 1.9, 2.3, 2.4, 2.5 and 2.8.',
+    tags: ['netiquette', 'personal_area_network', 'iot_and_nfc', 'mobile_data_cap', 'crowdfunding'],
+    qs: [
+      mc('Which action is an example of poor netiquette in a work e-mail?',
+        'Typing the whole message in capital letters', ['Checking the spelling before sending', 'Using a clear subject line', 'Replying politely to a complaint'],
+        cls(U.INT, 'email_and_netiquette', { d: 2, w: 1, clues: '- Netiquette means polite behaviour online.\n- Capital letters are read as shouting.' })),
+      mt('Match each term to the description that fits it.',
+        [['PAN', 'Devices around one person linked over a few metres, such as a phone and earphones using Bluetooth'],
+         ['IoT', 'Everyday devices connected so they can share data'],
+         ['NFC', 'Very short-range contactless technology for tap-to-pay'],
+         ['Crowdfunding', 'Many people each give a small amount to an online project']],
+        rec(U.INT, 'internet_services_and_trends', { d: 2, w: 2 })),
+      mc('Why do many mobile users switch their camera off during a video call?',
+        'Video uses a lot of data, so the data bundle runs out faster', ['Video calls can only send still pictures to the other person', 'Video calls work without any internet connection or signal', 'Video calls delete the phone\'s stored photos after each call'],
+        cau(U.INT, 'communication_technologies', { d: 3, w: 2, clues: '- Think about what is used up while video streams.\n- Mobile data is often limited.' })),
+      ms('Which TWO statements about NFC are correct?',
+        ['The two devices must be very close together', 'It is used for tap-to-pay at a point of sale'],
+        ['It sends data over several kilometres', 'It needs a network cable between the devices', 'It only works on desktop computers'],
+        cls(U.INT, 'internet_services_and_trends', { d: 3, w: 2 })),
+    ],
+    subs: [
+      ex('1.2', 1, ['The question asks which item is NOT netiquette.', 'Netiquette is polite online behaviour.'], ['Check each action: proofreading, a missing subject line, small attachments, concise content.', 'Three are good practice.'], ['Not adding a subject line is bad netiquette, so the answer is B.']),
+      ex('1.3', 1, ['A PAN covers a very small area around one person.', 'Look for a short-range wireless medium.'], ['Compare Bluetooth with WiMax, fibre optics and microwaves.', 'Only Bluetooth is a short-range personal medium.'], ['Bluetooth is used in a PAN, option A.']),
+      ex('1.9', 1, ['The reason concerns mobile users and video calls.', 'Think about what video calls consume.'], ['Eliminate the options that are untrue about cameras, storage and privacy.', 'Video uses a lot of data.'], ['The cap (data allowance) is reached quickly, so the answer is C.']),
+      ex('2.3', 1, ['Household devices connected to one another.', 'The term describes a trend.'], ['Think of smart homes.'], ['IoT (Internet of Things) is the answer, T.']),
+      ex('2.4', 1, ['The software is used to view web pages.', 'Think about what you use to explore the web.'], ['Match the description to a software type.'], ['A browser is the answer, K.']),
+      ex('2.5', 1, ['A wireless payment technology.', 'The devices must be close to the point of sale.'], ['Compare NFC and RFID.', 'NFC is used for tap-to-pay.'], ['NFC is the answer, Q.']),
+      ex('2.8', 1, ['Many people contribute financially.', 'It happens on online platforms.'], ['Think about funding a project from a large group.'], ['Crowd funding is the answer, B.']),
+    ],
+  },
+
+  // ── L03 ── Social Implications: 1.5, 2.2, 3.2, 3.4 ──────────────────────────────────────────────
+  {
+    order: 3, name: 'Question 1–3: Social Implications (Section A)', marks: 4, qpages: 4, mpages: 2,
+    covers: 'Section A items on social implications — Questions 1.5, 2.2, 3.2 and 3.4.',
+    tags: ['firewall', 'zombie_and_botnet', 'fourth_industrial_revolution', 'intellectual_property'],
+    qs: [
+      mc('What is the main job of a firewall on a school network?',
+        'To block unauthorised access to the network', ['To remove viruses that are already on a computer', 'To make the internet connection faster', 'To back up all files to the cloud'],
+        rec(U.SOC, 'network_security', { d: 2, w: 1, clues: '- A firewall controls what may enter or leave.\n- Removing existing malware is a different tool.' })),
+      mt('Match each term to the description that fits it.',
+        [['Zombie', 'An infected computer controlled remotely by a hacker'],
+         ['Botnet', 'A group of infected computers controlled together'],
+         ['Antivirus', 'Software that finds and removes malware'],
+         ['Spyware', 'Software that secretly records what a user does']],
+        cls(U.SOC, 'malware_and_threats', { d: 2, w: 2 })),
+      mc('A statement says: "Intellectual property laws protect only physical goods such as furniture." If the statement is false, which replacement for "only physical goods such as furniture" makes it true?',
+        'creations of the mind, such as designs and inventions', ['True as written', 'only websites that have a registered domain name', 'only computer programs sold in shops and online stores'],
+        rec(U.SOC, 'legal_and_ethical_issues', { d: 3, w: 2, type: 'definition' })),
+      ms('Which TWO of the following are protected as intellectual property?',
+        ['A song that a learner wrote', 'A newly invented device design'],
+        ['The date of a public holiday', 'A well-known historical fact', 'Tomorrow\'s weather forecast'],
+        cls(U.SOC, 'legal_and_ethical_issues', { d: 3, w: 2 })),
+    ],
+    subs: [
+      ex('1.5', 1, ['The question asks for the primary function.', 'Think about control of access.'], ['Compare firewall, antivirus and anti-piracy tools.', 'A firewall does not remove malware.'], ['A firewall protects against unauthorised access, option A.']),
+      ex('2.2', 1, ['A compromised computer.', 'A hacker controls it remotely.'], ['Compare zombie, botnet and similar terms.', 'The description is of a single computer.'], ['Zombie is the answer, N.']),
+      ex('3.2', 1, ['The description is of the ongoing transformation driven by digital, physical and biological technologies.', 'It is not the digital divide.'], ['Digital divide is the gap in access to ICT.', 'The description fits another term.'], ['False: the term should be 4IR (the Fourth Industrial Revolution).']),
+      ex('3.4', 1, ['The statement is about ownership of ideas and designs.', 'Check each word.'], ['Recall what intellectual property is.', 'It is protected by copyright and patent law.'], ['True: intellectual property is ownership of an idea or design protected by copyright and patent laws.']),
+    ],
+  },
+
+  // ── L04 ── Solution Development: 1.8, 1.10, 2.9, 2.10, 3.3, 3.5 ─────────────────────────────────
+  {
+    order: 4, name: 'Question 1–3: Solution Development (Section A)', marks: 6, qpages: 4, mpages: 2,
+    covers: 'Section A items on solution development — Questions 1.8, 1.10, 2.9, 2.10, 3.3 and 3.5.',
+    tags: ['paragraph_formatting', 'query_criteria', 'document_themes', 'spreadsheet_functions', 'non_breaking_space'],
+    qs: [
+      mt('Match each feature to what it does.',
+        [['Line spacing', 'Sets the distance between the lines inside a paragraph'],
+         ['Theme', 'Changes the fonts, colour scheme and effects of a whole document'],
+         ['IF function', 'Chooses between two results depending on a condition'],
+         ['Non-breaking space', 'Keeps two words together on the same line']],
+        rec(U.SD, 'word_processing_features', { d: 2, w: 2 })),
+      mc('A table lists school club members with their Club and Grade. Which query criteria will list ALL chess players who are NOT in Grade 11?',
+        'Club = "Chess" AND Grade <> 11', ['Club = "Chess" OR Grade <> 11', 'Club <> "Chess" AND Grade = 11', 'Club = "Chess" AND Grade >= 11'],
+        app(U.SD, 'database_queries', { d: 4, w: 3, clues: '- Both conditions must be true at once.\n- <> means "not equal to".' })),
+      mc('A statement says: "The MIN function can be used to find the second smallest value in a list." If the statement is false, which function makes it true?',
+        'SMALL', ['True as written', 'LARGE', 'COUNT'],
+        rec(U.SD, 'spreadsheet_functions', { d: 3, w: 2, type: 'definition' })),
+      ms('Which TWO functions can return the highest value in a range of cells?',
+        ['MAX', 'LARGE'],
+        ['MIN', 'COUNT', 'SMALL'],
+        cls(U.SD, 'spreadsheet_functions', { d: 3, w: 2 })),
+    ],
+    subs: [
+      ex('1.8', 1, ['The setting is in a paragraph dialog box.', 'Look at what the setting changes.'], ['Compare alignment, spacing, indentation and line spacing.', 'The memo says it adjusts spacing between lines of text.'], ['The setting adjusts the spacing between lines of text, so the answer is D.']),
+      ex('1.10', 1, ['The query must show netball players only.', 'They must NOT be in Grade 10.'], ['Both conditions must be true, so use AND.', '<> means not equal to.'], ['Sport = "Netball" AND Grade <> 10 is correct, option B.']),
+      ex('2.9', 1, ['One feature uses multiple settings.', 'It formats an entire document with fonts, colour schemes and effects.'], ['Compare theme and style.', 'A theme applies to the whole document.'], ['Theme is the answer, G.']),
+      ex('2.10', 1, ['The function chooses between two options.', 'It depends on a condition.'], ['Think about logical functions.'], ['IF is the answer, J.']),
+      ex('3.3', 1, ['The MAX function returns one value only.', 'Which value does it return?'], ['Recall the difference between MAX and LARGE.'], ['False: the function that finds the second highest value is LARGE (MAX gives the highest).']),
+      ex('3.5', 1, ['The special character prevents a line break between two words.', 'Which part of the term is wrong?'], ['Recall the non-breaking space and non-breaking hyphen.'], ['False: it is a non-breaking space.']),
+    ],
+  },
+];
