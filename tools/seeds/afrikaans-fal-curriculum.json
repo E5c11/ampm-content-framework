@@ -340,6 +340,216 @@
           "name": "Seleksie en weglating"
         }
       ]
+    },
+    {
+      "slug": "roman",
+      "name": "Roman",
+      "topics": [
+        {
+          "slug": "karakter_en_verhoudings",
+          "name": "Karakter en verhoudings",
+          "subtopics": [
+            {
+              "slug": "innerlike_konflik",
+              "name": "Innerlike konflik"
+            },
+            {
+              "slug": "wie_doen_wat",
+              "name": "Wie doen wat"
+            },
+            {
+              "slug": "identifiseer_met_karakter",
+              "name": "Identifiseer met karakter"
+            }
+          ]
+        },
+        {
+          "slug": "intrige_en_gebeure",
+          "name": "Intrige en gebeure",
+          "subtopics": [
+            {
+              "slug": "feit_uit_die_roman",
+              "name": "Feit uit die roman"
+            },
+            {
+              "slug": "volgorde_in_die_uittreksel",
+              "name": "Volgorde in die uittreksel"
+            },
+            {
+              "slug": "onwaar_stelling",
+              "name": "Onwaar stelling"
+            }
+          ]
+        },
+        {
+          "slug": "tema_en_boodskap",
+          "name": "Tema en boodskap",
+          "subtopics": [
+            {
+              "slug": "temas_in_die_uittreksel",
+              "name": "Temas in die uittreksel"
+            }
+          ]
+        },
+        {
+          "slug": "toon_en_stylmiddele",
+          "name": "Toon en stylmiddele",
+          "subtopics": [
+            {
+              "slug": "toon_van_'n_aanhaling",
+              "name": "Toon van 'n aanhaling"
+            },
+            {
+              "slug": "identifiseer_stylfiguur",
+              "name": "Identifiseer stylfiguur"
+            },
+            {
+              "slug": "betekenis_van_'n_aanhaling",
+              "name": "Betekenis van 'n aanhaling"
+            }
+          ]
+        },
+        {
+          "slug": "ruimte_en_konteks",
+          "name": "Ruimte en konteks"
+        }
+      ]
+    },
+    {
+      "slug": "drama",
+      "name": "Drama",
+      "topics": [
+        {
+          "slug": "karakter_en_verhoudings",
+          "name": "Karakter en verhoudings",
+          "subtopics": [
+            {
+              "slug": "innerlike_konflik",
+              "name": "Innerlike konflik"
+            },
+            {
+              "slug": "betekenis_van_name",
+              "name": "Betekenis van name"
+            },
+            {
+              "slug": "identifiseer_met_karakter",
+              "name": "Identifiseer met karakter"
+            },
+            {
+              "slug": "wie_doen_wat",
+              "name": "Wie doen wat"
+            }
+          ]
+        },
+        {
+          "slug": "intrige_en_gebeure",
+          "name": "Intrige en gebeure",
+          "subtopics": [
+            {
+              "slug": "feit_uit_die_drama",
+              "name": "Feit uit die drama"
+            },
+            {
+              "slug": "volgorde_in_die_uittreksel",
+              "name": "Volgorde in die uittreksel"
+            },
+            {
+              "slug": "onwaar_stelling",
+              "name": "Onwaar stelling"
+            }
+          ]
+        },
+        {
+          "slug": "tema_en_boodskap",
+          "name": "Tema en boodskap",
+          "subtopics": [
+            {
+              "slug": "temas_in_die_uittreksel",
+              "name": "Temas in die uittreksel"
+            }
+          ]
+        },
+        {
+          "slug": "toon_en_stylmiddele",
+          "name": "Toon en stylmiddele",
+          "subtopics": [
+            {
+              "slug": "toon_van_'n_aanhaling",
+              "name": "Toon van 'n aanhaling"
+            },
+            {
+              "slug": "identifiseer_stylfiguur",
+              "name": "Identifiseer stylfiguur"
+            },
+            {
+              "slug": "betekenis_van_'n_aanhaling",
+              "name": "Betekenis van 'n aanhaling"
+            }
+          ]
+        },
+        {
+          "slug": "ruimte_en_konteks",
+          "name": "Ruimte en konteks"
+        },
+        {
+          "slug": "dramatiese_tegnieke",
+          "name": "Dramatiese tegnieke",
+          "subtopics": [
+            {
+              "slug": "toneelaanwysings",
+              "name": "Toneelaanwysings"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "kortverhale",
+      "name": "Kortverhale",
+      "topics": [
+        {
+          "slug": "karakter_en_verhoudings",
+          "name": "Karakter en verhoudings"
+        },
+        {
+          "slug": "intrige_en_gebeure",
+          "name": "Intrige en gebeure"
+        },
+        {
+          "slug": "tema_en_boodskap",
+          "name": "Tema en boodskap"
+        },
+        {
+          "slug": "toon_en_stylmiddele",
+          "name": "Toon en stylmiddele"
+        },
+        {
+          "slug": "ruimte_en_konteks",
+          "name": "Ruimte en konteks"
+        }
+      ]
+    },
+    {
+      "slug": "gedigte",
+      "name": "Gedigte",
+      "topics": [
+        {
+          "slug": "spreker_en_inhoud",
+          "name": "Spreker en inhoud"
+        },
+        {
+          "slug": "beeldspraak_en_stylmiddele",
+          "name": "Beeldspraak en stylmiddele"
+        },
+        {
+          "slug": "toon_en_stemming",
+          "name": "Toon en stemming"
+        },
+        {
+          "slug": "vorm_en_klank",
+          "name": "Vorm en klank"
+        }
+      ]
     }
   ],
   "skills": [
@@ -506,6 +716,50 @@
     {
       "id": "afrikaans_fal_verbind_sinne_met_voegwoord",
       "name": "Verbind sinne met voegwoord"
+    },
+    {
+      "id": "afrikaans_fal_voltooi_feit_uit_teks",
+      "name": "Voltooi feit uit teks"
+    },
+    {
+      "id": "afrikaans_fal_bepaal_toon",
+      "name": "Bepaal toon"
+    },
+    {
+      "id": "afrikaans_fal_verklaar_innerlike_konflik",
+      "name": "Verklaar innerlike konflik"
+    },
+    {
+      "id": "afrikaans_fal_pas_gebeure_by_persone",
+      "name": "Pas gebeure by persone"
+    },
+    {
+      "id": "afrikaans_fal_identifiseer_met_karakter",
+      "name": "Identifiseer met karakter"
+    },
+    {
+      "id": "afrikaans_fal_identifiseer_stylfiguur",
+      "name": "Identifiseer stylfiguur"
+    },
+    {
+      "id": "afrikaans_fal_verklaar_betekenis_in_konteks",
+      "name": "Verklaar betekenis in konteks"
+    },
+    {
+      "id": "afrikaans_fal_rangskik_gebeure",
+      "name": "Rangskik gebeure"
+    },
+    {
+      "id": "afrikaans_fal_onderskei_waar_van_onwaar",
+      "name": "Onderskei waar van onwaar"
+    },
+    {
+      "id": "afrikaans_fal_identifiseer_temas",
+      "name": "Identifiseer temas"
+    },
+    {
+      "id": "afrikaans_fal_identifiseer_dramatiese_tegniek",
+      "name": "Identifiseer dramatiese tegniek"
     }
   ]
 }

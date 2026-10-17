@@ -10,6 +10,9 @@
  *   node tools/create-english-text.js --id felix_randal --name "Felix Randal" \
  *     --author "Gerard Manley Hopkins" --section poetry
  *
+ *   # record the prescribing subject (english_texts.subject_id) — e.g. Afrikaans FAL texts
+ *   node tools/create-english-text.js --id kringe_in_n_bos --name "Kringe in 'n Bos" --author "Dalene Matthee" --section novel --subject afrikaans_fal
+ *
  *   # drop a text from the current list (its old lessons stay in the DB)
  *   node tools/create-english-text.js --retire picture_of_dorian_gray
  *
@@ -85,7 +88,7 @@ async function main() {
   // create / update
   const { id, name, author, section } = a;
   if (!id || !name || !author || !section) {
-    console.error('Usage: --id <text_key> --name "<title>" --author "<author>" --section novel|play|poetry|short_stories [--years 2025,2026]');
+    console.error('Usage: --id <text_key> --name "<title>" --author "<author>" --section novel|play|poetry|short_stories [--years 2025,2026] [--subject <subject_id>]');
     process.exit(1);
   }
   if (section === 'drama') {
@@ -106,11 +109,16 @@ async function main() {
   const years = typeof a.years === 'string' ? a.years.split(',').map((y) => y.trim()).filter(Boolean) : [];
 
   const now = new Date();
+  // --subject <subject_id> records which subject prescribes the text (english_texts.subject_id, backend V84).
+  // Omitted = the column is left alone (existing rows keep their value).
+  const subject = typeof a.subject === 'string' ? a.subject : null;
+  const columns = subject ? [...COLUMNS, 'subject_id'] : COLUMNS;
   await upsertRow(
-    { table: 'english_texts', columns: COLUMNS, conflictColumns: ['id'] },
+    { table: 'english_texts', columns, conflictColumns: ['id'] },
     {
       id, name, author, section, prescribed_years: years, is_active: true,
       created_at: now, updated_at: now, is_deleted: false, is_published: true, published_at: now,
+      ...(subject ? { subject_id: subject } : {}),
     },
     { env },
   );

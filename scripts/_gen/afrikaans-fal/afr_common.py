@@ -42,6 +42,11 @@ def order5(items, shown):
     return meta, list(items) + [""] * (5 - len(items))
 
 
+def A(num, marks, clue, approach, *solution):
+    """aiExplanation entry: clue/approach are '|'-separated bullet strings; solution lines are numbered by the caller."""
+    return (num, marks, clue.split('|'), approach.split('|'), list(solution))
+
+
 def Q(order, unit, topic, subtopic, skills, question, md, ans, pres, diff, w, clues, ctx, basis, text_key=None):
     d = dict(order=order, context_text=ctx, question=question, metadata=md, answer=ans, presentation=pres,
              type="definition" if pres == "fitb" else "application", unit=unit, topic=topic, subtopic=subtopic,
@@ -104,7 +109,7 @@ def emit(year, paper, lessons):
  * Every fitb declares keyboard_type 'text' (LANG-KB-01). Typed answers avoid á í ó ú à â (not on the keyboard); required
  * diacritics (ê ë é è ô ö û ü î ï ä) are fine and significant (LANG-KB-02).
  *
- * BASIS per practice question — P1 language-paper skill / theme, C CAPS:
+ * BASIS per practice question — P printed in the extract/poem tab, M printed in the memo, X taken from the other half of the same exam question (fresh angle), L language-paper skill, C CAPS:
 {basis_block}
  *
  *   node tools/validate-questions.js --script scripts/{fname} --curriculum temp/curriculum-vocab-afrikaans-fal.json
