@@ -409,6 +409,7 @@ session needs a runner that does the following — **`AMPM/scripts/review/review
   (a `KEYBOARD-04` violation for a declared row — FLAG).
 - **Text keyboard keys:** `text_key_<UPPERCASE LETTER>`, `text_key_space`, `text_key_switch` (ABC ↔ 123 screen), `text_key_done` (submit). Digits and
   punctuation need the `123` screen first. Marking lower-cases, so type uppercase freely.
+- **Punctuation and digits need the `123` screen.** `review-capture-answers-text.js` taps `text_key_<char>` on the letters screen only, so any alternative containing `-`, a digit or other punctuation returns `MISSING_KEY` (CAT 2025, `click-jacking` / `auto-fill`, 2026-10-17). That is a runner limit, not a content defect: tap `text_key_switch` before a non-letter and again before the next letter (`text_key_-` etc.), and confirm the `_typed.png` before FLAGging.
 - **Multi-blank rows:** loop `question_fitb_input_0 … N-1`, tap each input, then type — the keyboard reopens per blank. Count blanks as the
   `"[ ]"` elements of `metadata`.
 - **Every `|` alternative:** one run per alternative index, relaunching the lesson (`am force-stop` + deep link) and tapping `question_next_button` back
