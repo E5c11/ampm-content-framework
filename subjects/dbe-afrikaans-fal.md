@@ -11,7 +11,7 @@ provenance: drafted 2026-10-17 from the Nov 2025 P1/P2/P3 papers and memos (P2 h
 
 > **Load with this profile:** `shared/language-subjects.md` (`AMPM-CONTENT-LANG`), `shared/setwork.md`
 > (`AMPM-CONTENT-SETWORK`) and `subjects/dbe-english-fal.md` (the sibling — same paper shapes, same pipeline). This file records
-> only what is specific to Afrikaans FAL. **Status (2026-10-17): profiled, nothing authored.** First Afrikaans subject in the framework.
+> only what is specific to Afrikaans FAL. **Status (2026-10-17): Nov 2025 P1 authored on dev** (7 lessons / 32 questions, gated 2.4.1, emulator-reviewed — see Ledger); P2 and P3 not authored. First Afrikaans subject in the framework.
 > The 2026-10-10 note "Afrikaans FAL may not be created this exam season" (`language-setwork-shared-rules`) still stands as a
 > scheduling constraint — this profile is groundwork.
 
@@ -172,3 +172,15 @@ marks (`AIEXP-08`) — for P1 Q1 that is 22 entries for Teks A + B, and for Q5 t
    author's Afrikaans is not a substitute for it.
 7. **English `aiExplanation` (idea, 2026-10-17, not scheduled):** for non-HL (FAL) subjects, offer an English version of the AI explanations the student can switch to. Needs an app update (language toggle) and a contract/schema field for the second language; until then explanations are Afrikaans only. Applies equally to English FAL's counterpart concerns and other FAL subjects.
 8. **Workflow doc** — `upload-afrikaans-fal.md` drafted; correct it after the pilot lesson.
+
+## Ledger — Nov 2025 (2026-10-17)
+
+| Paper | Lessons | Questions | Notes |
+|---|---|---|---|
+| `nov_p1` | 7 (Q1 Teks A, Q1 Teks B, Q2, Q3, Q4, Q5.1, Q5.2) | 32 (5/4/4/4/5/5/5) | `aiExplanation` one entry per real printed number (24+6+10+10+10+14+6 = 80 marks); 2.4.1 gate applied on dev; 15 typed answers (incl. every `\|` alternative, `kliënte`, `20`) pass on the Text keyboard on the 2.4.1-dev01 emulator; all 32 questions rendered |
+
+- Scripts `scripts/add-afrikaans-fal-2025-nov-p1-q1..7.js`; generator and review runner in `scripts/_gen/afrikaans-fal/` (hard-coded scratchpad/AMPM paths — adapt before reuse). Curriculum seed `tools/seeds/afrikaans-fal-curriculum.json` (6 units, 24 topics, 32 subtopics, 32 skills on dev).
+- **Review gotcha:** AMPM's `review-capture-answers-text.js` taps keys on whichever screen is showing and never presses `text_key_switch`, so digits, hyphens and accents report `MISSING_KEY`. `answers-afr.js` switches screens (letters ↔ 123) per character; the accent keys' tags are `text_key_Ê` … (upper-case label). Poll for `question_feedback_*` (~1 s).
+- **Validator rules hit on first run:** `exam_weight` must be 1–3; the correct MC option may not be clearly the longest (DESIGN-UNI-16) — Afrikaans distractors must be padded to similar length. Question names are `Vraag N`.
+- **Coverage gaps by design (3–5 questions per lesson, 2026-10-14 rule):** Q5.1 has 14 one-skill items but only 5 practice questions; untested skills include voltooide verlede tyd/voegwoorde (5.1.14), voorsetsels (5.1.9), lettergrepe (5.1.12), afkortings (5.1.13), samestelling (5.1.7), `vat/neem` (5.2.2). A further lesson `Vraag 5.1 (deel 2)` could cover them if wanted.
+- Prod: nothing pushed. The prod `afrikaans_fal` row still needs `setwork` and 2.4.1 (owner).

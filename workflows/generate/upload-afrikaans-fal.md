@@ -9,7 +9,7 @@
 > Do NOT enter plan mode. Run once per lesson (one exam question or sub-section; for Paper 2 one extract of a pair, one story or one poem).
 > Commit after Phase 4. **Dev only.** Every Afrikaans FAL exam derives 2.4.1 and the subject row is gated at 2.4.1 (`VER-10`); never push to
 > prod until backend V83/V84 are on prod, the prod `subjects` row exists with `accents_af` + `setwork`, and the owner agrees (`SETWORK-GATE-01`).
-> **Nothing has been authored yet — the first lesson is a pilot:** after it, correct this doc.
+> **P1 Nov 2025 is the pilot (authored 2026-10-17); the lessons it taught are in § Lessons from the P1 pilot.**
 
 ## Phase -1 — Preconditions (once per session)
 
@@ -87,6 +87,14 @@ Runners use test tags: letters `text_key_<UPPER>`, space `text_key_space`, scree
 `text_key_Ê` `Ë` `É` `È` `Ô` `Ö` `Û` `Ü` `Î` `Ï` `Ä` and `text_key_ŉ` (second screen only). Poll for `question_feedback_*` (~1 s). Rebuild the answer manifest from the DB
 before each run. Confirm at least one accented answer (`leë`, `môre`) types and passes — that proves `accents_af` reached the build; if the accent row is missing,
 the build's subjects list is stale or the capability is absent.
+
+## Lessons from the P1 pilot (2026-10-17)
+
+- Generator pattern: `scripts/_gen/afrikaans-fal/gen_afr_2025_p1.py` + `afr_common.py` emit one script per lesson and extend the seed file; reuse for P2/P3.
+- Question names are `Vraag N`; validator limits: `exam_weight` 1–3, correct MC option not clearly longest (pad distractors).
+- Use the page-geometry approach (fitz word positions) to choose crops; instruction blocks span several lines — cut after the last instruction (Q2), not at the first.
+- Review runner: use `scripts/_gen/afrikaans-fal/answers-afr.js` (switches keyboard screens) instead of AMPM's text runner for digits/accents. The accent row reached the emulator without any extra step once the subject row had `accents_af`.
+- Gate (`apply-exam-gate.js`) applied after review.
 
 ## Notes
 
