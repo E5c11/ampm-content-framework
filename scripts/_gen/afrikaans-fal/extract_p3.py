@@ -7,8 +7,8 @@ P = f"{ROOT}/files/afrikaans_fal/Afrikaans FAL P3 Nov 2025.pdf"
 M = f"{ROOT}/files/afrikaans_fal/Afrikaans FAL P3 Nov 2025 MG.pdf"
 OUT = f"{ROOT}/temp/images/afr-p3"
 L = {
- 1: ("3:start=83:end=386", "5,6:end=640,19,20"),
- 2: ("3:start=386,4:end=732", "6:start=640,7:end=713,19,20"),
+ 1: ("3:start=83:end=318", "5,6:end=640,19,20"),
+ 2: ("3:start=318,4:end=732", "6:start=640,7:end=713,19,20"),
  3: ("5:start=83:end=278", "8:start=83,9,21"),
  4: ("5:start=83:end=182,5:start=278:end=543", "10:start=83,11,21"),
  5: ("5:start=83:end=182,5:start=543:end=626", "12:start=255,13,21"),
@@ -23,4 +23,9 @@ for o in ([int(x) for x in sys.argv[1:]] or sorted(L)):
     subprocess.run(["rm", "-rf", d])
     r = subprocess.run(["python3", f"{ROOT}/tools/extract-exam-pages.py", "--pdf", P, "--memo-pdf", M, "--order", str(o),
                         "--question-pages", q, "--memo-pages", m, "--out", d + "/"], capture_output=True, text=True)
+    if r.returncode == 0 and o in (1, 2):  # immutable image keys: re-cut lessons get v2_ file names
+        for f in sorted(os.listdir(d)):
+            for kind in ("question_", "memo_"):
+                if f.startswith(kind):
+                    os.rename(f"{d}/{f}", f"{d}/{kind}v2_{f[len(kind):]}")
     print("ok" if r.returncode == 0 else "FAIL " + r.stderr[-200:], o, sorted(os.listdir(d)) if r.returncode == 0 else "")

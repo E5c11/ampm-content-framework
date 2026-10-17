@@ -13,7 +13,10 @@ LS = []
 
 
 def lesson(order, name, header, marks, qn, mn, qs, ai, tags, ai_choice=False):
-    LS.append(dict(order=order, name=name, header=header, marks=marks, q=qn, m=mn, supp=None, tags=tags, questions=qs, ai=ai, ai_choice=ai_choice))
+    d = dict(order=order, name=name, header=header, marks=marks, q=qn, m=mn, supp=None, tags=tags, questions=qs, ai=ai, ai_choice=ai_choice)
+    if order in (1, 2):  # re-cut 2026-10-17 (instruction block moved to 1.6-1.8); new file names because image keys are immutable
+        d["sfx"] = "v2_"
+    LS.append(d)
 
 
 ESSAY_TAGS = ["essay_writing_skills", "essay_structure", "narrative_writing"]

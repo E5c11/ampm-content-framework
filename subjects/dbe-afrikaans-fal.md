@@ -210,3 +210,5 @@ marks (`AIEXP-08`) — for P1 Q1 that is 22 entries for Teks A + B, and for Q5 t
 - **Review (emulator 2.4.1-dev01):** all 45 questions rendered (no annexure tab by design); **12/12 typed attempts pass** (`250`, `30`, `80`, `leestekens`, `uwe`, `verlede|verlede tyd`, `groet`, `datum|dag`, `bevelsin|bevelsinne`).
 - Generator `scripts/_gen/afrikaans-fal/gen_afr_2025_p3.py`, crop plan `extract_p3.py`.
 - Overall Nov 2025 on dev: **40 lessons / 194 questions** (P1 9/41, P2 22/108, P3 9/45).
+
+- **P3 crop fix (2026-10-17):** the first cut of `Vraag 1: Opstel (1.1–1.5)` included the "Kies EEN van die volgende prente…" instruction that belongs to 1.6–1.8, so 1.6–1.8 showed pictures with no instructions. The instruction block starts at y=321 on page 3; lessons 1–2 were re-cut at y=318 and re-uploaded as `…_v2_…` files (immutable image keys). Check each lesson's image at a section boundary, not just the lesson's own content.
