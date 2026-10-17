@@ -216,7 +216,7 @@ Added 2026-10-14 (owner decision). The app gates the next exam question behind f
 short, finishable unit — not a chapter. **A lesson has 3–4 practice questions. Five is allowed only when a concept would otherwise go
 uncovered; more than five is never allowed.** If a real exam question needs more practice than that, the answer is *more lessons*,
 not a bigger set: split along the exam's own subsections and themes (`DESIGN-UNI-10`, Geography's one-lesson-per-subsection is the
-model), and let each lesson carry only its slice of the real sub-questions in its AI explanation (`AIEXP-08`, numbering stays the real exam's).
+model), and let each lesson carry only its slice of the real sub-questions in its AI explanation (`AIEXP-08`, numbering stays the real exam's). **`DESIGN-UNI-17` makes the split mandatory whenever the question's skills do not all fit.**
 
 - **No new exceptions.** There is no allowlist and no per-subject carve-out for new papers. Every new paper follows this rule.
 - **The one pre-existing exception is the language caps (`LANG-CAP-01`, up to 7)**, kept only because it predates this rule; the
@@ -268,6 +268,28 @@ every `multi_select`. Both are authoring defects, not style.
 **Review check.** `node tools/audit-answer-cues.js --subject <id> [--year YYYY] [--paper nov_p1]` reads dev and reports the longest-correct rate, every
 multiple_choice with a clear length margin, every multi_select with long correct options, and every ordering with labelled items. A review
 (`workflows/generate/review-paper.md` Phase 3) must run it and treat any finding as a defect to fix, not a flag.
+
+### `DESIGN-UNI-17` — Cover every skill the real question tests: split the lesson, never drop skills
+
+`enforced_by: human-review` (Phase 1 skill inventory; `workflows/generate/review-paper.md` Phase 3 checks it)
+
+Added 2026-10-17 (owner decision, from Afrikaans FAL P1 Q5.1: 14 one-skill language items fitted into one 5-question lesson left nine skills unpractised).
+
+1. **Inventory first.** In the Phase 1 analysis list the distinct skills of the real exam question — one per sub-question, merging only sub-questions
+   that test the *same* skill. This inventory, not the practice-question count, decides how many lessons the question gets.
+2. **Every skill is practised.** Each skill in the inventory must be covered by at least one practice question *in the lesson set of that exam question*.
+   A skill practised in a different exam question's lesson does not count — a student working this question expects its skills here.
+3. **If the inventory does not fit, split — never shorten.** When the skills cannot be covered within `DESIGN-UNI-14`'s 5 questions, split the lesson
+   along the exam's own sub-question ranges (e.g. 5.1.1–5.1.5, 5.1.6–5.1.10, 5.1.11–5.1.14) until each lesson covers its slice fully. Do not drop skills to
+   stay under the cap, and do not raise the cap.
+4. **How a split lesson looks.** The name carries the real range (`"Vraag 5.1: Artikel (5.1.6–5.1.10)"`); the lesson's images are the slice of the question
+   and memo pages for that range (the shared text/annexure is repeated on each lesson); `aiExplanation` has only that slice's entries with their real marks and
+   printed numbers (`AIEXP-08`), and `exam_question_marks` is the slice's total; `order` is renumbered to keep the paper's sequence.
+5. **Out-of-scope skills are recorded, not silently missing.** A skill that cannot be practised (visual-dependent — `LANG-EX-03`; needs a key the keyboard lacks —
+   `DESIGN-UNI-12`) is listed as skipped in the analysis/ledger with the reason; it does not count as covered.
+6. **Re-splitting an uploaded lesson.** Lesson ids derive from `order`, so a re-split reuses ids: soft-delete the old questions, supplementary rows and AI sub-questions
+   and delete the old `question_skills` and `lesson_tags` rows of the affected lessons *before* uploading the new scripts, or stale children survive. Live (prod) lessons need
+   the migration plan described under `DESIGN-UNI-14`.
 
 ### `DESIGN-UNI-12` — Typed-answer values must match what the keyboard can actually type
 

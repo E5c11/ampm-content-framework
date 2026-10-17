@@ -96,7 +96,7 @@ sentence-level items and all open "motiveer / verduidelik" items are `multiple_c
 | Afdeling C Q5 Artikel en prent — Teks F, G | 20 | 5.1.1–5.1.14 (article, one skill per item), 5.2.1–5.2.6 (picture) | **14 of 20 are one-word or one-form grammar items (the other 6 are sentence rewrites)** — the richest typed-answer material in any language profile |
 
 Lessons (proposal, applying the 2026-10-14 "3–4 questions per lesson, split along the exam's subsections" rule): Q1 Teks A, Q1 Teks B,
-Q2, Q3, Q4, **Q5.1 and Q5.2 as separate lessons** → **7 lessons per year**. Name in Afrikaans as the paper prints it (`LANG-WR-01`): `"Vraag 3: Advertensie"`,
+Q2, Q3, Q4, **Q5.1 (split in three) and Q5.2** → **7 lessons per year as first proposed; Q5.1 is now three lessons (5.1.1–5.1.5, 5.1.6–5.1.10, 5.1.11–5.1.14) under `DESIGN-UNI-17` → 9 lessons per year.** Name in Afrikaans as the paper prints it (`LANG-WR-01`): `"Vraag 3: Advertensie"`,
 `"Vraag 5.1: Artikel"`. Labels `"Teks A"` … `"Teks G"` (`LANG-IMG-01`). Skills tested in Q5 and the exam's phrasing (e.g. *Verdeel … in LETTERGREPE*,
 *HOMONIEM*, *INTENSIEWE VORM*) must stay within what the exam section tests (`LANG-EX-02`).
 
@@ -177,10 +177,10 @@ marks (`AIEXP-08`) — for P1 Q1 that is 22 entries for Teks A + B, and for Q5 t
 
 | Paper | Lessons | Questions | Notes |
 |---|---|---|---|
-| `nov_p1` | 7 (Q1 Teks A, Q1 Teks B, Q2, Q3, Q4, Q5.1, Q5.2) | 32 (5/4/4/4/5/5/5) | `aiExplanation` one entry per real printed number (24+6+10+10+10+14+6 = 80 marks); 2.4.1 gate applied on dev; 15 typed answers (incl. every `\|` alternative, `kliënte`, `20`) pass on the Text keyboard on the 2.4.1-dev01 emulator; all 32 questions rendered |
+| `nov_p1` | 9 (Q1 Teks A, Q1 Teks B, Q2, Q3, Q4, Q5.1 ×3 by item range, Q5.2) | 41 (5/4/4/4/5/5/5/4/5) | `aiExplanation` one entry per real printed number (24+6+10+10+10+5+5+4+6 = 80 marks); 2.4.1 gate on dev; all 17 typed answers pass on the Text keyboard on the 2.4.1-dev01 emulator (incl. every `\|` alternative, `kliënte`, `20`, `va-kan-sie`) |
 
 - Scripts `scripts/add-afrikaans-fal-2025-nov-p1-q1..7.js`; generator and review runner in `scripts/_gen/afrikaans-fal/` (hard-coded scratchpad/AMPM paths — adapt before reuse). Curriculum seed `tools/seeds/afrikaans-fal-curriculum.json` (6 units, 24 topics, 32 subtopics, 32 skills on dev).
 - **Review gotcha:** AMPM's `review-capture-answers-text.js` taps keys on whichever screen is showing and never presses `text_key_switch`, so digits, hyphens and accents report `MISSING_KEY`. `answers-afr.js` switches screens (letters ↔ 123) per character; the accent keys' tags are `text_key_Ê` … (upper-case label). Poll for `question_feedback_*` (~1 s).
 - **Validator rules hit on first run:** `exam_weight` must be 1–3; the correct MC option may not be clearly the longest (DESIGN-UNI-16) — Afrikaans distractors must be padded to similar length. Question names are `Vraag N`.
-- **Coverage gaps by design (3–5 questions per lesson, 2026-10-14 rule):** Q5.1 has 14 one-skill items but only 5 practice questions; untested skills include voltooide verlede tyd/voegwoorde (5.1.14), voorsetsels (5.1.9), lettergrepe (5.1.12), afkortings (5.1.13), samestelling (5.1.7), `vat/neem` (5.2.2). A further lesson `Vraag 5.1 (deel 2)` could cover them if wanted.
+- **Q5.1 split (2026-10-17, `DESIGN-UNI-17`):** the first upload put all 14 one-skill items in one 5-question lesson and left nine skills unpractised; it was split into three lessons (orders 6–8, Q5.2 moved to order 9), every one of the 14 skills now has a practice question. The old lessons 6 and 7 were cleaned on dev (child rows soft-deleted / join rows removed) before the re-upload.
 - Prod: nothing pushed. The prod `afrikaans_fal` row still needs `setwork` and 2.4.1 (owner).

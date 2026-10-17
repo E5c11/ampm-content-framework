@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 /**
- * DBE Afrikaans FAL P1 — November 2025 — Vraag 5.2: Prent — Teks G
+ * DBE Afrikaans FAL P1 — November 2025 — Vraag 5.1.6–5.1.10: Artikel — Teks F
  * Practice questions are fresh (DESIGN-UNI-01), written in Afrikaans, same theme/skill as the exam item (LANG-EX-01/02).
  * aiExplanation is one entry per REAL printed sub-question with its real marks, derived from the memo in own words (AIEXP-08).
  * Every fitb declares keyboard_type 'text' (LANG-KB-01). Typed answers avoid á í ó ú à â (not on the keyboard); required
  * diacritics (ê ë é è ô ö û ü î ï ä) are fine and significant (LANG-KB-02).
  *
  * BASIS per practice question — P1 language-paper skill / theme, C CAPS:
- *   Q1: P1: homonym (mirror 5.2.1)
- *   Q2: P1: diminutive (mirror 5.2.3)
- *   Q3: P1: intensive form (mirror 5.2.4)
- *   Q4: P1: correct Afrikaans (mirror 5.2.5)
- *   Q5: P1: negation (mirror 5.2.6)
+ *   Q1: P1: plural (mirror 5.1.6)
+ *   Q2: P1: compound with linking sound (mirror 5.1.7)
+ *   Q3: P1: word order (mirror 5.1.8)
+ *   Q4: P1: preposition (mirror 5.1.9)
+ *   Q5: P1: inflected form (mirror 5.1.10)
  *
  *   node tools/validate-questions.js --script scripts/add-afrikaans-fal-2025-nov-p1-q7.js --curriculum temp/curriculum-vocab-afrikaans-fal.json
  *   node scripts/add-afrikaans-fal-2025-nov-p1-q7.js --dry-run
@@ -32,7 +32,7 @@ const ENV = process.argv.includes('--env')
 // ─── Lesson document ─────────────────────────────────────────────────────────
 
 const video = {
-  "name": "Vraag 5.2: Prent",
+  "name": "Vraag 5.1: Artikel (5.1.6–5.1.10)",
   "syllabus": "dbe",
   "subject": "afrikaans_fal",
   "year": 2025,
@@ -43,23 +43,24 @@ const video = {
   "xp": 50,
   "tags": [
     "grammar",
-    "homophones",
-    "language"
+    "editing",
+    "sentence_construction"
   ],
   "question_image_urls": [
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q7/question_1.png",
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q7/question_2.png"
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q7/question_v2_1.png",
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q7/question_v2_2.png"
   ],
   "memo_image_urls": [
-    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q7/memo_1.png"
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q7/memo_v2_1.png",
+    "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q7/memo_v2_2.png"
   ],
-  "exam_question_marks": 6,
+  "exam_question_marks": 5,
   "supplementary_materials": [
     {
       "type": "annexure",
-      "label": "Teks G",
+      "label": "Teks F",
       "image_urls": [
-        "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q7/annexure_teks_g_1.png"
+        "https://media-dev.askmoreprepmore.app/exam_papers/dbe/afrikaans_fal/2025/nov_p1/q7/annexure_teks_f_v2_1.png"
       ]
     }
   ]
@@ -76,50 +77,14 @@ const questions = [
     "paper": "nov_p1",
     "name": "Vraag 1",
     "order": 1,
-    "context_text": null,
-    "question": "In watter sin het \"blad\" 'n ANDER betekenis as in: Die blad het van die boom geval?",
-    "metadata": [
-      "Die groen blad het in die wind gewaai.",
-      "Skryf op 'n skoon blad papier.",
-      "Die blad van die plant is groen.",
-      "Die kind het 'n blad aan die tak gesien.",
-      ""
-    ],
-    "answer": [
-      "Skryf op 'n skoon blad papier.",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "presentation": "multiple_choice",
-    "type": "application",
-    "unit": "woordeskat",
-    "topic": "betekenisleer",
-    "subtopic": "homonieme",
-    "skills": [
-      "afrikaans_fal_gebruik_homoniem_in_sin"
-    ],
-    "difficulty": 2,
-    "exam_weight": 1,
-    "clues": "- Een betekenis is die deel van 'n plant.\n- Soek die sin waar \"blad\" iets anders is."
-  },
-  {
-    "xp": 10,
-    "syllabus": "dbe",
-    "subject": "afrikaans_fal",
-    "year": 2025,
-    "paper": "nov_p1",
-    "name": "Vraag 2",
-    "order": 2,
-    "context_text": "Daar is 'n (hond) langs die pad.",
-    "question": "Gee die VERKLEINWOORD van die woord tussen hakies.",
+    "context_text": "Die winkel het gister baie (kliënt) gehad.",
+    "question": "Gee die MEERVOUD van die woord tussen hakies.",
     "metadata": [
       "Woord:",
       "[ ]"
     ],
     "answer": [
-      "hondjie",
+      "kliënte",
       "",
       "",
       "",
@@ -129,13 +94,47 @@ const questions = [
     "type": "definition",
     "unit": "sinstrukture",
     "topic": "selfstandige_naamwoorde",
-    "subtopic": "verkleinwoord",
+    "subtopic": "meervoud",
     "skills": [
-      "afrikaans_fal_vorm_verkleinwoord"
+      "afrikaans_fal_vorm_meervoud"
     ],
     "difficulty": 2,
     "exam_weight": 1,
-    "clues": "- Die verkleinwoord kry die agtervoegsel -jie.\n- Let op die lettergroep voor die agtervoegsel.",
+    "clues": "- Die meervoud kry 'n -e-einde.\n- Onthou die tekens op die e wat die uitspraak aandui.",
+    "keyboard_type": "text"
+  },
+  {
+    "xp": 10,
+    "syllabus": "dbe",
+    "subject": "afrikaans_fal",
+    "year": 2025,
+    "paper": "nov_p1",
+    "name": "Vraag 2",
+    "order": 2,
+    "context_text": "Ons vier Pa se (verjaar + dag) met 'n braai.",
+    "question": "Gee die korrekte SAMESTELLING van die woorde tussen hakies.",
+    "metadata": [
+      "Woord:",
+      "[ ]"
+    ],
+    "answer": [
+      "verjaarsdag",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "presentation": "fitb",
+    "type": "definition",
+    "unit": "woordeskat",
+    "topic": "woordvorming",
+    "subtopic": "samestelling_met_verbindingsklank",
+    "skills": [
+      "afrikaans_fal_vorm_samestelling"
+    ],
+    "difficulty": 3,
+    "exam_weight": 1,
+    "clues": "- Plak die twee woorde aanmekaar tot een woord.\n- Dink aan die verbindingsklank wat tussen die twee dele hoort.",
     "keyboard_type": "text"
   },
   {
@@ -146,31 +145,33 @@ const questions = [
     "paper": "nov_p1",
     "name": "Vraag 3",
     "order": 3,
-    "context_text": "Die water in die dam is (koud).",
-    "question": "Gee die INTENSIEWE VORM van die woord tussen hakies.",
+    "context_text": "Hulle het gistermiddag stil in die biblioteek gewerk.",
+    "question": "Rangskik die dele in die korrekte WOORDORDE (tyd, wyse, plek) om die sin te voltooi: Hulle het ... gewerk.",
     "metadata": [
-      "Woord:",
-      "[ ]"
-    ],
-    "answer": [
-      "yskoud|bitterkoud|vrieskoud",
-      "",
-      "",
+      "stil",
+      "in die biblioteek",
+      "gistermiddag",
       "",
       ""
     ],
-    "presentation": "fitb",
-    "type": "definition",
-    "unit": "sinstrukture",
-    "topic": "byvoeglike_naamwoorde",
-    "subtopic": "intensiewe_vorm",
-    "skills": [
-      "afrikaans_fal_vorm_intensiewe_vorm"
+    "answer": [
+      "gistermiddag",
+      "stil",
+      "in die biblioteek",
+      "",
+      ""
     ],
-    "difficulty": 2,
+    "presentation": "ordering",
+    "type": "application",
+    "unit": "sinstrukture",
+    "topic": "woordorde",
+    "subtopic": "tyd_wyse_plek",
+    "skills": [
+      "afrikaans_fal_rangskik_bepalings_in_woordorde"
+    ],
+    "difficulty": 3,
     "exam_weight": 1,
-    "clues": "- 'n Intensiewe vorm is een woord wat die betekenis versterk.\n- Plak 'n versterkende woord voor die byvoeglike naamwoord.",
-    "keyboard_type": "text"
+    "clues": "- Onthou die volgorde: eers WANNEER, dan HOE, dan WAAR.\n- Die werkwoord \"gewerk\" kom heel laaste."
   },
   {
     "xp": 10,
@@ -180,14 +181,14 @@ const questions = [
     "paper": "nov_p1",
     "name": "Vraag 4",
     "order": 4,
-    "context_text": "Die kinders eet graag (cookies).",
-    "question": "Gee die KORREKTE AFRIKAANS vir die woord tussen hakies.",
+    "context_text": "Sy is baie bang (...) die donker.",
+    "question": "Vul die ontbrekende VOORSETSEL in.",
     "metadata": [
       "Woord:",
       "[ ]"
     ],
     "answer": [
-      "koekies",
+      "vir",
       "",
       "",
       "",
@@ -195,15 +196,15 @@ const questions = [
     ],
     "presentation": "fitb",
     "type": "definition",
-    "unit": "woordeskat",
-    "topic": "betekenisleer",
-    "subtopic": "regte_afrikaanse_woord",
+    "unit": "sinstrukture",
+    "topic": "woordorde",
+    "subtopic": "voorsetsel_in_vaste_verbinding",
     "skills": [
-      "afrikaans_fal_gee_korrekte_afrikaans"
+      "afrikaans_fal_vul_voorsetsel_in"
     ],
     "difficulty": 2,
     "exam_weight": 1,
-    "clues": "- Skryf die Afrikaanse woord, nie die Engelse een nie.\n- Dink aan wat jy by 'n teepartytjie eet.",
+    "clues": "- Dink aan die voorsetsel wat gewoonlik na \"bang\" kom.\n- Skryf een woord.",
     "keyboard_type": "text"
   },
   {
@@ -215,32 +216,32 @@ const questions = [
     "name": "Vraag 5",
     "order": 5,
     "context_text": null,
-    "question": "Kies TWEE korrekte ONTKENNINGS van die sin: Almal hou van sjokolade.",
+    "question": "Watter sin gebruik die KORREKTE VORM van die woord \"moeilik\"?",
     "metadata": [
-      "Niemand hou van sjokolade nie.",
-      "Almal hou van sjokolade nie.",
-      "Nie almal hou van sjokolade nie.",
-      "Niemand hou van sjokolade.",
+      "Dit is 'n moeilik vraag.",
+      "Dit is 'n moeilike vraag.",
+      "Dit is 'n moeilikke vraag.",
+      "Dit is 'n moeilikes vraag.",
       ""
     ],
     "answer": [
-      "Niemand hou van sjokolade nie.",
-      "Nie almal hou van sjokolade nie.",
+      "Dit is 'n moeilike vraag.",
+      "",
       "",
       "",
       ""
     ],
-    "presentation": "multi_select",
+    "presentation": "multiple_choice",
     "type": "application",
     "unit": "sinstrukture",
-    "topic": "ontkenning",
-    "subtopic": "dubbele_ontkenning",
+    "topic": "byvoeglike_naamwoorde",
+    "subtopic": "verboe_vorm",
     "skills": [
-      "afrikaans_fal_kies_korrekte_ontkenning"
+      "afrikaans_fal_kies_korrekte_verboe_vorm"
     ],
-    "difficulty": 3,
+    "difficulty": 2,
     "exam_weight": 1,
-    "clues": "- Afrikaans gebruik gewoonlik twee \"nie\"s in 'n ontkenning.\n- Maak seker dat elke sin 'n ontkenning én 'n slot-\"nie\" het."
+    "clues": "- 'n Byvoeglike naamwoord voor 'n selfstandige naamwoord kry gewoonlik 'n -e.\n- Let op hoeveel letters bygevoeg word."
   }
 ];
 
@@ -249,46 +250,39 @@ const questions = [
 const aiExplanation = {
   "sub_questions": [
     {
-      "number": "5.2.1",
+      "number": "5.1.6",
       "marks": 1,
-      "clues": "- \"Vlieg\" kan 'n insek of 'n werkwoord wees.",
-      "approach": "- Dink aan 'n ander betekenis van die woord\n- Skryf 'n sin wat die betekenis duidelik maak",
-      "solution": "1. Daar sit 'n vlieg op die tafel.\n2. Of: Hy vlieg by die deur uit (enige sin met 'n ander betekenis)."
+      "clues": "- Hoe maak jy meer as een skenking?",
+      "approach": "- Voeg die meervoudsuitgang by",
+      "solution": "1. skenkings."
     },
     {
-      "number": "5.2.2",
+      "number": "5.1.7",
       "marks": 1,
-      "clues": "- Wat doen mens met 'n foto: vat of neem?",
-      "approach": "- Dink aan die korrekte werkwoord by \"foto\"\n- Kies een",
-      "solution": "1. neem."
+      "clues": "- Voeg die twee woorde saam en let op die verbindingsklank.",
+      "approach": "- Plak aflewering en wa saam\n- Voeg die verbindingsklank by",
+      "solution": "1. afleweringswa."
     },
     {
-      "number": "5.2.3",
+      "number": "5.1.8",
       "marks": 1,
-      "clues": "- Voeg 'n agtervoegsel by wat \"klein\" aandui.",
-      "approach": "- Vorm die verkleinwoord\n- Let op die spelling",
-      "solution": "1. blommetjie."
+      "clues": "- Onthou: tyd, wyse, plek.",
+      "approach": "- Rangskik die bepalings\n- Skryf die hele sin",
+      "solution": "1. Luhan het die kos vroeg die oggend vinnig op die perseel afgelaai."
     },
     {
-      "number": "5.2.4",
+      "number": "5.1.9",
       "marks": 1,
-      "clues": "- Plak 'n versterkende deel voor \"nat\".",
-      "approach": "- Dink aan wat nog natter as nat is\n- Skryf een woord",
-      "solution": "1. papnat, sopnat, waternat, druipnat of deurnat (enige een)."
+      "clues": "- Wat sê mens met \"trots\"?",
+      "approach": "- Dink aan die vaste verbinding\n- Skryf een woord",
+      "solution": "1. op."
     },
     {
-      "number": "5.2.5",
+      "number": "5.1.10",
       "marks": 1,
-      "clues": "- Dink aan die Afrikaanse woord vir 'n boodskap.",
-      "approach": "- Vervang die Engelse woord met Afrikaans",
-      "solution": "1. boodskap."
-    },
-    {
-      "number": "5.2.6",
-      "marks": 1,
-      "clues": "- Gebruik \"nie ... nie\" of \"niemand\".",
-      "approach": "- Maak die sin ontkennend\n- Maak seker die slot-\"nie\" is daar",
-      "solution": "1. Niemand is bang vir die haai nie.\n2. Of: Nie almal is bang vir die haai nie."
+      "clues": "- Die woord staan voor \"maand\" en moet verbuig word.",
+      "approach": "- Voeg die buigings-e by",
+      "solution": "1. moeilike."
     }
   ],
   "model": "claude-sonnet-5-5",

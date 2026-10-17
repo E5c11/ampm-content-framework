@@ -162,12 +162,22 @@
             {
               "slug": "regte_afrikaanse_woord",
               "name": "Regte afrikaanse woord"
+            },
+            {
+              "slug": "een_woord_vir_omskrywing",
+              "name": "Een woord vir omskrywing"
             }
           ]
         },
         {
           "slug": "woordvorming",
-          "name": "Woordvorming"
+          "name": "Woordvorming",
+          "subtopics": [
+            {
+              "slug": "samestelling_met_verbindingsklank",
+              "name": "Samestelling met verbindingsklank"
+            }
+          ]
         },
         {
           "slug": "klankleer_en_spelling",
@@ -180,6 +190,14 @@
             {
               "slug": "skryf_getal_in_woorde",
               "name": "Skryf getal in woorde"
+            },
+            {
+              "slug": "lettergrepe",
+              "name": "Lettergrepe"
+            },
+            {
+              "slug": "afkortings",
+              "name": "Afkortings"
             }
           ]
         }
@@ -204,6 +222,10 @@
             {
               "slug": "verkleinwoord",
               "name": "Verkleinwoord"
+            },
+            {
+              "slug": "besitlike_voornaamwoord",
+              "name": "Besitlike voornaamwoord"
             }
           ]
         },
@@ -218,6 +240,10 @@
             {
               "slug": "intensiewe_vorm",
               "name": "Intensiewe vorm"
+            },
+            {
+              "slug": "verboe_vorm",
+              "name": "Verboe vorm"
             }
           ]
         },
@@ -228,6 +254,10 @@
             {
               "slug": "infinitief",
               "name": "Infinitief"
+            },
+            {
+              "slug": "verlede_tyd",
+              "name": "Verlede tyd"
             }
           ]
         },
@@ -268,6 +298,14 @@
             {
               "slug": "tyd_wyse_plek",
               "name": "Tyd wyse plek"
+            },
+            {
+              "slug": "voorsetsel_in_vaste_verbinding",
+              "name": "Voorsetsel in vaste verbinding"
+            },
+            {
+              "slug": "voegwoordelike_bywoord",
+              "name": "Voegwoordelike bywoord"
             }
           ]
         }
@@ -432,6 +470,42 @@
     {
       "id": "afrikaans_fal_kies_korrekte_ontkenning",
       "name": "Kies korrekte ontkenning"
+    },
+    {
+      "id": "afrikaans_fal_gee_een_woord_vir_omskrywing",
+      "name": "Gee een woord vir omskrywing"
+    },
+    {
+      "id": "afrikaans_fal_kies_sin_in_verlede_tyd",
+      "name": "Kies sin in verlede tyd"
+    },
+    {
+      "id": "afrikaans_fal_kies_korrekte_voornaamwoord",
+      "name": "Kies korrekte voornaamwoord"
+    },
+    {
+      "id": "afrikaans_fal_vorm_samestelling",
+      "name": "Vorm samestelling"
+    },
+    {
+      "id": "afrikaans_fal_vul_voorsetsel_in",
+      "name": "Vul voorsetsel in"
+    },
+    {
+      "id": "afrikaans_fal_kies_korrekte_verboe_vorm",
+      "name": "Kies korrekte verboe vorm"
+    },
+    {
+      "id": "afrikaans_fal_verdeel_woord_in_lettergrepe",
+      "name": "Verdeel woord in lettergrepe"
+    },
+    {
+      "id": "afrikaans_fal_skryf_afkorting_voluit",
+      "name": "Skryf afkorting voluit"
+    },
+    {
+      "id": "afrikaans_fal_verbind_sinne_met_voegwoord",
+      "name": "Verbind sinne met voegwoord"
     }
   ]
 }

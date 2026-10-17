@@ -79,8 +79,8 @@ def emit(year, paper, lessons):
                      content_tier="free", has_video=False, xp=50, tags=les["tags"])
         if les.get("text_key"):
             video["text_key"] = les["text_key"]
-        video.update(dict(question_image_urls=[f"{base}/question_{i}.png" for i in range(1, les["q"] + 1)],
-                          memo_image_urls=[f"{base}/memo_{i}.png" for i in range(1, les["m"] + 1)],
+        video.update(dict(question_image_urls=[f"{base}/question_{les.get('sfx', '')}{i}.png" for i in range(1, les["q"] + 1)],
+                          memo_image_urls=[f"{base}/memo_{les.get('sfx', '')}{i}.png" for i in range(1, les["m"] + 1)],
                           exam_question_marks=les["marks"], supplementary_materials=supp))
         qs, basis = [], []
         for x, b in les["questions"]:

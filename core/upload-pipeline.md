@@ -31,7 +31,7 @@ mapping and row-identity rules: `core/persistence.md` + `tools/lib/content-rows.
 
 | Phase | What | Commit? |
 |-------|------|---------|
-| 1 | Analyse the exam question (subject-specific — see profile) | no |
+| 1 | Analyse the exam question (subject-specific — see profile). List the question's skill inventory; split the lesson if the skills do not all fit (`DESIGN-UNI-17`) | no |
 | 1.5 | Extract and upload exam images | no |
 | 2 | Design the lesson document (subject template) | no |
 | 3 | Design the practice questions | no |
@@ -84,8 +84,11 @@ directory, always (gitignored).
    print(rotated.size)
    "
    ```
-   The upload re-uploads to the same object key, so a rotation fix caught after upload
-   needs no DB change — just re-run the image upload.
+   Re-uploading to the same object key updates the bucket but **not what users or the
+   emulator see**: objects are served with `Cache-Control: public, max-age=31536000` behind a CDN edge cache, so an overwritten image keeps serving the old bytes
+   (found 2026-10-17: a re-split lesson showed another lesson's pages). Treat image keys as immutable — fix a bad crop by uploading under a **new file name**
+   (e.g. `question_v2_1.png`), updating the lesson's URLs and re-uploading the script, then delete the old objects. The same applies when reusing an
+   `order` for different content.
 
 4. **Upload to the media bucket — dev only** (**`PIPE-02`** `enforced_by: human-review`;
    `--project` defaults to dev, prod is a separate gated step). Uses Application Default

@@ -247,36 +247,8 @@ AI = [
 LS.append(dict(order=5, name="Vraag 4: Strokiesprent", header="Vraag 4: Strokiesprent — Teks E", marks=10, q=3, m=3,
                supp=[("Teks E", 1, "annexure_teks_e")], tags=["cartoons", "direct_and_indirect_speech", "grammar"], questions=q, ai=AI))
 
-# ═══════════ Vraag 5.1: Artikel (14 punte) ═══════════
-q = []
-m, a = fitb("Woord:", "skrywer")
-q.append(Q(1, "sinstrukture", "selfstandige_naamwoorde", "selfstandige_naamwoord_van_werkwoord", ["vorm_selfstandige_naamwoord"],
-           "Vorm 'n SELFSTANDIGE NAAMWOORD van die werkwoord tussen hakies.", m, a, "fitb", 2, 1,
-           "- Die persoon wat die werkwoord doen, kry 'n -er-einde.\n- Let op die spelling van die stam.", "Pieter is 'n gewilde (skryf) van kinderstories.",
-           "P1: noun from verb (mirror 5.1.1)"))
-m, a = fitb("Woord:", "kliënte")
-q.append(Q(2, "sinstrukture", "selfstandige_naamwoorde", "meervoud", ["vorm_meervoud"],
-           "Gee die MEERVOUD van die woord tussen hakies.", m, a, "fitb", 2, 1,
-           "- Die meervoud kry 'n -e-einde.\n- Onthou die tekens op die e wat die uitspraak aandui.", "Die winkel het gister baie (kliënt) gehad.",
-           "P1: plural (mirror 5.1.6)"))
-m, a = fitb("Woord:", "beste")
-q.append(Q(3, "sinstrukture", "byvoeglike_naamwoorde", "trappe_van_vergelyking", ["vorm_oortreffende_trap"],
-           "Gee die OORTREFFENDE TRAP van die woord tussen hakies.", m, a, "fitb", 2, 1,
-           "- Die woord \"goed\" volg 'n onreëlmatige patroon.\n- Skryf net die oortreffende trap.", "Dit is die (goed) kos wat ons nog ooit geproe het.",
-           "P1: superlative (mirror 5.1.4)"))
-o, a = mc("Die bakker het die brood gebak.",
-          ["Die brood het die bakker gebak.", "Die bakker is die brood gebak.", "Die bakker bak die brood."])
-q.append(Q(4, "sinstrukture", "aktief_en_passief", "lydende_na_bedrywende_vorm", ["skryf_in_bedrywende_vorm"],
-           "Watter sin is die BEDRYWENDE VORM van die gegewe sin?", o, a, "multiple_choice", 3, 1,
-           "- In die bedrywende vorm is die persoon wat iets doen die onderwerp.\n- Die tyd van die sin verander nie.", "Die brood is deur die bakker gebak.",
-           "P1: active form (mirror 5.1.11)"))
-items = ["gistermiddag", "stil", "in die biblioteek"]
-m, a = order5(items, [1, 2, 0])
-q.append(Q(5, "sinstrukture", "woordorde", "tyd_wyse_plek", ["rangskik_bepalings_in_woordorde"],
-           "Rangskik die dele in die korrekte WOORDORDE (tyd, wyse, plek) om die sin te voltooi: Hulle het ... gewerk.", m, a, "ordering", 3, 1,
-           "- Onthou die volgorde: eers WANNEER, dan HOE, dan WAAR.\n- Die werkwoord \"gewerk\" kom heel laaste.", "Hulle het gistermiddag stil in die biblioteek gewerk.",
-           "P1: word order (mirror 5.1.8)"))
-AI = [
+# ═══════════ Vraag 5.1: Artikel — gesplit in drie lesse (14 punte; DESIGN-UNI-14) ═══════════
+AI_ALL = [
  ("5.1.1", 1, ["Wie doen die werk van 'n inwoon?"], ["Dink aan die agtervoegsel -er", "Let op die spelling"], ["1. inwoner."]),
  ("5.1.2", 1, ["Een woord vir \"elke jaar\"."], ["Dink aan 'n bywoord van tyd", "Skryf een woord"], ["1. jaarliks."]),
  ("5.1.3", 1, ["Gebruik die verlede tyd met \"het\" en die voltooide deelwoord."], ["Verander die werkwoord", "Hou die woordorde korrek"], ["1. In 2024 het hy drie ton hondekos deur die Kersliggie-projek ontvang."]),
@@ -292,8 +264,98 @@ AI = [
  ("5.1.13", 1, ["Wat staan \"gr.\" voluit?"], ["Skryf die woord voluit"], ["1. graad."]),
  ("5.1.14", 1, ["\"Daarom\" is 'n voegwoord wat die woordorde verander."], ["Verbind die twee sinne", "Plaas die werkwoord reg ná \"daarom\""], ["1. ODIN ontvang geen staatshulp nie; daarom is hulle afhanklik van die publiek se hulp."]),
 ]
-LS.append(dict(order=6, name="Vraag 5.1: Artikel", header="Vraag 5.1: Artikel — Teks F", marks=14, q=3, m=1,
-               supp=[("Teks F", 1, "annexure_teks_f")], tags=["grammar", "editing", "sentence_construction"], questions=q, ai=AI))
+def ai_slice(a, b):
+    return [e for e in AI_ALL if a <= int(e[0].split(".")[-1]) <= b]
+
+# ── 5.1.1–5.1.5 ──
+q = []
+m, a = fitb("Woord:", "skrywer")
+q.append(Q(1, "sinstrukture", "selfstandige_naamwoorde", "selfstandige_naamwoord_van_werkwoord", ["vorm_selfstandige_naamwoord"],
+           "Vorm 'n SELFSTANDIGE NAAMWOORD van die werkwoord tussen hakies.", m, a, "fitb", 2, 1,
+           "- Die persoon wat die werkwoord doen, kry 'n -er-einde.\n- Let op die spelling van die stam.", "Pieter is 'n gewilde (skryf) van kinderstories.",
+           "P1: noun from verb (mirror 5.1.1)"))
+m, a = fitb("Woord:", "maandeliks")
+q.append(Q(2, "woordeskat", "betekenisleer", "een_woord_vir_omskrywing", ["gee_een_woord_vir_omskrywing"],
+           "Gee EEN WOORD vir die woorde tussen hakies.", m, a, "fitb", 2, 1,
+           "- Dink aan 'n bywoord van tyd wat uit een woord bestaan.\n- Dit eindig op -liks.", "Die biblioteek word (elke maand) skoongemaak.",
+           "P1: one word for a phrase (mirror 5.1.2)"))
+o, a = mc("Die leerders het die pryse by die skool ontvang.",
+          ["Die leerders ontvang die pryse by die skool gister.", "Die leerders sal die pryse by die skool ontvang.", "Die leerders het die pryse by die skool ontvang het."])
+q.append(Q(3, "sinstrukture", "werkwoorde", "verlede_tyd", ["kies_sin_in_verlede_tyd"],
+           "Watter sin is die korrekte VERLEDE TYD van: Die leerders ontvang die pryse by die skool?", o, a, "multiple_choice", 2, 1,
+           "- Die verlede tyd gebruik \"het\" voor die werkwoord.\n- Die werkwoord self kom aan die einde van die sin.", None,
+           "P1: past tense (mirror 5.1.3)"))
+m, a = fitb("Woord:", "beste")
+q.append(Q(4, "sinstrukture", "byvoeglike_naamwoorde", "trappe_van_vergelyking", ["vorm_oortreffende_trap"],
+           "Gee die OORTREFFENDE TRAP van die woord tussen hakies.", m, a, "fitb", 2, 1,
+           "- Die woord \"goed\" volg 'n onreëlmatige patroon.\n- Skryf net die oortreffende trap.", "Dit is die (goed) kos wat ons nog ooit geproe het.",
+           "P1: superlative (mirror 5.1.4)"))
+o, a = ms(["Thabo het sy fiets verloor.", "Annelie het haar tas by die huis gelos."],
+          ["Thabo het haar fiets verloor.", "Annelie het sy tas by die huis gelos."])
+q.append(Q(5, "sinstrukture", "selfstandige_naamwoorde", "besitlike_voornaamwoord", ["kies_korrekte_voornaamwoord"],
+           "Kies TWEE sinne waarin die VOORNAAMWOORD korrek gebruik is.", o, a, "multi_select", 2, 1,
+           "- Die voornaamwoord moet by die geslag van die persoon pas.\n- Twee sinne is korrek.", None,
+           "P1: pronoun (mirror 5.1.5)"))
+LS.append(dict(order=6, name="Vraag 5.1: Artikel (5.1.1–5.1.5)", header="Vraag 5.1.1–5.1.5: Artikel — Teks F", marks=5, q=3, m=1, sfx="v2_",
+               supp=[("Teks F", 1, "annexure_teks_f_v2")], tags=["grammar", "editing", "sentence_construction"], questions=q, ai=ai_slice(1, 5)))
+
+# ── 5.1.6–5.1.10 ──
+q = []
+m, a = fitb("Woord:", "kliënte")
+q.append(Q(1, "sinstrukture", "selfstandige_naamwoorde", "meervoud", ["vorm_meervoud"],
+           "Gee die MEERVOUD van die woord tussen hakies.", m, a, "fitb", 2, 1,
+           "- Die meervoud kry 'n -e-einde.\n- Onthou die tekens op die e wat die uitspraak aandui.", "Die winkel het gister baie (kliënt) gehad.",
+           "P1: plural (mirror 5.1.6)"))
+m, a = fitb("Woord:", "verjaarsdag")
+q.append(Q(2, "woordeskat", "woordvorming", "samestelling_met_verbindingsklank", ["vorm_samestelling"],
+           "Gee die korrekte SAMESTELLING van die woorde tussen hakies.", m, a, "fitb", 3, 1,
+           "- Plak die twee woorde aanmekaar tot een woord.\n- Dink aan die verbindingsklank wat tussen die twee dele hoort.", "Ons vier Pa se (verjaar + dag) met 'n braai.",
+           "P1: compound with linking sound (mirror 5.1.7)"))
+items = ["gistermiddag", "stil", "in die biblioteek"]
+m, a = order5(items, [1, 2, 0])
+q.append(Q(3, "sinstrukture", "woordorde", "tyd_wyse_plek", ["rangskik_bepalings_in_woordorde"],
+           "Rangskik die dele in die korrekte WOORDORDE (tyd, wyse, plek) om die sin te voltooi: Hulle het ... gewerk.", m, a, "ordering", 3, 1,
+           "- Onthou die volgorde: eers WANNEER, dan HOE, dan WAAR.\n- Die werkwoord \"gewerk\" kom heel laaste.", "Hulle het gistermiddag stil in die biblioteek gewerk.",
+           "P1: word order (mirror 5.1.8)"))
+m, a = fitb("Woord:", "vir")
+q.append(Q(4, "sinstrukture", "woordorde", "voorsetsel_in_vaste_verbinding", ["vul_voorsetsel_in"],
+           "Vul die ontbrekende VOORSETSEL in.", m, a, "fitb", 2, 1,
+           "- Dink aan die voorsetsel wat gewoonlik na \"bang\" kom.\n- Skryf een woord.", "Sy is baie bang (...) die donker.",
+           "P1: preposition (mirror 5.1.9)"))
+o, a = mc("Dit is 'n moeilike vraag.", ["Dit is 'n moeilik vraag.", "Dit is 'n moeilikke vraag.", "Dit is 'n moeilikes vraag."])
+q.append(Q(5, "sinstrukture", "byvoeglike_naamwoorde", "verboe_vorm", ["kies_korrekte_verboe_vorm"],
+           "Watter sin gebruik die KORREKTE VORM van die woord \"moeilik\"?", o, a, "multiple_choice", 2, 1,
+           "- 'n Byvoeglike naamwoord voor 'n selfstandige naamwoord kry gewoonlik 'n -e.\n- Let op hoeveel letters bygevoeg word.", None,
+           "P1: inflected form (mirror 5.1.10)"))
+LS.append(dict(order=7, name="Vraag 5.1: Artikel (5.1.6–5.1.10)", header="Vraag 5.1.6–5.1.10: Artikel — Teks F", marks=5, q=2, m=2, sfx="v2_",
+               supp=[("Teks F", 1, "annexure_teks_f_v2")], tags=["grammar", "editing", "sentence_construction"], questions=q, ai=ai_slice(6, 10)))
+
+# ── 5.1.11–5.1.14 ──
+q = []
+o, a = mc("Die bakker het die brood gebak.",
+          ["Die brood het die bakker gebak.", "Die bakker is die brood gebak.", "Die bakker bak die brood."])
+q.append(Q(1, "sinstrukture", "aktief_en_passief", "lydende_na_bedrywende_vorm", ["skryf_in_bedrywende_vorm"],
+           "Watter sin is die BEDRYWENDE VORM van die gegewe sin?", o, a, "multiple_choice", 3, 1,
+           "- In die bedrywende vorm is die persoon wat iets doen die onderwerp.\n- Die tyd van die sin verander nie.", "Die brood is deur die bakker gebak.",
+           "P1: active form (mirror 5.1.11)"))
+m, a = fitb("Woord:", "va-kan-sie")
+q.append(Q(2, "woordeskat", "klankleer_en_spelling", "lettergrepe", ["verdeel_woord_in_lettergrepe"],
+           "Verdeel die woord tussen hakies korrek in LETTERGREPE. Skei die lettergrepe met koppeltekens.", m, a, "fitb", 2, 1,
+           "- Klap die woord: elke klap is een lettergreep.\n- Skryf al die lettergrepe met 'n koppelteken tussen elk.", "Ons gaan in die (vakansie) see toe.",
+           "P1: syllables (mirror 5.1.12)"))
+m, a = match([("mev.", "mevrou"), ("dr.", "dokter"), ("mnr.", "meneer")])
+q.append(Q(3, "woordeskat", "klankleer_en_spelling", "afkortings", ["skryf_afkorting_voluit"],
+           "Pas elke AFKORTING by die woord wat dit voluit beteken.", m, a, "match", 1, 1,
+           "- Dink aan hoe jy iemand met sy of haar titel aanspreek.\n- Begin met die een wat jy die mees seker is van.", None,
+           "P1: abbreviation (mirror 5.1.13)"))
+o, a = mc("Dit het gereën; daarom het ons binne gebly.",
+          ["Dit het gereën; daarom ons het binne gebly.", "Dit het gereën daarom; het ons binne gebly.", "Dit het gereën; ons daarom het binne gebly."])
+q.append(Q(4, "sinstrukture", "woordorde", "voegwoordelike_bywoord", ["verbind_sinne_met_voegwoord"],
+           "Watter sin verbind \"Dit het gereën. Ons het binne gebly.\" korrek met die voegwoord \"daarom\"?", o, a, "multiple_choice", 3, 1,
+           "- Na \"daarom\" kom die werkwoord voor die onderwerp.\n- Die twee sinne word met 'n kommapunt of komma verbind.", None,
+           "P1: conjunction/word order (mirror 5.1.14)"))
+LS.append(dict(order=8, name="Vraag 5.1: Artikel (5.1.11–5.1.14)", header="Vraag 5.1.11–5.1.14: Artikel — Teks F", marks=4, q=2, m=2,
+               supp=[("Teks F", 1, "annexure_teks_f")], tags=["grammar", "editing", "sentence_construction"], questions=q, ai=ai_slice(11, 14)))
 
 # ═══════════ Vraag 5.2: Prent (6 punte) ═══════════
 q = []
@@ -331,7 +393,7 @@ AI = [
  ("5.2.6", 1, ["Gebruik \"nie ... nie\" of \"niemand\"."], ["Maak die sin ontkennend", "Maak seker die slot-\"nie\" is daar"],
   ["1. Niemand is bang vir die haai nie.", "2. Of: Nie almal is bang vir die haai nie."]),
 ]
-LS.append(dict(order=7, name="Vraag 5.2: Prent", header="Vraag 5.2: Prent — Teks G", marks=6, q=2, m=1,
+LS.append(dict(order=9, name="Vraag 5.2: Prent", header="Vraag 5.2: Prent — Teks G", marks=6, q=2, m=1,
                supp=[("Teks G", 1, "annexure_teks_g")], tags=["grammar", "homophones", "language"], questions=q, ai=AI))
 
 if __name__ == "__main__":

@@ -50,7 +50,7 @@ text/extract labels and pages, question pages, memo pages, YouTube ID (usually n
 ## Phases (deltas on the pipeline skeleton)
 
 1. **Analyse** — per paper:
-   - **P1** (proposed 7 lessons): Q1 Teks A, Q1 Teks B, Q2 Opsomming, Q3 Advertensie, Q4 Strokiesprent, **Q5.1 Artikel, Q5.2 Prent**. Mark each
+   - **P1** (9 lessons): Q1 Teks A, Q1 Teks B, Q2 Opsomming, Q3 Advertensie, Q4 Strokiesprent, **Q5.1 Artikel ×3 (5.1.1–5.1.5, 5.1.6–5.1.10, 5.1.11–5.1.14), Q5.2 Prent**; list the skill inventory and split per `DESIGN-UNI-17`. Mark each
      sub-question text-extractable or visual-dependent (`LANG-EX-03`) and record the skipped ones. 3–4 practice questions per lesson, 5 only if a concept
      would go uncovered (2026-10-14 rule); Q5 items are mostly one-word skills — cover the **skills** (plural, verkleining, trappe, samestelling, voorsetsel,
      lettergrepe, afkorting, intensiewe vorm, homoniem …) across the lesson, not each item.
@@ -94,7 +94,9 @@ the build's subjects list is stale or the capability is absent.
 - Question names are `Vraag N`; validator limits: `exam_weight` 1–3, correct MC option not clearly longest (pad distractors).
 - Use the page-geometry approach (fitz word positions) to choose crops; instruction blocks span several lines — cut after the last instruction (Q2), not at the first.
 - Review runner: use `scripts/_gen/afrikaans-fal/answers-afr.js` (switches keyboard screens) instead of AMPM's text runner for digits/accents. The accent row reached the emulator without any extra step once the subject row had `accents_af`.
-- Gate (`apply-exam-gate.js`) applied after review.
+- **Image keys are immutable (CDN cache, 1 year).** When a split reused lesson orders 6 and 7, the overwritten images still showed the old pages; new file names (`…_v2_N.png`, the generator's `sfx`) fixed it. `core/upload-pipeline.md` Phase 1.5 now says so.
+- Re-splitting reuses lesson ids (derived from `order`): clean the old lessons' child rows first (`DESIGN-UNI-17` point 6).
+- Gate (`apply-exam-gate.js`) is exam-level; it stays 2.4.1 when lessons are added.
 
 ## Notes
 
